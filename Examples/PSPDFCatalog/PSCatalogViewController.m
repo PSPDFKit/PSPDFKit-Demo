@@ -630,15 +630,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return nil;
     }]];
 
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Change font of the note controller" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        [PSPDFNoteAnnotationViewController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationViewController *noteController) {
-            noteController.textView.font = [UIFont fontWithName:@"Helvetica" size:20];
-        }];
-        return pdfController;
-    }]];
-
     [subclassingSection addContent:[PSContent contentWithTitle:@"Open and immediately request signing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];

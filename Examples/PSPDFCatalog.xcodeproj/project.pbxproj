@@ -40,6 +40,7 @@
 		78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */; };
 		786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */; };
 		786FEED318FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */; };
+		786FEED918FFAA0700CAF16B /* PSCCustomNoteControllerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
@@ -234,6 +235,7 @@
 		786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomAnnotationProvider.m; sourceTree = "<group>"; };
 		786E92C1163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomAnnotationProvider.h; sourceTree = "<group>"; };
 		786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomColorPickerColorsExample.m; sourceTree = "<group>"; };
+		786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomNoteControllerExample.m; sourceTree = "<group>"; };
 		78753587161F740300119B8E /* PSCAutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAutoScrollViewController.h; sourceTree = "<group>"; };
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
 		78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTimingTestViewController.m; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 				789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */,
 				78B1B8DB18F9A8EC00682E6A /* PSCCustomAnnotationCellExample.m */,
 				786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */,
+				786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */,
 				78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */,
 				78C7C5CE16CB9C4D0006075D /* PSCCustomThumbnailsViewController.h */,
 				78C7C5CF16CB9C4D0006075D /* PSCCustomThumbnailsViewController.m */,
@@ -1173,6 +1176,7 @@
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */,
 				78FEC21318B285FC0012ACBD /* PSCBottomToolbarExample.m in Sources */,
+				786FEED918FFAA0700CAF16B /* PSCCustomNoteControllerExample.m in Sources */,
 				78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */,
 				78FEC20018B27F610012ACBD /* PSCDocumentDataProvidersExample.m in Sources */,
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
