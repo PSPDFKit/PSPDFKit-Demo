@@ -83,7 +83,6 @@
 
         // Create the container controller.
         PSPDFContainerViewController *containerController = [[PSPDFContainerViewController alloc] initWithControllers:@[outlineController, annotationController, bookmarkController, searchController] titles:nil delegate:nil];
-        containerController.shouldShowCloseButton = NO;
         containerController.shouldAnimateChanges = NO;
         self.sidebarController = containerController;
         UINavigationController *navContainer = [[UINavigationController alloc] initWithRootViewController:containerController];
