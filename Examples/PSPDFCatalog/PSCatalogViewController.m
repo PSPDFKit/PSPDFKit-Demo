@@ -1506,7 +1506,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                                [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
                                [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
                                [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];)
-        self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
+        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
     }
