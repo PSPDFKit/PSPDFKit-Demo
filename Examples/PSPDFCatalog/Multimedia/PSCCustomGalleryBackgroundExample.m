@@ -10,7 +10,6 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
-#import "PSPDFGalleryContainerView.h"
 
 @interface PSCCustomGalleryBackgroundExample : PSCExample @end
 
