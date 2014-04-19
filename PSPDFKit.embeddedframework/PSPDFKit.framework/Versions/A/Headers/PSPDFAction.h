@@ -59,6 +59,10 @@ extern NSString *const PSPDFActionOptionPopover;
 extern NSString *const PSPDFActionOptionCover;
 // The target page.
 extern NSString *const PSPDFActionOptionPage;
+// Shows a button that activates links.
+extern NSString *const PSPDFActionOptionButton;
+// Controls if a close button is displayed, when `PSPDFActionOptionButton` is used. Default will be YES.
+extern NSString *const PSPDFActionOptionCloseButton;
 
 // Constant to convert PSPDFActionType into NSString and back.
 extern NSString *const PSPDFActionTypeTransformerName;

@@ -17,6 +17,7 @@
 /// Cell that is used to display the search status.
 @interface PSPDFSearchStatusCell : PSPDFSpinnerCell
 
+/// Returns the required cell height.
 + (CGFloat)cellHeight;
 
 /// Updates the cell with the number of new search results.

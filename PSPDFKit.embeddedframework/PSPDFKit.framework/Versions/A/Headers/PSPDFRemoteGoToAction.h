@@ -12,18 +12,15 @@
 
 #import "PSPDFGoToAction.h"
 
-@class PSPDFDocument;
-
 /// Defines the action to go to a specific page from another PDF document (optionally also to a predefined page)
 /// This covers both RemoteGoTo and Launch actions.
 @interface PSPDFRemoteGoToAction : PSPDFGoToAction
 
 /// Will create a `PSPDFActionTypeRemoteGoTo`. (Link to another document)
 - (id)initWithRemotePath:(NSString *)remotePath pageIndex:(NSUInteger)pageIndex;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef isLaunch:(BOOL)launch;
 
 /// Path to the PDF.
-@property (nonatomic, copy) NSString *relativePath;
+@property (nonatomic, copy, readonly) NSString *relativePath;
 
 // Also uses `pageIndex` and `namedDestination` from the `PSPDFGoToAction` parent.
 

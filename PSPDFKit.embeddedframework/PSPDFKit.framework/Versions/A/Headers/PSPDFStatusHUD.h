@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, PSPDFStatusHUDStyle) {
 + (instancetype)indeterminateProgressWithText:(NSString *)text;
 + (instancetype)successWithText:(NSString *)text;
 + (instancetype)errorWithText:(NSString *)text;
++ (instancetype)itemWithText:(NSString *)text image:(UIImage *)image;
 
 - (void)setHUDStyle:(PSPDFStatusHUDStyle)style;
 - (void)pushAnimated:(BOOL)animated;

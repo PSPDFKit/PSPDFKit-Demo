@@ -70,28 +70,14 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// Defaults to 1.0.
 @property (nonatomic, assign) CGFloat minimumFullscreenZoomScale;
 
-/// The color that is displayed behind images in the gallery. Set this to `[UIColor clearColor]`
-/// if you need a transparent mode. Defaults to black.
-@property (nonatomic, strong) UIColor *backgroundColor;
-
-/// Setting this to `YES` will blur the background. Defaults to `NO`.
-/// @note Blurring is not available when in fullscreen mode.
-/// @warning Blurring might be slow on older devices or versions of iOS. Before using, make sure
-/// to test your application on those devices!
-@property (nonatomic, assign) BOOL blurBackground;
-
-/// The color that is displayed behind images in the gallery when in fullscreen mode.
-/// Set this to `[UIColor clearColor]` if you need a transparent mode. Defaults to black.
-@property (nonatomic, strong) UIColor *fullscreenBackgroundColor;
-
 /// Controls if the gallery should loop infinitely, that is if the user can keep scrolling forever
 /// and the content will repeat itself. Defaults to `YES`. Ignored if there's only one item set.
-@property (nonatomic, assign, getter = isLoopEnabled) BOOL loopEnabled;
+@property (nonatomic, assign, getter=isLoopEnabled) BOOL loopEnabled;
 
 /// Setting this to `YES` will present a HUD whenever the user goes from the last image to the
 /// first one. Defaults to `YES`.
 /// @note This propery has no effect if `loopEnabled` is set to `NO`.
-@property (nonatomic, assign, getter = isLoopHUDEnabled) BOOL loopHUDEnabled;
+@property (nonatomic, assign, getter=isLoopHUDEnabled) BOOL loopHUDEnabled;
 
 /// @name State
 
@@ -106,6 +92,10 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 
 /// Used to enter or exit the fullscreen mode.
 @property (nonatomic, assign, getter=isFullscreen) BOOL fullscreen;
+
+/// Indicates if the view controller is currently transitioning between display modes, that
+/// is if the controller is moving from fullscreen to embedded or vice versa.
+@property (nonatomic, assign, getter=isTransitioningDisplayMode) BOOL transitioningDisplayMode;
 
 /// Used to enter or exit the fullscreen mode with or without animation.
 /// @warning If you use this property programmatically, you must set it to `NO` once
@@ -129,7 +119,21 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 
 /// @name Utility
 
-/// Returns the current `PSPDFMediaPlayerController` if a video is currently visible. Returns nil otherwise.
+/// Returns the current `PSPDFMediaPlayerController` if a video is currently visible. Returns `nil` otherwise.
 - (PSPDFMediaPlayerController *)currentMediaPlayerController;
+
+@end
+
+@interface PSPDFGalleryViewController (Private)
+
+@property (nonatomic, weak) UIViewController <PSPDFOverridable> *overridableParentViewController;
+
+@end
+
+@interface PSPDFGalleryViewController (Deprecated)
+
+@property (nonatomic, strong) UIColor *backgroundColor PSPDF_DEPRECATED(3.7.0, "Use backgroundColor on PSPDFGalleryEmbeddedBackgroundView instead.");
+@property (nonatomic, assign) BOOL blurBackground PSPDF_DEPRECATED(3.7.0, "Use blurBackground on PSPDFGalleryEmbeddedBackgroundView instead.");
+@property (nonatomic, strong) UIColor *fullscreenBackgroundColor PSPDF_DEPRECATED(3.7.0, "Use backgroundColor on PSPDFGalleryFullscreenBackgroundView instead.");
 
 @end

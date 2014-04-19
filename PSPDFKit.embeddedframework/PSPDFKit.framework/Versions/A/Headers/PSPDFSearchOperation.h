@@ -65,6 +65,9 @@
 /// Associated document.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
+/// Call after operation completed. Will be NO if no page text was found.
+- (BOOL)pageTextFound;
+
 @end
 
 @interface PSPDFSearchOperation (Advanced)

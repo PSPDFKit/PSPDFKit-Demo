@@ -15,6 +15,9 @@
 /// ScrollView subclass that listens to keyboard events and moves itself up accordingly.
 @interface PSPDFKeyboardAvoidingScrollView : UIScrollView
 
+/// Cancels any scheduled keyboard operations and resets keyboardVisible.
+- (void)prepareForReuse;
+
 /// YES if keyboard is currently displayed.
 /// @warning Keep in mind that there are many other ways for the keyboard. E.g. this will return NO if the keyboard is in split view mode or a physical keyboard is attached.
 @property (nonatomic, assign, readonly, getter=isKeyboardVisible) BOOL keyboardVisible;

@@ -24,16 +24,13 @@
 /// @name Adding Buttons
 
 /// Adds a cancel button. Use only once.
-- (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
-- (void)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)(NSInteger buttonIndex))block;
 
 /// Adds a destructive button. Use only once.
-- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block;
-- (void)setDestructiveButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)(NSInteger buttonIndex))block;
 
 /// Add regular button.
-- (void)addButtonWithTitle:(NSString *)title block:(void (^)())block;
-- (void)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)addButtonWithTitle:(NSString *)title block:(void (^)(NSInteger buttonIndex))block;
 
 /// @name Properties and show/destroy
 
@@ -43,14 +40,18 @@
 /// Is clever about the sender, uses fallbackView if sender is not usable (nil, or not `UIBarButtonItem`/`UIView`)
 - (void)showWithSender:(id)sender fallbackView:(UIView *)view animated:(BOOL)animated;
 
-/// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.
-- (void)destroy;
+/// A `UIActionSheet` can always be cancelled, even if no cancel button is present.
+/// Use `allowsTapToDismiss` to block cancellation on tap. The control might still be cancelled from OS events.
+- (void)addCancelBlock:(void (^)(NSInteger buttonIndex))cancelBlock;
 
-/// Call block when action sheet is about to be dismissed.
-@property (nonatomic, copy) void (^willDismissBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
+/// Add block that is called after the sheet will be dismissed (before animation).
+- (void)addWillDismissBlock:(void (^)(NSInteger buttonIndex))willDismissBlock;
 
-/// Call block when action sheet has been dismissed.
-@property (nonatomic, copy) void (^didDismissBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
+/// Add block that is called after the sheet has been dismissed (after animation).
+- (void)addDidDismissBlock:(void (^)(NSInteger buttonIndex))didDismissBlock;
+
+/// Allows to be dismissed by tapping outside? Defaults to YES (UIActionSheet default)
+@property (nonatomic, assign) BOOL allowsTapToDismiss;
 
 @end
 

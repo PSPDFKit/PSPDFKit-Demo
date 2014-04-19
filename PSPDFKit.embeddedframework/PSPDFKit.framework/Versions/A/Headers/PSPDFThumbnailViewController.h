@@ -11,9 +11,13 @@
 //
 
 #import "PSPDFBaseViewController.h"
+#import "PSPDFSegmentedControl.h"
 #import "PSPDFDocument.h"
 
 @class PSPDFThumbnailViewController, PSPDFThumbnailGridViewCell, PSPDFCenteredLabelView;
+
+// Subclass to enable UIAppearance rules on the filter.
+@interface PSPDFThumbnailFilterSegmentedControl : PSPDFSegmentedControl @end
 
 typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
     PSPDFThumbnailViewFilterShowAll,     // Show all thumbnails.
@@ -103,7 +107,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @property (nonatomic, strong) UICollectionViewLayout *layout;
 
 // The filter segment to filter bookmarked/annotated documents.
-@property (nonatomic, strong, readonly) UISegmentedControl *filterSegment;
+@property (nonatomic, strong, readonly) PSPDFThumbnailFilterSegmentedControl *filterSegment;
 
 // The filter segment is recreated on changes; to customize subclass this class and override `updateFilterSegment`.
 - (void)updateFilterSegment;

@@ -37,7 +37,8 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 @end
 
 
-/// Beautiful color selection controller.
+/// The color selection controller shows pages of predefined colors, much like Apple's iWork/iOS apps.
+/// The patterns are predefined in plist files located in the PSPDFKit.bundle. We pre-provide several styles, and you can also supply custom styles.
 @interface PSPDFColorSelectionViewController : UIViewController
 
 /// Used to show the color pickers in PSPDF. Uses `defaultColorArrays`.

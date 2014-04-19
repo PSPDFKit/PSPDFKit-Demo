@@ -35,6 +35,9 @@
 /// Modify this to change the look of the selection/highlight state.
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 
+/// Bookmark ribbon image color. Defaults to red.
+@property (nonatomic, strong) UIColor *bookmarkImageColor UI_APPEARANCE_SELECTOR;
+
 /// Call before re-showing the cell. (will update bookmark status)
 - (void)updateCell;
 

@@ -22,7 +22,7 @@
 /// The currently set annotation.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 
-/// Associated weak reference to then `PSPDFPageView`.
+/// Associated weak reference to the `PSPDFPageView` the annotation is displayed on.
 @property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end

@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu документов проиндексировано.\n";
 "Done" = "Готово";
 "Indexing Documents" = "Индексация документов";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Документ пуст";
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
@@ -111,7 +113,9 @@
 "Remove" = "Удалить";
 "Edit" = "Правка";
 "Undo" = "Отменить";
+"Nothing to undo" = "Нечего отменять";
 "Redo" = "Повторить";
+"Nothing to redo" = "Нечего повторять";
 "Type" = "Введите"; // kind of Annotation can be selected
 "Size" = "Размер";
 "Font" = "Шрифт";
@@ -234,6 +238,23 @@
 "Witness" = "Удостоверить";
 "Revised" = "Изменено";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Стилус";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Выкл.";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Сканирование";
+// text on a label; app connects to a stylus
+"Pairing" = "Спаривание";
+// text on a label; app and stylus are connected
+"Connected" = "Подключено";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Отключено";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Настройки";
+
+
 // PDF annotation name overrides
 "Square" = "Прямоугольник";
 "Circle" = "Эллипс";
@@ -309,10 +330,16 @@
 "Speak" = "Произнести"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Воспр.";
 "Pause" = "Пауза";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Запись";
 "Pause Recording" = "Приостановить запись";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Запись приостановлена";
 "Continue Recording" = "Продолжить запись";
 "Finish Recording" = "Завершить запись";
 "Audio Problem" = "Проблема со звуком";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "Не удалось воспроизвести";
 "Mic Permission Not Granted" = "Нет разрешения на микфрон";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Извините, но звук не может быть записан в данный момент. Дайте приложению разрешение на доступ к микрофону.";
 "Sorry, but there was a problem trying to record audio." = "Извините, но произошла ошибка при записи звука.";
@@ -332,6 +359,12 @@
 "Default Values" = "Значения по умолчанию";
 "Custom Value" = "Пользовательское значение";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Неверное значение: должно быть больше или ровно %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Неверное значение: должно быть больше или ровно %s и при этом меньше или ровно %s.";
+"Invalid value: must be less than or equal to %s." = "Неверное значение: должно быть меньше или ровно %s.";
+"Invalid value. Must be a number." = "Неверное значение. Должно быть число.";
+
 // Gallery
 "Connection Error" = "Ошибка подключения";
 "Unsupported Content" = "Неподдерживаемое содержимое";
@@ -347,7 +380,11 @@
 "Signature is valid." = "Подпись верна.";
 "Signature is valid, but there are some warnings." = "Подпись верна, но есть предупреждения.";
 "It was signed by %@ on %@ at %@." = "Документ подписан %@ %@ в %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Подписан %@ в %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Заявление о подписании %@ %@ в %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Заявлено подписание %@ в %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Подписанная версия не была изменена, однако были внесены изменения в документ после его подписания."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Подпись действительна, содержимое документа не было изменено после его подписания.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неверная подпись - после подписания документ был изменен или нарушен.";

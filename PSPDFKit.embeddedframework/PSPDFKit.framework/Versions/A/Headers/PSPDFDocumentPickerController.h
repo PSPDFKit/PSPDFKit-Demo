@@ -68,6 +68,10 @@
 /// Enable to perform full-text search on all documents. Defaults to YES
 @property (nonatomic, assign) BOOL fullTextSearchEnabled;
 
+/// If set to YES, will require an exact word match instead of an begin/end partial match. Defaults to NO.
+/// @note This will forward the option via `PSPDFLibraryMatchExactWordsOnlyKey` to the `PSPDFLibrary`.
+@property (nonatomic, assign) BOOL fullTextSearchExactWordMatch;
+
 /// Property is enabled if a FTS-Search is currently queued/running. KVO observable.
 @property (nonatomic, assign, readonly) BOOL isSearchingIndex;
 

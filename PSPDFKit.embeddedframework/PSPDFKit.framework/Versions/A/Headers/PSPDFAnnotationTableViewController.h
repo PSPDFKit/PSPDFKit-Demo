@@ -24,6 +24,7 @@
 @end
 
 /// Shows an overview of all annotations in the current document.
+/// @note The toolbar/navigation items are populated in `viewWillAppear:` and can be changed in your subclass.
 @interface PSPDFAnnotationTableViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
@@ -42,12 +43,19 @@
 /// The annotation table view delegate.
 @property (nonatomic, weak) id<PSPDFAnnotationTableViewControllerDelegate> delegate;
 
+/// Reloads the displayed annotations and updates the internal cache.
+- (void)reloadData;
+
 @end
 
 @interface PSPDFAnnotationTableViewController (SubclassingHooks)
 
 // Customize to make more fine-grained changes to the displayed annotation than what would be possible via setting `visibleAnnotationTypes`.
+// The result will be cached internally and only refreshed after `reloadData` is called. (the one on this controller, NOT on the table view)
 - (NSArray *)annotationsForPage:(NSUInteger)page;
+
+// Queries the cache to get the annotation for `indexPath`.
+- (PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath;
 
 // Subclass to change the table view style. Defaults to `UITableViewStylePlain`.
 - (UITableViewStyle)targetTableViewStyle;

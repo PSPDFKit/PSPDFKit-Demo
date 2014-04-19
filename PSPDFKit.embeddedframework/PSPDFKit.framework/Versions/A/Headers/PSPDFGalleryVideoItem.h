@@ -22,8 +22,25 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemQuality) {
 	PSPDFGalleryVideoItemQuality1080p
 };
 
-/// Converts a string into `PSPDFGalleryVideoItemQuality`.
+typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemCoverMode) {
+    /// The cover is not visible. Correspondents to `none`.
+    PSPDFGalleryVideoItemCoverModeNone,
+    
+    /// The cover is visible and a video preview is displayed. Correspondents to `preview`.
+    PSPDFGalleryVideoItemCoverModePreview,
+    
+    /// The cover is visible and an image is displayed. Correspondents to `image`.
+    PSPDFGalleryVideoItemCoverModeImage,
+    
+    /// The cover is visible and the underlaying PDF shines through. Correspondents to `clear`.
+    PSPDFGalleryVideoItemCoverModeClear
+};
+
+/// Converts an `NSString` into `PSPDFGalleryVideoItemQuality`.
 extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSString *string);
+
+/// Converts an `NSString` into `PSPDFGalleryVideoItemCoverMode`.
+extern PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(NSString *string);
 
 /// A video item in a gallery. This class uses the class cluster design pattern.
 @interface PSPDFGalleryVideoItem : PSPDFGalleryItem
@@ -41,15 +58,29 @@ extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSStr
 
 /// Contains the order of the prefered video qualities. This only works for videos where
 /// the source is capable of providing different qualities.
-@property (nonatomic, copy) NSArray *preferedQualities;
+@property (nonatomic, copy) NSArray *preferredVideoQualities;
 
 /// The initial seek time. Defaults to `0.0`.
 @property (nonatomic, assign) NSTimeInterval seekTime;
 
-/// @name Content
+/// The start of the video in seconds. Defaults to `nil`.
+@property (nonatomic, strong) NSNumber *startTime;
 
-/// The cover image URL.
-@property (nonatomic, copy, readonly) NSURL *coverImageURL;
+/// The end time of the video in seconds. Defaults to `nil`.
+@property (nonatomic, strong) NSNumber *endTime;
+
+/// Calculates the playable range from `startTime` and `endTime`.
+- (CMTimeRange)playableRange;
+
+/// The cover mode used. Defaults to `PSPDFGalleryVideoItemCoverModePreview`.
+@property (nonatomic, assign) PSPDFGalleryVideoItemCoverMode coverMode;
+
+/// The cover image URL. Defaults to `nil`.
+/// @note The `coverMode` must be set to `PSPDFGalleryVideoItemCoverModeImage` for this
+/// property to have an effect.
+@property (nonatomic, copy) NSURL *coverImageURL;
+
+/// @name Content
 
 /// An `PSPDFGalleryVideoItem` has an URL to a video as its content.
 - (NSURL *)content;
@@ -60,8 +91,6 @@ extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSStr
 
 // This method is the designated initializer for all internal classes of the class cluster.
 - (id)initInternallyWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
-
-@property (nonatomic, strong, readwrite) NSURL *coverImageURL;
 
 @end
 
@@ -76,8 +105,23 @@ extern NSString *const PSPDFGalleryOptionControls;
 /// Boolean. Indicates if the content should loop forever.
 extern NSString *const PSPDFGalleryOptionLoop;
 
+/// NSString. Indicates the cover mode.
+extern NSString *const PSPDFGalleryOptionCoverMode;
+
 /// NSURL. Indicates which image should be presented as a cover view.
-extern NSString *const PSPDFGalleryOptionCover;
+extern NSString *const PSPDFGalleryOptionCoverImage;
 
 /// NSArray. The prefered video qualities.
-extern NSString *const PSPDFGalleryOptionPreferedVideoQualities;
+extern NSString *const PSPDFGalleryOptionPreferredVideoQualities;
+
+/// NSNumber. The start time of the video.
+extern NSString *const PSPDFGalleryOptionStartTime;
+
+/// NSNumber. The end time of the video.
+extern NSString *const PSPDFGalleryOptionEndTime;
+
+/// @name Deprecated Constants
+
+/// Mixed value. This is a mixture of boolean values and an URL to a cover image.
+/// Use `PSPDFGalleryOptionCoverImage` and `PSPDFGalleryOptionCoverMode` instead.
+extern NSString *const PSPDFGalleryOptionCover;

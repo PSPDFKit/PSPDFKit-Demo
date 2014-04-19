@@ -12,19 +12,16 @@
 
 #import "PSPDFAction.h"
 
-@class PSPDFAnnotation;
-
 /// A hide action (PDF 1.2) hides or shows one or more annotations on the screen by setting or clearing their Hidden flags (see 12.5.3, “Annotation Flags”). This type of action can be used in combination with appearance streams and trigger events (Sections 12.5.5, “Appearance Streams,” and 12.6.3, “Trigger Events”) to display pop-up help information on the screen.
 @interface PSPDFHideAction : PSPDFAction
 
 /// Designated initializers.
-- (id)init;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
+- (id)initWithAssociatedAnnotations:(NSArray *)annotations;
 
 /// Either hide (YES) or show (NO) the referenced annotation/form object.
 @property (nonatomic, assign) BOOL shouldHide;
 
 /// The associated annotations.
-@property (nonatomic, copy) NSArray *annotations;
+@property (nonatomic, copy, readonly) NSArray *annotations;
 
 @end

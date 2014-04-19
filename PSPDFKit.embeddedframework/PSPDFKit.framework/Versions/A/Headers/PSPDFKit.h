@@ -11,9 +11,25 @@
 //
 
 // PSPDFKit 3.2.3 is the last version supporting iOS 5.0.
+// You need Xcode 5.1.1 or compile or link with PSPDFKit.
+// We're planning to drop iOS 6 once iOS 8 is announced at WWDC.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
 #error PSPDFKit supports iOS 6.0 upwards.
 #endif
+
+/// Configuration object for various framework-global settings.
+/// @note The PSPDFKit singleton acts as a global, thread-safe key/value store.
+/// Use `setValue:forKey:` and `valueForKey:` or the subscripted variants to set/get properties.
+@interface PSPDFKit : NSObject
+
+/// The shared PSPDFKit configuration instance.
++ (instancetype)sharedInstance;
+
+/// Allow direct dictionary-like access. The `key` must be of type `NSString`.
+- (id)objectForKeyedSubscript:(id)key;
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+
+@end
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,6 +38,7 @@ extern "C" {
 // common
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFLogging.h"
 #import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"
 #import "PSPDFViewController.h"
@@ -169,6 +186,9 @@ extern "C" {
 #import "PSPDFBrightnessBarButtonItem.h"
 #import "PSPDFOutlineBarButtonItem.h"
 #import "PSPDFActivityBarButtonItem.h"
+#import "PSPDFFlexibleToolbar.h"
+#import "PSPDFFlexibleAnnotationToolbar.h"
+#import "PSPDFFlexibleToolbarContainer.h"
 
 // helper
 #import "PSPDFAlertView.h"
@@ -197,6 +217,8 @@ extern "C" {
 // encryption
 #import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFCryptor.h"
+#import "PSPDFAESCryptoInputStream.h"
+#import "PSPDFAESCryptoOutputStream.h"
 
 // forms
 #import "PSPDFFormParser.h"
@@ -221,13 +243,18 @@ extern "C" {
 #import "PSPDFRemoteContentObject.h"
 #import "PSPDFGalleryAnnotationView.h"
 #import "PSPDFMediaPlayerController.h"
-
-// audio
-#import "PSPDFAudioHelper.h"
+#import "PSPDFGalleryContainerView.h"
 
 // OpenSSL
 #import "PSPDFDigitalCertificate.h"
 #import "PSPDFDigitalSigningIdentity.h"
+
+// Stylus Feature
+#import "PSPDFStylusManager.h"
+#import "PSPDFAnnotationStateManager+StylusSupport.h"
+
+// Plugin
+#import "PSPDFPlugin.h"
 
 #ifdef __cplusplus
 }

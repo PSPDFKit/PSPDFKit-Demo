@@ -33,7 +33,6 @@ typedef NS_ENUM(NSInteger, PSPDFFlexibleToolbarGroupButtonIndicatorPosition) {
 extern CGFloat const PSPDFFlexibleToolbarHeight;
 extern CGFloat const PSPDFFlexibleToolbarHeightPhoneLandscape;
 extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
-extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 #define PSPDFFlexibleToolbarGroupIndicatorPositionForToolbarPosition(position) ((position == PSPDFFlexibleToolbarPositionRight) ? PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomLeft : PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomRight)
 
@@ -123,7 +122,8 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 /// The tint color for selected buttons.
 /// Only available in UIKit flat mode.
-/// Defaults to `barTintColor`.
+/// Defaults to `barTintColor` if available, otherwise an attempt is made to select an appropriate color
+/// based on the `backgroundView` appearance.
 @property (nonatomic, strong) UIColor *selectedTintColor UI_APPEARANCE_SELECTOR;
 
 /// The selection bezel color.
@@ -147,12 +147,10 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 /// Returns the toolbars native size for the provided position, bound to the `availableSize`.
 /// Internally used by the container view to correctly position the toolbar and anchor views during drag & drop.
+/// In flat mode, the toolbar height will be increased when docked underneath the status bar by the
+/// `PSPDFFlexibleToolbarContainer`.
+/// @see -[PSPDFToolbarContainer rectForToolbarPosition:]
 - (CGSize)preferredSizeFitting:(CGSize)availableSize forToolbarPosition:(PSPDFFlexibleToolbarPosition)position;
-
-/// Returns the toolbars native size for the provided position,
-/// extending underneath the status bar aria in UIKit flat mode if needed.
-/// Internally used by the container view to correctly position the toolbar and anchor views during drag & drop.
-- (CGSize)preferredExtendedSizeFitting:(CGSize)availableSize forToolbarPosition:(PSPDFFlexibleToolbarPosition)position;
 
 /// @name Overflow handling
 
@@ -207,6 +205,8 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 /// Styles the provided image and sets it as the button image for several button states.
 - (void)setImage:(UIImage *)image;
+
+@property (nonatomic, strong) id userInfo;
 
 @end
 

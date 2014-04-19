@@ -145,6 +145,8 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
  @note on Thread safety:
  Annotation objects should only ever be edited on ONE thread. Modify properties on the main thread only if they are already active (for creation, it doesn't matter which thread creates them). Before rendering, obtain a copy of the annotation to ensure it's not mutated while properties are read.
+ 
+ @warning Annotations are mutable objects. Do not store them into NSSet or other objects that require a hash-value that does not change.
 */
 @interface PSPDFAnnotation : PSPDFModel <PSPDFUndoProtocol, PSPDFJSONSerializing>
 
@@ -167,6 +169,9 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Returns YES if this annotation requires an implicit popup annotation.
 + (BOOL)requriesPopupAnnotation;
+
+/// Returns YES if the annotation wants a selection border. Defaults to YES.
++ (BOOL)wantsSelectionBorder;
 
 /// Returns YES if this annotation type is moveable.
 - (BOOL)isMovable;
@@ -354,9 +359,6 @@ extern NSString *const PSPDFAnnotationMarginKey;       // `UIEdgeInsets`.
 
 @interface PSPDFAnnotation (Advanced)
 
-/// Helper that converts the boundingBox to a rect usable in `PSPDFPageView`.
-- (CGRect)boundingBoxForPageViewBounds:(CGRect)pageBounds;
-
 /// Some annotations might change their points/lines/size when the bounding box changes.
 /// This returns NO by default.
 - (BOOL)shouldUpdatePropertiesOnBoundsChange;
@@ -370,6 +372,9 @@ extern NSString *const PSPDFAnnotationMarginKey;       // `UIEdgeInsets`.
 
 /// Copy annotation object to `UIPasteboard` (multiple formats).
 - (void)copyToClipboard;
+
+/// Ask if we may remove an annotation. Only called if `+isDeletable` returns YES.
+- (BOOL)shouldDeleteAnnotation;
 
 @end
 

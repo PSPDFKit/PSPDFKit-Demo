@@ -16,6 +16,7 @@
 /// Only available for PSPDFKit Complete with OpenSSL.
 @interface PSPDFSignedFieldViewController : PSPDFBaseViewController
 
+/// Designated initializer with the signature verification handler.
 - (id)initWithVerificationController:(id<PSPDFDigitalSignatureVerificationHandler>)verificationHandler;
 
 @end

@@ -15,11 +15,6 @@
 #import "PSPDFAnnotationStateManager.h"
 #import "PSPDFViewController.h"
 
-// Compatiblity with Xcode 4.6 / SDK 6 (as binary)
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000 && !defined(UIBarPosition)
-#define UIBarPosition NSInteger
-#endif
-
 @class PSPDFAnnotationToolbar;
 
 /// Delegate to be notified on toolbar actions/hiding.
@@ -91,9 +86,6 @@
 @property (nonatomic, assign) BOOL slideToolbar;
 
 /// @name Behavior
-
-/// Enable to auto-hide toolbar after drawing finishes. Defaults to NO.
-@property (nonatomic, assign) BOOL hideAfterDrawingDidFinish;
 
 /// This will issue a save event after the toolbar has been dismissed.
 /// @note Since saving can take some time, this defaults to NO.

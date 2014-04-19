@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu documenti indicizzati.";
 "Done" = "Fatto";
 "Indexing Documents" = "Indicizzazione documenti";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Il documento è privo di contenuto";
 
 // inline browser
 "Open in Safari" = "Apri in Safari";
@@ -111,7 +113,9 @@
 "Remove" = "Rimuovi";
 "Edit" = "Modifica";
 "Undo" = "Annulla";
+"Nothing to undo" = "Nulla da annullare";
 "Redo" = "Ripeti";
+"Nothing to redo" = "Nulla da ripetere";
 "Type" = "Tipo"; // kind of Annotation can be selected
 "Size" = "Dimensioni";
 "Font" = "Font";
@@ -234,6 +238,23 @@
 "Witness" = "Controllo";
 "Revised" = "Revisionato";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stilo";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Disattivo";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Scansione";
+// text on a label; app connects to a stylus
+"Pairing" = "Accoppiamento";
+// text on a label; app and stylus are connected
+"Connected" = "Connesso";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Disconnesso";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Impostazioni";
+
+
 // PDF annotation name overrides
 "Square" = "Rettangolo";
 "Circle" = "Elissi";
@@ -309,10 +330,16 @@
 "Speak" = "Leggi"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Riproduci";
 "Pause" = "Pausa";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Registra";
 "Pause Recording" = "Metti in pausa registrazione";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Registrazione in pausa";
 "Continue Recording" = "Continua registrazione";
 "Finish Recording" = "Fine registrazione";
 "Audio Problem" = "Problema audio";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "Impossibile avviare la riproduzione.";
 "Mic Permission Not Granted" = "L'accesso al microfono è stato negato";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "L'audio non può essere registrato al momento. L'accesso al microfono è stato negato.";
 "Sorry, but there was a problem trying to record audio." = "Si è verificato un problema durante la registrazione audio.";
@@ -332,6 +359,12 @@
 "Default Values" = "Valori di default";
 "Custom Value" = "Valore personalizzato";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Valore non valido: deve essere superiore o uguale a %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valore non valido: deve essere superiore o uguale a %s e inferiore o uguale a %s.";
+"Invalid value: must be less than or equal to %s." = "Valore non valido: deve essere inferiore o uguale a %s.";
+"Invalid value. Must be a number." = "Valore non valido. Deve essere un numero.";
+
 // Gallery
 "Connection Error" = "Errore di connessione";
 "Unsupported Content" = "Contenuto non supportato";
@@ -347,7 +380,11 @@
 "Signature is valid." = "La firma è valida.";
 "Signature is valid, but there are some warnings." = "La firma è valida ma ci sono degli avvisi.";
 "It was signed by %@ on %@ at %@." = "È stato firmato da %@ il %@ alle %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "È stato firmato il %@ alle %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Secondo il certificato firmato da %@ il %@ alle %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Sembra che sia stato firmato il %@ alle %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- La versione firmata non è stata modificata, tuttavia sono state apportate delle modifiche al documento da quando è stato firmato."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- La firma è valida e il contenuto di questo documento non è stato modificato da quando è stato firmato.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Firma non valida — dalla firma del contenuto di questo documento è stato modificato, manomesso o danneggiato.";

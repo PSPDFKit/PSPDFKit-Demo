@@ -61,12 +61,8 @@
 
 /// Allow to customize the textView. (font etc)
 /// Created in `viewDidLoad`.
-/// @note If you want to customize the font, override `textViewFont`.
+/// @note The best way to customize the font is to subclass and override `updateTextView`.
 @property (nonatomic, strong, readonly) UITextView *textView;
-
-/// Set a global block that allows to customize the `UITextView` and other properties of `PSPDFNoteAnnotationViewController`.
-/// Will be called in `viewWillAppear:`. This is the best way to customize the font.
-+ (void)setTextViewCustomizationBlock:(void (^)(PSPDFNoteAnnotationViewController *))block;
 
 /// Attached delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFNoteAnnotationViewControllerDelegate> delegate;
@@ -89,10 +85,10 @@
 - (BOOL)beginEditing;
 
 // Called as we update the text view.
-- (void)updateTextView;
-
-// Creates the font for the text view (adaptive to iOS 7 content size)
-- (UIFont *)textViewFont;
+// This can be used to update various text view properties like font.
+// @note An even better way is to use UIAppearance:
+// `[[UITextView appearanceWhenContainedIn:PSPDFNoteAnnotationViewController.class, nil] setFont:[UIFont fontWithName:@"Helvetica" size:20.f]];`
+- (void)updateTextView NS_REQUIRES_SUPER;
 
 // Background gradient.
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;

@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu documents indexés";
 "Done" = "Terminé";
 "Indexing Documents" = "Indexation des documents";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Ce document est vide.";
 
 // inline browser
 "Open in Safari" = "Ouvrir dans Safari";
@@ -111,7 +113,9 @@
 "Remove" = "Supprimer";
 "Edit" = "Modifier";
 "Undo" = "Annuler";
+"Nothing to undo" = "Rien à rétablir";
 "Redo" = "Rétablir";
+"Nothing to redo" = "Rien à rétablir";
 "Type" = "Type"; // kind of Annotation can be selected
 "Size" = "Taille";
 "Font" = "Police";
@@ -217,7 +221,7 @@
 // Stamps
 "Approved" = "Approuvé";
 "Not Approved" = "Non approuvé";
-"Draft" = "Brouillon";
+"Draft" = "Ébauche";
 "Final" = "Final";
 "Completed" = "Terminé";
 "Confidential" = "Confidentiel";
@@ -233,6 +237,23 @@
 "Sign Here" = "Signer ici";
 "Witness" = "Certifier";
 "Revised" = "Revu";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stylet";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Désactivé";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Recherche…";
+// text on a label; app connects to a stylus
+"Pairing" = "Jumelage";
+// text on a label; app and stylus are connected
+"Connected" = "Connecté";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Déconnecté";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Réglages";
+
 
 // PDF annotation name overrides
 "Square" = "Rectangle";
@@ -309,10 +330,16 @@
 "Speak" = "Parler"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Lecture";
 "Pause" = "Pause";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Enregistrer";
 "Pause Recording" = "Suspendre l'enregistrement";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Enregistrement en pause";
 "Continue Recording" = "Poursuivre l'enregistrement";
 "Finish Recording" = "Terminer l'enregistrement";
 "Audio Problem" = "Problème audio";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "Impossible de démarrer la lecture.";
 "Mic Permission Not Granted" = "Micro non autorisé";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Désolé, impossible d'enregistrer du contenu audio. Vous devez autoriser cette app à accéder à votre microphone.";
 "Sorry, but there was a problem trying to record audio." = "Désolé, un problème est survenu lors de la tentative d'enregistrement audio.";
@@ -332,6 +359,12 @@
 "Default Values" = "Valeurs par défaut";
 "Custom Value" = "Valeur personnalisée";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Valeur invalide : doit être supérieure ou égale à %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valeur invalide : doit être supérieure ou égale à %s et inférieure ou égale à %s.";
+"Invalid value: must be less than or equal to %s." = "Valeur invalide : doit être inférieure ou égale à %s.";
+"Invalid value. Must be a number." = "Valeur invalide : doit être un nombre.";
+
 // Gallery
 "Connection Error" = "Erreur de connexion";
 "Unsupported Content" = "Contenu non géré";
@@ -347,7 +380,11 @@
 "Signature is valid." = "La signature est valide.";
 "Signature is valid, but there are some warnings." = "La signature est valide, mais il y a des avertissements.";
 "It was signed by %@ on %@ at %@." = "Il a été signé par %@ le %@ à %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Il a été signé le %@ à %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Il indique avoir été signé par %@ le %@ à %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Il indique avoir été signé le %@ à %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- La révision à laquelle s'applique cette signature n'a pas été modifiée, cependant le document a été modifié depuis qu'il a été signé."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- La signature est valide et le contenu de ce document n'a pas été modifié depuis sa signature.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Signature invalide : le contenu du document a été modifié, altéré ou endommagé depuis sa signature.";

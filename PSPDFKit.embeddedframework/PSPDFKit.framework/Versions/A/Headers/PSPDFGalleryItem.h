@@ -53,10 +53,10 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 
 /// @name Content
 
-/// The state of the item's content.
+/// The state of the item's content. Defaults to `PSPDFGalleryItemContentStateWaiting`.
 @property (nonatomic, assign, readonly) PSPDFGalleryItemContentState contentState;
 
-/// The content of the item.
+/// The content of the item. Defaults to `nil`.
 @property (nonatomic, strong, readonly) id content;
 
 /// Indicates if the content of contentURL is considered valid.

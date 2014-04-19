@@ -28,10 +28,7 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 
  All calls are thread safe.
  */
-@interface PSPDFBookmarkParser : NSObject {
-    dispatch_queue_t _bookmarkQueue;  // used for synchronization of _bookmarks
-    NSMutableArray *_bookmarks;
-}
+@interface PSPDFBookmarkParser : NSObject
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document;
@@ -60,6 +57,11 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 
 
 @interface PSPDFBookmarkParser (SubclassingHooks)
+
+/// Internal queue to synchronize acccess to the mutable bookmark array.
+/// The internal type of `bookmarks` is NSMutableArray and can be modified if synchronizing with this queue.
+/// @note This is still accessible for legacy reasons, but might be replaced with more fine-grained hooks.
+@property (nonatomic, strong, readonly) dispatch_queue_t bookmarkQueue;
 
 /// Defaults to cachePath/bookmarks.plist
 - (NSString *)bookmarkPath;

@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 
 /// Designated initializer.
 - (id)init;
+- (id)initWithContents:(NSString *)contents;
 
 /// Font name as defined in the DA appearance string.
 @property (nonatomic, copy) NSString *fontName;

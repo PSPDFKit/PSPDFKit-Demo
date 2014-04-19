@@ -114,6 +114,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 - (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
 /// Return YES if the manager requires saving.
+/// @note You should first ensure the `state` property in the `annotationStateManager` to nil to commit any draft annotations.
 - (BOOL)shouldSaveAnnotations;
 
 /// Provided to the `PSPDFAnnotationProviders` via `PSPDFAnnotationProviderChangeNotifier`.

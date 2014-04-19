@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu 个文稿已加索引。";
 "Done" = "完成";
 "Indexing Documents" = "正在索引文稿";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "文稿没有内容";
 
 // inline browser
 "Open in Safari" = "在 Safari 中打开";
@@ -111,7 +113,9 @@
 "Remove" = "移除";
 "Edit" = "编辑";
 "Undo" = "撤销";
+"Nothing to undo" = "没有要撤销的操作";
 "Redo" = "重做";
+"Nothing to redo" = "没有要重做的操作";
 "Type" = "类型"; // kind of Annotation can be selected
 "Size" = "大小";
 "Font" = "字体";
@@ -234,6 +238,23 @@
 "Witness" = "见证";
 "Revised" = "已修订";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "触笔";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "关";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "扫描";
+// text on a label; app connects to a stylus
+"Pairing" = "配对";
+// text on a label; app and stylus are connected
+"Connected" = "已连接";
+// text on a label; app and stylus are not connected
+"Disconnected" = "已断开连接";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "设置";
+
+
 // PDF annotation name overrides
 "Square" = "矩形";
 "Circle" = "椭圆";
@@ -309,10 +330,16 @@
 "Speak" = "朗读"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "播放";
 "Pause" = "暂停";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "录制";
 "Pause Recording" = "暂停录制";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "录制已暂停";
 "Continue Recording" = "继续录制";
 "Finish Recording" = "完成录制";
 "Audio Problem" = "音频问题";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "无法开始播放";
 "Mic Permission Not Granted" = "未授权访问麦克风";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "抱歉，暂时无法录制音频。请授权本应用程序访问您的麦克风。";
 "Sorry, but there was a problem trying to record audio." = "抱歉，尝试录制音频时出现问题。";
@@ -332,6 +359,12 @@
 "Default Values" = "默认值";
 "Custom Value" = "自定值";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "值无效：必须不小于 %s。";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "值无效：必须不小于 %s 且不大于 %s。";
+"Invalid value: must be less than or equal to %s." = "值无效：必须不大于 %s。";
+"Invalid value. Must be a number." = "值无效。必须是数字。";
+
 // Gallery
 "Connection Error" = "链接错误";
 "Unsupported Content" = "不支持的内容";
@@ -347,7 +380,11 @@
 "Signature is valid." = "签名有效。";
 "Signature is valid, but there are some warnings." = "签名有效，但是出现一些警告。";
 "It was signed by %@ on %@ at %@." = "由 %@ 于 %@ %@ 签名。"; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "它已于 %@ %@ 签名。";
 "It claims to have been signed by %@ on %@ at %@." = "它声称已由 %@ 于 %@ %@ 签名。"; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "它声称已于 %@ %@ 签名。";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- 此签名中的修订尚未修改，然而在签名之后已对文稿作出更改。"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 签名有效，且此文稿的内容自签名后没有修改。";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 无效签名 — 自本文稿内容签名后，它已被修改、 篡改或损坏。";

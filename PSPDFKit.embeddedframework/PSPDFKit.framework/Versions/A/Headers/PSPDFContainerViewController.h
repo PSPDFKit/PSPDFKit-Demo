@@ -59,9 +59,6 @@
 /// @note Popover size change animation can't be blocked on iOS 6.
 @property (nonatomic, assign) BOOL shouldAnimateChanges;
 
-/// Defaults to YES, unless `isInPopover` is set. Will add a close button as leftBarButtonItems.
-@property (nonatomic, assign) BOOL shouldShowCloseButton;
-
 @end
 
 @interface PSPDFContainerViewController (SubclassingHooks)

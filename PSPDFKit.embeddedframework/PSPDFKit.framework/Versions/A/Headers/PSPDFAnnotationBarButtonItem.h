@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
  If you implement custom saving logic, either set `annotationSaveMode` to `PSPDFAnnotationSaveModeExternalFile` and override the load/save methods in `PSPDFAnnotationManager`, or override `PSPDFAnnotationBarButtonItem` and return `YES` on `isAvailable`. (a good implementation would be 'return `self.pdfController.document.isValid`'.
 
  The annotation toolbar will be displayed on top of the `navigationController's` `navigationBar` - if it's visible.
- If not, `PSPDFAnnotationBarButtonItem` looks for the `UIToolbar` it is embedded in (you can override `targetToolbarForBarButtonItem`). The `annotationToolbar` will copy the style of the current UIToolbar. (`barStyle`, `translucent`, `tintColor`)
+ If not, `PSPDFAnnotationBarButtonItem` looks for the `UIToolbar` or `UINavigationBar` it is embedded in (you can override `targetToolbar`). The `annotationToolbar` will copy the style of the current UIToolbar (`barStyle`, `translucent`, `tintColor`).
  If everything else fails, the toolbar will be displayed above the `PSPDFViewController's` view anchored at the top.
  */
 @interface PSPDFAnnotationBarButtonItem : PSPDFSelectableBarButtonItem <PSPDFAnnotationToolbarDelegate>
@@ -50,12 +50,8 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
 /// Internally used and displayed flexible annotation toolbar.
 @property (nonatomic, strong, readonly) PSPDFFlexibleAnnotationToolbar *flexibleAnnotationToolbar;
 
-@end
-
-@interface PSPDFAnnotationBarButtonItem (SubclassingHooks)
-
-/// Override if you are using multiple `UIToolbars` and want to change on what toolbar the annotation bar should be displayed.
-/// Returns `UIToolbar` or `UINavigationBar`.
-- (UIView *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
+/// The host view for the `PSPDFFlexibleAnnotationToolbarContainer`.
+/// If set to nil (the default), the `PSPDFViewController`'s navigationController view or the containing `UIToolbar`'s or `UINavigationBar`'s superview will be used. 
+@property (nonatomic, strong) UIView *hostView;
 
 @end

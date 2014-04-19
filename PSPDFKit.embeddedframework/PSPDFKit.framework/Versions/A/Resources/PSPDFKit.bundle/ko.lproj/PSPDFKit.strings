@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu개의 문서가 색인되었습니다.";
 "Done" = "완료";
 "Indexing Documents" = "문서 색인 중";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "내용이 없는 문서입니다.";
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
@@ -111,7 +113,9 @@
 "Remove" = "제거";
 "Edit" = "편집";
 "Undo" = "실행취소";
+"Nothing to undo" = "취소할 작업이 없음";
 "Redo" = "실행복귀";
+"Nothing to redo" = "재적용할 작업이 없음";
 "Type" = "유형"; // kind of Annotation can be selected
 "Size" = "크기";
 "Font" = "서체";
@@ -234,6 +238,23 @@
 "Witness" = "증명";
 "Revised" = "수정본";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "스타일러스";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "꺼짐";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "스캔 중";
+// text on a label; app connects to a stylus
+"Pairing" = "페어링";
+// text on a label; app and stylus are connected
+"Connected" = "연결됨";
+// text on a label; app and stylus are not connected
+"Disconnected" = "연결해제";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "설정";
+
+
 // PDF annotation name overrides
 "Square" = "직사각형";
 "Circle" = "타원";
@@ -309,10 +330,16 @@
 "Speak" = "말하기"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "재생";
 "Pause" = "일시정지";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "녹음";
 "Pause Recording" = "녹음 일시정지";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "녹음 일시정지";
 "Continue Recording" = "계속 녹음";
 "Finish Recording" = "녹음 완료";
 "Audio Problem" = "오디오 에러";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "재생할 수 없습니다";
 "Mic Permission Not Granted" = "마이크 사용권한 없음";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "죄송합니다. 소리를 녹음할 수 없습니다. 앱이 마이크에 접근할 수 있도록 설정을 변경해 주시기 바랍니다.";
 "Sorry, but there was a problem trying to record audio." = "죄송합니다. 녹음 중 오류가 발생했습니다.";
@@ -332,6 +359,12 @@
 "Default Values" = "기본값";
 "Custom Value" = "사용자 지정값";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "유효하지 않은 값: 반드시 %s와 같거나 더 커야합니다.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "유효하지 않은 값: %s 이상 %s 이내의 값을 입력해 주십시오.";
+"Invalid value: must be less than or equal to %s." = "유효하지 않은 값: 반드시 %s와 같거나 작아야 합니다.";
+"Invalid value. Must be a number." = "유효하지 않은 값입니다. 반드시 숫자를 입력하십시오.";
+
 // Gallery
 "Connection Error" = "연결 오류";
 "Unsupported Content" = "지원하지 않는 콘텐츠";
@@ -347,7 +380,11 @@
 "Signature is valid." = "유효한 서명입니다.";
 "Signature is valid, but there are some warnings." = "유효한 서명이지만, 주의사항이 있습니다.";
 "It was signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명함"; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = " %@ %@에 서명함";
 "It claims to have been signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명한 것으로 추정"; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = " %@ %@에 서명된 것으로 기재됨";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "서명이 수용할 수 았는 개정판이 수정되지 않았습니다. 하지만 서명 이후에 문서의 내용이 수정되었습니다."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 서명이 유효하며, 문서에 서명이 추가된 이후 내용이 수정되지 않았습니다.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "올바르지 않은 서명 - 서명 후 문서의 내용이 수정되었거나 손상되었습니다.";

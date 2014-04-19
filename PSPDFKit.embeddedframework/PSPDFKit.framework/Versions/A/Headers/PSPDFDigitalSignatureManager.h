@@ -49,10 +49,10 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureManagerErrorCode) {
 - (NSArray *)signingHandlers;
 
 /// Provide a verification handler for the given signature. A handler is chosen by searching for a filter match first, and then by subFilter.
-- (Class<PSPDFDigitalSignatureVerificationHandler>)verificationHandlerForSignature:(PSPDFDigitalSignatureDictionary *)signature;
+- (Class<PSPDFDigitalSignatureVerificationHandler>)verificationHandlerClassForSignature:(PSPDFDigitalSignatureDictionary *)signature;
 
 /// Convenience method that allocates and initialises a suitable verification handler.
-- (id<PSPDFDigitalSignatureVerificationHandler>)verificationHandlerInstanceForSignature:(PSPDFDigitalSignatureDictionary *)signature documentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (id<PSPDFDigitalSignatureVerificationHandler>)verificationHandlerForSignature:(PSPDFDigitalSignatureDictionary *)signature documentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// @name Signing and Revision Delegates
 

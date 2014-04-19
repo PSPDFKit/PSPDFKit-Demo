@@ -20,7 +20,6 @@
 
 /// Initializer, will set pageIndex to `NSNotFound`.
 - (id)initWithNamedDestination:(NSString *)namedDestination;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef pageCache:(CFMutableDictionaryRef)pageCache;
 
 /// Set to `NSNotFound` if not valid.
 @property (nonatomic, assign) NSUInteger pageIndex;

@@ -68,9 +68,11 @@
 /// Current annotation type.
 @property (nonatomic, assign) PSPDFAnnotationType annotationType;
 
-/// Draw Delegate.
+/// Draw Delegate that notifies when drawing starts or is changed.
 @property (atomic, weak) IBOutlet id<PSPDFDrawViewDelegate> delegate;
 
+/// Animate parth changes (used during rotation)
+@property (nonatomic, assign) BOOL animateShapeBoundsChanges;
 
 /// @name Undo/Redo
 

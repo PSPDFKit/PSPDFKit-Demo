@@ -45,6 +45,17 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
     PSPDFMediaPlayerControllerStateReady
 };
 
+typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
+    /// The default cover mode.
+    PSPDFMediaPlayerCoverModeDefault,
+    
+    /// Hides the cover completely.
+    PSPDFMediaPlayerCoverModeHidden,
+    
+    /// Shows the cover and hides the video view while the cover is visible.
+    PSPDFMediaPlayerCoverModeClear
+};
+
 @protocol PSPDFMediaPlayerControllerDelegate;
 
 @class PSPDFMediaPlayerView;
@@ -66,9 +77,13 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 
 /// Starts playing the media.
 - (void)play;
+- (void)playAndPauseOtherInstances:(BOOL)pauseOtherInstances;
 
 /// Pauses the media.
 - (void)pause;
+
+// Pauses all instances of this class.
++ (void)pauseAllInstances;
 
 /// Seek to `time`.
 - (void)seekToTime:(CMTime)time;
@@ -82,8 +97,11 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 /// The current state of the player. The player will only perform actions if it is ready.
 @property (nonatomic, assign, readonly) PSPDFMediaPlayerControllerState state;
 
-/// Indicates that the cover view should be hidden.
-@property (nonatomic, assign) BOOL hideCoverView;
+/// The cover mode.
+@property (nonatomic, assign) PSPDFMediaPlayerCoverMode coverMode;
+
+/// The URL of the cover image to be displayed.
+@property (nonatomic, strong) NSURL *coverImageURL;
 
 /// The player's delegate.
 @property (nonatomic, weak) id <PSPDFMediaPlayerControllerDelegate> delegate;
@@ -108,6 +126,12 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 
 /// The control style of the media player. Defaults to `PSPDFMediaPlayerControlStyleDefault`.
 @property (nonatomic, assign) PSPDFMediaPlayerControlStyle controlStyle;
+
+/// The range of the video that should be played. You can use this property to truncate
+/// parts of the video at the start or at the end. Defaults to a range with start `kCMTimeZero`,
+/// and duration `kCMTimeIndefinite`, which means that the entire video will be played from start
+/// to end.
+@property (nonatomic, assign) CMTimeRange playableRange;
 
 @end
 

@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu個の書類がインデックス済み";
 "Done" = "完了";
 "Indexing Documents" = "書類に索引を付けています";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "書類に内容がありません";
 
 // inline browser
 "Open in Safari" = "Safariで開く";
@@ -111,7 +113,9 @@
 "Remove" = "削除";
 "Edit" = "編集";
 "Undo" = "取消";
+"Nothing to undo" = "取り消すことがありません";
 "Redo" = "やり直し";
+"Nothing to redo" = "やり直すことがありません";
 "Type" = "入力"; // kind of Annotation can be selected
 "Size" = "サイズ";
 "Font" = "フォント";
@@ -234,6 +238,23 @@
 "Witness" = "証人";
 "Revised" = "改訂済み";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "スタイラス";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "オフ";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "スキャン中";
+// text on a label; app connects to a stylus
+"Pairing" = "ペアリング";
+// text on a label; app and stylus are connected
+"Connected" = "接続中";
+// text on a label; app and stylus are not connected
+"Disconnected" = "接続が解除されました";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "設定";
+
+
 // PDF annotation name overrides
 "Square" = "長方形";
 "Circle" = "楕円形";
@@ -309,10 +330,16 @@
 "Speak" = "読み上げ"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "再生";
 "Pause" = "一時停止";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "録音";
 "Pause Recording" = "録音を一時停止";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "録音を一時停止中";
 "Continue Recording" = "録音を続ける";
 "Finish Recording" = "録音を終了";
 "Audio Problem" = "オーディオの問題";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "再生を開始できませんでした";
 "Mic Permission Not Granted" = "マイクの許可が与えられません";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "残念ながらオーディオは現時点で録音できません。このアプリがマイクにアクセスできる許可を与えて下さい。";
 "Sorry, but there was a problem trying to record audio." = "オーディオの録音を試みている間に問題が起きました。";
@@ -332,6 +359,12 @@
 "Default Values" = "デフォルト値";
 "Custom Value" = "カスタム値";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "値が無効です：値は%s以上でなければなりません。";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "値が無効です：値は%s以上で、且つ%s以下である必要があります。";
+"Invalid value: must be less than or equal to %s." = "値が無効です：値は%s以下でなければなりません。";
+"Invalid value. Must be a number." = "値が無効です。数値を使用してください。";
+
 // Gallery
 "Connection Error" = "接続エラー";
 "Unsupported Content" = "サポートされていないコンテンツ";
@@ -347,7 +380,11 @@
 "Signature is valid." = "署名は有効です。";
 "Signature is valid, but there are some warnings." = "署名は有効ですが、警告が数件あります。";
 "It was signed by %@ on %@ at %@." = "%@により%@に%@で署名されました。"; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "%@、%@に署名されました。";
 "It claims to have been signed by %@ on %@ at %@." = "%@によって%@に%@で署名されました。"; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "%@、%@に署名されたことになっています。";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- この署名の対象となるリビジョンは変更されていませんが、それ以降に書類に変更が加えられました。"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 署名は有効で、かつ、この書類の内容はそれ以降変更されていません。";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 無効な署名 — この書類の内容に署名された後、変更、改ざん、または破損が起きました。";

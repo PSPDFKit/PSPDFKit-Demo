@@ -14,38 +14,42 @@
 #import "PSPDFLinkAnnotationBaseView.h"
 
 @class PSPDFSoundAnnotation;
+@class PSPDFSoundAnnotationEditViewController;
 
 /// Displays and manages a sound annotation.
 @interface PSPDFSoundAnnotationView : PSPDFLinkAnnotationBaseView
 
-/// Saves the attached sound annotation.
+/// The sound annotation
 @property (nonatomic, strong, readonly) PSPDFSoundAnnotation *soundAnnotation;
 
-/// Play or Pause current sound annotation.
-- (void)playOrPause;
+/// Edit view controller that manages the audio control views
+@property (nonatomic, strong, readonly) PSPDFSoundAnnotationEditViewController *editViewController;
 
-/// Pause/Continue Recording.
-- (void)recordOrPause;
+/// Shows the sound editor view
+- (void)showEditorAnimated:(BOOL)animated;
 
-/// Finish if we're currently recording.
-- (void)finishRecording;
+/// Hides the sound editor view
+- (void)hideEditorAnimated:(BOOL)animated;
 
-@end
+/// Returns YES if the sound editor view is visible, otherwise NO
+- (BOOL)editorVisible;
 
-
-@interface PSPDFSoundAnnotationView (Private)
-
-// Updates the frame of the view to match whether or not this annotation is currently recording or playing.
-- (void)updateFrameForCurrentViewMode;
+/// Returns YES when the page view can show an edit menu
+- (BOOL)shouldShowEditMenu;
 
 @end
 
-@interface PSPDFSoundAnnotationView (SubclassingHooks)
+@class PSPDFAudioPlotView;
+@class PSPDFMicrophonePlotView;
 
-// Internally used buttons.
-@property (nonatomic, strong) UIButton *defaultButton;
-@property (nonatomic, strong) UIButton *playbackButton;
-@property (nonatomic, strong) UIButton *recordingButton;
-@property (nonatomic, strong) UIButton *doneButton;
-
-@end
+@interface PSPDFSoundAnnotationEditViewController : UIViewController
+@property (nonatomic, strong, readonly) PSPDFMicrophonePlotView *microphonePlotView;
+@property (nonatomic, strong, readonly) PSPDFAudioPlotView *plotView;
+@property (nonatomic, strong, readonly) UIButton *recordingButton;
+@property (nonatomic, strong, readonly) UIButton *playbackButton;
+@property (nonatomic, strong, readonly) UIButton *doneButton;
+@property (nonatomic, strong, readonly) UILabel *playbackTimeLabel;
+@property (nonatomic, strong, readonly) UILabel *totalTimeLabel;
+@property (nonatomic, strong, readonly) UILabel *statusLabel;
+@property (nonatomic, strong, readonly) UISlider *progressSlider;
+@end;

@@ -32,13 +32,12 @@ typedef NS_OPTIONS(NSUInteger, PSPDFSubmitFormActionFlag) {
 @interface PSPDFSubmitFormAction : PSPDFAbstractFormAction
 
 /// Designated initializers
-- (id)init;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
+- (id)initWithURL:(NSURL *)URL flags:(PSPDFSubmitFormActionFlag)flags;
 
 /// The target URL.
-@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy, readonly) NSURL *URL;
 
 /// The submit form action flags.
-@property (nonatomic, assign) PSPDFSubmitFormActionFlag flags;
+@property (nonatomic, assign, readonly) PSPDFSubmitFormActionFlag flags;
 
 @end

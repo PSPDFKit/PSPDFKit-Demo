@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu dokumenter indekserede.";
 "Done" = "Færdig";
 "Indexing Documents" = "Indekserer dokumenter";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "Dokumentet har intet indhold";
 
 // inline browser
 "Open in Safari" = "Åbn i Safari";
@@ -111,7 +113,9 @@
 "Remove" = "Fjern";
 "Edit" = "Rediger";
 "Undo" = "Fortryd";
+"Nothing to undo" = "Intet at fortryde";
 "Redo" = "Gentag";
+"Nothing to redo" = "Intet at bruge";
 "Type" = "Type"; // kind of Annotation can be selected
 "Size" = "Str.";
 "Font" = "Skrift";
@@ -234,6 +238,23 @@
 "Witness" = "Vidne";
 "Revised" = "Revideret";
 
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Penne";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Fra";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Søger";
+// text on a label; app connects to a stylus
+"Pairing" = "Parring";
+// text on a label; app and stylus are connected
+"Connected" = "Tilsluttet";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Forbindelse afbrudt";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Indstillinger";
+
+
 // PDF annotation name overrides
 "Square" = "Rektangel";
 "Circle" = "Ellipse";
@@ -309,10 +330,16 @@
 "Speak" = "Læs op"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Afspil";
 "Pause" = "Pause";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Optag";
 "Pause Recording" = "Optagelse på pause";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Optagelse på pause";
 "Continue Recording" = "Fortsæt optagelse";
 "Finish Recording" = "Slut optagelse";
 "Audio Problem" = "Lydproblem";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "Kunne ikke afspille";
 "Mic Permission Not Granted" = "Mikrofonbrug ikke tilladt";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Beklager, der kan i øjeblikket ikke optages lyd. Giv denne app tiladelse til at bruge din mikrofon.";
 "Sorry, but there was a problem trying to record audio." = "Beklager, der opstod et problem under optagelse af lyd.";
@@ -332,6 +359,12 @@
 "Default Values" = "Standardværdier";
 "Custom Value" = "Særlig værdi";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Ugyldig værdi; skal være større end eller lig med %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ugyldig værdi; skal være større end eller lig med %s og mindre end eller lig med %s.";
+"Invalid value: must be less than or equal to %s." = "Ugyldig værdi; skal være mindre end eller lig med %s.";
+"Invalid value. Must be a number." = "Ugyldig værdi. Skal være et tal.";
+
 // Gallery
 "Connection Error" = "Forbindelsesfejl";
 "Unsupported Content" = "Ikke understøttet indhold";
@@ -347,7 +380,11 @@
 "Signature is valid." = "Signatur er gyldig.";
 "Signature is valid, but there are some warnings." = "Signaturen er gyldig, men der er nogle advarsler.";
 "It was signed by %@ on %@ at %@." = "Det blev signeret af %@ d. %@ kl. %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Det blev signeret d. %@ kl. %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Det påstår at være signeret af %@ d. %@ kl. %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Det angiver at være signeret d. %@ kl. %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revisionen, dækket af denne signatur er ikke blevet ændret, der er dog foretaget ændringer i dokumentet efter det blev signeret."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen er gyldig, og indholdet af dette dokument er ikke blevet ændret, efter det blev signeret.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur — efter indholdet af dette dokument blev signeret, er det blevet ændret, fusket med eller korrumperet.";

@@ -12,8 +12,9 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFViewController.h"
+#import "PSPDFLineHelper.h"
 
-@class PSPDFAnnotationStateManager;
+@class PSPDFAnnotationStateManager, PSPDFFlexibleToolbarButton;
 
 // Special type of "annotation" that will add an eraser feature to the toolbar.
 extern NSString *const PSPDFAnnotationStringEraser;
@@ -29,8 +30,9 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 
 @optional
 
-/// Called after the manager's `state` attribute changes. As a convenience it also provides access the previous state for any state-related cleanup.
-- (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeState:(NSString *)state to:(NSString *)newState;
+/// Called after the manager's `state` and or `vaeiant` attribute changes.
+/// As a convenience it also provides access the previous `state` and `variant` for any state-related cleanup.
+- (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeState:(NSString *)state to:(NSString *)newState variant:(NSString *)variant to:(NSString *)newVariant;
 
 /// Called when the internal undo state changes (pdfController.undoManager state changes or uncommitted drawing related changes).
 - (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeUndoState:(BOOL)undoEnabled redoState:(BOOL)redoEnabled;
@@ -42,12 +44,13 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
  
  Interested parties can register as the `stateDelegate` and / or use KVO to observer the manager's properties.
  
+ You should never use more than one `PSPDFAnnotationStateManager` for any given `PSPDFViewController`. It's recommended to use `-[PSPDFViewController annotationStateManager]` instead of creating your own one in order to make sure this requirement is always met.
+ 
  `PSPDFAnnotationStateManager` is internally used by `PSPDFAnnotationToolbar` and can be re-used for any custom annotation related user interfaces.
+ 
+ @note Do not create this class yourself. Use the existing class that is exposed in the `PSPDFViewController.`
 */
 @interface PSPDFAnnotationStateManager : NSObject <PSPDFOverridable>
-
-/// Designated initializer.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// Attached pdf controller.
 @property (nonatomic, weak, readonly) PSPDFViewController *pdfController;
@@ -56,11 +59,24 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 @property (nonatomic, weak) id<PSPDFAnnotationStateManagerDelegate> stateDelegate;
 
 /// Active annotation state. State is an annotation type, e.g. `PSPDFAnnotationStringHighlight`.
-/// @note Setting a state will temporarily disable the long press gesture recognizer on the `PSPDFScrollView` to disable the new annotation menu.
+/// @note Setting a state will temporarily disable the long press gesture recognizer on the `PSPDFScrollView` to disable the new annotation menu. Setting the state does not affect the current variant.
 @property (nonatomic, copy) NSString *state;
 
 /// Sets the specified state, if it differs from the currently set `state`, otherwise sets the `state` to `nil`.
 - (void)toggleState:(NSString *)state;
+
+/// Sets the annotation variant for the current state.
+/// States with different variants uniquely preserve the annotation style settings.
+/// This is handy for defining multiple tools of the same annotation type, each with different style settings.
+@property (nonatomic, copy) NSString *variant;
+
+/// Toggles the and variant at the same time.
+/// If the state and variant both match the currently set values, it sets both to `nil`.
+/// Convenient for selectable toolbar buttons.
+- (void)toggleState:(NSString *)state variant:(NSString *)variant;
+
+/// String identifier used as the persistence key for the current state - variant combination.
+@property (nonatomic, copy, readonly) NSString *stateVariantIdentifier;
 
 /// Default/current drawing color (`PSPDFAnnotationToolbarModeDraw, PSPDFAnnotationToolbarModeRectangle, PSPDFAnnotationToolbarModeEllipse, PSPDFAnnotationToolbarModeLine, PSPDFAnnotationToolbarModePolygon, PSPDFAnnotationToolbarModePolyLine`). KVO observable.
 /// Defaults to `[UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]`
@@ -153,12 +169,17 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 
 @end
 
+// Simple helper that combines a state + variant into a new identifier.
+// Can be used to set custom types in the `PSPDFStyleManager`.
+extern NSString *PSPDFAnnotationStateVariantIdentifier(NSString *state, NSString *variant);
+
 @interface PSPDFAnnotationStateManager (StateHelper)
 
 - (BOOL)isDrawingState:(NSString *)state;
 - (BOOL)isHighlightAnnotationState:(NSString *)state;
 
 @end
+
 
 @interface PSPDFAnnotationStateManager (SubclassingHooks)
 

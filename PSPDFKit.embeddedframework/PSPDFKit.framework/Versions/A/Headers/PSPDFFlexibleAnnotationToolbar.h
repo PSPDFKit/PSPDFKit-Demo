@@ -13,6 +13,14 @@
 #import "PSPDFFlexibleToolbar.h"
 #import "PSPDFAnnotationStateManager.h"
 
+@class PSPDFFlexibleAnnotationToolbar;
+@class PSPDFAnnotationGroupItem;
+
+extern NSString * const PSPDFAnnotationStringInkVariantPen;
+extern NSString * const PSPDFAnnotationStringInkVariantHighlighter;
+
+typedef UIImage *(^PSPDFAnnotationGroupItemConfigurationBlock)(PSPDFAnnotationGroupItem *item, PSPDFFlexibleAnnotationToolbar *toolbar);
+
 /**
  The annotation toolbar allows the creation of most annotation types supported by PSPDFKit.
  
@@ -41,9 +49,9 @@
 @property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
 /// Annotations are grouped by default. Set to nil to disable grouping.
-/// Groups are defined as dictionaries containing arrays of `editableAnnotationType`-objects, paired with an index indicating the current choice within each array.
-/// Annotation types that are defined in the group but are missing in `annotationStateManager.editableAnnotationTypes` will be ignored silently.
-/// Use `PSPDFAnnotationGroupKeyChoice` and `PSPDFAnnotationGroupKeyGroup`, define in `PSPDFAnnotationToolbar`, as constants to configure the array.
+/// Groups are defined as an array of `PSPDFAnnotationGroup` objects, which themselves contain `PSPDFAnnotationGroupItem` instances.
+/// @note Annotation types that are defined in the group but are missing in `annotationStateManager.editableAnnotationTypes` will be ignored silently.
+/// @see PSPDFAnnotationGroup, PSPDFAnnotationGroupItem
 @property (nonatomic, copy) NSArray *annotationGroups;
 
 /// Allows custom `UIButton` objects to be added after the buttons in `annotationGroups`.
@@ -51,8 +59,39 @@
 /// Defaults to nil.
 @property (nonatomic, copy) NSArray *additionalButtons;
 
+/// @name Behavior
+
 /// This will issue a save event after the toolbar has been dismissed.
 /// @note Since saving can take some time, this defaults to NO.
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
+
+@end
+
+@interface PSPDFAnnotationGroup : NSObject
+
+/// Creates a new annotation group with the provided items and designates the first item as the current choice.
+/// @see groupWithItems:choice:
++ (instancetype)groupWithItems:(NSArray *)items;
+
+/// Creates a new annotation group with the provided items and designates the item at index `choice` as the current selection.
++ (instancetype)groupWithItems:(NSArray *)items choice:(NSUInteger)choice;
+
+@end
+
+@interface PSPDFAnnotationGroupItem : NSObject
+
+/// Creates a group item with the specified annotation type.
+/// @see itemWithType:variant:configurationBlock:
++ (instancetype)itemWithType:(NSString *)type;
+
+/// Creates a group item with the specified annotation type and optional variant identifier.
+/// @see itemWithType:variant:configurationBlock:
++ (instancetype)itemWithType:(NSString *)type variant:(NSString *)variant;
+
+/// Creates a group item with the specified annotation type, an optional variant identifier and configuration block.
+/// @param type The annotation type. See `PSPDFAnnotation.h` for a list of valid types.
+/// @param variant An optional string identifier for the item variant. Use variants to add several instances of the same tool with uniquely preservable annotation style settings.
+/// @param block An option block, that should return the button's image. Defaults to a block that configures an preset image based on the annotation type, if set to nil.
++ (instancetype)itemWithType:(NSString *)type variant:(NSString *)variant configurationBlock:(PSPDFAnnotationGroupItemConfigurationBlock)block;
 
 @end

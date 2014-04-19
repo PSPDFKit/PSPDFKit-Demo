@@ -24,12 +24,16 @@
 /// @name Adding Buttons
 
 /// Add a cancel button. (use only once!)
-- (NSInteger)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
-- (NSInteger)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
+- (NSInteger)setCancelButtonWithTitle:(NSString *)title block:(void (^)(NSInteger buttonIndex))block;
 
 /// Add regular button.
-- (NSInteger)addButtonWithTitle:(NSString *)title block:(void (^)())block;
-- (NSInteger)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
+- (NSInteger)addButtonWithTitle:(NSString *)title block:(void (^)(NSInteger buttonIndex))block;
+
+/// Add block that is called after the alert view will be dismissed (before animation).
+- (void)addWillDismissBlock:(void (^)(NSInteger buttonIndex))willDismissBlock;
+
+/// Add block that is called after the alert view has been dismissed (after animation).
+- (void)addDidDismissBlock:(void (^)(NSInteger buttonIndex))didDismissBlock;
 
 @end
 

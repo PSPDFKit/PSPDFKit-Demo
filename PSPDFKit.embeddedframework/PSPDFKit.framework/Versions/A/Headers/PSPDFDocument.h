@@ -182,6 +182,7 @@
 /// Cached rotation and aspect ratio data for specific page. Page starts at 0.
 /// Override the methods in `PSPDFDocumentProvider` instead.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
+- (void)setPageInfo:(PSPDFPageInfo *)pageInfo forPage:(NSUInteger)page;
 
 /// @name Design and hints for `PSPDFViewController`
 
@@ -433,6 +434,7 @@ extern NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTyp
 - (BOOL)saveAnnotationsWithError:(NSError **)error; // sync variant.
 
 /// Returns YES if there are unsaved annotations.
+/// @note This might not include unsaved open annotation creation operations, like a partial drawing. First set `pdfController.annotationStateManager.state = nil` to make sure you're not in an editing mode before evaluating this.
 - (BOOL)hasDirtyAnnotations;
 
 @end

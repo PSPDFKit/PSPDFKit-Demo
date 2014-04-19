@@ -34,9 +34,13 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
  */
 + (BOOL)supportsFilter:(NSString *)filter withSubFilter:(NSString *)subFilter;
 
+/// Designated initializer.
 - (id)initWithSignature:(PSPDFDigitalSignatureDictionary *)signature documentProvider:(PSPDFDocumentProvider *)documentProvider;
 
+/// The signature dictionary holding signature informations.
 @property (nonatomic, strong, readonly) PSPDFDigitalSignatureDictionary *signature;
+
+/// The source document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// A view controller to be presented to the user showing the results of the verification.
@@ -54,6 +58,12 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
 
 /// PDF data for the revision that was signed. Return nil if unavailable.
 - (NSData *)dataForSignedRevision;
+
+@optional
+
+/// The parent object that saved the signature. Might be a `PSPDFSignatureFormElement`.
+@property (nonatomic, weak) id signatureSource;
+
 
 @end
 

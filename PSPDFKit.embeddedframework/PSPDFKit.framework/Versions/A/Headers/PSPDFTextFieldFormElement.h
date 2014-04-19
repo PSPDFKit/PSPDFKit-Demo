@@ -42,21 +42,16 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 /// @note Evaluates `PSPDFTextFieldFlagPassword` in the `fieldFlags`.
 - (BOOL)isPassword;
 
-/// @name Formatting Options
+/// Handles Keystroke, Validate and Calulate actions that follow from user text input automatically.
+/// `isFinal` defines if the user is typing (NO) or if the string should be commited (YES).
+/// The change is the change in text.
+/// Returns the new text contents (possibly different from the passed change) to be applied. Otherwise, if failed, returns nil.
+- (NSString *)textFieldChangedWithContents:(NSString *)contents change:(NSString *)change range:(NSRange)range isFinal:(BOOL)isFinal error:(NSError * __autoreleasing *)validationError;
 
-/// Returns the content formatted in the way specified in the form element.
+/// Returns the contents formatted based on rules in the annotation (including JavaScript)
 - (NSString *)formattedContents;
 
-/// Validates the content according to the `formatString` set.
-/// See http://www.pdfill.com/download/FormsAPIReference.pdf for details.
-/// `isFinal` defines if the user is typing (NO) or if the string should be commited (YES).
-/// @warning This is still a work in progress.
-- (BOOL)validateContents:(NSString *)contents isFinal:(BOOL)isFinal error:(NSError **)validationError;
-
 /// The input format. Some forms are number/date/time specific.
-@property (nonatomic, assign) PSPDFTextInputFormat inputFormat;
-
-/// The validation format string.
-@property (nonatomic, copy) NSString *formatString;
+@property (nonatomic, assign, readonly) PSPDFTextInputFormat inputFormat;
 
 @end

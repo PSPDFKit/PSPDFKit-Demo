@@ -19,8 +19,14 @@
 /// Signature Form Element.
 @interface PSPDFSignatureFormElement : PSPDFAbstractTextRenderingFormElement
 
-@property (nonatomic, weak, readonly) id<PSPDFDigitalSignatureVerificationHandler> verificationHandler;
+/// The digital signature verification handler.
+@property (nonatomic, strong, readonly) id<PSPDFDigitalSignatureVerificationHandler> verificationHandler;
+
+/// Allows to check if the signature could be verified.
 @property (nonatomic, assign, readonly) BOOL verified;
+
+/// The signer name, if set.
+@property (nonatomic, copy) NSString *XSigner;
 
 /// Searches the document for an ink signature that overlaps the form element.
 /// @note This can be used as a replacement for a digital signature.

@@ -89,6 +89,8 @@
 "%tu documents indexed." = "%tu documentos indexados.";
 "Done" = "OK";
 "Indexing Documents" = "Indexando documentos";
+// text on a label; after the user has done a search on an empty document, this text is shown
+"Document has no content" = "El documento no tiene contenido";
 
 // inline browser
 "Open in Safari" = "Abrir en Safari";
@@ -97,7 +99,7 @@
 "The link is requesting to open %@Would you like to continue?" = "El enlace solicita abrir %@¿Desea continuar?";
 "an external application" = "una aplicación externa"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "el App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
-"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
+"Mail" = "Enviar por correo"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "No se encuentra un gestor para %@";
 
 // text selection
@@ -111,7 +113,9 @@
 "Remove" = "Eliminar";
 "Edit" = "Editar";
 "Undo" = "Deshacer";
+"Nothing to undo" = "Nada que deshacer";
 "Redo" = "Rehacer";
+"Nothing to redo" = "Nada que rehacer";
 "Type" = "Tipo"; // kind of Annotation can be selected
 "Size" = "Tamaño";
 "Font" = "Tipo de letra";
@@ -200,7 +204,7 @@
 "Inspector" = "Inspector";
 "Group" = "Agrupar";
 "Ungroup" = "Desagrupar";
-"Merge" = "Juntar"; // text on button - when clicked, two drawings are merged into one drawing
+"Merge" = "Combinar"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Muestra";
 "Annotation Summary for %@:\n" = "Resumen de anotaciones de %@:\n";
 "Fit to Text" = "Adaptar al texto";
@@ -233,6 +237,23 @@
 "Sign Here" = "Firmar aquí";
 "Witness" = "Testigo";
 "Revised" = "Revisado";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Lápiz";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "No";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Buscando";
+// text on a label; app connects to a stylus
+"Pairing" = "Enlazando";
+// text on a label; app and stylus are connected
+"Connected" = "Conectado";
+// text on a label; app and stylus are not connected
+"Disconnected" = "Desconectado";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Ajustes";
+
 
 // PDF annotation name overrides
 "Square" = "Rectángulo";
@@ -309,10 +330,16 @@
 "Speak" = "Voz"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Reproducir";
 "Pause" = "Pausa";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Grabar";
 "Pause Recording" = "Pausar grabación";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Grabación en pausa";
 "Continue Recording" = "Reanudar la grabación";
 "Finish Recording" = "Finalizar grabación";
 "Audio Problem" = "Problema con el audio";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback" = "No se ha podido iniciar la reproducción";
 "Mic Permission Not Granted" = "No se permite el acceso al micrófono";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "No se puede grabar audio en este instante. Debe conceder a esta app permiso para acceder a su micrófono.";
 "Sorry, but there was a problem trying to record audio." = "Ha ocurrido un error al intentar grabar el audio.";
@@ -332,6 +359,12 @@
 "Default Values" = "Valores predeterminados";
 "Custom Value" = "Valor personalizado";
 
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Valor no válido: debe ser mayor o igual que %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valor no válido: debe ser mayor o igual que %s y menor o igual que %s.";
+"Invalid value: must be less than or equal to %s." = "Valor no válido: debe ser menor o igual que %s.";
+"Invalid value. Must be a number." = "Valor no válido. Debe ser un número.";
+
 // Gallery
 "Connection Error" = "Error de conexión";
 "Unsupported Content" = "Contenido no compatible";
@@ -347,7 +380,11 @@
 "Signature is valid." = "La firma es válida.";
 "Signature is valid, but there are some warnings." = "La firma es válida, pero hay varias advertencias.";
 "It was signed by %@ on %@ at %@." = "Fue firmado por %@, el %@ a las %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Fue firmado el %@ a las %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Indica que fue firmado por %@, el %@ a las %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Asegura haber sido firmado el %@ a las %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- La revisión cubierta por esta firma no se ha modificado, pero se han realizado cambios en el documento después de que fuera firmado."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- La firma es válida y el contenido de este documento no se ha modificado desde que se firmó.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Firma no válida — después de que se firmara el contenido de este documento, ha sido modificado, alterado o dañado.";

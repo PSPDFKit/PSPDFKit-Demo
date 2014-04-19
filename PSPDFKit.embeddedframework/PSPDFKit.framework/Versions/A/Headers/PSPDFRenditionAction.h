@@ -27,13 +27,12 @@ typedef NS_ENUM(NSUInteger, PSPDFRenditionActionType) {
 @interface PSPDFRenditionAction : PSPDFAction
 
 /// Designated initializer.
-- (id)init;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
+- (id)initWithOperation:(PSPDFRenditionActionType)operation annotation:(PSPDFScreenAnnotation *)annotation;
 
 /// The rendition action operation.
-@property (nonatomic, assign) PSPDFRenditionActionType operation;
+@property (nonatomic, assign, readonly) PSPDFRenditionActionType operation;
 
 /// The associated screen annotation. Optional. Will link to an already existing annotation.
-@property (nonatomic, weak) PSPDFScreenAnnotation *annotation;
+@property (nonatomic, weak, readonly) PSPDFScreenAnnotation *annotation;
 
 @end

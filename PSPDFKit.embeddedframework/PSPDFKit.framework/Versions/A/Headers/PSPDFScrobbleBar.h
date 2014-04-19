@@ -74,7 +74,7 @@
 - (UIImageView *)emptyThumbnailImageView;
 
 // Called upon touches and drags on the thumbnails.
-- (BOOL)processTouch:(UITouch *)touch animated:(BOOL)animated;
+- (BOOL)processTouch:(UITouch *)touch;
 
 // Margin between thumbnails. Defaults to 2.
 @property (nonatomic, assign) CGFloat thumbnailMargin;

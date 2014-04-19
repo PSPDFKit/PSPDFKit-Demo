@@ -22,10 +22,11 @@
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult, PSPDFSearchResultCell;
 
 typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
-    PSPDFSearchStatusIdle,
-    PSPDFSearchStatusActive,
-    PSPDFSearchStatusFinished,
-    PSPDFSearchStatusCancelled
+    PSPDFSearchStatusIdle,           /// Search hasn't started yet.
+    PSPDFSearchStatusActive,         /// Search operation is running.
+    PSPDFSearchStatusFinished,       /// Search has been finished.
+    PSPDFSearchStatusFinishedNoText, /// Search finished but there wasn't any content to search.
+    PSPDFSearchStatusCancelled       /// Search has been cancelled.
 };
 
 // Default value is 2. You might want to change this for Asian languages.

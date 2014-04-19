@@ -19,11 +19,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFResetFormActionFlag) {
 /// Reset Form Action
 @interface PSPDFResetFormAction : PSPDFAbstractFormAction
 
-/// Designated initializers.
-- (id)init;
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
+/// Designated initializer
+- (id)initWithFlags:(PSPDFResetFormActionFlag)flags;
 
 /// The reset form action flags.
-@property (nonatomic, assign) PSPDFResetFormActionFlag flags;
+@property (nonatomic, assign, readonly) PSPDFResetFormActionFlag flags;
 
 @end

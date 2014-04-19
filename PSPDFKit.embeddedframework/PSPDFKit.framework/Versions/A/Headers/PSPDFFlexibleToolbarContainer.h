@@ -10,6 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
+#import "PSPDFFlexibleToolbar.h"
+
 @class PSPDFFlexibleToolbar;
 @class PSPDFFlexibleToolbarContainer;
 
@@ -85,5 +87,12 @@
 /// Hides the container and toolbar using hideAnimated:completion: and than removes the container from it's superview.
 /// Internally used by the flick to close gesture. Should also be used by done / close buttons added to the toolbar.
 - (void)hideAndRemoveAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;
+
+@end
+
+@interface PSPDFFlexibleToolbarContainer (SubclassingHooks)
+
+/// Override this method to customize exact toolbar and anchor view placement.
+- (CGRect)rectForToolbarPosition:(PSPDFFlexibleToolbarPosition)toolbarPosition;
 
 @end

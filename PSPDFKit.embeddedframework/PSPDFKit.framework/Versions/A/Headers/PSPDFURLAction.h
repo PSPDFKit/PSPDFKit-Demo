@@ -24,9 +24,6 @@
 /// Initializes with URL.
 - (id)initWithURL:(NSURL *)URL;
 
-// PDF init.
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
-
 /// The annotation URL target.
 @property (nonatomic, copy) NSURL *URL;
 
@@ -45,11 +42,14 @@
 /// The page index, if defined in the options dictionary.
 @property (nonatomic, assign) NSUInteger pageIndex;
 
-/// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.
+/// Indicator if "modal" is set in options. Will add "modal" to options if `setModal:` is used.
 @property (nonatomic, assign, getter=isModal) BOOL modal;
 
-/// Indicator if "popover" is set in options. Will add "popover" to options if setPopover is used.
+/// Indicator if "popover" is set in options. Will add "popover" to options if `setPopover:` is used.
 @property (nonatomic, assign, getter=isPopover) BOOL popover;
+
+/// Indicator if "button" is set in options. Will add "button" to options if `setButton:` is used.
+@property (nonatomic, assign, getter=isButton) BOOL button;
 
 /// Tries to extract a size out of options "size". Returns `CGSizeZero` if conversion fails.
 @property (nonatomic, assign) CGSize size;

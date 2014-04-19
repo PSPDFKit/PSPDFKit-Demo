@@ -4,6 +4,57 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.0 - 19/Apr/2014__
+
+PSPDFKit now requires Xcode 5.1.1 or higher to compile if you're using the source code variant. (we still support all iOS versions down to 6.0)
+
+*  Stylus support for ink annotation drawing with drivers for FiftyThree, Adonit, Pogo, HEX3 and Wacom. The framework is designed in a way where new drivers can be added easily. To enable this, see the "Stylus" example in the PSPDFCatalog. (The SDKs need to be downloaded separately. Drivers are currently only available for customers with a license.)
+*  The annotation toolbar now has a second drawing style (thick, yellow, transparent) and improved color defaults for the other tools.
+*  Search now detects if the document has no content and shows a different "no page text" message.
+*  We now have a command line tool that works on Mac, Windows and Linux/Unix that can encrypt/decrypt files to be used with the `PSPDFAESCryptoDataProvider` (see `Extras` folder)
+*  PSPDFKit now has support for transparent reading/writing with encrypted streams in the `PSPDFXFDFAnnotationProvider` with the new `PSPDFAESCryptoOutputStream` and `PSPDFAESCryptoInputStream`. This allows secure storage of annotations.
+*  The gallery has improved handling for fullscreen transition and properly tears down when the `PSPDFViewController` is popped while it is in full screen mode.
+*  The gallery learned different cover modes, including a transparent one: https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/adding-a-gallery-to-your-document
+*  Multimedia links can now be activated via button and the gallery can be displayed as popover or modally: https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/adding-a-gallery-to-your-document
+*  The gallery will now correctly scale @2x images from remote servers.
+*  The gallery now automatically pauses other instances when play is pressed.
+*  The gallery now allows UIAppearance for blur and background colors.
+*  The blur algorithm used for the gallery are now over 4x faster and also support live fullscreen blur.
+*  The speech synthesizer (`PSPDFSpeechSynthesizer`) now auto-detects the best language by parsing the current document page.
+*  Greatly improved AcroForm JavaScript validation support.
+*  Improves support for custom controllers that don't define a preferred content size when used with `PSPDFContainerViewController`.
+*  Empty ink signatures are no longer saved.
+*  Add confirmation sheet for the "Clear All" button in the annotation table view controller.
+*  It's now possible to correctly override `PSPDFAnnotationCell` from `PSPDFAnnotationTableViewController`.
+*  The `PSPDFAnnotationTableViewController` now automatically reloads the content if the `visibleAnnotationTypes` property has been changed.
+*  The `PSPDFLibrary` now optionally allows exact word matching with supplying the `PSPDFLibraryMatchExactWordsOnlyKey` parameter.
+*  The XSigner attribute is now parsed and displayed as the signer name if no other name is defined in the digital signature. (PSPDFKit Complete feature)
+*  Adds support for orphaned form elements that are not referenced in the AcroForm dictionary.
+*  Reloading a document while the keyboard is up will no longer lead to the page animating back to center.
+*  Add some additional saveguards/asserts and developer warnings that help to detect wrong use of certain methods.
+*  Improve support for custom `PSPDFFlexibleAnnotationToolbar` configuration or when used manually without an `UINavigationController`.
+*  PSPDFKit has been tested with Veracode (http://www.veracode.com/) and we've improved and hardened several code paths.
+*  Add `PSPDFThumbnailFilterSegmentedControl` to enable UIAppearance rules on the thumbnail overview filter segment.
+*  Add basic support for URL actions that are actually JavaScript actions.
+*  Support loading images from asset catalogs via the pspdfkit:// image loading system.
+*  The flexible annotation toolbar now better adapts to status bar changes on iOS 7.
+*  Allow to manually force-load all annotations from the `PSPDFXFDFAnnotationProvider`.
+*  Add support for embedded CMap streams for the text parsing engine.
+*  API: The `PSPDFAction` objects and the `PSPDFPageInfo` objects are now immutable.
+*  API: The toolbar now longer auto-hides when invoked via the context menu. This also removes the `hideAfterDrawingDidFinish` property.
+*  API: Removed `setTextViewCustomizationBlock:` as it is inconsistent with what we do everywhere else in the framework. Use `overrideClass:withClass:` or the `pdfViewController:shouldShowController:embeddedInController:options:animated` delegate instead. To change the font, instead of `textViewFont`, simply change it in `updateTextView`.
+*  API: The `bookmarkQueue` is now exposed via a property and not via an ivar in `PSPDFBookmarkParser`.
+*  API: A few methods in the digital signature code have been renamed to be more clear about their intent.
+*  API: Adds a new `pageTextFound` parameter to `didFinishSearch:` and now shows "Document has no content" if a document without text content is being searched.
+*  API: `setGlobalBorderColor` on `PSPDFLinkAnnotationView` has been removed. The recommended API is to use `UIAppearance` on `borderColor` instead.
+*  API: Remove explicit close button management inside `PSPDFContainerViewController` as the `PSPDFViewController` (via `PSPDFPresentationManager`) already provides this feature.
+*  Fixes an issue where certain pre-encoded URLs with non-ascii characters could end up being encoded twice.
+*  Fixes a potential stability issue in the accessibility support for line-based page reading.
+*  Fixes an issue that could add overlay-based annotations to the wrong page when a redo action is invoked with soft-deleted annotations.
+*  Fixes an issue related to text extraction font caching with different widths.
+*  Fixes various rare issues when analyzing the document or writing annotations with partial UTF16-LE encoding, invalid document IDs or missing object references.
+*  Fixes a rare crash issue related to missing languages and the `PSPDFSpeechSynthesizer`.
+
 __v3.6.5 - 31/Mar/2014__
 
 *  Some internal improvements to prepare for the upcoming stylus support.

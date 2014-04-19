@@ -19,10 +19,33 @@
 /// It compliments an existing data form fields from PDF with values from the XFDF file. If data form field value is not found in the XFDF file it will be served by this provider with the default value.
 @interface PSPDFXFDFAnnotationProvider : PSPDFContainerAnnotationProvider
 
-/// Designated initializer.
+/// Designated initializers.
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider fileURL:(NSURL *)XFDFFileURL;
 
 /// The XFDF file URL.
 @property (nonatomic, copy, readonly) NSURL *fileURL;
+
+/// The input stream. If you set `fileURL`, this is automatically set for you.
+/// Customize to use a different source or a custom (crypto) input stream.
+@property (nonatomic, strong) NSInputStream *inputStream;
+
+/// The output stream. If you set `fileURL`, this is automatically set for you.
+/// Customize to use a different target or a custom (crypto) output stream.
+@property (nonatomic, strong) NSOutputStream *outputStream;
+
+/// Will force-load annotations. Usually invoked lazily.
+/// Use `hasLoadedAnnotationsForPage:` with any page (usually page 0) to detect if the annotations have been loaded yet.
+- (void)loadAllAnnotations;
+
+/// @name Encryption/Decryption Handlers
+
+/// Decrypt data from the path. PSPDFKit Basic/Complete feature.
+/// If set to nil, the default implementation will be used.
+@property (atomic, copy) NSData *(^decryptFromPathBlock)(PSPDFXFDFAnnotationProvider *provider, NSString *path);
+
+/// Encrypt mutable data. PSPDFKit Basic/Complete feature.
+/// If set to nil, the default implementation will be used.
+@property (atomic, copy) void (^encryptDataBlock)(PSPDFXFDFAnnotationProvider *provider, NSMutableData *data);
 
 @end

@@ -36,6 +36,13 @@
 
 @end
 
+@interface PSPDFSelectableBarButtonItem (SubclassingHooks)
+
+/// Returns `UIToolbar` or `UINavigationBar`.
+- (UIView *)targetToolbar;
+
+@end
+
 /**
  Use this class to configure the `PSPDFSelectableBarButtonItem` appearance.
  
@@ -51,7 +58,7 @@
 /// @name Styling
 
 /// Selected image tint color.
-/// Defaults to the `barTintColor` of PSPDFViewController's navigation bar, if available.
+/// Defaults to the `barTintColor` of the containing `UIToolbar` or `UINavigationBar, if available, otherwise white is used.
 @property (nonatomic, strong) UIColor *selectedTintColor UI_APPEARANCE_SELECTOR;
 
 /// Selection indicator bezel color.

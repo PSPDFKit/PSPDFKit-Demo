@@ -169,9 +169,9 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
  Return YES to override the default action and custom-handle this.
  Default actions might be scroll to target page, open Safari, show a menu, ...
 
- Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
+ Some annotations might not have an `annotationView` attached. (because they are rendered with the page content, for example highlight annotations)
 
- AnnotationPoint is the point relative to `PSPDFAnnotation`, in PDF coordinate space.
+ `annotationPoint` is the point relative to the `PSPDFAnnotation`, in PDF coordinate space.
     viewPoint is the point relative to the `PSPDFPageView`.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;

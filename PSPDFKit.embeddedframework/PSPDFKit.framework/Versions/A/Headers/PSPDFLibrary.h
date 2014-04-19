@@ -69,9 +69,12 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
 
 /// @name Library Operations
 
-// Option key. Allows to limit the number of document results.
+// Option keys. Allows to limit the number of document results.
 extern NSString *const PSPDFLibraryMaximumSearchResultsTotalKey;
 extern NSString *const PSPDFLibraryMaximumSearchResultsPerDocumentKey;
+
+// Set this to @YES to restrict search to exact matches instead of beginsWith/endsWith checks.
+extern NSString *const PSPDFLibraryMatchExactWordsOnlyKey;
 
 /// Query the database for a match of `searchString`. Only direct matches, begins-with and ends-with matches are supported.
 /// Returns a dictionary of UID->`NSIndexSet` of page numbers.

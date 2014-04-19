@@ -11,8 +11,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSPDFBlurView.h"
 
-@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView, PSPDFBlurView, PSPDFStatusHUDView;
+@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView, PSPDFStatusHUDView;
+
+// The following dummy classes are created to allow specific UIAppearance targeting. They do not
+// have any functionality besides that.
+@interface PSPDFGalleryEmbeddedBackgroundView : PSPDFBlurView @end
+@interface PSPDFGalleryFullscreenBackgroundView : PSPDFBlurView @end
 
 /// Used to group the error, loading and gallery view and to properly lay them out.
 @interface PSPDFGalleryContainerView : UIView
@@ -27,9 +33,16 @@
 @property (nonatomic, strong) PSPDFGalleryLoadingView *loadingView;
 
 /// The background view.
-@property (nonatomic, strong) PSPDFBlurView *backgroundView;
+@property (nonatomic, strong) PSPDFGalleryEmbeddedBackgroundView *backgroundView;
+
+/// The fullscreen background view.
+@property (nonatomic, strong) PSPDFGalleryFullscreenBackgroundView *fullscreenBackgroundView;
 
 /// The status HUD view.
 @property (nonatomic, strong) PSPDFStatusHUDView *statusHUDView;
+
+/// Contains `galleryView`, `errorView` and `loadingView`. This view is only used to group all
+/// content views together.
+@property (nonatomic, strong, readonly) UIView *contentContainerView;
 
 @end
