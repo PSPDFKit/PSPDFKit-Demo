@@ -121,7 +121,11 @@
         [PSPDFCache.sharedCache cacheDocument:self.magazine startAtPage:0 sizes:@[BOXED(PSPDFCache.sharedCache.thumbnailSize), BOXED(UIScreen.mainScreen.bounds.size)] diskCacheStrategy:PSPDFDiskCacheStrategyNearPages];
 
         // don't back up the downloaded pdf - iCloud is for self-created files only.
-        [self addSkipBackupAttributeToItemAtURL:destinationURL];
+        NSError *error = nil;
+        if (![destinationURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error]){
+            NSLog(@"Error excluding %@ from backup %@", destinationURL, error);
+        }
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PSCLog(@"Download failed: %@. Reason: %@.", self.URL, error.localizedDescription);
         self.status = PSCStoreDownloadStatusFailed;
@@ -141,24 +145,6 @@
 - (void)cancelDownload {
     self.status = PSCStoreDownloadStatusCancelled;
     [_request cancel];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-// set a flag that the files shouldn't be backed up to iCloud.
-// https://developer.apple.com/library/ios/#qa/qa1719/_index.html
-#include <sys/xattr.h>
-- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL {
-    assert([NSFileManager.defaultManager fileExistsAtPath:URL.path]);
-    BOOL success = NO;
-
-    NSError *error = nil;
-    success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
-    if (!success){
-        NSLog(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
-    }
-    return success;
 }
 
 @end
