@@ -334,13 +334,13 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     }
 }
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
-    PSCLog(@"shouldShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+    PSCLog(@"shouldShowViewController: %@ embeddedIn:%@ animated: %d.", controller, controller, animated);
     return YES;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
-    PSCLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+    PSCLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d.", controller, hostController, animated);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
