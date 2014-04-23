@@ -194,6 +194,7 @@
 		781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTwoFingerSwipeGestureViewController.h; sourceTree = "<group>"; };
 		781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSubviewPDFViewController.m; sourceTree = "<group>"; };
 		781908C61680BA340065A6B4 /* PSCCustomSubviewPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomSubviewPDFViewController.h; sourceTree = "<group>"; };
+		781E730419084F08009EF34E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSignatureControllerCustomizationExample.m; sourceTree = "<group>"; };
 		7832D33F18B2421400A20C37 /* PSCOutlineSidebarExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCOutlineSidebarExample.m; sourceTree = "<group>"; };
@@ -1288,6 +1289,7 @@
 				78BB881318F883390094F10B /* ru */,
 				78BB881418F883390094F10B /* sv */,
 				78BB881518F883390094F10B /* zh-Hans */,
+				781E730419084F08009EF34E /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

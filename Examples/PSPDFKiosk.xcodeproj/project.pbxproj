@@ -69,6 +69,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		781E730519084F29009EF34E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78479D2017393F430006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
 		78479D2117393F430006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
 		785DD9AC167B9BAE00559562 /* PSPDFKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,6 +469,7 @@
 				ru,
 				sv,
 				"zh-Hans",
+				nl,
 			);
 			mainGroup = 785DD9A3167B9BAE00559562;
 			productRefGroup = 785DD9AD167B9BAE00559562 /* Products */;
@@ -577,6 +579,7 @@
 				78BB883718F884600094F10B /* ru */,
 				78BB883818F884600094F10B /* sv */,
 				78BB883918F884600094F10B /* zh-Hans */,
+				781E730519084F29009EF34E /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
