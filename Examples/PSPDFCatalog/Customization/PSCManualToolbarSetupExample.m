@@ -146,6 +146,10 @@
 	self.flexibleToolbarContainer = nil;
 }
 
+- (CGRect)flexibleToolbarContainerContentRect:(PSPDFFlexibleToolbarContainer *)container {
+	return self.pdfController.view.frame;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Layout
 
