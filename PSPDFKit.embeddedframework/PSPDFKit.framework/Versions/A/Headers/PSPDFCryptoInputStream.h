@@ -14,11 +14,11 @@
 
 @interface PSPDFCryptoInputStream : NSInputStream
 
-- (instancetype)initWithInputStream:(NSInputStream *)stream decryptionBlock:(NSInteger (^)(PSPDFCryptoInputStream *stream, uint8_t *buffer, NSUInteger len))decryptionBlock;
+- (instancetype)initWithInputStream:(NSInputStream *)stream decryptionBlock:(NSInteger (^)(PSPDFCryptoInputStream *superStream, uint8_t *buffer, NSInteger len))decryptionBlock;
 
 /// Set the decryption handler. If no decryption block is called, this input stream will simply pass the data through.
 /// Return the length of the decrypted buffer. This block is assuming you are decrypting inline.
 /// @note Set this property before the input stream is being used.
-@property (nonatomic, copy) NSInteger (^decryptionBlock)(PSPDFCryptoInputStream *stream, uint8_t *buffer, NSUInteger len);
+@property (nonatomic, copy) NSInteger (^decryptionBlock)(PSPDFCryptoInputStream *stream, uint8_t *buffer, NSInteger len);
 
 @end

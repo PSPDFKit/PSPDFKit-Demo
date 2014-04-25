@@ -34,6 +34,8 @@
 @property (nonatomic, assign) BOOL allowCopy;
 
 /// Allows search. Defaults to YES.
+/// The UISearchBar is updated internally during reloading. To customize, use UIAppearance:
+/// `[[UISearchBar appearanceWhenContainedIn:PSPDFOutlineViewController.class, nil] setBarStyle:UIBarStyleBlack];`
 @property (nonatomic, assign) BOOL searchEnabled;
 
 /// Enables displaying page labels.
@@ -61,5 +63,7 @@
 
 // Cell delegate - expand/shrink content.
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;
+
+@property (nonatomic, strong, readonly) UISearchBar *searchBar;
 
 @end

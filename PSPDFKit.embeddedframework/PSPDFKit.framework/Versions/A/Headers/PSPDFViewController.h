@@ -29,7 +29,7 @@
 #import <MessageUI/MessageUI.h>
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager, PSPDFAction;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager, PSPDFAction, PSPDFFlexibleAnnotationToolbar;
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
@@ -693,8 +693,11 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 // This will even return the correctly compensated statusBar if that one is currently not visible.
 - (CGRect)contentRect;
 
-/// Will return the annotation bar if currently one is visible.
+/// Will return the annotation toolbar if one is currently visible.
 - (PSPDFAnnotationToolbar *)visibleAnnotationToolbar;
+
+/// Will return the flexible annotation toolbar if one is currently visible.
+- (PSPDFFlexibleAnnotationToolbar *)visibleFlexibleAnnotationToolbar;
 
 // Allows access to the annotation cache.
 @property (nonatomic, strong, readonly) PSPDFAnnotationViewCache *annotationViewCache;

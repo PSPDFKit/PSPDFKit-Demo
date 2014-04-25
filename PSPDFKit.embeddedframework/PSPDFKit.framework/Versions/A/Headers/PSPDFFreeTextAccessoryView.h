@@ -39,3 +39,17 @@ extern NSString *const PSPDFFreeTextAccessoryViewDidPressClearButtonNotification
 - (void)updateToolbar;
 
 @end
+
+@interface PSPDFFreeTextAccessoryView (SubclassingHooks)
+
+// Getters are lazily initialized. Never returnn nil for these!
+@property (nonatomic, strong, readonly) UIBarButtonItem *doneButton;
+@property (nonatomic, strong, readonly) UIBarButtonItem *clearButton;
+@property (nonatomic, strong, readonly) UIBarButtonItem *inspectorButton;
+
+// Default handlers.
+- (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)clearButtonPressed:(id)sender;
+- (IBAction)inspectorButtonPressed:(id)sender;
+
+@end

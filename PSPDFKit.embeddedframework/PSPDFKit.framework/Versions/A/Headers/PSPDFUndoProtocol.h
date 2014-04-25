@@ -47,11 +47,9 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 + (PSPDFUndoCoalescing)undoCoalescingForKey:(NSString *)key;
 
 /// Required when observing collections. It is your responsibility to update the affected collection.
-/// @note The index of an element is not preserved, so the order of elements in a collection might change
-/// during an undo operation.
-/// @warning It is your responsibility to trigger appropriate KVO events when you insert or remove an
-/// object! The easiest way to do this is to call `mutable<CollectionType>ValueForKey:` on self and to modify that
-/// collection object.
+/// @note The index of an element is not preserved, so the order of elements in a collection might change during an undo operation.
+/// @warning It is your responsibility to trigger appropriate KVO events when you insert or remove an object.
+/// The easiest way to do this is to call `mutable<CollectionType>ValueForKey:` on self and to modify that collection object.
 - (void)insertUndoObjects:(NSSet *)objects forKey:(NSString *)key;
 - (void)removeUndoObjects:(NSSet *)objects forKey:(NSString *)key;
 

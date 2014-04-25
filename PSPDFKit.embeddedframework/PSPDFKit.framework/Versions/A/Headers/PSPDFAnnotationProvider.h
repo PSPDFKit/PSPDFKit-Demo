@@ -87,7 +87,6 @@
 /// This method can be called from any thread. (try to avoid the main thread)
 ///
 /// @warning Don't dynamically change the value that `isOverlay` returns, else you'll confuse the updater.
-/// If you delete annotations, simply set the `isDeleted`-flag to YES.
 - (void)updateAnnotations:(NSArray *)annotations animated:(BOOL)animated;
 
 /// Query to get the document provider if this annotation provider is attached to the `PSPDFAnnotationManager`.

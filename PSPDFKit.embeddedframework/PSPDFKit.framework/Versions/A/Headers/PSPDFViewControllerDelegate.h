@@ -208,10 +208,10 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
 
  Return NO to process the displaying manually.
  */
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated;
 
 /// Called after the controller has been fully displayed. Isn't called for `UIPopoverController's`.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated;
 
 ///--------------------------------------------
 /// @name General View State

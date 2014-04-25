@@ -4,6 +4,25 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.1 - 25/Apr/2014__
+
+*  Adds Dutch translation.
+*  The `PSPDFGallery` now supports parsing and embedding Vimeo URLs, next to YouTube.
+*  Improvements for the flexible annotation toolbar on the iPhone.
+*  Calling undo/redo will now scroll to the page where the annotation is being changed.
+*  Small visual tweaks for the ink preview icon in the flexible annotation toolbar.
+*  Allow to subclass `PSPDFFreeTextAccessoryView`, `PSPDFFormInputAccessoryView` and expose the bar button items.
+*  Additional improvements and checks to better guard against low-memory situations and to improve the Veracode score.
+*  Performance improvements when a large amount of updates are being processed for undo/redo.
+*  The document label is no longer displayed on iPhone when the document doesn't has a label.
+*  The `PSPDFDrawView` is now reused when possible and state aware. (improves drawing polylines/polygons)
+*  The XFDF parser now correctly parses the `lastModified` property of annotations.
+*  Improve palm detection when using a stylus.
+*  Fixes an issue when converting line annotations to JSON.
+*  Fixes various issues when using updateAnnotations:animated: from the `PSPDFAnnotationManager`.
+*  Fixes an issue related to search in the font picker controller.
+*  Fixes an issue when using the streaming encryption/decryption with empty XFDF files.
+
 __v3.7.0 - 19/Apr/2014__
 
 PSPDFKit now requires Xcode 5.1.1 or higher to compile if you're using the source code variant. (we still support all iOS versions down to 6.0)

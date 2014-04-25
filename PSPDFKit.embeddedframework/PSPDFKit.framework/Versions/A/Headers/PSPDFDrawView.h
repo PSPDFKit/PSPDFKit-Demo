@@ -132,4 +132,7 @@
 /// Ending line end type for lines and polylines.
 @property (nonatomic, assign, readonly) PSPDFLineEndType lineEnd2;
 
+/// Annotation type for the action
+@property (nonatomic, assign) PSPDFAnnotationType annotationType;
+
 @end

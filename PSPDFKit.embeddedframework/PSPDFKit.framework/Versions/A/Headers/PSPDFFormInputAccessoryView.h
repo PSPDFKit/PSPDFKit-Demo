@@ -33,3 +33,19 @@ extern NSString *const PSPDFFormInputAccessoryViewDidPressClearButtonNotificatio
 - (void)updateToolbar;
 
 @end
+
+
+@interface PSPDFFormInputAccessoryView (SubclassingHooks)
+
+// Allow button customizations. Never return nil for these!
+@property (nonatomic, strong, readonly) UIBarButtonItem *nextButton;
+@property (nonatomic, strong, readonly) UIBarButtonItem *prevButton;
+@property (nonatomic, strong, readonly) UIBarButtonItem *doneButton;
+@property (nonatomic, strong, readonly) UIBarButtonItem *clearButton;
+
+- (IBAction)nextButtonPressed:(id)sender;
+- (IBAction)prevButtonPressed:(id)sender;
+- (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)clearButtonPressed:(id)sender;
+
+@end

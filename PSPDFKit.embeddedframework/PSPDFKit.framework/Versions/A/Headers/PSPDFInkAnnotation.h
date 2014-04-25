@@ -63,6 +63,3 @@ NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUIntege
 
 // Will convert PDF lines to view lines (operates on every point)
 NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-// Constant to convert the `NSArray` of `NSStrings` <-> `NSArray` of `CGRects` `NSValueTransformer`.
-extern NSString *const PSPDFLinesTransformerName;

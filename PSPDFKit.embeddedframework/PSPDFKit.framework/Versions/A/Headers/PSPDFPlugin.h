@@ -18,6 +18,8 @@ extern const NSUInteger PSPDFPluginProtocolVersion_1;
 
 extern NSString * const PSPDFPluginNameKey;
 extern NSString * const PSPDFPluginEnabledKey;
+extern NSString * const PSPDFPluginInitializeOnDiscoveryKey;
+extern NSString * const PSPDFPluginSaveInstanceKey;
 extern NSString * const PSPDFPluginProtocolVersionKey;
 
 @protocol PSPDFPlugin <NSObject>
