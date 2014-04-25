@@ -55,7 +55,6 @@
     
     NSData *data = [NSData dataWithContentsOfMappedFile:[hackerMagURL path]];
     PSPDFDocument *document = [PSPDFDocument documentWithData:data];
-    document.title = @"NSData PDF";
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
     return controller;
