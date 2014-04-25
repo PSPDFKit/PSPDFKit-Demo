@@ -27,7 +27,7 @@ __v3.7.0 - 19/Apr/2014__
 
 PSPDFKit now requires Xcode 5.1.1 or higher to compile if you're using the source code variant. (we still support all iOS versions down to 6.0)
 
-*  Stylus support for ink annotation drawing with drivers for FiftyThree, Adonit, Pogo, HEX3 and Wacom. The framework is designed in a way where new drivers can be added easily. To enable this, see the "Stylus" example in the PSPDFCatalog. (The SDKs need to be downloaded separately. Drivers are currently only available for customers with a license.)
+*  Stylus support for ink annotation drawing with drivers for Adonit, Pogo, HEX3 and Wacom. The framework is designed in a way where new drivers can be added easily. To enable this, see the "Stylus" example in the PSPDFCatalog. (The SDKs need to be downloaded separately. Drivers are currently only available for customers with a license.)
 *  The annotation toolbar now has a second drawing style (thick, yellow, transparent) and improved color defaults for the other tools.
 *  Search now detects if the document has no content and shows a different "no page text" message.
 *  We now have a command line tool that works on Mac, Windows and Linux/Unix that can encrypt/decrypt files to be used with the `PSPDFAESCryptoDataProvider` (see `Extras` folder)
