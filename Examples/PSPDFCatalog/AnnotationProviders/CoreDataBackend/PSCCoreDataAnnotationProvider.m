@@ -55,10 +55,20 @@
             }
 
             NSMutableArray *newAnnotations = [NSMutableArray array];
+            PSPDFDocument *document = self.documentProvider.document;
             for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
                 PSPDFAnnotation *annotation = nil;
                 @try {
-                    annotation = [NSKeyedUnarchiver unarchiveObjectWithData:coreDataAnnotation.annotationData];
+                    // Set up the unarchiver
+                    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:coreDataAnnotation.annotationData];
+
+                    // Check for custom annotation subclasses and make sure they are used when annotations are loaded.
+                    PSPDFAnnotationRegisterOverrideClasses(unarchiver, document);
+
+                    annotation = [unarchiver decodeObjectForKey:@"root"];
+                    if (![annotation isKindOfClass:PSPDFAnnotation.class]) {
+                        annotation = nil;
+                    }
                     annotation.page = page; // Don't trust the page saved inside the archive, always manually set.
                 }
                 @catch (NSException *exception) {
@@ -109,14 +119,14 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
     request.predicate = [NSPredicate predicateWithFormat:@"uuid = %@", annotation.name];
     request.fetchLimit = 1; // We only check
-    NSArray *result = [_managedObjectContext executeFetchRequest:request error:NULL];
+    NSArray *result = [self.managedObjectContext executeFetchRequest:request error:NULL];
     return result.count > 0 ? result[0] : nil;
 
 }
 
 - (void)convertAnnotationToCoreData:(PSPDFAnnotation *)annotation initialInsert:(BOOL)initialInsert {
     // Fetch or Create root user data managed object
-    [_managedObjectContext performBlock:^{
+    [self.managedObjectContext performBlock:^{
         PSCCoreDataAnnotation *coreDataAnnotation = nil;
         if (!initialInsert) {
             coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
@@ -124,7 +134,7 @@
 
         // If we can't find the annotation in the database, insert a new one.
         if (!coreDataAnnotation) {
-            coreDataAnnotation = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(PSCCoreDataAnnotation.class) inManagedObjectContext:_managedObjectContext];
+            coreDataAnnotation = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(PSCCoreDataAnnotation.class) inManagedObjectContext:self.managedObjectContext];
             coreDataAnnotation.uuid = annotation.name;
         }
 
@@ -220,7 +230,7 @@
 - (void)setupCoreDataStack {
 	// Load the model
     NSURL *modelURL = [NSBundle.mainBundle URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
     // Create folder
     [[NSFileManager new] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -228,19 +238,19 @@
 	// Setup persistent store coordinator
 	NSURL *storeURL = [NSURL fileURLWithPath:self.databasePath];
 	NSError *error = nil;
-	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
-	if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+	self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+	if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
 		// Remove store and retry once.
 		[NSFileManager.defaultManager removeItemAtURL:storeURL error:NULL];
-		if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+		if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
 			NSLog(@"Failed to create sqlite store: %@", error.localizedDescription);
 			abort();
 		}
 	}
 
 	// Create managed object context
-	_managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-	[_managedObjectContext setPersistentStoreCoordinator:_persistentStoreCoordinator];
+	self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+	[self.managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 }
 
 @end
