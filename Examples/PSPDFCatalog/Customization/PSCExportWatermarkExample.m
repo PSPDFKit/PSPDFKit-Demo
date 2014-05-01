@@ -31,6 +31,24 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
+    PSPDFRenderDrawBlock drawBlock = ^(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options) {
+        // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
+        NSString *text = @"PSPDFKit Live Watermark";
+        if ([text respondsToSelector:@selector(drawWithRect:options:attributes:context:)]) { // iOS 7 only
+            NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
+            stringDrawingContext.minimumScaleFactor = 0.1f;
+
+            CGContextTranslateCTM(context, 0.f, cropBox.size.height/2.f);
+            CGContextRotateCTM(context, -(CGFloat)M_PI / 4.f);
+            [text drawWithRect:cropBox
+                       options:NSStringDrawingUsesLineFragmentOrigin
+                    attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:100],
+                                 NSForegroundColorAttributeName : [UIColor.redColor colorWithAlphaComponent:0.5f]}
+                       context:stringDrawingContext];
+        }
+    };
+    document.renderOptions = @{PSPDFRenderDrawBlockKey : drawBlock};
+
     // To add a watermark, we can either subclass every object that implements the PSPDFDocumentSharingViewControllerDelegate
     // and customize `processorOptionsForDocumentSharingViewController:`, or we simply subclass the PSPDFDocumentSharingViewController
     // directly and override `delegateProcessorOptions` which is the method that queries the delegates.
@@ -44,7 +62,7 @@
 
 - (NSDictionary *)delegateProcessorOptions {
     // Create watermark drawing block. This will be called once per page on exporting, after the PDF and the annotations have been drawn.
-    PSPDFPageDrawRectBlock drawBlock = ^(CGContextRef context, NSUInteger currentPage, CGRect cropBox) {
+    PSPDFRenderDrawBlock drawBlock = ^(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options) {
         // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
         NSString *text = @"PSPDFKit Example Watermark";
         if ([text respondsToSelector:@selector(drawWithRect:options:attributes:context:)]) { // iOS 7 only
