@@ -69,6 +69,9 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     // Visit http://customers.pspdfkit.com to get your license key.
     PSPDFSetLicenseKey("DEMO");
 
+    // Configure callback for Open In Chrome feature. Optional.
+    PSPDFKit.sharedInstance[PSPDFXCallbackURLString] = @"pspdfcatalog://";
+
     // Create catalog controller delayed because we also dynamically load the license key.
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
     // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.

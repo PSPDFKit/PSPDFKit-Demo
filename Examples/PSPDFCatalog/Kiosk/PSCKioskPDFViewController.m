@@ -13,6 +13,7 @@
 #import "PSCSettingsController.h"
 #import "PSCGridViewController.h"
 #import "PSCSettingsBarButtonItem.h"
+#import "PSCAvailability.h"
 
 #ifdef PSPDFCatalog
 #import "PSCGoToPageButtonItem.h"
