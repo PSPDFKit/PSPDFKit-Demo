@@ -40,6 +40,7 @@
 #import "PSCExampleManager.h"
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
+#import "UIColor+PSPDFCatalog.h"
 #import "PSCPopoverTestViewController.h"
 
 #import <objc/runtime.h>
