@@ -45,6 +45,7 @@
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
 		7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */; };
+		788628EB1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */; };
 		78897E24179A8C8000BAAE73 /* PSCFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E21179A8C8000BAAE73 /* PSCFileHelper.m */; };
 		78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */; };
 		789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */; };
@@ -245,6 +246,7 @@
 		787B07CC1695B65300852825 /* PSCFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFontCacheTest.m; sourceTree = "<group>"; };
 		7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+PSCBlockSupport.h"; sourceTree = "<group>"; };
 		7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+PSCBlockSupport.m"; sourceTree = "<group>"; };
+		788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPredefinedEmailBodyExample.m; sourceTree = "<group>"; };
 		78897E20179A8C8000BAAE73 /* PSCFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFileHelper.h; sourceTree = "<group>"; };
 		78897E21179A8C8000BAAE73 /* PSCFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFileHelper.m; sourceTree = "<group>"; };
 		78897E22179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+PSCKeyboardDismissal.h"; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 				78FEC23618B293730012ACBD /* PSCTintedControllerExample.m */,
 				785C5F2C18D19A4100DD1592 /* PSCTopScrobbleBarExample.m */,
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
+				788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */,
 				78E8C8C1183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.m in Sources */,
 				78D4D4041848CD4900080A96 /* AFHTTPRequestOperationManager.m in Sources */,
+				788628EB1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m in Sources */,
 				78FEC25A18B298C60012ACBD /* PSCSplitPDFViewController.m in Sources */,
 				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
 				781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */,

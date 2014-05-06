@@ -613,16 +613,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Customize email sending (add body text)" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.emailButtonItem.mailComposeViewControllerCustomizationBlock = ^(MFMailComposeViewController *mailController) {
-            [mailController setMessageBody:@"<h1 style='color:blue'>Custom message body.</h1>" isHTML:YES];
-        };
-        pdfController.rightBarButtonItems = @[pdfController.emailButtonItem];
-        return pdfController;
-    }]];
-
     [subclassingSection addContent:[PSContent contentWithTitle:@"Set custom default zoom level" block:^UIViewController *{
         PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSPDFViewController *pdfController = [[PSCCustomDefaultZoomScaleViewController alloc] initWithDocument:document];
