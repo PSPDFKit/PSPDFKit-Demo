@@ -386,3 +386,5 @@ extern void PSPDFAnnotationSupportLegacyFormat(NSKeyedUnarchiver *unarchiver);
 
 // After you loaded your v2 annotation array, call this method to migrate to the v3 format.
 extern NSArray *PSPDFPostprocessAnnotationInLegacyFormat(NSArray *annotations);
+
+extern void PSPDFAnnotationRegisterOverrideClasses(NSKeyedUnarchiver *unarchiver, PSPDFDocument *document);

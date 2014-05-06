@@ -38,10 +38,6 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
 };
 extern PSPDFAnimate PSPDFAnimateOption; /// defaults to `PSPDFAnimateModernDevices`.
 
-/// Callback URL to allow a back-button. Currently only used for the Open In Chrome feature.
-/// See https://developers.google.com/chrome/mobile/docs/ios-links
-extern void PSPDFSetXCallbackString(NSString *callbackString);
-
 // Compares sizes and allows aspect ratio changes.
 extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
 

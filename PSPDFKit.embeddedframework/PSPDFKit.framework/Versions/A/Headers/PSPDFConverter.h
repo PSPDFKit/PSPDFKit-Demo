@@ -33,6 +33,7 @@ extern id PSPDFDictionaryGetObjectForPathOfType(CGPDFDictionaryRef pdfDict, NSSt
 
 extern PSPDFStream *PSPDFDictionaryGetStreamForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSNumber *PSPDFDictionaryGetNumberC(CGPDFDictionaryRef pdfDict, const char *key);
+extern BOOL PSPDFDictionaryGetBooleanC(CGPDFDictionaryRef pdfDict, const char *key);
 extern NSUInteger PSPDFDictionaryGetIntegerC(CGPDFDictionaryRef pdfDict, const char *key);
 extern NSString *PSPDFDictionaryGetStringForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSArray *PSPDFDictionaryGetArrayForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);

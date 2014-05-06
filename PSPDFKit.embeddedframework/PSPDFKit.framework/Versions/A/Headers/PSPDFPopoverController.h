@@ -64,6 +64,9 @@
 /// Action that is invoked before the popover hides. (programmatically or via user action)
 @property (nonatomic, copy) dispatch_block_t popoverWillDismissAction;
 
+/// Action that is invoked after the popover has been hidden. (programmatically or via user action)
+@property (nonatomic, copy) dispatch_block_t popoverDidDismissAction;
+
 // Returns YES if it's a UIPopoverController or a PSPDFPopoverController
 BOOL PSPDFIsPopoverControllerClass(id popover);
 

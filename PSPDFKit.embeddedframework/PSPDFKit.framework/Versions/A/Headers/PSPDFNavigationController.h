@@ -25,9 +25,6 @@ typedef NS_ENUM(NSUInteger, PSPDFPersistentCloseButtonMode) {
 // Forward the iOS6 rotation method to the visible view controller. Defaults to YES.
 @property (nonatomic, assign, getter=isRotationForwardingEnabled) BOOL rotationForwardingEnabled;
 
-// Called before the navigation controller will be dismissed.
-@property (nonatomic, copy) dispatch_block_t navigationControllerWillDismissAction;
-
 // Allows showing a persistent close button. Defaults to `PSPDFPersistentCloseButtonModeNone`.
 @property (nonatomic, assign) PSPDFPersistentCloseButtonMode persistentCloseButtonMode;
 

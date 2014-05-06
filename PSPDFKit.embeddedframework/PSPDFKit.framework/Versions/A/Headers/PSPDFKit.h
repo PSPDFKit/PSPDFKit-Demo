@@ -17,6 +17,13 @@
 #error PSPDFKit supports iOS 6.0 upwards.
 #endif
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+/// The X-Callback URL. See http://x-callback-url.com/
+/// Currently only used for the Chrome activity in the PSPDFWebViewController.
+extern NSString *const PSPDFXCallbackURLString;
+
 /// Configuration object for various framework-global settings.
 /// @note The PSPDFKit singleton acts as a global, thread-safe key/value store.
 /// Use `setValue:forKey:` and `valueForKey:` or the subscripted variants to set/get properties.
@@ -36,7 +43,6 @@ extern "C" {
 #endif
 
 // common
-#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLogging.h"
 #import "PSPDFConverter.h"

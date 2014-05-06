@@ -22,6 +22,6 @@
 @property (nonatomic, copy) NSURL *previewURL;
 
 /// Can be set to provide a better animation. Optional.
-@property (nonatomic, weak) UIView *sourceView;
+@property (nonatomic, assign) CGRect sourceRect;
 
 @end

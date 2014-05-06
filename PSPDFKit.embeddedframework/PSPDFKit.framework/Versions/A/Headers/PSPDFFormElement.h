@@ -83,6 +83,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 // Index of this object in the AcroForm dictionary. If it's a child, it might be -1.
 @property (nonatomic, assign) NSInteger formIndex;
 
+// Index of the form to use when determining calculation order when executing calculate actions.
+@property (nonatomic, assign) NSUInteger calculationOrderIndex;
+
+
 /// If set, the user may not change the value of the field. Any associated widget annotations will not interact with the user; that is, they will not respond to mouse clicks or change their appearance in response to mouse motions. This flag is useful for fields whose values are computed or imported from a database.
 - (BOOL)isReadOnly;
 

@@ -12,7 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFViewController, PSPDFDocumentProvider;
+@class PSPDFViewController, PSPDFDocumentProvider, PSPDFDocument;
 
 /// Delegate to receive events regarding `PSPDFDocument`.
 @protocol PSPDFDocumentDelegate <NSObject>

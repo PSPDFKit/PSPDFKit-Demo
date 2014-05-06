@@ -26,12 +26,24 @@ typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
 /// Used to automatically process the actions that follow a keystroke or selection change (for choice fields)
 /// Must pass appropriate values in the eventParams dictionary. In particular, 'willCommit' and 'change', should be set correctly.
 /// The returned dictionary contains the responde code and the modfied change value possibly
-/// Handles K, V and C actions.
+/// Handles K and V actions.
 - (NSDictionary *)executeValueChangedJSActionSequenceWithActionContainer:(id)actionContainer eventParams:(NSDictionary *)eventParams error:(NSError * __autoreleasing *)error;
 
 /// Executes the format action for the container. If no action exists, returns the value unchanged.
 /// Handles F actions from the additional actions dictionary.
 - (NSString *)executeFormatActionWithActionContainer:(id)actionContainer eventParams:(NSDictionary *)eventParams error:(NSError * __autoreleasing *)error;
+
+/*
+ Note for the calculation method below (Adobe Acrobat SDK JavaScript API -
+ JavaScript for Acrobat API Reference) :
+
+ This event is defined when a change in a form requires that all fields that have a calculation script attached to them be executed. All fields that depend on the value of the changed field will now be recalculated. These fields may in turn generate additional Field/Validate, Field/Blur, and Field/Focus events. Calculated fields may have dependencies on other calculated fields whose values must be determined beforehand. The calculation order array contains an ordered list of all the fields in a document that have a
+ calculation script attached. When a full calculation is needed, each of the fields in the array is calculated in turn starting with the zeroth index of the array and continuing in sequence to the end of the array.
+ */
+
+// Executes all calculate actions in the document that depend on the sourceForm value.
+// Executes synchronously. Use with caution for complex actions, as it blocks the main thread. (Must be run on main thread)
+- (BOOL)updateCalculatedFieldsDependingOnForm:(PSPDFFormElement *)sourceForm error:(NSError * __autoreleasing *)error;
 
 @end
 

@@ -16,6 +16,8 @@
 
 // Available keys for options. `PSPDFProcessorAnnotationDict` in form of pageIndex -> annotations.
 // Annotations will be flattened when type is set, unless `PSPDFProcessorAnnotationAsDictionary` is also set.
+// Don't forget to also define the types of annotations that should be processed:
+// PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll).
 extern NSString *const PSPDFProcessorAnnotationTypes;
 extern NSString *const PSPDFProcessorAnnotationDict;
 extern NSString *const PSPDFProcessorAnnotationAsDictionary; // Set to `@YES` to add annotations as dictionary and don't flatten them. Dictionary keys are the *original* page indexes.
@@ -28,8 +30,10 @@ extern NSString *const PSPDFProcessorAdditionalDelay;  // Defaults to 0.05 secon
 extern NSString *const PSPDFProcessorStripEmptyPages;  // Defaults to NO. Adds an additional step to strip white pages if you're getting any at the end.
 extern NSString *const PSPDFProcessorSkipPDFCreation;  // Defaults to NO. Will assume output is already a valid PDF and just perform annotation saving.
 
-// Careful, this code is executed on background threads. Only use thread-safe drawing methods.
-extern NSString *const PSPDFProcessorDrawRectBlock;    // Allows a drawing block `PSPDFPageDrawRectBlock` being called for each page.
+/// Allows a drawing block of type `PSPDFRenderDrawBlock` being called for each page. This will set up a similar drawing block as you'd get with calling `UIGraphicsBeginImageContext`.
+/// @note This is similar to `PSPDFRenderDrawRectBlock` but only called in the processor.
+/// @warning This code will be executed on a background thread. Use thread-safe drawing.
+extern NSString *const PSPDFProcessorDrawRectBlock;
 
 // Common page sizes. Use for `PSPDFProcessorPageRect`.
 extern CGRect const PSPDFPaperSizeA4;
@@ -39,7 +43,6 @@ extern CGRect const PSPDFPaperSizeLetter;
 extern NSString *const PSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
 typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
-typedef void (^PSPDFPageDrawRectBlock)(CGContextRef context, NSUInteger currentPage, CGRect cropBox);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
 @interface PSPDFProcessor : NSObject

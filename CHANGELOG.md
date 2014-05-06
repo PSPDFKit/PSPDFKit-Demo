@@ -4,6 +4,34 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.2 - 6/May/2014__
+
+*  Add support for actions that are invoked on entering/exiting annotation focus.
+*  Add support for GoToE embedded actions. This allows linking to PDFs that are saved inside the PDF.
+*  Add support for relatively linked files without file handler. Will open QuickLook for such files.
+*  `PSPDFDocument` now automatically detects and converts PDF-Date-Strings (D:...) to NSDate objects when accessing the `metadata` property.
+*  Note annotations will now always get the correct style applied. (which includes alpha, if set)
+*  The method `updatePage:animated:` now also discards any current selection to make sure everything is updated.
+*  `PSPDFWebViewController`: add new property `shouldUpdateTitleFromWebContent` to control if the title should be updated dynamically.
+*  Improved security handling based on Veracode static analyzer feedback.
+*  An embedded file with the 'pdf' filetype will now be previewed using a new `PSPDFViewController` instead of the generic QuickLook. QuickLook will still be used for all other file types.
+*  Various improvements to Form-JavaScript validation, actions and handling.
+*  Various smaller improvements to the flexible annotation toolbar related to `tintColor` handling.
+*  A new render option named `PSPDFRenderDrawBlockKey` allows to add a global drawing handler above the page renderer.
+*  Improves performance of the internal download manager with moving some Apple-API that is potentially slow to a background thread.
+*  The `allowBackgroundSaving` property of the `PSDPFViewController` now defaults to YES. Make sure you can deal with async saving or revert this to NO.
+*  Single-page documents no longer allow bouncing, unless `alwaysBouncePages` is enabled.
+*  API: The watermark drawing block has been changed and now includes more types. See `PSPDFRenderDrawBlock` for the new type.
+*  API: The X-Callback-URL registration is now handled by the PSPDFKit global configuration object.
+*  API: Removes the `mailComposeViewControllerCustomizationBlock`. Use the `pdfViewController:shouldShowController:embeddedInController:options:` delegate.
+*  API: executePDFAction:inTargetRect:forPage:actionContainer now has an additional animated: property.
+*  API: Some logic from `PSPDFSoundAnnotation` has been extracted into `PSPDFSoundAnnotationController`.
+*  Fixes a regression when adding images via the annotation toolbar on an iPad.
+*  Fixes a regression that could reduce ink annotation width to 1.
+*  Fixes an issue where PSPDFStatusHUD would not always correctly update when a new title was set while it was already visible.
+*  Fixes an issue where sound annotation data was sometimes not correctly loaded and wasn't properly exported as JSON.
+*  Fixes a very rare potential for a deadlock when the JavaScript runtime is being initialized from a background thread.
+
 __v3.7.1 - 25/Apr/2014__
 
 *  Adds Dutch translation.

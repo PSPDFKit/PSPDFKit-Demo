@@ -82,6 +82,10 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL useCustomErrorPage;
 
+/// If set to yes, we will evaluate `document.title` from the web content and update the title.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL shouldUpdateTitleFromWebContent;
+
 @end
 
 @interface PSPDFWebViewController (Advanced)

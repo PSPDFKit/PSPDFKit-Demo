@@ -12,13 +12,13 @@
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
     PSPDFFeatureMaskNone              = 0,
-    PSPDFFeatureMaskPDFViewer         = 1 << 0,
-    PSPDFFeatureMaskTextSelection     = 1 << 1,
-    PSPDFFeatureMaskStrongEncryption  = 1 << 2, // Not available in the demo.
-    PSPDFFeatureMaskPDFCreation       = 1 << 3,
-    PSPDFFeatureMaskAnnotationEditing = 1 << 4,
-    PSPDFFeatureMaskAcroForms         = 1 << 5,
-    PSPDFFeatureMaskIndexedFTS        = 1 << 6, // Limited in the demo.
+    PSPDFFeatureMaskPDFViewer         = 1 << 0, // View PDFs without watermark. PSPDFKit Viewer.
+    PSPDFFeatureMaskTextSelection     = 1 << 1, // Text Selection. Basic.
+    PSPDFFeatureMaskStrongEncryption  = 1 << 2, // Not available in the demo. Basic.
+    PSPDFFeatureMaskPDFCreation       = 1 << 3, // Create PDF documents. Basic.
+    PSPDFFeatureMaskAnnotationEditing = 1 << 4, // Edit/Create annotations. Basic.
+    PSPDFFeatureMaskAcroForms         = 1 << 5, // PDF Forms. PSPDFKit Complete.
+    PSPDFFeatureMaskIndexedFTS        = 1 << 6, // Limited to 100 chars/page in the demo.
     PSPDFFeatureMaskAll               = UINT_MAX,
 };
 
@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 /// Should be set directly in `application:didFinishLaunchingWithOptions:` to enable PSPDFKit, or at latest before any PSPDF* classes are used. Call from the main thread.
-/// @return the features available for the give license key.
+/// @return feature mask available for the give license key.
 extern PSPDFFeatureMask PSPDFSetLicenseKey(const char *licenseKey);
 
 #ifdef __cplusplus

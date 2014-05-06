@@ -22,33 +22,17 @@ extern NSString *const PSPDFSoundAnnotationEncodingSigned;
 extern NSString *const PSPDFSoundAnnotationEncodingMuLaw;
 extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 
-/// Posted when recording or playback is started, paused or stopped
-extern NSString *const PSPDFSoundAnnotationChangedStateNotification;
-
-/// Posted when +stopRecordingOrPlaybackForAllExcept is invoked
-extern NSString *const PSPDFSoundAnnotationStopAll;
-
-typedef NS_ENUM(NSInteger, PSPDFSoundAnnotationState) {
-    PSPDFSoundAnnotationStateStopped = 0,
-    PSPDFSoundAnnotationStateRecording,
-    PSPDFSoundAnnotationStateRecordingPaused,
-    PSPDFSoundAnnotationStatePlaying,
-    PSPDFSoundAnnotationStatePlaybackPaused,
-};
+@class PSPDFSoundAnnotationController;
 
 /// A sound annotation (PDF 1.2) shall analogous to a text annotation except that instead of a text
 /// note, it contains sound recorded from the iPad/iPhone's microphone or imported from a file.
 @interface PSPDFSoundAnnotation : PSPDFAnnotation
 
-/// Stops any currently active recording or playback, except the sender.
-/// If the sender is nil, all annotations are stopped.
-+ (void)stopRecordingOrPlaybackForAllExcept:(id)sender;
-
-/// Checks if we have permission to record
-+ (void)requestRecordPermission:(void (^)(BOOL granted))block;
-
 - (id)initRecorder;
 - (id)initWithRate:(NSUInteger)rate channels:(UInt32)channels bits:(UInt32)bits encoding:(NSString *)encoding;
+
+/// The annotation controller
+@property (nonatomic, strong) PSPDFSoundAnnotationController *controller;
 
 /// The sound icon name.
 @property (nonatomic, copy) NSString *iconName;
@@ -71,25 +55,7 @@ typedef NS_ENUM(NSInteger, PSPDFSoundAnnotationState) {
 /// Encoding of the sound stream. Use `PSPDFSoundAnnotationEncoding*` for values.
 @property (nonatomic, copy, readonly) NSString *encoding;
 
-/// The current playback state
-@property (nonatomic, assign, readonly) PSPDFSoundAnnotationState state;
-
-/// The audio player object
-@property (nonatomic, strong, readonly) AVAudioPlayer *audioPlayer;
-
 /// Loads bits, sample rate, channels, encoding from sound file.
 - (void)loadAttributesFromAudioFile;
-
-/// Starts or resumes playback
-- (BOOL)startPlayback:(NSError **)error;
-
-/// Starts or resumes recording
-- (BOOL)startRecording:(NSError **)error;
-
-/// Pauses playback or recording
-- (void)pause;
-
-/// Stops playback or recording
-- (BOOL)stop:(NSError **)error;
 
 @end

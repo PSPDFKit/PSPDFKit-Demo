@@ -508,6 +508,7 @@ extern NSString *const PSPDFPresentOptionAlwaysPopover;             // Show as p
 extern NSString *const PSPDFPresentOptionHalfModalMode;             // Shows a VC on 50% of the screen.
 extern NSString *const PSPDFPresentOptionPassthroughViews;          // Customize the popover click-through views.
 extern NSString *const PSPDFPresentOptionWillDismissBlock;          // Block called when the controller is being dismissed.
+extern NSString *const PSPDFPresentOptionDidDismissBlock;           // Block called when the controller has been dismissed.
 extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to enable a persistent close button.
 
 /// Show a modal view controller or a popover with automatically added close button on the left side.
@@ -553,8 +554,9 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 /// Defaults to YES. Implement `PSPDFDocumentDelegate` to be notified of those saving actions.
 @property (nonatomic, assign, getter=isAutosaveEnabled) BOOL autosaveEnabled;
 
-/// The save method will be invoked when the view controller is dismissed. For compatibility reasons, the default value for this method is NO. Make sure that you don't re-create the `PSPDFDocument` object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
-/// Enabling this will speed up controller dismissal.
+/// The save method will be invoked when the view controller is dismissed. This increases controller dismissal if enabled.
+/// @note Make sure that you don't re-create the `PSPDFDocument` object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
+/// Defaults to YES.
 @property (nonatomic, assign) BOOL allowBackgroundSaving;
 
 /// A conveniance accessor for a pre-configured, persistant, annotation state manager for the controller.
@@ -658,7 +660,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 // Executes a PDF action. (open link, email, page, document, etc)
 // `page` is the page where the current action is. If not available, use `pdfController.page`.
 // `actionContainer` might be nil, but usually it's the annotation that owns the action.
-- (BOOL)executePDFAction:(PSPDFAction *)action inTargetRect:(CGRect)targetRect forPage:(NSUInteger)page actionContainer:(id)actionContainer;
+- (BOOL)executePDFAction:(PSPDFAction *)action inTargetRect:(CGRect)targetRect forPage:(NSUInteger)page animated:(BOOL)animated actionContainer:(id)actionContainer;
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
 /// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of `PSPDFPageView.class` / `MyCustomPageView.class` to use the custom subclass. (`MyCustomPageView` must be a subclass of `PSPDFPageView`)

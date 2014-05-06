@@ -224,7 +224,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// Special `PSPDFFlexibleToolbarGroupButton` used for the collapsed button item.
 @interface PSPDFFlexibleToolbarCollapsedButton : PSPDFFlexibleToolbarGroupButton
 
-/// A button whose appeance is mimicked.
+/// A button whose appearance is mimicked.
 @property (nonatomic, strong, readonly) UIButton *mimickedButton;
 
 @end

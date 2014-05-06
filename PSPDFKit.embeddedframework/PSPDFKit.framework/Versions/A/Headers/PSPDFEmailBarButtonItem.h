@@ -33,9 +33,6 @@
  */
 @property (nonatomic, assign) PSPDFDocumentSharingOptions sendOptions;
 
-/// Allows customization of the mail compose controller before it's displayed. (e.g. set custom body text)
-@property (nonatomic, copy) void (^mailComposeViewControllerCustomizationBlock)(MFMailComposeViewController *);
-
 @end
 
 @interface PSPDFEmailBarButtonItem (SubclassingHooks)

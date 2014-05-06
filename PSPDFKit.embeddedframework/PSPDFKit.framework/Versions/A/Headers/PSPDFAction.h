@@ -24,16 +24,14 @@ typedef NS_ENUM(UInt8, PSPDFActionType) {
     PSPDFActionTypeRichMediaExecute, // See Adobe® Supplement to the ISO 32000, Page 40ff.
     PSPDFActionTypeSubmitForm,
     PSPDFActionTypeResetForm,
-
-    // Unimplemented actions
-    PSPDFActionTypeSound,
-    PSPDFActionTypeMovie,
-    PSPDFActionTypeHide,   // Implemented
-    PSPDFActionTypeThread,
-    PSPDFActionTypeImportData,
-    PSPDFActionTypeSetOCGState,
-    PSPDFActionTypeTrans,
-    PSPDFActionTypeGoTo3DView,
+    PSPDFActionTypeSound,            // Not implemented
+    PSPDFActionTypeMovie,            // Not implemented
+    PSPDFActionTypeHide,
+    PSPDFActionTypeThread,           // Not implemented
+    PSPDFActionTypeImportData,       // Not implemented
+    PSPDFActionTypeSetOCGState,      // Not implemented
+    PSPDFActionTypeTrans,            // Not implemented
+    PSPDFActionTypeGoTo3DView,       // Not implemented
     PSPDFActionTypeGoToEmbedded,
 
     PSPDFActionTypeUnknown = UINT8_MAX

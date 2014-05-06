@@ -35,6 +35,9 @@ extern NSString * const PSPDFLinesValueTransformerName;
 // Converts a `CGAffineTransform` into `NSString` and back.
 extern NSString * const PSPDFAffineTransformValueTransformerName;
 
+// Converts `NSData` to base64-encoded `NSString` and back.
+extern NSString * const PSPDFBase64TransformerName;
+
 // Ensure an NSNumber is backed by __NSCFBoolean/CFBooleanRef
 //
 // NSJSONSerialization, and likely other serialization libraries, ordinarily

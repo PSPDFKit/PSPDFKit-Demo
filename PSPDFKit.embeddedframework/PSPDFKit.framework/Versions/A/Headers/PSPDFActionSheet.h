@@ -45,6 +45,7 @@
 - (void)addCancelBlock:(void (^)(NSInteger buttonIndex))cancelBlock;
 
 /// Add block that is called after the sheet will be dismissed (before animation).
+/// @note In difference to the action sheet, this is called BEFORE any of the block-based button actions are called.
 - (void)addWillDismissBlock:(void (^)(NSInteger buttonIndex))willDismissBlock;
 
 /// Add block that is called after the sheet has been dismissed (after animation).

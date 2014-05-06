@@ -24,6 +24,9 @@
 /// Action that is invoked before the popover hides. (programmatically or via user action)
 @property (nonatomic, copy) dispatch_block_t popoverWillDismissAction;
 
+/// Action that is invoked after the popover has been hidden. (programmatically or via user action)
+@property (nonatomic, copy) dispatch_block_t popoverDidDismissAction;
+
 /// Call to manually invoke delegate sending.
 /// Due to the nature of the callback we currently don't actually know the animated state.
 - (void)notifyContentControllerAboutDismissalAnimated:(BOOL)animated;

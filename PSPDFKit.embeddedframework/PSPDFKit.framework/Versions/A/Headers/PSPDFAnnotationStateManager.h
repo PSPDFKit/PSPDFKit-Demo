@@ -131,17 +131,9 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 - (BOOL)canRedo;
 
 /// Shows the style picker for the current annotation class and configures it with annotation state manager style attributes.
-/// @see showStylePickerFrom:presentationOptions:
-- (void)showStylePickerFrom:(id)sender;
-
-/// Shows the style picker for the current annotation class and configures it with annotation state manager style attributes.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
 /// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
 - (void)showStylePickerFrom:(id)sender presentationOptions:(NSDictionary *)options;
-
-/// Displays a `PSPDFSignatureViewController` and toggles the state to `PSPDFAnnotationStringSignature`.
-/// @see toggleSignatureControllerFrom:presentationOptions:
-- (void)toggleSignatureControllerFrom:(id)sender;
 
 /// Displays a `PSPDFSignatureViewController` and toggles the state to `PSPDFAnnotationStringSignature`.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
@@ -157,10 +149,6 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// @param includeSavedAnnotations Whether to include saved annotation using PSPDFSavedAnnotationsViewController or not.
 /// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
 - (void)toggleStampControllerFrom:(id)sender includeSavedAnnotations:(BOOL)includeSavedAnnotations presentationOptions:(NSDictionary *)options;
-
-/// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringImage`.
-/// @see toggleImagePickerControllerFrom:presentationOptions:
-- (void)toggleImagePickerControllerFrom:(id)sender;
 
 /// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringImage`.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
