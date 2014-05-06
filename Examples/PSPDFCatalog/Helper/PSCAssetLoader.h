@@ -14,6 +14,7 @@
 #define kPaperExampleFileName    @"amazon-dynamo-sosp2007.pdf"
 #define kHackerMagazineExample   @"hackermonthly-issue039.pdf"
 #define kPSPDFQuickStart         @"PSPDFKit QuickStart Guide.pdf"
+#define kCaseStudyBox            @"Case Study Box.pdf"
 
 @interface PSCAssetLoader : NSObject
 

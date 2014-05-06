@@ -95,11 +95,19 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_JavaScript.PDF"]];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
-
+        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Test-relative-links.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
-        //controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
+        return controller;
+    }]];
+
+    [appSection addContent:[PSContent contentWithTitle:@"Case Study from Box" contentDescription:@"Incudes a RichMedia inline video that works in Acrobat and PSPDFKit." block:^{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kCaseStudyBox]];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+        controller.shouldShowHUDOnViewWillAppear = NO;
+        controller.pageLabelEnabled = NO;
+        controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.activityButtonItem];
         return controller;
     }]];
 
