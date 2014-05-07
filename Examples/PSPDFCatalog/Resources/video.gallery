@@ -40,7 +40,11 @@
   {
     "contentURL":"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480",
     "type":"video",
-    "caption":"A remote video"
+    "caption":"A remote video",
+    "options":{
+        "coverMode":"preview",
+        "coverPreviewCaptureTime":34
+    }
   },
   {
     "contentURL":"pspdfkit://localhost/Bundle/mas_audio_b41570.gif",
