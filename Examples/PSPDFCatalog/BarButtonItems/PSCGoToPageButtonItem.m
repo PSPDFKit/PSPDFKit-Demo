@@ -40,7 +40,7 @@ const char PSCAlertViewKey;
     [self.class dismissPopoverAnimated:YES completion:NULL];
 
     PSPDFViewController *pdfController = self.pdfController;
-    PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to Page") message:nil];
+    PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to page") message:nil];
     __weak PSPDFAlertView *weakAlert = websitePrompt;
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
