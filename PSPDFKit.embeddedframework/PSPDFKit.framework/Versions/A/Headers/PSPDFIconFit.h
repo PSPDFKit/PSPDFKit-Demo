@@ -50,3 +50,6 @@ typedef NS_ENUM(NSUInteger, PSPDFIconFitScaleType) {
 - (NSString *)PDFString;
 
 @end
+
+extern NSString *const PSPDFIconFitScaleModeTransformer;
+extern NSString *const PSPDFIconFitScaleTypeTransformer;

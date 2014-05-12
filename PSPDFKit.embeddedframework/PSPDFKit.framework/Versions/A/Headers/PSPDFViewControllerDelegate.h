@@ -144,6 +144,9 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
  Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
 
  Use `PSPDFMenuItem's` `identifier` property to check and modify the menu items. This string will not be translated. (vs the title property)
+ 
+ `rect` is in the coordinate space of the `pageView`.
+ `annotationRect` or `textRect` is in the PDF coordinate space of the current page.
 */
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 

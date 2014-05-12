@@ -80,6 +80,8 @@ extern PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(N
 /// property to have an effect.
 @property (nonatomic, copy) NSURL *coverImageURL;
 
+@property (nonatomic, strong) NSNumber *coverPreviewCaptureTime;
+
 /// @name Content
 
 /// An `PSPDFGalleryVideoItem` has an URL to a video as its content.
@@ -110,6 +112,9 @@ extern NSString *const PSPDFGalleryOptionCoverMode;
 
 /// NSURL. Indicates which image should be presented as a cover view.
 extern NSString *const PSPDFGalleryOptionCoverImage;
+
+/// NSNumber. The time in the video where the preview should be captured.
+extern NSString *const PSPDFGalleryOptionCoverPreviewCaptureTime;
 
 /// NSArray. The prefered video qualities.
 extern NSString *const PSPDFGalleryOptionPreferredVideoQualities;

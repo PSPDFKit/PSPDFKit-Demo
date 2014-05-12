@@ -4,6 +4,22 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.3 - 12/May/2014__
+
+*  The search preview text is now stripped of control characters like carriage return or newlines, which improves preview for various documents.
+*  Improves error handling for inline PDF videos that can't be played. (most likely because they are in .flv flash video format)
+*  The cover image capture time for the video now defaults to second 2 instead of 0 to give a more meaningful default, and is also configurable via JSON.
+*  `PSPDFStampViewController`: Adds `dateStampsEnabled` property to control if date stamps are added or not.
+*  Improves handling around flexible toolbar dragging and the half modal sheet on the iPhone.
+*  Improves compatibility when the 'Spark Inspector' framework is linked with PSPDFKit.
+*  Add `selectedOptions` to `PSPDFDocumentSharingViewController` to allow easier changing of the defaults.
+*  Changes the selected default for the print sheet to `print with annotations` if this is allowed.
+*  Add new option to `PSPDFAnnotationStateManager` to allow setting the allowed image qualities `allowedImageQualities` for image annotations. Fixes #989.
+*  API: Make `PSPDFOutlineElement` immutable. Use the initializer to create.
+*  Various localization improvements.
+*  Fixes a potential issue with manually creating `PSPDFLineAnnotation` objects without properly initializing the points array.
+*  Fixes a potential formatting issue when writing sound annotations into the PDF.
+
 __v3.7.2 - 6/May/2014__
 
 *  Add support for actions that are invoked on entering/exiting annotation focus.

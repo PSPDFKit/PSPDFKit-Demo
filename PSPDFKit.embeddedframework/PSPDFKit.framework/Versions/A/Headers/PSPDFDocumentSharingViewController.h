@@ -85,6 +85,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 /// @warning Modify before the view is loaded.
 @property (nonatomic, assign) PSPDFDocumentSharingOptions sharingOptions;
 
+/// Allows to set the default selection. This property will change as the user changes the selection.
+/// @note Make sure that `selectedOptions` does not contain any values that are missing from `sharingOptions` or multiple ones per set.
+@property (nonatomic, assign) PSPDFDocumentSharingOptions selectedOptions;
+
 /// Button title for "commit".
 @property (nonatomic, copy) NSString *commitButtonTitle;
 

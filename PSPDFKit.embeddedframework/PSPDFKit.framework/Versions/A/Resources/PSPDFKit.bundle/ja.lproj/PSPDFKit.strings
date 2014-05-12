@@ -303,8 +303,8 @@
 "Move Link" = "リンクを移動";
 "Remove Link" = "リンクを削除";
 "Open Link" = "リンクを開く";
-"Go to Page %tu" = "%tuページに移動";
-"Go to Page" = "ページに移動"; // title of a Popup
+"Go to page %tu" = "%tuページに移動";
+"Go to page" = "ページに移動"; // title of a Popup
 "Save" = "保存";
 "Link Destination" = "リンク先";
 "Enter page index or a http:// address to link to an URL." = "URLにリンクするには、ページインデックスまたはhttp://アドレスを入力してください。";
@@ -339,14 +339,13 @@
 "Finish Recording" = "録音を終了";
 "Audio Problem" = "オーディオの問題";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "再生を開始できませんでした";
-"Mic Permission Not Granted" = "マイクの許可が与えられません";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "残念ながらオーディオは現時点で録音できません。このアプリがマイクにアクセスできる許可を与えて下さい。";
-"Sorry, but there was a problem trying to record audio." = "オーディオの録音を試みている間に問題が起きました。";
-"Sorry, but there was a problem trying to play this audio." = "このオーディオの再生を試みている間に問題が起きました。";
+"Could not start playback." = "再生を開始できませんでした。";
+"Microphone permission not granted." = "マイクの許可が与えられません。";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "残念ながらオーディオは現時点で録音できません。このアプリがマイクにアクセスできる許可を与えて下さい。";
+"There was a problem trying to record audio." = "オーディオの録音を試みている間に問題が起きました。";
 "Already Recording" = "既に録音中です";
 "You are already recording on page %@." = "%@ページに既に録音中です。";
-"Go to Page %@" = "%@ページに移動";
+"Go to page %@" = "%@ページに移動";
 
 // Forms
 "Form Element" = "フォーム要素";

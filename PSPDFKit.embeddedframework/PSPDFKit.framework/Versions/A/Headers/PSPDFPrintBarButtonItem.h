@@ -20,3 +20,11 @@
 @property (nonatomic, assign) PSPDFDocumentSharingOptions printOptions;
 
 @end
+
+@interface PSPDFPrintBarButtonItem (SubclassingHooks)
+
+/// Subclass to allow setting a default printer or changing the printer job name.
+/// (see `printerID`, http://stackoverflow.com/questions/12898476/airprint-set-default-printer-in-uiprintinteractioncontroller)
+- (UIPrintInfo *)printInfo;
+
+@end

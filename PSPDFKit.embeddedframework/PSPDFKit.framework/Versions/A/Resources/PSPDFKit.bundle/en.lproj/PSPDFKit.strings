@@ -267,7 +267,7 @@
 "LastPage" = "Last Page";
 "GoBack" = "Go Back";
 "GoForward" = "Go Forward";
-"GoToPage" = "Go To Page";
+"GoToPage" = "Go to page";
 "Find" = "Find";
 // Print, Outline, Search, Brightness are translated via toolbar
 "ZoomIn" = "Zoom In";
@@ -303,8 +303,8 @@
 "Move Link" = "Move Link";
 "Remove Link" = "Remove Link";
 "Open Link" = "Open Link";
-"Go to Page %tu" = "Go to Page %tu";
-"Go to Page" = "Go to Page"; // title of a Popup
+"Go to page %tu" = "Go to page %tu";
+"Go to page" = "Go to page"; // title of a Popup
 "Save" = "Save";
 "Link Destination" = "Link Destination";
 "Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Finish Recording";
 "Audio Problem" = "Audio Problem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Could not start playback";
-"Mic Permission Not Granted" = "Mic Permission Not Granted";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
-"Sorry, but there was a problem trying to record audio." = "Sorry, but there was a problem while trying to record audio.";
-"Sorry, but there was a problem trying to play this audio." = "Sorry, but there was a problem while trying to play this audio.";
+"Could not start playback." = "Could not start playback.";
+"Microphone permission not granted." = "Microphone permission not granted.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
+"There was a problem trying to record audio." = "There was a problem while trying to record audio.";
 "Already Recording" = "Already Recording";
 "You are already recording on page %@." = "You are already recording on page %@.";
-"Go to Page %@" = "Go to Page %@";
+"Go to page %@" = "Go to page %@";
 
 // Forms
 "Form Element" = "Form Element";

@@ -303,8 +303,8 @@
 "Move Link" = "Link verschieben";
 "Remove Link" = "Link entfernen";
 "Open Link" = "Link öffnen";
-"Go to Page %tu" = "Zu Seite %tu wechseln";
-"Go to Page" = "Zu Seite wechseln";
+"Go to page %tu" = "Zu Seite %tu wechseln";
+"Go to page" = "Zu Seite wechseln";
 "Save" = "Sichern";
 "Link Destination" = "Ziel des Links";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Aufnahme abschließen";
 "Audio Problem" = "Audio-Problem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Wiedergabe konnte nicht gestartet werden";
-"Mic Permission Not Granted" = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugang zum Mikrofon wurde verweigert.";
-"Sorry, but there was a problem trying to record audio." = "Ein Problem beim Aufnehmen ist aufgetreten.";
-"Sorry, but there was a problem trying to play this audio." = "Ein Problem beim Abspielen ist aufgetreten.";
+"Could not start playback." = "Wiedergabe konnte nicht gestartet werden.";
+"Microphone permission not granted." = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugang zum Mikrofon wurde verweigert.";
+"There was a problem trying to record audio." = "Ein Problem beim Aufnehmen ist aufgetreten.";
 "Already Recording" = "Aufnahme bereits aktiv";
 "You are already recording on page %@." = "Eine Aufnahme auf Seite %@ ist bereits aktiv.";
-"Go to Page %@" = "Gehe zu Seite %@";
+"Go to page %@" = "Gehe zu Seite %@";
 
 // Forms
 "Form Element" = "Formularelement";

@@ -70,13 +70,8 @@ extern NSString *const PSPDFActionTypeTransformerName;
 /// @note The PDF spec defines both 'destinations' and 'actions'. PSPDFKit will convert a 'destination' into an equivalent `PSPDFActionTypeGoTo`.
 @interface PSPDFAction : PSPDFModel <PSPDFJSONSerializing>
 
-/// @name Initialization
-
 /// Return the class responsible for `actionType`.
 + (Class)actionClassForType:(PSPDFActionType)actionType;
-
-/// Init for subclasses.
-- (id)initWithType:(PSPDFActionType)actionType;
 
 /// @name Properties
 

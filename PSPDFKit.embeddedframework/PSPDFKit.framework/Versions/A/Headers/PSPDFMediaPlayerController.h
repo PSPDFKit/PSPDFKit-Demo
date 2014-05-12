@@ -46,8 +46,11 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 };
 
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
-    /// The default cover mode.
-    PSPDFMediaPlayerCoverModeDefault,
+    /// Shows a preview of the video as the cover.
+    PSPDFMediaPlayerCoverModePreview,
+    
+    /// Shows a custom image as the cover.
+    PSPDFMediaPlayerCoverModeCustom,
     
     /// Hides the cover completely.
     PSPDFMediaPlayerCoverModeHidden,
@@ -100,8 +103,13 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
 /// The cover mode.
 @property (nonatomic, assign) PSPDFMediaPlayerCoverMode coverMode;
 
-/// The URL of the cover image to be displayed.
+/// The URL of the cover image to be displayed. Only effective if `coverMode` is set to
+/// `PSPDFMediaPlayerCoverModeCustom`.
 @property (nonatomic, strong) NSURL *coverImageURL;
+
+/// The time in the video at which the image for the cover is captured. Only effective if `coverMode`
+/// is set to `PSPDFMediaPlayerCoverModePreview`. Defaults to 2 seconds.
+@property (nonatomic, assign) CMTime coverImagePreviewCaptureTime;
 
 /// The player's delegate.
 @property (nonatomic, weak) id <PSPDFMediaPlayerControllerDelegate> delegate;

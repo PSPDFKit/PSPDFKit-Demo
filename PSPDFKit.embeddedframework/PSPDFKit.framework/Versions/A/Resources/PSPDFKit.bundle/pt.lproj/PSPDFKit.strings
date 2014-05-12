@@ -303,8 +303,8 @@
 "Move Link" = "Mover Link";
 "Remove Link" = "Remover Link";
 "Open Link" = "Abrir Link";
-"Go to Page %tu" = "Ir à Página %tu";
-"Go to Page" = "Ir à Página"; // title of a Popup
+"Go to page %tu" = "Ir à Página %tu";
+"Go to page" = "Ir à Página"; // title of a Popup
 "Save" = "Salvar";
 "Link Destination" = "Destino do Link";
 "Enter page index or a http:// address to link to an URL." = "Digite um índice de página ou um endereço http:// para vincular a um URL.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Finalizar Gravação";
 "Audio Problem" = "Problema de Áudio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "A reprodução não pôde ser iniciada";
-"Mic Permission Not Granted" = "Acesso ao Microfone Não Autorizado";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "O áudio não pode ser gravado no momento. Permita acesso ao microfone para este app.";
-"Sorry, but there was a problem trying to record audio." = "Ocorreu um problema ao tentar gravar o áudio.";
-"Sorry, but there was a problem trying to play this audio." = "Ocorreu um problema ao tentar reproduzir este áudio.";
+"Could not start playback." = "A reprodução não pôde ser iniciada.";
+"Microphone permission not granted." = "Acesso ao Microfone Não Autorizado.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "O áudio não pode ser gravado no momento. Permita acesso ao microfone para este app.";
+"There was a problem trying to record audio." = "Ocorreu um problema ao tentar gravar o áudio.";
 "Already Recording" = "Já em Gravação";
 "You are already recording on page %@." = "Você já está gravando na página %@.";
-"Go to Page %@" = "Ir à Página %@";
+"Go to page %@" = "Ir à página %@";
 
 // Forms
 "Form Element" = "Elemento do Formulário";

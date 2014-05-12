@@ -302,8 +302,8 @@
 "Move Link" = "Link verplaatsen";
 "Remove Link" = "Link verwijderen";
 "Open Link" = "Link openen";
-"Go to Page %tu" = "Ga naar pagina %tu";
-"Go to Page" = "Ga naar pagina"; // title of a Popup
+"Go to page %tu" = "Ga naar pagina %tu";
+"Go to page" = "Ga naar pagina"; // title of a Popup
 "Save" = "Opslaan";
 "Link Destination" = "Bestemming van de link";
 "Enter page index or a http:// address to link to an URL." = "Vul een website of hyperlink in.";
@@ -338,14 +338,13 @@
 "Finish Recording" = "Gereed met opnemen";
 "Audio Problem" = "Probleem met audio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Kon niet afspelen";
-"Mic Permission Not Granted" = "Geen toestemming voor microfoon";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, er kon geen geluid worden opgenomen. Geef de app toestemming om de microfoon te gebruiken.";
-"Sorry, but there was a problem trying to record audio." = "Sorry, er is een probleem opgetreden tijdens het opnemen van het geluid";
-"Sorry, but there was a problem trying to play this audio." = "Sorry, er is een probleem opgetreden tijdens het afspelen van het geluid.";
+"Could not start playback." = "Kon niet afspelen.";
+"Microphone permission not granted." = "Geen toestemming voor microfoon.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, er kon geen geluid worden opgenomen. Geef de app toestemming om de microfoon te gebruiken.";
+"There was a problem trying to record audio." = "Er is een probleem opgetreden tijdens het opnemen van het geluid";
 "Already Recording" = "Neemt al op";
 "You are already recording on page %@." = "Je bent al aan het opnemen op pagina %@.";
-"Go to Page %@" = "Ga naar pagina %@";
+"Go to page %@" = "Ga naar pagina %@";
 
 // Forms
 "Form Element" = "Formulier element";

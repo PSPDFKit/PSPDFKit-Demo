@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFConfigurationDataSource.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFBaseViewController.h"
 #import "PSPDFTextSearch.h"
@@ -24,7 +25,6 @@
 #import "PSPDFSearchViewController.h"
 #import "PSPDFStatusBarStyleHint.h"
 #import "PSPDFThumbnailBar.h"
-#import "PSPDFConfigurationDataSource.h"
 #import "PSPDFHUDView.h"
 #import <MessageUI/MessageUI.h>
 
@@ -36,12 +36,6 @@ typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
     PSPDFPageTransitionScrollPerPage,      /// One ScrollView per page.
     PSPDFPageTransitionScrollContinuous,   /// Similar to UIWebView. Ignores PSPDFPageModeDouble.
     PSPDFPageTransitionCurl                /// PageCurl mode, similar to iBooks.
-};
-
-/// Current active view mode.
-typedef NS_ENUM(NSUInteger, PSPDFViewMode) {
-    PSPDFViewModeDocument,  /// Document is visible.
-    PSPDFViewModeThumbnails /// Thumbnails are visible.
 };
 
 /// Active page mode.

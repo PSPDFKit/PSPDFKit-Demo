@@ -29,4 +29,8 @@
 /// Defaults to hidden.
 @property (nonatomic, strong) PSPDFMediaPlayerPlaceholderView *placeholderView;
 
+/// The zoom scale. Set this property if the view is used in a `UIScrollView` to optimize
+/// the way the view hierarchy is presented.
+@property (nonatomic, assign) CGFloat zoomScale;
+
 @end

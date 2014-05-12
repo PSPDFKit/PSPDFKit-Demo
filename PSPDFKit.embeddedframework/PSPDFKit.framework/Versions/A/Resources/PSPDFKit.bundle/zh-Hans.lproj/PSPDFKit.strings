@@ -303,8 +303,8 @@
 "Move Link" = "移动链接";
 "Remove Link" = "移除链接";
 "Open Link" = "打开链接";
-"Go to Page %tu" = "前往第 %tu 页";
-"Go to Page" = "前往页面"; // title of a Popup
+"Go to page %tu" = "前往第 %tu 页";
+"Go to page" = "前往页面"; // title of a Popup
 "Save" = "保存";
 "Link Destination" = "链接目标";
 "Enter page index or a http:// address to link to an URL." = "输入页面索引或 http:// 地址链接到 URL。";
@@ -339,14 +339,13 @@
 "Finish Recording" = "完成录制";
 "Audio Problem" = "音频问题";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "无法开始播放";
-"Mic Permission Not Granted" = "未授权访问麦克风";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "抱歉，暂时无法录制音频。请授权本应用程序访问您的麦克风。";
-"Sorry, but there was a problem trying to record audio." = "抱歉，尝试录制音频时出现问题。";
-"Sorry, but there was a problem trying to play this audio." = "抱歉，尝试播放此音频时出现问题。";
+"Could not start playback." = "无法开始播放。";
+"Microphone permission not granted." = "未授权访问麦克风。";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "抱歉，暂时无法录制音频。请授权本应用程序访问您的麦克风。";
+"There was a problem trying to record audio." = "抱歉，尝试录制音频时出现问题。";
 "Already Recording" = "已经录制";
 "You are already recording on page %@." = "您已经在第 %@ 页录制。";
-"Go to Page %@" = "前往第 %@ 页";
+"Go to page %@" = "前往第 %@ 页";
 
 // Forms
 "Form Element" = "表单元素";

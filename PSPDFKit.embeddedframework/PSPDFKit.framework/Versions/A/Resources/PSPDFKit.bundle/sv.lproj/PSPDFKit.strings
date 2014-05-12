@@ -303,8 +303,8 @@
 "Move Link" = "Flytta länk";
 "Remove Link" = "Ta bort länk";
 "Open Link" = "Öppna länk";
-"Go to Page %tu" = "Gå till sida %tu";
-"Go to Page" = "Gå till sida"; // title of a Popup
+"Go to page %tu" = "Gå till sida %tu";
+"Go to page" = "Gå till sida"; // title of a Popup
 "Save" = "Spara";
 "Link Destination" = "Länkmål";
 "Enter page index or a http:// address to link to an URL." = "Ange sidindex eller länka till en URL med en adress med http://.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Avsluta inspelning";
 "Audio Problem" = "Ljudproblem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Kunde inte starta uppspelning";
-"Mic Permission Not Granted" = "Fick ej åtkomst till mikrofonen";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Tyvärr går det inte att spela in ljud just nu. Ge appen tillstånd att använda mikrofonen.";
-"Sorry, but there was a problem trying to record audio." = "Tyvärr gick det inte att spela in ljud.";
-"Sorry, but there was a problem trying to play this audio." = "Tyvärr gick det inte att spela upp det här ljudet.";
+"Could not start playback." = "Kunde inte starta uppspelning.";
+"Microphone permission not granted." = "Fick ej åtkomst till mikrofonen";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Tyvärr går det inte att spela in ljud just nu. Ge appen tillstånd att använda mikrofonen.";
+"There was a problem trying to record audio." = "Tyvärr gick det inte att spela in ljud.";
 "Already Recording" = "Inspelning pågår";
 "You are already recording on page %@." = "Du spelar redan in på sidan %@.";
-"Go to Page %@" = "Gå till sida %@";
+"Go to page %@" = "Gå till sida %@";
 
 // Forms
 "Form Element" = "Formulärelement";

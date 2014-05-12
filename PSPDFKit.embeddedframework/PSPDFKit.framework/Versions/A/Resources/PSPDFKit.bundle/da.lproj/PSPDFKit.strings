@@ -303,8 +303,8 @@
 "Move Link" = "Fly henvisning";
 "Remove Link" = "Fjern henvisning";
 "Open Link" = "Åbn henvisning";
-"Go to Page %tu" = "Gå til side %tu";
-"Go to Page" = "Gå til side"; // title of a Popup
+"Go to page %tu" = "Gå til side %tu";
+"Go to page" = "Gå til side"; // title of a Popup
 "Save" = "Arkiver";
 "Link Destination" = "Link-destination";
 "Enter page index or a http:// address to link to an URL." = "Angiv side-index eller en http:// adresse for at linke til en URL.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Slut optagelse";
 "Audio Problem" = "Lydproblem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Kunne ikke afspille";
-"Mic Permission Not Granted" = "Mikrofonbrug ikke tilladt";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Beklager, der kan i øjeblikket ikke optages lyd. Giv denne app tiladelse til at bruge din mikrofon.";
-"Sorry, but there was a problem trying to record audio." = "Beklager, der opstod et problem under optagelse af lyd.";
-"Sorry, but there was a problem trying to play this audio." = "Beklager, der opstod et problem under afspilning af denne lyd.";
+"Could not start playback." = "Kunne ikke afspille.";
+"Microphone permission not granted." = "Mikrofonbrug ikke tilladt.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Beklager, der kan i øjeblikket ikke optages lyd. Giv denne app tiladelse til at bruge din mikrofon.";
+"There was a problem trying to record audio." = "Der opstod et problem under optagelse af lyd.";
 "Already Recording" = "Optagelse igang";
 "You are already recording on page %@." = "Du optager allerede på side %@.";
-"Go to Page %@" = "Gå til side %@";
+"Go to page %@" = "Gå til side %@";
 
 // Forms
 "Form Element" = "Formular-felt";

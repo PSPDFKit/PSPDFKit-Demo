@@ -303,8 +303,8 @@
 "Move Link" = "Переместить ссылку";
 "Remove Link" = "Удалить ссылку";
 "Open Link" = "Открыть ссылку";
-"Go to Page %tu" = "Перейти к странице %tu";
-"Go to Page" = "Перейти к странице"; // title of a Popup
+"Go to page %tu" = "Перейти к странице %tu";
+"Go to page" = "Перейти к странице"; // title of a Popup
 "Save" = "Сохранить";
 "Link Destination" = "Назначение ссылки";
 "Enter page index or a http:// address to link to an URL." = "Введите индекс страницы или адрес (http://) ссылки.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Завершить запись";
 "Audio Problem" = "Проблема со звуком";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "Не удалось воспроизвести";
-"Mic Permission Not Granted" = "Нет разрешения на микфрон";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Извините, но звук не может быть записан в данный момент. Дайте приложению разрешение на доступ к микрофону.";
-"Sorry, but there was a problem trying to record audio." = "Извините, но произошла ошибка при записи звука.";
-"Sorry, but there was a problem trying to play this audio." = "Извините, но произошла ошибка при воспроизведении звука.";
+"Could not start playback." = "Не удалось воспроизвести.";
+"Microphone permission not granted." = "Нет разрешения на микфрон";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Извините, но звук не может быть записан в данный момент. Дайте приложению разрешение на доступ к микрофону.";
+"There was a problem trying to record audio." = "но произошла ошибка при записи звука.";
 "Already Recording" = "Идёт запись";
 "You are already recording on page %@." = "Вы уже записываете на странице %@.";
-"Go to Page %@" = "Перейти к странице %@";
+"Go to page %@" = "Перейти к странице %@";
 
 // Forms
 "Form Element" = "Элемент формы";

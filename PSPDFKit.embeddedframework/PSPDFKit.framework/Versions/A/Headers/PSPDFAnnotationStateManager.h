@@ -14,6 +14,13 @@
 #import "PSPDFViewController.h"
 #import "PSPDFLineHelper.h"
 
+/// Allows to customize what image quality options we offer for adding image annotations.
+typedef NS_OPTIONS(NSUInteger, PSPDFImageQuality) {
+    PSPDFImageQualityLow     = 1 << 0,
+    PSPDFImageQualityMedium  = 1 << 1,
+    PSPDFImageQualityHigh    = 1 << 2
+};
+
 @class PSPDFAnnotationStateManager, PSPDFFlexibleToolbarButton;
 
 // Special type of "annotation" that will add an eraser feature to the toolbar.
@@ -115,6 +122,10 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// Advanced property that allows you to customize how ink annotations are created.
 /// Set to NO to cause separate ink drawings in the same drawing session to result in separate ink annotations. Defaults to YES.
 @property (nonatomic, assign) BOOL combineInk;
+
+/// Allows to customize the offered image qualities.
+/// Defaults to PSPDFImageQualityLow|PSPDFImageQualityMedium|PSPDFImageQualityHigh.
+@property (nonatomic, assign) PSPDFImageQuality allowedImageQualities;
 
 /// Undoes the last operation (drawing or other)
 - (void)undo;

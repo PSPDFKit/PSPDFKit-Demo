@@ -35,9 +35,15 @@
 - (void)flexibleToolbarContainerDidHide:(PSPDFFlexibleToolbarContainer *)container;
 
 /// Use this method to prove a more appropriate display aria for the toolbar.
-// The provided `CGRect` should be in the containers coordinate system.
+/// @note The provided `CGRect` should be in the containers coordinate system.
 /// Used during toolbar and anchor placeholder positioning. Defaults to self.bounds` if not implemented.
 - (CGRect)flexibleToolbarContainerContentRect:(PSPDFFlexibleToolbarContainer *)container;
+
+/// The toolbar is dragged and might change position.
+- (void)flexibleToolbarContainerWillStartDragging:(PSPDFFlexibleToolbarContainer *)container;
+
+/// The toolbar has been dragged and might has updated the position.
+- (void)flexibleToolbarContainerDidEndDragging:(PSPDFFlexibleToolbarContainer *)container withPosition:(PSPDFFlexibleToolbarPosition)position;
 
 @end
 

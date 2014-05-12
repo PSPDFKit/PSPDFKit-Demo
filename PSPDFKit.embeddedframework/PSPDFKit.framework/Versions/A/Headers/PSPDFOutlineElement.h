@@ -25,13 +25,13 @@
 - (NSArray *)allFlattenedChildren;
 
 /// Outline title.
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy, readonly) NSString *title;
 
 /// Child elements.
 @property (nonatomic, copy, readonly) NSArray *children;
 
 /// Current outline level.
-@property (nonatomic, assign) NSUInteger level;
+@property (nonatomic, assign, readonly) NSUInteger level;
 
 /// Expansion state of current outline element (will not be persisted)
 @property (nonatomic, assign, getter=isExpanded) BOOL expanded;

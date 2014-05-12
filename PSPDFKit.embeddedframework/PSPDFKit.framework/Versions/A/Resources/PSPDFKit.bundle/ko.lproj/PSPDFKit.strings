@@ -303,8 +303,8 @@
 "Move Link" = "링크 이동";
 "Remove Link" = "링크 제거";
 "Open Link" = "링크 열기";
-"Go to Page %tu" = "%tu 페이지로 이동";
-"Go to Page" = "페이지로 이동"; // title of a Popup
+"Go to page %tu" = "%tu 페이지로 이동";
+"Go to page" = "페이지로 이동"; // title of a Popup
 "Save" = "저장";
 "Link Destination" = "링크 대상";
 "Enter page index or a http:// address to link to an URL." = "페이지 색인 또는 http:// 주소로 링크에 URL을 추가하세요.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "녹음 완료";
 "Audio Problem" = "오디오 에러";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "재생할 수 없습니다";
-"Mic Permission Not Granted" = "마이크 사용권한 없음";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "죄송합니다. 소리를 녹음할 수 없습니다. 앱이 마이크에 접근할 수 있도록 설정을 변경해 주시기 바랍니다.";
-"Sorry, but there was a problem trying to record audio." = "죄송합니다. 녹음 중 오류가 발생했습니다.";
-"Sorry, but there was a problem trying to play this audio." = "죄송합니다. 해당 오디오를 재생하는데 오류가 발생했습니다.";
+"Could not start playback." = "재생할 수 없습니다.";
+"Microphone permission not granted." = "마이크 사용권한 없음.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "죄송합니다. 소리를 녹음할 수 없습니다. 앱이 마이크에 접근할 수 있도록 설정을 변경해 주시기 바랍니다.";
+"There was a problem trying to record audio." = "죄송합니다. 녹음 중 오류가 발생했습니다.";
 "Already Recording" = "이미 녹음 중";
 "You are already recording on page %@." = "이미 %@ 페이지에서 녹음 중입니다.";
-"Go to Page %@" = "%@ 페이지로 이동";
+"Go to page %@" = "%@ 페이지로 이동";
 
 // Forms
 "Form Element" = "폼 요소";

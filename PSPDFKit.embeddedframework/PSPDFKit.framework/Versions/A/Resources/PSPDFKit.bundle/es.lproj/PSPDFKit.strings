@@ -303,8 +303,8 @@
 "Move Link" = "Mover enlace";
 "Remove Link" = "Eliminar enlace";
 "Open Link" = "Abrir enlace";
-"Go to Page %tu" = "Ir a la página %tu";
-"Go to Page" = "Ir a la página"; // title of a Popup
+"Go to page %tu" = "Ir a la página %tu";
+"Go to page" = "Ir a la página"; // title of a Popup
 "Save" = "Guardar";
 "Link Destination" = "Destino del enlace";
 "Enter page index or a http:// address to link to an URL." = "Escriba el índice de página, o use una dirección http:// para enlazar a una URL.";
@@ -339,14 +339,13 @@
 "Finish Recording" = "Finalizar grabación";
 "Audio Problem" = "Problema con el audio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback" = "No se ha podido iniciar la reproducción";
-"Mic Permission Not Granted" = "No se permite el acceso al micrófono";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "No se puede grabar audio en este instante. Debe conceder a esta app permiso para acceder a su micrófono.";
-"Sorry, but there was a problem trying to record audio." = "Ha ocurrido un error al intentar grabar el audio.";
-"Sorry, but there was a problem trying to play this audio." = "Ha ocurrido un error al intentar reproducir este audio.";
+"Could not start playback." = "No se ha podido iniciar la reproducción.";
+"Microphone permission not granted." = "No se permite el acceso al micrófono.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "No se puede grabar audio en este instante. Debe conceder a esta app permiso para acceder a su micrófono.";
+"There was a problem trying to record audio." = "Ha ocurrido un error al intentar grabar el audio.";
 "Already Recording" = "Ya está grabando";
 "You are already recording on page %@." = "Ya está grabando en la página %@.";
-"Go to Page %@" = "Ir a la página %@";
+"Go to page %@" = "Ir a la página %@";
 
 // Forms
 "Form Element" = "Elemento de formulario";

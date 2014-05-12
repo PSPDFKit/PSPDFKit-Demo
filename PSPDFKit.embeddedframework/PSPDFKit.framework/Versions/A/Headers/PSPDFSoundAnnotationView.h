@@ -52,4 +52,4 @@
 @property (nonatomic, strong, readonly) UILabel *totalTimeLabel;
 @property (nonatomic, strong, readonly) UILabel *statusLabel;
 @property (nonatomic, strong, readonly) UISlider *progressSlider;
-@end;
+@end

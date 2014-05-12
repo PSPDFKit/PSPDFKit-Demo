@@ -15,17 +15,21 @@
 // Notification is sent whenever properties of the configuraton data source change.
 extern NSString *const PSPDFConfigurationChangedNotification;
 
+/// Current active view mode.
+typedef NS_ENUM(NSUInteger, PSPDFViewMode) {
+    PSPDFViewModeDocument,  /// Document is visible.
+    PSPDFViewModeThumbnails /// Thumbnails are visible.
+};
+
+@class PSPDFDocument;
+
 @protocol PSPDFConfigurationDataSource <NSObject>
 
 // General state
 - (PSPDFDocument *)document;
 - (NSUInteger)page;
-- (NSUInteger)viewMode; // PSPDFViewMode
 - (CGRect)contentRect;
-
-// TODO: shouldn't be in this class!
-- (NSUInteger)HUDViewAnimation; // PSPDFHUDViewAnimation
-- (BOOL)isHUDVisible;
+- (PSPDFViewMode)viewMode; // PSPDFViewMode
 
 // Page numbers
 - (NSArray *)calculatedVisiblePageNumbers;
@@ -37,5 +41,8 @@ extern NSString *const PSPDFConfigurationChangedNotification;
 - (UIColor *)tintColor;
 - (UIColor *)barTintColor;
 - (UIBarStyle)navigationBarStyle;
+
+// TODO: shouldn't be in this class!
+- (BOOL)isHUDVisible;
 
 @end

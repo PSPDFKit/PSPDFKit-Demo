@@ -16,7 +16,7 @@
 
 @class PSPDFTextBlock, PSPDFDocument;
 
-/// Search result object.
+/// Immutable search result object.
 @interface PSPDFSearchResult : PSPDFModel
 
 /// Designated initializer.
@@ -28,20 +28,20 @@
 /// Preview text snippet.
 @property (nonatomic, copy, readonly) NSString *previewText;
 
+/// Range of the search result in relation to the previewText.
+@property (nonatomic, assign, readonly) NSRange rangeInPreviewText;
+
 /// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
 @property (nonatomic, strong, readonly) PSPDFTextBlock *selection;
 
 /// Range within full page text.
 @property (nonatomic, assign, readonly) NSRange range;
 
-/// Range of the search result in relation to the previewText.
-@property (nonatomic, assign, readonly) NSRange rangeInPreviewText;
-
 /// Referenced document.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// If the search result references an annotation, the object is set.
-@property (nonatomic, strong, readonly) PSPDFAnnotation *annotation;
+@property (nonatomic, weak, readonly) PSPDFAnnotation *annotation;
 
 /// Compare with other search result.
 - (BOOL)isEqualToSearchResult:(PSPDFSearchResult *)otherSearchResult;

@@ -18,11 +18,12 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalCertificateErrorCode) {
     PSPDFDigitalCertificateErrorCannotParseSignature = 1000
 };
 
+extern NSString *const PSPDFDigitalCertificateErrorDomain;
+
 // Only available for PSPDFKit Complete with OpenSSL integrated.
 @interface PSPDFDigitalCertificate : NSObject
 
 + (instancetype)certificateFromData:(NSData *)certificateData;
-
 - (instancetype)initWithData:(NSData *)certificateData error:(NSError **)error;
 
 @property (nonatomic, strong, readonly) NSData *certificateData;

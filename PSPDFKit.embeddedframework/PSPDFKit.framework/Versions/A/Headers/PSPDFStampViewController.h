@@ -33,7 +33,14 @@
 
 /// Adds a special stamp that forwards to an interface (`PSPDFTextStampViewController`) where custom stamps can be created.
 /// Defaults to YES.
+/// @warning Changing this will reset the `stamps` array.
 @property (nonatomic, assign) BOOL customStampEnabled;
+
+/// Adds date stamps. They are recreated every time the `PSPDFStampViewController` is created
+/// to present the current date and thus not a part of the `defaultStampAnnotations` array.
+/// Defaults to YES.
+/// @warning Changing this will reset the `stamps` array.
+@property (nonatomic, assign) BOOL dateStampsEnabled;
 
 @end
 

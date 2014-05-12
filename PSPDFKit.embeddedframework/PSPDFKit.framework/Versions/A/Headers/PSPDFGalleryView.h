@@ -29,8 +29,11 @@
 @property (nonatomic, assign) CGFloat contentPadding;
 
 /// The delegate of the gallery view (same as `UIScrollView`)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
 - (void)setDelegate:(id <PSPDFGalleryViewDelegate>)delegate;
 - (id <PSPDFGalleryViewDelegate>)delegate;
+#pragma clang diagnostic pop
 
 /// Reloads the gallery view.
 - (void)reload;
