@@ -19,6 +19,7 @@
 		7832D34018B2421400A20C37 /* PSCOutlineSidebarExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832D33F18B2421400A20C37 /* PSCOutlineSidebarExample.m */; };
 		783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */; };
 		783BB8FC17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */; };
+		7842FDD41920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 7842FDD31920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m */; };
 		78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */; };
 		78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D1E17393F140006D87D /* PSCGridViewController.m */; };
 		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -203,6 +204,7 @@
 		783535F517209800009F8088 /* PSCMultipleUsersPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMultipleUsersPDFViewController.h; sourceTree = "<group>"; };
 		783BB8FA17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PSCDeallocationBlock.h"; sourceTree = "<group>"; };
 		783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PSCDeallocationBlock.m"; sourceTree = "<group>"; };
+		7842FDD31920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomPrintDefaultsExample.m; sourceTree = "<group>"; };
 		78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCreateNoteFromTextSelectionExample.m; sourceTree = "<group>"; };
 		78479D1D17393F140006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
 		78479D1E17393F140006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
@@ -833,6 +835,7 @@
 				785C5F2C18D19A4100DD1592 /* PSCTopScrobbleBarExample.m */,
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
 				788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */,
+				7842FDD31920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7842FDD41920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m in Sources */,
 				78D4D4031848CD4900080A96 /* AFHTTPRequestOperation.m in Sources */,
 				78E5CCCC18C1340F005F1A63 /* PSCRoundProgressView.m in Sources */,
 				78B8FF5018041A1F0077178A /* PSCSelectAllTextExample.m in Sources */,
