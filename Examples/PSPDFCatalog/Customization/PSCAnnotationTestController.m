@@ -163,8 +163,8 @@
     return YES;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
-    NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+    NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", controller, hostController, animated);
 }
 
 /// HUD was displayed (called after the animation finishes)

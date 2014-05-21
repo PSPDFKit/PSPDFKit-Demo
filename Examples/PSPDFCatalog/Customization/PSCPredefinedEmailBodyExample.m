@@ -36,7 +36,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
     if ([controller isKindOfClass:MFMailComposeViewController.class]) {
         MFMailComposeViewController *mailComposer = (MFMailComposeViewController *)controller;
         [mailComposer setMessageBody:@"<h1 style='color:blue'>Custom message body.</h1>" isHTML:YES];

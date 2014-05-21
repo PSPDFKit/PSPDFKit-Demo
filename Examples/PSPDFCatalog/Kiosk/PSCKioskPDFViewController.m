@@ -335,12 +335,13 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     }
 }
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
     PSCLog(@"shouldShowViewController: %@ embeddedIn:%@ animated: %d.", controller, controller, animated);
+
     return YES;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
     PSCLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d.", controller, hostController, animated);
 }
 

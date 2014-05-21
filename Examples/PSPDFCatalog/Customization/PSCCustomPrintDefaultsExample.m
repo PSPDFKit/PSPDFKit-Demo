@@ -35,12 +35,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)controller embeddedInController:(id)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
 
     // Intercept and customize the document sharing view controller.
     if ([controller isKindOfClass:UINavigationController.class] &&
-        [[controller topViewController] isKindOfClass:PSPDFDocumentSharingViewController.class]) {
-        PSPDFDocumentSharingViewController *sharingController = (PSPDFDocumentSharingViewController *)[controller topViewController];
+        [[(UINavigationController *)controller topViewController] isKindOfClass:PSPDFDocumentSharingViewController.class]) {
+        PSPDFDocumentSharingViewController *sharingController = (PSPDFDocumentSharingViewController *)[(UINavigationController *)controller topViewController];
 
         // Only modify if we're printing. This controller is used for mail or open in as well.
         if (sharingController.delegate == pdfController.printButtonItem) {
