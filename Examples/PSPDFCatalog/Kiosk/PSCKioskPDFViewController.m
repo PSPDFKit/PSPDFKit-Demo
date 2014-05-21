@@ -335,8 +335,26 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     }
 }
 
+// Helper that allows to get the correct subclass out of various containers.
+static id PSCControllerForClass(id theController, Class klass) {
+    if ([theController isKindOfClass:klass]) {
+        return theController;
+    }else if ([theController isKindOfClass:UINavigationController.class]) {
+        return PSCControllerForClass(((UINavigationController *)theController).topViewController, klass);
+    }else if ([theController isKindOfClass:PSPDFContainerViewController.class]) {
+        for (UIViewController *contained in ((PSPDFContainerViewController *)theController).viewControllers) {
+            if (PSCControllerForClass(contained, klass)) return PSCControllerForClass(contained, klass);
+        }
+    }
+    return nil;
+}
+
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
     PSCLog(@"shouldShowViewController: %@ embeddedIn:%@ animated: %d.", controller, controller, animated);
+
+    // Example how to customize the PSPDFAnnotationTableViewController.
+    PSPDFAnnotationTableViewController *annotCtrl = PSCControllerForClass(controller, PSPDFAnnotationTableViewController.class);
+    annotCtrl.showDeleteAllOption = YES;
 
     return YES;
 }
