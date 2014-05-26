@@ -340,9 +340,10 @@
 "Audio Problem" = "Problème audio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "Impossible de démarrer la lecture.";
-"Microphone permission not granted." = "Micro non autorisé.";
+"Could not resume playback." = "Impossible de reprendre la lecture.";
+"Microphone permission not granted." = "Accès au micro non accordé.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Désolé, impossible d'enregistrer du contenu audio. Vous devez autoriser cette app à accéder à votre microphone.";
-"There was a problem trying to record audio." = "Un problème est survenu lors de la tentative d'enregistrement audio.";
+"There was a problem trying to record audio." = "Désolé, un problème est survenu lors de la tentative d'enregistrement audio.";
 "Already Recording" = "Enregistrement en cours";
 "You are already recording on page %@." = "Vous êtes déjà en train d'enregistrer sur la page %@.";
 "Go to page %@" = "Aller à la page %@";
@@ -359,10 +360,18 @@
 "Custom Value" = "Valeur personnalisée";
 
 // Validation of numbers
-"Invalid value: must be greater than or equal to %s." = "Valeur invalide : doit être supérieure ou égale à %s.";
-"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valeur invalide : doit être supérieure ou égale à %s et inférieure ou égale à %s.";
-"Invalid value: must be less than or equal to %s." = "Valeur invalide : doit être inférieure ou égale à %s.";
-"Invalid value. Must be a number." = "Valeur invalide : doit être un nombre.";
+"Invalid value: must be greater than or equal to %s." = "Valeur non valide : doit être supérieure ou égale à %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valeur non valide : doit être supérieure ou égale à %s et inférieure ou égale à %s.";
+"Invalid value: must be less than or equal to %s." = "Valeur non valide : doit être inférieure ou égale à %s.";
+"Invalid value: must be a number." = "Valeur non valide : doit être un nombre.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Valeur non valide : doit être une date.";
+
+// General validation
+
+"Invalid value." = "Valeur non valide.";
 
 // Gallery
 "Connection Error" = "Erreur de connexion";

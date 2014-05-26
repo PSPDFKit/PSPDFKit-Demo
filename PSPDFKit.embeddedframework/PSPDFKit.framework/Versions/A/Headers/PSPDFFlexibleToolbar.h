@@ -10,6 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
+@protocol PSPDFSystemBar;
 @class PSPDFFlexibleToolbarDragView;
 @class PSPDFFlexibleToolbar;
 @class PSPDFFlexibleToolbarCollapsedButton;
@@ -141,7 +142,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// Matches the background view appearance to the provided UINavigationBar or UIToolbar.
 /// Includes barTintColor, barStyle, translucency, etc.
 /// Some appearance attributes are only matched if there are't any existing UIAppearance presets for that attribute.
-- (void)matchUIBarAppearance:(UIView *)navigationBarOrToolbar;
+- (void)matchUIBarAppearance:(UIView<PSPDFSystemBar> *)navigationBarOrToolbar;
 
 /// @name Metrics
 

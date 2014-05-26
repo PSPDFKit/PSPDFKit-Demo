@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFBarButtonItem.h"
+#import "PSPDFFlexibleToolbarContainer.h"
 
 /**
  `PSPDFBarButtonItem `subclass with selection support.
@@ -39,7 +40,7 @@
 @interface PSPDFSelectableBarButtonItem (SubclassingHooks)
 
 /// Returns `UIToolbar` or `UINavigationBar`.
-- (UIView *)targetToolbar;
+- (UIView<PSPDFSystemBar> *)targetToolbar;
 
 @end
 

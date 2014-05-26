@@ -95,7 +95,7 @@ extern NSString *const PSPDFLibraryMatchExactWordsOnlyKey;
 
 /// @name Queue Operations
 
-/// Queue `documents` for indexing.
+/// Queue an array of `PSPDFDocument` objects for indexing.
 - (void)enqueueDocuments:(NSArray *)documents;
 
 /// Invalidates the search index for `UID`.

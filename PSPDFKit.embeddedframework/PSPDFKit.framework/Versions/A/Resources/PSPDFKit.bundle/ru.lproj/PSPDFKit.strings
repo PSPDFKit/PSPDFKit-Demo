@@ -340,9 +340,10 @@
 "Audio Problem" = "Проблема со звуком";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "Не удалось воспроизвести.";
-"Microphone permission not granted." = "Нет разрешения на микфрон";
+"Could not resume playback." = "Не удалось возобновить воспроизведение.";
+"Microphone permission not granted." = "Не дано разрешение на использование микрофона.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Извините, но звук не может быть записан в данный момент. Дайте приложению разрешение на доступ к микрофону.";
-"There was a problem trying to record audio." = "но произошла ошибка при записи звука.";
+"There was a problem trying to record audio." = "Извините, но произошла ошибка при записи звука.";
 "Already Recording" = "Идёт запись";
 "You are already recording on page %@." = "Вы уже записываете на странице %@.";
 "Go to page %@" = "Перейти к странице %@";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "Неверное значение: должно быть больше или ровно %s.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Неверное значение: должно быть больше или ровно %s и при этом меньше или ровно %s.";
 "Invalid value: must be less than or equal to %s." = "Неверное значение: должно быть меньше или ровно %s.";
-"Invalid value. Must be a number." = "Неверное значение. Должно быть число.";
+"Invalid value: must be a number." = "Неверное значение: должно быть число.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Неверное значение: должна быть указана дата.";
+
+// General validation
+
+"Invalid value." = "Неверное значение.";
 
 // Gallery
 "Connection Error" = "Ошибка подключения";

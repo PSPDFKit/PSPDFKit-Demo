@@ -136,7 +136,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 
 @interface PSPDFScrollView (PSPDFAdvanced)
 
-// Returns all selected annotations of all visible `PSPDFPageViews`.
+/// Returns all selected annotations of all visible `PSPDFPageViews`.
 @property (nonatomic, copy, readonly) NSArray *selectedAnnotations;
 
 @end

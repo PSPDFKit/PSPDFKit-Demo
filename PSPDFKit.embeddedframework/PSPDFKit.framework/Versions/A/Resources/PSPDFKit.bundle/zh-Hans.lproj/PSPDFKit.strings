@@ -340,7 +340,8 @@
 "Audio Problem" = "音频问题";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "无法开始播放。";
-"Microphone permission not granted." = "未授权访问麦克风。";
+"Could not resume playback." = "无法继续播放。";
+"Microphone permission not granted." = "未授予麦克风访问权限。";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "抱歉，暂时无法录制音频。请授权本应用程序访问您的麦克风。";
 "There was a problem trying to record audio." = "抱歉，尝试录制音频时出现问题。";
 "Already Recording" = "已经录制";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "值无效：必须不小于 %s。";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "值无效：必须不小于 %s 且不大于 %s。";
 "Invalid value: must be less than or equal to %s." = "值无效：必须不大于 %s。";
-"Invalid value. Must be a number." = "值无效。必须是数字。";
+"Invalid value: must be a number." = "值无效。必须是数字。";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "值无效：必须是一个日期。";
+
+// General validation
+
+"Invalid value." = "值无效。";
 
 // Gallery
 "Connection Error" = "链接错误";

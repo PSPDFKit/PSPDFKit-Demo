@@ -19,6 +19,7 @@ extern NSString *const PSPDFErrorDomain;
 // @note Various PSPDFKit method can also returns errors from Apple-internal error domains.
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
+    PSPDFErrorCodeDocumentContainsNoPages = 101,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeUnableToGetPageReference = 210,
     PSPDFErrorCodeUnableToGetStream = 211,

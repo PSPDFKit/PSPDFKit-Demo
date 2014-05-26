@@ -50,6 +50,7 @@ extern "C" {
 #import "PSPDFViewController.h"
 #import "PSPDFViewControllerDelegate.h"
 #import "PSPDFDocument.h"
+#import "PSPDFDocument+DataDetection.h"
 #import "PSPDFDocumentDelegate.h"
 #import "PSPDFPageView.h"
 #import "PSPDFPageView+AnnotationMenu.h"

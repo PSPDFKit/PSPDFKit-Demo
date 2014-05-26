@@ -102,4 +102,7 @@ typedef UIImage *(^PSPDFAnnotationGroupItemConfigurationBlock)(PSPDFAnnotationGr
 - (UIButton *)undoButton;
 - (UIButton *)redoButton;
 
+// The done action.
+- (void)done:(id)sender;
+
 @end

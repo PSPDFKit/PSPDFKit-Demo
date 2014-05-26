@@ -340,7 +340,8 @@
 "Audio Problem" = "오디오 에러";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "재생할 수 없습니다.";
-"Microphone permission not granted." = "마이크 사용권한 없음.";
+"Could not resume playback." = "이어서 재생할 수 없습니다.";
+"Microphone permission not granted." = "마이크 사용 권한이 없습니다.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "죄송합니다. 소리를 녹음할 수 없습니다. 앱이 마이크에 접근할 수 있도록 설정을 변경해 주시기 바랍니다.";
 "There was a problem trying to record audio." = "죄송합니다. 녹음 중 오류가 발생했습니다.";
 "Already Recording" = "이미 녹음 중";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "유효하지 않은 값: 반드시 %s와 같거나 더 커야합니다.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "유효하지 않은 값: %s 이상 %s 이내의 값을 입력해 주십시오.";
 "Invalid value: must be less than or equal to %s." = "유효하지 않은 값: 반드시 %s와 같거나 작아야 합니다.";
-"Invalid value. Must be a number." = "유효하지 않은 값입니다. 반드시 숫자를 입력하십시오.";
+"Invalid value: must be a number." = "유효하지 않은 값입니다. 반드시 숫자를 입력하십시오.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "올바르지 않은 값: 날짜 형식이어야 합니다.";
+
+// General validation
+
+"Invalid value." = "올바르지 않은 값";
 
 // Gallery
 "Connection Error" = "연결 오류";

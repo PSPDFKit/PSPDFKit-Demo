@@ -47,6 +47,11 @@
 
 @end
 
+/// Designates common UIToolbar or UINavigationBar functionality 
+@protocol PSPDFSystemBar <NSObject> @end
+@interface UIToolbar (PSPDFSystemBar) <PSPDFSystemBar> @end
+@interface UINavigationBar (PSPDFSystemBar) <PSPDFSystemBar> @end
+
 /**
  The flexible toolbar container holds and manages a `PSPDFFlexibleToolbar` instance.
  Its main responsibilities include toolbar anchoring and drag & drop handling.
@@ -60,7 +65,7 @@
 
 /// A UINavigationBar or UIToolbar instance, that should be automatically hidden
 /// when the `flexibleToolbar` is in the `PSPDFFlexibleToolbarPositionInTopBar` position.
-@property (nonatomic, weak) UIView *overlaidBar;
+@property (nonatomic, weak) UIView<PSPDFSystemBar> *overlaidBar;
 
 /// `YES` when a toolbar drag is in progress, `NO` otherwise.
 /// Only relevant if  dragging is enabled on the flexibleToolbar`.

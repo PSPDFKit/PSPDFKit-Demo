@@ -340,6 +340,7 @@
 "Audio Problem" = "Audio Problem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "Could not start playback.";
+"Could not resume playback." = "Could not resume playback.";
 "Microphone permission not granted." = "Microphone permission not granted.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
 "There was a problem trying to record audio." = "There was a problem while trying to record audio.";
@@ -358,20 +359,17 @@
 "Default Values" = "Default Values";
 "Custom Value" = "Custom Value";
 
-// Form Validation
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Invalid value: must be greater than or equal to %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Invalid value: must be greater than or equal to %s and less than or equal to %s.";
+"Invalid value: must be less than or equal to %s." = "Invalid value: must be less than or equal to %s.";
+"Invalid value: must be a number." = "Invalid value: must be a number.";
 
-"Invalid value: Must be greater than or equal to %s." = "Invalid value: Must be greater than or equal to %s.";
-"Invalid value: Must be greater than or equal to %s and less than or equal to %s." = "Invalid value: Must be greater than or equal to %s and less than or equal to %s.";
-"Invalid value: Must be less than or equal to %s." = "Invalid value: Must be less than or equal to %s.";
-"Invalid value. Must be a number." = "Invalid value. Must be a number.";
-"Invalid value. Must be a date." = "Invalid value. Must be a date.";
-"Invalid value." = "Invalid value.";
+//  Validation of dates
 
-//  Validation of Dates
+"Invalid value: must be a date." = "Invalid value: must be a date.";
 
-"Invalid value. Must be a date." = "Invalid value. Must be a date.";
-
-// General Validation
+// General validation
 
 "Invalid value." = "Invalid value.";
 

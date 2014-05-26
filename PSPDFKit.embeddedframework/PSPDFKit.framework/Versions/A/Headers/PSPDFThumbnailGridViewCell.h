@@ -67,5 +67,8 @@
 /// Updates the page label.
 - (void)updatePageLabel;
 
+/// Update bookmark image frame and image visibility.
+- (void)updateBookmarkImage;
+
 @end
 

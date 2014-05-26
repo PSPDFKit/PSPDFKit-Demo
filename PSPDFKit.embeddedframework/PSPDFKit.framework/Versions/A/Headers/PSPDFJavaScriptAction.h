@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
 
 // Executes all calculate actions in the document that depend on the sourceForm value.
 // Executes synchronously. Use with caution for complex actions, as it blocks the main thread. (Must be run on main thread)
-- (BOOL)updateCalculatedFieldsDependingOnForm:(PSPDFFormElement *)sourceForm error:(NSError * __autoreleasing *)error;
+- (BOOL)updateCalculatedFieldsDependingOnForm:(PSPDFFormElement *)sourceForm error:(NSError **)error;
 
 @end
 

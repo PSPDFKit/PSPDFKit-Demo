@@ -40,6 +40,9 @@
 /// Allow to long-press to copy the annotation. Defaults to YES.
 @property (nonatomic, assign) BOOL allowCopy;
 
+/// Allow to delete all annotations via a button. Defaults to YES.
+@property (nonatomic, assign) BOOL showDeleteAllOption;
+
 /// The annotation table view delegate.
 @property (nonatomic, weak) id<PSPDFAnnotationTableViewControllerDelegate> delegate;
 
@@ -59,5 +62,8 @@
 
 // Subclass to change the table view style. Defaults to `UITableViewStylePlain`.
 - (UITableViewStyle)targetTableViewStyle;
+
+// Invoked by the clear all button.
+- (IBAction)deleteAllAction:(id)sender;
 
 @end

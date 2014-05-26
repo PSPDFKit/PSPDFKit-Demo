@@ -340,12 +340,13 @@
 "Audio Problem" = "Problema de Áudio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "A reprodução não pôde ser iniciada.";
-"Microphone permission not granted." = "Acesso ao Microfone Não Autorizado.";
+"Could not resume playback." = "A reprodução não pôde ser retomada.";
+"Microphone permission not granted." = "Permissão ao microfone não concedida.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "O áudio não pode ser gravado no momento. Permita acesso ao microfone para este app.";
 "There was a problem trying to record audio." = "Ocorreu um problema ao tentar gravar o áudio.";
 "Already Recording" = "Já em Gravação";
 "You are already recording on page %@." = "Você já está gravando na página %@.";
-"Go to page %@" = "Ir à página %@";
+"Go to page %@" = "Ir à Página %@";
 
 // Forms
 "Form Element" = "Elemento do Formulário";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "Valor inválido: deve ser maior que ou igual a %s.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valor inválido: deve ser maior a ou igual a %s e menor que ou igual a %s.";
 "Invalid value: must be less than or equal to %s." = "Valor inválido: deve ser menor que ou igual a %s.";
-"Invalid value. Must be a number." = "Valor inválido: deve ser um número.";
+"Invalid value: must be a number." = "Valor inválido: deve ser um número.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Valor inválido: deve ser uma data.";
+
+// General validation
+
+"Invalid value." = "Valor inválido.";
 
 // Gallery
 "Connection Error" = "Erro de Conexão";

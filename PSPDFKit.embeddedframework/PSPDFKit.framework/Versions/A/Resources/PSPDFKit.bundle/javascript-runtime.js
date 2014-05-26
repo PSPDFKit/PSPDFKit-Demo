@@ -15,8 +15,7 @@
  The pdf object is used to store the data model representing the PDF object
  in context as well as the actions dictionary.
 */
-function PDF()
-{
+function PDF() {
     this.actions = {};
     this.model = {};
     this.dirtyKeys = {};
@@ -37,7 +36,7 @@ function PDF()
         this.dirtyKeys = {};
     }
 
-    this.getEvent = function(){
+    this.getEvent = function() {
         return JSON.stringify(this.event);
     }
 
@@ -57,23 +56,22 @@ function PDF()
 window.pdf = new PDF();
 
 
-    // User facing strings. Must be rendered with localized values.
+// User facing strings. Must be rendered with localized values.
 
-    window.IDS_LANGUAGE 		= "{IDS_LANGUAGE}";
-    window.IDS_GREATER_THAN	    = "{IDS_GREATER_THAN}";
-    window.IDS_GT_AND_LT		= "{IDS_GT_AND_LT}";
-    window.IDS_LESS_THAN		= "{IDS_LESS_THAN}";
-    window.IDS_INVALID_NUMBER   = "{IDS_INVALID_NUMBER}";
-    window.IDS_INVALID_DATE     = "{IDS_INVALID_DATE}";
-    window.IDS_INVALID_VALUE    = "{IDS_INVALID_VALUE}";
+window.IDS_LANGUAGE 		= "{IDS_LANGUAGE}";
+window.IDS_GREATER_THAN	    = "{IDS_GREATER_THAN}";
+window.IDS_GT_AND_LT		= "{IDS_GT_AND_LT}";
+window.IDS_LESS_THAN		= "{IDS_LESS_THAN}";
+window.IDS_INVALID_NUMBER   = "{IDS_INVALID_NUMBER}";
+window.IDS_INVALID_DATE     = "{IDS_INVALID_DATE}";
+window.IDS_INVALID_VALUE    = "{IDS_INVALID_VALUE}";
 
 
+/*
+ Functions used throughout the rest of the execution environment that do not alter global variables or carry state.
+ */
 
-    /*
-     Functions used throughout the rest of the execution environment that do not alter global variables or carry state.
-     */
-
-function logArray(arr){
+function logArray(arr) {
     var ret = '';
     for(var i = 0 ; i < arr.length-1; i++) {
         if(typeof arr[i] != 'undefined')ret=ret+arr[i]+',';
@@ -97,23 +95,25 @@ function isNumber(n) {
 }
 
 
-function fieldCorrectedValue(val){
+function fieldCorrectedValue(val) {
 
     var type = typeof val;
 
 	if (type == "number")
 		return val;
+    
+    if(type === "undefined")return "";
 
     if(val === "")return "";
 
-    if(isNumber(val)){
+    if(isNumber(val)) {
         return +val;
     }
     else return val;
 }
 
 
-function correctedFormatString(format){
+function correctedFormatString(format) {
 
     var cFormat = format;
 
@@ -132,13 +132,10 @@ function correctedFormatString(format){
 }
 
 
-
-function exactMatch(rePatterns, sString)
-{
+function exactMatch(rePatterns, sString) {
+    
 	var it;
-
-	for(it = 0; it < rePatterns.length; it++){
-
+	for(it = 0; it < rePatterns.length; it++) {
 		if(rePatterns[it].test(sString)) {
             return it + 1;
         }
@@ -146,8 +143,6 @@ function exactMatch(rePatterns, sString)
 
 	return 0;
 }
-
-
 
 
     // The field object constructor
@@ -180,9 +175,25 @@ function Field(name) {
             pdf.dirtyKeys['fields.'+this.name+'.value'] = true;
             pdf.model['fields'][this.name]['value'] = _value.toString();
         });
+    
+    
+        this.__defineGetter__("options", function(){
+            return this.items;
+        });
+    
+        this.__defineSetter__("options", function(_options) {
+              this.items = _options;
+              pdf.model['fields'][this.name]['options'] = this.items;
+              pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
+         });
 
         this.__defineGetter__("numItems", function() {
             return sizeArray(this.items);
+        });
+    
+    
+        this.__defineGetter__("type", function() {
+            return pdf.model['fields'][this.name]['type'];
         });
 
 
@@ -190,15 +201,9 @@ function Field(name) {
 
             var arr = [];
             var allFields = pdf.model['fields'];
-
-
-
             for (var key in allFields) {
                 if (allFields.hasOwnProperty(key)) {
-
-
                     var field = allFields[key];
-
                     if(field.name.indexOf(this.name) == 0){
                         arr.push(window.getField(field.name));
                     }
@@ -368,8 +373,8 @@ function Field(name) {
         this.media = new Media();
 
 
-        this.__defineGetter__("platorm", function() {
-                              return "UNIX";
+        this.__defineGetter__("platform", function() {
+                              return "MAC";
                               /*
                                The platform that the script is currently executing on.
                                There are three valid values:
@@ -394,6 +399,14 @@ function Field(name) {
 
         this.print = function(interactive) {
             window.pdf.actions['app.print'] = [interactive];
+        }
+
+        this.mailDoc = function(bUI, cTo, cCC, cBcc, cSubject, cMsg) {
+            window.pdf.actions['app.mailDoc'] = [bUI, cTo, cCC, cBcc, cSubject, cMsg];
+        }
+
+        this.launchURL = function(cURL, bNewFrame) {
+            window.pdf.actions['app.launchURL'] = [cURL, bNewFrame];
         }
 
         this.alert = function(message) {
@@ -432,17 +445,17 @@ function Field(name) {
 
         }
 
-        this.printd = function(cFormat, oDate, bXFAPicture){
+        this.printd = function(cFormat, oDate, bXFAPicture) {
             return moment(oDate).format(correctedFormatString(cFormat));
         }
 
-        this.printf = function(msg){
+        this.printf = function(msg) {
 
             var args = Array.prototype.slice.call(arguments,1), arg;
             return msg.replace(/(%[disv])/g, function(a,val) {
                                arg = args.shift();
                                if (arg !== undefined) {
-                               switch(val.charCodeAt(1)){
+                               switch(val.charCodeAt(1)) {
                                case 100: return +arg; // d
                                case 105: return Math.round(+arg); // i
                                case 115: return String(arg); // s
@@ -465,7 +478,7 @@ function Field(name) {
                 var currCharFormat = result[currWrite];
 
                 // Only support numeric characters now.
-                if(currCharFormat === "9"){
+                if(currCharFormat === "9") {
                     var currCharSrc = input[currRead];
                     currRead++;
                     while(!(/\d/.test(currCharSrc))) {
@@ -480,7 +493,7 @@ function Field(name) {
             return result.join("");
         }
 
-        this.scand = function(cFormat, cDate){
+        this.scand = function(cFormat, cDate) {
 
         }
     }
@@ -493,7 +506,7 @@ function Field(name) {
         window.event = new Event();
         window.util = new Util();
 
-        // Sets the current language.
+        // Sets the current language to the current locale.
         moment.lang(app.language);
 
         // forward app methods to this (e.g. this.print(true))
@@ -526,8 +539,7 @@ function Field(name) {
         // Special K,V,C and F action related functions. These are documented in the Forms API Refernece (C based API)
 
 
-        window.AFMergeChange = function(event)
-        {
+        window.AFMergeChange = function(event) {
 
              /* Merges the last change with the uncommitted change. Used in keystroke events. */
 
@@ -546,8 +558,7 @@ function Field(name) {
 
         // Number functions
 
-        window.AFRange_Validate = function(bGreaterThan, nGreaterThan, bLessThan, nLessThan)
-        {
+        window.AFRange_Validate = function(bGreaterThan, nGreaterThan, bLessThan, nLessThan) {
 
             /*
              Purpose: JavaScript function to populate the field value range of fields with the number or percentage format.
@@ -590,13 +601,11 @@ function Field(name) {
         }
 
 
-        window.AFNumber_Format = function(nDec, sepStyle, negStyle, currStyle, strCurrency, bCurrencyPrepend)
-        {
+        window.AFNumber_Format = function(nDec, sepStyle, negStyle, currStyle, strCurrency, bCurrencyPrepend) {
 
             // Don't allow format actions during keystroke.
 
-            if(event.name == "Keystroke")
-            {
+            if(event.name == "Keystroke") {
                 AFNumber_Keystroke(nDec, sepStyle, negStyle, currStyle, strCurrency, bCurrencyPrepend);
                 return;
             }
@@ -618,10 +627,10 @@ function Field(name) {
 
             var number = event.value;
 
-            if(number != "" || number === 0){
+            if(number != "" || number === 0) {
 
                 var isNegative = false;
-                if(number < 0){
+                if(number < 0) {
 
                     number = -number;
                     isNegative = true;
@@ -641,22 +650,18 @@ function Field(name) {
                 var sepMarker = ",";
 
 
-                if(sepStyle == 1)
-                {
+                if(sepStyle == 1) {
                     sepMarker = "";
                 }
-                else if(sepStyle == 2)
-                {
+                else if(sepStyle == 2) {
                     sepMarker = ".";
                     decMarker = ",";
                 }
-                else if(sepStyle == 3)
-                {
+                else if(sepStyle == 3) {
                     sepMarker = "";
                     decMarker = ",";
                 }
-                else if(sepStyle == 4)
-                {
+                else if(sepStyle == 4) {
                     sepMarker = "'";
                 }
 
@@ -676,27 +681,23 @@ function Field(name) {
 
                 if(isNegative) {
 
-                    if(negStyle == 0)
-                    {
+                    if(negStyle == 0) {
                         formattedString = '-'+formattedString;
                     }
-                    else if(negStyle == 1)
-                    {
+                    else if(negStyle == 1) {
                         event.isRed = true;
                     }
-                    else if(negStyle == 2)
-                    {
+                    else if(negStyle == 2) {
                         formattedString = '('+formattedString+')';
                     }
-                    else if(negStyle == 3)
-                    {
+                    else if(negStyle == 3) {
                         event.isRed = true;
                         formattedString = '('+formattedString+')';
                     }
                 }
 
-                if(strCurrency.length > 0){
-                    if(bCurrencyPrepend){
+                if(strCurrency.length > 0) {
+                    if(bCurrencyPrepend) {
                         formattedString = strCurrency + " " + formattedString;
                     } else {
                         formattedString = formattedString + " " + strCurrency;
@@ -712,39 +713,25 @@ function Field(name) {
             var n = AFMergeChange(event);
 
             if(!n) return;
-            /*
-            var type = typeof n;
-
-            // Some locales use commas as the decimal seperator.
-            if (type == "string" && n.split(",").length == 2){
-
-                n = n.replace(/,/,".");
-            }
-             */
-
-            if(event.willCommit)
-            {
+           
+            if(event.willCommit) {
                 event.rc = isNumber(n);
-                if(!(event.rc))
-                {
+                if(!(event.rc)) {
                   var cAlert = IDS_INVALID_NUMBER;
                   if (event.tName != null)cAlert += " [ " + event.tName + " ]";
                   app.alert(cAlert);
                 }
             }
-            else if(n != "-" && n != ".")
-            {
+            else if(n != "-" && n != ".") {
                 event.rc = isNumber(n);
             }
 
         }
 
-        // Date Functions
+        // Date & Time Functions
 
-        window.AFDate_FormatEx = function(cFormat)
-        {
-            if(event.name == "Keystroke")
-            {
+        window.AFDate_FormatEx = function(cFormat) {
+            if(event.name == "Keystroke") {
                 AFDate_KeystrokeEx(cFormat);
                 return;
             }
@@ -761,9 +748,7 @@ function Field(name) {
             event.value = util.printd(cFormat, date);
         }
 
-
-        window.AFParseDateOrder = function(cFormat)
-        {
+        window.AFParseDateOrder = function(cFormat) {
             /* Determine the order of the date. */
             var cOrder = "";
             for (var i = 0; i < cFormat.length; i++) {
@@ -798,8 +783,7 @@ function Field(name) {
         }
 
 
-        window.AFParseDateEx = function(cString, cFormat)
-        {
+        window.AFParseDateEx = function(cString, cFormat) {
             var cOrder = AFParseDateOrder(cFormat);
             // todo, find a way to use the cOrder to better resolve ambiguous date strings
             var d = moment(cString);
@@ -808,9 +792,7 @@ function Field(name) {
         }
 
 
-        window.AFParseTime = function(cString, ptf)
-        {
-
+        window.AFParseTime = function(cString, ptf) {
 
             cString = moment().format("YYYY-MM-DD")+" "+cString;
 
@@ -822,7 +804,7 @@ function Field(name) {
             if(dFirst.isValid())return dFirst;
 
             // Try other formats.
-            for(var c = 0 ; c < 4; c++){
+            for(var c = 0 ; c < 4; c++) {
 
                  var cFormat = cFormats[c];
                  var d = moment(cString,"YYYY-MM-DD "+cFormat,true);
@@ -848,8 +830,7 @@ function Field(name) {
 
         window.AFTime_Keystroke = function(ptf) {
 
-            if(event.willCommit && !window.AFParseTime(event.value, ptf))
-            {
+            if(event.willCommit && !window.AFParseTime(event.value, ptf)) {
                 var cAlert = IDS_INVALID_VALUE;
                 if (event.tName != null)cAlert += " [ " + event.tName + " ]";
                 app.alert(cAlert);
@@ -859,8 +840,7 @@ function Field(name) {
 
         window.AFTime_Format = function(ptf) {
 
-            if(event.name == "Keystroke")
-            {
+            if(event.name == "Keystroke") {
                 AFTime_Keystroke(ptf);
                 return;
             }
@@ -878,6 +858,8 @@ function Field(name) {
 
             event.value = util.printd(cFormat, date);
         }
+        
+        // Special Number Keystroke and Formatting
 
         window.AFPercent_Keystroke = function(nDec, sepStyle) {
             AFNumber_Keystroke(nDec, sepStyle, 0, 0, "", true);
@@ -885,8 +867,7 @@ function Field(name) {
 
         window.AFPercent_Format = function(nDec, sepStyle) {
 
-            if(event.name == "Keystroke")
-            {
+            if(event.name == "Keystroke") {
                 AFPercent_Keystroke(nDec , sepStyle);
                 return;
             }
@@ -911,8 +892,7 @@ function Field(name) {
             var commit, noCommit;
 
             if(!value) return;
-            switch (psf)
-            {
+            switch (psf) {
                 case 0:
                     commit = new Array(new RegExp("^\\d{5}$"));
                     noCommit = new Array( new RegExp("^\\d{0,5}$"));
@@ -930,8 +910,7 @@ function Field(name) {
                     noCommit = new Array(new RegExp("^\\d{0,3}(\\.|[- ])?\\d{0,2}(\\.|[- ])?\\d{0,4}$"));
                     break;
             }
-            if(!exactMatch(event.willCommit ? commit : noCommit, value))
-            {
+            if(!exactMatch(event.willCommit ? commit : noCommit, value)) {
                 if (event.willCommit) {
                     var cAlert = IDS_INVALID_VALUE;
                     if (event.tName != null)cAlert += " [ " + event.tName + " ]";
@@ -945,8 +924,7 @@ function Field(name) {
         window.AFSpecial_Format = function(psf) {
 
 
-            if(event.name == "Keystroke")
-            {
+            if(event.name == "Keystroke") {
                 AFSpecial_Keystroke(psf);
                 return;
             }
@@ -977,12 +955,11 @@ function Field(name) {
 
             event.value = util.printx(formatStr, value);
         }
+        
+        // Calculate Action Related Functions
 
-
-        window.AFSimpleInit = function(cFunction)
-        {
-            switch (cFunction)
-            {
+        window.AFSimpleInit = function(cFunction) {
+            switch (cFunction) {
                 case "PRD":
                     return 1.0;
                     break;
@@ -991,8 +968,7 @@ function Field(name) {
             return 0.0;
         }
 
-        window.AFSimple = function(cFunction, nValue1, nValue2)
-        {
+        window.AFSimple = function(cFunction, nValue1, nValue2) {
             var nValue = 1.0 * nValue1;
 
             nValue1 = 1.0 * nValue1;
@@ -1018,8 +994,7 @@ function Field(name) {
             return nValue;
         }
 
-        window.AFSimple_Calculate = function(cFunction, cFields)
-        {
+        window.AFSimple_Calculate = function(cFunction, cFields) {
             var nFields = 0;
             var nValue = AFSimpleInit(cFunction);
 

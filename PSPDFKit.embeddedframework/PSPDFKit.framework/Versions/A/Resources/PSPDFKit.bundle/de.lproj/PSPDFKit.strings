@@ -17,7 +17,7 @@
 "Open" = "Öffnen";
 "Untitled" = "Unbenannt";
 "File Not Found" = "Datei nicht gefunden";
-"File couldn't be opened." = "Datei konnte nicht geöffnet werden.";
+"File couldn't be opened." = "Datei konnte nicht geöffnet werden."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Unbenanntes PDF";
 "Page %tu" = "Seite %tu";
 "All (%tu Pages)" = "Dokument (%tu Seiten)";
@@ -36,7 +36,7 @@
 "Open in" = "Öffnen in";
 "Open" = "Öffnen";
 "Commit" = "Senden";
-"Sending to %@" = "Öffne %@";
+"Sending to %@" = "Öffne %@"; // Open document with an application
 "Pages" = "Seiten";
 "Print with annotations" = "Mit Annotationen drucken";
 "Print document only" = "Ohne Annotationen drucken";
@@ -64,7 +64,7 @@
 "All" = "Alle";
 
 // password
-"Password" = "Kennwort";
+"Password" = "Kennwort"; // text on a label
 "Unlock" = "Entsperren";
 "Please enter the password." = "Bitte geben Sie das Kennwort ein.";
 "This document cannot be unlocked. %@ is unsupported." = "Dieses Dokument kann nicht geöffnet werden. %@ nicht unterstützt.";
@@ -77,14 +77,14 @@
 "Leave %@?" = "%@ verlassen?";
 
 // search
-"Search Document" = "Dokument durchsuchen";
+"Search Document" = "Dokument durchsuchen"; // to search for a string in the given document
 "No matches found" = "Keine Treffer gefunden";
 "One match found" = "Einen Treffer gefunden";
 "%tu matches found" = "%tu Treffer gefunden";
 "Searching Page %tu of %tu" = "Suche Seite %tu von %tu";
 "Search Completed" = "Suche abgeschlossen";
 "Search Cancelled" = "Suche abgebrochen";
-"%tu left" = "%tu weitere";
+"%tu left" = "%tu weitere"; // Indexing Documents... 5 left
 "Searching" = "Suchen";
 "%tu documents indexed." = "%tu Dokumente indiziert.";
 "Done" = "Fertig";
@@ -154,17 +154,17 @@
 "Strikeout" = "Durchstreichen";
 "Rectangle" = "Rechteck";
 "Ellipse" = "Ellipse";
-"Line" = "Linie";
-"Lines" = "Linien";
+"Line" = "Linie"; // something that can be drawn
+"Lines" = "Linien"; // "5 Lines" were drawn
 "Polyline" = "Polylinie";
 "Polygon" = "Polygon";
 "Signature" = "Unterschrift";
 "Signatures" = "Unterschriften";
 "Signed" = "Unterschrieben";
 "Sign" = "Unterschrift hier";
-"Sign using %@" = "Unterschreiben mit %@";
-"Methods" = "Methoden";
-"Choose Identity" = "Identität auswählen";
+"Sign using %@" = "Unterschreiben mit %@"; // e.g. Adobe.PPKLite
+"Methods" = "Methoden"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Identität auswählen"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "Stempel";
 "Stamps" = "Stempel";
 "Custom" = "Benutzerdefiniert";
@@ -173,7 +173,7 @@
 "Stamp Text" = "Stempel Text";
 "Add Signature" = "Unterschrift hinzufügen";
 "My Signature" = "Meine Unterschrift";
-"No Signatures" = "Keine Unterschriften"; // text on label: is shown, when there is no signature to display
+"No Signatures" = "Keine Unterschriften"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Kunden Unterschrift";
 "Note" = "Notiz";
 "Text" = "Text";
@@ -204,7 +204,7 @@
 "Inspector" = "Inspektor";
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
-"Merge" = "Zusammenführen";
+"Merge" = "Zusammenführen"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Beispiel";
 "Annotation Summary for %@:\n" = "Zusammenfassung der Annotationen von %@:\n";
 "Fit to Text" = "Passend für Text";
@@ -213,7 +213,7 @@
 "Eraser" = "Radierer";
 "SelectionTool" = "Auswahlwerkzeug";
 "Saved Annotations" = "Gespeichert";
-"Add" = "Hinzufügen";
+"Add" = "Hinzufügen"; // to add - infinitive
 "Date" = "Datum";
 "Time" = "Zeit";
 "No Pages" = "Keine Seiten";
@@ -304,14 +304,14 @@
 "Remove Link" = "Link entfernen";
 "Open Link" = "Link öffnen";
 "Go to page %tu" = "Zu Seite %tu wechseln";
-"Go to page" = "Zu Seite wechseln";
+"Go to page" = "Zu Seite wechseln"; // title of a Popup
 "Save" = "Sichern";
 "Link Destination" = "Ziel des Links";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
 
 // voiceover accessibility
 "Page" = "Seite";
-"Grid" = "Thumbnails";
+"Grid" = "Thumbnails"; // grid with thumbnails
 
 // PSPDFDocumentSharingViewController
 "Ignore Annotations" = "Annotationen ignorieren";
@@ -340,7 +340,8 @@
 "Audio Problem" = "Audio-Problem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "Wiedergabe konnte nicht gestartet werden.";
-"Microphone permission not granted." = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
+"Could not resume playback." = "Wiedergabe konnte nicht fortgesetzt werden.";
+"Microphone permission not granted." = "Es wurde nicht erlaubt, auf das Mikrofon zugreifen zu können.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugang zum Mikrofon wurde verweigert.";
 "There was a problem trying to record audio." = "Ein Problem beim Aufnehmen ist aufgetreten.";
 "Already Recording" = "Aufnahme bereits aktiv";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "Ungültiger Wert: muss größer oder gleich %s sein.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ungültiger Wert: muss größer oder gleich %s und kleiner oder gleich %s sein.";
 "Invalid value: must be less than or equal to %s." = "Ungültiger Wert: muss kleiner oder gleich %s sein.";
-"Invalid value. Must be a number." = "Ungültiger Wert: Nur Zahlen sind erlaubt.";
+"Invalid value: must be a number." = "Ungültiger Wert: Nur Zahlen sind erlaubt.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Ungültiger Wert: Nur ein Datum ist erlaubt.";
+
+// General validation
+
+"Invalid value." = "Ungültiger Wert.";
 
 // Gallery
 "Connection Error" = "Verbindungfehler";
@@ -379,8 +388,10 @@
 "Signature is valid." = "Die Unterschrift ist GÜLTIG.";
 "Signature is valid, but there are some warnings." = "Die Unterschrift ist gültig, aber es gab einige Warnungen.";
 "It was signed by %@ on %@ at %@." = "Es wurde signiert von %@ am %@ um %@."; // the document was signed by name on date at time
+// the document was signed on date at time
 "It was signed on %@ at %@." = "Es wurde signiert am %@ um %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Laut Zertifikat signiert von %@ am %@ um %@."; // by name on date at time
+// on date at time
 "It claims to have been signed on %@ at %@." = "Laut Zertifikat signiert am %@ um %@.";
 "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Die signierte Version des Dokuments wurde nicht verändert, allerdings wurden Änderungen zum Dokument hinzugefügt seit der Signierung."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Die Signatur ist gültig und das Dokument wurde nicht verändert, seit es signiert wurde.";

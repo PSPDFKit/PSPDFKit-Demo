@@ -4,6 +4,30 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.4 - 26/May/2014__
+
+Note: With WWDC imminent and the upcoming release of iOS 8, we plan to finally drop support for iOS 6. Let us know your thoughts about this change: support@pspdfkit.com.
+
+*  Clip drawings to bounds. Improves experience when drawing in double page mode.
+*  The `metadata` dictionary of `PSPDFDocument` now also contains PDF Portfolio data, if detected.
+*  Add new option to the `PSPDFAnnotationTableViewController` to show/hide the clear all button. `showDeleteAllOption`.
+*  Allow initialization of sound annotations from custom URL.
+*  Don’t allow to copy the contents of text markup annotations if the document disallows copying.
+*  Document parser: Add support for direct AcroForm dictionaries.
+*  Improves compatibility with certain rich text formats for free text annotations in 3rd-party XFDF files.
+*  Extremely complex ink annotations will now render much faster with only minimal reduced quality.
+*  We no longer manually draw a border if the free text annotation is backed by an AP stream.
+*  Adds support for the `mailDoc` and `launchURL` JS functions to invoke the email/browser controller via JavaScript.
+*  `PSPDFProcessor`: `PSPDFProcessorStripEmptyPages` now also works for regular document rendering and performs a more sophisticated page analysis.
+*  API: The `PSPDFPageRenderer` can now be replaced at runtime, there's a new `setSharedPageRenderer:` instead of the class setter.
+*  Various localization improvements.
+*  Fixes an issue where certain JavaScript calculations could end up as NaN's.
+*  Fixes an issue where the “Reset Form” feature would sometimes not clear all form elements.
+*  Fixes an issue where the `pageRange` property could be calculated incorrectly for password protected files.
+*  Fixes an issue where adding/removing the same overlay annotations within the same runloop could lead to an incorrect view representation.
+*  Fixes an issue where the bookmark indicator was not always correctly displayed when pages are filtered using the pageRange feature.
+*  Fixes an issue where persisting choice form elements that were split in child/parent relationships could sometimes result in only the initial index value being set.
+
 __v3.7.3 - 12/May/2014__
 
 *  The search preview text is now stripped of control characters like carriage return or newlines, which improves preview for various documents.

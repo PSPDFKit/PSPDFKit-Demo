@@ -340,7 +340,8 @@
 "Audio Problem" = "Ljudproblem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "Kunde inte starta uppspelning.";
-"Microphone permission not granted." = "Fick ej åtkomst till mikrofonen";
+"Could not resume playback." = "Kunde inte återuppta uppspelning.";
+"Microphone permission not granted." = "Fick ej åtkomst till mikrofonen.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Tyvärr går det inte att spela in ljud just nu. Ge appen tillstånd att använda mikrofonen.";
 "There was a problem trying to record audio." = "Tyvärr gick det inte att spela in ljud.";
 "Already Recording" = "Inspelning pågår";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "Ogiltigt värde: måste vara större än eller lika med %s.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Ogiltigt värde: måste vara större än eller lika med %s och mindre än eller lika med %s.";
 "Invalid value: must be less than or equal to %s." = "Ogiltigt värde: måste vara mindre än eller lika med %s.";
-"Invalid value. Must be a number." = "Ogiltigt värde. Måste vara ett tal.";
+"Invalid value: must be a number." = "Ogiltigt värde: måste vara ett tal.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Ogiltigt värde: måste vara ett datum.";
+
+// General validation
+
+"Invalid value." = "Ogiltigt värde.";
 
 // Gallery
 "Connection Error" = "Anslutningsfel";

@@ -340,7 +340,8 @@
 "Audio Problem" = "Problema con el audio";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
 "Could not start playback." = "No se ha podido iniciar la reproducción.";
-"Microphone permission not granted." = "No se permite el acceso al micrófono.";
+"Could not resume playback." = "No se ha podido reanudar la reproducción.";
+"Microphone permission not granted." = "No se ha concedido permiso para usar el micrófono.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "No se puede grabar audio en este instante. Debe conceder a esta app permiso para acceder a su micrófono.";
 "There was a problem trying to record audio." = "Ha ocurrido un error al intentar grabar el audio.";
 "Already Recording" = "Ya está grabando";
@@ -362,7 +363,15 @@
 "Invalid value: must be greater than or equal to %s." = "Valor no válido: debe ser mayor o igual que %s.";
 "Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Valor no válido: debe ser mayor o igual que %s y menor o igual que %s.";
 "Invalid value: must be less than or equal to %s." = "Valor no válido: debe ser menor o igual que %s.";
-"Invalid value. Must be a number." = "Valor no válido. Debe ser un número.";
+"Invalid value: must be a number." = "Valor no válido: debe ser un número.";
+
+//  Validation of dates
+
+"Invalid value: must be a date." = "Valor no válido: debe ser una fecha.";
+
+// General validation
+
+"Invalid value." = "Valor no válido.";
 
 // Gallery
 "Connection Error" = "Error de conexión";

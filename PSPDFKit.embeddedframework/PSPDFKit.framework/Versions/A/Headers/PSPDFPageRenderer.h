@@ -32,15 +32,12 @@ extern NSString *const PSPDFRenderDrawBlockKey;
 
 typedef void (^PSPDFRenderDrawBlock)(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options);
 
-// Can be used to use a custom subclass of the `PSPDFPageRenderer`. Defaults to nil, which will use `PSPDFPageRenderer.class`.
-// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
-extern Class PSPDFPageRendererClass;
-
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
 
-/// Access the style manager singleton.
+/// Access the page renderer singleton.
 + (instancetype)sharedPageRenderer;
++ (void)setSharedPageRenderer:(PSPDFPageRenderer *)pageRenderer;
 
 /// Setup the graphics context to the current PDF.
 - (void)setupGraphicsContext:(CGContextRef)context rectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
@@ -51,6 +48,9 @@ extern Class PSPDFPageRendererClass;
 
 /// Renders a page; defined by point and zoom. Use `zoom=100` and `point = CGPointMake(0.f, 0.f)` for defaults.
 - (CGSize)renderPageRef:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(double)zoom pageInfo:(PSPDFPageInfo *)pageInfo annotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+/// Override to implement custom rendering techniques (using other renderers).
+- (void)drawPDFPage:(CGPDFPageRef)pageRef inContext:(CGContextRef)context pageInfo:(PSPDFPageInfo *)pageInfo;
 
 /// Renders a particular appearance stream (A PDF within a PDF) into a context.
 /// Will return NO if rendering failed.
