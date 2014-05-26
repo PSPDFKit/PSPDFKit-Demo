@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import "AFNetworkReachabilityManager.h"
+#include <strings.h>
 
 NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
 NSString * const AFNetworkingReachabilityNotificationStatusItem = @"AFNetworkingReachabilityNotificationStatusItem";

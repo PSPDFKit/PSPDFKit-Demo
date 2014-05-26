@@ -26,6 +26,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+extern size_t strlen(const char *);
+
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
 #endif

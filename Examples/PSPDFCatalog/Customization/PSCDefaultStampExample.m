@@ -10,6 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
+#import <tgmath.h>
 
 @interface PSCCustomStampAnnotationToolbar : PSPDFAnnotationToolbar @end
 @interface PSCInvisibleResizableView : PSPDFResizableView @end

@@ -55,7 +55,7 @@
         // Add custom animation
         CABasicAnimation *anAnimation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
         anAnimation.duration = 1.00;
-        anAnimation.repeatCount = HUGE_VAL;
+        anAnimation.repeatCount = FLT_MAX;
         anAnimation.autoreverses = YES;
         anAnimation.fromValue = (id) UIColor.redColor.CGColor;
         anAnimation.toValue = (id) UIColor.blueColor.CGColor;

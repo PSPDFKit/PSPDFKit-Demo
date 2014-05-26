@@ -27,6 +27,10 @@
 #import "RNCryptor.h"
 #import "RNCryptor+Private.h"
 #import <Security/SecRandom.h>
+#include <strings.h>
+#include <string.h>
+
+extern void	*memcpy(void *, const void *, size_t);
 
 extern int SecRandomCopyBytes(SecRandomRef rnd, size_t count, uint8_t *bytes) __attribute__((weak_import));
 extern int

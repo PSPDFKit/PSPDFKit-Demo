@@ -8,6 +8,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
+#import <tgmath.h>
 
 @interface PSCRotatablePDFViewController : PSPDFViewController @end
 

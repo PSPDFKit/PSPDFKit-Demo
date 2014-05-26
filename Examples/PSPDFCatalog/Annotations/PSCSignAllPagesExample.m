@@ -12,6 +12,7 @@
 #import "PSCFileHelper.h"
 #import <objc/runtime.h>
 #import "PSCExample.h"
+#import <tgmath.h>
 
 const char PSCSignatureCompletionBlock;
 

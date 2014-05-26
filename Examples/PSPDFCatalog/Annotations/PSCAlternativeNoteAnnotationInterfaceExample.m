@@ -10,6 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
+#import <tgmath.h>
 
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end
