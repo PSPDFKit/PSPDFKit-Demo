@@ -30,8 +30,6 @@
 #include <strings.h>
 #include <string.h>
 
-extern void	*memcpy(void *, const void *, size_t);
-
 extern int SecRandomCopyBytes(SecRandomRef rnd, size_t count, uint8_t *bytes) __attribute__((weak_import));
 extern int
 CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_t passwordLen,
