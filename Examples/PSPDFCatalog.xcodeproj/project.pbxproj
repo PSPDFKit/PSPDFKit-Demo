@@ -76,6 +76,7 @@
 		78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */; };
 		78ABC8B518EE041F007578C2 /* PSCCustomOutlineControllerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */; };
 		78ABC8B718EE042D007578C2 /* PSCExportWatermarkExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC8B618EE042D007578C2 /* PSCExportWatermarkExample.m */; };
+		78AD5AC51934854900ECC9FD /* PSCCustomSelectionKnobsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AD5AC41934854900ECC9FD /* PSCCustomSelectionKnobsExample.m */; };
 		78B095DC183A168C00BBE328 /* PSCAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B095DA183A168C00BBE328 /* PSCAnnotationsExample.m */; };
 		78B095E3183A24C800BBE328 /* PSCFreeFormImageResizeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B095E1183A24C800BBE328 /* PSCFreeFormImageResizeExample.m */; };
 		78B115C517B9915200DCD45A /* PSCiBooksHighlightingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B115C317B9915200DCD45A /* PSCiBooksHighlightingViewController.m */; };
@@ -297,6 +298,7 @@
 		78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBookmarkParser.m; sourceTree = "<group>"; };
 		78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomOutlineControllerExample.m; sourceTree = "<group>"; };
 		78ABC8B618EE042D007578C2 /* PSCExportWatermarkExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportWatermarkExample.m; sourceTree = "<group>"; };
+		78AD5AC41934854900ECC9FD /* PSCCustomSelectionKnobsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSelectionKnobsExample.m; sourceTree = "<group>"; };
 		78B095DA183A168C00BBE328 /* PSCAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationsExample.m; sourceTree = "<group>"; };
 		78B095E1183A24C800BBE328 /* PSCFreeFormImageResizeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFreeFormImageResizeExample.m; sourceTree = "<group>"; };
 		78B115C317B9915200DCD45A /* PSCiBooksHighlightingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCiBooksHighlightingViewController.m; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
 				788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */,
 				7842FDD31920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m */,
+				78AD5AC41934854900ECC9FD /* PSCCustomSelectionKnobsExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */,
 				78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */,
 				78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */,
+				78AD5AC51934854900ECC9FD /* PSCCustomSelectionKnobsExample.m in Sources */,
 				9AA5BE05180FEB58003A3865 /* PSCStoryboardsExample.m in Sources */,
 				78B095E3183A24C800BBE328 /* PSCFreeFormImageResizeExample.m in Sources */,
 				78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */,
