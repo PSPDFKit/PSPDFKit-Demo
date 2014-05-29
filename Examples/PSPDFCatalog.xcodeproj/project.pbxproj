@@ -27,6 +27,7 @@
 		784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F012115CF247900849F81 /* CoreGraphics.framework */; };
 		784F012A15CF247900849F81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012915CF247900849F81 /* main.m */; };
 		784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012D15CF247900849F81 /* PSCAppDelegate.m */; };
+		7859B2FD1937E4190046E213 /* PSCMultilineDocumentTitleExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 7859B2FC1937E4190046E213 /* PSCMultilineDocumentTitleExample.m */; };
 		785B160F16692BB900F747B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B160E16692BB900F747B8 /* Security.framework */; };
 		785C5F2D18D19A4100DD1592 /* PSCTopScrobbleBarExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C5F2C18D19A4100DD1592 /* PSCTopScrobbleBarExample.m */; };
 		785EAE4518B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EAE4418B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m */; };
@@ -219,6 +220,7 @@
 		784F012B15CF247900849F81 /* PSPDFCatalog-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PSPDFCatalog-Prefix.pch"; sourceTree = "<group>"; };
 		784F012C15CF247900849F81 /* PSCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSCAppDelegate.h; sourceTree = "<group>"; };
 		784F012D15CF247900849F81 /* PSCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSCAppDelegate.m; sourceTree = "<group>"; };
+		7859B2FC1937E4190046E213 /* PSCMultilineDocumentTitleExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMultilineDocumentTitleExample.m; sourceTree = "<group>"; };
 		785B160E16692BB900F747B8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		785C5F2C18D19A4100DD1592 /* PSCTopScrobbleBarExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTopScrobbleBarExample.m; sourceTree = "<group>"; };
 		785EAE4418B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomGalleryBackgroundExample.m; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 				7842FDD31920F6A6000007D9 /* PSCCustomPrintDefaultsExample.m */,
 				78AD5AC41934854900ECC9FD /* PSCCustomSelectionKnobsExample.m */,
 				78AD5AD61934C5C200ECC9FD /* PSCCustomThumbnailBarCellExample.m */,
+				7859B2FC1937E4190046E213 /* PSCMultilineDocumentTitleExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1183,6 +1186,7 @@
 				78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */,
 				789AC11518B4265C00766ECB /* PSCSearchHighlightColorExample.m in Sources */,
 				78D4D40D1848CD4900080A96 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				7859B2FD1937E4190046E213 /* PSCMultilineDocumentTitleExample.m in Sources */,
 				78B1481E18B79CC70039DB99 /* PSCVerticalAnnotationToolbarExample.m in Sources */,
 				78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */,
 				785EAE4918B6B0660077F9D1 /* PSCSimpleImageExample.m in Sources */,
