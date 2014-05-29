@@ -26,7 +26,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
 	document.title = @"This PDF document has a pretty long title. It should wrap into multiple lines on an iPhone.";
-    PSPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
 	// The standard numberOfLines conventions apply here (0 = use as many lines as needed)
 	pdfController.HUDView.documentLabel.label.numberOfLines = 0;
