@@ -31,6 +31,10 @@
 	// The standard numberOfLines conventions apply here (0 = use as many lines as needed)
 	pdfController.HUDView.documentLabel.label.numberOfLines = 0;
 
+	// The document label is disabled by default on the iPad. If you're expecting long titles
+	// and want make sure they are always shown in full on the iPad, you should set `documentLabelEnabled` to `YES` explicity.
+	//pdfController.HUDView.documentLabelEnabled = YES;
+
 	return pdfController;
 }
 
