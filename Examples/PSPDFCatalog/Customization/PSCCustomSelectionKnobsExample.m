@@ -24,10 +24,10 @@
 
         // Draw a custom knob in code.
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(60.f, 60.f), NO, 0.0);
-        UIColor* color = [UIColor colorWithRed: 1 green: 0.622 blue: 0 alpha: 1];
+        UIColor* color = [UIColor colorWithRed:1.f green:0.622f blue:0.f alpha:1.f];
 
         //// Oval Drawing
-        UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(2, 2, 56, 56)];
+        UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(2, 2, 56, 56)];
         [color setFill];
         [ovalPath fill];
         [UIColor.redColor setStroke];
@@ -36,21 +36,21 @@
 
         //// Bezier Drawing
         UIBezierPath* bezierPath = UIBezierPath.bezierPath;
-        [bezierPath moveToPoint: CGPointMake(12.5, 26.5)];
-        [bezierPath addCurveToPoint: CGPointMake(22.57, 18.24) controlPoint1: CGPointMake(16.72, 23.12) controlPoint2: CGPointMake(20.01, 20.41)];
-        [bezierPath addCurveToPoint: CGPointMake(31.5, 9.5) controlPoint1: CGPointMake(32.12, 10.12) controlPoint2: CGPointMake(31.5, 9.5)];
+        [bezierPath moveToPoint: CGPointMake(12.5f, 26.5f)];
+        [bezierPath addCurveToPoint:CGPointMake(22.57f, 18.24f) controlPoint1: CGPointMake(16.72f, 23.12f) controlPoint2: CGPointMake(20.01f, 20.41f)];
+        [bezierPath addCurveToPoint: CGPointMake(31.5f, 9.5f) controlPoint1: CGPointMake(32.12f, 10.12f) controlPoint2: CGPointMake(31.5f, 9.5f)];
         [UIColor.blackColor setStroke];
-        bezierPath.lineWidth = 3.5;
+        bezierPath.lineWidth = 3.5f;
         [bezierPath stroke];
 
         //// Bezier 2 Drawing
         UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
         [bezier2Path moveToPoint: CGPointMake(22.5, 18.5)];
-        [bezier2Path addCurveToPoint: CGPointMake(39.5, 41.5) controlPoint1: CGPointMake(39.5, 41.5) controlPoint2: CGPointMake(39.5, 41.5)];
-        [bezier2Path addLineToPoint: CGPointMake(49.5, 31.5)];
-        [bezier2Path addLineToPoint: CGPointMake(31.5, 49.5)];
+        [bezier2Path addCurveToPoint: CGPointMake(39.5f, 41.5f) controlPoint1: CGPointMake(39.5f, 41.5) controlPoint2: CGPointMake(39.5f, 41.5f)];
+        [bezier2Path addLineToPoint: CGPointMake(49.5f, 31.5f)];
+        [bezier2Path addLineToPoint: CGPointMake(31.5f, 49.5f)];
         [UIColor.blackColor setStroke];
-        bezier2Path.lineWidth = 3.5;
+        bezier2Path.lineWidth = 3.5f;
         [bezier2Path stroke];
         UIImage *knobImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
