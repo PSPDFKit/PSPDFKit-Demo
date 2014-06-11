@@ -48,9 +48,10 @@ const char *clearAllActionSheetToken;
         // choose *some* documents randomly if state could not be restored.
         if (![self restoreState] || self.documents.count == 0) {
             NSArray *documents = [PSPDFDocumentPickerController documentsFromDirectory:@"/Bundle/Samples" includeSubdirectories:YES];
-            self.documents = [documents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            documents = [documents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 return arc4random_uniform(2) > 0; // returns 0 or 1 randomly.
             }]];
+            self.documents = [documents subarrayWithRange:NSMakeRange(0, MIN(5, documents.count))];
 
             // AES test
             /*
