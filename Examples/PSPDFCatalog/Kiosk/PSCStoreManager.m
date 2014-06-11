@@ -240,7 +240,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
          newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
          UIGraphicsEndImageContext();
          */
-        newsstandCoverImage = [magazine coverImageForSize:PSPDFCache.sharedCache.thumbnailSize];
+        newsstandCoverImage = [magazine coverImageForSize:CGSizeMake(170.f, 220.f)];
     }
 
     [UIApplication.sharedApplication setNewsstandIconImage:newsstandCoverImage];
