@@ -151,6 +151,7 @@
 		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
 		78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
+		78DA82C4194D26D300BCA477 /* PSCOpenNoteOnPhoneWithSingleTapExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA82C3194D26D300BCA477 /* PSCOpenNoteOnPhoneWithSingleTapExample.m */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
 		78E4E06517DD151B005ED42D /* PSCExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06217DD151B005ED42D /* PSCExample.m */; };
 		78E4E06617DD151C005ED42D /* PSCExampleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06417DD151B005ED42D /* PSCExampleManager.m */; };
@@ -431,6 +432,7 @@
 		78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCViewHelper.m; sourceTree = "<group>"; };
 		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
 		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
+		78DA82C3194D26D300BCA477 /* PSCOpenNoteOnPhoneWithSingleTapExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCOpenNoteOnPhoneWithSingleTapExample.m; sourceTree = "<group>"; };
 		78DDC6B215CF2EFF0030C730 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		78E4E06117DD151B005ED42D /* PSCExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExample.h; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		78C7C5C716CB9C4D0006075D /* Customization */ = {
 			isa = PBXGroup;
 			children = (
+				78DA82C3194D26D300BCA477 /* PSCOpenNoteOnPhoneWithSingleTapExample.m */,
 				78C7C5C816CB9C4D0006075D /* PSCAnnotationTestController.h */,
 				78C7C5C916CB9C4D0006075D /* PSCAnnotationTestController.m */,
 				78C7C5CA16CB9C4D0006075D /* PSCButtonPDFViewController.h */,
@@ -1173,6 +1176,7 @@
 				78A24A5415CFDAAF00328F4F /* PSCKioskPDFViewController.m in Sources */,
 				78A24A5515CFDAAF00328F4F /* PSCMagazine.m in Sources */,
 				78A24A5615CFDAAF00328F4F /* PSCMagazineFolder.m in Sources */,
+				78DA82C4194D26D300BCA477 /* PSCOpenNoteOnPhoneWithSingleTapExample.m in Sources */,
 				78A24A5715CFDAAF00328F4F /* PSCSettingsBarButtonItem.m in Sources */,
 				78A24A5815CFDAAF00328F4F /* PSCSettingsController.m in Sources */,
 				78A24A5915CFDAAF00328F4F /* PSCShadowView.m in Sources */,
