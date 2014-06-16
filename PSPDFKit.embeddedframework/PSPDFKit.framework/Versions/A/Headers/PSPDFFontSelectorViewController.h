@@ -27,6 +27,7 @@
 
 /// Allow to block specific fonts. PSPDFKit blocks several fonts by default that are less commonly used.
 /// Set to nil to disable blocking any fonts. Array contains string names.
+/// @note Font names are matched via regular expressions.
 + (void)setDefaultBlocklist:(NSArray *)defaultBlocklist;
 + (NSArray *)defaultBlocklist;
 
@@ -40,10 +41,10 @@
 @property (nonatomic, assign) BOOL searchEnabled;
 
 /// Enable font downloading from Apple's servers. Defaults to YES.
-/// @note iOS 6+. See http://support.apple.com/kb/HT5484 for the full list.
+/// @note See http://support.apple.com/kb/HT5484 for the full list.
 @property (nonatomic, assign) BOOL showDownloadableFonts;
 
-/// Delegate.
+/// The font picker delegate - notifies when a font is selected.
 @property (nonatomic, weak) IBOutlet id<PSPDFFontSelectorViewControllerDelegate> delegate;
 
 @end

@@ -727,6 +727,23 @@ function Field(name) {
             }
 
         }
+        
+        window.AFMakeNumber = function(string) {
+            
+            var type = typeof string;
+            
+            if (type == "number") {
+                return string;
+            }
+            
+            var numb  = fieldCorrectedValue(string);
+            
+            if((typeof numb) == "number") {
+                return numb;
+            }
+            
+            return null;
+        }
 
         // Date & Time Functions
 

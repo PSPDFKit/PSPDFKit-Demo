@@ -50,12 +50,12 @@
 /// @note If no class is found, the view will be ignored.
 - (Class)annotationViewClassForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Handle adding annotations. A provider can decided that he doesn't want to add this annotation, in that case either don't implement `addAnnotations:` at all or return nil.
+/// Handle adding annotations. A provider can decide that it doesn't want to add this annotation, in that case either don't implement `addAnnotations:` at all or return nil.
 /// Return all annotations that are handled by this annotation provider. `PSPDFAnnotationManager` will call all annotation providers in the list until all annotations have been processed.
 /// @note The annotation provider is responsible for emitting then `PSPDFAnnotationsAddedNotification`.
 - (NSArray *)addAnnotations:(NSArray *)annotations;
 
-/// Handle removing annotations. A provider can decided that he doesn't want to add this annotation, in that case either don't implement `removeAnnotations:` at all or return NO. `PSPDFAnnotationManager` will query all registered `annotationProviders` until one returns YES on this method.
+/// Handle removing annotations. A provider can decide that it doesn't want to add this annotation, in that case either don't implement `removeAnnotations:` at all or return NO. `PSPDFAnnotationManager` will query all registered `annotationProviders` until one returns YES on this method.
 /// @note The annotation provider is responsible for emitting then `PSPDFAnnotationsRemovedNotification`.
 - (NSArray *)removeAnnotations:(NSArray *)annotations;
 

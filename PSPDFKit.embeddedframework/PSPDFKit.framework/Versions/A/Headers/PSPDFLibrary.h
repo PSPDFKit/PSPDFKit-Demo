@@ -33,7 +33,8 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
 /// `PSPDFLibrary` implements a sqlite-based full-text-search engine.
 /// You can register documents to be indexed in the background and then search for keywords within that collection.
 /// There can be multiple libraries, although usually one is enough for the common use case.
-/// @note PSPDFLibrary is only available in some license packages.
+/// See https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/Full-text-document-search for further documentation.
+/// @note PSPDFLibrary is only available in some license packages (PSPDFKit Complete)
 /// @warning Processing PDFs takes quite some memory. We advise against running this in the background on an iPad 1, due to its hard memory limitations.
 @interface PSPDFLibrary : NSObject
 
@@ -73,8 +74,12 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
 extern NSString *const PSPDFLibraryMaximumSearchResultsTotalKey;
 extern NSString *const PSPDFLibraryMaximumSearchResultsPerDocumentKey;
 
-// Set this to @YES to restrict search to exact matches instead of beginsWith/endsWith checks.
+// Set this to @YES to restrict search to exact word matches instead of beginsWith/endsWith checks.
 extern NSString *const PSPDFLibraryMatchExactWordsOnlyKey;
+
+// Set this to @YES to restrict search to exact phrase matches. This means that "Lorem ipsum dolor"
+// only matches that phrase and not something like "Lorem sit ipsum dolor".
+extern NSString *const PSPDFLibraryMatchExactPhrasesOnlyKey;
 
 /// Query the database for a match of `searchString`. Only direct matches, begins-with and ends-with matches are supported.
 /// Returns a dictionary of UID->`NSIndexSet` of page numbers.

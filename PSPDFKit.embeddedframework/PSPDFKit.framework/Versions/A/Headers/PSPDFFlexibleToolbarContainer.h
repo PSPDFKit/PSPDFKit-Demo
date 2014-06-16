@@ -42,7 +42,7 @@
 /// The toolbar is dragged and might change position.
 - (void)flexibleToolbarContainerWillStartDragging:(PSPDFFlexibleToolbarContainer *)container;
 
-/// The toolbar has been dragged and might has updated the position.
+/// The toolbar has been dragged and might have updated the position.
 - (void)flexibleToolbarContainerDidEndDragging:(PSPDFFlexibleToolbarContainer *)container withPosition:(PSPDFFlexibleToolbarPosition)position;
 
 @end
@@ -78,10 +78,12 @@
 /// Container delegate. (Can be freely set to any receiver)
 @property (nonatomic, weak) IBOutlet id<PSPDFFlexibleToolbarContainerDelegate> containerDelegate;
 
+/// @name Appearance
+
 /// The background color used for anchor view.
 /// If not explicitly set the color defaults to the toolbar barTintColor,
 /// toolbar tintColor or default PSPDFKit color (first one that is set).
-@property (nonatomic, strong) UIColor *anchorViewBackgroundColor;
+@property (nonatomic, strong) UIColor *anchorViewBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /// @name Presentation
 
@@ -105,5 +107,9 @@
 
 /// Override this method to customize exact toolbar and anchor view placement.
 - (CGRect)rectForToolbarPosition:(PSPDFFlexibleToolbarPosition)toolbarPosition;
+
+/// Possible override point for custom toolbar position change animations.
+/// Use [self layoutIfNeeded]; in an animation block to apply the new toolbar position.
+- (void)animateToolbarPositionChangeFrom:(PSPDFFlexibleToolbarPosition)currentPosition to:(PSPDFFlexibleToolbarPosition)newPosition;
 
 @end

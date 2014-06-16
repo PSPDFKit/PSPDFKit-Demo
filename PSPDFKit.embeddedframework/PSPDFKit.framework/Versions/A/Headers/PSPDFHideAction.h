@@ -16,12 +16,12 @@
 @interface PSPDFHideAction : PSPDFAction
 
 /// Designated initializers.
-- (id)initWithAssociatedAnnotations:(NSArray *)annotations;
+- (id)initWithAssociatedAnnotations:(NSArray *)annotations shouldHide:(BOOL)shouldHide;
 
 /// Either hide (YES) or show (NO) the referenced annotation/form object.
-@property (nonatomic, assign) BOOL shouldHide;
+@property (nonatomic, assign, readonly) BOOL shouldHide;
 
-/// The associated annotations.
+/// The associated annotations (weak)
 @property (nonatomic, copy, readonly) NSArray *annotations;
 
 @end

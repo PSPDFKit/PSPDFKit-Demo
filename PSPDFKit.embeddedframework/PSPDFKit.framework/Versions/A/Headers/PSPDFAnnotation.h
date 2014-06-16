@@ -110,7 +110,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationFlags) {
     PSPDFAnnotationFlagPrint          = 1 << 2, // [IGNORED] If set, print the annotation when the page is printed. Default value.
     PSPDFAnnotationFlagNoZoom         = 1 << 3, // [IGNORED] If set, don't scale the annotation’s appearance to match the magnification of the page.
     PSPDFAnnotationFlagNoRotate       = 1 << 4, // [IGNORED] If set, don't rotate the annotation’s appearance to match the rotation of the page.
-    PSPDFAnnotationFlagNoView         = 1 << 5, // [IGNORED] If set, don't display the annotation on the screen. (But printing might be allowed)
+    PSPDFAnnotationFlagNoView         = 1 << 5, // If set, don't display the annotation on the screen. (But printing might be allowed)
     PSPDFAnnotationFlagReadOnly       = 1 << 6, // [IGNORED] If set, don't allow the annotation to interact with the user. Ignored for Widget.
     PSPDFAnnotationFlagLocked         = 1 << 7, // [IGNORED] If set, don't allow the annotation to be deleted or properties modified (except contents)
     PSPDFAnnotationFlagToggleNoView   = 1 << 8, // [IGNORED] If set, invert the interpretation of the NoView flag for certain events.
@@ -264,7 +264,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 @property (nonatomic, assign) NSUInteger flags;
 
 /// Shortcut that checks for `PSPDFAnnotationFlagHidden` in `flags`.
-@property (nonatomic, assign, readonly) BOOL isHidden;
+@property (nonatomic, assign, getter=isHidden) BOOL hidden;
 
 /// The annotation name, a text string uniquely identifying it among all the annotations on its page.
 /// (Optional; PDF1.4, "NM" key)

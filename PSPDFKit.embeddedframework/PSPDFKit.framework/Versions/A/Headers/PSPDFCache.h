@@ -151,7 +151,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
 /// Defaults to (170, 220) on iPad and (85, 110) on iPhone.
-@property (nonatomic, assign) CGSize thumbnailSize;
+/// @note Updating the property on the `PSPDFViewController` will also update this.
+//@property (nonatomic, assign) CGSize thumbnailSize;
 
 /// @name Starting/Stopping
 

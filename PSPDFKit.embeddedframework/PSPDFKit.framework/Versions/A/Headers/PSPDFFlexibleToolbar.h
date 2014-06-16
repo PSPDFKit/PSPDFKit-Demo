@@ -56,6 +56,9 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// The toolbar container has ben hidden (called after `hideToolbarAnimated:completion:` is performed).
 - (void)flexibleToolbarDidHide:(PSPDFFlexibleToolbar *)toolbar;
 
+/// Called whenever the flexible toolbar changes position in response to a user drag & drop action
+- (void)flexibleToolbar:(PSPDFFlexibleToolbar *)toolbar didChangePosition:(PSPDFFlexibleToolbarPosition)position;
+
 @end
 
 /**
@@ -75,6 +78,9 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 
 /// Current toolbar position (limited to `supportedToolbarPositions`).
 @property (nonatomic, assign) PSPDFFlexibleToolbarPosition toolbarPosition;
+
+/// Sets the toolbar position and optionally animates the change (move or fade, depending on whether the orientation changes)
+- (void)setToolbarPosition:(PSPDFFlexibleToolbarPosition)toolbarPosition animated:(BOOL)animated;
 
 /// Container delegate. (Can be freely set to any receiver)
 @property (nonatomic, weak) id<PSPDFFlexibleToolbarDelegate> toolbarDelegate;
