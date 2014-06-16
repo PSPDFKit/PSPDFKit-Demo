@@ -119,8 +119,8 @@
 		78C7C5DE16CB9C4D0006075D /* PSCCustomToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C7C5D116CB9C4D0006075D /* PSCCustomToolbarController.m */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
-		78CF6F71194FAA9C006A7969 /* PSCSimpleDrawingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF6F6F194FAA9C006A7969 /* PSCSimpleDrawingButton.m */; };
 		78CF6F72194FAA9C006A7969 /* PSCThumbnailBarExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF6F70194FAA9C006A7969 /* PSCThumbnailBarExample.m */; };
+		78CF6F74194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CF6F73194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m */; };
 		78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1716A5F83800899C4A /* RNCryptor.m */; };
 		78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */; };
 		78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1B16A5F83800899C4A /* RNDecryptor.m */; };
@@ -374,8 +374,8 @@
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
-		78CF6F6F194FAA9C006A7969 /* PSCSimpleDrawingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSimpleDrawingButton.m; sourceTree = "<group>"; };
 		78CF6F70194FAA9C006A7969 /* PSCThumbnailBarExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCThumbnailBarExample.m; sourceTree = "<group>"; };
+		78CF6F73194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSimpleDrawingButtonExample.m; sourceTree = "<group>"; };
 		78D2CB1516A5F83800899C4A /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		78D2CB1616A5F83800899C4A /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		78D2CB1716A5F83800899C4A /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -861,7 +861,7 @@
 				78AD5AD61934C5C200ECC9FD /* PSCCustomThumbnailBarCellExample.m */,
 				7859B2FC1937E4190046E213 /* PSCMultilineDocumentTitleExample.m */,
 				7802EC60194E9449006FD68F /* PSCSimpleFontPickerExample.m */,
-				78CF6F6F194FAA9C006A7969 /* PSCSimpleDrawingButton.m */,
+				78CF6F73194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m */,
 				78CF6F70194FAA9C006A7969 /* PSCThumbnailBarExample.m */,
 			);
 			path = Customization;
@@ -1174,10 +1174,10 @@
 				78D4D40B1848CD4900080A96 /* AFURLSessionManager.m in Sources */,
 				78ABC8B718EE042D007578C2 /* PSCExportWatermarkExample.m in Sources */,
 				78B115C517B9915200DCD45A /* PSCiBooksHighlightingViewController.m in Sources */,
+				78CF6F74194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m in Sources */,
 				78B1482118B79CD90039DB99 /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */,
 				78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */,
-				78CF6F71194FAA9C006A7969 /* PSCSimpleDrawingButton.m in Sources */,
 				78D4D40F1848CD4900080A96 /* UIAlertView+AFNetworking.m in Sources */,
 				78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */,
 				7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */,

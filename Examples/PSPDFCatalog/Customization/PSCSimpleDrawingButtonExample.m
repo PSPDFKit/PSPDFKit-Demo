@@ -1,5 +1,5 @@
 //
-//  PSCSimpleDrawingButton.m
+//  PSCSimpleDrawingButtonExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -15,8 +15,8 @@
 @property (nonatomic, strong) UIButton *drawButton;
 @end
 
-@interface PSCSimpleDrawingButton : PSCExample @end
-@implementation PSCSimpleDrawingButton
+@interface PSCSimpleDrawingButtonExample : PSCExample @end
+@implementation PSCSimpleDrawingButtonExample
 
 - (id)init {
     if (self = [super init]) {
