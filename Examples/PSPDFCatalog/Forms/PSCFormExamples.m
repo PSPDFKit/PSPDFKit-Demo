@@ -11,6 +11,9 @@
 #import "PSCExample.h"
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
+#import "PSPDFPKCS12Signer.h"
+#import "PSPDFSignatureManager.h"
+
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -18,84 +21,12 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
-@interface PSCFormExampleSignatureDelegate : NSObject <PSPDFDigitalSignatureManagerDelegate, PSPDFDigitalSignatureRevisionDelegate, PSPDFDigitalSignatureSigningDelegate>
-+ (PSCFormExampleSignatureDelegate *)sharedDelegate;
-@property (atomic, strong) NSArray *certificates;
-@property (atomic, strong) NSArray *identities;
-@end
-
-@implementation PSCFormExampleSignatureDelegate
-
-+ (PSCFormExampleSignatureDelegate *)sharedDelegate {
-    static PSCFormExampleSignatureDelegate *delegate = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{delegate = [PSCFormExampleSignatureDelegate new];});
-    return delegate;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFDigitalSignatureRevisionDelegate and PSPDFDigitalSignatureSigningDelegate
-
-- (void)pdfRevisionRequested:(PSPDFDocument *)document verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
-    NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-    NSString *title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
-    [self showDocument:document withTitle:title];
-}
-
-- (void)pdfSigned:(PSPDFDocument *)document signingHandler:(id<PSPDFDigitalSignatureSigningHandler>)handler {
-    [self showDocument:document withTitle:@"Test"];
-    
-}
-
-- (void)showDocument:(PSPDFDocument *)document withTitle:(NSString *)title {
-    PSPDFViewController *controller = [self viewControllerForDocument:document];
-    controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-    
-    if (title) document.title = title;
-    
-    PSCAppDelegate *appDelegate = UIApplication.sharedApplication.delegate;
-    [appDelegate.catalog pushViewController:controller animated:YES];
-}
-
-- (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
-    return pdfController;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFDigitalSignatureManagerDelegate
-
-- (NSArray *)trustedCertificates {
-    if (!self.certificates) {
-        NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-        NSData *cert = [NSData dataWithContentsOfFile:[[samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"] path]];
-        self.certificates = @[[PSPDFDigitalCertificate certificateFromData:cert]];
-    }
-    return self.certificates;
-}
-
-- (NSArray *)signingIdentities {
-    if (!self.identities) {
-        NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-        self.identities = @[[PSPDFDigitalSigningIdentity signingIdentityWithFilePath:[[samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"] path] name:@"John Appleseed"]];
-    }
-    return self.identities;
-}
-
-- (BOOL)useAdobeCA {return YES;}
-- (NSArray *)revisionDelegates {return @[self];}
-- (NSArray *)signingDelegates {return @[self];}
-- (NSArray *)signingHandlers {return @[];}
-- (NSArray *)verificationHandlers {return @[];}
-
-@end
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormExample
 
-@interface PSCFormExample : PSCExample @end
+@interface PSCFormExample : PSCExample
+@end
+
 @implementation PSCFormExample
 
 - (id)init {
@@ -104,18 +35,45 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         self.contentDescription = @"PSPDFKit Complete/Enterprise supports PDF AcroForms.";
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
-        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
+
+		NSURL *resURL = NSBundle.mainBundle.resourceURL;
+		NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
+		NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
+		
+		NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
+		PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
+		PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed"
+																			   PKCS12:p12];
+		
+
+		
+		
+		PSPDFSignatureManager *smgr = [PSPDFSignatureManager sharedManager];
+		
+		[smgr registerSigner:p12signer];
+		
+		// Add certs to trust store
+		NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
+		NSData *certData = [NSData dataWithContentsOfURL:certURL];
+		
+		NSError *err = nil;
+		NSArray *certs = [PSPDFX509 certificatesFromPKCS7Data:certData error:&err];
+		if (err != nil) {
+			NSLog(@"ERROR: %@", err.localizedDescription);
+		} else {
+			for (PSPDFX509 *x509 in certs) {
+				[smgr addTrustedCertificate:x509];
+			}
+		}
+		
     }
     return self;
-}
-
-- (void)dealloc {
-    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     return PSPDFFormExampleInvokeWithFilename(@"Form_example.pdf");
 }
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -162,7 +120,9 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormDigitallySignedModifiedExample
 
-@interface PSCFormDigitallySignedModifiedExample : PSCExample @end
+@interface PSCFormDigitallySignedModifiedExample : PSCExample
+@end
+
 @implementation PSCFormDigitallySignedModifiedExample
 
 - (id)init {
@@ -171,13 +131,13 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         self.contentDescription = @"PSPDFKit Complete/Enterprise supports Digital Signature validation.";
         self.category = PSCExampleCategoryForms;
         self.priority = 10;
-        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
+//        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
     }
     return self;
 }
 
 - (void)dealloc {
-    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
+//    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
