@@ -479,6 +479,11 @@
 		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
 		9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeExample.m; sourceTree = "<group>"; };
 		9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeFilterExample.m; sourceTree = "<group>"; };
+		9A779D07194EEAEE00E09177 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9A779D08194EEB1200E09177 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9A779D09194EEB1C00E09177 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9A779D0A194EEB2600E09177 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9A779D0B194EEB3400E09177 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTextExtractionExample.m; sourceTree = "<group>"; };
 		9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardsExample.m; sourceTree = "<group>"; };
 		D2C011DB18F84740005D55A6 /* PSCManualToolbarSetupExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCManualToolbarSetupExample.m; sourceTree = "<group>"; };
@@ -1099,6 +1104,11 @@
 				ko,
 				pt_PT,
 				"zh-Hans",
+				id,
+				ms,
+				pl,
+				"zh-Hant",
+				th,
 			);
 			mainGroup = 784F010E15CF247900849F81;
 			productRefGroup = 784F011A15CF247900849F81 /* Products */;
@@ -1320,6 +1330,11 @@
 				7859B3471938F7580046E213 /* sv */,
 				7859B3481938F7580046E213 /* tr */,
 				7859B3491938F7580046E213 /* zh-Hans */,
+				9A779D07194EEAEE00E09177 /* id */,
+				9A779D08194EEB1200E09177 /* ms */,
+				9A779D09194EEB1C00E09177 /* pl */,
+				9A779D0A194EEB2600E09177 /* zh-Hant */,
+				9A779D0B194EEB3400E09177 /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
