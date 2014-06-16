@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1CC163471863446E00D41974 /* PSCFormExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC163461863446E00D41974 /* PSCFormExamples.m */; };
 		6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */; };
+		7802EC61194E9449006FD68F /* PSCSimpleFontPickerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EC60194E9449006FD68F /* PSCSimpleFontPickerExample.m */; };
 		780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */; };
 		780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */; };
 		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
@@ -191,6 +192,7 @@
 		1CC163461863446E00D41974 /* PSCFormExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCFormExamples.m; path = Forms/PSCFormExamples.m; sourceTree = "<group>"; };
 		6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDDelayedDocumentViewController.h; sourceTree = "<group>"; };
 		6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDDelayedDocumentViewController.m; sourceTree = "<group>"; };
+		7802EC60194E9449006FD68F /* PSCSimpleFontPickerExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSimpleFontPickerExample.m; sourceTree = "<group>"; };
 		780C820516B85C44009396AF /* PSCHeadlessSearchPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHeadlessSearchPDFViewController.h; sourceTree = "<group>"; };
 		780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHeadlessSearchPDFViewController.m; sourceTree = "<group>"; };
 		780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsExample.m; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 				78AD5AC41934854900ECC9FD /* PSCCustomSelectionKnobsExample.m */,
 				78AD5AD61934C5C200ECC9FD /* PSCCustomThumbnailBarCellExample.m */,
 				7859B2FC1937E4190046E213 /* PSCMultilineDocumentTitleExample.m */,
+				7802EC60194E9449006FD68F /* PSCSimpleFontPickerExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1173,6 +1176,7 @@
 				78B095E3183A24C800BBE328 /* PSCFreeFormImageResizeExample.m in Sources */,
 				78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */,
 				78A24A5315CFDAAF00328F4F /* PSCImageGridViewCell.m in Sources */,
+				7802EC61194E9449006FD68F /* PSCSimpleFontPickerExample.m in Sources */,
 				78A24A5415CFDAAF00328F4F /* PSCKioskPDFViewController.m in Sources */,
 				78A24A5515CFDAAF00328F4F /* PSCMagazine.m in Sources */,
 				78A24A5615CFDAAF00328F4F /* PSCMagazineFolder.m in Sources */,
