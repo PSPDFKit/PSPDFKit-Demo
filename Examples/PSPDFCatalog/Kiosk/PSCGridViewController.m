@@ -327,7 +327,6 @@
 // Calculates where the document view will be on screen.
 - (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
     CGRect newFrame = self.view.frame;
-    CGRect navBarFrame = self.navigationController.navigationBar.frame;
 
     // Animation needs to be different if we are in pageCurl mode.
     if (doublePageCurl) {
