@@ -82,23 +82,6 @@ CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIKit Detection
-
-// https://gist.github.com/steipete/6526860
-#define UIKitVersionNumber_iOS_7_0 0xB57
-BOOL PSCIsUIKitFlatMode(void) {
-    static BOOL isUIKitFlatMode = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // We get the modern UIKit if system is running >= iOS 7 and we were linked with >= SDK 7.
-        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-            isUIKitFlatMode = (NSVersionOfLinkTimeLibrary("UIKit") >> 16) >= UIKitVersionNumber_iOS_7_0;
-        }
-    });
-    return isUIKitFlatMode;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Popover
 
 static BOOL PSCIsControllerClassInPopoverAndVisible(UIPopoverController *popoverController, Class controllerClass) {

@@ -155,13 +155,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
-        // Show the thumbnail button on the HUD, but not on the toolbar. (we're not adding viewModeButtonItem here)
-        if (!PSCIsUIKitFlatMode()) {
-            controller.HUDView.documentLabel.labelStyle = PSPDFLabelStyleBordered;
-            controller.HUDView.pageLabel.labelStyle = PSPDFLabelStyleBordered;
-        }
         controller.HUDView.pageLabel.showThumbnailGridButton = YES;
-
         controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
@@ -178,8 +172,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
-        BOOL includeBrightnessButton = kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0;
-        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
         controller.pageTransition = PSPDFPageTransitionScrollContinuous;
         controller.scrollDirection = PSPDFScrollDirectionVertical;
@@ -230,7 +223,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return [example invokeWithDelegate:weakSelf];
         }]];
     }
-	
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
@@ -791,7 +784,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return browser;
     }]];
 
-	[testSection addContent:[PSContent contentWithTitle:@"Popover test" block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Popover test" block:^UIViewController *{
         PSCPopoverTestViewController *popover = [PSCPopoverTestViewController new];
         return popover;
     }]];
@@ -1398,11 +1391,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"PSPDFProcessor PPTX (Microsoft Office) conversion" block:^UIViewController *{
         NSURL *URL = [NSURL fileURLWithPath:@"/Users/steipete/Documents/Projects/PSPDFKit_meta/converts/Neu_03_VZ3_Introduction.pptx"];
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
-        
+
         PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem indeterminateProgressWithText:@"Converting..."];
         [status setHUDStyle:PSPDFStatusHUDStyleGradient];
         [status pushAnimated:YES];
-        
+
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
                 [status popAnimated:YES];
@@ -1411,7 +1404,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
                 [statusDone setHUDStyle:PSPDFStatusHUDStyleGradient];
                 [statusDone pushAndPopWithDelay:2.0f animated:YES];
-                
+
                 // generate document and show it
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
                 PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1477,7 +1470,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [self addDebugButtons];
 
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
-    PSC_IF_IOS7_OR_GREATER(_searchBar.searchBarStyle = UISearchBarStyleMinimal;)
+    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableHeaderView = _searchBar;
 
@@ -1485,11 +1478,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     _searchDisplayController.delegate = self;
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
-
-    // Private API to improve search result style - don't ship this in App Store builds.
-    if (!PSCIsUIKitFlatMode()) {
-        [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1497,25 +1485,22 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
-                               self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
-                               self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
-                               self.navigationController.view.tintColor = UIColor.whiteColor;
-                               // By default the system would show a white cursor.
-                               [[UITextField appearance] setTintColor:UIColor.pspdfColor];
-                               [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
-                               [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
-                               [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];)
-        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
-    }else {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
-    }
+    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
+    self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
+    self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
+    self.navigationController.view.tintColor = UIColor.whiteColor;
+    // By default the system would show a white cursor.
+    [[UITextField appearance] setTintColor:UIColor.pspdfColor];
+    [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
+    [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
+    [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
+
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
 
-    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack : UIBarStyleDefault;
-    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self.navigationController setToolbarHidden:YES animated:animated];
 
     // clear cache (for night mode)
@@ -1732,11 +1717,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
     // HACK: Using UISearchBarStyleMinimal produces a black bar on iPhone.
-    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleDefault;
+    self.searchBar.searchBarStyle = UISearchBarStyleDefault;
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
-    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -1746,7 +1731,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #ifdef PSPDF_USE_SOURCE
     UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
     self.navigationItem.leftBarButtonItem = memoryButton;
-    
+
     UIBarButtonItem *cacheButton = [[UIBarButtonItem alloc] initWithTitle:@"Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(debugClearCache)];
     self.navigationItem.rightBarButtonItem = cacheButton;
 #endif

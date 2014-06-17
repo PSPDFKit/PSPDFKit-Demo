@@ -27,20 +27,20 @@
 #define PSCLog(...)
 #endif
 
-// iOS 7 Compatibility
-#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
-#define kCFCoreFoundationVersionNumber_iOS_7_0 847.18
+// iOS 8 Compatibility
+#ifndef kCFCoreFoundationVersionNumber_iOS_8_0
+#define kCFCoreFoundationVersionNumber_iOS_8_0 900.0 //??
 #endif
 
 // Availability Macros
 #define PSCIsIPad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-#define PSC_IF_IOS7_OR_GREATER(...) \
-if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) { __VA_ARGS__ }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+#define PSC_IF_IOS8_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) { __VA_ARGS__ }
 #else
-#define PSC_IF_IOS7_OR_GREATER(...)
+#define PSC_IF_IOS8_OR_GREATER(...)
 #endif
 
-#define PSC_IF_PRE_IOS7(...)  \
-if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0 || __IPHONE_OS_VERSION_MAX_ALLOWED < 70000) { __VA_ARGS__ }
+#define PSC_IF_PRE_IOS8(...)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_8_0 || __IPHONE_OS_VERSION_MAX_ALLOWED < 80000) { __VA_ARGS__ }

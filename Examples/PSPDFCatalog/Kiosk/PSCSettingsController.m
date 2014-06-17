@@ -77,7 +77,6 @@ static NSMutableDictionary *_settings;
         _settings[PROPERTY(annotationButtonItem)] = @YES;
         _settings[PROPERTY(bookmarkButtonItem)] = @YES;
         _settings[PROPERTY(brightnessButtonItem)] = @NO;
-        PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
         _settings[PROPERTY(outlineButtonItem)] = @YES;
         _settings[PROPERTY(printButtonItem)] = @YES;
         _settings[PROPERTY(openInButtonItem)] = @YES;
@@ -166,7 +165,7 @@ static NSMutableDictionary *_settings;
         [_paperColorControl addTarget:self action:@selector(paperColorChanged:) forControlEvents:UIControlEventValueChanged];
 
         // Use full size.
-        self.contentSizeForViewInPopover = CGSizeMake(320.f, 1500.f);
+        self.preferredContentSize = CGSizeMake(320.f, 1500.f);
     }
     return self;
 }
@@ -183,11 +182,7 @@ static NSMutableDictionary *_settings;
     CGContextStrokeRect(context, (CGRect){.size=imageSize});
     renderedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    // Don't tint on iOS7
-    if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-        PSC_IF_IOS7_OR_GREATER(renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];)
-    }
-    return renderedImage;
+    return [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -303,7 +298,6 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 // This is a bit of a hack, matching the segmented control to the group style is tricky.
 - (CGRect)rectForSegmentedControl {
-    PSC_IF_PRE_IOS7(return CGRectMake(9, 0, self.view.frame.size.width-18, 46);)
     return CGRectMake(0, 0, self.view.frame.size.width, 44.f); // TODO: dynamic cell height?
 }
 

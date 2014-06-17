@@ -51,8 +51,7 @@
     if ((self = [super init])) {
         _document = document;
         self.title = [document.fileURL lastPathComponent];
-        PSC_IF_PRE_IOS7(self.contentSizeForViewInPopover = CGSizeMake(350.f, document.metadata.count * 44.f);)
-        PSC_IF_IOS7_OR_GREATER(self.preferredContentSize = CGSizeMake(350.f, document.metadata.count * 44.f);)
+        self.preferredContentSize = CGSizeMake(350.f, document.metadata.count * 44.f);
     }
     return self;
 }

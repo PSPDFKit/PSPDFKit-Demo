@@ -143,10 +143,8 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if ([viewController isKindOfClass:PSPDFViewController.class]) {
-        if (PSCIsUIKitFlatMode()) {
-            PSPDFViewController *pdfController = (PSPDFViewController *)viewController;
-            pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
-        }
+        PSPDFViewController *pdfController = (PSPDFViewController *)viewController;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
     }
 }
 
