@@ -88,8 +88,7 @@ static const NSUInteger noVerticalButtons = 6;
 	[super viewDidLayoutSubviews];
 	
 	CGRect buttonBounds = self.view.bounds;
-	CGFloat verticalTranslation = 0.f;
-	PSPDF_IF_IOS7_OR_GREATER(verticalTranslation = self.topLayoutGuide.length;)
+	CGFloat verticalTranslation = self.topLayoutGuide.length;
 	buttonBounds.origin.y += verticalTranslation;
 	buttonBounds.size.height -= verticalTranslation;
 	CGFloat buttonWidth = buttonBounds.size.width / noHorizontalButtons;

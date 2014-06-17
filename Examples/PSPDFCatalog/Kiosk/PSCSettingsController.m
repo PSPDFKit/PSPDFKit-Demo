@@ -83,7 +83,6 @@ static NSMutableDictionary *_settings;
         _settings[PROPERTY(emailButtonItem)] = @YES;
         _settings[PROPERTY(activityButtonItem)] = @YES;
         _settings[PROPERTY(viewModeButtonItem)] = @YES;
-        _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
         _settings[@"renderBackgroundColor"] = UIColor.whiteColor;
         _settings[@"renderContentOpacity"] = @(1.f);
         _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
@@ -123,7 +122,7 @@ static NSMutableDictionary *_settings;
                              @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
                              @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage2"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
                              @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
-                             @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
+                             @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem")],
                              @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
                              @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
                              ];
@@ -277,7 +276,6 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: _settings[PROPERTY(bookmarkButtonItem)] = value; break;
                 case 8: _settings[PROPERTY(activityButtonItem)] = value; break;
                 case 9: _settings[PROPERTY(viewModeButtonItem)] = value; break;
-                case 10:_settings[PROPERTY(useBorderedToolbarStyle)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -383,7 +381,6 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: cellSwitch.on = [_settings[PROPERTY(bookmarkButtonItem)] boolValue]; break;
                 case 8: cellSwitch.on = [_settings[PROPERTY(activityButtonItem)] boolValue]; break;
                 case 9: cellSwitch.on = [_settings[PROPERTY(viewModeButtonItem)] boolValue]; break;
-                case 10: cellSwitch.on = [_settings[PROPERTY(useBorderedToolbarStyle)] boolValue]; break;
                 default: break;
             }
         }break;

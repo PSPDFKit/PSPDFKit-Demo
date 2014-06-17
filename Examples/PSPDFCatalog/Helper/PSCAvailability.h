@@ -29,7 +29,7 @@
 
 // iOS 8 Compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_8_0
-#define kCFCoreFoundationVersionNumber_iOS_8_0 900.0 //??
+#define kCFCoreFoundationVersionNumber_iOS_8_0 1129.15
 #endif
 
 // Availability Macros
