@@ -41,25 +41,23 @@
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];
     [[PSPDFPageRenderer sharedPageRenderer] setupGraphicsContext:context rectangle:clipRect pageInfo:pageInfo];
 
-    // Flip drawing.
+	// Set up the text and it's drawing attributes.
+    NSString *overlayText = @"Example overlay";
+	UIFont *font = [UIFont fontWithName:@"Helvetica-Bold" size:24.f];
+	UIColor *textColor = [UIColor blueColor];
+	NSDictionary *attributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor};
+	
+    // Flip drawing, set text drawing mode (fill).
     CGContextTranslateCTM(context, 0, pageInfo.rotatedPageRect.size.height);
     CGContextScaleCTM(context, 1, -1);
-
-    // Set up drawing.
-    NSString *fontName = @"Helvetica-Bold";
-    CGFloat fontSize = 24.f;
-    NSString *overlayText = @"Example overlay";
-    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextSelectFont(context, [fontName cStringUsingEncoding:NSUTF8StringEncoding], fontSize, kCGEncodingMacRoman);
-    CGAffineTransform xform = CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0);
-    CGContextSetTextMatrix(context, xform);
-
-    // Calculate the font box to center it.
-    CGSize boundingBox = [overlayText sizeWithFont:[UIFont fontWithName:fontName size:fontSize]];
-    CGContextSetTextPosition(context, __tg_round((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
-
-    // Finally draw text.
-    CGContextShowText(context, [overlayText cStringUsingEncoding:NSUTF8StringEncoding], [overlayText length]);
+	CGContextSetTextDrawingMode(context, kCGTextFill);
+	
+    // Calculate the font box to center the text on the page.
+	CGSize boundingBox = [overlayText sizeWithAttributes:attributes];
+	CGPoint point = CGPointMake(__tg_round((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
+	
+	// Finally draw the text.
+	[overlayText drawAtPoint:point withAttributes:attributes];
 }
 
 @end
