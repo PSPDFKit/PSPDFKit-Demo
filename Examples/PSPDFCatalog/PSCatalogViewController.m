@@ -513,7 +513,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(hackerMagURL, YES);
         PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument documentWithURL:newURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
+		controller.annotationButtonItem.flexibleAnnotationToolbar.saveAfterToolbarHiding = YES;
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
@@ -613,7 +613,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeObject:PSPDFAnnotationStringInk];
-        pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
+		pdfController.annotationButtonItem.flexibleAnnotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
     }]];
 
@@ -1165,7 +1165,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation updating after a save" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
+		pdfController.annotationButtonItem.flexibleAnnotationToolbar.saveAfterToolbarHiding = YES;
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         return pdfController;
     }]];

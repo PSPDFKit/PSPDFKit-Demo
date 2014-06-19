@@ -9,11 +9,10 @@
 //
 
 // Example how to add a always-visible vertical toolbar
-// Internally uses PSPDFAnnotationToolbar for adding the annotations.
 @interface PSCVerticalAnnotationToolbar : UIView
 
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager;
 
-@property (nonatomic, weak) PSPDFViewController *pdfController;
+@property (nonatomic, strong) PSPDFAnnotationStateManager *annotationStateManager;
 
 @end
