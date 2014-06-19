@@ -100,12 +100,6 @@
     return self;
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    // This is required for iOS 6.
-    self.pdfController.splitViewController.view.frame = self.view.bounds;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 
