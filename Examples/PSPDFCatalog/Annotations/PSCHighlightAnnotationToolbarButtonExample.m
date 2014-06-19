@@ -61,12 +61,7 @@
         _highlightButton = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f, 32.f, 32.f)];
         [_highlightButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         _highlightButton.showsTouchWhenHighlighted = YES;
-        UIImage *highlightImage = PSPDFBundleImage(@"highlight");
-        if ([highlightImage respondsToSelector:@selector(imageWithRenderingMode:)]) {
-            highlightImage = [highlightImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        }else {
-            highlightImage = [highlightImage psc_imageTintedWithColor:UIColor.whiteColor fraction:0.f];
-        }
+        UIImage *highlightImage = [PSPDFBundleImage(@"highlight") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_highlightButton setImage:highlightImage forState:UIControlStateNormal];
         [_highlightButton setImage:[PSPDFBundleImage(@"highlight") psc_imageTintedWithColor:UIColor.yellowColor fraction:0.f] forState:UIControlStateSelected];
         self.customView = _highlightButton;
