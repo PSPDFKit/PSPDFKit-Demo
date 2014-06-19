@@ -36,7 +36,6 @@
     navController.view.frame = CGRectMake(100.f, 100.f, 500.f, 500.f);
     [dummyController.view addSubview:navController.view];
     [pdfController didMoveToParentViewController:navController];
-    pdfController.tintColor = UIColor.pspdfColor;
 
     return dummyController;
 }

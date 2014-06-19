@@ -77,7 +77,6 @@
             // match style
             self.toolbar.barStyle = pdfController.navigationBarStyle;
             self.toolbar.translucent = pdfController.isTransparentHUD;
-            self.toolbar.tintColor = pdfController.tintColor;
 
             // add the toolbar to the view hierarchy for color picking etc
             if (pdfController.navigationController) {

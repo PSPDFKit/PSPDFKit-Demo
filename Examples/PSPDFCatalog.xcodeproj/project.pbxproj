@@ -40,7 +40,6 @@
 		78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8E16C50CB2003CB721 /* PSCMetadataBarButtonItem.m */; };
 		78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C9016C50CB2003CB721 /* PSCPlayBarButtonItem.m */; };
 		78604C9B16C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C9216C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m */; };
-		78604C9C16C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C9416C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m */; };
 		78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */; };
 		786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */; };
 		786FEED318FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */; };
@@ -254,8 +253,6 @@
 		78604C9016C50CB2003CB721 /* PSCPlayBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPlayBarButtonItem.m; sourceTree = "<group>"; };
 		78604C9116C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSelectionZoomBarButtonItem.h; sourceTree = "<group>"; };
 		78604C9216C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSelectionZoomBarButtonItem.m; sourceTree = "<group>"; };
-		78604C9316C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintColorSelectionBarButtonItem.h; sourceTree = "<group>"; };
-		78604C9416C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintColorSelectionBarButtonItem.m; sourceTree = "<group>"; };
 		78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCRotationLockBarButtonItem.m; sourceTree = "<group>"; };
 		78604CB816C51129003CB721 /* PSCRotationLockBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCRotationLockBarButtonItem.h; sourceTree = "<group>"; };
 		786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomAnnotationProvider.m; sourceTree = "<group>"; };
@@ -648,8 +645,6 @@
 				78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */,
 				78604C9116C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.h */,
 				78604C9216C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m */,
-				78604C9316C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.h */,
-				78604C9416C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m */,
 			);
 			path = BarButtonItems;
 			sourceTree = "<group>";
@@ -1267,7 +1262,6 @@
 				780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */,
 				78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */,
 				78604C9B16C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m in Sources */,
-				78604C9C16C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m in Sources */,
 				78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */,
 				78C7C5DA16CB9C4D0006075D /* PSCAnnotationTestController.m in Sources */,
 				78C7C5DB16CB9C4D0006075D /* PSCButtonPDFViewController.m in Sources */,

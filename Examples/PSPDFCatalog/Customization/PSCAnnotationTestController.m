@@ -28,7 +28,6 @@
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         self.linkAction = PSPDFLinkActionInlineBrowser;
         self.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
-        self.tintColor = [UIColor orangeColor];
         self.maximumZoomScale = 100; // as we have the selection zoom-in tool
 
         PSPDFBarButtonItem *playButtonItem = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:self];
