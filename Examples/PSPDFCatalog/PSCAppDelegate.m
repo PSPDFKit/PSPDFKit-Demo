@@ -48,6 +48,12 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // Set your license key here. PSPDFKit is commercial software.
+    // Each PSPDFKit license is bound to a specific app bundle id.
+    // Visit http://customers.pspdfkit.com to get your demo or commercial license key.
+    [PSPDFKit setLicenseKey:@"YOUR_LICENSE_KEY_GOES_HERE"];
+
     // Example how to easily change certain images in PSPDFKit.
     //[self customizeImages];
 
@@ -58,11 +64,6 @@
 #ifdef DEBUG
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
 #endif
-
-    // Set your license key here. PSPDFKit is commercial software.
-    // Each PSPDFKit license is bound to a specific app bundle id.
-    // Visit http://customers.pspdfkit.com to get your license key.
-    PSPDFSetLicenseKey("DEMO");
 
     // Configure callback for Open In Chrome feature. Optional.
     PSPDFKit.sharedInstance[PSPDFXCallbackURLString] = @"pspdfcatalog://";
