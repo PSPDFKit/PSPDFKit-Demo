@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Custom apps will require either a demo or commercial license key from http://pspdfkit.com
         PSPDFKit.setLicenseKey("YOUR_LICENSE_KEY_GOES_HERE")
 
-        var fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit Quickstart Guide.pdf")
+        var fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit QuickStart Guide.pdf")
         var document = PSPDFDocument(URL: fileURL)
         var pdfController = PDFViewController(document: document)
         pdfController.thumbnailBarMode = .Scrollable
