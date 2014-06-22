@@ -2,48 +2,36 @@
 //  AppDelegate.swift
 //  SwiftExample
 //
-//  Created by Peter Steinberger on 21/06/14.
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
+//
+//  The PSPDFKit Sample applications are licensed with a modified BSD license.
+//  Please see License for details. This notice may not be removed from this file.
 //
 
 import UIKit
+import PSPDFKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Override point for customization after application launch.
         self.window!.backgroundColor = UIColor.whiteColor()
+
+        // Custom apps will require either a demo or commercial license key from http://pspdfkit.com
+        PSPDFKit.setLicenseKey("YOUR_LICENSE_KEY_GOES_HERE")
+
+        var fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit Quickstart Guide.pdf")
+        var document = PSPDFDocument(URL: fileURL)
+        var pdfController = PDFViewController(document: document)
+        pdfController.thumbnailBarMode = .Scrollable
+
+        self.window!.rootViewController = UINavigationController(rootViewController: pdfController)
+
         self.window!.makeKeyAndVisible()
         return true
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 
