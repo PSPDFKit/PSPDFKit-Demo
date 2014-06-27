@@ -166,7 +166,7 @@
     return cell;
 }
 
-// NOTE: For the sake of a short and clear example, we're using a shortcut here with API that is not documented. (iOS 7.0+)
+// NOTE: For the sake of a short and clear example, we're using a shortcut here with API that is not documented.
 // See https://gist.github.com/steipete/10541433 for more details and possible better solutions.
 - (NSString *)tableView:(UITableView *)tableView titleForSwipeAccessoryButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
