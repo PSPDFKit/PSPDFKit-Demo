@@ -336,7 +336,6 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 
     // Match styling. Set statusbar to inherit, and bars to light color.
     self.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
-    self.navigationBarStyle = UIBarStyleDefault;
     self.HUDViewMode = PSPDFHUDViewModeAlways;
     self.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 
