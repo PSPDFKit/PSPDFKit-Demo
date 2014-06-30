@@ -180,10 +180,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.renderAnimationEnabled = NO;
 		controller.shouldHideNavigationBarWithHUD = NO;
 		controller.shouldHideStatusBarWithHUD = NO;
-		controller.transparentHUD = NO;
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+		navController.navigationBar.translucent = NO;
         [self.navigationController presentViewController:navController animated:YES completion:NULL];
         return (UIViewController *)nil;
     }]];
