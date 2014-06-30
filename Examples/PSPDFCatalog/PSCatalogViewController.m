@@ -144,7 +144,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // Don't use thumbnails if the PDF is not rendered.
@@ -179,7 +178,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+		controller.shouldHideNavigationBarWithHUD = NO;
+		controller.shouldHideStatusBarWithHUD = NO;
+		controller.transparentHUD = NO;
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
