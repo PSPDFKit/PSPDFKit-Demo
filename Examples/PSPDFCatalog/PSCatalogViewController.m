@@ -1495,6 +1495,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
     [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
     [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];
+	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
+	[[UITableView appearance] setSectionIndexColor:UIColor.pspdfColor];
+	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
