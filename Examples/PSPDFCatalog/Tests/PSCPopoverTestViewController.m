@@ -88,8 +88,7 @@ static const NSUInteger noVerticalButtons = 6;
 	[super viewDidLayoutSubviews];
 	
 	CGRect buttonBounds = self.view.bounds;
-	CGFloat verticalTranslation = 0.f;
-	PSPDF_IF_IOS7_OR_GREATER(verticalTranslation = self.topLayoutGuide.length;)
+	CGFloat verticalTranslation = self.topLayoutGuide.length;
 	buttonBounds.origin.y += verticalTranslation;
 	buttonBounds.size.height -= verticalTranslation;
 	CGFloat buttonWidth = buttonBounds.size.width / noHorizontalButtons;
@@ -110,8 +109,7 @@ static const NSUInteger noVerticalButtons = 6;
 	}
 	
 	UIViewController *sample = [UIViewController new];
-	PSPDF_IF_PRE_IOS7(sample.view.backgroundColor = [UIColor whiteColor];)
-	sample.contentSizeForViewInPopover = CGSizeMake(300, 400);
+	sample.preferredContentSize = CGSizeMake(300, 400);
 	
 	UIPopoverController *popover;
 	if (self.useSystemPopover && PSPDFIsIPad()) {
@@ -125,7 +123,7 @@ static const NSUInteger noVerticalButtons = 6;
 	double delayInSeconds = 5.0;
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-		[wSamle setContentSizeForViewInPopover:CGSizeMake(200, 300)];
+		wSamle.preferredContentSize = CGSizeMake(200, 300);
 	});
 	
 	popover.delegate = self;

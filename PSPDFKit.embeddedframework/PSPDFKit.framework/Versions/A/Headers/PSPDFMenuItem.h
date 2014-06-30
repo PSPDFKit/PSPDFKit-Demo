@@ -39,6 +39,9 @@
 /// Menu item can be enabled/disabled. (disable simply hides it from the UIMenuController)
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
+/// If this is set to YES, we will invoke the menu item automatically, instead of presenting it.
+@property (nonatomic, assign) BOOL shouldInvokeAutomatically;
+
 /// Helper to identify the current action.
 @property (nonatomic, copy) NSString *identifier;
 
@@ -71,6 +74,14 @@
  @param object can be an instance or a class.
  */
 + (void)installMenuHandlerForObject:(id)object;
+
+@end
+
+@interface PSPDFMenuItem (Analytics)
+
+// This is called when a menu item is being called.
+// Swizzle this and fetch the `identifier` to add analytics for menu actions.
+- (void)performBlock;
 
 @end
 

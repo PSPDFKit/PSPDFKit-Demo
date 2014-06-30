@@ -77,14 +77,12 @@ static NSMutableDictionary *_settings;
         _settings[PROPERTY(annotationButtonItem)] = @YES;
         _settings[PROPERTY(bookmarkButtonItem)] = @YES;
         _settings[PROPERTY(brightnessButtonItem)] = @NO;
-        PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
         _settings[PROPERTY(outlineButtonItem)] = @YES;
         _settings[PROPERTY(printButtonItem)] = @YES;
         _settings[PROPERTY(openInButtonItem)] = @YES;
         _settings[PROPERTY(emailButtonItem)] = @YES;
         _settings[PROPERTY(activityButtonItem)] = @YES;
         _settings[PROPERTY(viewModeButtonItem)] = @YES;
-        _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
         _settings[@"renderBackgroundColor"] = UIColor.whiteColor;
         _settings[@"renderContentOpacity"] = @(1.f);
         _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
@@ -124,7 +122,7 @@ static NSMutableDictionary *_settings;
                              @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
                              @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage2"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
                              @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
-                             @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
+                             @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem")],
                              @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
                              @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
                              ];
@@ -166,7 +164,7 @@ static NSMutableDictionary *_settings;
         [_paperColorControl addTarget:self action:@selector(paperColorChanged:) forControlEvents:UIControlEventValueChanged];
 
         // Use full size.
-        self.contentSizeForViewInPopover = CGSizeMake(320.f, 1500.f);
+        self.preferredContentSize = CGSizeMake(320.f, 1500.f);
     }
     return self;
 }
@@ -183,11 +181,7 @@ static NSMutableDictionary *_settings;
     CGContextStrokeRect(context, (CGRect){.size=imageSize});
     renderedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    // Don't tint on iOS7
-    if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-        PSC_IF_IOS7_OR_GREATER(renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];)
-    }
-    return renderedImage;
+    return [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -282,7 +276,6 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: _settings[PROPERTY(bookmarkButtonItem)] = value; break;
                 case 8: _settings[PROPERTY(activityButtonItem)] = value; break;
                 case 9: _settings[PROPERTY(viewModeButtonItem)] = value; break;
-                case 10:_settings[PROPERTY(useBorderedToolbarStyle)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -303,7 +296,6 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 // This is a bit of a hack, matching the segmented control to the group style is tricky.
 - (CGRect)rectForSegmentedControl {
-    PSC_IF_PRE_IOS7(return CGRectMake(9, 0, self.view.frame.size.width-18, 46);)
     return CGRectMake(0, 0, self.view.frame.size.width, 44.f); // TODO: dynamic cell height?
 }
 
@@ -389,7 +381,6 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: cellSwitch.on = [_settings[PROPERTY(bookmarkButtonItem)] boolValue]; break;
                 case 8: cellSwitch.on = [_settings[PROPERTY(activityButtonItem)] boolValue]; break;
                 case 9: cellSwitch.on = [_settings[PROPERTY(viewModeButtonItem)] boolValue]; break;
-                case 10: cellSwitch.on = [_settings[PROPERTY(useBorderedToolbarStyle)] boolValue]; break;
                 default: break;
             }
         }break;

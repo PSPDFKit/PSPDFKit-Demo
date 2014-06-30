@@ -33,10 +33,13 @@
 /// Returns the opacity menu item
 - (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation withColor:(UIColor *)color;
 
+/// Show the inspector.
+- (id)showInspectorForAnnotations:(NSArray *)annotations options:(NSDictionary *)options animated:(BOOL)animated;
+
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call `menuItemsForAnnotation:` to show an `UIMenuController`, except for `PSPDFAnnotationTypeNote` which is handled differently on iPad. (`showNoteControllerForAnnotation`)
 /// @note The better way to extend this is to use the `shouldShowMenuItems:*` delegates.
-- (void)showMenuForAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)edgeInsets animated:(BOOL)animated;
+- (void)showMenuForAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)edgeInsets allowPopovers:(BOOL)allowPopovers animated:(BOOL)animated;
 
 /// Shows a popover/modal controller to edit a `PSPDFAnnotation`.
 - (PSPDFNoteAnnotationViewController *)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation showKeyboard:(BOOL)showKeyboard animated:(BOOL)animated;
@@ -95,6 +98,7 @@
 
 // Show menu if annotation/text is selected.
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
+- (void)showMenuIfSelectedAnimated:(BOOL)animated allowPopovers:(BOOL)allowPopovers;
 
 @end
 
@@ -110,6 +114,7 @@ extern NSString *const PSPDFTextMenuPause;
 
 // General
 // Annotation types are used from PSPDFAnnotationString* defines
+extern NSString *const PSPDFAnnotationMenuNote;
 extern NSString *const PSPDFAnnotationMenuGroup;
 extern NSString *const PSPDFAnnotationMenuUngroup;
 extern NSString *const PSPDFAnnotationMenuSave;

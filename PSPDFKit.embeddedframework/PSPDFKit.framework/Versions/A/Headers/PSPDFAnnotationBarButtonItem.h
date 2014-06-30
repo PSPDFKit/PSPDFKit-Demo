@@ -54,4 +54,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
 /// If set to nil (the default), the `PSPDFViewController`'s navigationController view or the containing `UIToolbar`'s or `UINavigationBar`'s superview will be used. 
 @property (nonatomic, strong) UIView *hostView;
 
+// Hide the displayed toolbar, if any is displayed.
+- (BOOL)hideDisplayedToolbarAnimated:(BOOL)animated;
+
 @end

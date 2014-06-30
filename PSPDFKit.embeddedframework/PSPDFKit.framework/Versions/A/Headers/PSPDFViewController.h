@@ -463,7 +463,8 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Thumbnail controller. Contains the (grid) collectionView. Lazily created.
 @property (nonatomic, strong) PSPDFThumbnailViewController *thumbnailController;
 
-/// Thumbnail size. For defaults see `PSPDFCache.sharedCache.thumbnailSize`.
+/// Thumbnail size.
+/// This will be different depending on the device idiom: (170.f, 220.f) for iPad and (85.f, 110.f) on iPhone.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
 /// Set margin for thumbnail view mode. Defaults to `UIEdgeInsetsMake(15.f, 15.f, 15.f, 15.f)`.
@@ -535,10 +536,6 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 
 /// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
 @property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
-
-/// If YES, this will directly show the note inspector. Only evaluated on iPad. Defaults to YES.
-/// Set this to NO to get the same behavior on iPad and iPhone.
-@property (nonatomic, assign) BOOL skipMenuForNoteAnnotationsOnIPad;
 
 /// Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
 /// (The most probable candidate for this is `PSPDFFreeTextAnnotation`)

@@ -34,18 +34,16 @@
     PSPDFRenderDrawBlock drawBlock = ^(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options) {
         // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
         NSString *text = @"PSPDFKit Live Watermark";
-        if ([text respondsToSelector:@selector(drawWithRect:options:attributes:context:)]) { // iOS 7 only
-            NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
-            stringDrawingContext.minimumScaleFactor = 0.1f;
+        NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
+        stringDrawingContext.minimumScaleFactor = 0.1f;
 
-            CGContextTranslateCTM(context, 0.f, cropBox.size.height/2.f);
-            CGContextRotateCTM(context, -(CGFloat)M_PI / 4.f);
-            [text drawWithRect:cropBox
-                       options:NSStringDrawingUsesLineFragmentOrigin
-                    attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:100],
-                                 NSForegroundColorAttributeName : [UIColor.redColor colorWithAlphaComponent:0.5f]}
-                       context:stringDrawingContext];
-        }
+        CGContextTranslateCTM(context, 0.f, cropBox.size.height/2.f);
+        CGContextRotateCTM(context, -(CGFloat)M_PI / 4.f);
+        [text drawWithRect:cropBox
+                   options:NSStringDrawingUsesLineFragmentOrigin
+                attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:100],
+                             NSForegroundColorAttributeName : [UIColor.redColor colorWithAlphaComponent:0.5f]}
+                   context:stringDrawingContext];
     };
     document.renderOptions = @{PSPDFRenderDrawBlockKey : drawBlock};
 
@@ -65,18 +63,16 @@
     PSPDFRenderDrawBlock drawBlock = ^(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options) {
         // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
         NSString *text = @"PSPDFKit Example Watermark";
-        if ([text respondsToSelector:@selector(drawWithRect:options:attributes:context:)]) { // iOS 7 only
-            NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
-            stringDrawingContext.minimumScaleFactor = 0.1f;
+        NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
+        stringDrawingContext.minimumScaleFactor = 0.1f;
 
-            CGContextTranslateCTM(context, 0.f, cropBox.size.height/2.f);
-            CGContextRotateCTM(context, -(CGFloat)M_PI / 4.f);
-            [text drawWithRect:cropBox
-                       options:NSStringDrawingUsesLineFragmentOrigin
-                    attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:100],
-                                 NSForegroundColorAttributeName : [UIColor.redColor colorWithAlphaComponent:0.5f]}
-                       context:stringDrawingContext];
-        }
+        CGContextTranslateCTM(context, 0.f, cropBox.size.height/2.f);
+        CGContextRotateCTM(context, -(CGFloat)M_PI / 4.f);
+        [text drawWithRect:cropBox
+                   options:NSStringDrawingUsesLineFragmentOrigin
+                attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:100],
+                             NSForegroundColorAttributeName : [UIColor.redColor colorWithAlphaComponent:0.5f]}
+                   context:stringDrawingContext];
     };
 
     // Fetch dictionary and add drawing block.

@@ -171,7 +171,8 @@
 
 /// Limit pages to a certain page range.
 /// If document has a pageRange set, the visible pages can be limited to a certain subset. Defaults to nil.
-/// @warning Changing this will require a reloadData on the `PSPDFViewController` and also a `clearCache` for this document (as the cached pages will be different after changing this!)
+/// @warning Changing this will require a reloadData on the `PSPDFViewController` and also a `clearCache` for this document (as the cached pages will be different after changing this!).
+/// Setting this property will also re-generate the document providers, which might discard any unsaved annotations.
 @property (nonatomic, copy) NSIndexSet *pageRange;
 
 // Returns the page of the pageRange feature.

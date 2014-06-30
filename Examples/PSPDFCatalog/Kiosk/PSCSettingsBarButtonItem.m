@@ -11,14 +11,6 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCSettingsController.h"
 
-static UIImage *PSCImageNamed(NSString *imageName) {
-    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-        return [UIImage imageNamed:imageName];
-    }else {
-        return [UIImage imageNamed:[imageName stringByAppendingString:@"-legacy"]];
-    }
-}
-
 @implementation PSCSettingsBarButtonItem
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -26,11 +18,11 @@ static UIImage *PSCImageNamed(NSString *imageName) {
 
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    return PSCImageNamed(@"settings");
+    return [UIImage imageNamed:@"settings"];
 }
 
 - (UIImage *)landscapeImagePhone {
-    return PSCImageNamed(@"settings-landscape");
+    return [UIImage imageNamed:@"settings-landscape"];
 }
 
 - (NSString *)actionName {

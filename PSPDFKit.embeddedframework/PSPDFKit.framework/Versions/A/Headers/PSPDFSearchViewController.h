@@ -126,7 +126,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 // Returns the searchResult for a cell.
 - (PSPDFSearchResult *)searchResultForIndexPath:(NSIndexPath *)indexPath;
 
-// Will return a searchbar. Called during viewDidLoad. Use to customize the toolbar.
+// Will return a searchbar. Called during `viewDidLoad`. Use to customize the toolbar.
+// This method does basic properties like `tintColor`, `showsCancelButton` and `placeholder`.
+// After calling this, the delegate will be set to this class.
 - (UISearchBar *)createSearchBar;
 
 // Currently loaded search results

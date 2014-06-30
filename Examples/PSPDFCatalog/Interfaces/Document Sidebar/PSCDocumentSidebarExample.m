@@ -45,7 +45,6 @@
     splitController.viewControllers = @[tableNavController, hostNavController];
 
     PSCHostingController *hostingController = [PSCHostingController new];
-    hostingController.wantsFullScreenLayout = YES;
     [hostingController addChildViewController:splitController];
     [hostingController.view addSubview:splitController.view];
     [delegate.currentViewController presentViewController:hostingController animated:YES completion:NULL];

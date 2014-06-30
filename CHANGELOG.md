@@ -4,6 +4,40 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.7.5 - 16/June/2014__
+
+With about 90% of all devices running iOS 7 (https://developer.apple.com/support/appstore/), it's time for us to look into the future.
+This will be the last release that supports iOS 6. We already started working on supporting iOS 8 and will continue to support iOS 7.0 and 7.1.
+We've planned some exciting new features and new ideas for upcoming releases - stay tuned!
+
+*  New Localizations: Indonesian, Malaysian, Polish, Chinese Traditional, Thai, Turkish and Ukrainian.
+*  Updates the WACOM stylus driver to no longer eagerly initialize, which could present a bluetooth disabled alert view.
+*  Annotations added to a `PSPDFDocument` programmatically now always get the `isDirty` flag set to ensure that they are being saved.
+*  `PSPDFResizableView` now correctly deals with `UIAppearance` and makes it easier to customize individual knobs. See `PSCCustomSelectionKnobsExample` for details.
+*  Adds resilience / asserts form missing views in unusual (child view controller) configurations for the annotation toolbar.
+*  Improved JavaScript-calculation-support, adds `AFMakeNumber` to the list of supported JS functions and improves hide action annotation resolving.
+*  Improves compatibility to parse image stamps from 3rd-party software.
+*  Outlines where the page reference is missing are now displayed to be consistent with Adobe Acrobat.
+*  `PSPDFLibrary` learned exact sentence matching via the `PSPDFLibraryMatchExactPhrasesOnlyKey` option.
+*  Improves support for named hide actions that are bound to form elements.
+*  Allow to hook into `PSPDFMenuItem` action for analytics.
+*  Scrolling or zooming will no longer re-show the note popover. Moving the annotation while the popover being open will still re-show the popover. This behavior change does not effect other annotations that use a `UIMenuController` or note on iPhone.
+*  The annotation toolbar will now be hidden automatically if the last tab on the tabbed view controller is closed.
+*  The font picker blacklist now uses regular expressions for matching, to allow more special cases like blocking “Courier” but still allowing “Courier New”. The old behavior was a simple prefix check.
+*  The tables in `PSPDFLibrary` is now lazily created on first use, improving speed and delaying the unicode61 tokenizer check until the library is actually used.
+*  API: Removes the `thumbnailSize` property on `PSPDFCache`. This should be set in the `PSPDFViewController` instead.
+*  API: Hide `thumbnailCellClass` in `PSPDFThumbnailBar`. Use the standard class override mechanism instead.
+*  API: Removes the `skipMenuForNoteAnnotationsOnIPad` property on `PSPDFViewController`. Use the new `shouldInvokeAutomatically` on `PSPDFMenuItem` instead. (See `PSCOpenNoteOnPhoneWithSingleTapExample`)
+*  Fixes an issue related to copying sound annotations.
+*  Fixes an issue where `UIImagePickerController` would sometimes not cancel correctly on iOS 7.0.
+*  Fixes an crash related to accessibility support and page reading.
+*  Fixes an issue where a picked image was added after pressing “Cancel” on the size popover.
+*  Fixes an issue where the thumbnail bar wouldn’t update correctly the first time it is displayed when it was hidden initially.
+*  Fixes an issue related to annotation fetching when the `pageRange` feature is enabled.
+*  Fixes a potential issue related to cancelling index requests in `PSPDFLibrary`.
+*  Fixes a potential issue in the vector separation code of the ink eraser.
+*  Fixes an incompatibility with the NewRelic framework.
+
 __v3.7.4 - 26/May/2014__
 
 Note: With WWDC imminent and the upcoming release of iOS 8, we plan to finally drop support for iOS 6. Let us know your thoughts about this change: support@pspdfkit.com.

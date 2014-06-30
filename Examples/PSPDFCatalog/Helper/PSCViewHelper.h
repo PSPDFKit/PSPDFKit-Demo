@@ -32,8 +32,5 @@ void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *
 
 CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
 
-// Detect modern UIKit
-BOOL PSCIsUIKitFlatMode(void);
-
 // Detect if a popover of class `controllerClass` is visible.
 BOOL PSCIsControllerClassAndVisible(id c, Class controllerClass);

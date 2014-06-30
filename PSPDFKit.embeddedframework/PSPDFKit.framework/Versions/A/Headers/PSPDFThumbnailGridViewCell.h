@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFCache.h"
 #import "PSPDFRoundedLabel.h"
 
 /// The thumbnail cell classed used for the thumbnail grid and thumbnail scroll bar.
@@ -63,6 +64,9 @@
 
 /// Called when cell resizes. use in override class to re-position your content.
 - (void)setImageSize:(CGSize)imageSize;
+
+/// Called within `setImageSize:` or `layoutSubviews`. Will reposition the image View and the `selectedBackgroundView`.
+- (void)updateImageSize;
 
 /// Updates the page label.
 - (void)updatePageLabel;

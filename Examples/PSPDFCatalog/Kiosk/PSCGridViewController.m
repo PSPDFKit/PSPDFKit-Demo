@@ -150,19 +150,15 @@
         }
     }
 
-    PSC_IF_PRE_IOS7(self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);)
-
-    // TODO iOS7. Wait for topLayoutGuide to not crash after accessing.
-    PSC_IF_IOS7_OR_GREATER(CGFloat topLayoutHeight = 55.f;
-                           self.collectionView.contentInset = UIEdgeInsetsMake(64.f + topLayoutHeight, 0, 0, 0);)
-
+    CGFloat topLayoutHeight = 55.f;
+    self.collectionView.contentInset = UIEdgeInsetsMake(64.f + topLayoutHeight, 0, 0, 0);
     [self.collectionView addSubview:self.searchBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack :  UIBarStyleDefault;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 
     // Ensure our navigation bar is visible. PSPDFKit restores the properties,
     // But since we're doing a custom fade-out on the navigationBar alpha,
@@ -172,11 +168,7 @@
         self.navigationController.navigationBar.alpha = 1.f;
     }];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
-    }else {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }
+    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
 
     _shadowView.shadowEnabled = YES;
 
@@ -335,19 +327,6 @@
 // Calculates where the document view will be on screen.
 - (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
     CGRect newFrame = self.view.frame;
-    CGRect navBarFrame = self.navigationController.navigationBar.frame;
-
-    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleLightContentHideOnIpad.
-    PSC_IF_PRE_IOS7(newFrame.origin.y -= navBarFrame.size.height;
-                    newFrame.size.height += navBarFrame.size.height;
-                    BOOL iPadFadesOutStatusBar = YES;
-                    if (!PSCIsIPad() || iPadFadesOutStatusBar) {
-                        CGRect statusBarFrame = UIApplication.sharedApplication.statusBarFrame;
-                        BOOL isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation);
-                        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
-                        newFrame.origin.y -= statusBarHeight;
-                        newFrame.size.height += statusBarHeight;
-                    })
 
     // Animation needs to be different if we are in pageCurl mode.
     if (doublePageCurl) {
@@ -394,7 +373,7 @@
 
         // Add a smooth status bar transition on the iPhone
         if (!PSCIsIPad()) {
-            PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];)
+            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         }
 
         // If we have a different page, fade to that page.
@@ -424,16 +403,13 @@
             self.collectionView.alpha = 0.0f;
 
         } completion:^(BOOL finished) {
-            if (!PSCIsUIKitFlatMode()) [self.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
             [self.navigationController pushViewController:pdfController animated:NO];
-
             cell.hidden = NO;
         }];
     }else {
         if (animated) {
             // Add fake data so that we animate back.
             _animateViewWillAppearWithFade = YES;
-            if (!PSCIsUIKitFlatMode()) [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
         }
         [self.navigationController pushViewController:pdfController animated:NO];
     }
@@ -796,8 +772,6 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
 
 // Fixes a missing selector crash for [UISearchBar _isInUpdateAnimation:]
 __attribute__((constructor)) static void PSPDFFixCollectionViewSearchBarDisplayed(void) {
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS 6.
-
     @autoreleasepool {
         SEL isInUpdate = NSSelectorFromString([NSString stringWithFormat:@"%@is%@Update%@", @"_", @"In", @"Animation"]);
         if (![UISearchBar instancesRespondToSelector:isInUpdate]) {

@@ -54,12 +54,10 @@
 
     // As an example, here we're not using the UINavigationController but instead a custom UIToolbar.
     // Note that if you're going that way, you'll loose some features that PSPDFKit provides, like dynamic toolbar updating or accessibility.
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.f, PSCIsUIKitFlatMode() ? 20.f : 0.f, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.f, 20.f, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
     // Ensure we're top attached. iOS 7 only feature.
-    if ([toolbar respondsToSelector:@selector(setBarTintColor:)]) {
-        toolbar.barTintColor = UIColor.pspdfColor;
-        toolbar.delegate = self;
-    }
+    toolbar.barTintColor = UIColor.pspdfColor;
+    toolbar.delegate = self;
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];

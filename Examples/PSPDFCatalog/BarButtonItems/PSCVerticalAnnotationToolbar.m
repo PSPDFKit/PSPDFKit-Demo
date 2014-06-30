@@ -10,10 +10,9 @@
 
 #import "PSCVerticalAnnotationToolbar.h"
 
-@interface PSCVerticalAnnotationToolbar() <PSPDFAnnotationToolbarDelegate>
+@interface PSCVerticalAnnotationToolbar() <PSPDFAnnotationStateManagerDelegate>
 @property (nonatomic, strong) UIButton *drawButton;
 @property (nonatomic, strong) UIButton *freeTextButton;
-@property (nonatomic, strong) PSPDFAnnotationToolbar *toolbar;
 @end
 
 @implementation PSCVerticalAnnotationToolbar
@@ -21,18 +20,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithPDFController:(PSPDFViewController *)pdfController {
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
     if ((self = [super init])) {
-        _pdfController = pdfController;
+        _annotationStateManager = annotationStateManager;
+		annotationStateManager.stateDelegate = self;
 
-        self.toolbar = pdfController.annotationButtonItem.annotationToolbar;
-        self.toolbar.annotationToolbarDelegate = self;
-        self.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.8f];
-
+		PSPDFViewController *pdfController = annotationStateManager.pdfController;
+		self.backgroundColor = pdfController.navigationController.navigationBar.barTintColor;
+		
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringInk]) {
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            UIImage *sketchImage = PSPDFBundleImage(@"ink");
+            UIImage *sketchImage = [PSPDFBundleImage(@"ink") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [drawButton setImage:sketchImage forState:UIControlStateNormal];
             [drawButton addTarget:self action:@selector(inkButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:drawButton];
@@ -42,13 +41,12 @@
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringFreeText]) {
 			UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-			UIImage *freeTextImage = PSPDFBundleImage(@"freetext");
+			UIImage *freeTextImage = [PSPDFBundleImage(@"freetext") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			[freetextButton setImage:freeTextImage forState:UIControlStateNormal];
 			[freetextButton addTarget:self action:@selector(freetextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 			[self addSubview:freetextButton];
 			self.freeTextButton = freetextButton;
         }
-
     }
     return self;
 }
@@ -69,59 +67,23 @@
 #pragma mark - Events
 
 - (void)inkButtonPressed:(id)sender {
-    PSPDFViewController *pdfController = self.pdfController;
-
-    if (![pdfController.annotationStateManager.state isEqualToString:PSPDFAnnotationStringInk]) {
-        pdfController.HUDViewMode = PSPDFHUDViewModeAlways;
-        if (!self.toolbar.window) {
-            // match style
-            self.toolbar.barStyle = pdfController.navigationBarStyle;
-            self.toolbar.translucent = pdfController.isTransparentHUD;
-            self.toolbar.tintColor = pdfController.tintColor;
-
-            // add the toolbar to the view hierarchy for color picking etc
-            if (pdfController.navigationController) {
-                CGRect targetRect = pdfController.navigationController.navigationBar.frame;
-                [pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:pdfController.navigationController.navigationBar];
-                [self.toolbar showToolbarInRect:targetRect animated:YES];
-            }else {
-                CGRect contentRect = pdfController.contentRect;
-                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, pdfController.view.bounds.size.width, PSCToolbarHeightForOrientation(pdfController.interfaceOrientation));
-                [pdfController.view addSubview:self.toolbar];
-                [self.toolbar showToolbarInRect:targetRect animated:YES];
-            }
-        }
-
-        // call draw mode of the toolbar
-        [self.toolbar inkButtonPressed:sender];
-    }else {
-        pdfController.HUDViewMode = PSPDFHUDViewModeAutomatic;
-        // remove toolbar
-		[self.toolbar hideAndRemoveToolbarAnimated:YES completion:nil];
-    }
+	[self.annotationStateManager toggleState:PSPDFAnnotationStringInk];
 }
 
 - (void)freetextButtonPressed:(id)sender {
-    [self.toolbar freetextButtonPressed:sender];
+	[self.annotationStateManager toggleState:PSPDFAnnotationStringFreeText];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFAnnotationToolbarDelegate
+#pragma mark - PSPDFAnnotationStateManagerDelegate
 
-// Called after a mode change is set (button pressed; drawing finished, etc)
-- (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(NSString *)newMode {
-    if (!newMode && annotationToolbar.window) {
-        // don't show all toolbar features, hide instead.
-        [annotationToolbar hideToolbarAnimated:YES completion:^(BOOL finished) {
-			if (finished) {
-				[annotationToolbar removeFromSuperview];
-			}
-		}];
-    }
-
-    // update button selection status
-    self.drawButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringInk] ? UIColor.whiteColor : [UIColor clearColor];
-    self.freeTextButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringFreeText] ? UIColor.whiteColor : [UIColor clearColor];
+- (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeState:(NSString *)state to:(NSString *)newState variant:(NSString *)variant to:(NSString *)newVariant {
+	
+	UIColor *selectedColor = [UIColor colorWithWhite:0.f alpha:.2f];
+	UIColor *deselectedColor = [UIColor clearColor];
+	
+	self.freeTextButton.backgroundColor = newState == PSPDFAnnotationStringFreeText ? selectedColor : deselectedColor;
+	self.drawButton.backgroundColor = newState == PSPDFAnnotationStringInk ? selectedColor : deselectedColor;
 }
 
 @end

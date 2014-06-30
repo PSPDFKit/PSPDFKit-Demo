@@ -123,13 +123,16 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 @property (nonatomic, assign) BOOL preventsPositionOutsideSuperview;
 
 /// Border color. Defaults to `[UIColor.pspdf_selectionColor colorWithAlphaComponent:0.6f]`.
-@property (nonatomic, strong) UIColor *selectionBorderColor;
+@property (nonatomic, strong) UIColor *selectionBorderColor UI_APPEARANCE_SELECTOR;
+
+/// Border size. Defaults to 1.f
+@property (nonatomic, assign) CGFloat selectionBorderWidth UI_APPEARANCE_SELECTOR;
 
 /// Guide color. Defaults to `UIColor.pspdf_guideColor`.
-@property (nonatomic, strong) UIColor *guideBorderColor;
+@property (nonatomic, strong) UIColor *guideBorderColor UI_APPEARANCE_SELECTOR;
 
 /// Corner radius size. Defaults to 2.f.
-@property (nonatomic, assign) NSUInteger cornerRadius;
+@property (nonatomic, assign) NSUInteger cornerRadius UI_APPEARANCE_SELECTOR;
 
 // forward parent gesture recognizer longPress action.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
@@ -156,14 +159,10 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 // All knobs. Can be hidden individually.
 // Note that properties like `allowEditing`/`allowResizing` will update the hidden property.
 // To properly hide a knob, remove it from the superview.
-@property (nonatomic, strong, readonly) UIImageView *knobTopLeft;
-@property (nonatomic, strong, readonly) UIImageView *knobTopMiddle;
-@property (nonatomic, strong, readonly) UIImageView *knobTopRight;
-@property (nonatomic, strong, readonly) UIImageView *knobMiddleLeft;
-@property (nonatomic, strong, readonly) UIImageView *knobMiddleRight;
-@property (nonatomic, strong, readonly) UIImageView *knobBottomLeft;
-@property (nonatomic, strong, readonly) UIImageView *knobBottomMiddle;
-@property (nonatomic, strong, readonly) UIImageView *knobBottomRight;
+- (UIImageView *)outerKnobOfType:(PSPDFResizableViewOuterKnob)knobType;
+
+// Allows to customize the position for a knob.
+- (CGPoint)centerPointForOuterKnob:(PSPDFResizableViewOuterKnob)knobType;
 
 @property (nonatomic, strong, readonly) UIImage *outerKnobImage;
 @property (nonatomic, strong, readonly) UIImage *innerKnobImage;
