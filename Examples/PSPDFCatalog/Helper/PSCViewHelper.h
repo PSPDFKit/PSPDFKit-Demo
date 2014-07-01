@@ -20,7 +20,6 @@ CGFloat PSCToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 #pragma mark - Animations
 
 CATransition *PSCFadeTransitionWithDuration(CGFloat duration);
-CATransition *PSCFadeTransition(void);
 
 #pragma mark - View Introspection
 
