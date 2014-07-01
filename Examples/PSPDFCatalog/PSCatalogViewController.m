@@ -1652,9 +1652,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &PSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
-    // add fade transition for navigationBar.
-    [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
-
     if (showInGrid) {
         // create controller and merge new documents with last saved state.
         PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
