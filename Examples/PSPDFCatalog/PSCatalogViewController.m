@@ -144,7 +144,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // Don't use thumbnails if the PDF is not rendered.
@@ -179,10 +178,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+		controller.shouldHideNavigationBarWithHUD = NO;
+		controller.shouldHideStatusBarWithHUD = NO;
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+		navController.navigationBar.translucent = NO;
         [self.navigationController presentViewController:navController animated:YES completion:NULL];
         return (UIViewController *)nil;
     }]];
@@ -1494,6 +1495,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
     [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
     [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];
+	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
+	[[UITableView appearance] setSectionIndexColor:UIColor.pspdfColor];
+	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
@@ -1647,9 +1651,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &PSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
-
-    // add fade transition for navigationBar.
-    [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
 
     if (showInGrid) {
         // create controller and merge new documents with last saved state.

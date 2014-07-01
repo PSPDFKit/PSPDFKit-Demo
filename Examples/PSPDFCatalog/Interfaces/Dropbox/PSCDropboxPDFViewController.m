@@ -25,7 +25,6 @@
 
     self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
     self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;

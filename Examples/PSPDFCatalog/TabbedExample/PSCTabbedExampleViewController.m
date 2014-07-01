@@ -24,7 +24,6 @@ const char *clearAllActionSheetToken;
         self.delegate = self;
 
         // change status bar setting
-        self.pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContent;
         self.pdfController.shouldHideStatusBarWithHUD = YES;
 
         self.navigationItem.leftItemsSupplementBackButton = YES;
