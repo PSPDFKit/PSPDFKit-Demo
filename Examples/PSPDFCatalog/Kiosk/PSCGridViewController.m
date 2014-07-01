@@ -167,9 +167,6 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 1.f;
     }];
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
-
     _shadowView.shadowEnabled = YES;
 
     // If navigationBar is offset, we're fixing that.
@@ -184,7 +181,7 @@
     self.immediatelyLoadCellImages = NO;
 
     if (_animateViewWillAppearWithFade) {
-        [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
+        [self.navigationController.view.layer addAnimation:PSCFadeTransitionWithDuration(0.25f) forKey:kCATransition];
         _animateViewWillAppearWithFade = NO;
     }
 
@@ -206,7 +203,7 @@
         if (_animationCellIndex >= self.magazineFolder.magazines.count) {
             self.collectionView.transform = CGAffineTransformIdentity;
             self.collectionView.alpha = 1.0f;
-            [self.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
+            [self.view.layer addAnimation:PSCFadeTransitionWithDuration(0.25f) forKey:kCATransition];
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
@@ -370,11 +367,6 @@
         [self.view addSubview:coverImageView];
         self.magazineView = coverImageView;
         _animationCellIndex = cellIndex;
-
-        // Add a smooth status bar transition on the iPhone
-        if (!PSCIsIPad()) {
-            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-        }
 
         // If we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;

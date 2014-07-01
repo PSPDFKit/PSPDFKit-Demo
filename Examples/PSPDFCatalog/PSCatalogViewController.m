@@ -1486,7 +1486,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
     self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
     self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
     self.navigationController.view.tintColor = UIColor.whiteColor;
@@ -1501,7 +1500,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
