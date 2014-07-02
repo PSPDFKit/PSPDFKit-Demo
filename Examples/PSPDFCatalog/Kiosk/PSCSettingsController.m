@@ -245,7 +245,6 @@ static CGFloat pscSettingsLastYOffset = 0;
 }
 
 - (void)switchChanged:(UISwitch *)cellSwitch {
-    // iOS 7 changed the view hierarchy here.
     UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
     while (![cell isKindOfClass:UITableViewCell.class]) {
         cell = (UITableViewCell *)cell.superview;

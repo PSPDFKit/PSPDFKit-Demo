@@ -26,7 +26,6 @@
 
     // disable default toolbar
     [self setToolbarEnabled:NO];
-    self.statusBarStyleSetting = UIStatusBarStyleLightContent;
     self.renderAnimationEnabled = NO; // custom implementation here
 
     // add custom controls to our toolbar

@@ -111,11 +111,6 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.rightNavigator.view.frame = CGRectMake(bounds.size.width/2, 0, bounds.size.width/2, bounds.size.height);
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
-}
-
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationLandscapeLeft;
 }
@@ -334,9 +329,6 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
 
-    // Match styling. Set statusbar to inherit, and bars to light color.
-    self.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
-    self.navigationBarStyle = UIBarStyleDefault;
     self.HUDViewMode = PSPDFHUDViewModeAlways;
     self.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 

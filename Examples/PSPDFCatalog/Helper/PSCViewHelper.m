@@ -44,10 +44,6 @@ CATransition *PSCFadeTransitionWithDuration(CGFloat duration) {
     return transition;
 }
 
-CATransition *PSCFadeTransition(void) {
-    return PSCFadeTransitionWithDuration(0.25f);
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - View Introspection
 

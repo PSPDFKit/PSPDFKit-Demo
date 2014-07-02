@@ -60,8 +60,8 @@
 }
 
 - (void)drawButtonPressed:(id)sender {
-    self.annotationStateManager.drawColor = UIColor.redColor;
     [self.annotationStateManager toggleState:PSPDFAnnotationStringInk];
+    self.annotationStateManager.drawColor = UIColor.yellowColor;
     [self updateDrawButtonAppearance];
 }
 

@@ -45,9 +45,6 @@
 #pragma mark - PSPDFDocumentPickerControllerDelegate
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
-    // Add fade transition for navigationBar.
-    [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
-    
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.page = pageIndex;
     pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
