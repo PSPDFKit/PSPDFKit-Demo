@@ -32,7 +32,6 @@
 		785DDA39167B9D3200559562 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA38167B9D3200559562 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		785DDA3B167B9D3700559562 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA3A167B9D3700559562 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		78BB884018F884600094F10B /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BB882718F884600094F10B /* big_buck_bunny.mp4 */; };
-		78BB884118F884600094F10B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BB882818F884600094F10B /* Default-568h@2x.png */; };
 		78BB884218F884600094F10B /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BB882918F884600094F10B /* exampleimage.jpg */; };
 		78BB884318F884600094F10B /* Kiosk.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78BB882A18F884600094F10B /* Kiosk.xcassets */; };
 		78BB884518F884600094F10B /* mas_audio_b41570.gif in Resources */ = {isa = PBXBuildFile; fileRef = 78BB883A18F884600094F10B /* mas_audio_b41570.gif */; };
@@ -125,7 +124,6 @@
 		785DDA3A167B9D3700559562 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		78A4D90818C91DF700355F12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		78BB882718F884600094F10B /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = big_buck_bunny.mp4; path = PSPDFCatalog/Resources/big_buck_bunny.mp4; sourceTree = SOURCE_ROOT; };
-		78BB882818F884600094F10B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "PSPDFCatalog/Resources/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		78BB882918F884600094F10B /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = exampleimage.jpg; path = PSPDFCatalog/Resources/exampleimage.jpg; sourceTree = SOURCE_ROOT; };
 		78BB882A18F884600094F10B /* Kiosk.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Kiosk.xcassets; path = PSPDFCatalog/Resources/Kiosk.xcassets; sourceTree = SOURCE_ROOT; };
 		78BB883A18F884600094F10B /* mas_audio_b41570.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = mas_audio_b41570.gif; path = PSPDFCatalog/Resources/mas_audio_b41570.gif; sourceTree = SOURCE_ROOT; };
@@ -311,7 +309,6 @@
 			children = (
 				7859B34B1938F77F0046E213 /* Localization */,
 				78BB882718F884600094F10B /* big_buck_bunny.mp4 */,
-				78BB882818F884600094F10B /* Default-568h@2x.png */,
 				78BB882918F884600094F10B /* exampleimage.jpg */,
 				78BB882A18F884600094F10B /* Kiosk.xcassets */,
 				78BB883A18F884600094F10B /* mas_audio_b41570.gif */,
@@ -495,7 +492,6 @@
 				785DD9C2167B9BAE00559562 /* Default.png in Resources */,
 				785DD9C4167B9BAE00559562 /* Default@2x.png in Resources */,
 				78BB884718F884600094F10B /* NightOwl.m4a in Resources */,
-				78BB884118F884600094F10B /* Default-568h@2x.png in Resources */,
 				78D909B9178988A400E7D4D5 /* PSPDFKit-Version in Resources */,
 				78D4D4421848CD5A00080A96 /* LICENSE in Resources */,
 				7859B35C1938F77F0046E213 /* Localizable.strings in Resources */,
@@ -736,6 +732,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKiosk/PSPDFKiosk-Prefix.pch";
 				INFOPLIST_FILE = "PSPDFKiosk/PSPDFKiosk-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -753,6 +750,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKiosk/PSPDFKiosk-Prefix.pch";
 				INFOPLIST_FILE = "PSPDFKiosk/PSPDFKiosk-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

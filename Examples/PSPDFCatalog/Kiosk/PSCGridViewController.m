@@ -158,8 +158,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-
     // Ensure our navigation bar is visible. PSPDFKit restores the properties,
     // But since we're doing a custom fade-out on the navigationBar alpha,
     // We also have to restore this properly.
