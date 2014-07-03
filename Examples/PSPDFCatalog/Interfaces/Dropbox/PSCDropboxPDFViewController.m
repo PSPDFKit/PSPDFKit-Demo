@@ -27,7 +27,6 @@ static const CGFloat PSCToolbarMargin = 20.f;
 
     self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
     self.thumbnailController.filterOptions = nil;
@@ -51,10 +50,12 @@ static const CGFloat PSCToolbarMargin = 20.f;
     [self.HUDView addSubview:self.floatingToolbar];
 }
 
-- (void)viewDidLayoutSubviews {
-	[super viewDidLayoutSubviews];
+- (void)viewWillLayoutSubviews {
+	[super viewWillLayoutSubviews];
 	CGRect frame = self.floatingToolbar.frame;
 	frame.origin.y = PSCToolbarMargin + self.topLayoutGuide.length;
+	// Keep the fixed position, even if the status bar gets hidden
+	if ([UIApplication sharedApplication].statusBarHidden) frame.origin.y += 20.f;
 	self.floatingToolbar.frame = frame;
 }
 
