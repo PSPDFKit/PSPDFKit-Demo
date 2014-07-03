@@ -11,6 +11,8 @@
 #import "PSCDropboxPDFViewController.h"
 #import "UIImage+Tinting.h"
 
+static const CGFloat PSCToolbarMargin = 20.f;
+
 @interface UIImage (PSCatalogAdditions)
 - (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
 @end
@@ -44,9 +46,16 @@
     [super viewDidLoad];
 
     // Add the floating toolbar to the HUD.
-    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(20.f, 20.f, 0.f, 0.f)];
+    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(PSCToolbarMargin, PSCToolbarMargin, 0.f, 0.f)];
     [self updateFloatingToolbarAnimated:NO]; // will update size.
     [self.HUDView addSubview:self.floatingToolbar];
+}
+
+- (void)viewDidLayoutSubviews {
+	[super viewDidLayoutSubviews];
+	CGRect frame = self.floatingToolbar.frame;
+	frame.origin.y = PSCToolbarMargin + self.topLayoutGuide.length;
+	self.floatingToolbar.frame = frame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
