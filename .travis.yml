@@ -1,4 +1,7 @@
 language: objective-c
+branches:
+  only:
+    - 3.7-stable
 notifications:
   email:
     - travis@pspdfkit.com
