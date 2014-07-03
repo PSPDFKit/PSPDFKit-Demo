@@ -77,10 +77,7 @@
     }
 
 #ifdef PSPDFCatalog
-    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:_(@"Options")
-                                                                     style:UIBarButtonItemStyleBordered
-                                                                    target:self
-                                                                    action:@selector(optionsButtonPressed)];
+	UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] landscapeImagePhone:[UIImage imageNamed:@"settings-landscape"] style:UIBarButtonItemStylePlain target:self action:@selector(optionsButtonPressed)];
 
     // Only show the option button if we're at root. (else we hide the back button)
     if ((self.navigationController.viewControllers)[0] == self) {

@@ -11,6 +11,8 @@
 #import "PSCDropboxPDFViewController.h"
 #import "UIImage+Tinting.h"
 
+static const CGFloat PSCToolbarMargin = 20.f;
+
 @interface UIImage (PSCatalogAdditions)
 - (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
 @end
@@ -25,7 +27,6 @@
 
     self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
     self.thumbnailController.filterOptions = nil;
@@ -44,9 +45,18 @@
     [super viewDidLoad];
 
     // Add the floating toolbar to the HUD.
-    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(20.f, 20.f, 0.f, 0.f)];
+    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(PSCToolbarMargin, PSCToolbarMargin, 0.f, 0.f)];
     [self updateFloatingToolbarAnimated:NO]; // will update size.
     [self.HUDView addSubview:self.floatingToolbar];
+}
+
+- (void)viewWillLayoutSubviews {
+	[super viewWillLayoutSubviews];
+	CGRect frame = self.floatingToolbar.frame;
+	frame.origin.y = PSCToolbarMargin + self.topLayoutGuide.length;
+	// Keep the fixed position, even if the status bar gets hidden
+	if ([UIApplication sharedApplication].statusBarHidden) frame.origin.y += 20.f;
+	self.floatingToolbar.frame = frame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
