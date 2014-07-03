@@ -125,7 +125,7 @@
 #pragma mark - Private
 
 - (void)updateClearAnnotationButton {
-    BOOL annotationsFound = [self.annotationStateManager canUndoDrawing]; // Also factor in drawing mode
+    BOOL annotationsFound = NO;
     if (self.annotationStateManager.drawViews.count == 0) {
         PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         for (NSNumber *pageNumber in pdfController.calculatedVisiblePageNumbers) {
