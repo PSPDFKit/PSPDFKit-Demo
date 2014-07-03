@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo.png?branch=master)](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo)
 
-Please download the stable demo from [http://customers.pspdfkit.com/demo](http://customers.pspdfkit.com/demo).
-
-This repository might contain cutting edge commits.
+Please download the stable demo from [http://pspdfkit.com](http://pspdfkit.com).
 
 ### Time to Market
 
