@@ -26,9 +26,9 @@
 "Error" = "Ошибка";
 
 // toolbar
-"Outline" = "Контурный";
-"No Outline" = "Нет контура";
-"Search Outline" = "Поиск контура";
+"Outline" = "Содержание";
+"No Outline" = "Без содержания";
+"Search Outline" = "Поиск в содержании";
 "Search" = "Поиск";
 "Email" = "E-mail";
 "Send via Email" = "Отправить по Email";
