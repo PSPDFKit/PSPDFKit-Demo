@@ -692,6 +692,10 @@
 		PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
 		CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
 		
+		// TODO: use the animation container here
+		_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
+		CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
+		
 		// Prepare the cover image view, match it's position to the position of the (now hidden) cell.
 		UIImageView *coverImageView = [[UIImageView alloc] initWithImage:self.coverImage];
 		coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -713,30 +717,21 @@
 		
 		cell.hidden = YES;
 		
-		[UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
-			
+		[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
 			self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
 			self.collectionView.alpha = 0.0f;
-
-			_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
-			
-			// TODO: use the animation container here
-			CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
 			coverImageView.frame = newFrame;
-			
 			targetPageImageView.alpha = 1.f;
-			
 		} completion:^(BOOL finished) {
-			
 			[coverImageView removeFromSuperview];
 			[containerView addSubview:toViewController.view];
-			
 			self.collectionView.transform = CGAffineTransformIdentity;
 			self.targetPageImage = nil;
 			cell.hidden = NO;
 			
 			[transitionContext completeTransition:YES];
 		}];
+		
 	}else {
 		
 		// TODO: if something goes wrong, just use a fade
@@ -762,9 +757,9 @@
 		if (coverImage) self.magazineView.image = coverImage;
 		
 		self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
+		cell.hidden = YES;
 		
-		// Start animation!
-		[UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+		[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
 			self.collectionView.transform = CGAffineTransformIdentity;
 			self.magazineView.frame = cellCoords;
 			[self.magazineView.subviews.lastObject setAlpha:0.f];
@@ -773,6 +768,7 @@
 			[self.magazineView removeFromSuperview];
 			self.magazineView = nil;
 			self.cellIndex = 0;
+			cell.hidden = NO;
 			
 			[transitionContext completeTransition:YES];
 		}];
