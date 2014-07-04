@@ -67,7 +67,7 @@
 
 - (void)updateDrawButtonAppearance {
     if ([self.annotationStateManager.state isEqualToString:PSPDFAnnotationStringInk]) {
-        self.drawButton.backgroundColor = [UIColor colorWithRed:0.846 green:1.000 blue:0.871 alpha:1.000];
+        self.drawButton.backgroundColor = [UIColor colorWithRed:0.846f green:1.000f blue:0.871f alpha:1.000f];
     }else {
         self.drawButton.backgroundColor = UIColor.greenColor;
     }
