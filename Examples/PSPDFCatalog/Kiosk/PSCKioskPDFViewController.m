@@ -69,10 +69,10 @@
 - (void)close:(id)sender {
     // If parent is PSCGridController, we have a custom animation in place.
     BOOL animated = YES;
-    NSUInteger controllerCount = self.navigationController.viewControllers.count;
-    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridViewController class]]) {
-        animated = NO;
-    }
+//    NSUInteger controllerCount = self.navigationController.viewControllers.count;
+//    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridViewController class]]) {
+//        animated = NO;
+//    }
     // Support the case where we pop in the nav stack
     if (self.navigationController.viewControllers.count > 1) {
         [self.navigationController popViewControllerAnimated:animated];
