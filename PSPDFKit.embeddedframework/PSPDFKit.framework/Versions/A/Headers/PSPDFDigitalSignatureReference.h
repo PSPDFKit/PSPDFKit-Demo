@@ -11,7 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFModel+NSCoding.h"
+#import "PSPDFModel.h"
 
 /** The different transform methods (see Section 8.7.1, “Transform Methods”).
     DocMDP — Used to detect modifications to a document relative to a signature field that is signed by the originator of a document; see “DocMDP” on page 731.

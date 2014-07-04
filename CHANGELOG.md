@@ -4,11 +4,21 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
-__v3.7.5 - 16/June/2014__
+__v3.7.6 - 4/July/2014__
 
-With about 90% of all devices running iOS 7 (https://developer.apple.com/support/appstore/), it's time for us to look into the future.
-This will be the last release that supports iOS 6. We already started working on supporting iOS 8 and will continue to support iOS 7.0 and 7.1.
-We've planned some exciting new features and new ideas for upcoming releases - stay tuned!
+We're hard at work on a new upcoming major release that will be fully ready for iOS 8 while also supporting iOS 7.
+The PSPDFKit 3.x branch will remain compatible with iOS 6+, while PSPDFKit 4.x will fully embrace iOS 7 and 8.
+
+*  Simplifies usage of `PSPDFMediaPlayerCoverModeClear` in the gallery.
+*  Updates the Vimeo integration to use the new API endpoint.
+*  Improves efficiency and memory usage for parsing large outlines with invalid named destination tables.
+*  When using the text selection tool, we want to make sure no annotation is selected anymore.
+*  The state of the `PSPDFWebAnnotationView` is now cleared upon reuse to prevent flashes of previous used content.
+*  Fixes an issue related to the scrobble bar and `PSPDFThumbnailBarModeScrollable` on iOS 6.
+*  Fixes a potential issue where the HUD layouting code could loop.
+*  Fixes a potential crash related to the Wacom stylus driver.
+
+__v3.7.5 - 16/June/2014__
 
 *  New Localizations: Indonesian, Malaysian, Polish, Chinese Traditional, Thai, Turkish and Ukrainian.
 *  Updates the WACOM stylus driver to no longer eagerly initialize, which could present a bluetooth disabled alert view.
