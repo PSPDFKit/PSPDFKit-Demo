@@ -14,7 +14,6 @@
 #import "PSCMagazineFolder.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCSettingsController.h"
-#import "PSCShadowView.h"
 
 #define _(string) NSLocalizedString(string, @"")
 
@@ -28,7 +27,6 @@
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
 @property (nonatomic, strong) PSCMagazine *lastOpenedMagazine;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
-@property (nonatomic, strong) PSCShadowView *shadowView;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 // TODO: can this be passed otherwise
@@ -94,21 +92,6 @@
 	// Custom transition support
 	self.navigationController.delegate = self;
 
-    // Add global shadow.
-    CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.shadowView = [[PSCShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
-    _shadowView.topShadowOffset = toolbarHeight;
-    _shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _shadowView.backgroundColor = [UIColor clearColor];
-    _shadowView.userInteractionEnabled = NO;
-    [self.view addSubview:_shadowView];
-
-    // Use custom view to match background with PSPDFViewController.
-    UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
-    backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    backgroundTextureView.backgroundColor = PSCDefaultBackgroundColor();
-    [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
-
     // Init the collection view.
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
@@ -121,11 +104,11 @@
     [collectionView registerClass:PSCImageGridViewCell.class forCellWithReuseIdentifier:NSStringFromClass(PSCImageGridViewCell.class)];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    collectionView.backgroundColor = [UIColor clearColor];
+    collectionView.backgroundColor = PSCDefaultBackgroundColor();
     collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView = collectionView;
 
-    [self.view insertSubview:self.collectionView belowSubview:_shadowView];
+	[self.view addSubview:self.collectionView];
     self.collectionView.frame = CGRectIntegral(self.view.bounds);
     self.collectionView.dataSource = self; // auto-reloads
 
@@ -154,7 +137,7 @@
     }
 
     CGFloat topLayoutHeight = 55.f;
-    self.collectionView.contentInset = UIEdgeInsetsMake(64.f + topLayoutHeight, 0, 0, 0);
+    self.collectionView.contentInset = UIEdgeInsetsMake(topLayoutHeight, 0, 0, 0);
     [self.collectionView addSubview:self.searchBar];
 }
 
@@ -170,7 +153,6 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 1.f;
     }];
-    _shadowView.shadowEnabled = YES;
 
     // If navigationBar is offset, we're fixing that.
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
@@ -736,7 +718,6 @@
 			self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
 			self.collectionView.alpha = 0.0f;
 
-			_shadowView.shadowEnabled = NO;
 			_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
 			
 			// TODO: use the animation container here
