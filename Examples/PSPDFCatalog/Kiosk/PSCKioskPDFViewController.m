@@ -26,8 +26,8 @@
 
 @interface PSCKioskPDFViewController () {
     UIBarButtonItem *_closeButtonItem;
-    PSCSettingsBarButtonItem *_settingsButtonItem;
 #ifdef PSPDFCatalog
+	PSCSettingsBarButtonItem *_settingsButtonItem;
     PSCMetadataBarButtonItem *_metadataButtonItem;
 #endif
 }
@@ -52,8 +52,6 @@
         if ([self.document isKindOfClass:PSCMagazine.class]) {
             [self setViewState:((PSCMagazine *)self.document).lastViewState];
         }
-
-        self.leftBarButtonItems = @[_closeButtonItem];
     }
     return self;
 }
@@ -67,15 +65,9 @@
 }
 
 - (void)close:(id)sender {
-    // If parent is PSCGridController, we have a custom animation in place.
-    BOOL animated = YES;
-    NSUInteger controllerCount = self.navigationController.viewControllers.count;
-    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridViewController class]]) {
-        animated = NO;
-    }
     // Support the case where we pop in the nav stack
     if (self.navigationController.viewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:animated];
+        [self.navigationController popViewControllerAnimated:YES];
     }else {
         // We might have opened a linked document modally.
         [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
@@ -94,14 +86,40 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	// Define a custom close button, if we're presented from
+	NSArray *controllers = self.navigationController.viewControllers;
+	if (controllers.count > 1 && [controllers[controllers.count - 2] isKindOfClass:[PSCGridViewController class]]) {
+		// Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
+		NSString *closeTitle = PSCIsIPad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
+		_closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
+		self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
+	} else {
+		self.navigationItem.leftItemsSupplementBackButton = YES;
+	}
+
+#ifdef PSPDFCatalog
+	_settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+	_metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+#endif
+	
+	// Call this last, since it triggers updateSettingsForRotation: and we need out buttons to be set up before than
+	[super viewWillAppear:animated];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-#ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
-    // Dynamically adapt toolbar (in landscape mode, we have a lot more space!)
-    NSArray *leftToolbarItems = PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtonItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtonItem];
-
+	
+	NSMutableArray *leftToolbarItems = [NSMutableArray array];
+	if (_closeButtonItem) [leftToolbarItems addObject:_closeButtonItem];
+	
+#ifdef PSPDFCatalog
+	if (_settingsButtonItem) [leftToolbarItems addObject:_settingsButtonItem];
+	if (_metadataButtonItem && PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) [leftToolbarItems addObject:_metadataButtonItem];
+#endif
+	
     // Simple performance optimization.
     if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
         self.leftBarButtonItems = leftToolbarItems;
@@ -112,7 +130,6 @@
     [super updateSettingsForRotation:toInterfaceOrientation];
     [self updateSettingsForRotation:toInterfaceOrientation force:NO];
 }
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -138,18 +155,6 @@
         }
     }];
     self.document.renderOptions = renderOptions;
-
-    // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-    NSString *closeTitle = PSCIsIPad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
-    _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-    _settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-
-#ifdef PSPDFCatalog
-    _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
-    [self updateSettingsForRotation:self.interfaceOrientation force:YES];
-#endif
-
-    self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
     if ([settings[PROPERTY(annotationButtonItem)] boolValue]) {
