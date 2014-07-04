@@ -29,11 +29,9 @@
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
-// TODO: can this be passed otherwise
 @property (nonatomic, strong) UIImage *coverImage;
 @property (nonatomic, strong) UIImage *targetPageImage;
 @property (nonatomic, assign) NSUInteger cellIndex;
-// TODO: remove allongside viewWill/DidAppear code
 @property (nonatomic, strong) UIImageView *magazineView;
 @end
 
@@ -143,16 +141,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-	// TODO: check if this is still necessary
-	
-    // Ensure our navigation bar is visible. PSPDFKit restores the properties,
-    // But since we're doing a custom fade-out on the navigationBar alpha,
-    // We also have to restore this properly.
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [UIView animateWithDuration:0.25f animations:^{
-        self.navigationController.navigationBar.alpha = 1.f;
-    }];
 
     // If navigationBar is offset, we're fixing that.
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
@@ -706,7 +694,6 @@
 	PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
 	CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
 	
-	// TODO: use the animation container here
 	_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
 	CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
 	
