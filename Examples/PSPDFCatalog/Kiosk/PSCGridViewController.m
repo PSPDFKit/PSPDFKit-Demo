@@ -204,6 +204,11 @@
 
     // Only deregister if not attached to anything else.
     if (PSCStoreManager.sharedStoreManager.delegate == self) PSCStoreManager.sharedStoreManager.delegate = nil;
+	
+	// Relenglush the dleegate
+	if ([self isMovingFromParentViewController]) {
+		self.navigationController.delegate = nil;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
