@@ -301,18 +301,16 @@
         [magazine fillCache];
     });
 
-	// Try to get full-size image, if that fails try getting the thumbnail.
-	self.coverImage = [self imageForMagazine:magazine];
-	BOOL canPushAnimated = animated && self.coverImage && !magazine.isLocked;
-	
 	PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
 	
+	// Try to get full-size image, if that fails try getting the thumbnail.
+	self.coverImage = [self imageForMagazine:magazine];
 	// Prepare the target page image, if it differes from the cover image
-	if (canPushAnimated && pdfController.page != 0 && !pdfController.isDoublePageMode) {
+	if (animated && pdfController.page != 0 && !pdfController.isDoublePageMode) {
 		self.targetPageImage = [PSPDFCache.sharedCache imageFromDocument:self.lastOpenedMagazine page:pdfController.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
 	}
 	
-	[self.navigationController pushViewController:pdfController animated:canPushAnimated];
+	[self.navigationController pushViewController:pdfController animated:animated];
 
     return YES;
 }
@@ -678,101 +676,133 @@
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+	UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+	if (fromViewController == self) {
+		// Fallback to a crossfade animation, if we can't get a usable cover image
+		if (!self.coverImage || self.lastOpenedMagazine.isLocked) {
+			[self animateCrossFadeTrasition:transitionContext];
+		}else {
+			[self animateZoomInTrasition:transitionContext];
+		}
+	}else {
+		// Fallback to a crossfade animation, if we can't get a usable cover image
+		// or if the index is left in an invalid state
+		if (!self.coverImage || self.cellIndex >= self.magazineFolder.magazines.count) {
+			[self animateCrossFadeTrasition:transitionContext];
+		}else {
+			[self animateZoomOutTrasition:transitionContext];
+		}
+	}
+}
 
+- (void)animateZoomInTrasition:(id<UIViewControllerContextTransitioning>)transitionContext {
+	UIView *containerView = [transitionContext containerView];
+	UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+	
+	// Pushing to a magazine
+	PSCKioskPDFViewController *pdfController = (PSCKioskPDFViewController *)toViewController;
+	
+	NSIndexPath *ip = [NSIndexPath indexPathForItem:self.cellIndex inSection:0];
+	PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
+	CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
+	
+	// TODO: use the animation container here
+	_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
+	CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
+	
+	// Prepare the cover image view, match it's position to the position of the (now hidden) cell.
+	UIImageView *coverImageView = [[UIImageView alloc] initWithImage:self.coverImage];
+	coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+	coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+	coverImageView.frame = cellCoords;
+	[containerView addSubview:coverImageView];
+	self.magazineView = coverImageView;
+	
+	// If we have a different page, fade to that page.
+	UIImageView *targetPageImageView = nil;
+	if (self.targetPageImage) {
+		targetPageImageView = [[UIImageView alloc] initWithImage:self.targetPageImage];
+		targetPageImageView.frame = self.magazineView.bounds;
+		targetPageImageView.contentMode = UIViewContentModeScaleAspectFit;
+		targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		targetPageImageView.alpha = 0.f;
+		[self.magazineView addSubview:targetPageImageView];
+	}
+	
+	cell.hidden = YES;
+	
+	[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
+		self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
+		self.collectionView.alpha = 0.0f;
+		coverImageView.frame = newFrame;
+		targetPageImageView.alpha = 1.f;
+	} completion:^(BOOL finished) {
+		[coverImageView removeFromSuperview];
+		[containerView addSubview:toViewController.view];
+		self.collectionView.transform = CGAffineTransformIdentity;
+		self.collectionView.alpha = 1.0f;
+		self.targetPageImage = nil;
+		cell.hidden = NO;
+		
+		[transitionContext completeTransition:YES];
+	}];
+}
+
+- (void)animateZoomOutTrasition:(id<UIViewControllerContextTransitioning>)transitionContext {
 	UIView *containerView = [transitionContext containerView];
 	UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	
+	// Modify the view hierrachy first, otherwise the cell frame might not be as expected
+	[containerView addSubview:toViewController.view];
+	[fromViewController.view removeFromSuperview];
+	[containerView addSubview:self.magazineView];
 	
-	if (fromViewController == self) {
-		// Pushing to a magazine
-		PSCKioskPDFViewController *pdfController = (PSCKioskPDFViewController *)toViewController;
+	NSIndexPath *ip = [NSIndexPath indexPathForItem:self.cellIndex inSection:0];
+	[self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+	[self.collectionView layoutSubviews]; // ensure cells are laid out
+	
+	// Convert the coordinates into view coordinate system.
+	// We can't remember those, because the device might have been rotated.
+	PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
+	CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
+	
+	self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
+	
+	// Update image for a nicer animation (get the correct page)
+	UIImage *coverImage = [self imageForMagazine:self.lastOpenedMagazine];
+	if (coverImage) self.magazineView.image = coverImage;
+	
+	self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
+	cell.hidden = YES;
+	
+	[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
+		self.collectionView.transform = CGAffineTransformIdentity;
+		self.magazineView.frame = cellCoords;
+		[self.magazineView.subviews.lastObject setAlpha:0.f];
+		self.collectionView.alpha = 1.f;
+	} completion:^(BOOL finished) {
+		[self.magazineView removeFromSuperview];
+		self.magazineView = nil;
+		self.cellIndex = 0;
+		cell.hidden = NO;
 		
-		NSIndexPath *ip = [NSIndexPath indexPathForItem:self.cellIndex inSection:0];
-		PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
-		CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
-		
-		// TODO: use the animation container here
-		_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
-		CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
-		
-		// Prepare the cover image view, match it's position to the position of the (now hidden) cell.
-		UIImageView *coverImageView = [[UIImageView alloc] initWithImage:self.coverImage];
-		coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-		coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-		coverImageView.frame = cellCoords;
-		[containerView addSubview:coverImageView];
-		self.magazineView = coverImageView;
-		
-		// If we have a different page, fade to that page.
-		UIImageView *targetPageImageView = nil;
-		if (self.targetPageImage) {
-			targetPageImageView = [[UIImageView alloc] initWithImage:self.targetPageImage];
-			targetPageImageView.frame = self.magazineView.bounds;
-			targetPageImageView.contentMode = UIViewContentModeScaleAspectFit;
-			targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-			targetPageImageView.alpha = 0.f;
-			[self.magazineView addSubview:targetPageImageView];
-		}
-		
-		cell.hidden = YES;
-		
-		[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
-			self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
-			self.collectionView.alpha = 0.0f;
-			coverImageView.frame = newFrame;
-			targetPageImageView.alpha = 1.f;
-		} completion:^(BOOL finished) {
-			[coverImageView removeFromSuperview];
-			[containerView addSubview:toViewController.view];
-			self.collectionView.transform = CGAffineTransformIdentity;
-			self.targetPageImage = nil;
-			cell.hidden = NO;
-			
-			[transitionContext completeTransition:YES];
-		}];
-		
-	}else {
-		
-		// TODO: if something goes wrong, just use a fade
-		
-		// Modify the view hierrachy first, otherwise the cell frame might not be as expected
-		[containerView addSubview:toViewController.view];
-		[fromViewController.view removeFromSuperview];
-		[containerView addSubview:self.magazineView];
-		
-		NSIndexPath *ip = [NSIndexPath indexPathForItem:self.cellIndex inSection:0];
-		[self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-		[self.collectionView layoutSubviews]; // ensure cells are laid out
-		
-		// Convert the coordinates into view coordinate system.
-		// We can't remember those, because the device might have been rotated.
-		PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
-		CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
-		
-		self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
-		
-		// Update image for a nicer animation (get the correct page)
-		UIImage *coverImage = [self imageForMagazine:self.lastOpenedMagazine];
-		if (coverImage) self.magazineView.image = coverImage;
-		
-		self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
-		cell.hidden = YES;
-		
-		[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
-			self.collectionView.transform = CGAffineTransformIdentity;
-			self.magazineView.frame = cellCoords;
-			[self.magazineView.subviews.lastObject setAlpha:0.f];
-			self.collectionView.alpha = 1.f;
-		} completion:^(BOOL finished) {
-			[self.magazineView removeFromSuperview];
-			self.magazineView = nil;
-			self.cellIndex = 0;
-			cell.hidden = NO;
-			
-			[transitionContext completeTransition:YES];
-		}];
-	}
+		[transitionContext completeTransition:YES];
+	}];
+}
+
+- (void)animateCrossFadeTrasition:(id<UIViewControllerContextTransitioning>)transitionContext {
+	UIView *containerView = [transitionContext containerView];
+	UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+	
+	[containerView addSubview:toViewController.view];
+	toViewController.view.alpha = 0.f;
+	
+	[UIView animateWithDuration:0.3 animations:^{
+		toViewController.view.alpha = 1.f;
+	} completion:^(BOOL finished) {
+		[transitionContext completeTransition:YES];
+	}];
 }
 
 @end
