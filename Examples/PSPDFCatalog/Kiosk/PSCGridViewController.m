@@ -32,7 +32,8 @@
 @property (nonatomic, strong) UIImage *coverImage;
 @property (nonatomic, strong) UIImage *targetPageImage;
 @property (nonatomic, assign) NSUInteger cellIndex;
-@property (nonatomic, strong) UIImageView *magazineView;
+@property (nonatomic, strong) UIImageView *magazineCoverView;
+@property (nonatomic, strong) UIImageView *magazineCurrentPageView;
 @end
 
 @implementation PSCGridViewController
@@ -269,16 +270,10 @@
     return newFrame;
 }
 
-- (UIImage *)imageForMagazine:(PSCMagazine *)magazine {
-    if (!magazine) return nil;
-
-    NSUInteger lastPage = magazine.lastViewState.page;
-    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:lastPage size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
-    return coverImage;
-}
-
 // Open magazine with a nice animation.
 - (BOOL)openMagazine:(PSCMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+	if (!magazine) return NO;
+	
     self.lastOpenedMagazine = magazine;
 	self.cellIndex = cellIndex;
 	
@@ -292,7 +287,7 @@
 	PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
 	
 	// Try to get full-size image, if that fails try getting the thumbnail.
-	self.coverImage = [self imageForMagazine:magazine];
+	self.coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
 	// Prepare the target page image, if it differes from the cover image
 	if (animated && pdfController.page != 0 && !pdfController.isDoublePageMode) {
 		self.targetPageImage = [PSPDFCache.sharedCache imageFromDocument:self.lastOpenedMagazine page:pdfController.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
@@ -698,22 +693,19 @@
 	CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
 	
 	// Prepare the cover image view, match it's position to the position of the (now hidden) cell.
-	UIImageView *coverImageView = [[UIImageView alloc] initWithImage:self.coverImage];
-	coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-	coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+	UIImageView *coverImageView = self.magazineCoverView;
+	coverImageView.image = self.coverImage;
 	coverImageView.frame = cellCoords;
 	[containerView addSubview:coverImageView];
-	self.magazineView = coverImageView;
 	
 	// If we have a different page, fade to that page.
 	UIImageView *targetPageImageView = nil;
 	if (self.targetPageImage) {
-		targetPageImageView = [[UIImageView alloc] initWithImage:self.targetPageImage];
-		targetPageImageView.frame = self.magazineView.bounds;
-		targetPageImageView.contentMode = UIViewContentModeScaleAspectFit;
-		targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		targetPageImageView = self.magazineCurrentPageView;
+		targetPageImageView.image = self.targetPageImage;
+		targetPageImageView.frame = coverImageView.bounds;
 		targetPageImageView.alpha = 0.f;
-		[self.magazineView addSubview:targetPageImageView];
+		[coverImageView addSubview:targetPageImageView];
 	}
 	
 	cell.hidden = YES;
@@ -740,10 +732,12 @@
 	UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	
+	UIImageView *coverImageView = self.magazineCoverView;
+	
 	// Modify the view hierrachy first, otherwise the cell frame might not be as expected
 	[containerView addSubview:toViewController.view];
 	[fromViewController.view removeFromSuperview];
-	[containerView addSubview:self.magazineView];
+	[containerView addSubview:coverImageView];
 	
 	NSIndexPath *ip = [NSIndexPath indexPathForItem:self.cellIndex inSection:0];
 	[self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
@@ -754,23 +748,33 @@
 	PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
 	CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
 	
-	self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
+	coverImageView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
 	
 	// Update image for a nicer animation (get the correct page)
-	UIImage *coverImage = [self imageForMagazine:self.lastOpenedMagazine];
-	if (coverImage) self.magazineView.image = coverImage;
+	UIImage *updatedImage = [PSPDFCache.sharedCache imageFromDocument:self.lastOpenedMagazine page:self.lastOpenedMagazine.lastViewState.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
+	UIImageView *sourcePageImageView = nil;
+	if (updatedImage) {
+		sourcePageImageView = self.magazineCurrentPageView;
+		sourcePageImageView.image = updatedImage;
+		sourcePageImageView.frame = coverImageView.bounds;
+		[coverImageView addSubview:sourcePageImageView];
+	} else if (_magazineCurrentPageView) {
+		// Use the cover image only
+		[_magazineCurrentPageView removeFromSuperview];
+	}
 	
 	self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
 	cell.hidden = YES;
 	
 	[UIView animateWithDuration:0.3*2.4f delay:0 usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:0 animations:^{
 		self.collectionView.transform = CGAffineTransformIdentity;
-		self.magazineView.frame = cellCoords;
-		[self.magazineView.subviews.lastObject setAlpha:0.f];
+		coverImageView.frame = cellCoords;
+		sourcePageImageView.alpha = 0.f;
 		self.collectionView.alpha = 1.f;
 	} completion:^(BOOL finished) {
-		[self.magazineView removeFromSuperview];
-		self.magazineView = nil;
+		[coverImageView removeFromSuperview];
+		self.magazineCoverView = nil;
+		self.magazineCurrentPageView = nil;
 		self.cellIndex = 0;
 		cell.hidden = NO;
 		
@@ -790,6 +794,24 @@
 	} completion:^(BOOL finished) {
 		[transitionContext completeTransition:YES];
 	}];
+}
+
+- (UIImageView *)magazineCoverView {
+	if (!_magazineCoverView) {
+		_magazineCoverView = [[UIImageView alloc] init];
+		_magazineCoverView.contentMode = UIViewContentModeScaleAspectFit;
+		_magazineCoverView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+	}
+	return _magazineCoverView;
+}
+
+- (UIImageView *)magazineCurrentPageView {
+	if (!_magazineCurrentPageView) {
+		_magazineCurrentPageView = [[UIImageView alloc] init];
+		_magazineCurrentPageView.contentMode = UIViewContentModeScaleAspectFit;
+		_magazineCurrentPageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	}
+	return _magazineCurrentPageView;
 }
 
 @end
