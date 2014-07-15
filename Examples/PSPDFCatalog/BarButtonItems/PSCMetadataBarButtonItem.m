@@ -61,7 +61,7 @@
 
 - (NSString *)metadataForRow:(NSUInteger)row {
     PSPDFDocument *document = self.document;
-    
+
     NSArray *sortedKeys = [[document.metadata allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     NSString *metadata = document.metadata[sortedKeys[row]];
     if (![metadata isKindOfClass:[NSString class]]) {

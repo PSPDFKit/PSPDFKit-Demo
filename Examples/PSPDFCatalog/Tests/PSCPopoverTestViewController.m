@@ -86,7 +86,7 @@ static const NSUInteger noVerticalButtons = 6;
 
 - (void)viewDidLayoutSubviews {
 	[super viewDidLayoutSubviews];
-	
+
 	CGRect buttonBounds = self.view.bounds;
 	CGFloat verticalTranslation = self.topLayoutGuide.length;
 	buttonBounds.origin.y += verticalTranslation;
@@ -107,17 +107,17 @@ static const NSUInteger noVerticalButtons = 6;
 		self.popover = nil;
 		return;
 	}
-	
+
 	UIViewController *sample = [UIViewController new];
 	sample.preferredContentSize = CGSizeMake(300, 400);
-	
+
 	UIPopoverController *popover;
 	if (self.useSystemPopover && PSPDFIsIPad()) {
 		popover = [[UIPopoverController alloc] initWithContentViewController:sample];
 	} else {
 		popover = (UIPopoverController *)[[PSPDFPopoverController alloc] initWithContentViewController:sample];
 	}
-	
+
 	// Resize after a few seconds (if the controller is still around)
 	__weak typeof(sample) wSamle = sample;
 	double delayInSeconds = 5.0;
@@ -125,9 +125,9 @@ static const NSUInteger noVerticalButtons = 6;
 	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 		wSamle.preferredContentSize = CGSizeMake(200, 300);
 	});
-	
+
 	popover.delegate = self;
-	
+
 	[popover presentPopoverFromRect:sender.bounds inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	self.popover = popover;
 }

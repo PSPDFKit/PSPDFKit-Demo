@@ -29,7 +29,7 @@
 	navigationController.navigationBar.barStyle = UIBarStyleBlack;
 	navigationController.toolbar.tintColor = UIColor.blackColor;
 	navigationController.view.tintColor = UIColor.whiteColor;
-	
+
 	// By default the system would show a white cursor.
 	[[UITextField appearance] setTintColor:UIColor.psc_mainColor];
 	[[UITextView  appearance] setTintColor:UIColor.psc_mainColor];

@@ -31,14 +31,14 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.UID = NSStringFromClass(PSCPageRangeFilterExample.class);
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-    
+
     // Create the filter barButton
     __weak PSPDFViewController *weakController = controller;
     __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender) {
-        
+
         // Before setting anything, save.
         [document saveAnnotationsWithError:NULL];
-        
+
         // Update pageRange-filter
         BOOL isFilterSet = document.pageRange != nil;
         filterBarButton.title = isFilterSet ? @"Filter" : @"Disable Filter";
@@ -48,12 +48,12 @@
             for (PSPDFBookmark *bookmark in document.bookmarks) [set addIndex:bookmark.page];
         }
         document.pageRange = set;
-        
+
         // After setting pageRange, we need to clear the cache and reload the controller.
         [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
         [weakController reloadData];
     }];
-    
+
     controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
     controller.barButtonItemsAlwaysEnabled = @[filterBarButton];
     controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;

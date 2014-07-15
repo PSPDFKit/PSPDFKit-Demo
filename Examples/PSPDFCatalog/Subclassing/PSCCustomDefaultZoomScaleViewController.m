@@ -80,7 +80,7 @@
         PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
         PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
         PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-        
+
         [player play];
         player.controlStyle = PSPDFMediaPlayerControlStyleNone;
     }
@@ -98,7 +98,7 @@
         PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
         PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
         PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-        
+
         player.view.userInteractionEnabled = NO;;
     }
 }

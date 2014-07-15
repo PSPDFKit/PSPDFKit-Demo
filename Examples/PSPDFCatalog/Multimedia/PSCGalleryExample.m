@@ -40,7 +40,7 @@
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
-    
+
     // Customize.
     [[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
@@ -104,7 +104,7 @@
         webAnnotation.boundingBox = CGRectMake(200.f, 100.f, 200.f, 200.f);
         [document addAnnotations:@[webText, webAnnotation]];
     }
-    
+
     //[[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -199,7 +199,7 @@
     videoEmbedded.boundingBox = CGRectMake(pageRect.size.width-imageSize.width, pageRect.size.height-imageSize.height-64.f,
                                            imageSize.width, imageSize.height);
     [document addAnnotations:@[videoEmbedded]];
-    
+
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
 

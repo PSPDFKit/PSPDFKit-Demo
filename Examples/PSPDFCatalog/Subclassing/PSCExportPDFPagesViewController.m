@@ -121,7 +121,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
             [status pushAnimated:YES];
-            
+
             NSDictionary *options = flattened ? @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink)} : @{PSPDFProcessorAnnotationAsDictionary : @YES};
             // TODO: use file-based version to support larger PDFs.
             NSError *error = nil;
@@ -130,7 +130,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
             } error:&error];
 
             [status popAnimated:YES];
-            
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (data) {
                     [mailViewController addAttachmentData:data mimeType:@"application/pdf" fileName:@"SelectedPages.pdf"];
@@ -156,7 +156,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
         if ([kind isEqualToString:UICollectionElementKindSectionHeader] && indexPath.section == 0) {
             headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar forIndexPath:indexPath];
             [headerView addSubview:_actionBar];
-            
+
             // Just being lazy here, this could be size differently.
             headerView.userInteractionEnabled = YES;
             CGFloat segmentBarWidth = self.filterSegment.frame.size.width;

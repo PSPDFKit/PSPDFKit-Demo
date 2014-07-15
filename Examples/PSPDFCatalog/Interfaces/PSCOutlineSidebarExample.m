@@ -91,7 +91,7 @@
         UISplitViewController *splitController = [UISplitViewController new];
         splitController.delegate = self;
         splitController.viewControllers = @[navContainer, navPDFController];
-        
+
         // Use a dummy to present, as the split controller doesn't like to be presented modally.
         [self addChildViewController:splitController];
         [self.view addSubview:splitController.view];

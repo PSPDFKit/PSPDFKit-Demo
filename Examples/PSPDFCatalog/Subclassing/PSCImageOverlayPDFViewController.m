@@ -59,7 +59,7 @@
 
     PSPDFImageInfo *imageInfo = button.imageInfo;
     UIImage *image = [imageInfo imageWithError:NULL];
-    
+
     // Show view controller
     if (image) {
         UIViewController *imagePreviewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];

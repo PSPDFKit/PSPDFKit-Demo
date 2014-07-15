@@ -76,7 +76,7 @@
 
     } identifier:@"Google"];
     [newMenuItems addObject:googleItem];
-    
+
     return newMenuItems;
 }
 

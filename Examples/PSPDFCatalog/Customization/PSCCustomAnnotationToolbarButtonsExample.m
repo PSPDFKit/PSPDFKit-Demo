@@ -58,7 +58,7 @@
         _clearAnnotationsButton = [PSPDFFlexibleToolbarButton new];
 		[_clearAnnotationsButton setImage:clearImage];
 		[_clearAnnotationsButton addTarget:self action:@selector(clearButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-		
+
         [self updateClearAnnotationButton];
         self.additionalButtons = @[_clearAnnotationsButton];
     }
@@ -93,7 +93,7 @@
             }
         }
     }
-	
+
 	PSPDFAnnotationStateManager *manager = self.annotationStateManager;
 	[self annotationStateManager:manager didChangeUndoState:manager.canUndo redoState:manager.canRedo];
 }

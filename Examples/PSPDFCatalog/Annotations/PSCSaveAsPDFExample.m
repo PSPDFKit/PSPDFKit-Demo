@@ -135,7 +135,7 @@
     annotationSaveActionSheet.allowsTapToDismiss = NO;
     [annotationSaveActionSheet showWithSender:sender fallbackView:self.view animated:YES];
     self.annotationSaveActionSheet = annotationSaveActionSheet;
-    
+
     if (self.annotationSaveActionSheet.isVisible) return;
 }
 

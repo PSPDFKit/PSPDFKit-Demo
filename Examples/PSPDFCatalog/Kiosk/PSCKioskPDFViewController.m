@@ -102,7 +102,7 @@
 	_settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
 	_metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
 #endif
-	
+
 	// Call this last, since it triggers updateSettingsForRotation: and we need out buttons to be set up before than
 	[super viewWillAppear:animated];
 }
@@ -111,15 +111,15 @@
 #pragma mark - PSPDFViewController
 
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
-	
+
 	NSMutableArray *leftToolbarItems = [NSMutableArray array];
 	if (_closeButtonItem) [leftToolbarItems addObject:_closeButtonItem];
-	
+
 #ifdef PSPDFCatalog
 	if (_settingsButtonItem) [leftToolbarItems addObject:_settingsButtonItem];
 	if (_metadataButtonItem && PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) [leftToolbarItems addObject:_metadataButtonItem];
 #endif
-	
+
     // Simple performance optimization.
     if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
         self.leftBarButtonItems = leftToolbarItems;

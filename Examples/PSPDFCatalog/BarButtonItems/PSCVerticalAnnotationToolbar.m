@@ -27,7 +27,7 @@
 
 		PSPDFViewController *pdfController = annotationStateManager.pdfController;
 		self.backgroundColor = pdfController.navigationController.navigationBar.barTintColor;
-		
+
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringInk]) {
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -78,10 +78,10 @@
 #pragma mark - PSPDFAnnotationStateManagerDelegate
 
 - (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeState:(NSString *)state to:(NSString *)newState variant:(NSString *)variant to:(NSString *)newVariant {
-	
+
 	UIColor *selectedColor = [UIColor colorWithWhite:0.f alpha:.2f];
 	UIColor *deselectedColor = [UIColor clearColor];
-	
+
 	self.freeTextButton.backgroundColor = newState == PSPDFAnnotationStringFreeText ? selectedColor : deselectedColor;
 	self.drawButton.backgroundColor = newState == PSPDFAnnotationStringInk ? selectedColor : deselectedColor;
 }
