@@ -52,7 +52,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
+
     NSData *data = [NSData dataWithContentsOfMappedFile:[hackerMagURL path]];
     PSPDFDocument *document = [PSPDFDocument documentWithData:data];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -79,7 +79,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
+
     NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)(data));
     PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:dataProvider];
@@ -141,7 +141,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
     PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:files];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -168,7 +168,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     static PSPDFDocument *document = nil;
     if (!document) {
         NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
@@ -182,7 +182,7 @@
         // this is not needed, just an example how to use the changed dataArray (the data will be changed when annotations are written back)
         document = [PSPDFDocument documentWithDataArray:document.dataArray];
     }
-    
+
     // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
@@ -209,7 +209,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     PSPDFDocument *document = nil;
     if (!document) {
         NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
@@ -220,15 +220,15 @@
         NSData *data3 = [NSData dataWithContentsOfURL:file3];
         document = [PSPDFDocument documentWithDataArray:@[data1, data2, data3]];
     }
-    
+
     document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
-    
+
     // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
     controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
     return controller;
-    
+
 }
 
 @end
@@ -249,7 +249,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     NSArray *fileNames = @[@"A.pdf", @"B.pdf", @"C.pdf"];
     //NSArray *fileNames = @[@"Test6.pdf", @"Test5.pdf", @"Test4.pdf", @"Test1.pdf", @"Test2.pdf", @"Test3.pdf", @"rotated-northern.pdf", @"A.pdf", @"rotated360degrees.pdf", @"Rotated PDF.pdf"];
     NSMutableArray *dataArray = [NSMutableArray array];
@@ -259,17 +259,17 @@
         [dataArray addObject:data];
     }
     PSPDFDocument *document = [PSPDFDocument documentWithDataArray:dataArray];
-    
+
     // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
     NSDictionary *options = @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
     NSData *consolidatedData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] options:options progressBlock:NULL error:NULL];
     PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument documentWithData:consolidatedData];
-    
+
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
     controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
     controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
     return controller;
-    
+
 }
 
 @end
@@ -290,31 +290,31 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-    
+
     // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
     NSMutableIndexSet *pageIndexes = [[NSMutableIndexSet alloc] initWithIndex:1];
     [pageIndexes addIndex:3];
     [pageIndexes addIndex:5];
-    
+
     // Extract pages into new document
     NSData *newDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[pageIndexes] options:nil progressBlock:NULL error:NULL];
-    
+
     // add a page from a second document
     PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
     NSData *newLandscapeDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:landscapeDocument pageRanges:@[[NSIndexSet indexSetWithIndex:0]] options:nil progressBlock:NULL error:NULL];
-    
+
     // merge into new PDF
     PSPDFDocument *twoPartDocument = [PSPDFDocument documentWithDataArray:@[newDocumentData, newLandscapeDocumentData]];
     NSData *mergedDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:twoPartDocument pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, twoPartDocument.pageCount)]] options:nil progressBlock:NULL error:NULL];
     PSPDFDocument *mergedDocument = [PSPDFDocument documentWithData:mergedDocumentData];
-    
+
     // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
-    
+
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
     return controller;
-    
+
 }
 
 @end
@@ -335,7 +335,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[kHackerMagazineExample, kPaperExampleFileName]];
     document.undoEnabled = NO; // faster!
 
@@ -344,7 +344,7 @@
     [pageIndexes addIndex:3];
     [pageIndexes addIndex:5];
     [pageIndexes addIndex:document.pageCount + 3]; // next document!
-    
+
     document.pageRange = pageIndexes;    // Define new page range.
 
     // Merge pages into new document.
@@ -375,19 +375,19 @@
 //
 //- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
 //    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-//    
+//
 //    PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[@"Testcase_consolidate_A.pdf", @"Testcase_consolidate_B.pdf"]];
 //    NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndex:0];
 //    [pageRange addIndex:5];
 //    document.pageRange = pageRange;
-//    
+//
 //    // Merge pages into new document.
 //    NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp-merged", @"pdf");
 //    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
 //    PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
 //    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
 //    return controller;
-//    
+//
 //}
 //
 //@end

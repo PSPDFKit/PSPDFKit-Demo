@@ -39,23 +39,23 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 		NSURL *resURL = NSBundle.mainBundle.resourceURL;
 		NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
 		NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
-		
+
 		NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
 		PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
 		PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed"
 																			   PKCS12:p12];
-		
 
-		
-		
+
+
+
 		PSPDFSignatureManager *smgr = [PSPDFSignatureManager sharedManager];
-		
+
 		[smgr registerSigner:p12signer];
-		
+
 		// Add certs to trust store
 		NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
 		NSData *certData = [NSData dataWithContentsOfURL:certURL];
-		
+
 		NSError *err = nil;
 		NSArray *certs = [PSPDFX509 certificatesFromPKCS7Data:certData error:&err];
 		if (err != nil) {
@@ -65,7 +65,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 				[smgr addTrustedCertificate:x509];
 			}
 		}
-		
+
     }
     return self;
 }

@@ -68,36 +68,36 @@
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document];
 	self.pdfController.HUDViewMode = PSPDFHUDViewModeNever;
 	self.pdfController.backgroundColor = [UIColor whiteColor];
-	
+
 	// Those need to be nilled out if you use the barButton items (e.g., annotationButtonItem) externally!
     self.pdfController.leftBarButtonItems = nil;
     self.pdfController.rightBarButtonItems = nil;
-	
+
     [self addChildViewController:self.pdfController];
     [self.pdfController didMoveToParentViewController:self];
     [self.view addSubview:self.pdfController.view];
-	
+
     // As an example, here we're not using the UINavigationController but instead a custom UIToolbar.
     // Note that if you're going that way, you'll loose some features that PSPDFKit provides, like dynamic toolbar updating or accessibility.
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.f, 20.f, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
 	toolbar.delegate = self;
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	
+
 	// Configure the toolbar items
     NSMutableArray *toolbarItems = [NSMutableArray array];
 	toolbar.translucent = NO;
     [toolbarItems addObjectsFromArray:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]]];
-	
+
 	// Normally we would just use the annotationButtonItem and let it do all the toolbar setup and management for us.
 	// Here, however we'll show how one could manually configure and show the flexible annotation toolbar without using
 	// PSPDFAnnotationBarButtonItem. Note that PSPDFAnnotationBarButtonItem handles quite a fiew more
 	// cases and should in general be prefered to this simple toolbar setup.
-	
+
     //if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObject:self.pdfController.annotationButtonItem];
-	
+
 	// It's still a good idea to check if annotations are avaialble
 	if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(toggleToolbar:)]];
-	
+
     toolbar.items = toolbarItems;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
@@ -105,7 +105,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-	
+
     // Manually unload view.
     if (self.isViewLoaded && !self.view.window) {
         [self.pdfController willMoveToParentViewController:nil];
@@ -123,18 +123,18 @@
         [self.flexibleToolbarContainer hideAndRemoveAnimated:YES completion:NULL];
         return;
     }
-	
+
 	PSPDFAnnotationStateManager *manager = self.pdfController.annotationStateManager;
 	PSPDFFlexibleAnnotationToolbar *toolbar = [[PSPDFFlexibleAnnotationToolbar alloc] initWithAnnotationStateManager:manager];
 	[toolbar matchUIBarAppearance:self.toolbar]; // (optional)
-	
+
 	PSPDFFlexibleToolbarContainer *container = [[PSPDFFlexibleToolbarContainer alloc] initWithFrame:self.view.bounds];
 	container.flexibleToolbar = toolbar;
 	container.overlaidBar = self.toolbar;
 	container.containerDelegate = self;
 	[self.view addSubview:container];
     self.flexibleToolbarContainer = container;
-	
+
 	[container showAnimated:YES completion:nil];
 }
 

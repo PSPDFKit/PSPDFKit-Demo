@@ -46,16 +46,16 @@
 	UIFont *font = [UIFont fontWithName:@"Helvetica-Bold" size:24.f];
 	UIColor *textColor = [UIColor blueColor];
 	NSDictionary *attributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor};
-	
+
     // Flip drawing, set text drawing mode (fill).
     CGContextTranslateCTM(context, 0, pageInfo.rotatedPageRect.size.height);
     CGContextScaleCTM(context, 1, -1);
 	CGContextSetTextDrawingMode(context, kCGTextFill);
-	
+
     // Calculate the font box to center the text on the page.
 	CGSize boundingBox = [overlayText sizeWithAttributes:attributes];
 	CGPoint point = CGPointMake(__tg_round((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
-	
+
 	// Finally draw the text.
 	[overlayText drawAtPoint:point withAttributes:attributes];
 }

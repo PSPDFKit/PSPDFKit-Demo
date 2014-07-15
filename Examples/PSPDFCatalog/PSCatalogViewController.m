@@ -1497,7 +1497,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
 	[[UITableView appearance] setSectionIndexColor:UIColor.pspdfColor];
 	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
-    
+
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
@@ -1742,7 +1742,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [UIApplication.sharedApplication performSelector:NSSelectorFromString([NSString stringWithFormat:@"_%@Warning", @"performMemory"])];
 #pragma clang diagnostic pop
-    
+
     // Clear any reference of items that would retain controllers/pages.
     [[UIMenuController sharedMenuController] setMenuItems:nil];
 }

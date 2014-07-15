@@ -46,12 +46,12 @@
     NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"news-portrait.pdf"];
-    
+
     // Copy file from the bundle to a location where we can write on it.
     NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
     PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
     document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
-    
+
     // Allows to configure each annotation type.
     document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                         PSPDFAnnotationStringLink, // not added by default.
@@ -71,7 +71,7 @@
                                         PSPDFAnnotationStringPolygon,
                                         PSPDFAnnotationStringPolyLine,
                                         PSPDFAnnotationStringSound,
-                                        
+
                                         PSPDFAnnotationStringSelectionTool,
                                         PSPDFAnnotationStringEraser,
                                         PSPDFAnnotationStringSavedAnnotations,
@@ -122,21 +122,21 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
+
     NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
     PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:files];
-    
+
     // We're lazy here. 2 = UIViewContentModeScaleAspectFill
     PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
     aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
     aVideo.page = 5;
     [document addAnnotations:@[aVideo]];
-    
+
     PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
     anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
     anImage.page = 2;
     [document addAnnotations:@[anImage]];
-    
+
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     return controller;
 }
@@ -160,12 +160,12 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
+
     // we use a NSData document here but it'll work even better with a file-based variant.
     PSPDFDocument *document = [PSPDFDocument documentWithData:[NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL]];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     document.title = @"Programmatically create annotations";
-    
+
     NSMutableArray *annotations = [NSMutableArray array];
     CGFloat maxHeight = [document pageInfoForPage:0].rotatedPageRect.size.height;
     for (int i=0; i<5; i++) {
@@ -176,7 +176,7 @@
         [annotations addObject:noteAnnotation];
     }
     [document addAnnotations:annotations];
-    
+
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     return controller;
 
@@ -224,45 +224,45 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
-    
+
     NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
     NSLog(@"fileXML: %@",fileXML);
-    
+
     // Collect all existing annotations from the document
     PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
     NSMutableArray *annotations = [NSMutableArray array];
-    
-    
+
+
     PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"http://pspdfkit.com"];
     linkAnnotation.boundingBox = CGRectMake(100.f, 80.f, 200.f, 300.f);
     linkAnnotation.page = 1;
     [annotations addObject:linkAnnotation];
-    
+
     PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"];
     aStream.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aStream.page = 0;
     [annotations addObject:aStream];
-    
+
     PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"];
     anImage.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage.page = 3;
     [annotations addObject:anImage];
-    
-    
+
+
     PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"];
     aVideo2.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aVideo2.page = 2;
     [annotations addObject:aVideo2];
-    
+
     PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
     anImage3.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]];
     anImage3.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage3.page = 4;
     [annotations addObject:anImage3];
-    
+
     NSLog(@"annotations: %@", annotations);
-    
+
     // Write the file
     NSError *error = nil;
     NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
@@ -270,14 +270,14 @@
         NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
     }
     [outputStream close];
-    
+
     // Create document and set up the XFDF provider
     PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
     [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
         PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
         documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
     }];
-    
+
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
 

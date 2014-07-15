@@ -47,7 +47,7 @@
 - (void)switchUser {
     // Save existing documents.
     [self.document saveAnnotationsWithError:NULL];
-    
+
     PSPDFAlertView *userPrompt = [[PSPDFAlertView alloc] initWithTitle:@"Switch user" message:@"Enter username."];
     userPrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[userPrompt textFieldAtIndex:0] setText:self.currentUsername];
@@ -64,7 +64,7 @@
 
         // To switch annotations, we could also clear the cache, but PSPDFKit is smart enough to detect the changes itself.
         // [PSPDFCache.sharedCache removeCacheForDocument:self.document deleteDocument:NO error:NULL];
-        
+
         // Then clear the document cache (forces document provider regeneration)
         [self.document clearCache];
         // Update toolbar to show new name.
