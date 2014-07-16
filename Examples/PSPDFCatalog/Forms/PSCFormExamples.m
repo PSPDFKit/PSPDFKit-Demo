@@ -11,9 +11,6 @@
 #import "PSCExample.h"
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
-#import "PSPDFPKCS12Signer.h"
-#import "PSPDFSignatureManager.h"
-
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
