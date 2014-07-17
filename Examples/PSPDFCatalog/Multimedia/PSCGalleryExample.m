@@ -232,7 +232,6 @@
     [document addAnnotations:@[galleryAnnotation]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 
@@ -265,7 +264,41 @@
     [document addAnnotations:@[galleryAnnotation]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
+    return pdfController;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCHiddenSoundGalleryExample
+
+@interface PSCHiddenSoundGalleryExample : PSCExample @end
+@implementation PSCHiddenSoundGalleryExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Hidden Sound Annotation";
+        self.category = PSCExampleCategoryMultimedia;
+        self.priority = 200;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/NightOwl.m4a"];
+    galleryAnnotation.autoplayEnabled = YES;
+    galleryAnnotation.loopEnabled = YES;
+    galleryAnnotation.flags = PSPDFAnnotationFlagHidden;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
+    CGSize size = CGSizeMake(400.f, 300.f);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    [document addAnnotations:@[galleryAnnotation]];
+
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;
 }
 
