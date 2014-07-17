@@ -204,3 +204,69 @@
 }
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCPopoverGalleryExample
+
+@interface PSCPopoverGalleryExample : PSCExample @end
+@implementation PSCPopoverGalleryExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Popover Gallery Example";
+        self.category = PSCExampleCategoryMultimedia;
+        self.priority = 200;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+    
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[popover:1,size:400x300]pspdfkit://localhost/Bundle/sample.gallery"];
+    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
+    CGSize size = CGSizeMake(400.f, 300.f);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    [document addAnnotations:@[galleryAnnotation]];
+    
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
+    return pdfController;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCHighResImageGalleryExample
+
+@interface PSCHighResImageGalleryExample : PSCExample @end
+@implementation PSCHighResImageGalleryExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"High-Resolution Image Gallery Example";
+        self.category = PSCExampleCategoryMultimedia;
+        self.priority = 200;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+    
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/highres.gallery"];
+    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
+    CGSize size = CGSizeMake(400.f, 300.f);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    [document addAnnotations:@[galleryAnnotation]];
+    
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
+    return pdfController;
+}
+
+@end

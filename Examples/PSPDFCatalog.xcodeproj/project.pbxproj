@@ -179,6 +179,7 @@
 		78FEC25A18B298C60012ACBD /* PSCSplitPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25718B298C60012ACBD /* PSCSplitPDFViewController.m */; };
 		78FEC26118B29C220012ACBD /* PSCCustomStampAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */; };
 		78FEC26818B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */; };
+		8CC39A181977E2E500BD2E4A /* highres.gallery in Resources */ = {isa = PBXBuildFile; fileRef = 8CC39A171977E2E500BD2E4A /* highres.gallery */; };
 		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
 		9A6534B51806BD5300A7D0D0 /* PSCPageRangeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */; };
 		9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */; };
@@ -471,6 +472,7 @@
 		78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomStampAnnotationsExample.m; sourceTree = "<group>"; };
 		78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationLinkEditorExample.m; sourceTree = "<group>"; };
 		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
+		8CC39A171977E2E500BD2E4A /* highres.gallery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = highres.gallery; sourceTree = "<group>"; };
 		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
 		9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeExample.m; sourceTree = "<group>"; };
 		9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeFilterExample.m; sourceTree = "<group>"; };
@@ -710,6 +712,7 @@
 				78BB881918F883390094F10B /* sample.gallery */,
 				78BB881A18F883390094F10B /* Settings.bundle */,
 				78BB881B18F883390094F10B /* video.gallery */,
+				8CC39A171977E2E500BD2E4A /* highres.gallery */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1127,6 +1130,7 @@
 				78BB882318F883390094F10B /* NightOwl.m4a in Resources */,
 				78BB881F18F883390094F10B /* Kiosk.xcassets in Resources */,
 				7822D71615D3D1BE00E82EF9 /* Samples in Resources */,
+				8CC39A181977E2E500BD2E4A /* highres.gallery in Resources */,
 				78BB882418F883390094F10B /* sample.gallery in Resources */,
 				78BB882218F883390094F10B /* Media.xcassets in Resources */,
 				78BB882618F883390094F10B /* video.gallery in Resources */,
