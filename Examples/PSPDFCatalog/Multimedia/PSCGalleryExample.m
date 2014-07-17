@@ -232,7 +232,6 @@
     [document addAnnotations:@[galleryAnnotation]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 
@@ -265,7 +264,6 @@
     [document addAnnotations:@[galleryAnnotation]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 
@@ -301,7 +299,6 @@
     [document addAnnotations:@[galleryAnnotation]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 
