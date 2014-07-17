@@ -136,11 +136,12 @@ const char PSCAlertViewKey;
         //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
 
         // start the conversion
-        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem new];
-        [status setText:@"Converting..."];
+        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem indeterminateProgressWithText:@"Converting..."];
         [status setHUDStyle:PSPDFStatusHUDStyleGradient];
+        [status pushAnimated:YES];
 
-        [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
+        NSDictionary *options = @{PSPDFProcessorPageBorderMargin : [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f)]};
+        [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:options completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
                 [status popAnimated:YES];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
