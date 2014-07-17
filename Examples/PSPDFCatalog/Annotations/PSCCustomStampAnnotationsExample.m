@@ -57,18 +57,9 @@
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
 
-    if ([controller isKindOfClass:UINavigationController.class]) {
-        UIViewController *topController = [(UINavigationController *)controller topViewController];
-        if ([topController isKindOfClass:PSPDFContainerViewController.class]) {
-            for (UIViewController *childController in ((PSPDFContainerViewController *)topController).viewControllers) {
-                if ([childController isKindOfClass:PSPDFStampViewController.class]) {
-                    PSPDFStampViewController *stampController = (PSPDFStampViewController *)childController;
-                    stampController.customStampEnabled = NO;
-                    stampController.dateStampsEnabled = NO;
-                }
-            }
-        }
-    }
+    PSPDFStampViewController *stampController = (PSPDFStampViewController *)PSPDFChildViewControllerForClass(controller, PSPDFStampViewController.class, NO);
+    stampController.customStampEnabled = NO;
+    stampController.dateStampsEnabled = NO;
 
     return YES;
 }
