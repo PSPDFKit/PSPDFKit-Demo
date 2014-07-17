@@ -44,10 +44,6 @@ CATransition *PSCFadeTransitionWithDuration(CGFloat duration) {
     return transition;
 }
 
-CATransition *PSCFadeTransition(void) {
-    return PSCFadeTransitionWithDuration(0.25f);
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - View Introspection
 
@@ -79,23 +75,6 @@ CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     CGFloat yScale = boundsSize.height / targetSize.height;
     CGFloat minScale = __tg_fmin(xScale, yScale);
     return minScale > 1.f ? 1.f : minScale;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIKit Detection
-
-// https://gist.github.com/steipete/6526860
-#define UIKitVersionNumber_iOS_7_0 0xB57
-BOOL PSCIsUIKitFlatMode(void) {
-    static BOOL isUIKitFlatMode = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // We get the modern UIKit if system is running >= iOS 7 and we were linked with >= SDK 7.
-        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-            isUIKitFlatMode = (NSVersionOfLinkTimeLibrary("UIKit") >> 16) >= UIKitVersionNumber_iOS_7_0;
-        }
-    });
-    return isUIKitFlatMode;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

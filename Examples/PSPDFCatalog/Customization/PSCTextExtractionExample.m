@@ -45,9 +45,6 @@
 #pragma mark - PSPDFDocumentPickerControllerDelegate
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
-    // Add fade transition for navigationBar.
-    [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
-    
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.page = pageIndex;
     pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
@@ -76,21 +73,21 @@
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
-    
+
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
     __weak PSPDFAlertView *weakAlert = websitePrompt;
     [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
         // Get data
         NSString *html = [weakAlert textFieldAtIndex:0].text ?: @"";
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
-        
+
         // Create pdf (blocks).
         [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"} error:NULL];
-        
+
         // Generate document and show it.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        
+
         [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
     }];
     [websitePrompt show];
@@ -127,7 +124,7 @@ const char PSCAlertViewKey;
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
-    
+
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
     __weak PSPDFAlertView *weakAlert = websitePrompt;
     [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
@@ -137,12 +134,12 @@ const char PSCAlertViewKey;
         NSURL *URL = [NSURL URLWithString:website];
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
         //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
-        
+
         // start the conversion
         PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem new];
         [status setText:@"Converting..."];
         [status setHUDStyle:PSPDFStatusHUDStyleGradient];
-        
+
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
                 [status popAnimated:YES];
@@ -152,10 +149,10 @@ const char PSCAlertViewKey;
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
                 [statusDone pushAndPopWithDelay:2.0f animated:YES];
                 [status popAnimated:YES];
-                
+
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
                 PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-                
+
                 [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
             }
         }];

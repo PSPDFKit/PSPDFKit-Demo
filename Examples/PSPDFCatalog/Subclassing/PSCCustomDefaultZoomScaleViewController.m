@@ -27,7 +27,6 @@
 
     self.delegate = self;
     self.toolbarEnabled = NO;
-    self.statusBarStyleSetting = PSPDFStatusBarStyleDisable;
     self.HUDViewMode = PSPDFHUDViewModeNever;
     self.pageTransition = PSPDFPageTransitionCurl;
     self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
@@ -81,7 +80,7 @@
         PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
         PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
         PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-        
+
         [player play];
         player.controlStyle = PSPDFMediaPlayerControlStyleNone;
     }
@@ -99,7 +98,7 @@
         PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
         PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
         PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-        
+
         player.view.userInteractionEnabled = NO;;
     }
 }

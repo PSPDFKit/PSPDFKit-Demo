@@ -51,7 +51,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     if (self = [super init]) {
         _leftDocument = leftDocument;
         _rightDocument = rightDocument;
-        PSC_IF_IOS7_OR_GREATER(self.edgesForExtendedLayout = UIRectEdgeAll & ~UIRectEdgeTop;)
+        self.edgesForExtendedLayout = UIRectEdgeAll & ~UIRectEdgeTop;
         self.title = @"Merge Documents";
     }
     return self;
@@ -67,7 +67,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.leftController = [[PSCMergePDFViewController alloc] initWithDocument:self.leftDocument];
     self.leftController.title = @"Their Version";
     self.leftNavigator = [[UINavigationController alloc] initWithRootViewController:self.leftController];
-    PSC_IF_IOS7_OR_GREATER(self.leftNavigator.view.tintColor = self.navigationController.navigationBar.barTintColor;)
+    self.leftNavigator.view.tintColor = self.navigationController.navigationBar.barTintColor;
     [self addChildViewController:self.leftNavigator];
     [self.view addSubview:self.leftNavigator.view];
     [self.leftNavigator didMoveToParentViewController:self];
@@ -76,7 +76,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.rightController = [[PSCMergePDFViewController alloc] initWithDocument:self.rightDocument];
     self.rightController.title = @"Your Version";
     self.rightNavigator = [[UINavigationController alloc] initWithRootViewController:self.rightController];
-    PSC_IF_IOS7_OR_GREATER(self.rightNavigator.view.tintColor = self.navigationController.navigationBar.barTintColor;)
+    self.rightNavigator.view.tintColor = self.navigationController.navigationBar.barTintColor;
     [self addChildViewController:self.rightNavigator];
     [self.view addSubview:self.rightNavigator.view];
     [self.rightNavigator didMoveToParentViewController:self];
@@ -109,11 +109,6 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     CGRect bounds = self.view.bounds;
     self.leftNavigator.view.frame  = CGRectMake(0, 0, bounds.size.width/2, bounds.size.height);
     self.rightNavigator.view.frame = CGRectMake(bounds.size.width/2, 0, bounds.size.width/2, bounds.size.height);
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
@@ -334,9 +329,6 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
 
-    // Match styling. Set statusbar to inherit, and bars to light color.
-    self.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
-    self.navigationBarStyle = UIBarStyleDefault;
     self.HUDViewMode = PSPDFHUDViewModeAlways;
     self.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 
@@ -347,7 +339,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 
     // If the annotation toolbar is invoked, there's not enough space for the default configuration.
-    self.annotationButtonItem.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
+    self.annotationButtonItem.flexibleAnnotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
 
     // Disable the long press menu.
     self.createAnnotationMenuEnabled = NO;

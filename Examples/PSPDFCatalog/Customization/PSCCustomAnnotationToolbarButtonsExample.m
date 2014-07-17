@@ -12,7 +12,7 @@
 #import "PSCExample.h"
 
 @interface PSCCustomAnnotationToolbarButtonsExample : PSCExample @end
-@interface PSCCustomAnnotationToolbar : PSPDFAnnotationToolbar @end
+@interface PSCCustomAnnotationToolbar : PSPDFFlexibleAnnotationToolbar @end
 @implementation PSCCustomAnnotationToolbarButtonsExample
 
 - (id)init {
@@ -27,7 +27,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
+    [pdfController overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
     return pdfController;
 }
 
@@ -35,7 +35,7 @@
 
 // Custom annotation toolbar sublass that adds a "Clear" button that removes all visible annotations OR the current drawing view state.
 @implementation PSCCustomAnnotationToolbar {
-    UIBarButtonItem *_clearAnnotationsButton;
+    PSPDFFlexibleToolbarButton *_clearAnnotationsButton;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -54,11 +54,19 @@
         [dnc addObserver:self selector:@selector(didShowPageViewNotification:) name:PSPDFViewControllerDidShowPageViewNotification object:nil];
 
         // Add clear button
-        _clearAnnotationsButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearButtonPressed:)];
+		UIImage *clearImage = [PSPDFBundleImage(@"trash") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        _clearAnnotationsButton = [PSPDFFlexibleToolbarButton new];
+		[_clearAnnotationsButton setImage:clearImage];
+		[_clearAnnotationsButton addTarget:self action:@selector(clearButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
         [self updateClearAnnotationButton];
-        self.additionalBarButtonItems = @[_clearAnnotationsButton];
+        self.additionalButtons = @[_clearAnnotationsButton];
     }
     return self;
+}
+
+- (void)dealloc {
+	[NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -85,9 +93,9 @@
             }
         }
     }
-	self.undoButtonItem.enabled = self.annotationStateManager.canUndo;
-	self.redoButtonItem.enabled = self.annotationStateManager.canRedo;
-	[self updateClearAnnotationButton];
+
+	PSPDFAnnotationStateManager *manager = self.annotationStateManager;
+	[self annotationStateManager:manager didChangeUndoState:manager.canUndo redoState:manager.canRedo];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -117,7 +125,7 @@
 #pragma mark - Private
 
 - (void)updateClearAnnotationButton {
-    BOOL annotationsFound = [self.annotationStateManager canUndoDrawing]; // Also factor in drawing mode
+    BOOL annotationsFound = NO;
     if (self.annotationStateManager.drawViews.count == 0) {
         PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         for (NSNumber *pageNumber in pdfController.calculatedVisiblePageNumbers) {

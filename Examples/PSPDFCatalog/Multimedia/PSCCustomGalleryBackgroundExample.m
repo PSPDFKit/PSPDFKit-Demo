@@ -34,7 +34,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-    
+
     // Dynamically add gallery annotation.
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
@@ -42,18 +42,18 @@
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
-    
+
     [[PSCCustomGalleryEmbeddedBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
     [[PSCCustomGalleryFullscreenBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
-    
+
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    
+
     // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
     [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
     [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
     [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCCustomGalleryEmbeddedBackgroundView.class];
     [pdfController overrideClass:PSPDFGalleryFullscreenBackgroundView.class withClass:PSCCustomGalleryFullscreenBackgroundView.class];
-    
+
     return pdfController;
 }
 

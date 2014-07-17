@@ -26,13 +26,11 @@
 
     // disable default toolbar
     [self setToolbarEnabled:NO];
-    self.statusBarStyleSetting = UIStatusBarStyleBlackOpaque;
     self.renderAnimationEnabled = NO; // custom implementation here
 
     // add custom controls to our toolbar
     _customViewModeSegment = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
     _customViewModeSegment.selectedSegmentIndex = 0;
-    _customViewModeSegment.segmentedControlStyle = UISegmentedControlStyleBar;
     [_customViewModeSegment addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
     [_customViewModeSegment sizeToFit];
     UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:_customViewModeSegment];

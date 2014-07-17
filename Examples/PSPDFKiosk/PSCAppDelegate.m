@@ -23,23 +23,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault];
     PSCGridViewController *gridController = [PSCGridViewController new];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:gridController];
+	navigationController.navigationBar.barTintColor = UIColor.psc_mainColor;
+	navigationController.navigationBar.barStyle = UIBarStyleBlack;
+	navigationController.toolbar.tintColor = UIColor.blackColor;
+	navigationController.view.tintColor = UIColor.whiteColor;
 
-    if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-                               navigationController.navigationBar.barTintColor = UIColor.psc_mainColor;
-                               navigationController.toolbar.tintColor = UIColor.blackColor;
-                               navigationController.view.tintColor = UIColor.whiteColor;
-                               // By default the system would show a white cursor.
-                               [[UITextField appearance] setTintColor:UIColor.psc_mainColor];
-                               [[UITextView  appearance] setTintColor:UIColor.psc_mainColor];
-                               [[UISearchBar appearance] setTintColor:UIColor.psc_mainColor];)
-        navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
-    }else {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
-    }
+	// By default the system would show a white cursor.
+	[[UITextField appearance] setTintColor:UIColor.psc_mainColor];
+	[[UITextView  appearance] setTintColor:UIColor.psc_mainColor];
+	[[UISearchBar appearance] setTintColor:UIColor.psc_mainColor];
+	navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
     self.navigationController = navigationController;
     self.window.rootViewController = navigationController;

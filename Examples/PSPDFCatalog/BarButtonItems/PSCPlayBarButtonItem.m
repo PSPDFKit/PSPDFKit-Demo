@@ -34,7 +34,6 @@
         _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0.f, 0.f, 22.f, 44.f)];
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _toolbar.barStyle = pdfController.navigationController.navigationBar.barStyle;
-        _toolbar.tintColor = pdfController.tintColor;
         [self updatePlayButton];
     }
     return _toolbar;

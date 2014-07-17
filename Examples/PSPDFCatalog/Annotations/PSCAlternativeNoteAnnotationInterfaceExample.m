@@ -163,15 +163,9 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     noteController.view.frame = targetRect;
     noteController.view.clipsToBounds = YES;
 
-    dispatch_block_t animationBlock = ^{
+    [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
         noteController.view.frame = noteRect;
-    };
-
-    if (PSCIsUIKitFlatMode()) {
-        [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:NULL];
-    }else {
-        [UIView animateWithDuration:0.3f animations:animationBlock];
-    }
+    } completion:NULL];
 
     // show keyboard if set.
     dispatch_block_t showKeyboardBlock = ^{
@@ -274,12 +268,8 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     // Create the top control toolbar.
     _noteToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44.f)];
     _noteToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER(_noteToolbar.barTintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;)
-        _noteToolbar.tintColor = UIColor.whiteColor;
-    }else {
-        _noteToolbar.tintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;
-    }
+    _noteToolbar.barTintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;
+    _noteToolbar.tintColor = UIColor.whiteColor;
 
     _noteToolbar.translucent = NO;
     _noteToolbar.clipsToBounds = YES;
@@ -309,9 +299,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Delete") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAnnotation:)];
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonPressed:)];
         _bottomToolbar.items = @[cancelButton, spacer, saveButton];
-        if (PSCIsUIKitFlatMode()) {
-            _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
-        }
+        _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
     }
 
     // Style the view controller.
@@ -359,23 +347,15 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 - (void)saveButtonPressed:(id)sender {
     [self.textView resignFirstResponder]; // hide keyboard
 
-    dispatch_block_t animationBlock = ^{
+    [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
         self.view.frame = self.sourceRect;
         self.view.alpha = 0.f;
         self.textView.textColor = UIColor.clearColor;
         _noteToolbar.items = nil;
         _bottomToolbar.items = nil;
-    };
-
-    if (PSCIsUIKitFlatMode()) {
-        [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:^(BOOL finished) {
-            [self closeNoteController];
-        }];
-    }else {
-        [UIView animateWithDuration:0.3f animations:animationBlock completion:^(BOOL finished) {
-            [self closeNoteController];
-        }];
-    }
+    } completion:^(BOOL finished) {
+        [self closeNoteController];
+    }];
 }
 
 - (void)closeNoteController {
@@ -417,19 +397,14 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 
     if (noteNumber != NSNotFound) {
         NSString *number = [NSString stringWithFormat:@"%tu", noteNumber];
-        if (PSCIsUIKitFlatMode()) {
-            NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-            style.alignment = NSTextAlignmentCenter;
-            NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
-                                         NSForegroundColorAttributeName : PSCCustomNewTintColor,
-                                         NSParagraphStyleAttributeName : style};
-            [number drawInRect:CGRectMake(-2.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withAttributes:attributes];
-        }else {
-            [PSCCustomNewTintColor set];
-            [number drawInRect:CGRectMake(8.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
-        }
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        style.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
+                                     NSForegroundColorAttributeName : PSCCustomNewTintColor,
+                                     NSParagraphStyleAttributeName : style};
+        [number drawInRect:CGRectMake(-2.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withAttributes:attributes];
     }
-    
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsGetCurrentContext();
     return image;

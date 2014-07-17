@@ -27,7 +27,7 @@
         self.leftBarButtonItems = nil;
         self.additionalBarButtonItems = @[self.printButtonItem, self.emailButtonItem];
         self.rightBarButtonItems = @[self.bookmarkButtonItem, self.searchButtonItem, self.viewModeButtonItem];
-        self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+
     }
     return self;
 }

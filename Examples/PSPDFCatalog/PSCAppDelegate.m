@@ -11,12 +11,7 @@
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
 
-@interface PSCAppDelegate () <UINavigationControllerDelegate
-#ifdef HOCKEY_ENABLED
-#import <HockeySDK/HockeySDK.h>
-BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
-#endif
-> @end
+@interface PSCAppDelegate () <UINavigationControllerDelegate> @end
 
 @implementation PSCAppDelegate
 
@@ -53,6 +48,12 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // Set your license key here. PSPDFKit is commercial software.
+    // Each PSPDFKit license is bound to a specific app bundle id.
+    // Visit http://customers.pspdfkit.com to get your demo or commercial license key.
+    [PSPDFKit setLicenseKey:@"YOUR_LICENSE_KEY_GOES_HERE"];
+
     // Example how to easily change certain images in PSPDFKit.
     //[self customizeImages];
 
@@ -64,11 +65,6 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
 #endif
 
-    // Set your license key here. PSPDFKit is commercial software.
-    // Each PSPDFKit license is bound to a specific app bundle id.
-    // Visit http://customers.pspdfkit.com to get your license key.
-    PSPDFSetLicenseKey("DEMO");
-
     // Configure callback for Open In Chrome feature. Optional.
     PSPDFKit.sharedInstance[PSPDFXCallbackURLString] = @"pspdfcatalog://";
 
@@ -76,7 +72,6 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
     // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
     self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
-    self.catalog.delegate = self;
     self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = self.catalog;
     [self.window makeKeyAndVisible];
@@ -87,15 +82,6 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     // Opened with the Open In... feature?
     [self handleOpenURL:launchOptions[UIApplicationLaunchOptionsURLKey]];
 
-    // HockeyApp (http://hockeyapp.net) is a *great* service to manage crashes and distribute beta builds. It's well worth the money.
-#if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE) && defined(HOCKEY_ENABLED)
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"This example project uses HockeyApp for crash reports and Localytics for user statistics. Make sure to either remove that or change the identifiers before shipping your app, if you use PSPDFCatalog/PSPDFKiosk as the foundation of your application.");
-        [BITHockeyManager.sharedHockeyManager configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
-        [BITHockeyManager.sharedHockeyManager crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
-        [BITHockeyManager.sharedHockeyManager startManager];
-    });
-#endif
     return YES;
 }
 
@@ -124,30 +110,6 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
     pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
     return pdfController;
-}
-
-#pragma mark - BITUpdateManagerDelegate
-#ifdef HOCKEY_ENABLED
-- (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
-#ifndef CONFIGURATION_AppStore
-    // This is only for Hockey app deployment for beta testing. Using uniqueIdentifier in AppStore apps is not allowed and will get your app rejected.
-    if ([UIDevice.currentDevice respondsToSelector:@selector(uniqueIdentifier)])
-        return [UIDevice.currentDevice performSelector:@selector(uniqueIdentifier)];
-#endif
-    return nil;
-}
-#endif
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UINavigationControllerDelegate
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if ([viewController isKindOfClass:PSPDFViewController.class]) {
-        if (PSCIsUIKitFlatMode()) {
-            PSPDFViewController *pdfController = (PSPDFViewController *)viewController;
-            pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
-        }
-    }
 }
 
 @end

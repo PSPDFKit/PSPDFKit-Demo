@@ -32,6 +32,10 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
+	// Remove the default annotationBarButtonItem
+	NSMutableArray *items = [controller.rightBarButtonItems mutableCopy];
+	[items removeObject:controller.annotationButtonItem];
+	controller.rightBarButtonItems = items;
     return controller;
 }
 
@@ -42,24 +46,19 @@
 
 @implementation PSCExampleAnnotationViewController
 
-- (void)dealloc {
-    self.verticalToolbar.pdfController = nil; // ensure pdf controller is removed
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // create the custom toolbar and add it on top of the HUDView.
-    self.verticalToolbar = [[PSCVerticalAnnotationToolbar alloc] initWithPDFController:self];
+    self.verticalToolbar = [[PSCVerticalAnnotationToolbar alloc] initWithAnnotationStateManager:self.annotationStateManager];
     self.verticalToolbar.frame = CGRectIntegral(CGRectMake(self.view.bounds.size.width-44.f, (self.view.bounds.size.height-44.f)/2, 44.f, 44.f * 2));
     self.verticalToolbar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     [self.HUDView addSubview:self.verticalToolbar];
 }
 
-// ensure custom toolbar is hidden when we show the thumbnails
 - (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated {
     [super setViewMode:viewMode animated:animated];
-
+	// ensure custom toolbar is hidden when we show the thumbnails
     [UIView animateWithDuration:0.25 delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.verticalToolbar.alpha = viewMode == PSPDFViewModeThumbnails ? 0.f : 1.f;
     } completion:NULL];

@@ -20,7 +20,6 @@ CGFloat PSCToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 #pragma mark - Animations
 
 CATransition *PSCFadeTransitionWithDuration(CGFloat duration);
-CATransition *PSCFadeTransition(void);
 
 #pragma mark - View Introspection
 
@@ -31,9 +30,6 @@ void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *
 #pragma mark - Geometry
 
 CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
-
-// Detect modern UIKit
-BOOL PSCIsUIKitFlatMode(void);
 
 // Detect if a popover of class `controllerClass` is visible.
 BOOL PSCIsControllerClassAndVisible(id c, Class controllerClass);
