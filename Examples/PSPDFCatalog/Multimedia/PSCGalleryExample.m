@@ -239,16 +239,15 @@
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCUltraResImageGalleryExample
+#pragma mark - PSCHighResImageGalleryExample
 
-@interface PSCUltraResImageGalleryExample : PSCExample @end
-@implementation PSCUltraResImageGalleryExample
+@interface PSCHighResImageGalleryExample : PSCExample @end
+@implementation PSCHighResImageGalleryExample
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Ultra-Resolution Image Gallery Example";
+        self.title = @"High-Resolution Image Gallery Example";
         self.category = PSCExampleCategoryMultimedia;
-        self.contentDescription = @"Displays a 16,000 x 9,000px image";
         self.priority = 200;
     }
     return self;
@@ -258,8 +257,7 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
-    galleryAnnotation.URL = [NSURL URLWithString:@"http://photojournal.jpl.nasa.gov/jpeg/PIA13932.jpg"];
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/highres.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
