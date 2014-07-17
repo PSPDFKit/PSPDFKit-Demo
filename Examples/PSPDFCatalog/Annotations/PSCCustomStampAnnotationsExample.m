@@ -12,7 +12,7 @@
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
 
-@interface PSCCustomStampAnnotationsExample : PSCExample @end
+@interface PSCCustomStampAnnotationsExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCCustomStampAnnotationsExample
 
 - (id)init {
@@ -41,6 +41,7 @@
 
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.delegate = self;
     pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
 
     // Add cleanup block so other examples will use the default stamps.
@@ -49,6 +50,27 @@
     }];
 
     return pdfController;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewControllerDelegate
+
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id<PSPDFPresentableViewController>)controller embeddedInController:(id<PSPDFHostableViewController>)hostController options:(NSDictionary *)options animated:(BOOL)animated {
+
+    if ([controller isKindOfClass:UINavigationController.class]) {
+        UIViewController *topController = [(UINavigationController *)controller topViewController];
+        if ([topController isKindOfClass:PSPDFContainerViewController.class]) {
+            for (UIViewController *childController in ((PSPDFContainerViewController *)topController).viewControllers) {
+                if ([childController isKindOfClass:PSPDFStampViewController.class]) {
+                    PSPDFStampViewController *stampController = (PSPDFStampViewController *)childController;
+                    stampController.customStampEnabled = NO;
+                    stampController.dateStampsEnabled = NO;
+                }
+            }
+        }
+    }
+
+    return YES;
 }
 
 @end
