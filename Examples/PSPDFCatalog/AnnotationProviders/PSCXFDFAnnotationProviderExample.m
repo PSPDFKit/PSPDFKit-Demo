@@ -10,6 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
+#import "UIBarButtonItem+PSCBlockSupport.h"
 
 @interface PSCXFDFAnnotationProviderExample : PSCExample @end
 @implementation PSCXFDFAnnotationProviderExample
@@ -65,7 +66,19 @@
         documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
     }];
 
-    return [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered block:^(id sender) {
+        [document saveAnnotationsWithCompletionBlock:^(NSArray *savedAnnotations, NSError *error) {
+            if (!error) {
+                unsigned long long XFDFFileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:fileXML.path error:NULL] fileSize];
+                NSLog(@"Saving done. (XFDF file size: %lld)", XFDFFileSize);
+            }else {
+                NSLog(@"Saving failed: %@", error.localizedDescription);
+            }
+        }];
+    }];
+    controller.leftBarButtonItems = @[controller.closeButtonItem, saveButton];
+    return controller;
 }
 
 @end
