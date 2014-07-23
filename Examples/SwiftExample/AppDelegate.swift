@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pdfController.thumbnailBarMode = .Scrollable
 
         self.window!.rootViewController = UINavigationController(rootViewController: pdfController)
-
         self.window!.makeKeyAndVisible()
         return true
     }
