@@ -663,8 +663,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
 
         // Create a custom outline for testing.
-        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
-        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" color:nil fontTraits:0 action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root"  color:nil fontTraits:0 action:nil children:@[openExternalAction] level:0];
         multimediaDoc.outlineParser.outline = rootOutline;
 
         tabbedController.documents = @[multimediaDoc,
@@ -679,8 +679,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
 
         // Create a custom outline for testing.
-        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
-        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External"  color:nil fontTraits:0 action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root"  color:nil fontTraits:0 action:nil children:@[openExternalAction] level:0];
         multimediaDoc.outlineParser.outline = rootOutline;
 
         tabbedController.documents = @[multimediaDoc,
