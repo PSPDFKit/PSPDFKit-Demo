@@ -1,6 +1,6 @@
 //
 //  PSCPopoverTestViewController.m
-//  PSPDFCatalog-
+//  PSPDFCatalog
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
@@ -12,8 +12,6 @@
 
 #import "PSCPopoverTestViewController.h"
 #import "PSPDFPopoverController.h"
-#import "PSPDFAvailability.h"
-
 
 @interface PSCPopoverTestViewController () <UIPopoverControllerDelegate>
 
@@ -48,7 +46,7 @@ static const NSUInteger noVerticalButtons = 6;
 }
 
 - (void)setUpControls {
-	if (PSPDFIsIPad()) {
+	if (PSCIsIPad()) {
 		UISwitch *systemSwitch = [[UISwitch alloc] init];
 		systemSwitch.on = self.useSystemPopover;
 		[systemSwitch addTarget:self action:@selector(systemSwitchToggle:) forControlEvents:UIControlEventValueChanged];
@@ -112,7 +110,7 @@ static const NSUInteger noVerticalButtons = 6;
 	sample.preferredContentSize = CGSizeMake(300, 400);
 
 	UIPopoverController *popover;
-	if (self.useSystemPopover && PSPDFIsIPad()) {
+	if (self.useSystemPopover && PSCIsIPad()) {
 		popover = [[UIPopoverController alloc] initWithContentViewController:sample];
 	} else {
 		popover = (UIPopoverController *)[[PSPDFPopoverController alloc] initWithContentViewController:sample];
