@@ -47,7 +47,6 @@
 		786FEED918FFAA0700CAF16B /* PSCCustomNoteControllerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
-		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
 		7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */; };
 		788628EB1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */; };
 		78897E24179A8C8000BAAE73 /* PSCFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E21179A8C8000BAAE73 /* PSCFileHelper.m */; };
@@ -264,8 +263,6 @@
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
 		78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTimingTestViewController.m; sourceTree = "<group>"; };
 		78783DF6164DBDB700076EDD /* PSCTimingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTimingTestViewController.h; sourceTree = "<group>"; };
-		787B07CB1695B65300852825 /* PSCFontCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFontCacheTest.h; sourceTree = "<group>"; };
-		787B07CC1695B65300852825 /* PSCFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFontCacheTest.m; sourceTree = "<group>"; };
 		7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+PSCBlockSupport.h"; sourceTree = "<group>"; };
 		7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+PSCBlockSupport.m"; sourceTree = "<group>"; };
 		788628EA1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPredefinedEmailBodyExample.m; sourceTree = "<group>"; };
@@ -523,15 +520,6 @@
 			path = Merging;
 			sourceTree = "<group>";
 		};
-		7814630B1688BD9D0002E7C8 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				787B07CB1695B65300852825 /* PSCFontCacheTest.h */,
-				787B07CC1695B65300852825 /* PSCFontCacheTest.m */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		784F010E15CF247900849F81 = {
 			isa = PBXGroup;
 			children = (
@@ -585,7 +573,6 @@
 				78AAC6EE15D1760E009B53C6 /* Subclassing */,
 				784F012415CF247900849F81 /* Supporting Files */,
 				78A24A1115CFDAAF00328F4F /* TabbedExample */,
-				7814630B1688BD9D0002E7C8 /* Tests */,
 			);
 			path = PSPDFCatalog;
 			sourceTree = "<group>";
@@ -1237,7 +1224,6 @@
 				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
 				781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */,
 				78FEC26818B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m in Sources */,
-				787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */,
 				78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */,
 				78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */,
 				78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */,
