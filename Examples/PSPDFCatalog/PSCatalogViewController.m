@@ -29,7 +29,6 @@
 #import "PSCCustomThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
 #import "PSCCustomDefaultZoomScaleViewController.h"
-#import "PSCTextParserTest.h"
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCMultipleUsersPDFViewController.h"
@@ -41,7 +40,10 @@
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
 #import "UIColor+PSPDFCatalog.h"
+
+#ifdef PSPDF_USE_SOURCE
 #import "PSCPopoverTestViewController.h"
+#endif
 
 #import <objc/runtime.h>
 
@@ -785,10 +787,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return browser;
     }]];
 
+#ifdef PSPDF_USE_SOURCE
     [testSection addContent:[PSContent contentWithTitle:@"Popover test" block:^UIViewController *{
         PSCPopoverTestViewController *popover = [PSCPopoverTestViewController new];
         return popover;
     }]];
+#endif
 
     [testSection addContent:[PSContent contentWithTitle:@"Test that 'In Vitro Amplification' can be found" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"In Vitro Amplification - search.pdf"]];
@@ -812,11 +816,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             [pdfController searchForString:@"pdfo" options:nil animated:YES];
         });
         return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"TextParser test" block:^UIViewController *{
-        [PSCTextParserTest runWithDocumentAtPath:[samplesURL URLByAppendingPathComponent:@"protected.pdf"].path];
-        return nil;
     }]];
 
     // Check that the free text annotation has a 5px red border around it.
