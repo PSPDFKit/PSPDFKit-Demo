@@ -11,6 +11,8 @@
 #import "PSCExample.h"
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
+#import "PSCFileHelper.h"
+#import "UIBarButtonItem+PSCBlockSupport.h"
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -91,7 +93,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Form_example.pdf"]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Form_Auftrag_PDF_Unite.pdf"]];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // Get all form objects and fill them in.
@@ -110,8 +112,33 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         }
     });
 
-    return [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    UIBarButtonItem *saveCopy = [[UIBarButtonItem alloc] initWithTitle:@"Save Copy" style:UIBarButtonItemStylePlain block:^(id sender) {
+
+        // Create a copy of the document
+        NSURL *tempURL = PSCTempFileURLWithPathExtension([NSString stringWithFormat:@"copy_%@", document.fileURL.lastPathComponent], @"pdf");
+        [NSFileManager.defaultManager copyItemAtURL:document.fileURL toURL:tempURL error:NULL];
+        PSPDFDocument *documentCopy = [PSPDFDocument documentWithURL:tempURL];
+
+        // Transfer form values
+        NSArray *annotations = [document annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
+        NSArray *annotationsCopy = [documentCopy annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
+        NSAssert(annotations.count == annotationsCopy.count, @"This example is built to only fill forms - don't add/remove annotations.");
+
+        [annotationsCopy enumerateObjectsUsingBlock:^(PSPDFFormElement *formElement, NSUInteger idx, BOOL *stop) {
+            if ([formElement isKindOfClass:PSPDFTextFieldFormElement.class]) {
+                formElement.contents = [annotations[idx] contents];
+            }
+        }];
+
+        [documentCopy saveAnnotationsWithError:NULL];
+
+        [[[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Document copy saved to %@", documentCopy.fileURL.path] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    }];
+    pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, saveCopy];
+    return pdfController;
 }
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
