@@ -45,6 +45,7 @@
 		786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */; };
 		786FEED318FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */; };
 		786FEED918FFAA0700CAF16B /* PSCCustomNoteControllerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */; };
+		7870AC491986E48800FFB6B4 /* PSCLockAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 7870AC481986E48800FFB6B4 /* PSCLockAnnotationsExample.m */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */; };
@@ -259,6 +260,7 @@
 		786E92C1163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomAnnotationProvider.h; sourceTree = "<group>"; };
 		786FEED218FFA43C00CAF16B /* PSCCustomColorPickerColorsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomColorPickerColorsExample.m; sourceTree = "<group>"; };
 		786FEED818FFAA0700CAF16B /* PSCCustomNoteControllerExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomNoteControllerExample.m; sourceTree = "<group>"; };
+		7870AC481986E48800FFB6B4 /* PSCLockAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCLockAnnotationsExample.m; sourceTree = "<group>"; };
 		78753587161F740300119B8E /* PSCAutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAutoScrollViewController.h; sourceTree = "<group>"; };
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
 		78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTimingTestViewController.m; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 		78A8EE5915D6ADA900400DE7 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
+				7870AC481986E48800FFB6B4 /* PSCLockAnnotationsExample.m */,
 				78E8C8BF183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.m */,
 				78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */,
 				78B095DA183A168C00BBE328 /* PSCAnnotationsExample.m */,
@@ -1153,6 +1156,7 @@
 				78CF6F74194FAB1C006A7969 /* PSCSimpleDrawingButtonExample.m in Sources */,
 				78B1482118B79CD90039DB99 /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */,
+				7870AC491986E48800FFB6B4 /* PSCLockAnnotationsExample.m in Sources */,
 				78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */,
 				78D4D40F1848CD4900080A96 /* UIAlertView+AFNetworking.m in Sources */,
 				78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */,
