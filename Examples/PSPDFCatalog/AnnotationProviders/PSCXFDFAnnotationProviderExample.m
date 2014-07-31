@@ -134,8 +134,12 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
     [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
         PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider];
-        XFDFProvider.inputStream = [[PSPDFAESCryptoInputStream alloc] initWithInputStream:[[NSInputStream alloc] initWithURL:fileXML] passphrase:passphrase];
-        XFDFProvider.outputStream = [[PSPDFAESCryptoOutputStream alloc] initWithOutputStream:[NSOutputStream outputStreamWithURL:fileXML append:NO] passphrase:passphrase];
+        XFDFProvider.createInputStreamBlock = ^(PSPDFXFDFAnnotationProvider *annotationProvider) {
+            return [[PSPDFAESCryptoInputStream alloc] initWithInputStream:[[NSInputStream alloc] initWithURL:fileXML] passphrase:passphrase];
+        };
+        XFDFProvider.createOutputStreamBlock = ^(PSPDFXFDFAnnotationProvider *annotationProvider) {
+            return [[PSPDFAESCryptoOutputStream alloc] initWithOutputStream:[NSOutputStream outputStreamWithURL:fileXML append:NO] passphrase:passphrase];;
+        };
         documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
     }];
 
