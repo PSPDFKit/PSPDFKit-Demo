@@ -50,15 +50,16 @@
 
     // Create at least one annotation if the document is currently empty.
     if ([document annotationsForPage:0 type:PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink].count == 0) {
-        PSPDFStampAnnotation *imageStamp = [[PSPDFStampAnnotation alloc] init];
-        imageStamp.image = [UIImage imageNamed:@"exampleimage.jpg"];
-        imageStamp.boundingBox = CGRectMake(100.f, 100.f, imageStamp.image.size.width/4.f, imageStamp.image.size.height/4.f);
-
-        imageStamp.page = 0;
-        // We need to define *some* action to get a highlight. Here we just use a dummy, empty JS action.
-        imageStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : [[PSPDFJavaScriptAction alloc] initWithScript:@""]};
-
-        [document addAnnotations:@[imageStamp]];
+        PSPDFInkAnnotation *ink = [PSPDFInkAnnotation new];
+        NSArray *lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
+                           @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
+                           ];
+        PSPDFPageInfo *pageInfo = [document pageInfoForPage:0];
+        ink.lineWidth = 5;
+        ink.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, UIScreen.mainScreen.bounds);
+        ink.color = [UIColor colorWithRed:0.667f green:0.279f blue:0.748f alpha:1.f];
+        ink.page = 0;
+        [document addAnnotations:@[ink]];
     }
 
     // Lock all annotations except links and forms/widgets.
@@ -66,10 +67,13 @@
         NSArray *annotations = [document annotationsForPage:pageIndex type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
         for (PSPDFAnnotation *annotation in annotations) {
             // Preserve existing flags, just set locked + read only.
-            annotation.flags |= PSPDFAnnotationFlagLocked|PSPDFAnnotationFlagReadOnly;
+            annotation.flags |= PSPDFAnnotationFlagLocked;
         }
     }
 
+    [document saveAnnotationsWithError:NULL];
+
+    NSLog(@"Locked file: %@", tempURL.path);
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;
