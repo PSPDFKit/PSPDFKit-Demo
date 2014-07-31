@@ -35,35 +35,35 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
 
-		NSURL *resURL = NSBundle.mainBundle.resourceURL;
-		NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
-		NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
+        NSURL *resURL = NSBundle.mainBundle.resourceURL;
+        NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
+        NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
 
-		NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
-		PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
-		PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed"
-																			   PKCS12:p12];
-
-
+        NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
+        PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
+        PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed"
+                                                                               PKCS12:p12];
 
 
-		PSPDFSignatureManager *smgr = [PSPDFSignatureManager sharedManager];
 
-		[smgr registerSigner:p12signer];
 
-		// Add certs to trust store
-		NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
-		NSData *certData = [NSData dataWithContentsOfURL:certURL];
+        PSPDFSignatureManager *smgr = [PSPDFSignatureManager sharedManager];
 
-		NSError *err = nil;
-		NSArray *certs = [PSPDFX509 certificatesFromPKCS7Data:certData error:&err];
-		if (err != nil) {
-			NSLog(@"ERROR: %@", err.localizedDescription);
-		} else {
-			for (PSPDFX509 *x509 in certs) {
-				[smgr addTrustedCertificate:x509];
-			}
-		}
+        [smgr registerSigner:p12signer];
+
+        // Add certs to trust store
+        NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
+        NSData *certData = [NSData dataWithContentsOfURL:certURL];
+
+        NSError *err = nil;
+        NSArray *certs = [PSPDFX509 certificatesFromPKCS7Data:certData error:&err];
+        if (err != nil) {
+            NSLog(@"ERROR: %@", err.localizedDescription);
+        } else {
+            for (PSPDFX509 *x509 in certs) {
+                [smgr addTrustedCertificate:x509];
+            }
+        }
 
     }
     return self;
@@ -100,21 +100,25 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSArray *annotations = [document annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
         for (PSPDFFormElement *formElement in annotations) {
-            if ([formElement isKindOfClass:PSPDFTextFieldFormElement.class]) {
-                [NSThread sleepForTimeInterval:1.f];
+            [NSThread sleepForTimeInterval:0.8f];
 
-                // Change model on main thread and send a change notification.
-                dispatch_async(dispatch_get_main_queue(), ^{
+            // Always update the model on the main thread.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([formElement isKindOfClass:PSPDFTextFieldFormElement.class]) {
+                    // Change model on main thread and send a change notification.
                     formElement.contents = [NSString stringWithFormat:@"Test %@", formElement.fieldName];
                     [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationChangedNotification object:formElement userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[@"contents"]}];
-                });
-            }
+                }else if([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
+                    [(PSPDFButtonFormElement *)formElement toggleButtonSelectionStateAndSendNotification:YES];
+                }
+            });
         }
     });
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    UIBarButtonItem *saveCopy = [[UIBarButtonItem alloc] initWithTitle:@"Save Copy" style:UIBarButtonItemStylePlain block:^(id sender) {
 
+    // Add feature to save a copy of the PDF.
+    UIBarButtonItem *saveCopy = [[UIBarButtonItem alloc] initWithTitle:@"Save Copy" style:UIBarButtonItemStylePlain block:^(id sender) {
         // Create a copy of the document
         NSURL *tempURL = PSCTempFileURLWithPathExtension([NSString stringWithFormat:@"copy_%@", document.fileURL.lastPathComponent], @"pdf");
         [NSFileManager.defaultManager copyItemAtURL:document.fileURL toURL:tempURL error:NULL];
@@ -155,13 +159,13 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         self.contentDescription = @"PSPDFKit Complete/Enterprise supports Digital Signature validation.";
         self.category = PSCExampleCategoryForms;
         self.priority = 10;
-//        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
+        //        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
     }
     return self;
 }
 
 - (void)dealloc {
-//    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
+    //    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
