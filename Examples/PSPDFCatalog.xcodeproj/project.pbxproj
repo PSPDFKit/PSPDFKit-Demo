@@ -15,6 +15,7 @@
 		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
 		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
+		781C105C198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */; };
 		781D3B2A1953C5730043EBA9 /* PSCMapWidgetExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 781D3B291953C5730043EBA9 /* PSCMapWidgetExample.m */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		782D752418642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */; };
@@ -202,6 +203,7 @@
 		781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTwoFingerSwipeGestureViewController.h; sourceTree = "<group>"; };
 		781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSubviewPDFViewController.m; sourceTree = "<group>"; };
 		781908C61680BA340065A6B4 /* PSCCustomSubviewPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomSubviewPDFViewController.h; sourceTree = "<group>"; };
+		781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSelectFreeTextAnnotationsExample.m; sourceTree = "<group>"; };
 		781D3B291953C5730043EBA9 /* PSCMapWidgetExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMapWidgetExample.m; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSignatureControllerCustomizationExample.m; sourceTree = "<group>"; };
@@ -709,7 +711,6 @@
 		78A8EE5915D6ADA900400DE7 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
-				7870AC481986E48800FFB6B4 /* PSCLockAnnotationsExample.m */,
 				78E8C8BF183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.m */,
 				78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */,
 				78B095DA183A168C00BBE328 /* PSCAnnotationsExample.m */,
@@ -720,7 +721,9 @@
 				78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */,
 				78B095E1183A24C800BBE328 /* PSCFreeFormImageResizeExample.m */,
 				789AC14618B66DA100766ECB /* PSCHighlightAnnotationToolbarButtonExample.m */,
+				7870AC481986E48800FFB6B4 /* PSCLockAnnotationsExample.m */,
 				78B1481818B79B4E0039DB99 /* PSCSaveAsPDFExample.m */,
+				781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */,
 				78FEC22218B28CC90012ACBD /* PSCSignAllPagesExample.m */,
 				789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */,
 				789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */,
@@ -1146,6 +1149,7 @@
 				78ABC8B518EE041F007578C2 /* PSCCustomOutlineControllerExample.m in Sources */,
 				785C5F2D18D19A4100DD1592 /* PSCTopScrobbleBarExample.m in Sources */,
 				784F012A15CF247900849F81 /* main.m in Sources */,
+				781C105C198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m in Sources */,
 				78E4E06617DD151C005ED42D /* PSCExampleManager.m in Sources */,
 				78FEC25818B298C60012ACBD /* PSCDocumentSidebarExample.m in Sources */,
 				78FEC23118B291E20012ACBD /* PSCCustomBookmarkImageExample.m in Sources */,
