@@ -148,9 +148,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormDigitallySignedModifiedExample
 
-@interface PSCFormDigitallySignedModifiedExample : PSCExample
-@end
-
+@interface PSCFormDigitallySignedModifiedExample : PSCExample @end
 @implementation PSCFormDigitallySignedModifiedExample
 
 - (id)init {
@@ -196,3 +194,49 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 }
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 
+
+@interface PSCFormFillingAndSavingExample : PSCExample @end
+@implementation PSCFormFillingAndSavingExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Programmatically fill form and save";
+        self.category = PSCExampleCategoryForms;
+        self.priority = 150;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    // Get the example form and copy it to a writable location
+    NSURL *fileURL = [NSURL psc_sampleURLWithName:@"Testcase_Form_Auftrag_PDF_Unite.pdf"];
+    NSURL *documentURL = PSCCopyFileURLToDocumentFolderAndOverride(fileURL, YES);
+
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
+
+    [document annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
+    for (PSPDFFormElement *formElement in document.formParser.forms) {
+        if([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
+            if ([formElement.fieldName isEqualToString:@"bereits Kunde"]) {
+                [(PSPDFButtonFormElement *)formElement.kids[1] select];
+            }
+        }
+    }
+
+    [document saveAnnotationsWithCompletionBlock:^(NSArray *savedAnnotations, NSError *error) {
+        NSLog(@"Saved with Error: %@", error.localizedFailureReason);
+    }];
+
+    NSLog(@"File saved to %@", documentURL.path);
+
+    return nil;
+}
+
+@end
+
+
+
