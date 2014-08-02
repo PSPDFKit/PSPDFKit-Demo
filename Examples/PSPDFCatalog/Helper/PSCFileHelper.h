@@ -9,6 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSURL+SampleLoading.h"
 
 // Creates a temp URL.
 NSURL *PSCTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
