@@ -1484,7 +1484,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [super viewWillAppear:animated];
 
     // Restore state as it was before.
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+	if (!self.searchDisplayController.active) {
+		// If returning from a modal view controller while the search controller is active, this would cause
+		// the navigation bar to completely obscure the search bar.
+		[self.navigationController setNavigationBarHidden:NO animated:animated];
+	}
     self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
     self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
     self.navigationController.view.tintColor = UIColor.whiteColor;
