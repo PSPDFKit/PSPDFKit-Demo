@@ -391,8 +391,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 }
 
 static NSUInteger PSCDocumentRelativePageForPage(PSPDFDocumentProvider *documentProvider, NSUInteger page) {
-    PSPDFDocument *document = documentProvider.document;
-    return [document pageOffsetForDocumentProvider:documentProvider] + page;
+    return page + documentProvider.pageOffsetForDocument;
 }
 
 // Translate page and forward
