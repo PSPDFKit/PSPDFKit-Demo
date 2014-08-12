@@ -133,4 +133,8 @@ const char PSCSignatureCompletionBlock;
     if (signatureCompletionBlock) signatureCompletionBlock(signatureController);
 }
 
+- (void)signatureViewControllerDidCancel:(PSPDFSignatureViewController *)signatureController {
+    [signatureController dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end
