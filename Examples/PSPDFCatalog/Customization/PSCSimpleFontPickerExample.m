@@ -11,7 +11,7 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCSimpleFontSelectorViewController : PSPDFFontSelectorViewController @end
+@interface PSCSimpleFontPickerViewController : PSPDFFontPickerViewController @end
 
 @interface PSCSimpleFontPickerExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCSimpleFontPickerExample
@@ -37,7 +37,7 @@
     [document addAnnotations:@[freeText]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFFontSelectorViewController.class withClass:PSCSimpleFontSelectorViewController.class];
+    [pdfController overrideClass:PSPDFFontPickerViewController.class withClass:PSCSimpleFontPickerViewController.class];
     pdfController.delegate = self;
     return pdfController;
 }
@@ -53,7 +53,7 @@
 
 @end
 
-@implementation PSCSimpleFontSelectorViewController
+@implementation PSCSimpleFontPickerViewController
 
 + (NSArray *)allowedFonts {
     // Very strange, if Courier font isnt added Courier New wont appear
