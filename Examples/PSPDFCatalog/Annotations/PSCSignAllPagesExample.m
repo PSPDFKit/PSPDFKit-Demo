@@ -93,19 +93,20 @@ const char PSCSignatureCompletionBlock;
         PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
         [flattenAlert addButtonWithTitle:@"Flatten" block:^(NSInteger buttonIndex) {
             NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
+			PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+			[status pushAnimated:YES];
             // Perform in background to allow progress showing.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
-                [status pushAnimated:YES];
 
                 [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-                    status.progress = (numberOfProcessedPages+1)/(float)totalPages;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+						status.progress = (numberOfProcessedPages+1)/(float)totalPages;
+					});
                 } error:NULL];
-
-                [status popAnimated:YES];
 
                 // completion
                 dispatch_async(dispatch_get_main_queue(), ^{
+					[status popAnimated:YES];
                     PSPDFDocument *flattenedDocument = [PSPDFDocument documentWithURL:tempURL];
                     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:flattenedDocument];
                     [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
