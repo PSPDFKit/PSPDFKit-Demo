@@ -154,7 +154,6 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 - (id)init {
     if (self = [super init]) {
         self.title = @"Example of a PDF Interactive Form with a Digital Signature";
-        self.contentDescription = @"PSPDFKit Complete/Enterprise supports Digital Signature validation.";
         self.category = PSCExampleCategoryForms;
         self.priority = 10;
         //        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
