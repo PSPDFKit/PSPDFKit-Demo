@@ -23,9 +23,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormExample
 
-@interface PSCFormExample : PSCExample
-@end
-
+@interface PSCFormExample : PSCExample @end
 @implementation PSCFormExample
 
 - (id)init {
@@ -40,27 +38,22 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
         NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
         PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
-        PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed"
-                                                                               PKCS12:p12];
+        PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed" PKCS12:p12];
 
-
-
-
-        PSPDFSignatureManager *smgr = [PSPDFSignatureManager sharedManager];
-
-        [smgr registerSigner:p12signer];
+        PSPDFSignatureManager *signatureManager = [PSPDFSignatureManager sharedManager];
+        [signatureManager registerSigner:p12signer];
 
         // Add certs to trust store
         NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
         NSData *certData = [NSData dataWithContentsOfURL:certURL];
 
-        NSError *err = nil;
-        NSArray *certs = [PSPDFX509 certificatesFromPKCS7Data:certData error:&err];
-        if (err != nil) {
-            NSLog(@"ERROR: %@", err.localizedDescription);
+        NSError *error = nil;
+        NSArray *certificates = [PSPDFX509 certificatesFromPKCS7Data:certData error:&error];
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
         } else {
-            for (PSPDFX509 *x509 in certs) {
-                [smgr addTrustedCertificate:x509];
+            for (PSPDFX509 *x509 in certificates) {
+                [signatureManager addTrustedCertificate:x509];
             }
         }
 
@@ -235,6 +228,3 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 }
 
 @end
-
-
-
