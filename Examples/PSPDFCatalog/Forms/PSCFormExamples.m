@@ -30,8 +30,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"PDF AcroForm";
-        self.contentDescription = @"PSPDFKit Complete/Enterprise supports PDF AcroForms.";
+        self.title = @"PDF AcroForm Feature";
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
 
