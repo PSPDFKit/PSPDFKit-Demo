@@ -455,10 +455,17 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFCacheDelegate
 
+static BOOL PSCSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size) {
+    return ((round(size.width) == round(containerSize.width) &&
+             round(containerSize.height) >= round(size.height)) ||
+            (round(size.height) == round(containerSize.height) &&
+             round(containerSize.width) >= round(size.width)));
+}
+
 - (void)didCacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size {
     PSCMagazine *magazine = self.magazine ?: self.magazineFolder.firstMagazine;
 
-    if (magazine == document && page == 0 && PSPDFSizeAspectRatioEqualToSize(self.frame.size, size)) {
+    if (magazine == document && page == 0 && PSCSizeAspectRatioEqualToSize(self.frame.size, size)) {
         [self setImage:image animated:YES];
 
         if (magazine.isTitleLoaded) {

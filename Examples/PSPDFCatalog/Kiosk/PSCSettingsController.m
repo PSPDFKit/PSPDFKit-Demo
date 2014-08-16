@@ -127,7 +127,7 @@ static NSMutableDictionary *_settings;
                              @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
                              ];
         _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition"), _(@"Scroll Direction"), _(@"Double Page Mode"), _(@"Cover"), _(@"Thumbnail Bar"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
-        _sectionFooter = @[@"", @"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
+        _sectionFooter = @[@"", @"", @"", @"", PSPDFKit.sharedInstance.version, _(@"See PSPDFKitGlobal.h for more debugging options."),
                            _(@"Useful to easy readability of white documents."),
                            _(@"Paper Color"),
                            _(@"Content Opacity"),

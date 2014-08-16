@@ -40,6 +40,7 @@
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
 #import "UIColor+PSPDFCatalog.h"
+#import "NSArray+PSCHelper.h"
 
 #ifdef PSPDF_USE_SOURCE
 #import "PSCPopoverTestViewController.h"
@@ -76,7 +77,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     if ((self = [super initWithStyle:style])) {
         self.title = PSPDFLocalize(@"PSPDFKit Catalog");
         if (PSCIsIPad()) {
-            self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
+            self.title = [PSPDFKit.sharedInstance.version stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
@@ -1013,7 +1014,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         //Here we should figure out which pages have annotations
         NSDictionary *annotationsDictionary = [document allAnnotationsOfType:PSPDFAnnotationTypeInk];
         NSArray *annotatedPages = annotationsDictionary.allKeys;
-        NSIndexSet *pageNumbers = PSPDFIndexSetFromArray(annotatedPages);
+        NSIndexSet *pageNumbers = annotatedPages.psc_indexSet;
         NSDictionary *processorOptions = @{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)};
 
         NSURL *outputFileURL = document.fileURL;
@@ -1442,7 +1443,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:testSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    PSCSectionDescriptor *delegateSection = [PSCSectionDescriptor sectionWithTitle:@"Delegate" footer:!PSCIsIPad() ? PSPDFVersionString() : @""];
+    PSCSectionDescriptor *delegateSection = [PSCSectionDescriptor sectionWithTitle:@"Delegate" footer:!PSCIsIPad() ? PSPDFKit.sharedInstance.version : @""];
     [delegateSection addContent:[PSContent contentWithTitle:@"Custom drawing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.title = @"Custom drawing";
