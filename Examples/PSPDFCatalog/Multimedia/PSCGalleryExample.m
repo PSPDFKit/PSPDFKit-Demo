@@ -35,7 +35,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
@@ -135,7 +135,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
@@ -175,7 +175,7 @@
     // Get rects to position.
     UIImage *image = [UIImage imageNamed:@"mas_audio_b41570.gif"];
     CGSize imageSize = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5f, 0.5f));
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
 
     // Create tap action (open new popover with video in fullscreen)
     PSPDFURLAction *videoAction = [[PSPDFURLAction alloc] initWithURLString:@"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480"];
@@ -224,8 +224,8 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[popover:1,size:400x300]localhost/Bundle/sample.gallery"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[popover:1,size:50x50]localhost/Bundle/sample.gallery"];
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
@@ -257,7 +257,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/highres.gallery"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
@@ -292,7 +292,7 @@
     galleryAnnotation.autoplayEnabled = YES;
     galleryAnnotation.loopEnabled = YES;
     galleryAnnotation.flags = PSPDFAnnotationFlagHidden;
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);

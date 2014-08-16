@@ -146,9 +146,9 @@
     NSDictionary *settings = [PSCSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         // renderOptions need special treatment.
-        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[PSPDFRenderBackgroundFillColor] = obj;
-        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[PSPDFRenderContentOpacity] = obj;
-        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[PSPDFRenderInverted] = obj;
+        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[PSPDFRenderBackgroundFillColorKey] = obj;
+        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[PSPDFRenderContentOpacityKey] = obj;
+        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[PSPDFRenderInvertedKey] = obj;
 
         else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
             [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];

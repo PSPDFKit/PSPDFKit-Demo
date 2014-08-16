@@ -56,7 +56,7 @@
                            ];
         PSPDFPageInfo *pageInfo = [document pageInfoForPage:0];
         ink.lineWidth = 5;
-        ink.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, UIScreen.mainScreen.bounds);
+        ink.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.rect, pageInfo.rotation, UIScreen.mainScreen.bounds);
         ink.color = [UIColor colorWithRed:0.667f green:0.279f blue:0.748f alpha:1.f];
         ink.page = 0;
         [document addAnnotations:@[ink]];

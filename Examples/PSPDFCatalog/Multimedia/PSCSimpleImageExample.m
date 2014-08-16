@@ -30,7 +30,7 @@
 
     // Dynamically add gallery annotation.
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://https://pbs.twimg.com/media/Bfw58-LIYAAVYdW.jpg"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);

@@ -157,13 +157,13 @@
     PSPDFPageInfo *pageInfo = [super pageInfoForPage:page pageRef:pageRef];
 
     // Adapt the PDF so that it is always full screen, cutting away some content if it doesn't fit.
-    CGFloat pageRatio = pageInfo.rotatedPageRect.size.width/pageInfo.rotatedPageRect.size.height;
+    CGFloat pageRatio = pageInfo.rotatedRect.size.width/pageInfo.rotatedRect.size.height;
     CGFloat screenRatio = UIScreen.mainScreen.bounds.size.height/UIScreen.mainScreen.bounds.size.width; // landscape
     CGFloat diff = pageRatio - screenRatio;
 
     if (diff > 0.1) {
-        CGFloat cutX = pageInfo.pageRect.size.width * diff/2;
-        pageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:CGRectIntegral(CGRectMake(cutX/2, 0, pageInfo.pageRect.size.width-cutX, pageInfo.pageRect.size.height)) rotation:pageInfo.pageRotation documentProvider:pageInfo.documentProvider];
+        CGFloat cutX = pageInfo.rect.size.width * diff/2;
+        pageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:CGRectIntegral(CGRectMake(cutX / 2, 0, pageInfo.rect.size.width - cutX, pageInfo.rect.size.height)) rotation:pageInfo.rotation documentProvider:pageInfo.documentProvider];
     }
 
     return pageInfo;

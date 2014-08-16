@@ -85,12 +85,12 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     if (rotateAll) {
         for (NSUInteger pageIndex=0; pageIndex < self.document.pageCount; pageIndex++) {
             PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:pageIndex];
-            PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation - 90) documentProvider:pageInfo.documentProvider];
+            PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation - 90) documentProvider:pageInfo.documentProvider];
             [self.document setPageInfo:newPageInfo forPage:pageIndex];
         }
     }else {
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation - 90) documentProvider:pageInfo.documentProvider];
+        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation - 90) documentProvider:pageInfo.documentProvider];
         [self.document setPageInfo:newPageInfo forPage:self.page];
     }
 
@@ -128,9 +128,9 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
         NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
-        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation + degrees) documentProvider:pageInfo.documentProvider];
+        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation + degrees) documentProvider:pageInfo.documentProvider];
         [self.document setPageInfo:newPageInfo forPage:pageInfo.page];
-        PSCLog(@"Snap rotation to: %tu", pageInfo.pageRotation);
+        PSCLog(@"Snap rotation to: %tu", pageInfo.rotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
         PSPDFViewController *pdfController = self.pdfController;

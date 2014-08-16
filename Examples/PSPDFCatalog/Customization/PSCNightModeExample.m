@@ -28,7 +28,7 @@
     // Set up the document.
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.UID = @"NIGHT_MODE"; // different UID to not influence other examples.
-    document.renderOptions = @{PSPDFRenderInverted : @YES};
+    document.renderOptions = @{PSPDFRenderInvertedKey : @YES};
     document.backgroundColor = UIColor.blackColor;
 
     // And also the controller.

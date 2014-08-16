@@ -30,7 +30,7 @@
 
     // Dynamically add gallery annotation.
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[type:audio]http://api.soundcloud.com/tracks/82065282/download?client_id=20e3de80e29b918c89e5000a8489cc27"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+    CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 100.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);

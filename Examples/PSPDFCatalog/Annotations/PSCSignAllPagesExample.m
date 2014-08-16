@@ -66,7 +66,7 @@ const char PSCSignatureCompletionBlock;
 
                 // Prepare the lines and convert them from view space to PDF space. (PDF space is mirrored!)
                 PSPDFPageInfo *pageInfo = [document pageInfoForPage:pageIndex];
-                NSArray *lines = PSPDFConvertViewLinesToPDFLines(signatureController.lines, pageInfo.pageRect, pageInfo.pageRotation, pageInfo.pageRect);
+                NSArray *lines = PSPDFConvertViewLinesToPDFLines(signatureController.lines, pageInfo.rect, pageInfo.rotation, pageInfo.rect);
 
                 // Calculate the size, aspect ratio correct.
                 CGSize annotationSize = PSPDFBoundingBoxFromLines(lines, 2).size;
@@ -79,7 +79,7 @@ const char PSCSignatureCompletionBlock;
                 annotation.lines = lines;
                 annotation.lineWidth = 3.f;
                 // Add lines to bottom right. (PDF zero is bottom left)
-                annotation.boundingBox = CGRectMake(pageInfo.pageRect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
+                annotation.boundingBox = CGRectMake(pageInfo.rect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
                 annotation.color = penBlueColor;
                 annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
                 annotation.page = pageIndex;

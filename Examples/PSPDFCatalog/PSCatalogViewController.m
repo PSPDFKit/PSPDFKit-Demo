@@ -416,7 +416,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSUInteger targetPage = 0;
         if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypeSquare].count == 0) {
             PSPDFSquareAnnotation *annotation = [[PSPDFSquareAnnotation alloc] init];
-            annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedPageRect, 100, 100);
+            annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedRect, 100, 100);
             annotation.color = [UIColor colorWithRed:0.f green:100.f/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
             annotation.alpha = 0.5f;
@@ -463,7 +463,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             for (PSPDFWord *word in [document textParserForPage:pageIndex].words) {
                 if ([word.stringValue isEqualToString:@"Batman"]) {
                     CGRect boundingBox;
-                    NSArray *highlighedRects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:pageIndex].pageRotationTransform, &boundingBox);
+                    NSArray *highlighedRects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:pageIndex].rotationTransform, &boundingBox);
                     PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
                     annotation.color = [UIColor orangeColor];
                     annotation.boundingBox = boundingBox;
@@ -500,7 +500,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
             CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
             annotation.lineWidth = 5;
-            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
+            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.rect, pageInfo.rotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667f green:0.279f blue:0.748f alpha:1.f];
             annotation.page = targetPage;
@@ -585,7 +585,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFWord *word = ([document textParserForPage:page].words)[idx];
             PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
-            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].rotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             annotation.page = page;
             [document addAnnotations:@[annotation]];
@@ -1003,7 +1003,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
             CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
             annotation.lineWidth = 5;
-            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
+            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.rect, pageInfo.rotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667f green:0.279f blue:0.748f alpha:1.f];
             annotation.page = targetPage;
@@ -1040,7 +1040,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
         // Add the annotation
         PSPDFSquareAnnotation *annotation = [PSPDFSquareAnnotation new];
-        annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100.f, 100.f);
+        annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedRect, 100.f, 100.f);
         annotation.color = [UIColor colorWithRed:0.f green:100.f/255.f blue:0.f alpha:1.f];
         annotation.fillColor = annotation.color;
         annotation.alpha = 0.5f;
@@ -1299,7 +1299,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFWord *word = ([document textParserForPage:0].words)[idx];
             PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
-            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].rotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation]];
             [document saveAnnotationsWithError:NULL];
@@ -1318,7 +1318,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFWord *word = ([document textParserForPage:0].words)[idx];
             PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
-            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].rotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation]];
             [document saveAnnotationsWithError:NULL];

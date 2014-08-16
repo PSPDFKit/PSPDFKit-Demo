@@ -58,7 +58,7 @@
     // dynamically add video box
     [document.undoController performBlockWithoutUndo:^{
         PSPDFLinkAnnotation *videoLink = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
-        videoLink.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100.f, 100.f);
+        videoLink.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedRect, 100.f, 100.f);
         [document addAnnotations:@[videoLink]];
     }];
 

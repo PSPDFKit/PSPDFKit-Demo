@@ -128,12 +128,12 @@
 
     // We're lazy here. 2 = UIViewContentModeScaleAspectFill
     PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
-    aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
+    aVideo.boundingBox = [document pageInfoForPage:5].rotatedRect;
     aVideo.page = 5;
     [document addAnnotations:@[aVideo]];
 
     PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
-    anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
+    anImage.boundingBox = [document pageInfoForPage:2].rotatedRect;
     anImage.page = 2;
     [document addAnnotations:@[anImage]];
 
@@ -167,7 +167,7 @@
     document.title = @"Programmatically create annotations";
 
     NSMutableArray *annotations = [NSMutableArray array];
-    CGFloat maxHeight = [document pageInfoForPage:0].rotatedPageRect.size.height;
+    CGFloat maxHeight = [document pageInfoForPage:0].rotatedRect.size.height;
     for (int i=0; i<5; i++) {
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         // width/height will be ignored for note annotations.

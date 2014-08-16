@@ -39,7 +39,7 @@
 
     // Setup graphics context for current PDF page.
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];
-    [[PSPDFPageRenderer sharedPageRenderer] setupGraphicsContext:context rectangle:clipRect pageInfo:pageInfo];
+    [PSPDFRenderManager.sharedInstance setupGraphicsContext:context rectangle:clipRect pageInfo:pageInfo];
 
 	// Set up the text and it's drawing attributes.
     NSString *overlayText = @"Example overlay";
@@ -48,13 +48,13 @@
 	NSDictionary *attributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor};
 
     // Flip drawing, set text drawing mode (fill).
-    CGContextTranslateCTM(context, 0, pageInfo.rotatedPageRect.size.height);
+    CGContextTranslateCTM(context, 0, pageInfo.rotatedRect.size.height);
     CGContextScaleCTM(context, 1, -1);
 	CGContextSetTextDrawingMode(context, kCGTextFill);
 
     // Calculate the font box to center the text on the page.
 	CGSize boundingBox = [overlayText sizeWithAttributes:attributes];
-	CGPoint point = CGPointMake(__tg_round((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
+	CGPoint point = CGPointMake(__tg_round((pageInfo.rotatedRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedRect.size.height-boundingBox.height)/2));
 
 	// Finally draw the text.
 	[overlayText drawAtPoint:point withAttributes:attributes];
