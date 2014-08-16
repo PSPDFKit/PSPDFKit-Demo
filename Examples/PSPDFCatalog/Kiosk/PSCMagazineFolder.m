@@ -55,7 +55,7 @@
 }
 
 - (BOOL)isEqualToMagazineFolder:(PSCMagazineFolder *)otherMagazineFolder {
-    return PSPDFEqualObjects(self.title, otherMagazineFolder.title);
+    return self.title == otherMagazineFolder.title || [self.title isEqual:otherMagazineFolder.title];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
