@@ -20,7 +20,7 @@
 @interface PSCImageGalleryExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCImageGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Image Gallery";
         self.contentDescription = @"Gallery example with images.";
@@ -57,7 +57,7 @@
 @interface PSCButtonImageGalleryExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCButtonImageGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Image Gallery with button activation";
         self.contentDescription = @"Buttons that show/hide the gallery or videos.";
@@ -120,7 +120,7 @@
 @interface PSCVideoGalleryExample : PSCExample @end
 @implementation PSCVideoGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Image/Audio/Video/YouTube Gallery";
         self.contentDescription = @"Gallery example with video, images, audio and YouTube gallery items.";
@@ -156,7 +156,7 @@
 @interface PSCCustomGalleryExample : PSCExample @end
 @implementation PSCCustomGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Gallery Example";
         self.contentDescription = @"Add animated gif or inline video.";
@@ -211,7 +211,7 @@
 @interface PSCPopoverGalleryExample : PSCExample @end
 @implementation PSCPopoverGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Popover Gallery Example";
         self.category = PSCExampleCategoryMultimedia;
@@ -243,7 +243,7 @@
 @interface PSCHighResImageGalleryExample : PSCExample @end
 @implementation PSCHighResImageGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"High-Resolution Image Gallery Example";
         self.category = PSCExampleCategoryMultimedia;
@@ -275,7 +275,7 @@
 @interface PSCHiddenSoundGalleryExample : PSCExample @end
 @implementation PSCHiddenSoundGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Hidden Sound Annotation";
         self.category = PSCExampleCategoryMultimedia;

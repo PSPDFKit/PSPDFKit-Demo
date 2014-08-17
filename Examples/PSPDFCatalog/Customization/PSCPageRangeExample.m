@@ -14,7 +14,7 @@
 @interface PSCPageRangeExample : PSCExample @end
 @implementation PSCPageRangeExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Limit pages to 5-10 via pageRange";
         self.category = PSCExampleCategoryPageRange;

@@ -16,7 +16,7 @@
 
 @implementation PSCLockAnnotationsExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Generate a new file with locked annotations";
         self.contentDescription = @"Uses the annotation flags to create a locked copy.";

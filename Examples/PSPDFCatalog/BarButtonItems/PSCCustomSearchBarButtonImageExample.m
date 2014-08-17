@@ -16,7 +16,7 @@
 
 @implementation PSCCustomSearchBarButtonImageExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Change the search button image";
         self.contentDescription = @"Replaces the search button with a custom view that animates between red and blue.";

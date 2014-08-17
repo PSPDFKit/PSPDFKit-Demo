@@ -11,7 +11,7 @@
 #import "PSCMetadataBarButtonItem.h"
 
 @interface PSCMetadataController : UITableViewController
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 @property (nonatomic, weak) PSPDFDocument *document;
 @end
 
@@ -47,7 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super init])) {
         _document = document;
         self.title = [document.fileURL lastPathComponent];

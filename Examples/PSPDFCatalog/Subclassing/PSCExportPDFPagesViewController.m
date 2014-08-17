@@ -56,7 +56,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFThumbnailViewController
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if (self = [super initWithDocument:document]) {
         // Register class
         [self.collectionView registerClass:PSCActionContainerView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar];

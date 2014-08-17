@@ -17,7 +17,7 @@
 @interface PSCCustomOutlineControllerExample : PSCExample @end
 @implementation PSCCustomOutlineControllerExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Outline Controller";
         self.category = PSCExampleCategoryViewCustomization;

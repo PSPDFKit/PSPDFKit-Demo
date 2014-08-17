@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, PSCStoreDownloadStatus) {
 @interface PSCDownload : NSObject
 
 /// Initialize a new PDF download.
-- (id)initWithURL:(NSURL *)URL;
+- (instancetype)initWithURL:(NSURL *)URL NS_DESIGNATED_INITIALIZER;
 
 /// Start download.
 - (void)startDownload;

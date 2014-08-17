@@ -13,7 +13,7 @@
 @interface PSCStoryboardsInitWithStoryboardExample : PSCExample @end
 @implementation PSCStoryboardsInitWithStoryboardExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Init with Storyboard";
         self.category = PSCExampleCategoryStoryboards;

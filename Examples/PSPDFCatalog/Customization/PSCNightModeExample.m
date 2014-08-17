@@ -14,7 +14,7 @@
 @interface PSCNightModeExample : PSCExample @end
 @implementation PSCNightModeExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Night Mode";
         self.contentDescription = @"Inverts color for PDF rendering.";

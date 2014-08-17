@@ -14,7 +14,7 @@
 @interface PSCStampButtonExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCStampButtonExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Stamp Annotation Button";
         self.contentDescription = @"Uses a stamp annotation as button.";

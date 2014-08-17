@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         // register for the delegate.
         self.delegate = self;
@@ -57,7 +57,7 @@
 
 @implementation PSCButtonContainerView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [self addSubview:self.button];

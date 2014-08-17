@@ -38,7 +38,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
 

@@ -15,7 +15,7 @@
 @interface PSCMultilineDocumentTitleExample : PSCExample @end
 @implementation PSCMultilineDocumentTitleExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multiline document title";
         self.category = PSCExampleCategoryViewCustomization;

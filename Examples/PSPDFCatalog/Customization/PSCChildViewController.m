@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         _document = document;
     }

@@ -12,7 +12,7 @@
 
 @implementation PSCCustomLinkAnnotationView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.borderColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
     }

@@ -19,7 +19,7 @@ const char PSCSignatureCompletionBlock;
 @interface PSCSignAllPagesExample : PSCExample <PSPDFSignatureViewControllerDelegate> @end
 @implementation PSCSignAllPagesExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Sign All Pages";
         self.contentDescription = @"Will add a signature (ink annotation) to all pages of a document, optionally flattened.";

@@ -18,7 +18,7 @@
 @interface PSCChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCChildViewControllerContainmentExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Child View Controller containment, windowed";
         self.category = PSCExampleCategoryControllerCustomization;
@@ -37,7 +37,7 @@
 @interface PSCFullScreenChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCFullScreenChildViewControllerContainmentExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Child View Controller containment, fullscreen";
         self.category = PSCExampleCategoryControllerCustomization;
@@ -67,7 +67,7 @@
 @interface PSCNoToolbarChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCNoToolbarChildViewControllerContainmentExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Child View Controller containment, no toolbar";
         self.category = PSCExampleCategoryControllerCustomization;
@@ -101,7 +101,7 @@
 @interface PSAddingButtonExample : PSCExample @end
 @implementation PSAddingButtonExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Adding a simple UIButton";
         self.category = PSCExampleCategoryControllerCustomization;
@@ -120,7 +120,7 @@
 @interface PSCAddingMultipleUIButtonsExample : PSCExample @end
 @implementation PSCAddingMultipleUIButtonsExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Adding multiple buttons";
         self.contentDescription = @"Will add a custom button above all PDF images.";
@@ -140,7 +140,7 @@
 @interface PSCCompletelyCustomToolbarExample : PSCExample @end
 @implementation PSCCompletelyCustomToolbarExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Customized Toolbar";
         self.contentDescription = @"Uses a textual switch button for thumbnails/content.";

@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
+- (instancetype)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
     if ((self = [super init])) {
         _annotationStateManager = annotationStateManager;
 		annotationStateManager.stateDelegate = self;

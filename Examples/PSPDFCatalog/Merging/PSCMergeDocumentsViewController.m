@@ -29,7 +29,7 @@
 // After we split the document into single pages, we have one provider per page.
 // We still want to use our original database - thus we need a provider that translates to the global one.
 @interface PSCPagedCoreDataAnnotationProvider : NSObject <PSPDFAnnotationProvider>
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 // Associated documentProvider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 @end
@@ -47,7 +47,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithLeftDocument:(PSPDFDocument *)leftDocument rightDocument:(PSPDFDocument *)rightDocument {
+- (instancetype)initWithLeftDocument:(PSPDFDocument *)leftDocument rightDocument:(PSPDFDocument *)rightDocument {
     if (self = [super init]) {
         _leftDocument = leftDocument;
         _rightDocument = rightDocument;
@@ -370,7 +370,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 
 @implementation PSCPagedCoreDataAnnotationProvider
 
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider {
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider {
     if (self = [super init]) {
         _documentProvider = documentProvider;
 

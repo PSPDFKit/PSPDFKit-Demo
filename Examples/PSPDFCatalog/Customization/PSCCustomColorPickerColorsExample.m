@@ -19,7 +19,7 @@
 @interface PSCCustomColorPickerColorsExample : PSCExample @end
 @implementation PSCCustomColorPickerColorsExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom color picker";
         self.contentDescription = @"Defines a custom set of color patterns";

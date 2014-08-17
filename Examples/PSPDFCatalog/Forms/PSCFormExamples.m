@@ -26,7 +26,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @interface PSCFormExample : PSCExample @end
 @implementation PSCFormExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"PDF AcroForm Feature";
         self.category = PSCExampleCategoryForms;
@@ -73,7 +73,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @interface PSCFormFillingExample : PSCExample @end
 @implementation PSCFormFillingExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Programmatic Form Filling";
         self.contentDescription = @"Automatically fills out all forms in code.";
@@ -143,7 +143,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @interface PSCFormDigitallySignedModifiedExample : PSCExample @end
 @implementation PSCFormDigitallySignedModifiedExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Example of a PDF Interactive Form with a Digital Signature";
         self.category = PSCExampleCategoryForms;
@@ -169,7 +169,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @interface PSCFormWithFormatting : PSCExample @end
 @implementation PSCFormWithFormatting
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"PDF Form with formatted text fields.";
         self.category = PSCExampleCategoryForms;
@@ -192,7 +192,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @interface PSCFormFillingAndSavingExample : PSCExample @end
 @implementation PSCFormFillingAndSavingExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Programmatically fill form and save";
         self.category = PSCExampleCategoryForms;

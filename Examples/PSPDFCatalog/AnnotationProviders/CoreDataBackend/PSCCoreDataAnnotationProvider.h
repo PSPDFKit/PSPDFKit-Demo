@@ -16,7 +16,7 @@
 
 // Designated initializer.
 // If `databasePath` is nil, a default path will be used.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath;
 
 // Database path/filename.
 @property (nonatomic, copy, readonly) NSString *databasePath;

@@ -18,7 +18,7 @@
 @interface PSCExternalMultimediaLinksExample : PSCExample @end
 @implementation PSCExternalMultimediaLinksExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multimedia annotations and user annotations";
         self.category = PSCExampleCategoryViewCustomization;

@@ -18,7 +18,7 @@
 @interface PSCTopScrobbleBarExample : PSCExample @end
 @implementation PSCTopScrobbleBarExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Top Scrobble Bar";
         self.contentDescription = @"Shows how to change the scrobble bar frame.";
@@ -58,7 +58,7 @@
 @interface PSCHUDViewGapExample : PSCExample @end
 @implementation PSCHUDViewGapExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Leave some bottom space for the HUD";
         self.contentDescription = @"Useful if you e.g. also have a UITabBar.";

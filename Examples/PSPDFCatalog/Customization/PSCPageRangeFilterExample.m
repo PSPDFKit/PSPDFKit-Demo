@@ -18,7 +18,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Add pageRange filter for bookmarked pages";
         self.contentDescription = @"Adds a toggleable button to the toolbar that allows to filter the document for bookmarked pages only.";

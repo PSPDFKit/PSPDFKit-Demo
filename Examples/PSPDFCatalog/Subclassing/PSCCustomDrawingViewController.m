@@ -19,7 +19,7 @@
 
 @implementation PSCCustomDrawingViewController
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
         self.documentDrawer = [[PSCDocumentDrawer alloc] init];

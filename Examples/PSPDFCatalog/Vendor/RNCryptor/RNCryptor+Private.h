@@ -43,7 +43,7 @@
 @property (nonatomic, readwrite, assign, getter=isFinished) BOOL finished;
 @property (nonatomic, readwrite, assign) RNCryptorOptions options;
 
-- (id)initWithHandler:(RNCryptorHandler)handler;
+- (instancetype)initWithHandler:(RNCryptorHandler)handler;
 + (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(NSError **)anError;
 - (void)cleanupAndNotifyWithError:(NSError *)error;
 - (BOOL)hasHMAC;

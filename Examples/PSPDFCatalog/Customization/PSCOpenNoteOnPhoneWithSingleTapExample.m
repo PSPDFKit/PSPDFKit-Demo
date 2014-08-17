@@ -14,7 +14,7 @@
 @interface PSCOpenNoteOnPhoneWithSingleTapExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCOpenNoteOnPhoneWithSingleTapExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Open Note with single tap on iPhone";
         self.category = PSCExampleCategoryViewCustomization;

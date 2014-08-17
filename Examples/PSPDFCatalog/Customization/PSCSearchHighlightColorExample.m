@@ -16,7 +16,7 @@
 @interface PSCSearchHighlightColorExample : PSCExample @end
 @implementation PSCSearchHighlightColorExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Search Highlight Color";
         self.contentDescription = @"Changes the search highlight color to blue via UIAppearance.";

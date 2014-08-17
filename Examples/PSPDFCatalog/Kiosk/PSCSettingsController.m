@@ -94,7 +94,7 @@ static NSMutableDictionary *_settings;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Display Options");
         _content = @[

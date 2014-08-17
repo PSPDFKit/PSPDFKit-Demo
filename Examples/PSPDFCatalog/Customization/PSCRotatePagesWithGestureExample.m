@@ -17,7 +17,7 @@
 @interface PSCRotatePagesWithGestureExample : PSCExample @end
 @implementation PSCRotatePagesWithGestureExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Rotate PDF pages";
         self.contentDescription = @"Use a UIRotationGestureRecognizer to rotate pages.";
@@ -110,7 +110,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
 @implementation PSCRotatableScrollView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Add page rotation gesture.
         UIRotationGestureRecognizer *rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];

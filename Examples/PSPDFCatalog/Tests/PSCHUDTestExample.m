@@ -12,7 +12,7 @@
 
 @implementation PSCHUDTestExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Test the PSPDFStatusHUD";
         self.category = PSCExampleCategoryTests;

@@ -14,7 +14,7 @@
 @interface PSCThumbnailBarExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCThumbnailBarExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Thumbnail Bar Example";
         self.category = PSCExampleCategoryViewCustomization;

@@ -21,7 +21,7 @@
 
 @implementation PSCHighlightAnnotationToolbarButtonExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Highlight Toolbar Button";
         self.contentDescription = @"Add the highlight button into the main toolbar.";
@@ -55,7 +55,7 @@
     UIButton *_highlightButton;
 }
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         // Create custom view since we need to show the state.
         _highlightButton = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f, 32.f, 32.f)];

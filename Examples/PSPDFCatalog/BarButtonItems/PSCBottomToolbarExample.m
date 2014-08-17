@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Bottom Toolbar";
         self.contentDescription = @"Simple example that shows how to set up a toolbar at the bottom.";

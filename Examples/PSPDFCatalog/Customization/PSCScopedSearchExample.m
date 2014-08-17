@@ -18,7 +18,7 @@
 @interface PSCScopedSearchExample : PSCExample @end
 @implementation PSCScopedSearchExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Add scope to PSPDFSearchViewController";
         self.contentDescription = @"Allows more fine-grained search control with a custom scope bar.";

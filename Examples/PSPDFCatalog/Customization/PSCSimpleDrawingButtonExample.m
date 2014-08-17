@@ -18,7 +18,7 @@
 @interface PSCSimpleDrawingButtonExample : PSCExample @end
 @implementation PSCSimpleDrawingButtonExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Simple Drawing Button";
         self.category = PSCExampleCategoryViewCustomization;

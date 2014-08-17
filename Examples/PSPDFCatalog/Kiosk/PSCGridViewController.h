@@ -17,7 +17,7 @@
 @interface PSCGridViewController : PSCBasicViewController <PSCStoreManagerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 // Designated initializer.
-- (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
+- (instancetype)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
 
 // Force-update grid.
 - (void)updateGrid;

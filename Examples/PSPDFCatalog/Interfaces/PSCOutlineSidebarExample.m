@@ -13,7 +13,7 @@
 #import "PSCExample.h"
 
 @interface PSPDFSidebarViewController : UIViewController <PSPDFDocumentPickerControllerDelegate, UISplitViewControllerDelegate>
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 @property (nonatomic, strong) PSPDFDocument *document;
 @property (nonatomic, strong) PSPDFViewController *pdfController;
 @property (nonatomic, strong) PSPDFContainerViewController *sidebarController;
@@ -26,7 +26,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Always-Visible Sidebar";
         self.contentDescription = @"Uses a split view controller to show the outline/annotation/bookmark/search view controller in an always-visible sidebar for landscape mode.";
@@ -53,7 +53,7 @@
 
 @implementation PSPDFSidebarViewController
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if (self = [super init]) {
         // Set up the PDF controller
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];

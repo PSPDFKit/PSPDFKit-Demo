@@ -19,7 +19,7 @@ const char *clearAllActionSheetToken;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
+- (instancetype)initWithPDFViewController:(PSPDFViewController *)pdfController {
     if ((self = [super initWithPDFViewController:pdfController])) {
         self.delegate = self;
 

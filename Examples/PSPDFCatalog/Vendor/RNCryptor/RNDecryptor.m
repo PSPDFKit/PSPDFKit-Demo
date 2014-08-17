@@ -189,8 +189,7 @@ static const NSUInteger kPreambleSize = 2;
   if (![self updateOptionsForPreamble:[data subdataWithRange:NSMakeRange(0, kPreambleSize)]]) {
     [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
                                                         code:kRNCryptorUnknownHeader
-                                                    userInfo:[NSDictionary dictionaryWithObject:@"Unknown header" /* DNL */
-                                                                                         forKey:NSLocalizedDescriptionKey]]];
+                                                    userInfo:@{NSLocalizedDescriptionKey: @"Unknown header"}]];
     return;
   }
 
@@ -262,8 +261,7 @@ static const NSUInteger kPreambleSize = 2;
       if (![HMACData isEqualToData:self.inData]) {
         [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
                                                             code:kRNCryptorHMACMismatch
-                                                        userInfo:[NSDictionary dictionaryWithObject:@"HMAC Mismatch" /* DNL */
-                                                                                             forKey:NSLocalizedDescriptionKey]]];
+                                                        userInfo:@{NSLocalizedDescriptionKey: @"HMAC Mismatch"}]];
         return;
       }
     }

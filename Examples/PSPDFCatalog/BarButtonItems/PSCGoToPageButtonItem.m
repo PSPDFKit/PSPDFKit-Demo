@@ -21,7 +21,7 @@ const char PSCAlertViewKey;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
 
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
+- (instancetype)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithPDFViewController:pdfViewController])) {
         _enablePartialLabelMatching = YES;
     }

@@ -32,7 +32,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Write annotations into the PDF";
         self.category = PSCExampleCategoryAnnotations;
@@ -87,7 +87,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"PDF annotation writing with NSData";
         self.category = PSCExampleCategoryAnnotations;
@@ -111,7 +111,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom annotations with multiple files";
         self.category = PSCExampleCategoryAnnotations;
@@ -148,7 +148,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Programmatically create annotations";
         self.category = PSCExampleCategoryAnnotations;
@@ -189,7 +189,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Annotation Links to external documents";
         self.contentDescription = @"PDF links can point to pages within the same document, or also different documents or websites.";
@@ -211,7 +211,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"XFDF Writing";
         self.contentDescription = @"Custom code that creates annotations in code and exports them as XFDF.";

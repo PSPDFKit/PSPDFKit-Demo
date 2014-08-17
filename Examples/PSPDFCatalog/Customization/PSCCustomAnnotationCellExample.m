@@ -27,7 +27,7 @@
 @interface PSCCustomAnnotationCellExample : PSCExample @end
 @implementation PSCCustomAnnotationCellExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Subclassing PSPDFAnnotationCell";
         self.contentDescription = @"Customize the annotation cell in the PSPDFAnnotationTableViewController";
@@ -65,7 +65,7 @@
 // Note: The UI here isn't great. I would recommend a smaller sharing *indicator* and using a "More" button to actually enable/disable sharing, but I wanted to present both ways (including how to add a button to the cell) to make the example more interesting.
 @implementation PSCCustomAnnotationCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Add sharing button
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -215,7 +215,7 @@
 
 @implementation PSCCustomFlexibleAnnotationToolbar
 
-- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
+- (instancetype)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
     return [super initWithAnnotationStateManager:annotationStateManager];
 }
 

@@ -16,7 +16,7 @@
 
 @implementation PSCMapWidgetExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Page with Apple Maps Widget";
         self.category = PSCExampleCategoryViewCustomization;

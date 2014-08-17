@@ -16,7 +16,7 @@
 @interface PSCSimpleFontPickerExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCSimpleFontPickerExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Simplified Font Picker";
         self.category = PSCExampleCategoryViewCustomization;

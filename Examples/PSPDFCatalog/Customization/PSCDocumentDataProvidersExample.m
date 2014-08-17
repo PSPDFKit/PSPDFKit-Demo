@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"NSURL";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -40,7 +40,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"NSData";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -67,7 +67,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Use one CGDataProviderRef";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -98,7 +98,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multiple CGDataProviderRef";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -130,7 +130,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"MultipleFiles";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -157,7 +157,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multiple NSData objects (memory mapped)";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -198,7 +198,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multiple NSData objects";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -238,7 +238,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Multiple NSData objects (merged)";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -279,7 +279,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Extract single pages with PSPDFProcessor";
         self.category = PSCExampleCategoryDocumentDataProvider;
@@ -324,7 +324,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Extract single pages with PSPDFProcessor, the fast way";
         self.category = PSCExampleCategoryDocumentDataProvider;

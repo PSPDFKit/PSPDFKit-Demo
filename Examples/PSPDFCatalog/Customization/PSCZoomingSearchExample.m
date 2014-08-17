@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Zooming Search Results";
         self.category = PSCExampleCategoryViewCustomization;

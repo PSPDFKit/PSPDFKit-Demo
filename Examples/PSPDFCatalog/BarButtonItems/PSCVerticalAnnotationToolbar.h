@@ -11,7 +11,7 @@
 // Example how to add a always-visible vertical toolbar
 @interface PSCVerticalAnnotationToolbar : UIView
 
-- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager;
+- (instancetype)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong) PSPDFAnnotationStateManager *annotationStateManager;
 

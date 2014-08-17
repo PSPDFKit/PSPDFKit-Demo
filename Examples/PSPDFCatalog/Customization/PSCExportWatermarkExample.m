@@ -17,7 +17,7 @@
 
 @implementation PSCExportWatermarkExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Watermark exported pages (print, email, open in)";
         self.contentDescription = @"Adds a global handler to watermark documents when they are exported.";

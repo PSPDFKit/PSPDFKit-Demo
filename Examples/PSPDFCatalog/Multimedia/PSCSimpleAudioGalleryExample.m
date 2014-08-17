@@ -14,7 +14,7 @@
 @interface PSCSimpleAudioGalleryExample : PSCExample @end
 @implementation PSCSimpleAudioGalleryExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Simple Audio Annotation";
         self.contentDescription = @"Add an mp3 to the PDF.";

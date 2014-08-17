@@ -25,7 +25,7 @@
 
 @implementation PSCFullTextSearchExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Full-Text Search";
         self.contentDescription = @"Use PSPDFDocumentPickerController to perform a full-text search across all sample documents.";
@@ -59,7 +59,7 @@
 
 @implementation PSCConvertMarkupStringToPDFExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Convert markup string to PDF";
         self.contentDescription = @"Convert a HTML-like string to PDF.";
@@ -110,7 +110,7 @@ const char PSCAlertViewKey;
 
 @implementation PSCConvertWebsiteOrFilesToPDFExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Convert Website/Files to PDF";
         self.contentDescription = @"Use PSPDFProcessor to convert web sites or office documends directly to PDF.";

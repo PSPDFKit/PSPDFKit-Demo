@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.colors = @[[UIColor colorWithWhite:0.184f alpha:1.f], [UIColor colorWithWhite:0.146f alpha:1.f]];
         _margin = 5;

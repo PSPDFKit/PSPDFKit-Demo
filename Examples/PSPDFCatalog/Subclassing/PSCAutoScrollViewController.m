@@ -23,7 +23,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.pageTransition = PSPDFPageTransitionScrollContinuous;
         self.scrollDirection = PSPDFScrollDirectionVertical;

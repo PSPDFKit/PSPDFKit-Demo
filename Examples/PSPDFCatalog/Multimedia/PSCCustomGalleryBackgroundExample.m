@@ -21,7 +21,7 @@
 
 @implementation PSCCustomGalleryBackgroundExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Image Gallery Background";
         self.contentDescription = @"Changes internal gallery classes to customize the default background gradient.";
@@ -82,7 +82,7 @@
     return [CALayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.contentInset = UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f);
         self.backgroundColor = [UIColor clearColor];

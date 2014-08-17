@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         self.delegate = self;
         self.leftBarButtonItems = nil;

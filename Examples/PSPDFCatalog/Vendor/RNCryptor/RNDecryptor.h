@@ -32,7 +32,7 @@
 
 - (RNDecryptor *)initWithEncryptionKey:(NSData *)encryptionKey
                                HMACKey:(NSData *)HMACKey
-                               handler:(RNCryptorHandler)handler;
+                               handler:(RNCryptorHandler)handler NS_DESIGNATED_INITIALIZER;
 
 - (RNDecryptor *)initWithPassword:(NSString *)password
                           handler:(RNCryptorHandler)handler;

@@ -73,7 +73,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithStyle:(UITableViewStyle)style {
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:style])) {
         self.title = PSPDFLocalize(@"PSPDFKit Catalog");
         if (PSCIsIPad()) {

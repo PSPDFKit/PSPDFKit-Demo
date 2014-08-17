@@ -15,7 +15,7 @@
 @interface PSCPopoverPositioningExample : PSCExample @end
 @implementation PSCPopoverPositioningExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Popover positioning Tests";
         self.category = PSCExampleCategoryTests;

@@ -46,7 +46,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         _defaultFrame = frame;
 

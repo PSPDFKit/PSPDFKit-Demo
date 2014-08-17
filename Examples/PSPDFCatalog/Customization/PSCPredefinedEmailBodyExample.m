@@ -16,7 +16,7 @@
 
 @implementation PSCPredefinedEmailBodyExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Customize email sending (add body text)";
         self.category = PSCExampleCategoryViewCustomization;

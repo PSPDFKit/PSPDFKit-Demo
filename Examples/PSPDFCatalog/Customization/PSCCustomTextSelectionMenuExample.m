@@ -18,7 +18,7 @@
 
 @implementation PSCCustomTextSelectionMenuExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Text Selection Menu";
         self.contentDescription = @"Add option to google for selected text via the PSPDFViewControllerDelegate.";
@@ -40,7 +40,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
     }

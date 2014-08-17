@@ -29,7 +29,7 @@
 #import "RNCryptor.h"
 
 @interface RNCryptorEngine : NSObject
-- (RNCryptorEngine *)initWithOperation:(CCOperation)operation settings:(RNCryptorSettings)settings key:(NSData *)key IV:(NSData *)IV error:(NSError **)error;
+- (RNCryptorEngine *)initWithOperation:(CCOperation)operation settings:(RNCryptorSettings)settings key:(NSData *)key IV:(NSData *)IV error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 - (NSData *)addData:(NSData *)data error:(NSError **)error;
 - (NSData *)finishWithError:(NSError **)error;
 @end

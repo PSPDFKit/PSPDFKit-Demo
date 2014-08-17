@@ -33,7 +33,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (id)sharedStoreManager {
++ (PSCStoreManager*)sharedStoreManager {
     static dispatch_once_t onceToken = 0;
     static __strong PSCStoreManager *_sharedStoreManager = nil;
     dispatch_once(&onceToken, ^{
@@ -54,7 +54,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         _magazineFolderQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.PSPDFCatalog.%@", self] UTF8String], DISPATCH_QUEUE_CONCURRENT);
         _downloadQueue = [NSMutableArray new];

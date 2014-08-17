@@ -14,7 +14,7 @@
 @interface PSCResizableView : PSPDFResizableView @end
 @implementation PSCResizableView
 
-- (id)initWithTrackedView:(UIView *)trackedView {
+- (instancetype)initWithTrackedView:(UIView *)trackedView {
     if (self = [super initWithTrackedView:trackedView]) {
 
         // Remove all knobs but the bottom right one.
@@ -81,7 +81,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Selection Knobs Example";
         self.category = PSCExampleCategoryViewCustomization;

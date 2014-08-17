@@ -21,7 +21,7 @@
     return [[self alloc] initWithTitle:title footer:footer];
 }
 
-- (id)initWithTitle:(NSString *)title footer:(NSString *)footer {
+- (instancetype)initWithTitle:(NSString *)title footer:(NSString *)footer {
     if ((self = [super init])) {
         _title = title;
         _footer = footer;
@@ -57,7 +57,7 @@
     return [self contentWithTitle:title contentDescription:nil block:block];
 }
 
-- (id)initWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
+- (instancetype)initWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
     if ((self = [super init])) {
         _title = title;
         _contentDescription = description;

@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Custom Link Protocol";
         self.contentDescription = @"Uses a custom pspdfcatalog:// link protocol.";

@@ -18,12 +18,12 @@
 @property (nonatomic, strong) PSPDFViewController *pdfController;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) PSPDFFlexibleToolbarContainer *flexibleToolbarContainer;
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 @end
 
 @implementation PSCManualToolbarSetupExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Manual annotation toolbar setup and management";
         self.contentDescription = @"Flexible toolbar handling without UINavigationController or PSPDFAnnotationBarButtonItem.";
@@ -47,7 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
+- (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithNibName:nil bundle:nil])) {
         _document = document;
     }

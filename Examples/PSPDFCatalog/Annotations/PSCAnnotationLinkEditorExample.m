@@ -16,7 +16,7 @@
 @interface PSCAnnotationLinkEditorExample : PSCExample @end
 @implementation PSCAnnotationLinkEditorExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Annotation Link Editor";
         self.contentDescription = @"Allows to customize and create link annotations.";

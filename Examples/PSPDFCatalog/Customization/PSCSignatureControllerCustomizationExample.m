@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Customized Signature Controller";
         self.contentDescription = @"Shows how to use overrideClass:withClass: to change the signature selector controller toolbar buttons.";

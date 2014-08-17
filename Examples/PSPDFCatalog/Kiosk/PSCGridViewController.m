@@ -41,7 +41,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         self.title = _(@"PSPDFKit Kiosk Example");
 
@@ -53,7 +53,7 @@
     return self;
 }
 
-- (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder {
+- (instancetype)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder {
     if ((self = [self init])) {
         self.title = aMagazineFolder.title;
         _magazineFolder = aMagazineFolder;

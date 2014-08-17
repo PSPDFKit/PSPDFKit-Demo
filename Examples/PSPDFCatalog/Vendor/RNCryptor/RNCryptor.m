@@ -367,7 +367,7 @@ static int RN_SecRandomCopyBytes(void *rnd, size_t count, uint8_t *bytes) {
     return data;
 }
 
-- (id)initWithHandler:(RNCryptorHandler)handler
+- (instancetype)initWithHandler:(RNCryptorHandler)handler
 {
     NSParameterAssert(handler);
     self = [super init];

@@ -37,7 +37,7 @@
 
 #define kPSCTouchesRequired 2
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
 
         // This is taken from:

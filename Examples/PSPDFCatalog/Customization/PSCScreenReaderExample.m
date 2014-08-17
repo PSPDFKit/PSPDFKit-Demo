@@ -21,7 +21,7 @@
 @interface PSCScreenReaderExample : PSCExample @end
 @implementation PSCScreenReaderExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Screen Reader";
         self.contentDescription = @"Creates a sample interface for a screen-reader application";

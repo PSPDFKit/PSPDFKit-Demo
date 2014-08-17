@@ -32,7 +32,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Inline note annotation editing";
         self.contentDescription = @"Alternative note editing interface that does not use popovers.";

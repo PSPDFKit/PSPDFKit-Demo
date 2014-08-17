@@ -14,7 +14,7 @@
 @interface PSCMergeDocumentsViewController : UIViewController
 
 // Initialize with two documents, show them side-by-side
-- (id)initWithLeftDocument:(PSPDFDocument *)leftDocument rightDocument:(PSPDFDocument *)rightDocument;
+- (instancetype)initWithLeftDocument:(PSPDFDocument *)leftDocument rightDocument:(PSPDFDocument *)rightDocument NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong, readonly) PSPDFDocument *leftDocument;
 @property (nonatomic, strong, readonly) PSPDFDocument *rightDocument;

@@ -14,7 +14,7 @@
 @interface PSCSimpleImageExample : PSCExample @end
 @implementation PSCSimpleImageExample
 
-- (id)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.title = @"Simple Image Annotation";
         self.contentDescription = @"Add inline images to the PDF.";

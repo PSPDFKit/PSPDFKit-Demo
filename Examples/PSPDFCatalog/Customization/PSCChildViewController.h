@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) PSPDFDocument *document;
 
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 
 @end
