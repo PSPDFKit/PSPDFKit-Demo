@@ -44,3 +44,13 @@ if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) { 
 
 #define PSC_IF_PRE_IOS8(...)  \
 if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_8_0 || __IPHONE_OS_VERSION_MAX_ALLOWED < 80000) { __VA_ARGS__ }
+
+
+// Only required for Xcode 5
+#ifndef NS_DESIGNATED_INITIALIZER
+#if __has_attribute(objc_designated_initializer)
+#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
+#else
+#define NS_DESIGNATED_INITIALIZER
+#endif
+#endif
