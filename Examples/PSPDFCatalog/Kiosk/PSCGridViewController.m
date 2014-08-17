@@ -143,9 +143,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // If navigationBar is offset, we're fixing that.
-    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
-
     // Only one delegate at a time (only one grid is displayed at a time)
     PSCStoreManager.sharedStoreManager.delegate = self;
 
@@ -158,13 +155,6 @@
 
     // Reload view, request new images.
     [self updateGrid];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    // If navigationBar is offset, we're fixing that.
-    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

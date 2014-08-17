@@ -25,8 +25,6 @@ CATransition *PSCFadeTransitionWithDuration(CGFloat duration);
 
 UIView *PSCGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
-void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated);
-
 #pragma mark - Geometry
 
 CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);

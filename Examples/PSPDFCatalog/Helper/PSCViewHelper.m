@@ -62,11 +62,6 @@ UIView *PSCGetViewInsideView(UIView *view, NSString *classNamePrefix) {
     return theView;
 }
 
-void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated) {
-    // This will trigger _updateBarsForCurrentInterfaceOrientation as well, but will also call this in the topViewController.
-    [navController willAnimateRotationToInterfaceOrientation:navController.interfaceOrientation duration:0.f];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Geometry
 

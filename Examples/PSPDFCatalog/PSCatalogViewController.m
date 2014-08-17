@@ -1504,8 +1504,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
 
-    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
-
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self.navigationController setToolbarHidden:YES animated:animated];
 
@@ -1520,7 +1518,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
     // Support reset from settings.
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PSCResetKey]) {
