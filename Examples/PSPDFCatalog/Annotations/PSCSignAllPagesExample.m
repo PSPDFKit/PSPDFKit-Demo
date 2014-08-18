@@ -93,7 +93,7 @@ const char PSCSignatureCompletionBlock;
         PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
         [flattenAlert addButtonWithTitle:@"Flatten" block:^(NSInteger buttonIndex) {
             NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
-			PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+			PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];
 			[status pushAnimated:YES];
             // Perform in background to allow progress showing.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

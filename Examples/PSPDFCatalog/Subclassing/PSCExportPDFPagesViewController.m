@@ -118,7 +118,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 
     // Crunch the PDF
     if (selectedPages.count) {
-		PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+		PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];
 		[status pushAnimated:YES];
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

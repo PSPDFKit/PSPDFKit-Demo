@@ -295,7 +295,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"protected", @"pdf");
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
-        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];
         [status pushAnimated:YES];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
