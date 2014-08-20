@@ -91,18 +91,6 @@
     pageView.scrollView.zoomingEnabled = NO;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController
-    didShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView
-               onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
-        PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
-        PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
-        PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-
-        player.view.userInteractionEnabled = NO;;
-    }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
