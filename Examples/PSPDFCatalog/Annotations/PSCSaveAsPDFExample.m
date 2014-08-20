@@ -16,8 +16,6 @@
 /// where the annotation should be saved, and optionally copies the file to a new location.
 @interface PSCSaveAsPDFViewController : PSPDFViewController
 @property (nonatomic, assign) BOOL hasUserBeenAskedAboutSaveLocation;
-@property (nonatomic, strong) PSPDFActionSheet *annotationSaveActionSheet;
-@property (nonatomic, weak) id saveActionSender;
 @end
 
 @interface PSCAnnotationsSaveAsForAnnotationEditingExample : PSCExample @end
@@ -73,18 +71,7 @@
 #pragma mark - Private
 
 - (void)closeButtonPressed:(id)sender {
-    self.saveActionSender = sender;
     self.annotationStateManager.state = nil; // Commit any annotations.
-    self.saveActionSender = nil;
-
-    UINavigationController *navigationController = self.navigationController;
-    if (!self.annotationSaveActionSheet.isVisible) {
-        [navigationController popViewControllerAnimated:YES];
-    }else {
-        [self.annotationSaveActionSheet addWillDismissBlock:^(NSInteger buttonIndex) {
-            [navigationController popViewControllerAnimated:YES];
-        }];
-    }
 }
 
 - (void)annotationChangedNotification:(NSNotification *)notification {
@@ -99,16 +86,14 @@
 
 - (void)processChangeForAnnotation:(PSPDFAnnotation *)annotation {
     if (annotation.document == self.document) {
-        if (!self.hasUserBeenAskedAboutSaveLocation) {
-            // The notification might not be on main thread.
-            if (NSThread.isMainThread) {
-                [self askUserAboutSaveLocationFromSender:self.saveActionSender];
-            }else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self askUserAboutSaveLocationFromSender:self.saveActionSender];
-                });
-            }
-        }
+		// The notification might not be on main thread.
+		if (NSThread.isMainThread) {
+			[self askUserAboutSaveLocationIfNeeded];
+		}else {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self askUserAboutSaveLocationIfNeeded];
+			});
+		}
     }
 }
 
@@ -116,27 +101,19 @@
 #pragma mark - Document Copying Logic
 
 // This code assumes that the PDF location itself is writeable, and will fail for documents in the bundle folder.
-- (void)askUserAboutSaveLocationFromSender:(id)sender {
-    PSPDFActionSheet *annotationSaveActionSheet = [[PSPDFActionSheet alloc] initWithTitle:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
-    [annotationSaveActionSheet setDestructiveButtonWithTitle:@"Save to this file" block:^(NSInteger buttonIndex) {
-        self.hasUserBeenAskedAboutSaveLocation = YES;
-        // We're all set, don't need to do more.
-    }];
-    [annotationSaveActionSheet addButtonWithTitle:@"Save as Copy" block:^(NSInteger buttonIndex) {
-        self.hasUserBeenAskedAboutSaveLocation = YES;
-        [self replaceDocumentWithCopy];
-    }];
-    [annotationSaveActionSheet addWillDismissBlock:^(NSInteger buttonIndex) {
-        self.annotationSaveActionSheet = nil;
-    }];
-    [annotationSaveActionSheet addCancelBlock:^(NSInteger buttonIndex) {
-        self.hasUserBeenAskedAboutSaveLocation = YES;
-    }];
-    annotationSaveActionSheet.allowsTapToDismiss = NO;
-    [annotationSaveActionSheet showWithSender:sender fallbackView:self.view animated:YES];
-    self.annotationSaveActionSheet = annotationSaveActionSheet;
+- (void)askUserAboutSaveLocationIfNeeded {
+	// Make sure the alert gets displayed only once per session
+	if (self.hasUserBeenAskedAboutSaveLocation) return;
+	self.hasUserBeenAskedAboutSaveLocation = YES;
 
-    if (self.annotationSaveActionSheet.isVisible) return;
+	PSPDFAlertView *alert = [[PSPDFAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
+	// Nothing to do this is the default behavior.
+	[alert addButtonWithTitle:@"Save to this file" block:nil];
+	// We replace the document with a copy
+	[alert addButtonWithTitle:@"Save as Copy" block:^(NSInteger buttonIndex) {
+		[self replaceDocumentWithCopy];
+	}];
+	[alert show];
 }
 
 - (void)replaceDocumentWithCopy {
