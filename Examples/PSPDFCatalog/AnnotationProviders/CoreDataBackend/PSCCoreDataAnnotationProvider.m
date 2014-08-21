@@ -187,7 +187,7 @@
         }
 
         // Completely trash cache.
-        [self removeAllAnnotationsAndSendNotification:NO];
+        [self removeAllAnnotationsWithOptions:@{PSPDFAnnotationOptionSuppressNotificationsKey: @YES}];
     }];
 
     // Save changes.
@@ -217,7 +217,7 @@
         }
 
         // Completely trash cache.
-        [self removeAllAnnotationsAndSendNotification:NO];
+        [self removeAllAnnotationsWithOptions:@{PSPDFAnnotationOptionSuppressNotificationsKey: @YES}];
     }];
 
     // Save changes.
