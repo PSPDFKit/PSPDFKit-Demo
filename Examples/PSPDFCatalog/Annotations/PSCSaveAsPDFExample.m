@@ -72,6 +72,7 @@
 
 - (void)closeButtonPressed:(id)sender {
     self.annotationStateManager.state = nil; // Commit any annotations.
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)annotationChangedNotification:(NSNotification *)notification {
