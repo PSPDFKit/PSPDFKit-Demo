@@ -408,10 +408,10 @@ static NSUInteger PSCDocumentRelativePageForPage(PSPDFDocumentProvider *document
 
 // Simply forward to the actual provider.
 - (NSArray *)addAnnotations:(NSArray *)annotations {
-    return [[self coreDataProvider] addAnnotations:annotations];
+    return [[self coreDataProvider] addAnnotations:annotations options:nil];
 }
 - (NSArray *)removeAnnotations:(NSArray *)annotations {
-    return [[self coreDataProvider] removeAnnotations:annotations];
+    return [[self coreDataProvider] removeAnnotations:annotations options:nil];
 }
 - (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error {
     return [[self coreDataProvider] saveAnnotationsWithOptions:options error:error];

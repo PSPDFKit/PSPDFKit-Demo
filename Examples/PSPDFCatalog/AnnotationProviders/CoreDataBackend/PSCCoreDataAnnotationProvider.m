@@ -86,7 +86,7 @@
     return annotations;
 }
 
-- (NSArray *)addAnnotations:(NSArray *)annotations {
+- (NSArray *)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options {
     if (annotations.count == 0) return annotations;
 
     [self.managedObjectContext performBlock:^{
@@ -96,10 +96,10 @@
         }
     }];
 
-    return [super addAnnotations:annotations];
+    return [super addAnnotations:annotations options:options];
 }
 
-- (NSArray *)removeAnnotations:(NSArray *)annotations {
+- (NSArray *)removeAnnotations:(NSArray *)annotations options:(NSDictionary *)options {
     if (annotations.count == 0) return annotations;
 
     [self.managedObjectContext performBlockAndWait:^{
@@ -112,7 +112,7 @@
         }
     }];
 
-    return [super removeAnnotations:annotations];
+    return [super removeAnnotations:annotations options:options];
 }
 
 - (PSCCoreDataAnnotation *)coreDataAnnotationFromAnnotation:(PSPDFAnnotation *)annotation {
