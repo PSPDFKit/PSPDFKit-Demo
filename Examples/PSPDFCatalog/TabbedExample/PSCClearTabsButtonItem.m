@@ -33,7 +33,7 @@
     }];
     [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
 
-    [actionSheet showWithSender:sender fallbackView:pdfController.masterViewController.view animated:animated];
+    [actionSheet showWithSender:sender fallbackView:pdfController.view animated:animated];
     return actionSheet;
 }
 
