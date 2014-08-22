@@ -55,7 +55,7 @@
         PSPDFDocument *document = pdfController.document;
         PSPDFHighlightAnnotation *highlight = [PSPDFHighlightAnnotation textOverlayAnnotationWithGlyphs:pageView.selectionView.selectedGlyphs pageRotationTransform:[document pageInfoForPage:pageView.page].rotationTransform];
         highlight.page = pageView.page;
-        [document addAnnotations:@[highlight]];
+        [document addAnnotations:@[highlight] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
 
         // Update visible page and discard current selection.
         [pageView addAnnotation:highlight animated:NO];

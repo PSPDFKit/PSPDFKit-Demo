@@ -59,13 +59,13 @@
 }
 
 // Set annotations to render as overlay right after they are inserted.
-- (NSArray *)addAnnotations:(NSArray *)annotations {
+- (NSArray *)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options {
     for (PSPDFAnnotation *annotation in annotations) {
         if (![annotation isKindOfClass:[PSPDFHighlightAnnotation class]]) {
             annotation.overlay = YES;
         }
     }
-    return [super addAnnotations:annotations];
+    return [super addAnnotations:annotations options:options];
 }
 
 @end

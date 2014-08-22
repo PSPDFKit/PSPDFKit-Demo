@@ -230,7 +230,7 @@
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
-    
+
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;
 }
@@ -262,7 +262,7 @@
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
-    
+
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;
 }

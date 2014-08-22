@@ -88,7 +88,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
             // Center and add annotation.
             [pageView centerAnnotation:stampAnnotation aroundViewPoint:viewPoint];
-            [pdfController.document addAnnotations:@[stampAnnotation]];
+            [pdfController.document addAnnotations:@[stampAnnotation] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
         }
         return YES;
     }

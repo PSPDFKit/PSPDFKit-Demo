@@ -85,7 +85,7 @@ const char PSCSignatureCompletionBlock;
                 annotation.page = pageIndex;
 
                 // Add annotation.
-                [document addAnnotations:@[annotation]];
+                [document addAnnotations:@[annotation] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
             }
         }
 
