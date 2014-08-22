@@ -129,7 +129,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
         [documentCopy saveAnnotationsWithError:NULL];
 
-        [[[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Document copy saved to %@", documentCopy.fileURL.path] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"Document copy saved to %@", documentCopy.fileURL.path] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }];
     pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, saveCopy];
     return pdfController;

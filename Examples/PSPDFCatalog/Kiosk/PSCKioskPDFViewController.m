@@ -388,7 +388,7 @@ static id PSCControllerForClass(id theController, Class klass) {
     NSMutableArray *newMenuItems = [menuItems mutableCopy];
     if (PSCIsIPad()) { // looks bad on iPhone, no space
         PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
-            [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"OK") otherButtonTitles:nil] show];
         } identifier:@"Show Text"];
         [newMenuItems addObject:menuItem];
     }

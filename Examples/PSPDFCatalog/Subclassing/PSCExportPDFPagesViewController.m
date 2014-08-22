@@ -138,7 +138,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
                     [((PSPDFViewController *)self.parentViewController) presentModalOrInPopover:mailViewController embeddedInNavigationController:NO withCloseButton:NO animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
                 }else {
                     // Handle error state
-                    [[[PSPDFAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                    [[[PSPDFAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                 }
             });
         });

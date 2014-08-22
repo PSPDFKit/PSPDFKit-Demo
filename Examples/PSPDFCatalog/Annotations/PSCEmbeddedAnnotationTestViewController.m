@@ -50,12 +50,12 @@
 
     NSError *error = nil;
     if (![self.document saveAnnotationsWithError:&error]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] show];
     }else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
         //NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
-        //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+        //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] show];
 
         if (self.document.data) NSLog(@"Length of NSData after saving: %tu", self.document.data.length);
     }

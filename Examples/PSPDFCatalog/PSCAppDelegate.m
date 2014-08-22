@@ -100,7 +100,7 @@
         return YES;
     // Only show alert if there's content.
     }else if ([launchURL.scheme.lowercaseString isEqualToString:@"pspdfcatalog"] && launchURL.absoluteString.length > @"pspdfcatalog://".length) {
-        [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
     return NO;
 }
