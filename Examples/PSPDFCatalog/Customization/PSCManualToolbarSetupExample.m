@@ -115,6 +115,10 @@
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+	return UIStatusBarStyleLightContent;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Annotation toolbar
 

@@ -55,4 +55,10 @@
 
 @end
 
-@implementation PSCHostingController @end
+@implementation PSCHostingController
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+	return UIStatusBarStyleLightContent;
+}
+
+@end
