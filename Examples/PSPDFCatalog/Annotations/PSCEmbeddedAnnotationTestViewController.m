@@ -19,7 +19,6 @@
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
         document.delegate = self;
-        self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
 

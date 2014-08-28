@@ -19,7 +19,6 @@
     // state properties
     BOOL _savedRotationLock;
     BOOL _savedViewLock;
-    BOOL _savedTextSelection;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +49,6 @@
         PSPDFViewController *pdfController = self.pdfController;
         pdfController.rotationLockEnabled = _savedRotationLock;
         pdfController.viewLockEnabled = _savedViewLock;
-        pdfController.textSelectionEnabled = _savedTextSelection;
         _selectionView.delegate = nil;
         [_selectionView removeFromSuperview];
         _selectionView = nil;
@@ -68,10 +66,8 @@
         PSPDFViewController *pdfController = self.pdfController;
         _savedViewLock = pdfController.isViewLockEnabled;
         _savedRotationLock = pdfController.isRotationLockEnabled;
-        _savedTextSelection = pdfController.isTextSelectionEnabled;
         pdfController.viewLockEnabled = YES;
         pdfController.rotationLockEnabled = YES;
-        pdfController.textSelectionEnabled = NO;
 
         PSPDFPageView *pageView = [pdfController pageViewForPage:pdfController.page];
 

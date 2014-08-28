@@ -30,7 +30,10 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.UID = NSStringFromClass(PSCPageRangeFilterExample.class);
-    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+        builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+    }]];
 
     // Create the filter barButton
     __weak PSPDFViewController *weakController = controller;
@@ -56,8 +59,6 @@
 
     controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
     controller.barButtonItemsAlwaysEnabled = @[filterBarButton];
-    controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
-    controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
     return controller;
 }
 

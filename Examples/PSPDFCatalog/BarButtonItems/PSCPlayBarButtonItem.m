@@ -72,8 +72,10 @@
 
     // lock any interaction while we are in auto-scroll mode
     PSPDFViewController *pdfController = self.pdfController;
-    pdfController.textSelectionEnabled = !_autoplaying;
-    pdfController.scrollOnTapPageEndEnabled = !_autoplaying;
+    [pdfController updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.textSelectionEnabled = !_autoplaying;
+        builder.scrollOnTapPageEndEnabled = !_autoplaying;
+    }];
     pdfController.viewLockEnabled = _autoplaying;
     pdfController.scrollingEnabled = !_autoplaying;
 }

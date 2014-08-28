@@ -45,14 +45,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    // Prevents page flashing when there's cached content available at the cost of slight main thread blocking.
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
-    // prevents page flashing when there's cached content available at the cost of slight main thread blocking.
-    self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
-
-    // Optional: Allow rotation via a gesture.
-    [self overrideClass:PSPDFScrollView.class withClass:PSCRotatableScrollView.class];
+        // Optional: Allow rotation via a gesture.
+        [builder overrideClass:PSPDFScrollView.class withClass:PSCRotatableScrollView.class];
+    }]];
 
     // Add manual rotation button.
     UIBarButtonItem *rotate = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(rotateAction:)];
@@ -123,24 +123,26 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 #define PSCRadiansToDegrees(degrees) ((CGFloat)degrees * (180.f / (CGFloat)M_PI))
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer {
+    id <PSPDFConfigurationDataSource> configDataSource = self.configurationDataSource;
+
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        PSPDFDocument *document = configDataSource.document;
         // Invalidate the cache.
-        [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:self.page];
+        [PSPDFCache.sharedCache invalidateImageFromDocument:document page:self.page];
 
         // Get rotation and snap to the closest position.
-        PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
+        PSPDFPageInfo *pageInfo = [document pageInfoForPage:self.page];
         NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
         PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation + degrees) documentProvider:pageInfo.documentProvider];
-        [self.document setPageInfo:newPageInfo forPage:pageInfo.page];
+        [document setPageInfo:newPageInfo forPage:pageInfo.page];
         PSCLog(@"Snap rotation to: %tu", pageInfo.rotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
-        PSPDFViewController *pdfController = self.pdfController;
-        [PSPDFCache.sharedCache imageFromDocument:self.document page:self.page size:pdfController.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+        [PSPDFCache.sharedCache imageFromDocument:document page:self.page size:self.superview.bounds.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;
-        [pdfController reloadData];
+        [configDataSource.actionDelegate reloadData];
     }else {
         // Transform the current view.
         gestureRecognizer.view.transform = CGAffineTransformRotate(gestureRecognizer.view.transform, gestureRecognizer.rotation);

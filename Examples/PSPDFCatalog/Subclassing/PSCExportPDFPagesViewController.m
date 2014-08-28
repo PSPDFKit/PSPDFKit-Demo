@@ -18,9 +18,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
-    [self overrideClass:PSPDFThumbnailViewController.class withClass:PSCExportThumbnailsViewController.class];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFThumbnailViewController.class withClass:PSCExportThumbnailsViewController.class];
+    }]];
     [self updateToolbarButtons];
     self.delegate = self;
 }

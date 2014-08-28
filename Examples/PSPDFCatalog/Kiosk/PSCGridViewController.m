@@ -103,7 +103,6 @@
     [collectionView registerClass:PSCImageGridViewCell.class forCellWithReuseIdentifier:NSStringFromClass(PSCImageGridViewCell.class)];
     collectionView.delegate = self;
     collectionView.dataSource = self;
-    collectionView.backgroundColor = PSCDefaultBackgroundColor();
     collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.collectionView = collectionView;
 
@@ -225,7 +224,7 @@
 
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:PSPDFBundleImage(@"x") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
     [self presentViewController:navController animated:animated completion:NULL];
 }
 
@@ -679,7 +678,7 @@
 	PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:ip];
 	CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:containerView];
 
-	_animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
+	_animationDoubleWithPageCurl = pdfController.configuration.pageTransition == PSPDFPageTransitionCurl && pdfController.isDoublePageMode;
 	CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
 
 	// Prepare the cover image view, match it's position to the position of the (now hidden) cell.

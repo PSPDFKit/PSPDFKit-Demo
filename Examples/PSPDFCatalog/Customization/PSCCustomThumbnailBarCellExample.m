@@ -37,9 +37,10 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
-    [pdfController overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCCustomThumbnailCell.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+        [builder overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCCustomThumbnailCell.class];
+    }]];
     pdfController.HUDView.thumbnailBar.showPageLabels = YES;
     return pdfController;
 }

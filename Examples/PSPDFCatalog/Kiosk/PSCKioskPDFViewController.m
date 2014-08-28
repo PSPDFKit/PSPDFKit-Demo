@@ -151,7 +151,7 @@
         else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[PSPDFRenderInvertedKey] = obj;
 
         else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
-            [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
+            //[self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
         }
     }];
     self.document.renderOptions = renderOptions;
@@ -261,8 +261,6 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
 // Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeDocument:(PSPDFDocument *)document {
-    pdfController.backgroundColor = PSCDefaultBackgroundColor();
-
     // show pdf title and fileURL
     if (document) {
         NSString *fileName = PSCStripPDFFileType(document.fileURL.lastPathComponent);
@@ -432,10 +430,6 @@ static id PSCControllerForClass(id theController, Class klass) {
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView {
     //NSLog(@"Selected: %@", text);
-}
-
-UIColor *PSCDefaultBackgroundColor(void) {
-    return [UIColor colorWithWhite:0.12f alpha:1.f];
 }
 
 @end

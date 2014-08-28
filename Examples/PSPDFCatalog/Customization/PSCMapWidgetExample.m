@@ -36,9 +36,10 @@
     linkAnnotation.page = 0;
     [document addAnnotations:@[linkAnnotation]];
 
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    }]];
     pdfController.delegate = self;
-    pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
     return pdfController;
 }
 

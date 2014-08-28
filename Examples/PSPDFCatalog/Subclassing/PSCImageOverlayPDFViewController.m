@@ -17,15 +17,15 @@
 
 @end
 
-
 @implementation PSCImageOverlayPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
-    self.pageTransition = PSPDFPageTransitionCurl;
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.pageTransition = PSPDFPageTransitionCurl;
+    }]];
     self.delegate = self;
 }
 

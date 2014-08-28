@@ -326,26 +326,27 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 
 @implementation PSCMergePDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.HUDViewMode = PSPDFHUDViewModeAlways;
+        builder.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 
-    self.HUDViewMode = PSPDFHUDViewModeAlways;
-    self.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
+        // We already set the title at controller generation time.
+        builder.allowToolbarTitleChange = NO;
 
-    // We already set the title at controller generation time.
-    self.allowToolbarTitleChange = NO;
+        // Disable the long press menu.
+        builder.createAnnotationMenuEnabled = NO;
+
+        // fit 3 thumbs nicely next to each other on iPad/landscape.
+        builder.thumbnailSize = CGSizeMake(150.f, 200.f);
+    }];
+    [super commonInitWithDocument:document configuration:configuration];
 
     self.leftBarButtonItems = nil; // hide close button
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 
     // If the annotation toolbar is invoked, there's not enough space for the default configuration.
     self.annotationButtonItem.flexibleAnnotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
-
-    // Disable the long press menu.
-    self.createAnnotationMenuEnabled = NO;
-
-    // fit 3 thumbs nicely next to each other on iPad/landscape.
-    self.thumbnailSize = CGSizeMake(150.f, 200.f);
 
     // Hide bookmark filter
     self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];

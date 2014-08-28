@@ -17,14 +17,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+
+        // register the override to use a custom search highlight view subclass.
+        [builder overrideClass:PSPDFSearchHighlightView.class withClass:PSCNonAnimatingSearchHighlightView.class];
+    }]];
 
     // we are using the delegate to be informed about page loads.
     self.delegate = self;
-
-    // register the override to use a custom search highlight view subclass.
-    [self overrideClass:PSPDFSearchHighlightView.class withClass:PSCNonAnimatingSearchHighlightView.class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

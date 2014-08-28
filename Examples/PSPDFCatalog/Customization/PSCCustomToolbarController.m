@@ -19,14 +19,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.toolbarEnabled = NO;
+        builder.renderAnimationEnabled = NO; // custom implementation here
+        builder.thumbnailSize = PSCIsIPad() ? CGSizeMake(235.f, 305.f) : CGSizeMake(200.f, 250.f);
+    }];
+    [super commonInitWithDocument:document configuration:configuration];
 
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
-
-    // disable default toolbar
-    [self setToolbarEnabled:NO];
-    self.renderAnimationEnabled = NO; // custom implementation here
 
     // add custom controls to our toolbar
     _customViewModeSegment = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
@@ -47,22 +48,6 @@
 
 - (void)dealloc {
     self.delegate = nil;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    // use large thumbnails!
-    _originalThumbnailSize = self.thumbnailSize;
-    self.thumbnailSize = PSCIsIPad() ? CGSizeMake(235.f, 305.f) : CGSizeMake(200.f, 250.f);
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    self.thumbnailSize = _originalThumbnailSize;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -59,11 +59,12 @@
         [self.pdfController removeFromParentViewController];
 
         // add new controller
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:[randomDocument copy]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:[randomDocument copy] configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.pageTransition = PSPDFPageTransitionCurl;
+            builder.pageMode = PSPDFPageModeAutomatic;
+        }]];
         [self addChildViewController:pdfController];
         pdfController.view.frame = CGRectInset(self.view.bounds, 20, 20);
-        pdfController.pageTransition = PSPDFPageTransitionCurl;
-        pdfController.pageMode = PSPDFPageModeAutomatic;
         [self.view addSubview:pdfController.view];
         [pdfController didMoveToParentViewController:self];
         self.pdfController = pdfController;

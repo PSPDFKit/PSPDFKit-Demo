@@ -49,11 +49,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:configuration];
+    
     self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
 
-    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStylePlain target:self action:@selector(closeButtonPressed:)];
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithImage:PSPDFBundleImage(@"x") style:UIBarButtonItemStyleDone target:self action:@selector(closeButtonPressed:)];
     self.leftBarButtonItems = @[closeButton];
 
     // PSPDFViewController will unregister all notifications on dealloc.

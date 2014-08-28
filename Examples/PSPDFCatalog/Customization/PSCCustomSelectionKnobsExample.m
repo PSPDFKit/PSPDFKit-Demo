@@ -102,8 +102,9 @@
     freeText.absolutePage = 0;
     [document addAnnotations:@[freeText]];
 
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFResizableView.class withClass:PSCResizableView.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFResizableView.class withClass:PSCResizableView.class];
+    }]];
     pdfController.delegate = self;
 
     [[PSCResizableView appearance] setSelectionBorderWidth:3.f];

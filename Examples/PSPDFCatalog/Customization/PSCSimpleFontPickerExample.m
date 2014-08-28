@@ -36,8 +36,9 @@
     [freeText sizeToFit];
     [document addAnnotations:@[freeText]];
 
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFFontPickerViewController.class withClass:PSCSimpleFontPickerViewController.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFFontPickerViewController.class withClass:PSCSimpleFontPickerViewController.class];
+    }]];
     pdfController.delegate = self;
     return pdfController;
 }

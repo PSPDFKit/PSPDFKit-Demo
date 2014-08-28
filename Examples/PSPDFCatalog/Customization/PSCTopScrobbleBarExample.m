@@ -30,9 +30,10 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFHUDView.class withClass:PSCCustomHUDView.class];
-    pdfController.pageLabelDistance = -pdfController.HUDView.scrobbleBar.scrobbleBarHeight + 5.f;
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.pageLabelDistance = 49.f;
+        [builder overrideClass:PSPDFHUDView.class withClass:PSCCustomHUDView.class];
+    }]];
     return pdfController;
 }
 

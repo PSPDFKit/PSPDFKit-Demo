@@ -26,9 +26,10 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.UID = @"PageRangeExampleUID"; // custom so this won't affect other examples.
     document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
-    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+    }]];
     controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
-    controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
     return controller;
 }
 

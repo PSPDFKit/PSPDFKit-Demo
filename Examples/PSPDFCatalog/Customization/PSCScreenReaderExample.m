@@ -45,9 +45,11 @@
 
 @implementation PSCReaderPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
-    self.pageMode = PSPDFPageModeSingle;
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.pageMode = PSPDFPageModeSingle;
+    }];
+    [super commonInitWithDocument:document configuration:configuration];
     self.delegate = self;
 }
 

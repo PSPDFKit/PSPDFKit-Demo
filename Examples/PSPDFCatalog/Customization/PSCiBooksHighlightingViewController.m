@@ -21,10 +21,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.createAnnotationMenuEnabled = NO;
+        builder.backgroundColor = UIColor.blackColor;
+    }]];
     self.delegate = self;
-    self.createAnnotationMenuEnabled = NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +60,7 @@
         [document addAnnotations:@[highlight] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
 
         // Update visible page and discard current selection.
-        [pageView addAnnotation:highlight animated:NO];
+        [pageView addAnnotation:highlight options:nil animated:NO];
         [pageView.selectionView discardSelection];
 
         // Wait until long press touch processing is complete, then select and show menu.

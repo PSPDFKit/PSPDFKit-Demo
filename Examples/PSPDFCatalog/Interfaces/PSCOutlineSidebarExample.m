@@ -56,9 +56,10 @@
 - (instancetype)initWithDocument:(PSPDFDocument *)document {
     if (self = [super init]) {
         // Set up the PDF controller
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.pageMode = PSPDFPageModeSingle;
-        pdfController.fitToWidthEnabled = YES;
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.pageMode = PSPDFPageModeSingle;
+            builder.fitToWidthEnabled = YES;
+        }]];
 
         // Set up the document picker button
         PSPDFDocumentPickerController *documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];

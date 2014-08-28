@@ -49,11 +49,12 @@
     [document overrideClass:PSPDFNoteAnnotation.class withClass:PSCCustomNoteAnnotation.class];
 
     // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFPageView.class withClass:PSCCustomNoteViewPageView.class];
+        [builder overrideClass:PSPDFResizableView.class withClass:PSCNoteInvisibleResizableView.class];
+        [builder overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCCustomNoteAnnotationViewController.class];
+    }]];
     pdfController.delegate = self;
-    [pdfController overrideClass:PSPDFPageView.class withClass:PSCCustomNoteViewPageView.class];
-    [pdfController overrideClass:PSPDFResizableView.class withClass:PSCNoteInvisibleResizableView.class];
-    [pdfController overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCCustomNoteAnnotationViewController.class];
 
     // Make sure we close any open note controllers as we rotate.
     [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *thePdfController, UIInterfaceOrientation toInterfaceOrientation) {
@@ -297,7 +298,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 
         // Populate bottom toolbar
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Delete") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAnnotation:)];
-        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonPressed:)];
+        UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithImage:PSPDFBundleImage(@"x") style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonPressed:)];
         _bottomToolbar.items = @[cancelButton, spacer, saveButton];
         _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
     }

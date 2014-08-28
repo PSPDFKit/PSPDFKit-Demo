@@ -11,9 +11,7 @@
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
 
-@interface PSCCustomSignatureSelectorViewController : PSPDFSignatureSelectorViewController
-@end
-
+@interface PSCCustomSignatureSelectorViewController : PSPDFSignatureSelectorViewController @end
 @interface PSCSignatureControllerCustomizationExample : PSCExample @end
 @implementation PSCSignatureControllerCustomizationExample
 
@@ -35,8 +33,9 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
 
     // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFSignatureSelectorViewController.class withClass:PSCCustomSignatureSelectorViewController.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFSignatureSelectorViewController.class withClass:PSCCustomSignatureSelectorViewController.class];
+    }]];
     return pdfController;
 }
 

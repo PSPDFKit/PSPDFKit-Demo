@@ -17,16 +17,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        
+        // Register our custom cell as subclass.
+        [builder overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCThumbnailGridViewCell.class];
+    }]];
 
     // Only use the PSCThumbnailGridViewCell subclass so that we don't override all examples here.
     // In your code you can simply use PSPDFThumbnailGridViewCell.
     [[PSPDFRoundedLabel appearanceWhenContainedIn:PSCThumbnailGridViewCell.class, nil] setRectColor:[UIColor colorWithRed:0.165f green:0.226f blue:0.650f alpha:0.800f]];
     [[PSPDFRoundedLabel appearanceWhenContainedIn:PSCThumbnailGridViewCell.class, nil] setCornerRadius:20];
-
-    // Register our custom cell as subclass.
-    [self overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCThumbnailGridViewCell.class];
 }
 
 @end
