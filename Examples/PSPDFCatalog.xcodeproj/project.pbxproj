@@ -14,7 +14,6 @@
 		780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */; };
 		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
 		7817136C19A014770026CE0F /* NSArray+PSCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817136B19A014770026CE0F /* NSArray+PSCHelper.m */; };
-		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781C105C198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */; };
 		781C106B198D6B06002831D2 /* NSURL+SampleLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C106A198D6B06002831D2 /* NSURL+SampleLoading.m */; };
@@ -203,8 +202,6 @@
 		780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsViewController.m; sourceTree = "<group>"; };
 		7817136A19A014770026CE0F /* NSArray+PSCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PSCHelper.h"; sourceTree = "<group>"; };
 		7817136B19A014770026CE0F /* NSArray+PSCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PSCHelper.m"; sourceTree = "<group>"; };
-		781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTwoFingerSwipeGestureViewController.m; sourceTree = "<group>"; };
-		781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTwoFingerSwipeGestureViewController.h; sourceTree = "<group>"; };
 		781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSubviewPDFViewController.m; sourceTree = "<group>"; };
 		781908C61680BA340065A6B4 /* PSCCustomSubviewPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomSubviewPDFViewController.h; sourceTree = "<group>"; };
 		781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSelectFreeTextAnnotationsExample.m; sourceTree = "<group>"; };
@@ -754,8 +751,6 @@
 				78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */,
 				780C820516B85C44009396AF /* PSCHeadlessSearchPDFViewController.h */,
 				780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */,
-				781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */,
-				781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */,
 				781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */,
 				781908C61680BA340065A6B4 /* PSCCustomSubviewPDFViewController.h */,
 				786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */,
@@ -1240,7 +1235,6 @@
 				78D4D4041848CD4900080A96 /* AFHTTPRequestOperationManager.m in Sources */,
 				788628EB1918D75C00D9430B /* PSCPredefinedEmailBodyExample.m in Sources */,
 				78FEC25A18B298C60012ACBD /* PSCSplitPDFViewController.m in Sources */,
-				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
 				781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */,
 				78FEC26818B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m in Sources */,
 				78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */,
