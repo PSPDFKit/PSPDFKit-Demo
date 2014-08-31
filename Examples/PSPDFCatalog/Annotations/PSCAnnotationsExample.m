@@ -127,12 +127,12 @@
     PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:files];
 
     // We're lazy here. 2 = UIViewContentModeScaleAspectFill
-    PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
+    PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"]];
     aVideo.boundingBox = [document pageInfoForPage:5].rotatedRect;
     aVideo.page = 5;
     [document addAnnotations:@[aVideo]];
 
-    PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
+    PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"]];
     anImage.boundingBox = [document pageInfoForPage:2].rotatedRect;
     anImage.page = 2;
     [document addAnnotations:@[anImage]];
@@ -234,29 +234,29 @@
     NSMutableArray *annotations = [NSMutableArray array];
 
 
-    PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"http://pspdfkit.com"];
+    PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"http://pspdfkit.com"]];
     linkAnnotation.boundingBox = CGRectMake(100.f, 80.f, 200.f, 300.f);
     linkAnnotation.page = 1;
     [annotations addObject:linkAnnotation];
 
-    PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"];
+    PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
     aStream.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aStream.page = 0;
     [annotations addObject:aStream];
 
-    PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"];
+    PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"]];
     anImage.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage.page = 3;
     [annotations addObject:anImage];
 
 
-    PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"];
+    PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"]];
     aVideo2.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aVideo2.page = 2;
     [annotations addObject:aVideo2];
 
-    PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
-    anImage3.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]];
+    PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]]];
+    anImage3.linkType = PSPDFLinkAnnotationImage;
     anImage3.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage3.page = 4;
     [annotations addObject:anImage3];

@@ -30,7 +30,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // This annotation could be already in the document - we just add it programmatically for this example.
-    PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"map://37.7998377,-122.400478,0.005,0.005"];
+    PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"map://37.7998377,-122.400478,0.005,0.005"]];
     linkAnnotation.linkType = PSPDFLinkAnnotationBrowser;
     linkAnnotation.boundingBox = CGRectMake(100.f, 100.f, 300.f, 300.f);
     linkAnnotation.page = 0;

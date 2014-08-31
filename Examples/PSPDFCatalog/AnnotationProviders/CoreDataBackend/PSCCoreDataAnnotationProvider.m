@@ -65,7 +65,7 @@
                     // Check for custom annotation subclasses and make sure they are used when annotations are loaded.
                     PSPDFAnnotationRegisterOverrideClasses(unarchiver, document);
 
-                    annotation = [unarchiver decodeObjectForKey:@"root"];
+                    annotation = [unarchiver decodeObjectOfClass:PSPDFAnnotation.class forKey:NSKeyedArchiveRootObjectKey];
                     if (![annotation isKindOfClass:PSPDFAnnotation.class]) {
                         annotation = nil;
                     }

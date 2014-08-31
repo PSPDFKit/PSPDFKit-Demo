@@ -33,7 +33,7 @@
     // Add link
     // By default, PSPDFKit woud ask if you want to leave the app when an external URL is detected.
     // We skip this question if the protocol is defined within our own app.
-    PSPDFLinkAnnotation *link = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfcatalog://this-is-a-test-link"];
+    PSPDFLinkAnnotation *link = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfcatalog://this-is-a-test-link"]];
     CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400, 300);

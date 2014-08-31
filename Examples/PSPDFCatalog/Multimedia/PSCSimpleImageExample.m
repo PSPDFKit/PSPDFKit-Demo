@@ -29,7 +29,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // Dynamically add gallery annotation.
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://https://pbs.twimg.com/media/Bfw58-LIYAAVYdW.jpg"];
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://https://pbs.twimg.com/media/Bfw58-LIYAAVYdW.jpg"]];
     CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
@@ -37,10 +37,9 @@
     [document addAnnotations:@[galleryAnnotation]];
 
     // Add simple image annotation
-    PSPDFLinkAnnotation *imageAnnotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
+    PSPDFLinkAnnotation *imageAnnotation = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL fileURLWithPath:[NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"alternative_note_image@2x.png"]]];
+    imageAnnotation.linkType = PSPDFLinkAnnotationImage;
     imageAnnotation.fillColor = [UIColor clearColor];
-    imageAnnotation.URL = [NSURL fileURLWithPath:[NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"alternative_note_image@2x.png"]];
-
     imageAnnotation.boundingBox = (CGRect) {CGPointMake(3.f, 200.f), CGSizeMake(25.f, 25.f)};
     imageAnnotation.page = 0;
     [document addAnnotations:@[imageAnnotation]];

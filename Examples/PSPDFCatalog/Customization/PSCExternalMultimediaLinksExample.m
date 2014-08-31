@@ -35,8 +35,8 @@
     // Define an image gallery button (as link annotation)
     // Since link annotations are excluded by default in `saveableTypes` of the `PSPDFFileAnnotationProvider`,
     // this does not get saved (in your app, this might come from a server)
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
-    galleryAnnotation.action.options = @{PSPDFActionOptionButton : @YES};
+    PSPDFAction *action = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"] options:@{PSPDFActionOptionButton : @YES}];
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithAction:action];
     galleryAnnotation.boundingBox = CGRectMake(arc4random_uniform(200), arc4random_uniform(200), 400.f, 300.f);
     [document addAnnotations:@[galleryAnnotation]];
 

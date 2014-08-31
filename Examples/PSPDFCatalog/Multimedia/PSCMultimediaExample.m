@@ -57,7 +57,7 @@
 
     // dynamically add video box
     [document.undoController performBlockWithoutUndo:^{
-        PSPDFLinkAnnotation *videoLink = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
+        PSPDFLinkAnnotation *videoLink = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"]];
         videoLink.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedRect, 100.f, 100.f);
         [document addAnnotations:@[videoLink]];
     }];
@@ -89,7 +89,7 @@
 
     // Dynamically add video box.
     [document.undoController performBlockWithoutUndo:^{
-        PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720&start=10&end=20"];
+        PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720&start=10&end=20"]];
         video.boundingBox = CGRectMake(70.f, 150.f, 470.f, 270.f);
         [document addAnnotations:@[video]];
     }];
