@@ -29,17 +29,18 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        // This property can be used as well to customize what options are offered in the text menu.
+        // We customize this again later in the callback, but here's your chance to e.g. enable Wikipedia.
+        builder.allowedMenuActions = PSPDFTextSelectionMenuActionSearch|PSPDFTextSelectionMenuActionDefine;
 
-    // This property can be used as well to customize what options are offered in the text menu.
-    // We customize this again later in the callback, but here's your chance to e.g. enable Wikipedia.
-    pdfController.allowedMenuActions = PSPDFTextSelectionMenuActionSearch|PSPDFTextSelectionMenuActionDefine;
+        // Overrides the inspector with our own subclass to dynamically modify what properties we want to show.
+        [builder overrideClass:PSPDFAnnotationStyleViewController.class withClass:PSCSimpleAnnotationStyleViewController.class];
+    }]];
 
     // We use the delegate to customize the menu items.
     pdfController.delegate = self;
 
-    // Overrides the inspector with our own subclass to dynamically modify what properties we want to show.
-    [pdfController overrideClass:PSPDFAnnotationStyleViewController.class withClass:PSCSimpleAnnotationStyleViewController.class];
     return pdfController;
 }
 

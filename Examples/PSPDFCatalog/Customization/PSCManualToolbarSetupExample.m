@@ -65,9 +65,10 @@
 
 - (void)createPDFViewController {
 	// Add PSPDFViewController as a sub-controller
-    self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document];
-	self.pdfController.HUDViewMode = PSPDFHUDViewModeNever;
-	self.pdfController.backgroundColor = [UIColor whiteColor];
+    self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.HUDViewMode = PSPDFHUDViewModeNever;
+        builder.backgroundColor = [UIColor whiteColor];
+    }]];
 
 	// Those need to be nilled out if you use the barButton items (e.g., annotationButtonItem) externally!
     self.pdfController.leftBarButtonItems = nil;

@@ -26,8 +26,9 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
+    }]];
     return pdfController;
 }
 
@@ -89,7 +90,7 @@
             // Remove any annotation on the page as well (updates views)
             // Alternatively, you can call `reloadData` on the pdfController as well.
             for (PSPDFAnnotation *annotation in annotations) {
-                [pageView removeAnnotation:annotation animated:YES];
+                [pageView removeAnnotation:annotation options:nil animated:YES];
             }
         }
     }

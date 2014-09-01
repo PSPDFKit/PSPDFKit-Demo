@@ -21,22 +21,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.toolbarEnabled = NO;
+        builder.HUDViewMode = PSPDFHUDViewModeNever;
+        builder.pageTransition = PSPDFPageTransitionCurl;
+        builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        builder.smartZoomEnabled = NO;
+        builder.zoomingSmallDocumentsEnabled = YES;
+        builder.createAnnotationMenuEnabled = NO;
+        builder.documentLabelEnabled = NO;
+        builder.textSelectionEnabled = NO;
+        builder.shadowEnabled = NO;
+        builder.backgroundColor = UIColor.blackColor;
+    }]];
     [document overrideClass:PSPDFDocumentProvider.class withClass:PSCCustomDocumentProvider.class];
 
     self.delegate = self;
-    self.toolbarEnabled = NO;
-    self.HUDViewMode = PSPDFHUDViewModeNever;
-    self.pageTransition = PSPDFPageTransitionCurl;
-    self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
-    self.smartZoomEnabled = NO;
-    self.zoomingSmallDocumentsEnabled = YES;
-    self.createAnnotationMenuEnabled = NO;
-    self.documentLabelEnabled = NO;
-    self.textSelectionEnabled = NO;
-    self.shadowEnabled = NO;
-    self.backgroundColor = UIColor.blackColor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

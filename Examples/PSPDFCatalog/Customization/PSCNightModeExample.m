@@ -32,9 +32,10 @@
     document.backgroundColor = UIColor.blackColor;
 
     // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.backgroundColor = UIColor.blackColor;
-    pdfController.createAnnotationMenuEnabled = NO;
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.backgroundColor = UIColor.blackColor;
+        builder.createAnnotationMenuEnabled = NO;
+    }]];
     return pdfController;
 }
 

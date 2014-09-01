@@ -25,12 +25,15 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    }]];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         pdfController.page = 15;
-        pdfController.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+        [pdfController updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+        }];
     });
 
     return pdfController;

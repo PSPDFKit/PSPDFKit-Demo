@@ -33,8 +33,9 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
 
     // Simple subclass that shows/hides the navigationController bottom toolbar
-    PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
-    pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    }]];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
     pdfController.leftBarButtonItems = nil;

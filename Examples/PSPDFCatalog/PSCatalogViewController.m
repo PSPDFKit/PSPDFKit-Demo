@@ -24,7 +24,6 @@
 #import "PSCCustomAnnotationProvider.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
-#import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
 #import "PSCCustomThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
@@ -108,10 +107,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [appSection addContent:[PSContent contentWithTitle:@"Case Study from Box" contentDescription:@"Incudes a RichMedia inline video that works in Acrobat and PSPDFKit." block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kCaseStudyBox]];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.thumbnailBarMode = PSPDFThumbnailBarModeNone;
-        controller.shouldShowHUDOnViewWillAppear = NO;
-        controller.pageLabelEnabled = NO;
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+            builder.shouldShowHUDOnViewWillAppear = NO;
+            builder.pageLabelEnabled = NO;
+        }]];
+
         controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.activityButtonItem];
         return controller;
@@ -143,15 +144,17 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
         hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12"; // Override document title.
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
-        controller.pageTransition = PSPDFPageTransitionCurl;
-        controller.pageMode = PSPDFPageModeAutomatic;
-        controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
-        // Don't use thumbnails if the PDF is not rendered.
-        // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
-        controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.pageTransition = PSPDFPageTransitionCurl;
+            builder.pageMode = PSPDFPageModeAutomatic;
+            builder.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
+            builder.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+
+            // Don't use thumbnails if the PDF is not rendered.
+            // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
+            builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        }]];
 
         // Setup toolbar
         controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
@@ -170,19 +173,20 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Initialize document and enable link autodetection.
         PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.pageTransition = PSPDFPageTransitionScrollContinuous;
+            builder.scrollDirection = PSPDFScrollDirectionVertical;
+            builder.fitToWidthEnabled = YES;
+            builder.pagePadding = 5.f;
+            builder.renderAnimationEnabled = NO;
+            builder.shouldHideNavigationBarWithHUD = NO;
+            builder.shouldHideStatusBarWithHUD = NO;
+        }]];
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
-        controller.pageTransition = PSPDFPageTransitionScrollContinuous;
-        controller.scrollDirection = PSPDFScrollDirectionVertical;
-        controller.fitToWidthEnabled = YES;
-        controller.pagePadding = 5.f;
-        controller.renderAnimationEnabled = NO;
-		controller.shouldHideNavigationBarWithHUD = NO;
-		controller.shouldHideStatusBarWithHUD = NO;
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -230,7 +234,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [PSCSectionDescriptor sectionWithTitle:@"PSPDFViewController customization" footer:@""];
 
-    if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
+    if ([PSPDFKit isFeatureEnabled:PSPDFFeatureMaskTextSelection]) {
         [customizationSection addContent:[PSContent contentWithTitle:@"Disable text copying" block:^{
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
             [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
@@ -239,13 +243,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Custom Background Color" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.backgroundColor = [UIColor brownColor];
-        return pdfController;
-    }]];
 
     [customizationSection addContent:[PSContent contentWithTitle:@"Customize thumbnail page label" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
@@ -309,8 +306,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
-    /// The crypto feature requires the `PSPDFFeatureMaskStrongEncryption` feature flag.
-    if (PSPDFAESCryptoDataProvider.isAESCryptoFeatureAvailable) {
+    if ([PSPDFKit isFeatureEnabled:PSPDFFeatureMaskStrongEncryption]) {
         [passwordSection addContent:[PSContent contentWithTitle:@"Encrypted CGDocumentProvider" block:^{
             NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
 
@@ -392,8 +388,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Note: You can also globally change the color using:
         // We don't use this in the example here since it would change the color globally for all examples.
         //[PSPDFLinkAnnotationView setGlobalBorderColor:[UIColor greenColor]];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        [controller overrideClass:PSPDFLinkAnnotationView.class withClass:PSCCustomLinkAnnotationView.class];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            [builder overrideClass:PSPDFLinkAnnotationView.class withClass:PSCCustomLinkAnnotationView.class];
+        }]];
         return controller;
     }]];
 
@@ -422,8 +419,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             [document addAnnotations:@[annotation]];
         }
 
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.textSelectionEnabled = NO;
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.textSelectionEnabled = NO;
+        }]];
         controller.rightBarButtonItems = @[controller.searchButtonItem, controller.openInButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
@@ -446,7 +444,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.textSelectionEnabled = NO;
         controller.rightBarButtonItems = @[controller.searchButtonItem, controller.openInButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
@@ -531,7 +528,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
-            if (!PSCIsIPad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+            if (!PSCIsIPad()) {
+                [pdfController updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                    builder.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+                }];
+            }
         }];
         return controller;
     }]];
@@ -540,11 +541,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
-            if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-                pdfController.pageTransition = PSPDFPageTransitionScrollPerPage;
-            }  else {
-                pdfController.pageTransition = PSPDFPageTransitionCurl;
-            }
+            [pdfController updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+                if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+                    builder.pageTransition = PSPDFPageTransitionScrollPerPage;
+                }  else {
+                    builder.pageTransition = PSPDFPageTransitionCurl;
+                }
+            }];
         }];
         return controller;
     }]];
@@ -557,12 +560,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+            builder.pageTransition = PSPDFPageTransitionCurl;
+            builder.pageMode = PSPDFPageModeAutomatic;
+        }]];
         PSCPlayBarButtonItem *playButton = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:controller];
         playButton.autoplaying = YES;
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-        controller.pageTransition = PSPDFPageTransitionCurl;
-        controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
 
@@ -591,13 +595,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         PSPDFViewController *controller = [[PSCShowHighlightNotesPDFController alloc] initWithDocument:document];
         controller.page = page;
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Add a two finger swipe gesture" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCTwoFingerSwipeGestureViewController  alloc] initWithDocument:document];
-        controller.page = 3;
         return controller;
     }]];
 
@@ -709,7 +706,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *doc3 = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"C.pdf"]];
         PSPDFDocument *doc4 = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"D.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
-        pdfController.useParentNavigationBar = YES;
         PSPDFMultiDocumentViewController *pdfMultiDocController = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController];
         pdfMultiDocController.documents = @[doc1, doc2, doc3, doc4];
         pdfMultiDocController.visibleDocument = doc1;
@@ -719,6 +715,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // additional test cases, just for developing and testing PSPDFKit.
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
+#if 0
 
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[PSContent contentWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
@@ -1192,29 +1189,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Test audio" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pdf_mp3/650_v2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 36;
-        pdfController.doublePageModeOnFirstPage = YES;
-        return pdfController;
-    }]];
-
-    // Check that even extremely long pages are correctly rendered.
-    [testSection addContent:[PSContent contentWithTitle:@"Test extremely long pages" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pepsico-slow.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // Test that all links on page 92 do work as expected.
-    [testSection addContent:[PSContent contentWithTitle:@"Test JavaScript actions" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"US-GardeningMain2013-US.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 91;
-        return pdfController;
-    }]];
-
     // Test audio controls on the top left.
     [testSection addContent:[PSContent contentWithTitle:@"Test Rendition actions" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rendition-action.pdf"]];
@@ -1435,6 +1409,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
+#endif
 #endif
 
     [sections addObject:testSection];

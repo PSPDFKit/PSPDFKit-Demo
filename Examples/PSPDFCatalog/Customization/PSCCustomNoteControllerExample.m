@@ -11,9 +11,7 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCLargeFontNoteAnnotationViewController : PSPDFNoteAnnotationViewController
-@end
-
+@interface PSCLargeFontNoteAnnotationViewController : PSPDFNoteAnnotationViewController @end
 @interface PSCCustomNoteControllerExample : PSCExample @end
 @implementation PSCCustomNoteControllerExample
 
@@ -28,10 +26,12 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCLargeFontNoteAnnotationViewController.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCLargeFontNoteAnnotationViewController.class];
+    }]];
 
-    // We create appearance rule on the custom subclass so that this example doesn't change all note controllers within the example
+    // We create appearance rule on the custom subclass
+    // so that this example doesn't change all note controllers within the example
     [[UITextView appearanceWhenContainedIn:PSCLargeFontNoteAnnotationViewController.class, nil] setFont:[UIFont fontWithName:@"Helvetica" size:20.f]];
     [[UITextView appearanceWhenContainedIn:PSCLargeFontNoteAnnotationViewController.class, nil] setTextColor:UIColor.greenColor];
     return pdfController;

@@ -22,23 +22,24 @@ static const CGFloat PSCToolbarMargin = 20.f;
 
 @implementation PSCDropboxPDFViewController
 
-- (void)commonInitWithDocument:(PSPDFDocument *)document {
-    [super commonInitWithDocument:document];
-
-    self.pageTransition = PSPDFPageTransitionScrollContinuous;
-    self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.renderAnimationEnabled = NO;
-    self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+- (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.pageTransition = PSPDFPageTransitionScrollContinuous;
+        builder.scrollDirection = PSPDFScrollDirectionVertical;
+        builder.renderAnimationEnabled = NO;
+        builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+        if (!PSCIsIPad()) {
+            builder.documentLabelEnabled = NO;
+        }
+    }];
+    [super commonInitWithDocument:document configuration:configuration];
+    
+    self.title = document.title;
     self.thumbnailController.filterOptions = nil;
     self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
     self.leftBarButtonItems = nil;
     self.rightBarButtonItems = nil;
     self.delegate = self;
-
-    if (!PSCIsIPad()) {
-        self.title = document.title;
-        self.documentLabelEnabled = NO;
-    }
 }
 
 - (void)viewDidLoad {

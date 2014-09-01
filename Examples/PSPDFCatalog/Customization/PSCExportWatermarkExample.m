@@ -29,7 +29,13 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+
+        // To add a watermark, we can either subclass every object that implements the PSPDFDocumentSharingViewControllerDelegate
+        // and customize `processorOptionsForDocumentSharingViewController:`, or we simply subclass the PSPDFDocumentSharingViewController
+        // directly and override `delegateProcessorOptions` which is the method that queries the delegates
+        [builder overrideClass:PSPDFDocumentSharingViewController.class withClass:PSCWatermarkingDocumentSharingViewController.class];
+    }]];
 
     PSPDFRenderDrawBlock drawBlock = ^(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options) {
         // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
@@ -47,10 +53,6 @@
     };
     document.renderOptions = @{PSPDFRenderDrawBlockKey : drawBlock};
 
-    // To add a watermark, we can either subclass every object that implements the PSPDFDocumentSharingViewControllerDelegate
-    // and customize `processorOptionsForDocumentSharingViewController:`, or we simply subclass the PSPDFDocumentSharingViewController
-    // directly and override `delegateProcessorOptions` which is the method that queries the delegates.
-    [pdfController overrideClass:PSPDFDocumentSharingViewController.class withClass:PSCWatermarkingDocumentSharingViewController.class];
     return pdfController;
 }
 

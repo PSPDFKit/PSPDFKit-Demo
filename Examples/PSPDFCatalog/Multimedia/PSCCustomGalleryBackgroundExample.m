@@ -36,7 +36,7 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // Dynamically add gallery annotation.
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
+    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"]];
     CGRect pageRect = [document pageInfoForPage:0].rotatedRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
@@ -46,13 +46,14 @@
     [[PSCCustomGalleryEmbeddedBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
     [[PSCCustomGalleryFullscreenBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
 
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
 
-    // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
-    [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
-    [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
-    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCCustomGalleryEmbeddedBackgroundView.class];
-    [pdfController overrideClass:PSPDFGalleryFullscreenBackgroundView.class withClass:PSCCustomGalleryFullscreenBackgroundView.class];
+        // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
+        [builder overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
+        [builder overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
+        [builder overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCCustomGalleryEmbeddedBackgroundView.class];
+        [builder overrideClass:PSPDFGalleryFullscreenBackgroundView.class withClass:PSCCustomGalleryFullscreenBackgroundView.class];
+    }]];
 
     return pdfController;
 }

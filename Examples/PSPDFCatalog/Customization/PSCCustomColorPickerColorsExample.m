@@ -31,11 +31,13 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFColorSelectionViewController.class withClass:PSCCustomColorSelectionViewController.class];
+    }]];
 
     // Register the class overrides.
     [PSPDFColorSelectionViewController setDefaultColorPickerStyles:@[@(PSCColorPickerStyleCustom)]];
-    [pdfController overrideClass:PSPDFColorSelectionViewController.class withClass:PSCCustomColorSelectionViewController.class];
     return pdfController;
 }
 

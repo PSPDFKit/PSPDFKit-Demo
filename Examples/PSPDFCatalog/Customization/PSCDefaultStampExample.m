@@ -38,12 +38,13 @@
     [document overrideClass:PSPDFStampAnnotation.class withClass:PSCFastStampAnnotation.class];
 
     // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomStampAnnotationToolbar.class];
-    [pdfController overrideClass:PSPDFResizableView.class withClass:PSCInvisibleResizableView.class];
-    [pdfController overrideClass:PSPDFScrollView.class withClass:PSCCustomTouchScrollView.class];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.createAnnotationMenuEnabled = NO;
+        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomStampAnnotationToolbar.class];
+        [builder overrideClass:PSPDFResizableView.class withClass:PSCInvisibleResizableView.class];
+        [builder overrideClass:PSPDFScrollView.class withClass:PSCCustomTouchScrollView.class];
+    }]];
     pdfController.delegate =  self;
-    pdfController.createAnnotationMenuEnabled = NO;
     return pdfController;
 }
 
@@ -148,7 +149,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
     [super longPress:recognizer];
 
     // Remember start point and handle it as a tap if move distance is below a certain treshold.
-    PSPDFViewController *pdfController = self.pdfController;
+    PSPDFViewController *pdfController = self.configurationDataSource.pdfController;
     if (PSCIsStampModeEnabledForPDFController(pdfController)) {
         if (recognizer.state == UIGestureRecognizerStateBegan) {
             _startPoint = [recognizer locationInView:self];
@@ -171,7 +172,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
     // If not enabled yet, check if we're in our special stamp mode and allow long press there.
     // (Usually, long press is blocked when the annotation toolbar is active)
-    if (!shouldBegin && PSCIsStampModeEnabledForPDFController(self.pdfController) &&
+    if (!shouldBegin && PSCIsStampModeEnabledForPDFController(self.configurationDataSource.pdfController) &&
         [gestureRecognizer isKindOfClass:UILongPressGestureRecognizer.class]) {
         shouldBegin = YES;
     }
@@ -180,9 +181,9 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
 - (BOOL)pressRecognizerShouldHandlePressImmediately:(PSPDFLongPressGestureRecognizer *)recognizer {
     // Select a stamp annotation as soon as we start touching it, making dragging instant.
-    PSPDFViewController *pdfController = self.pdfController;
-    if (PSCIsStampModeEnabledForPDFController(pdfController)) {
-        for (PSPDFPageView *pageView in pdfController.visiblePageViews) {
+    id <PSPDFConfigurationDataSource> configDataSource = self.configurationDataSource;
+    if (PSCIsStampModeEnabledForPDFController(configDataSource.pdfController)) {
+        for (PSPDFPageView *pageView in configDataSource.visiblePageViews) {
             NSArray *stampAnnotations = PSCStampAnnotationsAtPoint(pageView, [recognizer locationInView:pageView]);
             if (stampAnnotations.count > 0) {
                 pageView.selectedAnnotations = @[stampAnnotations[0]];

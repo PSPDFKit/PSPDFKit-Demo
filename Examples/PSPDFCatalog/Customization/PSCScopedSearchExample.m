@@ -29,8 +29,9 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSCScopedPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFSearchViewController.class withClass:PSCScopedSearchViewController.class];
+    PSPDFViewController *pdfController = [[PSCScopedPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFSearchViewController.class withClass:PSCScopedSearchViewController.class];
+    }]];
     return pdfController;
 }
 

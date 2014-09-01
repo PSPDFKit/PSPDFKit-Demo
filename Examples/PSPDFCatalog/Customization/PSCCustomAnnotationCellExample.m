@@ -39,15 +39,15 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        // Register the class overrides.
+        [builder overrideClass:PSPDFAnnotationCell.class withClass:PSCCustomAnnotationCell.class];
+        [builder overrideClass:PSPDFAnnotationTableViewController.class withClass:PSCCustomAnnotationTableViewController.class];
+
+        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomFlexibleAnnotationToolbar.class];
+        [builder overrideClass:PSPDFAnnotationStateManager.class withClass:PSCCustomAnnotationStateManager.class];
+    }]];
     pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
-
-    // Register the class overrides.
-    [pdfController overrideClass:PSPDFAnnotationCell.class withClass:PSCCustomAnnotationCell.class];
-    [pdfController overrideClass:PSPDFAnnotationTableViewController.class withClass:PSCCustomAnnotationTableViewController.class];
-
-    [pdfController overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomFlexibleAnnotationToolbar.class];
-    [pdfController overrideClass:PSPDFAnnotationStateManager.class withClass:PSCCustomAnnotationStateManager.class];
 
     // Automate pressing the outline button.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

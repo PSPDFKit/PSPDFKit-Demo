@@ -31,9 +31,10 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        [builder overrideClass:PSPDFBookmarkBarButtonItem.class withClass:PSCCustomBookmarkBarButtonItem.class];
+    }]];
     pdfController.title = self.title;
-    [pdfController overrideClass:PSPDFBookmarkBarButtonItem.class withClass:PSCCustomBookmarkBarButtonItem.class];
     pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
     pdfController.rightBarButtonItems = @[pdfController.bookmarkButtonItem, pdfController.viewModeButtonItem];
     return pdfController;

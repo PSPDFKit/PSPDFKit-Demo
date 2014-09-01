@@ -492,7 +492,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.editable = NO;
     configViewController.view = configView;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
-    configViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:configViewController action:@selector(closeModalView)];
+    configViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:PSPDFBundleImage(@"x") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
     navController.title = _(@"Current ");
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 

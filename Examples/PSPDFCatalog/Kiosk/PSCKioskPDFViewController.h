@@ -10,9 +10,6 @@
 
 @class PSCMagazine;
 
-// The default color
-extern UIColor *PSCDefaultBackgroundColor(void);
-
 /// Customized subclass of PSPDFViewController, adding more HUD buttons.
 @interface PSCKioskPDFViewController : PSPDFViewController <PSPDFViewControllerDelegate>
 
