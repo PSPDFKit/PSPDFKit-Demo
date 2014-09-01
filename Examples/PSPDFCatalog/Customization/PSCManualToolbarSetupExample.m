@@ -130,7 +130,7 @@
     }
 
 	PSPDFAnnotationStateManager *manager = self.pdfController.annotationStateManager;
-	PSPDFFlexibleAnnotationToolbar *toolbar = [[PSPDFFlexibleAnnotationToolbar alloc] initWithAnnotationStateManager:manager];
+	PSPDFAnnotationToolbar *toolbar = [[PSPDFAnnotationToolbar alloc] initWithAnnotationStateManager:manager];
 	[toolbar matchUIBarAppearance:self.toolbar]; // (optional)
 
 	PSPDFFlexibleToolbarContainer *container = [[PSPDFFlexibleToolbarContainer alloc] initWithFrame:self.view.bounds];

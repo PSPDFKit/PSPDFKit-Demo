@@ -12,7 +12,7 @@
 #import "PSCExample.h"
 
 @interface PSCCustomAnnotationToolbarButtonsExample : PSCExample @end
-@interface PSCCustomAnnotationToolbar : PSPDFFlexibleAnnotationToolbar @end
+@interface PSCCustomAnnotationToolbar : PSPDFAnnotationToolbar @end
 @implementation PSCCustomAnnotationToolbarButtonsExample
 
 - (instancetype)init {
@@ -27,7 +27,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
+        [builder overrideClass:PSPDFAnnotationToolbar.class withClass:PSCCustomAnnotationToolbar.class];
     }]];
     return pdfController;
 }

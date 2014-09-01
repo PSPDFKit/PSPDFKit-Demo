@@ -21,7 +21,7 @@
 + (void)toggleAnnotationSharingStatus:(PSPDFAnnotation *)annotation;
 @end
 
-@interface PSCCustomFlexibleAnnotationToolbar : PSPDFFlexibleAnnotationToolbar @end
+@interface PSCCustomannotationToolbar : PSPDFAnnotationToolbar @end
 @interface PSCCustomAnnotationStateManager : PSPDFAnnotationStateManager @end
 
 @interface PSCCustomAnnotationCellExample : PSCExample @end
@@ -44,7 +44,7 @@
         [builder overrideClass:PSPDFAnnotationCell.class withClass:PSCCustomAnnotationCell.class];
         [builder overrideClass:PSPDFAnnotationTableViewController.class withClass:PSCCustomAnnotationTableViewController.class];
 
-        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomFlexibleAnnotationToolbar.class];
+        [builder overrideClass:PSPDFAnnotationToolbar.class withClass:PSCCustomannotationToolbar.class];
         [builder overrideClass:PSPDFAnnotationStateManager.class withClass:PSCCustomAnnotationStateManager.class];
     }]];
     pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
@@ -211,9 +211,9 @@
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCCustomFlexibleAnnotationToolbar
+#pragma mark - PSCCustomannotationToolbar
 
-@implementation PSCCustomFlexibleAnnotationToolbar
+@implementation PSCCustomannotationToolbar
 
 - (instancetype)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
     return [super initWithAnnotationStateManager:annotationStateManager];

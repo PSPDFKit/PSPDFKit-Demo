@@ -38,7 +38,7 @@
 
 // Note: This is just an example how to explicitly force saving. PSPDFKit will do this automatically on various events (app background, view dismissal).
 // Further you don't have to call reloadData after saving - this is done for testing the saving (since annotations that are not saved would disappear)
-// If you want immediate saving after creating annotations either hook onto PSPDFAnnotationsAddedNotification and PSPDFAnnotationChangedNotification or set saveAfterToolbarHiding to YES in PSPDFFlexibleAnnotationToolbar (this will not be the same, but most of the time good enough).
+// If you want immediate saving after creating annotations either hook onto PSPDFAnnotationsAddedNotification and PSPDFAnnotationChangedNotification or set saveAfterToolbarHiding to YES in PSPDFAnnotationToolbar (this will not be the same, but most of the time good enough).
 - (void)saveAnnotations {
     //NSLog(@"Annotations before saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
 

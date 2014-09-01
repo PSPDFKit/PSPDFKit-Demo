@@ -12,7 +12,7 @@
 #import "PSCExample.h"
 #import <tgmath.h>
 
-@interface PSCCustomStampAnnotationToolbar : PSPDFFlexibleAnnotationToolbar @end
+@interface PSCCustomStampAnnotationToolbar : PSPDFAnnotationToolbar @end
 @interface PSCInvisibleResizableView : PSPDFResizableView @end
 @interface PSCCustomTouchScrollView : PSPDFScrollView @end
 @interface PSCFastStampAnnotation : PSPDFStampAnnotation @end
@@ -40,7 +40,7 @@
     // And also the controller.
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.createAnnotationMenuEnabled = NO;
-        [builder overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomStampAnnotationToolbar.class];
+        [builder overrideClass:PSPDFAnnotationToolbar.class withClass:PSCCustomStampAnnotationToolbar.class];
         [builder overrideClass:PSPDFResizableView.class withClass:PSCInvisibleResizableView.class];
         [builder overrideClass:PSPDFScrollView.class withClass:PSCCustomTouchScrollView.class];
     }]];
