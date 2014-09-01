@@ -90,7 +90,7 @@
     [toolbarItems addObjectsFromArray:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]]];
 
 	// Normally we would just use the annotationButtonItem and let it do all the toolbar setup and management for us.
-	// Here, however we'll show how one could manually configure and show the flexible annotation toolbar without using
+	// Here, however we'll show how one could manually configure and show the annotation toolbar without using
 	// PSPDFAnnotationBarButtonItem. Note that PSPDFAnnotationBarButtonItem handles quite a fiew more
 	// cases and should in general be prefered to this simple toolbar setup.
 
