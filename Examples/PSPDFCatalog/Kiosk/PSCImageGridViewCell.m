@@ -462,7 +462,7 @@ static BOOL PSCSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size) {
              round(containerSize.width) >= round(size.width)));
 }
 
-- (void)didCacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size {
+- (void)didRenderImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size {
     PSCMagazine *magazine = self.magazine ?: self.magazineFolder.firstMagazine;
 
     if (magazine == document && page == 0 && PSCSizeAspectRatioEqualToSize(self.frame.size, size)) {
