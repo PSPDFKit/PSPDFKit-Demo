@@ -23,3 +23,11 @@
 @property (nonatomic, assign) BOOL showLeftPaneInLandscape;
 
 @end
+
+/// Works around the modal Split View Controller presentation limitation
+@interface PSCDropboxSplitViewControllerContainer : UIViewController
+
+/// The created split view controller. Spans the entire content aria.
+@property (nonatomic, strong, readonly) PSCDropboxSplitViewController *splitViewController;
+
+@end

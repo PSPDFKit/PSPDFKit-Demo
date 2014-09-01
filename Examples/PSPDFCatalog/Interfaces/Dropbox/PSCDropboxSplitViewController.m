@@ -28,11 +28,23 @@
         _showLeftPaneInLandscape = YES;
 
         // Create global back button
-        self.backToCatalogButton = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered target:self action:@selector(backToCatalog:)];
+        self.backToCatalogButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(backToCatalog:)];
 
         // Create the document picker
         self.documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         self.documentPicker.delegate = self;
+
+		// Put the document picker in a wrapper that extends under the navigation bar
+		UIViewController *documentWrapper = [[UIViewController alloc] init];
+		[documentWrapper addChildViewController:self.documentPicker];
+		[documentWrapper.view addSubview:self.documentPicker.view];
+		CGRect frame = documentWrapper.view.frame;
+		frame.origin.y += UIApplication.sharedApplication.statusBarFrame.size.height;
+		frame.size.height -= frame.origin.y;
+		documentWrapper.view.backgroundColor = [UIColor lightGrayColor];
+		self.documentPicker.view.frame = frame;
+		self.documentPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		[self.documentPicker didMoveToParentViewController:documentWrapper];
 
         // Create the PDF controller
         self.pdfController = [PSCDropboxPDFViewController new];
@@ -41,7 +53,7 @@
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.pdfController];
 
         // Set up the split controller
-        self.viewControllers = @[self.documentPicker, navController];
+        self.viewControllers = @[documentWrapper, navController];
         self.delegate = self;
     }
     return self;
@@ -50,8 +62,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	// Use a slightley nicer background color than black
+	self.pdfController.view.backgroundColor = [UIColor colorWithRed:0.918f green:0.918f blue:0.945f alpha:1.f];
+	// Remove the default top padding
+	self.documentPicker.tableView.contentInset = UIEdgeInsetsZero;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +121,31 @@
 
 - (void)documentPickerControllerWillEndSearch:(PSPDFDocumentPickerController *)documentPickerController {
     [self.pdfController.searchHighlightViewManager clearHighlightedSearchResultsAnimated:NO];
+}
+
+@end
+
+@implementation PSCDropboxSplitViewControllerContainer
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
+
+- (instancetype)init {
+	if ((self = [super init])) {
+		PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
+		[self addChildViewController:splitViewController];
+		[self.view addSubview:splitViewController.view];
+		[splitViewController didMoveToParentViewController:self];
+		_splitViewController = splitViewController;
+	}
+	return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIViewController
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+	return UIStatusBarStyleLightContent;
 }
 
 @end

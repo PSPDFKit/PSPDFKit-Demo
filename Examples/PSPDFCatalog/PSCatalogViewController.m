@@ -191,17 +191,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
 		navController.navigationBar.translucent = NO;
+		[self applyCatalogAppearanceUsingCustomTinting:NO];
         [self.navigationController presentViewController:navController animated:YES completion:NULL];
         return (UIViewController *)nil;
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" contentDescription:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
         if (PSCIsIPad()) {
-            PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
-            UIViewController *containerController = [[UIViewController alloc] init];
-            [containerController addChildViewController:splitViewController];
-            [containerController.view addSubview:splitViewController.view];
-            [splitViewController didMoveToParentViewController:containerController];
+			PSCDropboxSplitViewControllerContainer *containerController = [[PSCDropboxSplitViewControllerContainer alloc] init];
             [self presentViewController:containerController animated:YES completion:NULL];
             return (UIViewController *)nil;
         }else {
@@ -1454,6 +1451,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     _searchDisplayController.delegate = self;
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
+
+	// On iOS 8 doing this is viewWillAppear: seems to be too late
+	[self applyCatalogAppearanceUsingCustomTinting:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1465,22 +1465,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 		// the navigation bar to completely obscure the search bar.
 		[self.navigationController setNavigationBarHidden:NO animated:animated];
 	}
-    self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
-    self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
-    self.navigationController.view.tintColor = UIColor.whiteColor;
-    // By default the system would show a white cursor.
-    [[UITextField appearance] setTintColor:UIColor.pspdfColor];
-    [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
-    [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
-    [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];
-	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
-	[[UITableView appearance] setSectionIndexColor:UIColor.pspdfColor];
-	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
-
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
-
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self.navigationController setToolbarHidden:YES animated:animated];
+	[self applyCatalogAppearanceUsingCustomTinting:YES];
 
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
@@ -1538,6 +1524,32 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
     }
     return isValid;
+}
+
+- (void)applyCatalogAppearanceUsingCustomTinting:(BOOL)customTint {
+	UIColor *brandColor = customTint ? UIColor.pspdfColor : nil;
+	UIColor *complementaryColor = customTint ? UIColor.whiteColor : nil;
+	// Global
+	self.view.window.tintColor = brandColor;
+	// Navigation bar
+	[[UINavigationBar appearance] setBarTintColor:brandColor];
+	[[UINavigationBar appearance] setTintColor:complementaryColor];
+	// This is not an appearance selector, but it seems to work anyway.
+	// We use this so we don't have to set manually on every navigation bar we create
+	// PSPDFViewController will still forward this setting to it's presented view controllers if you set it manually like this
+	// self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+	[[UINavigationBar appearance] setBarStyle:customTint ? UIBarStyleBlack : UIBarStyleDefault];
+	// Tool bar
+	[[UIToolbar appearance] setBarTintColor:brandColor];
+	[[UIToolbar appearance] setTintColor:complementaryColor];
+	// By default the system would show a white cursor.
+	[[UITextField appearance] setTintColor:brandColor];
+	[[UITextView  appearance] setTintColor:brandColor];
+	[[UISearchBar appearance] setTintColor:brandColor];
+	[[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:brandColor];
+	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
+	[[UITableView appearance] setSectionIndexColor:brandColor];
+	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
