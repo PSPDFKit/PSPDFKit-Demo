@@ -22,7 +22,7 @@
 #pragma mark - PSPDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
-    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [super commonInitWithDocument:document configuration:[configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.toolbarEnabled = NO;
         builder.HUDViewMode = PSPDFHUDViewModeNever;
         builder.pageTransition = PSPDFPageTransitionCurl;

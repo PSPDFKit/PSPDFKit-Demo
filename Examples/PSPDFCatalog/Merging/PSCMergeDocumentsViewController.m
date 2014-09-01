@@ -327,7 +327,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 @implementation PSCMergePDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
-    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    configuration = [configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.HUDViewMode = PSPDFHUDViewModeAlways;
         builder.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 

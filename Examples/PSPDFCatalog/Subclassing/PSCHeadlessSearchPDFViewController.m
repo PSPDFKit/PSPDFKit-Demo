@@ -18,7 +18,7 @@
 #pragma mark - PSPDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
-    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [super commonInitWithDocument:document configuration:[configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
 
         // register the override to use a custom search highlight view subclass.
         [builder overrideClass:PSPDFSearchHighlightView.class withClass:PSCNonAnimatingSearchHighlightView.class];

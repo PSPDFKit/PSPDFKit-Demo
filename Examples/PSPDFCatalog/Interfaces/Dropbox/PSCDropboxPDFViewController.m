@@ -23,7 +23,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
 @implementation PSCDropboxPDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
-    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    configuration = [configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.pageTransition = PSPDFPageTransitionScrollContinuous;
         builder.scrollDirection = PSPDFScrollDirectionVertical;
         builder.renderAnimationEnabled = NO;

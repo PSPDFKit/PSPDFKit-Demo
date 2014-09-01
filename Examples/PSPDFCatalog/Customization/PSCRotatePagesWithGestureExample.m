@@ -47,7 +47,7 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
     // Prevents page flashing when there's cached content available at the cost of slight main thread blocking.
-    [super commonInitWithDocument:document configuration:[configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    [super commonInitWithDocument:document configuration:[configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
         // Optional: Allow rotation via a gesture.

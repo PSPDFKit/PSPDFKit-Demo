@@ -46,7 +46,7 @@
 @implementation PSCReaderPDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
-    configuration = [configuration configurationWithUpdatingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+    configuration = [configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.pageMode = PSPDFPageModeSingle;
     }];
     [super commonInitWithDocument:document configuration:configuration];
