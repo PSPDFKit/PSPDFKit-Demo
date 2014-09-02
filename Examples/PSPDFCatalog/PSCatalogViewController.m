@@ -1531,16 +1531,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	UIColor *complementaryColor = customTint ? UIColor.whiteColor : nil;
 	// Global (the window reference should be set by the application delegate early in the app lifecycle)
 	self.keyWindow.tintColor = brandColor;
-	// Navigation bar. PSPDFKit will keep the default appearance for bars inside popovers. To change that
-	// override -[PSPDFViewController presentationManager:applyStyleToViewController:isInPopover:].
+	// Navigation bar and tool bar. PSPDFKit will keep the default appearance for bars inside popovers.
+	// To change that override -[PSPDFViewController presentationManager:applyStyleToViewController:isInPopover:].
 	[[UINavigationBar appearance] setBarTintColor:brandColor];
 	[[UINavigationBar appearance] setTintColor:complementaryColor];
-	// This is not an appearance selector, but it seems to work anyway.
-	// We use this so we don't have to set manually on every navigation bar we create
-	// PSPDFViewController will still forward this setting to it's presented view controllers if you set it manually like this
+	// PSPDFViewController will still forward this setting to it's presented view controllers if you set it manually using
 	// self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 	[[UINavigationBar appearance] setBarStyle:customTint ? UIBarStyleBlack : UIBarStyleDefault];
-	// Tool bar
 	[[UIToolbar appearance] setBarTintColor:brandColor];
 	[[UIToolbar appearance] setTintColor:complementaryColor];
 	// By default the system would show a white cursor.
