@@ -1542,6 +1542,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	// Tool bar
 	[[UIToolbar appearance] setBarTintColor:brandColor];
 	[[UIToolbar appearance] setTintColor:complementaryColor];
+	// Tinted bars in popovers don't look great - use the default values here
+	// this does not work on iOS 8 by default, but PSPDFKit implements a workaround for the problem
+	[[UIToolbar appearanceWhenContainedIn:[UIPopoverController class], nil] setTintColor:brandColor];
+	[[UIToolbar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarTintColor:nil];
+	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setTintColor:brandColor];
+	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarTintColor:nil];
+	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarStyle:UIBarStyleDefault];
 	// By default the system would show a white cursor.
 	[[UITextField appearance] setTintColor:brandColor];
 	[[UITextView  appearance] setTintColor:brandColor];
