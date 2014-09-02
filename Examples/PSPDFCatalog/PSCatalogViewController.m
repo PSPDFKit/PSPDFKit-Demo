@@ -1531,7 +1531,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	UIColor *complementaryColor = customTint ? UIColor.whiteColor : nil;
 	// Global (the window reference should be set by the application delegate early in the app lifecycle)
 	self.keyWindow.tintColor = brandColor;
-	// Navigation bar
+	// Navigation bar. PSPDFKit will keep the default appearance for bars inside popovers. To change that
+	// override -[PSPDFViewController presentationManager:applyStyleToViewController:isInPopover:].
 	[[UINavigationBar appearance] setBarTintColor:brandColor];
 	[[UINavigationBar appearance] setTintColor:complementaryColor];
 	// This is not an appearance selector, but it seems to work anyway.
@@ -1542,13 +1543,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	// Tool bar
 	[[UIToolbar appearance] setBarTintColor:brandColor];
 	[[UIToolbar appearance] setTintColor:complementaryColor];
-	// Tinted bars in popovers don't look great - use the default values here
-	// this does not work on iOS 8 by default, but PSPDFKit implements a workaround for the problem
-	[[UIToolbar appearanceWhenContainedIn:[UIPopoverController class], nil] setTintColor:brandColor];
-	[[UIToolbar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarTintColor:nil];
-	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setTintColor:brandColor];
-	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarTintColor:nil];
-	[[UINavigationBar appearanceWhenContainedIn:[UIPopoverController class], nil] setBarStyle:UIBarStyleDefault];
 	// By default the system would show a white cursor.
 	[[UITextField appearance] setTintColor:brandColor];
 	[[UITextView  appearance] setTintColor:brandColor];
