@@ -1529,8 +1529,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)applyCatalogAppearanceUsingCustomTinting:(BOOL)customTint {
 	UIColor *brandColor = customTint ? UIColor.pspdfColor : nil;
 	UIColor *complementaryColor = customTint ? UIColor.whiteColor : nil;
-	// Global
-	self.view.window.tintColor = brandColor;
+	// Global (the window reference should be set by the application delegate early in the app lifecycle)
+	self.keyWindow.tintColor = brandColor;
 	// Navigation bar
 	[[UINavigationBar appearance] setBarTintColor:brandColor];
 	[[UINavigationBar appearance] setTintColor:complementaryColor];

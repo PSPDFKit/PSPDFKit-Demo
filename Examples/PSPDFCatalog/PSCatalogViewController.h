@@ -12,4 +12,6 @@
 
 @interface PSCatalogViewController : UITableViewController
 
+@property (nonatomic, weak) UIWindow *keyWindow;
+
 @end
