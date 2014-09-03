@@ -76,17 +76,6 @@
     }
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
-        PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
-        PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
-        PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
-
-        [player play];
-        player.controlStyle = PSPDFMediaPlayerControlStyleNone;
-    }
-}
-
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     pageView.scrollView.scrollEnabled = NO;
     pageView.scrollView.zoomingEnabled = NO;
