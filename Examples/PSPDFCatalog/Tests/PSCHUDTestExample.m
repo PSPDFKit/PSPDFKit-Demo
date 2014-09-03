@@ -65,7 +65,8 @@
 }
 
 - (void)popAll {
-    [self performSelector:@selector(updateHud) withObject:nil afterDelay:2.f];
+    [PSPDFStatusHUD popAllItemsAnimated:YES];
+    // and we're done
 }
 
 @end
