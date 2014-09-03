@@ -98,7 +98,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
-        document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
+        document = [PSCAssetLoader sampleDocumentWithName:@"FileAttachments.pdf"];
 
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Test-relative-links.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
@@ -1531,20 +1531,23 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	UIColor *complementaryColor = customTint ? UIColor.whiteColor : nil;
 	// Global (the window reference should be set by the application delegate early in the app lifecycle)
 	self.keyWindow.tintColor = brandColor;
-	// Navigation bar and tool bar. PSPDFKit will keep the default appearance for bars inside popovers.
+	// Navigation bar and tool bar customization. We're limiting appearance customization to instances that are
+	// inside PSPDFNavigationController, so we don't affect the appearance of certain system controllers.
+	// PSPDFKit will keep the default appearance for bars inside popovers.
 	// To change that override -[PSPDFViewController presentationManager:applyStyleToViewController:isInPopover:].
-	[[UINavigationBar appearance] setBarTintColor:brandColor];
-	[[UINavigationBar appearance] setTintColor:complementaryColor];
+	UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedIn:PSPDFNavigationController.class, nil];
+	UIToolbar *toolBar = [UIToolbar appearanceWhenContainedIn:PSPDFNavigationController.class, nil];
+	[navBar setBarTintColor:brandColor];
+	[navBar setTintColor:complementaryColor];
 	// PSPDFViewController will still forward this setting to it's presented view controllers if you set it manually using
 	// self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-	[[UINavigationBar appearance] setBarStyle:customTint ? UIBarStyleBlack : UIBarStyleDefault];
-	[[UIToolbar appearance] setBarTintColor:brandColor];
-	[[UIToolbar appearance] setTintColor:complementaryColor];
+	[navBar setBarStyle:customTint ? UIBarStyleBlack : UIBarStyleDefault];
+	[toolBar setBarTintColor:brandColor];
+	[toolBar setTintColor:complementaryColor];
 	// By default the system would show a white cursor.
 	[[UITextField appearance] setTintColor:brandColor];
 	[[UITextView  appearance] setTintColor:brandColor];
 	[[UISearchBar appearance] setTintColor:brandColor];
-	[[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:brandColor];
 	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
 	[[UITableView appearance] setSectionIndexColor:brandColor];
 	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
