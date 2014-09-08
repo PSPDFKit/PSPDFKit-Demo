@@ -35,9 +35,11 @@
 @end
 
 // Custom annotation toolbar sublass that adds a "Clear" button that removes all visible annotations OR the current drawing view state.
-@implementation PSCCustomAnnotationToolbar {
-    PSPDFFlexibleToolbarButton *_clearAnnotationsButton;
-}
+@interface PSCCustomAnnotationToolbar ()
+@property (nonatomic, strong) PSPDFFlexibleToolbarButton *clearAnnotationsButton;
+@end
+
+@implementation PSCCustomAnnotationToolbar
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -137,7 +139,7 @@
             }
         }
     }
-    _clearAnnotationsButton.enabled = annotationsFound;
+    self.clearAnnotationsButton.enabled = annotationsFound;
 }
 
 @end
