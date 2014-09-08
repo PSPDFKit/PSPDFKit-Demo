@@ -27,7 +27,7 @@
 /// Works around the modal Split View Controller presentation limitation
 @interface PSCDropboxSplitViewControllerContainer : UIViewController
 
-/// The created split view controller. Spans the entire content aria.
+/// The created split view controller. Spans the entire content area.
 @property (nonatomic, strong, readonly) PSCDropboxSplitViewController *splitViewController;
 
 @end
