@@ -60,8 +60,8 @@
         [document addAnnotations:@[highlight] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
 
         // Update visible page and discard current selection.
+        [pageView.selectionView discardSelectionAnimated:NO];
         [pageView addAnnotation:highlight options:nil animated:NO];
-        [pageView.selectionView discardSelection];
 
         // Wait until long press touch processing is complete, then select and show menu.
         dispatch_async(dispatch_get_main_queue(), ^{

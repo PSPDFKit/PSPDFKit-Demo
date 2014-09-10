@@ -47,7 +47,7 @@
             noteAnnotation.boundingBox = CGRectMake(CGRectGetMaxX(textRect), textRect.origin.y, 32.f, 32.f);
             noteAnnotation.contents = selectedText;
             [pageView.document addAnnotations:@[noteAnnotation] options:@{PSPDFAnnotationOptionUserCreatedKey: @YES}];
-            [pageView.selectionView discardSelection]; // clear text
+            [pageView.selectionView discardSelectionAnimated:NO]; // clear text
             [pageView showNoteControllerForAnnotation:noteAnnotation showKeyboard:YES animated:YES]; // show popover
         }];
         return [menuItems arrayByAddingObjectsFromArray:@[createNoteMenu]];
