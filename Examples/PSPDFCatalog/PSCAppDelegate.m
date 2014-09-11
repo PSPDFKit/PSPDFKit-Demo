@@ -47,8 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Set your license key here. PSPDFKit is commercial software.
     // Each PSPDFKit license is bound to a specific app bundle id.
     // Visit http://customers.pspdfkit.com to get your demo or commercial license key.
@@ -60,6 +59,10 @@
     // Example how to localize strings in PSPDFKit.
     //[self customizeLocalization];
 
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Change log level to be more verbose.
 #ifdef DEBUG
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
