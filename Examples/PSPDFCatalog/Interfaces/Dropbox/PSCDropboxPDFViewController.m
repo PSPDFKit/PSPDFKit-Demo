@@ -52,12 +52,12 @@ static const CGFloat PSCToolbarMargin = 20.f;
 }
 
 - (void)viewWillLayoutSubviews {
-	[super viewWillLayoutSubviews];
-	CGRect frame = self.floatingToolbar.frame;
-	frame.origin.y = PSCToolbarMargin + self.topLayoutGuide.length;
-	// Keep the fixed position, even if the status bar gets hidden
-	if ([UIApplication sharedApplication].statusBarHidden) frame.origin.y += 20.f;
-	self.floatingToolbar.frame = frame;
+    [super viewWillLayoutSubviews];
+    CGRect frame = self.floatingToolbar.frame;
+    // Keep the fixed position, even if the status bar gets hidden
+    CGFloat statusBarHeight = 20.f;
+    frame.origin.y = PSCToolbarMargin + self.navigationController.navigationBar.frame.size.height + statusBarHeight;
+    self.floatingToolbar.frame = frame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
