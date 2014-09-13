@@ -9,7 +9,7 @@
 //
 
 #if !defined(__clang__) || __clang_major__ < 5
-#error This project must be compiled with ARC and Xcode 5.1.
+#error This project must be compiled with ARC and Xcode 6.0.
 #endif
 
 @interface PSCAppDelegate : UIResponder <UIApplicationDelegate>
