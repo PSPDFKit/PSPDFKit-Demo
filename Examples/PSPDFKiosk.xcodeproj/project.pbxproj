@@ -624,18 +624,15 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
-					"-Wno-unused-parameter",
-					"-Wno-sign-compare",
+					"-Weverything",
 					"-Wdocumentation",
-					"-Wno-static-in-inline",
-					"-Wno-objc-missing-property-synthesis",
 					"-Wcast-align",
 					"-Wmissing-declarations",
 					"-Wmissing-prototypes",
@@ -644,6 +641,23 @@
 					"-Wundeclared-selector",
 					"-Wunreachable-code",
 					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-documentation",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-packed",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-padded",
 				);
 			};
 			name = Debug;
@@ -688,7 +702,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -697,11 +711,8 @@
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
-					"-Wno-unused-parameter",
-					"-Wno-sign-compare",
+					"-Weverything",
 					"-Wdocumentation",
-					"-Wno-static-in-inline",
-					"-Wno-objc-missing-property-synthesis",
 					"-Wcast-align",
 					"-Wmissing-declarations",
 					"-Wmissing-prototypes",
@@ -710,6 +721,23 @@
 					"-Wundeclared-selector",
 					"-Wunreachable-code",
 					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-documentation",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-packed",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-padded",
 				);
 			};
 			name = Release;

@@ -1391,11 +1391,8 @@
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
-					"-Wno-unused-parameter",
-					"-Wno-sign-compare",
+					"-Weverything",
 					"-Wdocumentation",
-					"-Wno-static-in-inline",
-					"-Wno-objc-missing-property-synthesis",
 					"-Wcast-align",
 					"-Wmissing-declarations",
 					"-Wmissing-prototypes",
@@ -1404,6 +1401,23 @@
 					"-Wundeclared-selector",
 					"-Wunreachable-code",
 					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-documentation",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-packed",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-padded",
 				);
 			};
 			name = Debug;
@@ -1432,6 +1446,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = "PSPDFCatalog=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -1460,11 +1475,8 @@
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
-					"-Wno-unused-parameter",
-					"-Wno-sign-compare",
+					"-Weverything",
 					"-Wdocumentation",
-					"-Wno-static-in-inline",
-					"-Wno-objc-missing-property-synthesis",
 					"-Wcast-align",
 					"-Wmissing-declarations",
 					"-Wmissing-prototypes",
@@ -1473,6 +1485,23 @@
 					"-Wundeclared-selector",
 					"-Wunreachable-code",
 					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-documentation",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-packed",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-padded",
 				);
 			};
 			name = Release;

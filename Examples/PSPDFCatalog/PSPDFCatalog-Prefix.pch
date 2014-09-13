@@ -2,7 +2,7 @@
 // Prefix header for all source files of the 'PSPDFCatalog' target in the 'PSPDFCatalog' project
 //
 
-#import <Availability.h>
+@import Darwin.Availability;
 
 // Warn if objc_msgSend is not casted.
 #define OBJC_OLD_DISPATCH_PROTOTYPES 0
@@ -16,8 +16,8 @@
     @import Foundation;
 
     // AFNetworking
-    #import <SystemConfiguration/SystemConfiguration.h>
-    #import <MobileCoreServices/MobileCoreServices.h>
+    @import SystemConfiguration;
+    @import MobileCoreServices;
 
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
