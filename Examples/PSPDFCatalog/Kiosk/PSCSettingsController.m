@@ -10,7 +10,7 @@
 
 #import "PSCSettingsController.h"
 #import "PSCBasicViewController.h"
-#import <tgmath.h>
+@import Darwin.C.tgmath;
 
 #define _(string) NSLocalizedString(string, @"")
 

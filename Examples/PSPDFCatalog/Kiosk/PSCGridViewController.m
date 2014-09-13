@@ -18,11 +18,11 @@
 #define _(string) NSLocalizedString(string, @"")
 #define kPSCLargeThumbnailSize CGSizeMake(170.f, 240.f)
 
-@interface PSCGridViewController() <UISearchBarDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning> {
-    NSArray *_filteredData;
-    BOOL _animationDoubleWithPageCurl;
-}
+@interface PSCGridViewController() <UISearchBarDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning>
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
+@property (nonatomic, assign) BOOL animationDoubleWithPageCurl;
+@property (nonatomic, strong) NSArray *filteredData;
+
 @property (nonatomic, strong) PSCMagazine *lastOpenedMagazine;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -110,19 +110,20 @@
 
     // Add the search bar.
     CGFloat searchBarWidth = 290.f;
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.collectionView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
-    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-    _searchBar.tintColor = UIColor.blackColor;
-    _searchBar.backgroundColor = [UIColor clearColor];
-    _searchBar.alpha = 0.5;
-    _searchBar.delegate = self;
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.collectionView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    searchBar.tintColor = UIColor.blackColor;
+    searchBar.backgroundColor = [UIColor clearColor];
+    searchBar.alpha = 0.5;
+    searchBar.delegate = self;
+    self.searchBar = searchBar;
 
     // Doesn't matter much if this fails, but the background doesn't look great within our grid.
-    [PSCGetViewInsideView(_searchBar, @"UISearchBarBack") removeFromSuperview];
+    [PSCGetViewInsideView(searchBar, @"UISearchBarBack") removeFromSuperview];
 
     // Set the return key and keyboard appearance of the search bar.
     // Since we do live-filtering, the search bar should just dismiss the keyboard.
-    for (UITextField *searchBarTextField in [_searchBar subviews]) {
+    for (UITextField *searchBarTextField in searchBar.subviews) {
         if ([searchBarTextField conformsToProtocol:@protocol(UITextInputTraits)]) {
             @try {
                 searchBarTextField.enablesReturnKeyAutomatically = NO;
@@ -395,7 +396,7 @@
     PSCMagazine *magazine = cell.magazine;
     PSCMagazineFolder *folder = cell.magazineFolder;
 
-    __unused NSString *message = nil;
+    NSString *message = nil;
     if (folder.magazines.count > 1 && !self.magazineFolder) {
         // Clang doesn't understand that we translate to strings with extra arguments.
 #pragma clang diagnostic push
@@ -804,7 +805,7 @@
 @end
 
 // Fixes the missing action method crash on updating when the keyboard is visible.
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
     @autoreleasepool {

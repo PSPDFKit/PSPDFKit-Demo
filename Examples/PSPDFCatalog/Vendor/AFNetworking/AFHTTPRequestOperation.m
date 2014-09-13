@@ -95,8 +95,8 @@ static dispatch_group_t http_request_operation_completion_group() {
 }
 
 - (NSError *)error {
-    if (_responseSerializationError) {
-        return _responseSerializationError;
+    if (self.responseSerializationError) {
+        return self.responseSerializationError;
     } else {
         return [super error];
     }

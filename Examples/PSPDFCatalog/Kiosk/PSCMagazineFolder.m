@@ -11,21 +11,13 @@
 #import "PSCMagazineFolder.h"
 #import "PSCMagazine.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
-@implementation PSCMagazineFolder {
-    NSMutableArray *_magazines;
-}
+@implementation PSCMagazineFolder
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
 + (PSCMagazineFolder *)folderWithTitle:(NSString *)title {
-    PSCMagazineFolder *folder = [[self.class alloc] init];
-    folder.title = title;
-    return folder;
+    return [[self.class alloc] initWithTitle:title];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +26,13 @@
 - (instancetype)init {
     if ((self = [super init])) {
         _magazines = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title {
+    if ((self = [self init])) {
+        _title = title;
     }
     return self;
 }
@@ -62,7 +61,7 @@
 #pragma mark - Public
 
 - (void)addMagazineFolderReferences {
-    for (PSCMagazine *magazine in _magazines) {
+    for (PSCMagazine *magazine in self.magazines) {
         magazine.folder = self;
     }
 }
@@ -76,19 +75,19 @@
 }
 
 - (void)addMagazine:(PSCMagazine *)magazine {
-    [_magazines addObject:magazine];
+    [(NSMutableArray *)self.magazines addObject:magazine];
     magazine.folder = self;
     [self sortMagazines];
 }
 
 - (void)removeMagazine:(PSCMagazine *)magazine {
     magazine.folder = nil;
-    [_magazines removeObject:magazine];
+    [(NSMutableArray *)self.magazines removeObject:magazine];
     [self sortMagazines];
 }
 
 - (void)sortMagazines {
-    [_magazines sortUsingComparator:^NSComparisonResult(PSPDFDocument *document1, PSPDFDocument *document2) {
+    [(NSMutableArray *)self.magazines sortUsingComparator:^NSComparisonResult(PSPDFDocument *document1, PSPDFDocument *document2) {
         return [document1.files.lastObject compare:document2.files.lastObject];
     }];
 }

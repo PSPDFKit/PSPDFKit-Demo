@@ -23,8 +23,8 @@
 #import "AFDownloadRequestOperation.h"
 #import "AFURLConnectionOperation.h"
 #import <CommonCrypto/CommonDigest.h>
-#include <fcntl.h>
-#include <unistd.h>
+@import Darwin.POSIX.fcntl;
+@import Darwin.POSIX.unistd;
 
 extern size_t strlen(const char *);
 

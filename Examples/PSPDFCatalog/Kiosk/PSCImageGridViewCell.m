@@ -16,19 +16,18 @@
 #import "UIImageView+AFNetworking.h"
 #import "PSCRoundProgressView.h"
 #import "PSCAvailability.h"
-#include <tgmath.h>
+@import Darwin.C.tgmath;
 
 #define PSCDownloadingKey @"downloading"
 
-@interface PSCImageGridViewCell() {
-    NSOperation *_imageLoadOperation;
-    UIImage *_magazineOperationImage;
-    CGRect _defaultFrame;
+@interface PSCImageGridViewCell()
+@property (nonatomic, strong) NSOperation *imageLoadOperation;
+@property (nonatomic, strong) UIImage *magazineOperationImage;
+@property (nonatomic, strong) UIView *progressViewBackground;
+@property (nonatomic, strong) UILabel *magazineCounter;
+@property (nonatomic, strong) NSMutableSet *observedMagazineDownloads;
+@property (nonatomic, assign) CGRect defaultFrame;
 
-    UIView *_progressViewBackground;
-    UILabel *_magazineCounter;
-    NSMutableSet *_observedMagazineDownloads;
-}
 @property (nonatomic, strong) UIImageView *magazineCounterBadgeImage;
 @property (nonatomic, strong) PSCRoundProgressView *progressView;
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
@@ -91,18 +90,18 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.deleteButton.frame = CGRectMake(self.imageView.frame.origin.x-10.f, self.imageView.frame.origin.y-10.f, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
-    [self.contentView bringSubviewToFront:_deleteButton];
+    [self.contentView bringSubviewToFront:self.deleteButton];
 
     // image darkener.
-    _progressViewBackground.frame = self.imageView.bounds;
-    _progressView.frame = self.imageView.bounds;
+    self.progressViewBackground.frame = self.imageView.bounds;
+    self.progressView.frame = self.imageView.bounds;
 
     self.selectedBackgroundView.frame = CGRectInset(self.imageView.frame, -4.f, -4.f);
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    _defaultFrame = frame;
+    self.defaultFrame = frame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

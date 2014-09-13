@@ -10,7 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
-#import <tgmath.h>
+@import Darwin.C.tgmath;
 
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end

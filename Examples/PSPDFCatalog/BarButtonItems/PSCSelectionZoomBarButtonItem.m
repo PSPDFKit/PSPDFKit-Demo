@@ -11,29 +11,22 @@
 #import "PSCSelectionZoomBarButtonItem.h"
 
 @interface PSCSelectionZoomBarButtonItem() <PSPDFSelectionViewDelegate>
+@property (nonatomic, strong) PSPDFSelectionView *selectionView;
+
+@property (nonatomic, assign) BOOL savedRotationLock, savedViewLock;
 @end
 
-@implementation PSCSelectionZoomBarButtonItem {
-    PSPDFSelectionView *_selectionView;
-
-    // state properties
-    BOOL _savedRotationLock;
-    BOOL _savedViewLock;
-}
+@implementation PSCSelectionZoomBarButtonItem
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonitem
-
-- (void)dealloc {
-    _selectionView.delegate = nil;
-}
 
 - (BOOL)isAvailable {
     return [super isAvailable] && self.pdfController.viewMode == PSPDFViewModeDocument;
 }
 
 - (UIImage *)image {
-     return _selectionView ? [UIImage imageNamed:@"eye-deactivate"] : [UIImage imageNamed:@"eye"];
+     return self.selectionView ? [UIImage imageNamed:@"eye-deactivate"] : [UIImage imageNamed:@"eye"];
 }
 
 - (NSString *)actionName {
@@ -45,13 +38,13 @@
 }
 
 - (BOOL)cleanup {
-    if (_selectionView) {
+    if (self.selectionView) {
         PSPDFViewController *pdfController = self.pdfController;
-        pdfController.rotationLockEnabled = _savedRotationLock;
-        pdfController.viewLockEnabled = _savedViewLock;
-        _selectionView.delegate = nil;
-        [_selectionView removeFromSuperview];
-        _selectionView = nil;
+        pdfController.rotationLockEnabled = self.savedRotationLock;
+        pdfController.viewLockEnabled = self.savedViewLock;
+        self.selectionView.delegate = nil;
+        [self.selectionView removeFromSuperview];
+        self.selectionView = nil;
         return YES;
     }
     return NO;
@@ -64,15 +57,15 @@
     if (![self cleanup]) {
         // disable various features to lock UI
         PSPDFViewController *pdfController = self.pdfController;
-        _savedViewLock = pdfController.isViewLockEnabled;
-        _savedRotationLock = pdfController.isRotationLockEnabled;
+        self.savedViewLock = pdfController.isViewLockEnabled;
+        self.savedRotationLock = pdfController.isRotationLockEnabled;
         pdfController.viewLockEnabled = YES;
         pdfController.rotationLockEnabled = YES;
 
         PSPDFPageView *pageView = [pdfController pageViewForPage:pdfController.page];
 
-        _selectionView = [[PSPDFSelectionView alloc] initWithFrame:pageView.bounds delegate:self];
-        [pageView addSubview:_selectionView];
+        self.selectionView = [[PSPDFSelectionView alloc] initWithFrame:pageView.bounds delegate:self];
+        [pageView addSubview:self.selectionView];
     }
     [self updateEyeButton];
 }

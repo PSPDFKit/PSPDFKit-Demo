@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <QuickLook/QuickLook.h>
+@import QuickLook;
 #import "PSCatalogViewController.h"
 #import "PSCSectionDescriptor.h"
 #import "PSCFileHelper.h"
@@ -45,7 +45,7 @@
 #import "PSCPopoverTestViewController.h"
 #endif
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 // Crypto support
 #import "RNEncryptor.h"
@@ -54,13 +54,13 @@
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSPDFDocumentPickerControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate, PSCExampleRunnerDelegate> {
-    UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
 }
 @property (nonatomic, strong) NSArray *content;
 @property (nonatomic, strong) NSArray *filteredContent;
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) UISearchDisplayController *searchDisplayController;
 @end
 
 static const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
@@ -68,6 +68,8 @@ static const char PSCAlertViewKey;
 static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
+
+@synthesize searchDisplayController = searchDisplayController_; // _searchDisplayController is used in UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -1425,7 +1427,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:delegateSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    _content = sections.array;
+    self.content = sections.array;
 
     // debug helper
 #ifdef kDebugTextBlocks
@@ -1442,15 +1444,17 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [self createTableContent];
     [self addDebugButtons];
 
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
-    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.tableView.tableHeaderView = _searchBar;
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tableView.tableHeaderView = searchBar;
+    self.searchBar = searchBar;
 
-    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
-    _searchDisplayController.delegate = self;
-    _searchDisplayController.searchResultsDataSource = self;
-    _searchDisplayController.searchResultsDelegate = self;
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    searchDisplayController.delegate = self;
+    searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController = searchDisplayController;
 
 	// On iOS 8 doing this is viewWillAppear: seems to be too late
 	[self applyCatalogAppearanceUsingCustomTinting:YES];

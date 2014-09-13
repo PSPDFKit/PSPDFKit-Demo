@@ -24,13 +24,12 @@
 #error "Compile this file with ARC"
 #endif
 
-@interface PSCKioskPDFViewController () {
-    UIBarButtonItem *_closeButtonItem;
+@interface PSCKioskPDFViewController ()
+@property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
 #ifdef PSPDFCatalog
-	PSCSettingsBarButtonItem *_settingsButtonItem;
-    PSCMetadataBarButtonItem *_metadataButtonItem;
+@property (nonatomic, strong) PSCSettingsBarButtonItem *settingsButtonItem;
+@property (nonatomic, strong) PSCMetadataBarButtonItem *metadataButtonItem;
 #endif
-}
 @end
 
 @implementation PSCKioskPDFViewController
@@ -92,15 +91,15 @@
 	if (controllers.count > 1 && [controllers[controllers.count - 2] isKindOfClass:[PSCGridViewController class]]) {
 		// Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
 		NSString *closeTitle = PSCIsIPad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
-		_closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-		self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
+		self.closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
+		self.barButtonItemsAlwaysEnabled = @[self.closeButtonItem];
 	} else {
 		self.navigationItem.leftItemsSupplementBackButton = YES;
 	}
 
 #ifdef PSPDFCatalog
-	_settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-	_metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+	self.settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+	self.metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
 #endif
 
 	// Call this last, since it triggers updateSettingsForRotation: and we need out buttons to be set up before than
@@ -113,11 +112,11 @@
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
 
 	NSMutableArray *leftToolbarItems = [NSMutableArray array];
-	if (_closeButtonItem) [leftToolbarItems addObject:_closeButtonItem];
+	if (self.closeButtonItem) [leftToolbarItems addObject:self.closeButtonItem];
 
 #ifdef PSPDFCatalog
-	if (_settingsButtonItem) [leftToolbarItems addObject:_settingsButtonItem];
-	if (_metadataButtonItem && PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) [leftToolbarItems addObject:_metadataButtonItem];
+	if (self.settingsButtonItem) [leftToolbarItems addObject:self.settingsButtonItem];
+	if (self.metadataButtonItem && PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) [leftToolbarItems addObject:self.metadataButtonItem];
 #endif
 
     // Simple performance optimization.

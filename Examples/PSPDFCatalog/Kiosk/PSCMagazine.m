@@ -9,7 +9,7 @@
 //
 
 #import "PSCMagazine.h"
-#include <tgmath.h>
+@import Darwin.C.tgmath;
 
 @implementation PSCMagazine
 

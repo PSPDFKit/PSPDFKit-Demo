@@ -10,9 +10,11 @@
 
 #import "PSCRotationLockBarButtonItem.h"
 
-@implementation PSCRotationLockBarButtonItem {
-    UIButton *_button;
-}
+@interface PSCRotationLockBarButtonItem ()
+@property (nonatomic, strong) UIButton *button;
+@end
+
+@implementation PSCRotationLockBarButtonItem
 
 - (UIBarButtonItemStyle)style {
     return UIBarButtonItemStylePlain;
@@ -21,17 +23,17 @@
 - (UIView *)customView {
     NSString *imageName = self.pdfController.rotationLockEnabled ? @"RotationLocked" : @"RotationUnlocked";
     UIImage *image = [UIImage imageNamed:imageName];
-    if(!_button) {
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (!self.button) {
+        self.button = [UIButton buttonWithType:UIButtonTypeCustom];
 
         CGRect rect = CGRectZero;
         rect.size = image.size;
-        [_button setFrame:rect];
+        [self.button setFrame:rect];
     }
-    [_button setShowsTouchWhenHighlighted:YES];
-    [_button setImage:image forState:UIControlStateNormal];
-    [_button addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
-    return _button;
+    [self.button setShowsTouchWhenHighlighted:YES];
+    [self.button setImage:image forState:UIControlStateNormal];
+    [self.button addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+    return self.button;
 }
 
 - (void)action:(id)sender {

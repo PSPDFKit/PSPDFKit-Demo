@@ -16,11 +16,11 @@
 
 + (PSCMagazineFolder *)folderWithTitle:(NSString *)title;
 
-// Array of PSPDFMagazine
+// Array of `PSPDFMagazine` objects.
 @property (nonatomic, copy) NSArray *magazines;
 
-// The folder title
-@property (nonatomic, copy) NSString *title;
+// The folder title.
+@property (nonatomic, copy, readonly) NSString *title;
 
 - (BOOL)isSingleMagazine;
 

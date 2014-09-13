@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #define kDevelopersGuideFileName @"DevelopersGuide.pdf"
 #define kPaperExampleFileName    @"amazon-dynamo-sosp2007.pdf"

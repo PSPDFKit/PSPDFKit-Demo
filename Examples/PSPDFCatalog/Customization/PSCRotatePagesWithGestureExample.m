@@ -10,7 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
-#import <tgmath.h>
+@import Darwin.C.tgmath;
 
 @interface PSCRotatablePDFViewController : PSPDFViewController @end
 

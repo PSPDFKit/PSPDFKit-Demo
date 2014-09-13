@@ -13,9 +13,8 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFDownloadRequestOperation.h"
 
-@interface PSCDownload () {
-    UIProgressView *_progressView;
-}
+@interface PSCDownload ()
+@property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, copy) NSURL *URL;
 @property (nonatomic, assign) PSCStoreDownloadStatus status;
 @property (nonatomic, assign) float downloadProgress;
@@ -62,13 +61,13 @@
     _status = status;
 
     // remove progress view, animated
-    if (_progressView && _status != PSCStoreDownloadStatusLoading) {
+    if (self.progressView && _status != PSCStoreDownloadStatusLoading) {
         [UIView animateWithDuration:0.25f delay:0.f options:0 animations:^{
-            _progressView.alpha = 0.f;
+            self.progressView.alpha = 0.f;
         } completion:^(BOOL finished) {
             if (finished) {
-                _progressView.hidden = YES;
-                [_progressView removeFromSuperview];
+                self.progressView.hidden = YES;
+                [self.progressView removeFromSuperview];
             }
         }];
     }
@@ -144,7 +143,7 @@
 
 - (void)cancelDownload {
     self.status = PSCStoreDownloadStatusCancelled;
-    [_request cancel];
+    [self.request cancel];
 }
 
 @end

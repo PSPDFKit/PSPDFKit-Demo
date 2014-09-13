@@ -10,7 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "UIImage+Tinting.h"
-#import <objc/message.h>
+@import ObjectiveC.message;
 #import "PSCExample.h"
 
 @interface PSCHighlightAnnotationBarButtonItem : UIBarButtonItem @end

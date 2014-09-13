@@ -13,7 +13,7 @@
 #import "PSCMagazineFolder.h"
 #import "PSCDownload.h"
 #import "AFHTTPRequestOperation.h"
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 @interface PSCStoreManager() {
     NSMutableArray *_magazineFolders;

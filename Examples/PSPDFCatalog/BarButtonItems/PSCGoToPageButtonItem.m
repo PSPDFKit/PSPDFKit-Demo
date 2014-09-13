@@ -9,7 +9,7 @@
 //
 
 #import "PSCGoToPageButtonItem.h"
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 @interface PSCGoToPageButtonItem() <UITextFieldDelegate>
 @end

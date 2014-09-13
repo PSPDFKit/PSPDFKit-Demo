@@ -23,7 +23,7 @@
 #import "AFURLRequestSerialization.h"
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-#import <MobileCoreServices/MobileCoreServices.h>
+@import MobileCoreServices;
 #else
 #import <CoreServices/CoreServices.h>
 #endif

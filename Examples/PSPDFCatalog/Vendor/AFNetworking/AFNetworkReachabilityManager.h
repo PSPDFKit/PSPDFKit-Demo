@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <SystemConfiguration/SystemConfiguration.h>
+@import Foundation;
+@import SystemConfiguration;
 
-#import <netinet/in.h>
+@import Darwin.POSIX.netinet.in;
 #import <netinet6/in6.h>
-#import <arpa/inet.h>
+@import Darwin.POSIX.arpa.inet;
 #import <ifaddrs.h>
-#import <netdb.h>
+@import Darwin.POSIX.netdb;
 
 typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
     AFNetworkReachabilityStatusUnknown          = -1,

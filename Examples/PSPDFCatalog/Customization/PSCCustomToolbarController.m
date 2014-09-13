@@ -9,12 +9,14 @@
 //
 
 #import "PSCCustomToolbarController.h"
-#include <tgmath.h>
+@import Darwin.C.tgmath;
 
-@implementation PSCCustomToolbarController {
-    UISegmentedControl *_customViewModeSegment;
-    CGSize _originalThumbnailSize;
-}
+@interface PSCCustomToolbarController ()
+@property (nonatomic, strong) UISegmentedControl *customViewModeSegment;
+@property (nonatomic, assign) CGSize *originalThumbnailSize;
+@end
+
+@implementation PSCCustomToolbarController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject

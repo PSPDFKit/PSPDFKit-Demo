@@ -23,7 +23,7 @@
 #import "AFURLConnectionOperation.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#import <UIKit/UIKit.h>
+@import UIKit;
 #endif
 
 #if !__has_feature(objc_arc)

@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 // This is an example how you could store your annotations with CoreData in the simplest possible way.
 // Note: It's not a great idea performance-wise to use `NSKeyedArchiver` for data serialization.
