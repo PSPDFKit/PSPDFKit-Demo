@@ -15,7 +15,7 @@
 @implementation PSCOpenNoteOnPhoneWithSingleTapExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Open Note with single tap on iPhone";
         self.category = PSCExampleCategoryViewCustomization;
     }

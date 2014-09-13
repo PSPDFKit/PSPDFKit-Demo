@@ -22,7 +22,7 @@
 @implementation PSCScreenReaderExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Screen Reader";
         self.contentDescription = @"Creates a sample interface for a screen-reader application";
         self.category = PSCExampleCategoryViewCustomization;

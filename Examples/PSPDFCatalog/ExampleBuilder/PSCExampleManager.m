@@ -33,7 +33,7 @@
 #pragma mark - NSObject
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _allExamples = [self loadAllExamples];
     }
     return self;

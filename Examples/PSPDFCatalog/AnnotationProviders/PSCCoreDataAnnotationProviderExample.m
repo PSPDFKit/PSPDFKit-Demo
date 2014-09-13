@@ -19,7 +19,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Core Data Annotation Provider";
         self.contentDescription = @"Annotations ca be saved via Core Data. This works, but we are recommending XFDF as a faster, standard compliment alternative.";
         self.category = PSCExampleCategoryAnnotationProviders;

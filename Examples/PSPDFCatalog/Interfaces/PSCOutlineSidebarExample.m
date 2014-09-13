@@ -27,7 +27,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Always-Visible Sidebar";
         self.contentDescription = @"Uses a split view controller to show the outline/annotation/bookmark/search view controller in an always-visible sidebar for landscape mode.";
         self.category = PSCExampleCategoryViewCustomization;
@@ -54,7 +54,7 @@
 @implementation PSPDFSidebarViewController
 
 - (instancetype)initWithDocument:(PSPDFDocument *)document {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         // Set up the PDF controller
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.pageMode = PSPDFPageModeSingle;

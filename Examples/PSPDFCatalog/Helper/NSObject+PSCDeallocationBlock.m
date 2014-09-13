@@ -20,7 +20,7 @@
 
 @implementation NSObject (PSCDeallocationBlock)
 
-const char PSCDeallocationKey;
+static const char PSCDeallocationKey;
 - (void)psc_addDeallocBlock:(dispatch_block_t)block {
     @synchronized(self) {
         // Get current block array and add one element.

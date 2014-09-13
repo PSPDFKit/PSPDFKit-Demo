@@ -16,7 +16,7 @@
 @implementation PSCCustomNoteControllerExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Customized PSPDFNoteAnnotationViewController font";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 89;

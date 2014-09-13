@@ -19,7 +19,7 @@
 @implementation PSCSimpleDrawingButtonExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Simple Drawing Button";
         self.category = PSCExampleCategoryViewCustomization;
     }

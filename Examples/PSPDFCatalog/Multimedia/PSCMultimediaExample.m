@@ -18,7 +18,7 @@
 @implementation PSCMultimediaPDFExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Multimedia PDF example";
         self.contentDescription = @"Load PDF with various multimedia addititions and an embedded video.";
         self.category = PSCExampleCategoryMultimedia;
@@ -43,7 +43,7 @@
 @implementation PSCMultimediaDynamicallyAddedVideoWithCoverExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Dynamically added video with cover";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 500;
@@ -74,7 +74,7 @@
 @implementation PSCYoutubeGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Embed YouTube video into a page";
         self.contentDescription = @"Embed a YouTube video directly on the page via PSPDFGallery.";
         self.category = PSCExampleCategoryMultimedia;

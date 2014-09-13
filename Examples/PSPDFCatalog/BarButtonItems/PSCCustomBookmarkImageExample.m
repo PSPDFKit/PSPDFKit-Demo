@@ -20,7 +20,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom toolbar icon for bookmark item";
         self.contentDescription = @"Simple example that will replace the bookmark icon image with a trash can";
         self.category = PSCExampleCategoryBarButtons;

@@ -18,7 +18,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"NSURL";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 10;
@@ -41,7 +41,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"NSData";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 20;
@@ -68,7 +68,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Use one CGDataProviderRef";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 30;
@@ -99,7 +99,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Multiple CGDataProviderRef";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 30;
@@ -131,7 +131,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"MultipleFiles";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 40;
@@ -158,7 +158,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Multiple NSData objects (memory mapped)";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 50;
@@ -199,7 +199,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Multiple NSData objects";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 60;
@@ -239,7 +239,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Multiple NSData objects (merged)";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 70;
@@ -280,7 +280,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Extract single pages with PSPDFProcessor";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 80;
@@ -325,7 +325,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Extract single pages with PSPDFProcessor, the fast way";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 90;

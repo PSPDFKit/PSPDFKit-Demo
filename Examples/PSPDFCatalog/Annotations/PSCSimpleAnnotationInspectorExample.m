@@ -17,7 +17,7 @@
 @implementation PSCSimpleAnnotationInspectorExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Simple Annotation Inspector";
         self.contentDescription = @"Shows how to customize the annotation inspector to hide certain properties, making it simpler.";
         self.category = PSCExampleCategoryViewCustomization;

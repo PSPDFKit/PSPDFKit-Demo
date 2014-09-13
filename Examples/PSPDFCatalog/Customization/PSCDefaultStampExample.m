@@ -23,7 +23,7 @@
 @implementation PSCDefaultStampExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Stamp Mode";
         self.contentDescription = @"Shows how much the stamp feature can be customized.";
         self.category = PSCExampleCategoryViewCustomization;

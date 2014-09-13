@@ -21,7 +21,7 @@
 #pragma mark - NSObject
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 
         // load sample documents
         PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:NULL];

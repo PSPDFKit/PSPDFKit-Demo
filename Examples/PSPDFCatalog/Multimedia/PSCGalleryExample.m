@@ -21,7 +21,7 @@
 @implementation PSCImageGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Image Gallery";
         self.contentDescription = @"Gallery example with images.";
         self.category = PSCExampleCategoryMultimedia;
@@ -59,7 +59,7 @@
 @implementation PSCButtonImageGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Image Gallery with button activation";
         self.contentDescription = @"Buttons that show/hide the gallery or videos.";
         self.category = PSCExampleCategoryMultimedia;
@@ -121,7 +121,7 @@
 @implementation PSCVideoGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Image/Audio/Video/YouTube Gallery";
         self.contentDescription = @"Gallery example with video, images, audio and YouTube gallery items.";
         self.category = PSCExampleCategoryMultimedia;
@@ -157,7 +157,7 @@
 @implementation PSCCustomGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Gallery Example";
         self.contentDescription = @"Add animated gif or inline video.";
         self.category = PSCExampleCategoryMultimedia;
@@ -213,7 +213,7 @@
 @implementation PSCPopoverGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Popover Gallery Example";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 200;
@@ -245,7 +245,7 @@
 @implementation PSCHighResImageGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"High-Resolution Image Gallery Example";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 200;
@@ -277,7 +277,7 @@
 @implementation PSCHiddenSoundGalleryExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Hidden Sound Annotation";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 200;

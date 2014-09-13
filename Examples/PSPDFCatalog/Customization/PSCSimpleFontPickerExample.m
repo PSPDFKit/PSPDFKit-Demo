@@ -17,7 +17,7 @@
 @implementation PSCSimpleFontPickerExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Simplified Font Picker";
         self.category = PSCExampleCategoryViewCustomization;
     }

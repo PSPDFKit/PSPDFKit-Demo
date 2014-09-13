@@ -17,7 +17,7 @@
 @implementation PSCCustomPrintDefaultsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom printer defaults";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 600;

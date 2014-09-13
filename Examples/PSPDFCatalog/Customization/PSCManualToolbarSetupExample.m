@@ -24,7 +24,7 @@
 @implementation PSCManualToolbarSetupExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Manual annotation toolbar setup and management";
         self.contentDescription = @"Flexible toolbar handling without UINavigationController or PSPDFAnnotationBarButtonItem.";
         self.category = PSCExampleCategoryBarButtons;

@@ -19,7 +19,6 @@
 #include <tgmath.h>
 
 #define PSCDownloadingKey @"downloading"
-#define PSCCellAnimationDuration 0.25f
 
 @interface PSCImageGridViewCell() {
     NSOperation *_imageLoadOperation;

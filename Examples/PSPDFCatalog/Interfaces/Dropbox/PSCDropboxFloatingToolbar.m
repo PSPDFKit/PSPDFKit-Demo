@@ -16,7 +16,7 @@
 #pragma mark - NSObject
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
         self.colors = @[[UIColor colorWithWhite:0.184f alpha:1.f], [UIColor colorWithWhite:0.146f alpha:1.f]];
         _margin = 5;
         self.layer.borderWidth  = 1.f;

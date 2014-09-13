@@ -28,7 +28,7 @@
 @implementation PSCCustomAnnotationCellExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Subclassing PSPDFAnnotationCell";
         self.contentDescription = @"Customize the annotation cell in the PSPDFAnnotationTableViewController";
         self.category = PSCExampleCategoryViewCustomization;
@@ -66,7 +66,7 @@
 @implementation PSCCustomAnnotationCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Add sharing button
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_shareButton setTitleColor:[UIColor colorWithRed:0.9f green:0.f blue:0.f alpha:1.f] forState:UIControlStateNormal];

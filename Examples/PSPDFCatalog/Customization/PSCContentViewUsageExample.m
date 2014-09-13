@@ -22,7 +22,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Use the 'contentView' to add always visible content.";
         self.category = PSCExampleCategoryViewCustomization;
     }

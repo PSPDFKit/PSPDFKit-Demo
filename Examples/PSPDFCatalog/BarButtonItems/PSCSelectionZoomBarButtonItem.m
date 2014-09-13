@@ -58,7 +58,7 @@
 }
 
 // override default handler
-- (void)action:(PSPDFBarButtonItem *)sender {
+- (void)action:(id)sender {
     [self.class dismissPopoverAnimated:YES completion:NULL];
 
     if (![self cleanup]) {

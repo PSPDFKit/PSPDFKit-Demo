@@ -37,7 +37,7 @@
 
 // If we use core data and split the document into single pages, we need a global provider since there is only one database, but there is one annotation provider per page afterwards.
 #import <objc/runtime.h>
-const char *PSCCoreDataAnnotationProviderStorageKey;
+static const char *PSCCoreDataAnnotationProviderStorageKey;
 static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(PSPDFDocument *document) {
     return document ? objc_getAssociatedObject(document, &PSCCoreDataAnnotationProviderStorageKey) : nil;
 }
@@ -48,7 +48,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 #pragma mark - NSObject
 
 - (instancetype)initWithLeftDocument:(PSPDFDocument *)leftDocument rightDocument:(PSPDFDocument *)rightDocument {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _leftDocument = leftDocument;
         _rightDocument = rightDocument;
         self.edgesForExtendedLayout = UIRectEdgeAll & ~UIRectEdgeTop;
@@ -372,7 +372,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 @implementation PSCPagedCoreDataAnnotationProvider
 
 - (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         _documentProvider = documentProvider;
 
         // Check if we already have a master provider and create if we don't.

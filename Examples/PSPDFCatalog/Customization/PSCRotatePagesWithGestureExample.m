@@ -18,7 +18,7 @@
 @implementation PSCRotatePagesWithGestureExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Rotate PDF pages";
         self.contentDescription = @"Use a UIRotationGestureRecognizer to rotate pages.";
         self.category = PSCExampleCategoryViewCustomization;

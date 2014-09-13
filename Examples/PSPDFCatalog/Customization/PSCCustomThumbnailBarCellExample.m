@@ -27,7 +27,7 @@
 @implementation PSCCustomThumbnailBarCellExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Thumbnail Bar Cells";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 100;

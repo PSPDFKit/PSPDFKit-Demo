@@ -16,7 +16,7 @@
 @implementation PSCPopoverPositioningExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Popover positioning Tests";
         self.category = PSCExampleCategoryTests;
         self.priority = 1;

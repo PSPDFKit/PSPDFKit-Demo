@@ -34,7 +34,7 @@
     return _button;
 }
 
-- (void)action:(PSPDFBarButtonItem *)sender {
+- (void)action:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         pdfController.rotationLockEnabled = !pdfController.rotationLockEnabled;

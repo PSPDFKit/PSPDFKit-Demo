@@ -16,7 +16,7 @@
 
 @implementation PSCGoToPageButtonItem
 
-const char PSCAlertViewKey;
+static const char PSCAlertViewKey;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
@@ -36,7 +36,7 @@ const char PSCAlertViewKey;
     return PSPDFLocalize(@"Go to page...");
 }
 
-- (void)action:(PSPDFBarButtonItem *)sender {
+- (void)action:(id)sender {
     [self.class dismissPopoverAnimated:YES completion:NULL];
 
     PSPDFViewController *pdfController = self.pdfController;

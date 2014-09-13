@@ -19,7 +19,7 @@
 @implementation PSCChildViewControllerContainmentExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Child View Controller containment, windowed";
         self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 30;
@@ -38,7 +38,7 @@
 @implementation PSCFullScreenChildViewControllerContainmentExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Child View Controller containment, fullscreen";
         self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 31;
@@ -68,7 +68,7 @@
 @implementation PSCNoToolbarChildViewControllerContainmentExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Child View Controller containment, no toolbar";
         self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 32;
@@ -102,7 +102,7 @@
 @implementation PSAddingButtonExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Adding a simple UIButton";
         self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 40;
@@ -121,7 +121,7 @@
 @implementation PSCAddingMultipleUIButtonsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Adding multiple buttons";
         self.contentDescription = @"Will add a custom button above all PDF images.";
         self.category = PSCExampleCategoryControllerCustomization;
@@ -141,7 +141,7 @@
 @implementation PSCCompletelyCustomToolbarExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Customized Toolbar";
         self.contentDescription = @"Uses a textual switch button for thumbnails/content.";
         self.category = PSCExampleCategoryBarButtons;

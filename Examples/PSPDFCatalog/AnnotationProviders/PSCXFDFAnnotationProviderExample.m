@@ -19,7 +19,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"XFDF Annotation Provider";
         self.contentDescription = @"XFDF is an XML-based Adobe standard and a perfect format for syncing annotations/form values with a server.";
         self.category = PSCExampleCategoryAnnotationProviders;
@@ -90,7 +90,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"XFDF Annotation Provider, Encrypted";
         self.contentDescription = @"Variant that encrypts/decrypts the XFDF file on-the-fly.";
         self.category = PSCExampleCategoryAnnotationProviders;

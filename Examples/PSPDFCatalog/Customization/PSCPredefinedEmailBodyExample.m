@@ -17,7 +17,7 @@
 @implementation PSCPredefinedEmailBodyExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Customize email sending (add body text)";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 500;

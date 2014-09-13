@@ -23,7 +23,7 @@
 #pragma mark - NSObject
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Merge Annotations Interface";
         self.contentDescription = @"Proof-of-concept interface that shows two document side-by-side and allows to copy/merge annotations to the target document.";
         self.category = PSCExampleCategoryAnnotations;

@@ -20,7 +20,7 @@
 @implementation PSCCustomColorPickerColorsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom color picker";
         self.contentDescription = @"Defines a custom set of color patterns";
         self.category = PSCExampleCategoryViewCustomization;

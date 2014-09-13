@@ -17,7 +17,7 @@
 @implementation PSCFreeFormImageResizeExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Free Form Image Resize";
         self.contentDescription = @"Disables the forced aspect ratio resizing for image (stamp) annotations.";
         self.category = PSCExampleCategoryAnnotations;

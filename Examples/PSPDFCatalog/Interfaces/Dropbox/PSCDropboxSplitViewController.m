@@ -24,7 +24,7 @@
 #pragma mark - NSObject
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         _showLeftPaneInLandscape = YES;
 
         // Create global back button

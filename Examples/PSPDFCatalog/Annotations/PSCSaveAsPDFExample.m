@@ -25,7 +25,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Save as... for annotation editing";
         self.contentDescription = @"Adds an alert after detecting annotation writes to define a new save location.";
         self.category = PSCExampleCategoryAnnotations;

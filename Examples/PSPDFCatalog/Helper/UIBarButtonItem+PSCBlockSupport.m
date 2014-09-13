@@ -11,7 +11,7 @@
 #import "UIBarButtonItem+PSCBlockSupport.h"
 #import <objc/runtime.h>
 
-const char PSCBlockSupportKey;
+static const char PSCBlockSupportKey;
 
 @interface NSObject (PSCBlockSupport)
 - (void)psc_callbackBlockWithSender:(id)sender;

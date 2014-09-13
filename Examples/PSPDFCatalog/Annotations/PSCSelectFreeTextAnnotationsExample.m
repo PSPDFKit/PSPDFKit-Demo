@@ -15,7 +15,7 @@
 @implementation PSCSelectFreeTextAnnotationsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Select Free Text Annotations for editing";
         self.category = PSCExampleCategoryAnnotations;
         self.priority = 330;

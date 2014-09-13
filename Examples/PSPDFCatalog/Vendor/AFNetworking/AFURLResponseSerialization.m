@@ -329,7 +329,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
 #pragma mark - AFURLResponseSerialization
 
-- (id)responseObjectForResponse:(NSHTTPURLResponse *)response
+- (id)responseObjectForResponse:(NSURLResponse *)response
                            data:(NSData *)data
                           error:(NSError *__autoreleasing *)error
 {

@@ -22,7 +22,7 @@
 #pragma mark - PSCExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Document Picker Sidebar";
         self.contentDescription = @"Uses a document picker as the split view controller sidebar.";
         self.category = PSCExampleCategoryViewCustomization;

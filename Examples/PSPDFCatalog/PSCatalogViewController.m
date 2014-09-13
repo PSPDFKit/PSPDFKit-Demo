@@ -63,8 +63,8 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 @end
 
-const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
-const char PSCAlertViewKey;
+static const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
+static const char PSCAlertViewKey;
 static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
@@ -100,7 +100,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
 
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Test-relative-links.pdf"]];
+        document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Callouts.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -1492,7 +1492,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         if (indexData) {
             NSIndexPath *indexPath = nil;
             @try { indexPath = [NSKeyedUnarchiver unarchiveObjectWithData:indexData]; }
-            @catch (NSException *exception) {}
+            @catch (__unused NSException *exception) {}
             if ([self isValidIndexPath:indexPath]) {
                 [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
             }

@@ -16,8 +16,6 @@
 #import "PSCSettingsController.h"
 
 #define _(string) NSLocalizedString(string, @"")
-
-#define PSCGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 #define kPSCLargeThumbnailSize CGSizeMake(170.f, 240.f)
 
 @interface PSCGridViewController() <UISearchBarDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning> {
@@ -130,7 +128,7 @@
                 searchBarTextField.enablesReturnKeyAutomatically = NO;
                 searchBarTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
             }
-            @catch (NSException * e) {} break;
+            @catch (__unused NSException * e) {} break;
         }
     }
 

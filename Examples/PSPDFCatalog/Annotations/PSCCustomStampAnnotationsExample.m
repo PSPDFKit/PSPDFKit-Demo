@@ -16,7 +16,7 @@
 @implementation PSCCustomStampAnnotationsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom stamp annotations";
         self.contentDescription = @"Customizes the default set of stamps in the PSPDFStampViewController.";
         self.category = PSCExampleCategoryAnnotations;

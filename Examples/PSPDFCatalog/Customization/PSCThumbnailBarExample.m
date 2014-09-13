@@ -15,7 +15,7 @@
 @implementation PSCThumbnailBarExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Thumbnail Bar Example";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 999;

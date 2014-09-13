@@ -16,7 +16,7 @@
 @implementation PSCCustomAnnotationToolbarButtonsExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Add a custom button to the annotation toolbar";
         self.contentDescription = @"Will add a 'Clear' button to the annotation toolbar that removes all annotations from the visible page.";
         self.category = PSCExampleCategoryBarButtons;
@@ -45,7 +45,7 @@
 #pragma mark - NSObject
 
 - (instancetype)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
-    if (self = [super initWithAnnotationStateManager:annotationStateManager]) {
+    if ((self = [super initWithAnnotationStateManager:annotationStateManager])) {
 
         // The biggest challenge here isn't the clear button, but correctly updating the clear button if we actually can clear something or not.
         NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;

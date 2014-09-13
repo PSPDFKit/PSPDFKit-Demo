@@ -55,7 +55,7 @@ static NSMutableDictionary *_settings;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (NSDictionary *)settings { return _settings; }
++ (NSMutableDictionary *)settings { return _settings; }
 
 // Perform a appropriate choice of defaults.
 + (void)initialize {

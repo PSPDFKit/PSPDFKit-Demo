@@ -14,7 +14,7 @@
 @implementation PSCStoryboardsInitWithStoryboardExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Init with Storyboard";
         self.category = PSCExampleCategoryStoryboards;
         self.priority = 10;

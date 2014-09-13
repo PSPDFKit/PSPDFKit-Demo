@@ -14,8 +14,6 @@
 
 @implementation PSCTabbedExampleViewController
 
-const char *clearAllActionSheetToken;
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 

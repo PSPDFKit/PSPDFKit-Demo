@@ -15,7 +15,7 @@
 @implementation PSCStampButtonExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Stamp Annotation Button";
         self.contentDescription = @"Uses a stamp annotation as button.";
         self.category = PSCExampleCategoryAnnotations;

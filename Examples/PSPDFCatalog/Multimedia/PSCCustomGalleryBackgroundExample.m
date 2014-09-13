@@ -22,7 +22,7 @@
 @implementation PSCCustomGalleryBackgroundExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Image Gallery Background";
         self.contentDescription = @"Changes internal gallery classes to customize the default background gradient.";
         self.category = PSCExampleCategoryMultimedia;

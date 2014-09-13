@@ -18,7 +18,7 @@
 @implementation PSCCustomOutlineControllerExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Outline Controller";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 100;

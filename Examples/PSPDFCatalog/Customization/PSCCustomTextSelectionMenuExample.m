@@ -19,7 +19,7 @@
 @implementation PSCCustomTextSelectionMenuExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Custom Text Selection Menu";
         self.contentDescription = @"Add option to google for selected text via the PSPDFViewControllerDelegate.";
         self.category = PSCExampleCategoryControllerCustomization;

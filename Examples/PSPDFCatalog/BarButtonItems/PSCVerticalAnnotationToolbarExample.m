@@ -20,7 +20,7 @@
 @implementation PSCVerticalAnnotationToolbarExample
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = @"Vertical always-visible annotation bar";
         self.contentDescription = @"Custom, vertically aligned annotation toolbar.";
         self.category = PSCExampleCategoryViewCustomization;
