@@ -396,17 +396,6 @@
     PSCMagazine *magazine = cell.magazine;
     PSCMagazineFolder *folder = cell.magazineFolder;
 
-    NSString *message = nil;
-    if (folder.magazines.count > 1 && !self.magazineFolder) {
-        // Clang doesn't understand that we translate to strings with extra arguments.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-extra-args"
-        message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, folder.magazines.count];
-    }else {
-        message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
-#pragma clang diagnostic pop
-    }
-
     dispatch_block_t deleteBlock = ^{
         if (self.magazineFolder) {
             if (magazine.isDownloading) {
