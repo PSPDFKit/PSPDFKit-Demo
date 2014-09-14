@@ -58,8 +58,8 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_deleteButton sizeToFit];
-        [self.contentView addSubview:_deleteButton];
         _deleteButton.hidden = YES;
+        [self.contentView addSubview:_deleteButton];
     }
     return self;
 }
@@ -79,7 +79,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     dispatch_once(&onceToken, ^{
         _queue = [[NSOperationQueue alloc] init];
         _queue.maxConcurrentOperationCount = 2;
-        _queue.name = @"PSPDFThumbnailQueue";
+        _queue.name = @"com.pspdfkiosk.thumbnail-queue";
     });
     return _queue;
 }
@@ -338,8 +338,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (PSCRoundProgressView *)progressView {
     if (!_progressView) {
         _progressView = [[PSCRoundProgressView alloc] initWithFrame:self.imageView.bounds];
-        [self.imageView addSubview:_progressView];
-        [self setNeedsLayout];
+        _progressView.clipsToBounds = YES;
     }
     return _progressView;
 }
@@ -355,7 +354,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     if (darken && !_progressViewBackground.superview) {
         _progressViewBackground.alpha = 0.f;
         [self.imageView addSubview:_progressViewBackground];
-        [self.contentView bringSubviewToFront:_progressView];
+        [self.contentView bringSubviewToFront:self.progressView];
         if (animated) {
             [UIView animateWithDuration:0.25f animations:^{
                 _progressViewBackground.alpha = 0.5f;
@@ -378,15 +377,16 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     }
 }
 
-- (void)setProgress:(float)theProgress animated:(BOOL)animated {
-    BOOL shouldShowProgress = theProgress > 0.f && theProgress > 1.f;
+- (void)setProgress:(float)progress animated:(BOOL)animated {
+    BOOL shouldShowProgress = progress > 0.f && progress < 1.f;
     [self darkenView:NO animated:animated];
 
     if (shouldShowProgress) {
         [self.contentView addSubview:self.progressView];
         [self.contentView bringSubviewToFront:self.progressView];
+        [self setNeedsLayout];
     }
-    [self.progressView setProgress:theProgress animated:animated];
+    [self.progressView setProgress:progress animated:animated];
 }
 
 - (void)setImage:(UIImage *)image animated:(BOOL)animated {
@@ -411,20 +411,20 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (void)prepareForReuse {
     [super prepareForReuse];
     [self clearProgressObservers];
-    [_imageLoadOperation cancel];
+    [self.imageLoadOperation cancel];
     [self.imageView cancelImageRequestOperation];
     self.imageView.image = nil;
     [self setImageSize:_defaultFrame.size];
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;
-    [_progressView removeFromSuperview];
-    _progressView = nil;
-    [_magazineCounter removeFromSuperview];
-    _magazineCounter = nil;
-    [_magazineCounterBadgeImage removeFromSuperview];
-    _magazineCounterBadgeImage = nil;
-    [_imageLoadOperation cancel];
+    [self.progressView removeFromSuperview];
+    self.progressView = nil;
+    [self.magazineCounter removeFromSuperview];
+    self.magazineCounter = nil;
+    [self.magazineCounterBadgeImage removeFromSuperview];
+    self.magazineCounterBadgeImage = nil;
+    [self.imageLoadOperation cancel];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
