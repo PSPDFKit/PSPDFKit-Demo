@@ -31,7 +31,7 @@
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
     UINavigationController *documentsNavController = [[UINavigationController alloc] initWithRootViewController:documentsController];
-    return [self presentModalOrInPopover:documentsNavController sender:sender];
+    return [self presentViewController:documentsNavController sender:sender];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

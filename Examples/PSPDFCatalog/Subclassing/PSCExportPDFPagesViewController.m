@@ -136,7 +136,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 				[status popAnimated:YES];
                 if (data) {
                     [mailViewController addAttachmentData:data mimeType:@"application/pdf" fileName:@"SelectedPages.pdf"];
-                    [((PSPDFViewController *)self.parentViewController) presentModalOrInPopover:mailViewController embeddedInNavigationController:NO withCloseButton:NO animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
+                    [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal)} animated:YES sender:nil completion:NULL];
                 }else {
                     // Handle error state
                     [[[PSPDFAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];

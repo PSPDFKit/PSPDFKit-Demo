@@ -68,7 +68,11 @@
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = UIColor.blackColor;
         imagePreviewController.view = imageView;
-        [self presentModalOrInPopover:imagePreviewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:button options:@{PSPDFPresentOptionAlwaysModal : @YES, PSPDFPresentOptionModalPresentationStyle : @(UIModalPresentationFormSheet)}];
+        [self presentViewController:imagePreviewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal),
+                                                                     PSPDFPresentationModalStyleKey : @(UIModalPresentationFormSheet),
+                                                                     PSPDFPresentationInNavigationControllerKey : @YES,
+                                                                     PSPDFPresentationCloseButtonKey : @YES}
+                             animated:YES sender:button completion:NULL];
     }
 }
 

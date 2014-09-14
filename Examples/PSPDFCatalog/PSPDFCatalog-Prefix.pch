@@ -27,7 +27,7 @@
 #ifdef PSPDF_USE_SOURCE
     #import "PSPDFKit.h"
 #else
-    #import <PSPDFKit/PSPDFKit.h>
+    @import PSPDFKit;
 #endif
 
 #endif

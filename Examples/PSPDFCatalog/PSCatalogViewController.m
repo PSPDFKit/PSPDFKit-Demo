@@ -102,7 +102,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
 
-        document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Callouts.pdf"]];
+        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Callouts.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -529,27 +529,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Dynamic fittingWidth on iPhone" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
+        [controller setUpdateSettingsForBoundsChangeBlock:^(PSPDFViewController *pdfController) {
             if (!PSCIsIPad()) {
                 [pdfController updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                    builder.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+                    builder.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(pdfController.interfaceOrientation);
                 }];
             }
-        }];
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Dynamic pageCurl/scrolling" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
-            [pdfController updateConfigurationWithoutReloadingWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-                if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-                    builder.pageTransition = PSPDFPageTransitionScrollPerPage;
-                }  else {
-                    builder.pageTransition = PSPDFPageTransitionCurl;
-                }
-            }];
         }];
         return controller;
     }]];

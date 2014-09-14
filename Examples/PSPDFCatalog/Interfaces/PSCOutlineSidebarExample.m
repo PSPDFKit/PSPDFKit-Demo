@@ -65,7 +65,7 @@
         PSPDFDocumentPickerController *documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         __weak PSPDFViewController *weakPDFController = pdfController;
         UIBarButtonItem *pickerButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Document" style:UIBarButtonItemStyleBordered block:^(id sender) {
-            [weakPDFController presentModalOrInPopover:documentPicker embeddedInNavigationController:YES withCloseButton:NO animated:YES sender:sender options:nil];
+            [weakPDFController presentViewController:documentPicker options:@{PSPDFPresentationInNavigationControllerKey : @YES} animated:YES sender:sender completion:NULL];
         }];
         self.pickerButtonItem = pickerButtonItem;
 

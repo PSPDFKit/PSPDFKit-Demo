@@ -143,7 +143,7 @@ static NSMutableDictionary *_settings;
                            _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
 
         _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:@[@"100%", @"90%", @"80%", @"70%", @"60%"]];
-    	[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
+        [_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
 
         _paperColors = @[UIColor.whiteColor,
                          // 1-4: sepia, light to dark
@@ -534,7 +534,13 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
 
-    [pdfController presentModalOrInPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
+    [pdfController presentViewController:configViewController
+                                 options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal),
+                                           PSPDFPresentationInNavigationControllerKey : @YES,
+                                           PSPDFPresentationCloseButtonKey : @YES}
+                                animated:YES
+                                  sender:nil
+                              completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

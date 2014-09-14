@@ -37,7 +37,7 @@
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[PSCMetadataController alloc] initWithDocument:self.pdfController.document]];
     navController.topViewController.title = [self actionName];
-    return [self presentModalOrInPopover:navController sender:sender];
+    return [self presentViewController:navController sender:sender];
 }
 
 @end

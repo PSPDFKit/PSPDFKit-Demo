@@ -254,7 +254,12 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)selectLeftSource:(id)sender {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     PSPDFDocumentPickerController *documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:samplesURL.path includeSubdirectories:NO library:Nil delegate:self];
-    [self.leftController presentModalOrInPopover:documentPicker embeddedInNavigationController:YES withCloseButton:NO animated:YES sender:sender options:nil];
+    
+    [self.leftController presentViewController:documentPicker
+                                       options:@{PSPDFPresentationInNavigationControllerKey : @YES}
+                                      animated:YES
+                                        sender:sender
+                                    completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

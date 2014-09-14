@@ -33,7 +33,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
         }
     }];
     [super commonInitWithDocument:document configuration:configuration];
-    
+
     self.title = document.title;
     self.thumbnailController.filterOptions = nil;
     self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
@@ -111,13 +111,16 @@ static const CGFloat PSCToolbarMargin = 20.f;
 }
 
 - (void)outlineButtonPressed:(UIButton *)sender {
-    PSPDFOutlineViewController *outlineViewController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentModalOrInPopover:outlineViewController embeddedInNavigationController:!PSCIsIPad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
+    PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document delegate:self];
+    [self presentViewController:outlineController options:@{PSPDFPresentationPopoverArrowDirectionsKey : @(UIPopoverArrowDirectionUp),
+                                                            PSPDFPresentationInNavigationControllerKey : @(!PSCIsIPad()),
+                                                            PSPDFPresentationCloseButtonKey : @YES}
+                         animated:YES sender:sender completion:NULL];
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {
     PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentModalOrInPopover:searchController embeddedInNavigationController:NO withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
+    [self presentViewController:searchController options:@{PSPDFPresentationPopoverArrowDirectionsKey : @(UIPopoverArrowDirectionUp)} animated:YES sender:sender completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

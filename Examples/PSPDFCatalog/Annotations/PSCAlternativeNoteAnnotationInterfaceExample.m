@@ -57,8 +57,8 @@
     pdfController.delegate = self;
 
     // Make sure we close any open note controllers as we rotate.
-    [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *thePdfController, UIInterfaceOrientation toInterfaceOrientation) {
-        for (PSPDFPageView *pageView in thePdfController.visiblePageViews) {
+    [pdfController setUpdateSettingsForBoundsChangeBlock:^(PSPDFViewController *controller) {
+        for (PSPDFPageView *pageView in controller.visiblePageViews) {
             for (UIView *noteView in pageView.annotationContainerView.subviews) {
                 if ([noteView.nextResponder isKindOfClass:PSCCustomNoteAnnotationViewController.class]) {
                     [(PSCCustomNoteAnnotationViewController *)noteView.nextResponder closeNoteController];

@@ -44,6 +44,11 @@
         // Initially update vars.
         [self globalVarChanged];
 
+        __weak typeof (self) weakSelf = self;
+        [self setUpdateSettingsForBoundsChangeBlock:^(PSPDFViewController *pdfController) {
+            [weakSelf updateSettingsForBoundsChangeForced:NO];
+        }];
+
         // Register for global var change notifications from PSPDFCacheSettingsController.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:PSCSettingsChangedNotification object:nil];
 
@@ -102,15 +107,13 @@
 	self.metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
 #endif
 
-	// Call this last, since it triggers updateSettingsForRotation: and we need out buttons to be set up before than
 	[super viewWillAppear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
-
+- (void)updateSettingsForBoundsChangeForced:(BOOL)force {
 	NSMutableArray *leftToolbarItems = [NSMutableArray array];
 	if (self.closeButtonItem) [leftToolbarItems addObject:self.closeButtonItem];
 
@@ -121,13 +124,10 @@
 
     // Simple performance optimization.
     if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
-        self.leftBarButtonItems = leftToolbarItems;
+        [UIView performWithoutAnimation:^{
+            self.leftBarButtonItems = leftToolbarItems;
+        }];
     }
-}
-
-- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation {
-    [super updateSettingsForRotation:toInterfaceOrientation];
-    [self updateSettingsForRotation:toInterfaceOrientation force:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
