@@ -123,10 +123,10 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 #define PSCRadiansToDegrees(degrees) ((CGFloat)degrees * (180.f / (CGFloat)M_PI))
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer {
-    id <PSPDFConfigurationDataSource> configDataSource = self.configurationDataSource;
+    id <PSPDFPresentationContext> presentationContext = self.presentationContext;
 
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        PSPDFDocument *document = configDataSource.document;
+        PSPDFDocument *document = presentationContext.document;
         // Invalidate the cache.
         [PSPDFCache.sharedCache invalidateImageFromDocument:document page:self.page];
 
@@ -142,7 +142,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;
-        [configDataSource.actionDelegate reloadData];
+        [presentationContext.actionDelegate reloadData];
     }else {
         // Transform the current view.
         gestureRecognizer.view.transform = CGAffineTransformRotate(gestureRecognizer.view.transform, gestureRecognizer.rotation);

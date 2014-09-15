@@ -149,7 +149,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
     [super longPress:recognizer];
 
     // Remember start point and handle it as a tap if move distance is below a certain treshold.
-    PSPDFViewController *pdfController = self.configurationDataSource.pdfController;
+    PSPDFViewController *pdfController = self.presentationContext.pdfController;
     if (PSCIsStampModeEnabledForPDFController(pdfController)) {
         if (recognizer.state == UIGestureRecognizerStateBegan) {
             _startPoint = [recognizer locationInView:self];
@@ -172,7 +172,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
     // If not enabled yet, check if we're in our special stamp mode and allow long press there.
     // (Usually, long press is blocked when the annotation toolbar is active)
-    if (!shouldBegin && PSCIsStampModeEnabledForPDFController(self.configurationDataSource.pdfController) &&
+    if (!shouldBegin && PSCIsStampModeEnabledForPDFController(self.presentationContext.pdfController) &&
         [gestureRecognizer isKindOfClass:UILongPressGestureRecognizer.class]) {
         shouldBegin = YES;
     }
@@ -181,9 +181,9 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
 - (BOOL)pressRecognizerShouldHandlePressImmediately:(PSPDFLongPressGestureRecognizer *)recognizer {
     // Select a stamp annotation as soon as we start touching it, making dragging instant.
-    id <PSPDFConfigurationDataSource> configDataSource = self.configurationDataSource;
-    if (PSCIsStampModeEnabledForPDFController(configDataSource.pdfController)) {
-        for (PSPDFPageView *pageView in configDataSource.visiblePageViews) {
+    id <PSPDFPresentationContext> presentationContext = self.presentationContext;
+    if (PSCIsStampModeEnabledForPDFController(presentationContext.pdfController)) {
+        for (PSPDFPageView *pageView in presentationContext.visiblePageViews) {
             NSArray *stampAnnotations = PSCStampAnnotationsAtPoint(pageView, [recognizer locationInView:pageView]);
             if (stampAnnotations.count > 0) {
                 pageView.selectedAnnotations = @[stampAnnotations[0]];

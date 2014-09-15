@@ -70,17 +70,17 @@
 // intercept both a quick touch...
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-    ((PSCAutoScrollViewController *)self.configurationDataSource.actionDelegate).scrollingPaused = YES;
+    ((PSCAutoScrollViewController *)self.presentationContext.actionDelegate).scrollingPaused = YES;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
-    ((PSCAutoScrollViewController *)self.configurationDataSource.actionDelegate).scrollingPaused = NO;
+    ((PSCAutoScrollViewController *)self.presentationContext.actionDelegate).scrollingPaused = NO;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesCancelled:touches withEvent:event];
-    ((PSCAutoScrollViewController *)self.configurationDataSource.actionDelegate).scrollingPaused = NO;
+    ((PSCAutoScrollViewController *)self.presentationContext.actionDelegate).scrollingPaused = NO;
 }
 
 // and a long press.
@@ -88,7 +88,7 @@
     [super longPress:recognizer];
 
     // touchesCancelled is called after state change, so process a runloop later
-    PSCAutoScrollViewController *autoController = (PSCAutoScrollViewController *)self.configurationDataSource.actionDelegate;
+    PSCAutoScrollViewController *autoController = (PSCAutoScrollViewController *)self.presentationContext.actionDelegate;
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (recognizer.state) {
             case UIGestureRecognizerStateBegan:
