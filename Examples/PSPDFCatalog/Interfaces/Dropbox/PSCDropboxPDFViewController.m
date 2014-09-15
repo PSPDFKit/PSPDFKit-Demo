@@ -119,8 +119,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {
-    PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentViewController:searchController options:@{PSPDFPresentationPopoverArrowDirectionsKey : @(UIPopoverArrowDirectionUp)} animated:YES sender:sender completion:NULL];
+    [self searchForString:nil options:0 animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
