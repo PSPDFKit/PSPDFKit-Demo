@@ -419,7 +419,7 @@ static NSUInteger PSCDocumentRelativePageForPage(PSPDFDocumentProvider *document
 - (NSArray *)removeAnnotations:(NSArray *)annotations {
     return [[self coreDataProvider] removeAnnotations:annotations options:nil];
 }
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error {
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error {
     return [[self coreDataProvider] saveAnnotationsWithOptions:options error:error];
 }
 - (BOOL)shouldSaveAnnotations {

@@ -150,7 +150,7 @@
 }
 
 // Saves the context.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error {
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error {
     __block BOOL success;
     [self.managedObjectContext performBlockAndWait:^{
         success = [self.managedObjectContext save:error];
