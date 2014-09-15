@@ -1503,8 +1503,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (BOOL)isValidIndexPath:(NSIndexPath *)indexPath {
     BOOL isValid = NO;
     if (indexPath) {
-        NSUInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
-        NSUInteger numberOfRowsInSection = 0;
+        NSInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSInteger numberOfRowsInSection = 0;
         if (indexPath.section < numberOfSections) {
             numberOfRowsInSection = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
             if (indexPath.row < numberOfRowsInSection) {

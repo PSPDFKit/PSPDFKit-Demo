@@ -50,7 +50,7 @@
             documents = [documents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 return arc4random_uniform(2) > 0; // returns 0 or 1 randomly.
             }]];
-            self.documents = [documents subarrayWithRange:NSMakeRange(0, MIN(5, documents.count))];
+            self.documents = [documents subarrayWithRange:NSMakeRange(0, MIN((NSUInteger)5, documents.count))];
         }
     }
     return self;

@@ -353,7 +353,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFThumbnailModeSettings: {
-            NSUInteger thumbnailBarMode = [_settings[PROPERTY(thumbnailBarMode)] integerValue];
+            NSInteger thumbnailBarMode = [_settings[PROPERTY(thumbnailBarMode)] integerValue];
             cell.accessoryType = (indexPath.row == thumbnailBarMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
 

@@ -63,7 +63,7 @@
     }
 
     // Lock all annotations except links and forms/widgets.
-    for (int pageIndex = 0; pageIndex < document.pageCount; pageIndex++) {
+    for (NSUInteger pageIndex = 0; pageIndex < document.pageCount; pageIndex++) {
         NSArray *annotations = [document annotationsForPage:pageIndex type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
         for (PSPDFAnnotation *annotation in annotations) {
             // Preserve existing flags, just set locked + read only.

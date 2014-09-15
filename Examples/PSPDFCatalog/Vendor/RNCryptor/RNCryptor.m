@@ -174,7 +174,7 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 {
 	u_int8_t oldbuffer[CC_MAX_PRF_WORKSPACE], newbuffer[CC_MAX_PRF_WORKSPACE],
     saltCopy[CC_MAX_PRF_WORKSPACE+4], collector[CC_MAX_PRF_WORKSPACE];
-	int rawblock, i, j;
+	size_t rawblock, i, j;
     size_t r, nblocks;
 	size_t	hlen, offset;
 
@@ -225,11 +225,11 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 	 */
 
 	for(rawblock = 0; rawblock < nblocks; rawblock++) {
-		int block = rawblock+1;
+		size_t block = rawblock+1;
 		size_t copyLen;
 
 		offset = rawblock * hlen;
-		copyLen = (block != nblocks) ? hlen: r;
+		copyLen = ((size_t)block != nblocks) ? hlen: r;
 
 		/*
 		 * FromSpec: Here, INT (i) is a four-octet encoding of the integer i, most significant octet first.
