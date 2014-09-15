@@ -233,8 +233,13 @@
     }
 #endif
 
-    // reload scroll view and restore viewState
-    [self reloadData];
+    // updating the configuration reloads the scroll view
+    [self updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        builder.pageTransition = [settings[PROPERTY(pageTransition)] integerValue];
+        builder.renderingMode = [settings[PROPERTY(renderingMode)] integerValue];
+    }];
+
+    // restore viewState
     [self setViewState:viewState animated:NO];
 }
 
