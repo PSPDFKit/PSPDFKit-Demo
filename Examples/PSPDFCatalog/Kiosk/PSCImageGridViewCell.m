@@ -89,6 +89,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
     self.deleteButton.frame = CGRectMake(self.imageView.frame.origin.x-10.f, self.imageView.frame.origin.y-10.f, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
     [self.contentView bringSubviewToFront:self.deleteButton];
 
@@ -344,35 +345,37 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 }
 
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
-    if (darken && !_progressViewBackground) {
-        _progressViewBackground = [[UIView alloc] initWithFrame:self.imageView.bounds];
-        _progressViewBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _progressViewBackground.backgroundColor = UIColor.blackColor;
-        _progressViewBackground.alpha = 0.5f;
+    if (darken && !self.progressViewBackground) {
+        UIView *progressViewBackground = [[UIView alloc] initWithFrame:self.imageView.bounds];
+        progressViewBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        progressViewBackground.backgroundColor = UIColor.blackColor;
+        progressViewBackground.alpha = 0.5f;
+        progressViewBackground.clipsToBounds = YES;
+        self.progressViewBackground = progressViewBackground;
     }
 
-    if (darken && !_progressViewBackground.superview) {
-        _progressViewBackground.alpha = 0.f;
-        [self.imageView addSubview:_progressViewBackground];
+    if (darken && !self.progressViewBackground.superview) {
+        self.progressViewBackground.alpha = 0.f;
+        [self.imageView addSubview:self.progressViewBackground];
         [self.contentView bringSubviewToFront:self.progressView];
         if (animated) {
             [UIView animateWithDuration:0.25f animations:^{
-                _progressViewBackground.alpha = 0.5f;
+                self.progressViewBackground.alpha = 0.5f;
             }];
         }else {
-            _progressViewBackground.alpha = 0.5f;
+            self.progressViewBackground.alpha = 0.5f;
         }
-    }else if (!darken && _progressViewBackground.superview) {
+    }else if (!darken && self.progressViewBackground.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25f animations:^{
-                _progressViewBackground.alpha = 0.f;
+                self.progressViewBackground.alpha = 0.f;
             } completion:^(BOOL finished) {
                 if (finished) {
-                    [_progressViewBackground removeFromSuperview];
+                    [self.progressViewBackground removeFromSuperview];
                 }
             }];
         }else {
-            [_progressViewBackground removeFromSuperview];
+            [self.progressViewBackground removeFromSuperview];
         }
     }
 }
