@@ -429,9 +429,11 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = indexPath.row;
             _settings[PROPERTY(pageTransition)] = @(pageTransition);
-            // set recommended render mode for pageCurl.
+            // set recommended render mode
             if (pageTransition == PSPDFPageTransitionCurl) {
                 _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
+            } else {
+                _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
             }
         }break;
         case PSPDFScrollDirectionSettings: _settings[PROPERTY(scrollDirection)] = @(indexPath.row); break;
