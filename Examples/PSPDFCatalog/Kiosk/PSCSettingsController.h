@@ -14,7 +14,7 @@
  The settings controller is meant to show off the flexibility of PSPDFKit.
 
  It's not intended to be used in shipping apps.
- Make smart choices for the user and don't over-burdem them with settings.
+ Make smart choices for the user and don't over-burden them with settings.
  */
 @interface PSCSettingsController : UITableViewController
 
