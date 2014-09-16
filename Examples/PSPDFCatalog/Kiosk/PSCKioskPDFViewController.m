@@ -235,8 +235,21 @@
 
     // updating the configuration reloads the scroll view
     [self updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
+        // PSPDFGeneralSettings
+        builder.smartZoomEnabled = [settings[PROPERTY(isSmartZoomEnabled)] boolValue];
+        builder.textSelectionEnabled = [settings[PROPERTY(isTextSelectionEnabled)] boolValue];
+        builder.zoomingSmallDocumentsEnabled = [settings[PROPERTY(isZoomingSmallDocumentsEnabled)] boolValue];
+        builder.fitToWidthEnabled = [settings[PROPERTY(isFitToWidthEnabled)] boolValue];
+        builder.scrollOnTapPageEndEnabled = [settings[PROPERTY(isScrollOnTapPageEndEnabled)] boolValue];
+        builder.pageLabelEnabled = [settings[PROPERTY(isPageLabelEnabled)] boolValue];
+
         builder.pageTransition = [settings[PROPERTY(pageTransition)] integerValue];
         builder.renderingMode = [settings[PROPERTY(renderingMode)] integerValue];
+        builder.scrollDirection = [settings[PROPERTY(scrollDirection)] integerValue];
+        builder.pageMode = [settings[PROPERTY(pageMode)] integerValue];
+        builder.doublePageModeOnFirstPage = [settings[PROPERTY(isDoublePageModeOnFirstPage)] boolValue];
+        builder.thumbnailBarMode = [settings[PROPERTY(thumbnailBarMode)] integerValue];
+        builder.linkAction = [settings[PROPERTY(linkAction)] integerValue];
     }];
 
     // restore viewState
