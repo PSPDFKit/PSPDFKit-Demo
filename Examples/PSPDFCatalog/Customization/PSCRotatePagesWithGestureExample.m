@@ -130,7 +130,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;
         [presentationContext.pdfController reloadData];
-    }else {
+    } else {
         // Transform the current view.
         gestureRecognizer.view.transform = CGAffineTransformRotate(gestureRecognizer.view.transform, gestureRecognizer.rotation);
         gestureRecognizer.rotation = 0;
@@ -139,7 +139,10 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
 // Allow zooming and rotating at the same time.
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    if ([gestureRecognizer isKindOfClass:[UIRotationGestureRecognizer class]]) return YES;
+    if ([gestureRecognizer isKindOfClass:[UIRotationGestureRecognizer class]] ||
+        [otherGestureRecognizer isKindOfClass:[UIRotationGestureRecognizer class]]) {
+        return YES;
+    }
     return [super gestureRecognizer:gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:otherGestureRecognizer];
 }
 
