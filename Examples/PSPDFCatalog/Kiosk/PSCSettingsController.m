@@ -225,6 +225,10 @@ static CGFloat pscSettingsLastYOffset = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:PSCSettingsChangedNotification object:nil];
 }
 
+- (void)closeModalView {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSource
 
@@ -412,22 +416,12 @@ static CGFloat pscSettingsLastYOffset = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
-// allow both iPhone (self) and iPad use. (iPad will crash if we push from self in a popover)
-- (UIViewController *)masterViewController {
-    UIViewController *owningViewController = self.owningViewController;
-    return owningViewController.view.window ? owningViewController : self;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case PSPDFClearCacheButton: [PSPDFCache.sharedCache clearCache]; break;
         case PSPDFOpenAPIButton: {
-#if TARGET_IPHONE_SIMULATOR
-            system("open 'http://pspdfkit.com/documentation/'");
-#else
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
-            [self.masterViewController presentViewController:webController animated:YES completion:NULL];
-#endif
+            [self presentViewController:webController animated:YES completion:NULL];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFPageInfoButton: [self showPageInfoButton]; break;
@@ -496,7 +490,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     navController.title = _(@"Current ");
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    [self.masterViewController presentViewController:navController animated:YES completion:NULL];
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 - (void)showPageInfoButton {
