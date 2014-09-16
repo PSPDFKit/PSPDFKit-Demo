@@ -12,7 +12,9 @@
 #import "PSCAssetLoader.h"
 @import Darwin.C.tgmath;
 
-@interface PSCRotatablePDFViewController : PSPDFViewController @end
+@interface PSCRotatablePDFViewController : PSPDFViewController
+- (void)rotatePage:(NSUInteger)page byDegrees:(NSUInteger)degrees;
+@end
 
 @interface PSCRotatePagesWithGestureExample : PSCExample @end
 @implementation PSCRotatePagesWithGestureExample
@@ -79,28 +81,22 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 }
 
 - (void)rotateAction:(id)sender {
-    // We need to invalidate the cache of the current page.
-    [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:self.page];
+    [self rotatePage:self.page byDegrees:-90];
+    [self reloadData];
+}
 
-    // rotate 90 degree counter-clock-wise (and make sure we don't set something >= 360)
-    BOOL rotateAll = NO;
-    if (rotateAll) {
-        for (NSUInteger pageIndex=0; pageIndex < self.document.pageCount; pageIndex++) {
-            PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:pageIndex];
-            PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation - 90) documentProvider:pageInfo.documentProvider];
-            [self.document setPageInfo:newPageInfo forPage:pageIndex];
-        }
-    }else {
-        PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation - 90) documentProvider:pageInfo.documentProvider];
-        [self.document setPageInfo:newPageInfo forPage:self.page];
-    }
+- (void)rotatePage:(NSUInteger)page byDegrees:(NSUInteger)degrees {
+    // We need to invalidate the cache of the current page.
+    // If we were to rotate all pages in the document we wouldn't need to invalidate and rerender
+    // the image for all pages only, doing it for only the currently visible page would be enough.
+    [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:page];
+
+    PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:page];
+    PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation + degrees) documentProvider:pageInfo.documentProvider];
+    [self.document setPageInfo:newPageInfo forPage:page];
 
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
-    [PSPDFCache.sharedCache imageFromDocument:self.document page:self.page size:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
-
-    // reload the controller
-    [self reloadData];
+    [PSPDFCache.sharedCache imageFromDocument:self.document page:page size:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 }
 
 @end
@@ -126,23 +122,14 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     id <PSPDFPresentationContext> presentationContext = self.presentationContext;
 
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        PSPDFDocument *document = presentationContext.document;
-        // Invalidate the cache.
-        [PSPDFCache.sharedCache invalidateImageFromDocument:document page:self.page];
+        PSCRotatablePDFViewController *pdfController = (PSCRotatablePDFViewController *)presentationContext.pdfController;
 
-        // Get rotation and snap to the closest position.
-        PSPDFPageInfo *pageInfo = [document pageInfoForPage:self.page];
         NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
-        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation + degrees) documentProvider:pageInfo.documentProvider];
-        [document setPageInfo:newPageInfo forPage:pageInfo.page];
-        PSCLog(@"Snap rotation to: %tu", pageInfo.rotation);
-
-        // Request an immediate rendering, will block the main thread but prevent flashing.
-        [PSPDFCache.sharedCache imageFromDocument:document page:self.page size:self.superview.bounds.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+        [pdfController rotatePage:self.page byDegrees:degrees];
 
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;
-        [presentationContext.actionDelegate reloadData];
+        [presentationContext.pdfController reloadData];
     }else {
         // Transform the current view.
         gestureRecognizer.view.transform = CGAffineTransformRotate(gestureRecognizer.view.transform, gestureRecognizer.rotation);
