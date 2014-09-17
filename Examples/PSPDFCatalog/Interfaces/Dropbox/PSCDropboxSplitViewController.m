@@ -148,4 +148,12 @@
 	return UIStatusBarStyleLightContent;
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return  [self.splitViewController.pdfController prefersStatusBarHidden];
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return  [self.splitViewController.pdfController prefersStatusBarHidden];
+}
+
 @end
