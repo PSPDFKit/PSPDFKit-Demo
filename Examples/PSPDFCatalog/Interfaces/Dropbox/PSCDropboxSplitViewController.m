@@ -153,7 +153,7 @@
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    return  [self.splitViewController.pdfController prefersStatusBarHidden];
+    return  [self.splitViewController.pdfController preferredStatusBarUpdateAnimation];
 }
 
 @end
