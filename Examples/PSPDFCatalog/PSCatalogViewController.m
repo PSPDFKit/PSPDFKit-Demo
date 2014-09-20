@@ -258,7 +258,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    [customizationSection addContent:[PSContent contentWithTitle:@"iBooks-like highlighting" block:^{
+    [customizationSection addContent:[PSContent contentWithTitle:@"iBooks-like highlighting" description:@"Selecting text automatically creates a highlight and shows the menu." block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCiBooksHighlightingViewController alloc] initWithDocument:document];
         return pdfController;
