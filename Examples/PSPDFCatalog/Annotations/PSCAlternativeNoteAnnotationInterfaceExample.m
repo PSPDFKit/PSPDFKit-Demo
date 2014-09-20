@@ -82,7 +82,7 @@
     // Simplifty menu, remove image.
     NSMutableArray *allowedMenuItems = [NSMutableArray array];
     for (PSPDFMenuItem *menuItem in menuItems) {
-        if ([menuItem.identifier isEqualToString:@"Highlight"]) {
+        if ([menuItem.identifier isEqualToString:PSPDFAnnotationMenuHighlight]) {
             menuItem.ps_image = nil; // clear image
             [allowedMenuItems addObject:menuItem];
         }
@@ -96,7 +96,7 @@
     // Simplifty menu, remove image.
     NSMutableArray *allowedMenuItems = [NSMutableArray array];
     for (PSPDFMenuItem *menuItem in menuItems) {
-        if ([menuItem.identifier isEqualToString:@"Remove"]) {
+        if ([@[PSPDFAnnotationMenuRemove, PSPDFAnnotationMenuNote] containsObject:menuItem.identifier]) {
             menuItem.ps_image = nil; // clear image
             [allowedMenuItems addObject:menuItem];
         }
@@ -301,6 +301,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithImage:PSPDFBundleImage(@"x") style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonPressed:)];
         _bottomToolbar.items = @[cancelButton, spacer, saveButton];
         _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
+        _bottomToolbar.barTintColor = nil;
     }
 
     // Style the view controller.
