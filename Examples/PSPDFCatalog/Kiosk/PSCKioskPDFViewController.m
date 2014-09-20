@@ -205,16 +205,16 @@
 
     if (!PSCIsIPad()) {
         if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.outlineButtonItem];
+            [additionalRightBarButtonItems insertObject:self.outlineButtonItem atIndex:0];
             [activities addObject:PSPDFActivityTypeOutline];
         }
-        if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.searchButtonItem];
-            [activities addObject:PSPDFActivityTypeSearch];
-        }
         if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
+            [additionalRightBarButtonItems insertObject:self.bookmarkButtonItem atIndex:0];
             [activities addObject:PSPDFActivityTypeBookmarks];
+        }
+        if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
+            [additionalRightBarButtonItems insertObject:self.searchButtonItem atIndex:0];
+            [activities addObject:PSPDFActivityTypeSearch];
         }
     }
 
