@@ -49,15 +49,15 @@
 
 @implementation PSContent
 
-+ (instancetype)contentWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
-    return [(PSContent *)[self alloc] initWithTitle:title contentDescription:description block:block];
++ (instancetype)contentWithTitle:(NSString *)title description:(NSString *)description block:(PSControllerBlock)block {
+    return [(PSContent *)[self alloc] initWithTitle:title description:description block:block];
 }
 
 + (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block {
-    return [self contentWithTitle:title contentDescription:nil block:block];
+    return [self contentWithTitle:title description:nil block:block];
 }
 
-- (instancetype)initWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
+- (instancetype)initWithTitle:(NSString *)title description:(NSString *)description block:(PSControllerBlock)block {
     if ((self = [super init])) {
         _title = title;
         _contentDescription = description;

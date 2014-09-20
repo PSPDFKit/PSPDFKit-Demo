@@ -98,16 +98,16 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:@"Example Applications" footer:nil];
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" description:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
 
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Callouts.pdf"]];
+        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_XRefRecursion.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Case Study from Box" contentDescription:@"Incudes a RichMedia inline video that works in Acrobat and PSPDFKit." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Case Study from Box" description:@"Incudes a RichMedia inline video that works in Acrobat and PSPDFKit." block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kCaseStudyBox]];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
@@ -120,11 +120,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" contentDescription:@"Dispays all documents in the Sample directory" block:^UIViewController *{
+    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" description:@"Dispays all documents in the Sample directory" block:^UIViewController *{
         return [PSCGridViewController new];
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" contentDescription:@"Allows to open multiple documents via a tabbed interface." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" description:@"Allows to open multiple documents via a tabbed interface." block:^{
         if (PSCIsIPad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
@@ -135,14 +135,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" contentDescription:@"Displays all files in the Inbox directory via the PSPDFDocumentPickerController." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" description:@"Displays all files in the Inbox directory via the PSPDFDocumentPickerController." block:^{
         // Add all documents in the Documents folder and subfolders (e.g. Inbox from Open In... feature)
         PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Settings for a magazine" contentDescription:@"Large thumbnails, page curl, sliding HUD." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Settings for a magazine" description:@"Large thumbnails, page curl, sliding HUD." block:^{
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
         hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12"; // Override document title.
@@ -171,7 +171,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" contentDescription:@"Automatic text link detection, continuous scrolling, default style." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" description:@"Automatic text link detection, continuous scrolling, default style." block:^{
         // Initialize document and enable link autodetection.
         PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
@@ -198,7 +198,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return (UIViewController *)nil;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" contentDescription:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" description:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
         if (PSCIsIPad()) {
 			PSCDropboxSplitViewControllerContainer *containerController = [[PSCDropboxSplitViewControllerContainer alloc] init];
             [self presentViewController:containerController animated:YES completion:NULL];
@@ -226,7 +226,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             currentSection = [PSCSectionDescriptor sectionWithTitle:PSPDFHeaderFromExampleCategory(currentCategory) footer:PSPDFFooterFromExampleCategory(currentCategory)];
             [sections addObject:currentSection];
         }
-        [currentSection addContent:[PSContent contentWithTitle:example.title contentDescription:example.contentDescription block:^UIViewController *{
+        [currentSection addContent:[PSContent contentWithTitle:example.title description:example.contentDescription block:^UIViewController *{
             return [example invokeWithDelegate:weakSelf];
         }]];
     }
