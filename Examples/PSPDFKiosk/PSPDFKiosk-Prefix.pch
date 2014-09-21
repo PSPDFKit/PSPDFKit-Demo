@@ -2,20 +2,20 @@
 // Prefix header for all source files of the 'PSPDFKiosk' target in the 'PSPDFKiosk' project
 //
 
-#import <Availability.h>
+@import Darwin.Availability;
 
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
 #ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import <PSPDFKit/PSPDFKit.h>
+    @import UIKit;
+    @import Foundation;
+    @import PSPDFKit;
 
     // AFNetworking
-    #import <SystemConfiguration/SystemConfiguration.h>
-    #import <MobileCoreServices/MobileCoreServices.h>
+    @import SystemConfiguration;
+    @import MobileCoreServices;
 
     #import "PSCAvailability.h"
     #import "PSCViewHelper.h"
