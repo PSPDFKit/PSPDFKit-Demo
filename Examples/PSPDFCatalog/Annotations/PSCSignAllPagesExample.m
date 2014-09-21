@@ -80,7 +80,7 @@ static const char PSCSignatureCompletionBlock;
                 annotation.lineWidth = 3.f;
                 // Add lines to bottom right. (PDF zero is bottom left)
                 annotation.boundingBox = CGRectMake(pageInfo.rect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
-                annotation.color = penBlueColor;
+                annotation.color = signatureController.drawView.strokeColor;
                 annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
                 annotation.page = pageIndex;
 
