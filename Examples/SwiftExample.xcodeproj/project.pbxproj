@@ -11,10 +11,8 @@
 		784464241956846700BE4011 /* PSPDFKit-Acknowledgements in Resources */ = {isa = PBXBuildFile; fileRef = 7844641C1956846700BE4011 /* PSPDFKit-Acknowledgements */; };
 		784464251956846700BE4011 /* PSPDFKit-License in Resources */ = {isa = PBXBuildFile; fileRef = 7844641D1956846700BE4011 /* PSPDFKit-License */; };
 		784464261956846700BE4011 /* PSPDFKit-License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7844641E1956846700BE4011 /* PSPDFKit-License.pdf */; };
-		784464271956846700BE4011 /* PSPDFKit-nosqlite.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7844641F1956846700BE4011 /* PSPDFKit-nosqlite.xcconfig */; };
 		784464281956846700BE4011 /* PSPDFKit-Version in Resources */ = {isa = PBXBuildFile; fileRef = 784464201956846700BE4011 /* PSPDFKit-Version */; };
 		784464291956846700BE4011 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 784464211956846700BE4011 /* PSPDFKit.bundle */; };
-		7844642A1956846700BE4011 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 784464221956846700BE4011 /* PSPDFKit.xcconfig */; };
 		7844642C1956846C00BE4011 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7844642B1956846C00BE4011 /* Samples */; };
 		78DE043C19563B73006CB968 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE043B19563B73006CB968 /* AppDelegate.swift */; };
 		78DE043E19563B73006CB968 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DE043D19563B73006CB968 /* Images.xcassets */; };
@@ -137,7 +135,7 @@
 		78DE042E19563B73006CB968 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "PSPDFKit GmbH";
 				TargetAttributes = {
 					78DE043519563B73006CB968 = {
@@ -173,8 +171,6 @@
 				784464251956846700BE4011 /* PSPDFKit-License in Resources */,
 				784464261956846700BE4011 /* PSPDFKit-License.pdf in Resources */,
 				784464241956846700BE4011 /* PSPDFKit-Acknowledgements in Resources */,
-				7844642A1956846700BE4011 /* PSPDFKit.xcconfig in Resources */,
-				784464271956846700BE4011 /* PSPDFKit-nosqlite.xcconfig in Resources */,
 				78DE043E19563B73006CB968 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
