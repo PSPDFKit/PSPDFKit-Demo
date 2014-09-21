@@ -458,7 +458,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSUInteger annotationCounter = 0;
         for (NSUInteger pageIndex = 0; pageIndex < 10; pageIndex++) {
             for (PSPDFWord *word in [document textParserForPage:pageIndex].words) {
-                if ([word.stringValue isEqualToString:@"Batman"]) {
+                if ([word.stringValue isEqualToString:@"Week"]) {
                     CGRect boundingBox;
                     NSArray *highlighedRects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:pageIndex].rotationTransform, &boundingBox);
                     PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
@@ -585,10 +585,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Search for Batman, without controller" block:^UIViewController *{
+    [subclassingSection addContent:[PSContent contentWithTitle:@"Search for Week, without controller" block:^UIViewController *{
         PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
-        pdfController.highlightedSearchText = @"Batman";
+        pdfController.highlightedSearchText = @"Week";
         return pdfController;
     }]];
 
