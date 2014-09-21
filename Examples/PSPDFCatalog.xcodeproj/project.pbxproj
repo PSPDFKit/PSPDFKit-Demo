@@ -1413,6 +1413,7 @@
 					"-Wno-bad-function-cast",
 					"-Wno-documentation-unknown-command",
 					"-Wno-packed",
+					"-Wno-padded",
 				);
 			};
 			name = Debug;
@@ -1492,6 +1493,7 @@
 					"-Wno-bad-function-cast",
 					"-Wno-documentation-unknown-command",
 					"-Wno-packed",
+					"-Wno-padded",
 				);
 			};
 			name = Release;
