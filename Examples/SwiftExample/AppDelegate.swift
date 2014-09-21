@@ -25,8 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit QuickStart Guide.pdf")
         var document = PSPDFDocument(URL: fileURL)
-        var pdfController = PDFViewController(document: document)
-        pdfController.thumbnailBarMode = .Scrollable
+        var configuration = PSPDFConfiguration  { (builder) -> Void in
+            builder.thumbnailBarMode = .Scrollable;
+        }
+        var pdfController = PDFViewController(document: document, configuration: configuration)
 
         self.window!.rootViewController = UINavigationController(rootViewController: pdfController)
         self.window!.makeKeyAndVisible()
