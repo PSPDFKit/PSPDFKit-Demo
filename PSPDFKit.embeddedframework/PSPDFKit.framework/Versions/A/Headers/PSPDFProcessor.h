@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class PSPDFDocument, PSPDFConversionOperation;
 
@@ -93,12 +94,14 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
  - `kCGPDFContextKeywords`
  - `kCGPDFContextAuthor`
 
- PSPDFKit Basic/Complete feature. Not available for PSPDFKit Viewer.
+ @note Requires the `PSPDFFeatureMaskPDFCreation` feature flag.
 
  @warning
  Don't manually override NSOperation's `completionBlock`.
  If this helper is used, operation will be automatically queued in `conversionOperationQueue`.
  When a password is set, only link annotations can be added as dictionary (this does not affect flattening)
+
+ Don't use this for PDF files!
 */
 - (PSPDFConversionOperation *)generatePDFFromURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputURL options:(NSDictionary *)options completionBlock:(void (^)(NSURL *fileURL, NSError *error))completionBlock;
 
@@ -111,12 +114,12 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @end
 
 /// Operation that converts many file formats to PDF.
-/// Needs to be executed from a thread. PSPDFKit Basic/Complete feature.
+/// Needs to be executed from a thread. Requires the `PSPDFFeatureMaskPDFCreation` feature flag.
 @interface PSPDFConversionOperation : NSOperation
 
 /// Designated initializer.
-- (id)initWithURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputFileURL options:(NSDictionary *)options completionBlock:(void (^)(NSURL *fileURL, NSError *error))completionBlock;
-- (id)initWithURL:(NSURL *)inputURL options:(NSDictionary *)options completionBlock:(void (^)(NSData *fileData, NSError *error))completionBlock;
+- (instancetype)initWithURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputFileURL options:(NSDictionary *)options completionBlock:(void (^)(NSURL *fileURL, NSError *error))completionBlock NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithURL:(NSURL *)inputURL options:(NSDictionary *)options completionBlock:(void (^)(NSData *fileData, NSError *error))completionBlock NS_DESIGNATED_INITIALIZER;
 
 /// Input. Needs to be a file URL.
 @property (nonatomic, copy, readonly) NSURL *inputURL;

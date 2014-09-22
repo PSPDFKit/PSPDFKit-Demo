@@ -10,23 +10,23 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 
-@class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation, PSPDFDocument;
+@class PSPDFFontInfo, PSPDFGraphicsState, PSPDFDocumentProvider;
 
 // Defaults to 5. Increase for certain documents.
 extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
 
 /// Parses the text of a PDF page.
-@interface PSPDFTextParser : NSObject <NSCoding>
+@interface PSPDFTextParser : NSObject <NSSecureCoding>
 
 /// Designated initializer.
 /// `fontCache` is optional, share only between one `PSPDFDocumentProvider`.
 /// `page` is absolute to `PSPDFDocument`.
-- (id)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page document:(PSPDFDocument *)document fontCache:(NSMutableDictionary *)fontCache hideGlyphsOutsidePageRect:(BOOL)hideGlyphsOutsidePageRect PDFBox:(CGPDFBox)PDFBox;
+- (instancetype)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page documentProvider:(PSPDFDocumentProvider *)documentProvider fontCache:(NSMutableDictionary *)fontCache hideGlyphsOutsidePageRect:(BOOL)hideGlyphsOutsidePageRect PDFBox:(CGPDFBox)PDFBox;
 
 /// Directly parse a specific stream.
-- (id)initWithStream:(CGPDFStreamRef)stream;
+- (instancetype)initWithStream:(CGPDFStreamRef)stream;
 
 /// The complete page text, including extrapolated spaces and newline characters.
 @property (nonatomic, copy, readonly) NSString *text;
@@ -46,8 +46,8 @@ extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
 /// List of detected text blocks (`PSPDFTextBlock`)
 @property (nonatomic, strong, readonly) NSArray *textBlocks;
 
-/// Associated document.
-@property (atomic, weak) PSPDFDocument *document;
+/// Associated document provider.
+@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Uses glyphs to return the corresponding page text, including newlines and spaces.
 - (NSString *)textWithGlyphs:(NSArray *)glyphs;

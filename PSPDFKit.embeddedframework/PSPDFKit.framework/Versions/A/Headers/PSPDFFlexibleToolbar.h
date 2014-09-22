@@ -64,7 +64,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /**
  A custom toolbar, that can dragged around the screen and anchored to different positions.
 
- This class holds an array of `UIButton` objects. For best results use `PSPDFFlexibleToolbarButton` or one of it's subclasses.
+ This class holds an array of `UIButton` objects. For best results use `PSPDFFlexibleToolbarButton` or one of its subclasses.
  PSPDFFlexibleToolbar should be used in combination with a `PSPDFFlexibleToolbarContainer` instance.
  The bar's visual appearance can be customized using UIAppearance compliant properties.
 
@@ -82,7 +82,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// Sets the toolbar position and optionally animates the change (move or fade, depending on whether the orientation changes)
 - (void)setToolbarPosition:(PSPDFFlexibleToolbarPosition)toolbarPosition animated:(BOOL)animated;
 
-/// Container delegate. (Can be freely set to any receiver)
+/// Toolbar delegate. (Can be freely set to any receiver)
 @property (nonatomic, weak) id<PSPDFFlexibleToolbarDelegate> toolbarDelegate;
 
 /// Enables or disables toolbar dragging (hides the `dragView` when disabled).
@@ -90,7 +90,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 @property (nonatomic, assign, getter = isDragEnabled) BOOL dragEnabled;
 
 /// Currently set buttons. Needs to be an array of UIButton instances.
-/// For best results use `PSPDFFlexibleToolbarButton` and it's subclasses.
+/// For best results use `PSPDFFlexibleToolbarButton` and its subclasses.
 /// Use `PSPDFFlexibleToolbarSpacerButton` to add fixed or flexible space to the toolbar.
 @property (nonatomic, copy) NSArray *buttons;
 
@@ -98,7 +98,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 - (void)setButtons:(NSArray *)buttons animated:(BOOL)animated;
 
 /// The currently selected button. The selected button is indicated by a selection bezel behind the button.
-/// In UIKit flat mode, the selected button's tint color gets adjusted to `selectedTintColor`.
+/// The selected button's tint color gets automatically adjusted to `selectedTintColor` as well.
 @property (nonatomic, strong) UIButton *selectedButton;
 
 /// Sets the selection button and optionally fades the selection view.
@@ -123,18 +123,17 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// Visible only if `dragEnabled` is set to YES.
 @property (nonatomic, strong, readonly) PSPDFFlexibleToolbarDragView *dragView;
 
-/// The bar tint color. Gets passed on to the background view (setting it's `barTintColor` if implemented,
-/// otherwise it's backgroundColor).
+/// The bar tint color. Gets passed on to the background view (setting its `barTintColor` if implemented,
+/// otherwise its backgroundColor).
 @property (nonatomic, strong) UIColor *barTintColor UI_APPEARANCE_SELECTOR;
 
 /// The tint color for selected buttons.
-/// Only available in UIKit flat mode.
 /// Defaults to `barTintColor` if available, otherwise an attempt is made to select an appropriate color
 /// based on the `backgroundView` appearance.
 @property (nonatomic, strong) UIColor *selectedTintColor UI_APPEARANCE_SELECTOR;
 
 /// The selection bezel color.
-/// Defaults to self.tintColor in UIKit flat mode and 50% white otherwise.
+/// Defaults to self.tintColor.
 @property (nonatomic, strong) UIColor *selectedBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /// Toolbar positions that draw a thin border around the toolbar.
@@ -145,17 +144,16 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 /// Defaults to `PSPDFFlexibleToolbarPositionsVertical`.
 @property (nonatomic, assign) PSPDFFlexibleToolbarPosition shadowedToolbarPositions UI_APPEARANCE_SELECTOR;
 
-/// Matches the background view appearance to the provided UINavigationBar or UIToolbar.
-/// Includes barTintColor, barStyle, translucency, etc.
-/// Some appearance attributes are only matched if there are't any existing UIAppearance presets for that attribute.
+/// Matches the toolbar appearance to the provided UINavigationBar or UIToolbar.
+/// Includes `barTintColor`, `tintColor`, `barStyle` and `translucency`.
+/// The `barTintColor` and `tintColor` are only matched if the haven't been already explicitly set (using properties or UIAppearance).
 - (void)matchUIBarAppearance:(UIView<PSPDFSystemBar> *)navigationBarOrToolbar;
 
 /// @name Metrics
 
 /// Returns the toolbars native size for the provided position, bound to the `availableSize`.
 /// Internally used by the container view to correctly position the toolbar and anchor views during drag & drop.
-/// In flat mode, the toolbar height will be increased when docked underneath the status bar by the
-/// `PSPDFFlexibleToolbarContainer`.
+/// The toolbar height will be increased when docked underneath the status bar by `PSPDFFlexibleToolbarContainer`.
 /// @see -[PSPDFToolbarContainer rectForToolbarPosition:]
 - (CGSize)preferredSizeFitting:(CGSize)availableSize forToolbarPosition:(PSPDFFlexibleToolbarPosition)position;
 
@@ -192,7 +190,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 @interface PSPDFFlexibleToolbarDragView : UIView
 
 /// Color used for the bar indicators or as the background color in inverted mode.
-/// Defaults to `tintColor` in UIKit flat mode and `[UIColor lightGrayColor]` otherwise.
+/// Defaults to `tintColor` in UIKit.
 @property (nonatomic, strong) UIColor *barColor;
 
 /// Inverts the bar and background color (can be used to indicate selection).
@@ -203,11 +201,11 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 
 @end
 
-/// A UIButton subclass that mimic the appearance of plain style UIBarButtonItems. 
+/// A UIButton subclass that mimic the appearance of plain style UIBarButtonItems.
 @interface PSPDFFlexibleToolbarButton : UIButton
 
 /// Designates the button to be collapsible into one item, if toolbar space is limited.
-/// Defaults to YES. 
+/// Defaults to YES.
 @property (nonatomic, assign, getter = isCollapsible) BOOL collapsible;
 
 /// Styles the provided image and sets it as the button image for several button states.

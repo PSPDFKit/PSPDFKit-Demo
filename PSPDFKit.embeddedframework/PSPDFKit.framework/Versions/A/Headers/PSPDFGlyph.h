@@ -10,19 +10,20 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class PSPDFFontInfo;
 
 /// Represents a single character (glyph, quad) on the PDF page.
 /// @warning: Don't manually change glyphs, treat them as readonly.
-@interface PSPDFGlyph : NSObject <NSCopying, NSCoding>
+@interface PSPDFGlyph : NSObject <NSCopying, NSSecureCoding>
 
 /// Designated initializer.
-- (id)initWithFrame:(CGRect)frame content:(NSString *)content font:(PSPDFFontInfo *)font;
+- (instancetype)initWithFrame:(CGRect)frame content:(NSString *)content font:(PSPDFFontInfo *)font NS_DESIGNATED_INITIALIZER;
 
-/// Frame of the glyph. Doesn't has `pageRotation` applied.
-/// To apply the pageRotation, use `CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.pageRotationTransform)`
+/// Frame of the glyph. Doesn't has `rotation` applied.
+/// To apply the rotation, use `CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.rotationTransform)`
 /// (`PSPDFWord` etc do have convenience methods for this)
 @property (nonatomic, assign, readonly) CGRect frame;
 
@@ -33,7 +34,7 @@
 /// @warning font is not retained for performance reasons. Don't access after the corresponding `textParser` has been deallocated.
 @property (nonatomic, unsafe_unretained) PSPDFFontInfo *font;
 
-/// Set if after this glyph a \n is there.
+/// Set if after this glyph a \\n is there.
 @property (nonatomic, assign, readonly) BOOL lineBreaker;
 
 /// Dynamically evaluated. Return YES if glyph is a word boundary (space, parenthesis)
@@ -61,12 +62,12 @@ extern BOOL PSPDFGlyphIsOnSameLineSegmentAsGlyph(PSPDFGlyph *glyph1, PSPDFGlyph 
 @end
 
 /// Global helper to convert glyphs to rects.
-/// `t` is `the pageRotationTransform` of `PSPDFPageInfo`.
+/// `t` is `the rotationTransform` of `PSPDFPageInfo`.
 /// `boundingBox` will already be transformed with `t`.
 extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRect *boundingBox);
 
 /// Returns the bounding box that includes all glyphs.
-/// `t` is the `pageRotationTransform` of `PSPDFPageInfo`.
+/// `t` is the `rotationTransform` of `PSPDFPageInfo`.
 extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
 
 /// Scans glyphs and reduces the selection to columns.

@@ -19,4 +19,10 @@
 /// The annotation set.
 @property (nonatomic, strong) PSPDFAnnotationSet *annotationSet;
 
+// If set, resizes to cell bounds.
+//@property (nonatomic, assign) BOOL shouldResizeToCellBounds;
+
+// Edge insets for the set image.
+@property (nonatomic, assign) UIEdgeInsets edgeInsets UI_APPEARANCE_SELECTOR;
+
 @end

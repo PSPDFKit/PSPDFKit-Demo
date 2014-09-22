@@ -13,9 +13,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFPersistentCloseButtonMode) {
-    PSPDFPersistentCloseButtonModeNone,
-    PSPDFPersistentCloseButtonModeLeft,
-    PSPDFPersistentCloseButtonModeRight
+    PSPDFPersistentCloseButtonModeNone, /// No persistent close button.
+    PSPDFPersistentCloseButtonModeLeft, /// Persistent close button on the left.
+    PSPDFPersistentCloseButtonModeRight /// Persistent close button on the right.
 };
 
 /// Simple subclass that forwards following iOS6 rotation methods to the top view controller:

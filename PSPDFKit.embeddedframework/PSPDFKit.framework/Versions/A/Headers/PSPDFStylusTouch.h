@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, PSPDFStylusTouchClassification) {
 
 @interface PSPDFDefaultStylusTouch : NSObject <PSPDFStylusTouch>
 
-- (id)initWithClassification:(PSPDFStylusTouchClassification)classification pressure:(CGFloat)pressure;
+- (instancetype)initWithClassification:(PSPDFStylusTouchClassification)classification pressure:(CGFloat)pressure NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, assign, readonly) PSPDFStylusTouchClassification classification;
 @property (nonatomic, assign, readonly) CGFloat pressure; // can be 0..1;
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, PSPDFStylusTouchClassification) {
 
 @interface PSPDFStylusTouchClassificationInfo : NSObject
 
-- (id)initWithTouch:(UITouch *)touch touchID:(NSInteger)touchID oldValue:(PSPDFStylusTouchClassification)oldValue newValue:(PSPDFStylusTouchClassification)newValue;
+- (instancetype)initWithTouch:(UITouch *)touch touchID:(NSInteger)touchID oldValue:(PSPDFStylusTouchClassification)oldValue newValue:(PSPDFStylusTouchClassification)newValue NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong, readonly) UITouch *touch;
 @property (nonatomic, assign, readonly) NSInteger touchID;

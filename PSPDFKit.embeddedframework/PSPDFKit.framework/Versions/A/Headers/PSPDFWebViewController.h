@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFBaseViewController.h"
 #import "PSPDFStyleable.h"
 
@@ -18,9 +19,6 @@
 
 /// Delegate for the `PSPDFWebViewController` to customize URL handling.
 @protocol PSPDFWebViewControllerDelegate <NSObject>
-
-/// Controller where the `PSPDFWebViewController` has been pushed to. (to dismiss modally)
-- (UIViewController *)masterViewController;
 
 @optional
 
@@ -51,18 +49,16 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Use this to get a `UINavigationController` with a done-button.
 + (UINavigationController *)modalWebViewWithURL:(NSURL *)URL;
 
-/// Creates a new `PSPDFWebViewController` with the specified URL.
-- (id)initWithURL:(NSURL *)URL;
-
 /// Creates a new `PSPDFWebViewController` with the specified custom URL request.
-- (id)initWithURLRequest:(NSURLRequest *)URLRequest;
+- (instancetype)initWithURLRequest:(NSURLRequest *)request;
+
+/// Creates a new `PSPDFWebViewController` with the specified URL.
+- (instancetype)initWithURL:(NSURL *)URL;
 
 /// Controls the available actions under the more icon.
-/// Defaults to all actions available in `PSPDFWebViewControllerAvailableActions`.
+/// Defaults to `PSPDFWebViewControllerAvailableActionsAll&~PSPDFWebViewControllerAvailableActionsStopReload` on iPad and
+/// `PSPDFWebViewControllerAvailableActionsAll` on iPhone (but with conditionally visible toolbars).
 @property (nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
-
-/// Internal webview.
-@property (nonatomic, strong, readonly) UIWebView *webView;
 
 /// Access popover controller, if attached.
 @property (nonatomic, strong) UIPopoverController *popoverController;
@@ -86,30 +82,33 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL shouldUpdateTitleFromWebContent;
 
-@end
-
-@interface PSPDFWebViewController (Advanced)
+/// Uses `WKWebView` when available. Needs to be set before the view is initialized. YES on iOS 8 and higher.
+/// This can also be controlled via the global `PSPDFWebKitLegacyModeKey` setting.
+@property (nonatomic, assign) BOOL useModernWebKit;
 
 /// The excluded activities.
-/// Defaults to `@[UIActivityTypePostToWeibo, UIActivityTypeSaveToCameraRoll]`.
+/// Defaults to `@[UIActivityTypePostToWeibo, UIActivityTypePostToTencentWeibo, UIActivityTypeSaveToCameraRoll]`.
 @property (nonatomic, copy) NSArray *excludedActivities;
 
 @end
 
 @interface PSPDFWebViewController (SubclassingHooks)
 
+/// Internal webview. Either `UIWebView` or `WKWebView`, depending if iOS 7 or iOS 8+.
+@property (nonatomic, strong, readonly) UIView *webView;
+
 /// Override if you have your own network activity manager.
 /// Defaults to `[UIApplication.sharedApplication setNetworkActivityIndicatorVisible:YES]`;
 - (void)setActivityIndicatorEnabled:(BOOL)enabled;
 
 /// Called on error events if useCustomErrorPage is set.
-/// Uses the "StandardError.html" inside `PSPDFKit.bundle`.
+/// Uses the `StandardError.html` inside `PSPDFKit.bundle`.
 - (void)showHTMLWithError:(NSError *)error;
 
 // This is your chance to modify the settings on the activity controller before it's displayed.
 - (UIActivityViewController *)createDefaultActivityViewController;
 
-// Toolbar items. Subclass as needed.
+// Toolbar action items. Subclass as needed.
 - (void)goBack:(id)sender;
 - (void)goForward:(id)sender;
 - (void)reload:(id)sender;

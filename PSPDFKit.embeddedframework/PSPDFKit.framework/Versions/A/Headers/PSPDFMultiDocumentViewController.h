@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFBaseViewController.h"
 #import "PSPDFDocument.h"
 
@@ -39,7 +40,7 @@
 
 /// Initialize the controller.
 /// Set a custom `pdfController` to use a subclass. If nil, a default instance will be created.
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
+- (instancetype)initWithPDFViewController:(PSPDFViewController *)pdfController;
 
 /// Currently visible document.
 @property (nonatomic, strong) PSPDFDocument *visibleDocument;

@@ -10,7 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+// Checks that the `requested` interface orientation is supported by controller and application.
+// Pass in the controller's supportedInterfaceOrientations as `supported`.
+// Returns the current interface orientation if the check fails.
+UIInterfaceOrientation PSPDFSafePreferredInterfaceOrientation(UIInterfaceOrientation requested, NSUInteger supported);
 
 @interface PSPDFBaseViewController : UIViewController
 
@@ -18,8 +24,8 @@
 
 @interface PSPDFBaseViewController (SubclassingHooks)
 
-// Called when the iOS 7+ font system base size is changed.
-- (void)contentSizeDidChangeNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+// Called when the font system base size is changed.
+- (void)contentSizeDidChange NS_REQUIRES_SUPER;
 
 @end
 
@@ -33,9 +39,12 @@
 - (void)viewDidDisappear:(BOOL)animated NS_REQUIRES_SUPER;
 - (void)viewWillLayoutSubviews NS_REQUIRES_SUPER;
 - (void)viewDidLayoutSubviews NS_REQUIRES_SUPER;
+
+- (void)didReceiveMemoryWarning NS_REQUIRES_SUPER;
+
+// Deprecated methods
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration NS_REQUIRES_SUPER;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration NS_REQUIRES_SUPER;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation NS_REQUIRES_SUPER;
-- (void)didReceiveMemoryWarning NS_REQUIRES_SUPER;
 
 @end

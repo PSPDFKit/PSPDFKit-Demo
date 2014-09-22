@@ -24,17 +24,17 @@
 @interface PSPDFMenuItem : UIMenuItem
 
 /// Initialize `PSPDFMenuItem` with a block.
-- (id)initWithTitle:(NSString *)title block:(void (^)())block;
+- (instancetype)initWithTitle:(NSString *)title block:(void (^)())block;
 
 /// Initialize `PSPDFMenuItem` with a block and an non-localized identifier for later manipulation.
-- (id)initWithTitle:(NSString *)title block:(void (^)())block identifier:(NSString *)identifier;
+- (instancetype)initWithTitle:(NSString *)title block:(void (^)())block identifier:(NSString *)identifier;
 
 /// Initialize `PSPDFMenuItem` with an image, a block and an non-localized identifier for later manipulation.
 /// Will not allow image colors.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier;
+- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier;
 
 /// Initialize PSPDFMenuItem with an image, a block and an non-localized identifier for later manipulation.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier allowImageColors:(BOOL)allowImageColors;
+- (instancetype)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier allowImageColors:(BOOL)allowImageColors NS_DESIGNATED_INITIALIZER;
 
 /// Menu item can be enabled/disabled. (disable simply hides it from the UIMenuController)
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;

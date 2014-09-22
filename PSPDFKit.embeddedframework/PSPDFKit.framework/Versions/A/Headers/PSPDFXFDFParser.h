@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationProvider.h"
 
@@ -19,7 +19,7 @@
 @interface PSPDFXFDFParser : NSObject
 
 /// Designated initializer.
-- (id)initWithInputStream:(NSInputStream *)inputStream documentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream documentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /// Parse XML and block until it's done. Returns the resulting annotations after parsing is finished
 /// (which can also be accessed later on).

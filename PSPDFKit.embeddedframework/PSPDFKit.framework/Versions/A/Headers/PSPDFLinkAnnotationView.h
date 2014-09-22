@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFAnnotationViewProtocol.h"
-#import "PSPDFKitGlobal.h"
 #import "PSPDFLinkAnnotationBaseView.h"
 
 @class PSPDFLinkAnnotation;
@@ -35,13 +35,5 @@
 
 /// Increases touch target by overspan pixel. Defaults to 15/15. Overspan is not visible.
 @property (nonatomic, assign) CGSize overspan UI_APPEARANCE_SELECTOR;
-
-/// For performance reasons, rounded corners are disabled if too many link views are on a page.
-/// Defaults to YES.
-@property (nonatomic, assign) BOOL allowToDisableRoundedCorners;
-
-/// If set to YES, will save the last rounded corner setting, and restore if set to no.
-/// Defaults to NO.
-@property (nonatomic, assign) BOOL disableRoundedCorners;
 
 @end

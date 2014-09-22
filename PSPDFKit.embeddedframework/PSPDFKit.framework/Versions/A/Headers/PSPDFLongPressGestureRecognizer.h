@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 // Customized gesture recognizer that allows instant activation with a special delegate call.
 @interface PSPDFLongPressGestureRecognizer : UILongPressGestureRecognizer

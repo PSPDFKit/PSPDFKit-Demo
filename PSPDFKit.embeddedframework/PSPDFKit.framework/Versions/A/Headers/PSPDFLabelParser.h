@@ -12,7 +12,8 @@
 //  Special thanks to Cédric Luthi for providing the code.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class PSPDFDocumentProvider;
 
@@ -21,14 +22,12 @@
 /// http://www.w3.org/WAI/GL/WCAG20-TECHS/PDF17.html
 @interface PSPDFLabelParser : NSObject
 
-/// Init label parser with document provider.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+/// Init label parser with document provider and optionally a predefined labels set.
+/// If `labels` is nil, the PDF will be parsed for labels lazily.
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider labels:(NSDictionary *)labels NS_DESIGNATED_INITIALIZER;
 
 /// Attached document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
-
-/// Parse document, returns labels (`NSStrings`)
-- (NSDictionary *)parseDocument;
 
 /// Returns a page label for a certain page. Returns nil if no `pageLabel` is available.
 - (NSString *)pageLabelForPage:(NSUInteger)page;
@@ -38,7 +37,7 @@
 - (NSUInteger)pageForPageLabel:(NSString *)pageLabel partialMatching:(BOOL)partialMatching;
 
 /// Returns page labels. Starts parsing if labels are not yet created.
-/// `NSNumber` -> `NSString`.
+/// @return Labels as ordered dictionary of page number (`NSNumber`) to  page label (`NSStrings`).
 @property (nonatomic, copy, readonly) NSDictionary *labels;
 
 @end

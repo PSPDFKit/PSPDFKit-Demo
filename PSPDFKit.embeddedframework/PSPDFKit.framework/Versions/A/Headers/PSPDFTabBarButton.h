@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface PSPDFTabBarCloseButton : UIButton
 @end
@@ -33,5 +34,16 @@
 
 /// Maximum tab width. Defaults to 300.
 @property (nonatomic, assign) CGFloat maxTabWidth;
+
+/// @name Appearance
+
+/// The background color for tabs. Defaults to light gray.
+@property (nonatomic, strong) UIColor *tabColor UI_APPEARANCE_SELECTOR;
+
+/// Background color for selected tabs. Defaults to dark gray.
+@property (nonatomic, strong) UIColor *selectedTabColor UI_APPEARANCE_SELECTOR;
+
+/// Background color for highlighted (pressed) tabs. Defaults to black.
+@property (nonatomic, strong) UIColor *highlightedTabColor UI_APPEARANCE_SELECTOR;
 
 @end

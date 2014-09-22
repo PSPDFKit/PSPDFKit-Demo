@@ -10,19 +10,19 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 
 /// Represents multiple words forming a text block. (e.g. a Column)
-@interface PSPDFTextBlock : NSObject <NSCopying, NSCoding>
+@interface PSPDFTextBlock : NSObject <NSCopying, NSSecureCoding>
 
 /// Designated initializer.
-- (id)initWithGlyphs:(NSArray *)glyphs;
+- (instancetype)initWithGlyphs:(NSArray *)glyphs NS_DESIGNATED_INITIALIZER;
 
 /// Frame of the text block. Not rotated.
 @property (nonatomic, assign, readonly) CGRect frame;
 
 /// All glyphs of the current text block.
-@property (nonatomic, copy) NSArray *glyphs;
+@property (nonatomic, copy, readonly) NSArray *glyphs;
 
 /// All words of the current text block. Evaluated lazily.
 @property (nonatomic, copy, readonly) NSArray *words;

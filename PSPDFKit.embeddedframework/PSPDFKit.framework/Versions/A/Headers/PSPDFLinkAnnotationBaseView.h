@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationViewProtocol.h"
+#import "PSPDFModernizer.h"
 
 @class PSPDFLinkAnnotation;
 
@@ -19,7 +19,7 @@
 @interface PSPDFLinkAnnotationBaseView : UIView <PSPDFAnnotationViewProtocol>
 
 /// All annotation views are initialized with a frame.
-- (id)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /// Saves the attached link annotation.
 @property (nonatomic, strong, readonly) PSPDFLinkAnnotation *linkAnnotation;

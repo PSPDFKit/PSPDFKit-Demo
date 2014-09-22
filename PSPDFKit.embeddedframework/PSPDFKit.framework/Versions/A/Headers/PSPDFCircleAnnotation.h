@@ -16,7 +16,7 @@
 @interface PSPDFCircleAnnotation : PSPDFAnnotation
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init;
 
 /// The path that represents the circle.
 @property (nonatomic, strong, readonly) UIBezierPath *bezierPath;

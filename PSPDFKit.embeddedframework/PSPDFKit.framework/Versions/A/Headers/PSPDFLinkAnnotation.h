@@ -40,18 +40,13 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
 
 /// Designated initializer for custom, at runtime created `PSPDFLinkAnnotations`.
-- (id)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
+- (instancetype)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
+
+/// Initialize with an action.
+- (instancetype)initWithAction:(PSPDFAction *)action;
 
 /// Initialize link annotation with target URL.
-- (id)initWithURL:(NSURL *)URL;
-
-/// Initialize link annotation with target URL string.
-/// Can also be used for pspdfkit:// URLs.
-/// For example, to add a PSPDFKit image annotation, use `[NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, NSBundle.mainBundle.bundlePath]` as `URLString`.
-- (id)initWithURLString:(NSString *)URLString;
-
-/// Initialize link annotation with target page.
-- (id)initWithPage:(NSUInteger)page;
+- (instancetype)initWithURL:(NSURL *)URL;
 
 /// PSPDFKit addition - will be updated if the `pspdfkit://` protocol is detected.
 @property (nonatomic, assign) PSPDFLinkAnnotationType linkType;
@@ -65,7 +60,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 - (PSPDFURLAction *)URLAction;
 
 /// Convenience method, will create a new `PSPDFURLAction` and get the URL from it.
-@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy, readonly) NSURL *URL;
 
 /// Will be YES if this is a regular link or a multimedia link annotation that should be displayed as link. (e.g. if `isPopover/isModal` is set to yes)
 @property (nonatomic, assign, readonly) BOOL showAsLinkView;

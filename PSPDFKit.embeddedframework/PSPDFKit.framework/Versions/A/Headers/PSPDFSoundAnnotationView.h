@@ -11,13 +11,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PSPDFLinkAnnotationBaseView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 
 @class PSPDFSoundAnnotation;
 @class PSPDFSoundAnnotationEditViewController;
 
 /// Displays and manages a sound annotation.
-@interface PSPDFSoundAnnotationView : PSPDFLinkAnnotationBaseView
+@interface PSPDFSoundAnnotationView : UIView <PSPDFAnnotationViewProtocol>
 
 /// The sound annotation
 @property (nonatomic, strong, readonly) PSPDFSoundAnnotation *soundAnnotation;

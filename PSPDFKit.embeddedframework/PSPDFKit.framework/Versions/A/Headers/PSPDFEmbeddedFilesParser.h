@@ -18,7 +18,7 @@
 @interface PSPDFEmbeddedFilesParser : NSObject
 
 /// Init label parser with document provider.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /// Attached document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;

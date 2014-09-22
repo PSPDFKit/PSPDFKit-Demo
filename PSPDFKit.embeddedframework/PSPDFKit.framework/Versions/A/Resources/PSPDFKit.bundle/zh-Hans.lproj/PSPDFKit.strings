@@ -57,6 +57,8 @@
 "Loading" = "正在加载";
 "Expand" = "展开";
 "Collapse" = "折叠";
+// SMS / iMessage sharing button
+"Message" = "信息";
 
 // thumbnails
 "Bookmarked" = "已加书签";
@@ -172,9 +174,11 @@
 "Preview" = "预览";
 "Stamp Text" = "印章文本";
 "Add Signature" = "添加签名";
+"Remove Signature" = "移除签名";
 "My Signature" = "我的签名";
 "No Signatures" = "没有签名"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "客户签名";
+"Please sign here" = "请在这里签名";
 "Note" = "注释";
 "Text" = "文本";
 "Delete Note" = "删除注释";
@@ -207,6 +211,14 @@
 "Merge" = "合并"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "样本";
 "Annotation Summary for %@:\n" = "%@ 批注摘要：";
+// title
+"Author Name" = "作者姓名";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "请输入您要为新插入的批注使用的作者姓名。";
+// text field placeholder
+"Name" = "姓名";
+// meaning: close
+"Dismiss" = "消除";
 "Fit to Text" = "适配文本";
 "Draw" = "绘图";
 "Sound" = "声音";
@@ -330,6 +342,9 @@
 "Speak" = "朗读"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "播放";
 "Pause" = "暂停";
+"Resume" = "继续";
+"Stop" = "停止";
+"Play/Stop" = "播放/停止";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "录制";
 "Pause Recording" = "暂停录制";
@@ -380,8 +395,8 @@
 "Something went wrong" = "出现问题";
 "This item is currently unavailable." = "此项目前不可用。";
 "The information for this gallery could not be loaded." = "无法加载此画廊的信息。";
-"Server Error" = "服务器错误";
-"The information for this gallery is invalid." = "此画廊的信息无效。";
+"Content Error" = "内容错误";
+"This content is unsupported." = "不支持此内容。";
 
 // Signatures
 "Digital Signature" = "数字签名";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 签名有效，且此文稿的内容自签名后没有修改。";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 无效签名 — 自本文稿内容签名后，它已被修改、 篡改或损坏。";
 "Unsigned Signature Field" = "未签名签名字段";
+"Do you really want to remove the signature from the document?" = "确实要将签名从文稿中移除？";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "无法解密证书签名。";
 "The public key in the certificate could not be read." = "无法读取证书中的公共密钥。";
 "The signature of the certificate is not valid." = "证书签名无效。";
+"Signature is not valid." = "签名无效。";
 "There is a format error in the notBefore field of the certificate." = "证书的 notBefore 字段存在格式错误。"; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "证书的 notAfter 字段出现格式错误。"; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "没有签名可以验证，因为证书链仅含有一个证书，它不是自签名，颁发者未被信任。";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "颁发者证书的 keyUsage 扩展名不允许证书签名。";
 "The certificate has expired." = "证书已过期。";
 "The certificate is not valid until a date in the future." = "证书在未来某日期之前无效。";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "无法从数据中读取 X509 证书";
+// X509 should not be translated
+"No X509 certificate found" = "未找到 X509 证书";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "无法读取 PKCS12 文件。文件格式错误或者损坏。";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "无法解锁 PKCS12 数据。您是否输入正确的密码？";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "无法打开文件进行签字验证";
+"Could not get signer info" = "无法获得签名者信息";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL 无法创建 PKCS7 对象";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL 无法将签名添加至 PKCS7 对象";
+"OpenSSL could not init PKCS7 object" = "OpenSSL 无法初始化 PKCS7 对象";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL 可以生成 PKCS7 签名";
+"OpenSSL could not sign hash" = "OpenSSL 无法签名 hash";
+"Could not write PKCS7 signature" = "无法写入 PKCS7 签名";
+
+

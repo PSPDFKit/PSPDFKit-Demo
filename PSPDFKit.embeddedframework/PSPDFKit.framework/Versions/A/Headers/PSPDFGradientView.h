@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, PSPDFGradientViewDirection) {
     PSPDFGradientViewDirectionHorizontal,

@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFDocument.h"
 #import "PSPDFContainerAnnotationProvider.h"
@@ -21,7 +20,7 @@
 @interface PSPDFFileAnnotationProvider : PSPDFContainerAnnotationProvider
 
 /// Designated initializer.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /// Default annotation username. Defaults to nil.
 /// Written as the "T" (title/user) property of newly created annotations.
@@ -39,11 +38,15 @@
 - (NSArray *)annotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 /// Will add the annotation to the current annotation array. Will accept any annotations.
-- (NSArray *)addAnnotations:(NSArray *)annotations;
+/// @param annotations An array of PSPDFAnnotation objects to be added.
+/// @param options Insertion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
+- (NSArray *)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Annotations are either removed (`PSPDFAnnotationsRemovedNotification`) or soft-deleted if they are already saved in the PDF.
 /// In case they are soft-deleted, a `PSPDFAnnotationChangedNotification` with isDeleted as keyPath is sent instead.
-- (NSArray *)removeAnnotations:(NSArray *)annotations;
+/// @param annotations An array of PSPDFAnnotation objects to be removed.
+/// @param options Deletion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
+- (NSArray *)removeAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Removes all annotation and re-evaluates the document on next access.
 - (void)clearCache;
@@ -58,7 +61,6 @@
 /// This defaults to `PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink` by default.
 /// Change this to PSPDFAnnotationTypeAll to also allow link annotation saving.
 /// Links are not saved by default since some documents have a crazy high amount of link annotations which would make saving slow.
-/// @warning The default behavior previous to PSPDFKit 3.1 was `PSPDFAnnotationTypeAll`. Existing save files will be migrated after the first save. If you rely on custom link annotations to be saved, make sure you set this back to the old default.
 /// @warning Never exclude PSPDFAnnotationTypeWidget - Forms are specially handled.
 @property (nonatomic, assign) PSPDFAnnotationType saveableTypes;
 
@@ -82,7 +84,7 @@
 - (NSArray *)parseAnnotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 // Saving code.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
 // Load annotations (returning NO + eventually an error if it fails)
 - (NSDictionary *)loadAnnotationsWithError:(NSError **)error;

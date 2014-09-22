@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFBaseViewController.h"
+#import "PSPDFPresentationContext.h"
 
 @class PSPDFViewController, PSPDFScrollView, PSPDFPageView, PSPDFSinglePageViewController;
 
@@ -23,29 +23,24 @@
 
 @end
 
-/// Displays a single pdf page. Only useful in conjunction with `PSPDFPageViewController`.
+/// This wraps a `PSPDFPageView` into an `UIViewController`.
+/// @note Used in `PSPDFPageViewController`.
 @interface PSPDFSinglePageViewController : PSPDFBaseViewController
 
-/// create single page controller using the master pdf controller and a page. Does not has a scrollView in place.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController page:(NSUInteger)page;
-
-/// Clear internal state, prepare to be used again.
-- (void)prepareForReuse;
-
-/// Attached pdfController.
-@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
-
-/// internally used page view.
-@property (nonatomic, strong, readonly) PSPDFPageView *pageView;
+/// The configuration data source.
+@property (nonatomic, weak) id <PSPDFPresentationContext> presentationContext;
 
 /// current visible page.
 @property (nonatomic, assign) NSUInteger page;
 
+/// Delegate (usually connected to a `PSPDFPageViewController`)
+@property (nonatomic, weak) IBOutlet id<PSPDFSinglePageViewControllerDelegate> delegate;
+
+/// Clear internal state, prepare to be used again.
+- (void)prepareForReuse;
+
 /// If set to YES, the background of the `UIViewController` is used. Else you may get some animation artifacts. Defaults to NO.
 @property (nonatomic, assign) BOOL useSolidBackground;
-
-/// Delegate (usually connected to a `PSPDFPageViewController`)
-@property (nonatomic, assign) IBOutlet id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end
 
@@ -53,5 +48,8 @@
 
 // Initially adds the view, later only re-calculates the frame
 - (void)layoutPage;
+
+/// internally used page view.
+@property (nonatomic, strong, readonly) PSPDFPageView *pageView;
 
 @end

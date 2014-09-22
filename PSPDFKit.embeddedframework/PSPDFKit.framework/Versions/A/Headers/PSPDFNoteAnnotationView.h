@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFAnnotationView.h"
 
 @class PSPDFNoteAnnotation;
@@ -19,7 +20,7 @@
 @interface PSPDFNoteAnnotationView : PSPDFAnnotationView
 
 /// Designated initializer.
-- (id)initWithAnnotation:(PSPDFAnnotation *)noteAnnotation;
+- (instancetype)initWithAnnotation:(PSPDFAnnotation *)noteAnnotation;
 
 /// Image of the rendered annotation.
 @property (nonatomic, strong) UIImageView *annotationImageView;

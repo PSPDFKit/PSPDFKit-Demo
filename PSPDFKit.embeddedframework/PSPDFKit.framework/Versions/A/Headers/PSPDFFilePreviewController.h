@@ -16,7 +16,7 @@
 @interface PSPDFFilePreviewController : QLPreviewController <QLPreviewControllerDataSource, QLPreviewControllerDelegate>
 
 /// Designated initializer.
-- (id)initWithPreviewURL:(NSURL *)previewURL;
+- (instancetype)initWithPreviewURL:(NSURL *)previewURL;
 
 /// URL to then item that should be previewed.
 @property (nonatomic, copy) NSURL *previewURL;

@@ -10,9 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFStyleable.h"
 #import "PSPDFBaseViewController.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFGradientView, PSPDFAnnotation, PSPDFPageView, PSPDFNoteAnnotationViewController;
 
@@ -34,15 +36,15 @@
 
 @end
 
-/// Note annotation controller for editing `PSPDFObjectsAnnotationKey`.
+/// Note annotation controller for editing `PSPDFObjectsAnnotationsKey`.
 /// For note annotations, special options will be displayed.
 @interface PSPDFNoteAnnotationViewController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Initializes with annotation, allows to override the editable state.
-- (id)initWithAnnotation:(PSPDFAnnotation *)annotation editable:(BOOL)allowEditing;
+- (instancetype)initWithAnnotation:(PSPDFAnnotation *)annotation editable:(BOOL)allowEditing NS_DESIGNATED_INITIALIZER;
 
 /// Initializes with annotation, automatically sets the editable state.
-- (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
+- (instancetype)initWithAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Attached annotation. All types are allowed.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
@@ -58,6 +60,10 @@
 
 /// Shows the copy button. Disabled by default for space reasons (and because copying text is easy)
 @property (nonatomic, assign) BOOL showCopyButton;
+
+/// If enabled, we enable the edit mode during controller presentation
+/// by calling `beginEditing` at the correct timing. Defaults to NO.
+@property (nonatomic, assign) BOOL shouldBeginEditModeWhenPresented;
 
 /// Allow to customize the textView. (font etc)
 /// Created in `viewDidLoad`.
@@ -94,7 +100,6 @@
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;
 
 // Option view (note annotations)
-// This is an UIView on iOS 6, and an UIToolbar on iOS 7.
 @property (nonatomic, strong) UIView *optionsView;
 
 // The border color of items in the option view.

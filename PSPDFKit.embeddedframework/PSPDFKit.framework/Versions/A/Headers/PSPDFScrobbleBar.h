@@ -10,9 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFCache.h"
-#import "PSPDFConfigurationDataSource.h"
+#import "PSPDFPresentationContext.h"
 
 @class PSPDFScrobbleBar;
 
@@ -29,7 +30,7 @@
 @property (nonatomic, weak) id <PSPDFScrobbleBarDelegate> delegate;
 
 /// The data source.
-@property (nonatomic, weak) id <PSPDFConfigurationDataSource> dataSource;
+@property (nonatomic, weak) id <PSPDFPresentationContext> dataSource;
 
 /// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbarAnimated:(BOOL)animated;
@@ -43,18 +44,25 @@
 /// Current selected page.
 @property (nonatomic, assign) NSUInteger page;
 
-/// Access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images.
-/// Alpha is set to 0.7f, can be changed.
-@property (nonatomic, strong) UIToolbar *toolbar;
+/// Taps left/right of the pages area (if there aren't enough pages to fill up space) by default count as first/last page. Defaults to YES.
+@property (nonatomic, assign) BOOL allowTapsOutsidePageArea;
+
+/// @name Styling
+
+/// The background tintColor.
+/// Defaults to the PSPDFViewController navigationBar barTintColor (if available).
+@property (nonatomic, strong) UIColor *barTintColor UI_APPEARANCE_SELECTOR;
+
+/// If set to a nonzero value, the scrobble bar will render with the standard translucency - blur effect.
+/// Inferred from the dataSource by default.
+/// @note `UIAppearance` for BOOL is only supported in iOS 8.
+@property (nonatomic, assign, getter=isTranslucent) BOOL translucent UI_APPEARANCE_SELECTOR;
 
 /// Left border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat leftBorderMargin;
 
 /// Right border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat rightBorderMargin;
-
-/// Taps left/right of the pages area (if there aren't enough pages to fill up space) by default count as first/last page. Defaults to YES.
-@property (nonatomic, assign) BOOL allowTapsOutsidePageArea;
 
 @end
 

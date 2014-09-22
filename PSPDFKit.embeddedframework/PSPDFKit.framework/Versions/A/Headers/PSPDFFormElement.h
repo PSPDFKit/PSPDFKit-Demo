@@ -14,8 +14,8 @@
 #import "PSPDFResetFormAction.h"
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
-    PSPDFFormElementFlagReadOnly = 1 << (1-1), /// Form Element is Readonly.
-    PSPDFFormElementFlagRequired = 1 << (2-1), /// Form Element is Required (red border)
+    PSPDFFormElementFlagReadOnly = 1 << (1-1), /// Form element is readonly.
+    PSPDFFormElementFlagRequired = 1 << (2-1), /// Form element is required. (red border)
     PSPDFFormElementFlagNoExport = 1 << (3-1)
 };
 
@@ -86,7 +86,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 // Index of the form to use when determining calculation order when executing calculate actions.
 @property (nonatomic, assign) NSUInteger calculationOrderIndex;
 
-
 /// If set, the user may not change the value of the field. Any associated widget annotations will not interact with the user; that is, they will not respond to mouse clicks or change their appearance in response to mouse motions. This flag is useful for fields whose values are computed or imported from a database.
 - (BOOL)isReadOnly;
 
@@ -101,6 +100,16 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 
 /// Returns the Form Type Name. "Form Element", "Text Field" etc
 - (NSString *)formTypeName;
+
+@end
+
+@interface PSPDFFormElement (Fonts)
+
+/// The maximum length of the field’s text, in characters. (Optional; inheritable)
+@property (nonatomic, assign) NSUInteger maxLength;
+
+// Properties for rendering
+@property (nonatomic, assign) BOOL isMultiline;
 
 @end
 

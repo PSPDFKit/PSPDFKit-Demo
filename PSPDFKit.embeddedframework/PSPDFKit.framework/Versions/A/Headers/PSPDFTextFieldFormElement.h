@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFAbstractTextRenderingFormElement.h"
+#import "PSPDFFormElement.h"
 
 /// The text field flags. Most flags aren't currently supported.
 /// Query `fieldFlags` from the `PSPDFFormElement` base class.
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 };
 
 /// Text field form element.
-@interface PSPDFTextFieldFormElement : PSPDFAbstractTextRenderingFormElement
+@interface PSPDFTextFieldFormElement : PSPDFFormElement
 
 /// If set, the field may contain multiple lines of text; if clear, the field’s text shall be restricted to a single line.
 /// @note Evaluates `PSPDFTextFieldFlagMultiline` in the `fieldFlags`.
@@ -42,8 +42,8 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 /// @note Evaluates `PSPDFTextFieldFlagPassword` in the `fieldFlags`.
 - (BOOL)isPassword;
 
-/// Handles Keystroke, Validate and Calulate actions that follow from user text input automatically.
-/// `isFinal` defines if the user is typing (NO) or if the string should be commited (YES).
+/// Handles Keystroke, Validate and Calculate actions that follow from user text input automatically.
+/// `isFinal` defines if the user is typing (NO) or if the string should be committed (YES).
 /// The change is the change in text.
 /// Returns the new text contents (possibly different from the passed change) to be applied. Otherwise, if failed, returns nil.
 - (NSString *)textFieldChangedWithContents:(NSString *)contents change:(NSString *)change range:(NSRange)range isFinal:(BOOL)isFinal error:(NSError * __autoreleasing *)validationError;

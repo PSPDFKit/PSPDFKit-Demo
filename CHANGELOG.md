@@ -4,11 +4,180 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
-__v3.7.5 - 16/June/2014__
+__v4.0.0 - 22/September/2014__
 
-With about 90% of all devices running iOS 7 (https://developer.apple.com/support/appstore/), it's time for us to look into the future.
-This will be the last release that supports iOS 6. We already started working on supporting iOS 8 and will continue to support iOS 7.0 and 7.1.
-We've planned some exciting new features and new ideas for upcoming releases - stay tuned!
+PSPDFKit 4 is a major new release. Please study the migration guide:
+https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/PSPDFKit-4.0-Migration-Guide
+
+Important: For your own security, invalid licenses now abort the app immediately, instead of silently showing a watermark.
+PSPDFKit now requires a demo license for evaluation in your own app. Download it from the website and we'll automatically deliver the demo key via email.
+
+Core Viewer:
+*  PSPDFKit 4 is now fully compatible with iOS 8 and requires Xcode 6 with SDK 8.
+*  Resources and loading support for @3x resources required for the iPhone 6 Plus have been added and various image resources have been refreshed for iOS 8.
+*  The binary ships with armv7, arm64, i386 and x86_64. Following Apple's new defaults, we removed the slice for armv7s (which brought little benefits anyway).
+*  All headers have been updated to use Modules for faster compile times.
+*  Several properties that were no longer in line with iOS 7 have been removed: `tintColor`, `shouldTintPopovers` and `minLeft/RightToolbarWidth`. Use `UIAppearance` to customize colors and tint throughout PSPDFKit instead.
+*  Adds a new `shouldHideStatusBar` property to globally control the status bar setting from the `PSPDFViewController`.
+*  We no longer support the legacy `UIViewControllerBasedStatusBarAppearance` setting. Use view controller based status bar appearance.
+*  The `PSPDFViewController` is now configured via an immutable `PSPDFConfiguration` object. See the migration guide for details.
+*  Clear the web view state between `PSPDFWebAnnotationView` reuse.
+*  Many classes, including `PSPDFTabBarButton` and `PSPDFScrobbleBar` have been enabled for `UIAppearance`.
+*  Greatly improved and faster JavaScript Form support, using `JavaScriptCore` instead of `UIWebView`.
+*  The embedded `PSPDFWebViewController` now uses the faster `WKWebView` when available on iOS 8.
+*  Various improvements to the caching and rendering infrastructure. The limitation for super long/wide PDFs has been removed. PSPDFKit can now render documents no matter how long they are - we tested documents up to 5000px long/500px wide.
+*  The thumbnail bar and the thumbnail controller now support a new layout that will group pages together for double-page layouts. (see `thumbnailGrouping`)
+*  Many improvements to the multimedia gallery (`PSPDFGallery`), including better fullscreen-support and error handling.
+*  `PSPDFAESDecryptor` now checks the HMAC for additional security.
+*  The `PSPDFAESCryptoDataProvider` now returns an autoreleased object when accessing `dataProvider`. 
+*  Open/Close page triggers are now supported (see `PSPDFPageInfo`).
+*  The new `PSPDFMessageBarButtonItem` allows sharing content via iMessage/SMS.
+*  Various UI widgets now better deal with keyboards that change the frame after being displayed (especially relevant for iOS 8)
+*  Annotation action URL parsing is now smarter and will trim the string and replaces inline spaces with %20, instead of just filtering them all.
+*  Adds various view optimizations that lead to faster page display and less internal reloads.
+*  Color/Text attributes for outlines are now supported and parsed in `PSPDFOutline` and properly displayed in `PSPDFOutlineViewController`.
+*  Form text is now always auto-sized to match Adobe Acrobat's behavior.
+*  Thew new, faster `UIVisualEffectsView` is used for blur whenever available on iOS 8.
+*  OpenSSL has been updated to OpenSSL 1.0.1i.
+*  API: Various keys for `PSDPFObjects*` have been renamed and are now better organized.
+*  API: Pushing view controllers via `presentModalOrInPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:` has been improved and renamed. The new method is called `presentViewController:options:animated:sender:completion:`.
+*  API: `PSPDFImageInfo` is now immutable and works correctly when the `PSPDFDocument` contains multiple `PSPDFDocumentProvider` objects.
+*  API: `PSPDFAction` now resolves named destinations and page labels via `localizedDescriptionWithDocumentProvider:`.
+*  API: `PSPDFLabelParser` interface has been simplified and this object can now be created with a predefined set of labels.
+*  Fixes an issue where the modal search controller could place itself above the status bar on iPhone.
+
+Indexed Full-Text-Search:
+*  `PSPDFLibrary` now allows to preview text based on the FTS index.
+*  Fixes a potential threading issue when indexes were added/removed quickly from the `PSPDFLibrary`.
+
+Annotations and Digital Signatures:
+*  Annotation hit testing now works on paths directly, which allows better selection in cases where multiple annotations are overlaid.
+*  The first time an annotation is created by the user, we now ask for the user name and also offer a sensible default based on the device name.
+*  The drawing eraser has been completely redesigned. Erasing and drawing is now a lot faster and features such as the eraser top of the FiftyThree Pencil are fully supported without exiting draw mode.
+*  The old `PSPDFAnnotationToolbar` has been fully replaced by the `PSPDFFlexibleAnnotationToolbar` introduced in 3.6, and thus renamed back to `PSPDFAnnotationToolbar`. 
+*  Cloud annotation borders are now fully supported.
+*  Callout FreeText annotations can be parsed and edited.
+*  Rich Media and Screen annotations are now lazily evaluated, improving general parsing speed.
+*  Add support for various Rich Media Activation Context settings. (autostart)
+*  `PSPDFURLConnection` has been replaced in favor of vanilla `NSURLSession` objects, which the additional benefit that remote content supporting SPDY will now load faster on iOS 8.
+*  When fetching annotations via the document object finder, we now optionally support annotation grouping via the `PSPDFObjectsAnnotationIncludedGroupedKey` key.
+*  Improved the signing architecture to allow signing using PKI hardware and remove signatures.
+*  Annotation selection handling has been greatly improved and now uses a customizable margin for easier handling.
+*  Annotations now have a common `fontAttributes` property that allows any key/value pair that `NSAttributedString` understands - so free text and forms can be customized even further. (Note: Not all values can be exported)
+*  Free Text annotation handling now understands more PDF-based properties and will render more accurate.
+*  Many improvements to stylus management and driver handling, especially for FiftyThree's Pencil.
+*  PSPDFKit's model objects now mostly comply to `NSSecureCoding`.
+*  The inspector has been modernized and offers a better display for poly/line and free text annotations.
+*  Appearance stream parsing support has been improved.
+*  The password view has been completely redesigned to fit into iOS 7 and 8.
+*  The `PSPDFSignatureViewController` has been completely redesigned and now allows to select colors during signing.
+*  `PSPDFViewController` now fully respects `isAutosaveEnabled` and will no longer save the document on view did appear when this is set to NO.
+*  `PSPDFFontDescriptor` has been removed in favor of the new `UIFontDescriptor` introduced in iOS 7.
+*  Various code is now faster thanks to the toll-free-bridging of `UIFont` and `CTFontRef`.
+*  Support for the old, legacy PSPDFKit v2 annotation save format has been removed.
+*  Image annotations now have better support for EXIF rotations when clipped via the internal editor.
+*  Fixes an issue where the inspector could re-use the wrong cells and mixing up sliders or other control items.
+*  Fixes an issue that would sometimes not allow to draw at the very borders of the screen on iPhone.
+*  Fixes an issue where the annotation menu would not show up after scrolling the page.
+*  Fixes an issue with very large animated gifs.
+*  Includes all bug fixes and improvements made in the PSPDFKit 3.7.x branch.
+*  Fixes an issue related to search highlighting and annotation moving. The highlights are now cleared before objects can be moved.
+*  Fixes an issue where the popover wasn't correctly moved when a new `PSPDFNoteAnnotation` is created via the `PSPDFNoteAnnotationViewController`.
+
+__v3.7.14 - 16/September/2014__
+
+PSPDFKit 4.0 will be released on Monday, September 22, 2014 with full support for Xcode 6 with iOS 8 while also supporting iOS 7.
+The PSPDFKit 3.7.x branch will remain compatible with Xcode 5.1.1 and iOS 6+.
+
+*  Fixes an issue where the Camera/Image Picker UI sometimes wouldn’t show up on iPad/iOS 8.
+
+__v3.7.13 - 11/September/2014__
+
+*  Works around a rare PDF rendering crash in iOS 8.
+*  Using `fillColor` on `PSPDFButtonFormElement` now respects the `alpha` property.
+*  Fixes an issue in the text extraction logic when converting the contents of glyphs from unknown/not loadable fonts.
+*  Fixes an issue where entering erase mode could hide the annotation toolbar.
+*  Fixes an issue where the progress HUD would sometimes not correctly reposition when the keyboard appears in landscape.
+*  Fixes an issue where the note annotation popover could become visible when deleting multiple annotations (including a note) at the same time.
+*  Fixes an issue where the signature view controller failed to display on iPhone/iOS 8.
+
+__v3.7.12 - 1/September/2014__
+
+*  The predefined stamps now use the system locale instead of `en_US`.
+*  Fixes an issue where the scrollable thumbnail bar could get into a state where it is not correctly displayed.
+*  Fixes an issue with creating custom stamp annotations on iPad.
+*  Fixes an issue with writing annotations into files that have unusual and non-standard compliant object headers.
+*  Fixes a caching issue with extremely long file names.
+
+__v3.7.11 - 20/August/2014__
+
+*  Improves user name guessing for the annotation creation user.
+*  Fixes an issue where saving notes multiple times within the same session could cause a duplication.
+*  Fixes an issue with handling umlauts during a save in certain text field form elements.
+*  Fixes a minor logging issue where in rare cases `NSScanner` could complain about nil string arguments.
+
+__v3.7.10 - 17/August/2014__
+
+*  Rendering the audio annotation preview no longer pauses background music.
+*  Makes sure the signature image in the signature view controller is the same regardless of the device orientation.
+*  Fixes an issue with rendering right-aligned free text annotations in too small bounding boxes.
+*  Fixes a few minor issues when exporting/importing from/to XFDF for stamp and ink annotations.
+*  Fixes an issue where alert view actions could be executed twice under iOS 8.
+
+__v3.7.9 - 6/August/2014__
+
+*  Fixes handling of nested form check boxes that are used as radio boxes.
+*  Fixes an issue that could truncate text from a choice form element.
+*  Fixes a rare UI issue with duplicated ink elements during erasing.
+*  Fixes an issue where in landscape the keyboard could appear unexpectedly when using radio button form elements.
+*  Fixes an issue where the page indicator in the scrobble bar sometimes was not correctly updated.
+*  Fixes an issue on iOS 6 when showing the signature selector view controller.
+
+__v3.7.8 - 1/August/2014__
+
+*  Popup annotations, when written, now by default have the same bounding box as the parent annotation.
+*  Improves handling of link annotations with an empty URL.
+*  Continuous scroll mode now chooses the current pages based on the largest visible page, not the first visible page.
+*  Path resolving now also resolves "Caches" instead of just "Cache".
+*  Improves protection against manually calling `commonInitWithDocument:`.
+*  Improves placement of free text annotations that are close to the right page border.
+*  API: The interface for the `PSPDFXFDFAnnotationProvider` changed to reflect the possibility of stream recreation.
+   Instead of setting the `inputStream` and `outputStream` directly, use `createInputStreamBlock` and `createOutputStreamBlock`.
+*  Fixes a UI issue where the separators for the signature chooser could end up not visible on iOS 7.
+*  Fixes an issue where cropping images could end up in black bars on parts of the image.
+*  Fixes an issue where the text selection knobs could be slightly offset after a device rotation.
+*  Fixes an issue with the fullscreen gallery transition on an iPhone.
+*  Fixes a rare condition where a selected annotation would not hide the un-selected one, leaving two copies on the screen until the page changed.
+*  Fixes a race condition that could result in rendering issues for form objects with auto-resizing text.
+*  Fixes an issue where PSPDFKit would print a warning for KVO'ing weak properties that was not actually declared as weak.
+*  Fixes an issue where the scrobble bar would not properly update itself after a rotation change.
+
+__v3.7.7 - 21/July/2014__
+
+*  Videos in the gallery are now reset if they are played till the end and the page changes.
+*  The 'hidden' flag for annotation objects is now also honored for the gallery. (including audio)
+*  Fixes an issue when the device is being rotated while in erase mode.
+*  Fixes an issue where the pen tool can't draw up to the edge for certain configurations on an iPhone.
+*  Fixes an issue where quickly destroying/recreating libraries for indexed search could result in partial indexes.
+*  Fixes an issue in `PSPDFResizableView` related to unusual view controller configurations where the view could overlap the parent view and subsequently no longer correctly responding to touch events.
+*  Fixes an issue related to rotation when the gallery is moved to fullscreen from within a popover.
+*  Fixes an issue where missing fields in the digital signature validation code could result in a (null) output.
+*  Fixes an issue related to multiple saving via the same XFDF annotation provider.
+*  Fixes an issue related to early-reloading of the thumbnail bar that could result in missing bar button items for special configurations.
+*  Fixes an issue where the navigation bar could disappear after the annotation toolbar has been moved to a different position.
+
+__v3.7.6 - 4/July/2014__
+
+*  Simplifies usage of `PSPDFMediaPlayerCoverModeClear` in the gallery.
+*  Updates the Vimeo integration to use the new API endpoint.
+*  Improves efficiency and memory usage for parsing large outlines with invalid named destination tables.
+*  When using the text selection tool, we want to make sure no annotation is selected anymore.
+*  The state of the `PSPDFWebAnnotationView` is now cleared upon reuse to prevent flashes of previous used content.
+*  Fixes an issue related to the scrobble bar and `PSPDFThumbnailBarModeScrollable` on iOS 6.
+*  Fixes a potential issue where the HUD layouting code could loop.
+*  Fixes a potential crash related to the Wacom stylus driver.
+
+__v3.7.5 - 16/June/2014__
 
 *  New Localizations: Indonesian, Malaysian, Polish, Chinese Traditional, Thai, Turkish and Ukrainian.
 *  Updates the WACOM stylus driver to no longer eagerly initialize, which could present a bluetooth disabled alert view.

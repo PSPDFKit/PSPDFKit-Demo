@@ -10,15 +10,14 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFUndoProtocol.h"
 
-/// Default container for annotations. It's cruicial that you use this class as your base class if you implement a custom annotation provider, as this class offers efficient undo/redo which otherwise is almost impossible to replicate unless you understand the PSPDFKit internals extremely well.
+/// Default container for annotations. It's crucial that you use this class as your base class if you implement a custom annotation provider, as this class offers efficient undo/redo which otherwise is almost impossible to replicate unless you understand the PSPDFKit internals extremely well.
 @interface PSPDFContainerAnnotationProvider : NSObject <PSPDFAnnotationProvider, PSPDFUndoProtocol>
 
 /// Designated initializer.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /// Associated `documentProvider`.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
@@ -40,11 +39,9 @@
 // Set annotations, evaluate the page value of each annotation.
 - (void)setAnnotations:(NSArray *)annotations append:(BOOL)append;
 
-// Remove annotations and optionally sends notifications.
-- (NSArray *)removeAnnotations:(NSArray *)annotations sendNotifications:(BOOL)sendNotifications;
-
 // Remove all annotations (effectively clears the cache).
-- (void)removeAllAnnotationsAndSendNotification:(BOOL)sendNotification;
+/// @param options Deletion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
+- (void)removeAllAnnotationsWithOptions:(NSDictionary *)options;
 
 // Returns all annotations of all pages in one array.
 - (NSArray *)allAnnotations;

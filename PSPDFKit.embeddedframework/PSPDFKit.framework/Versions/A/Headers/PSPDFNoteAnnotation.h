@@ -13,12 +13,12 @@
 #import "PSPDFAnnotation.h"
 
 /// PDF Note (Text) Annotation.
-/// Note annotations are rendered as fixed size; much like how Adobe Acrobat renders them.
-/// We recommend a size of 32px for the boundingBox.
+/// @note Note annotations are rendered as fixed size; much like how Adobe Acrobat renders them.
+/// We recommend a size of 32x32px for the boundingBox.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
-/// Designated initializer.
-- (id)init;
+/// Initialize with text contents.
+- (instancetype)initWithContents:(NSString *)contents;
 
 /// Note Icon name (see PSPDFKit.bundle for available icon names)
 /// If set to zero, it will return to the default "Comment".

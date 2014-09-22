@@ -15,13 +15,11 @@
 
 /**
  `PSPDFBarButtonItem `subclass with selection support.
- 
+
  Assumes that an image is provided via the `image` method.
- Selection are iOS 7+ only. The class will gracefully fall back to the default 
- `PSPDFBarButtonItem` behavior on previous system versions.
- 
- You can customize the `PSPDFSelectableBarButtonItem` by configuring it's customView
- (a `PSPDFSelectableBarButtonItemView` instance). The `customView` will be nil on iOS < iOS 7.
+
+ You can customize the `PSPDFSelectableBarButtonItem` by configuring its customView
+ (a `PSPDFSelectableBarButtonItemView` instance).
  */
 @interface PSPDFSelectableBarButtonItem : PSPDFBarButtonItem
 
@@ -46,11 +44,11 @@
 
 /**
  Use this class to configure the `PSPDFSelectableBarButtonItem` appearance.
- 
+
  The recommended way to set the `PSPDFSelectableBarButtonItemView` `tintColor` is by setting
  the `tintColor` property on the parent `UINavigationBar` / `UIToolbar`. This will enable you to
  quickly set the same tint color for all your `UIBarButtonItem`s.
- 
+
  You can also customize `PSPDFSelectableBarButtonItemView`'s tintColor
  directly or via `UIViewAppearance` to achieve a different look for `PSPDFSelectableBarButtonItem`s.
  */

@@ -34,36 +34,34 @@
 @interface PSPDFDocument (ObjectFinder)
 
 // Options for the object finder.
-extern NSString *const PSPDFObjectsGlyphs;                // Search glyphs.
-extern NSString *const PSPDFObjectsText;                  // Include Text.
-extern NSString *const PSPDFObjectsFullWords;             // Always return full PSPDFWords. Implies PSPDFObjectsText.
-extern NSString *const PSPDFObjectsTextBlocks;            // Include text blocks, sorted after most appropriate.
-extern NSString *const PSPDFObjectsTextBlocksIgnoreLarge; // Ignore too large text blocks (that are > 90% of a page)
-extern NSString *const PSPDFObjectsAnnotationTypes;       // Include annotations of attached type
-extern NSString *const PSPDFObjectsAnnotationPageBounds;  // Special case; used for PSPDFAnnotationTypeNote hit testing.
-extern NSString *const PSPDFObjectsImages;                // Include Image info.
-extern NSString *const PSPDFObjectsSmartSort;             // Will sort words/annotations (smaller words/annots first). Use for touch detection.
-extern NSString *const PSPDFObjectsTextFlow;              // Will look at the text flow and select full sentences, not just what's within the rect.
-extern NSString *const PSPDFObjectsFindFirstOnly;         // Will stop after finding the first matching object.
-extern NSString *const PSPDFObjectsTestIntersection;      // Only relevant for rect. Will test for intersection instead of objects that are fully included in the pdfRect.
+extern NSString *const PSPDFObjectsGlyphsKey;      // Search glyphs.
+extern NSString *const PSPDFObjectsWordsKey;       // Always return full `PSPDFWord`s. Implies `PSPDFObjectsTextKey`.
+extern NSString *const PSPDFObjectsTextKey;        // Include Text.
+extern NSString *const PSPDFObjectsTextBlocksKey;  // Include text blocks, sorted after most appropriate.
+extern NSString *const PSPDFObjectsImagesKey;      // Include Image info.
+extern NSString *const PSPDFObjectsAnnotationsKey; // Output category
 
-// Output categories
-extern NSString *const PSPDFObjectsGlyphKey;
-extern NSString *const PSPDFObjectsWordKey;
-extern NSString *const PSPDFObjectsTextKey;
-extern NSString *const PSPDFObjectsTextBlockKey;
-extern NSString *const PSPDFObjectsAnnotationKey;
-extern NSString *const PSPDFObjectsImageKey;
+
+extern NSString *const PSPDFObjectsIgnoreLargeTextBlocksKey; // Ignore too large text blocks (that are > 90% of a page)
+extern NSString *const PSPDFObjectsAnnotationTypesKey;       // Include annotations of attached type
+extern NSString *const PSPDFObjectsAnnotationPageBoundsKey;  // Special case; used for PSPDFAnnotationTypeNote hit testing.
+extern NSString *const PSPDFObjectsAnnotationIncludedGroupedKey; // Include annotations that are part of a group.
+
+extern NSString *const PSPDFObjectsSmartSortKey;             // Will sort words/annotations (smaller words/annots first). Use for touch detection.
+extern NSString *const PSPDFObjectMinDiameterKey;            // Will use path-based hit-testing based on the center point if set.
+extern NSString *const PSPDFObjectsTextFlowKey;              // Will look at the text flow and select full sentences, not just what's within the rect.
+extern NSString *const PSPDFObjectsFindFirstOnlyKey;         // Will stop after finding the first matching object.
+extern NSString *const PSPDFObjectsTestIntersectionKey;      // Only relevant for rect. Will test for intersection instead of objects that are fully included in the pdfRect.
 
 /// Find objects (glyphs, words, images, annotations) at the specified `pdfPoint`. Thread safe.
 /// If `options` is nil, we assume `PSPDFObjectsText` and `PSPDFObjectsFullWords`.
-/// Unless set otherwise, for points `PSPDFObjectsTestIntersection` is YES automatically.
-/// Returns objects in certain key dictionaries (`PSPDFObjectsGlyphKey`, etc)
+/// Unless set otherwise, for points `PSPDFObjectsTestIntersectionKey` is YES automatically.
+/// Returns objects in certain key dictionaries (`PSPDFObjectsGlyphsKey`, etc)
 - (NSDictionary *)objectsAtPDFPoint:(CGPoint)pdfPoint page:(NSUInteger)page options:(NSDictionary *)options;
 
 /// Find objects (glyphs, words, images, annotations) at the specified `pdfRect`. Thread safe.
-/// If `options` is nil, we assume `PSPDFObjectsGlyphKey` only.
-/// Returns objects in certain key dictionaries (`PSPDFObjectsGlyphKey`, etc)
+/// If `options` is nil, we assume `PSPDFObjectsGlyphsKey` only.
+/// Returns objects in certain key dictionaries (`PSPDFObjectsGlyphsKey`, etc)
 - (NSDictionary *)objectsAtPDFRect:(CGRect)pdfRect page:(NSUInteger)page options:(NSDictionary *)options;
 
 /// Return a textParser for the specific document page. Thread safe.

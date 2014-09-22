@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PSPDFUndoAction;
+
 typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
     /// Does not coalesce events with the same key at all but rather creates one new undo event for every single change.
     PSPDFUndoCoalescingNone,
@@ -55,5 +57,11 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 
 /// Called when changes caused by an undo or redo were applied to an object.
 - (void)didUndoOrRedoChange:(NSString *)key;
+
+/// Required for conditional undo removal support.
+/// Implementing this method makes sure the internal undo manager records the correct target object,
+/// so we're able to use `removeAllActionsWithTarget:` for undo removal, by passing in `self` as the method parameter.
+/// Your implementation should pass the `action parameter through to `-[PSPDFUndoController performUndoAction:]`.
+- (void)performUndoAction:(PSPDFUndoAction *)action;
 
 @end

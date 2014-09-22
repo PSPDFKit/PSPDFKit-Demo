@@ -42,10 +42,10 @@
 
 /// Designated initializer.
 /// `library` is optional but required if you want to use `fullTextSearchEnabled`.
-- (id)initWithDirectory:(NSString *)directory includeSubdirectories:(BOOL)includeSubdirectories library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate;
+- (instancetype)initWithDirectory:(NSString *)directory includeSubdirectories:(BOOL)includeSubdirectories library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate;
 
 /// Initialize with a number of documents.
-- (id)initWithDocuments:(NSArray *)documents library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate;
+- (instancetype)initWithDocuments:(NSArray *)documents library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Delegate to get the `didSelectDocument:` event.
 @property (nonatomic, weak) id<PSPDFDocumentPickerControllerDelegate> delegate;
@@ -76,8 +76,12 @@
 @property (nonatomic, assign, readonly) BOOL isSearchingIndex;
 
 /// Will show the actual pages and text preview instead of just the documents.
-/// Only valid if `fullTextSearchEnabled` is enabled. Defaults to NO.
+/// Only valid if `fullTextSearchEnabled` is enabled. Defaults to YES.
 @property (nonatomic, assign) BOOL showSearchPageResults;
+
+/// Will show a preview text that presents the search term within its context.
+/// Only valid if `fullTextSearchEnabled` is enabled. Defaults to YES.
+@property (nonatomic, assign) BOOL showSearchPreviewText;
 
 /// Defaults to 600. A too high number will be slow.
 /// Only valid if `fullTextSearchEnabled` is enabled.
@@ -86,6 +90,10 @@
 /// Number of results found per document. Defaults to 10.
 /// Only valid if `fullTextSearchEnabled` is enabled.
 @property (nonatomic, assign) NSUInteger maximumNumberOfSearchResultsPerDocument;
+
+/// Number of lines for search preview text. Defaults to 2.
+/// Only valid if `fullTextSearchEnabled` is enabled.
+@property (nonatomic, assign) NSUInteger numberOfSearchPreviewLines;
 
 /// The attached library, if any.
 @property (nonatomic, strong, readonly) PSPDFLibrary *library;

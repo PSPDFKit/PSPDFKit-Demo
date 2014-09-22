@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import "PSPDFTranslucentToolbar.h"
 
 // Do NOT use this class. It's sometimes used internally to find PSPDF* related stuff.
-@interface PSPDFTransparentToolbar : UIToolbar
+@interface PSPDFTransparentToolbar : PSPDFTranslucentToolbar
 
 @end

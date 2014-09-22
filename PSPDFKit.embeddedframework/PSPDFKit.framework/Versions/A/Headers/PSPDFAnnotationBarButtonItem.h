@@ -11,15 +11,8 @@
 //
 
 #import "PSPDFSelectableBarButtonItem.h"
-#import "PSPDFAnnotationToolbar.h"
-#import "PSPDFFlexibleAnnotationToolbar.h"
 
 @class PSPDFAnnotationToolbar;
-
-typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
-    PSPDFAnnotationToolbarTypeSystem,  /// A `UIToolbar` based annotation toolbar type (old)
-    PSPDFAnnotationToolbarTypeFlexible /// Draggable annotation toolbar type (modern, iOS 7 only)
-};
 
 /**
  Show/Hide the annotation toolbar.
@@ -35,26 +28,27 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
  If not, `PSPDFAnnotationBarButtonItem` looks for the `UIToolbar` or `UINavigationBar` it is embedded in (you can override `targetToolbar`). The `annotationToolbar` will copy the style of the current UIToolbar (`barStyle`, `translucent`, `tintColor`).
  If everything else fails, the toolbar will be displayed above the `PSPDFViewController's` view anchored at the top.
  */
-@interface PSPDFAnnotationBarButtonItem : PSPDFSelectableBarButtonItem <PSPDFAnnotationToolbarDelegate>
-
-/// Non-async check for isAvailable.
-- (BOOL)isAvailableBlocking;
-
-/// The selected toolbar type will be used the next time the bar button action is invoked.
-/// Defaults to `PSPDFAnnotationToolbarTypeFlexible` on iOS 7.
-@property (nonatomic, assign) PSPDFAnnotationToolbarType annotationToolbarType;
+@interface PSPDFAnnotationBarButtonItem : PSPDFSelectableBarButtonItem
 
 /// Internally used and displayed annotation toolbar.
 @property (nonatomic, strong, readonly) PSPDFAnnotationToolbar *annotationToolbar;
 
-/// Internally used and displayed flexible annotation toolbar.
-@property (nonatomic, strong, readonly) PSPDFFlexibleAnnotationToolbar *flexibleAnnotationToolbar;
+/// Shows or hides the annotation toolbar (animated)
+- (void)toggleAnnotationToolbar;
 
-/// The host view for the `PSPDFFlexibleAnnotationToolbarContainer`.
-/// If set to nil (the default), the `PSPDFViewController`'s navigationController view or the containing `UIToolbar`'s or `UINavigationBar`'s superview will be used. 
-@property (nonatomic, strong) UIView *hostView;
+/// Show the annotation toolbar, if not currently visible.
+/// @return Whether the toolbar was actually shown.
+- (BOOL)showAnnotationToolbarAnimated:(BOOL)animated;
 
-// Hide the displayed toolbar, if any is displayed.
+/// Hide the annotation toolbar, if currently shown.
+/// @return Whether the toolbar was actually hidden.
 - (BOOL)hideDisplayedToolbarAnimated:(BOOL)animated;
+
+/// Non-async check for isAvailable.
+- (BOOL)isAvailableBlocking;
+
+/// The host view for the `PSPDFAnnotationToolbarContainer`.
+/// If set to nil (the default), the `PSPDFViewController`'s navigationController view or the containing `UIToolbar`'s or `UINavigationBar`'s superview will be used.
+@property (nonatomic, strong) UIView *hostView;
 
 @end

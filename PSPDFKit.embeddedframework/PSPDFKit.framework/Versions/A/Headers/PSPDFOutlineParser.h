@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class PSPDFOutlineElement, PSPDFDocumentProvider;
 
@@ -18,7 +19,7 @@
 @interface PSPDFOutlineParser : NSObject
 
 /// Initialize outline parser with the `documentProvider`.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /**
  Returns a single outline element for the specified page.

@@ -31,7 +31,7 @@
 @property (nonatomic, assign, readonly) PSPDFStylusConnectionStatus connectionStatus;
 
 /// Returns the name of the stylus, if possible. Will return "Stylus" if no name is returned by the driver.
-@property (nonatomic, assign, readonly) NSString *stylusName;
+@property (nonatomic, copy, readonly) NSString *stylusName;
 
 /// Tries to restore last driver selection. Might load a driver and show the connection HUD.
 - (BOOL)enableLastDriver;

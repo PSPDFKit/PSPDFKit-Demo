@@ -10,14 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFThumbnailViewController.h"
 
 /// Allows displaying thumbnails for multiple `PSPDFDocuments`.
 @interface PSPDFMultiDocumentThumbnailViewController : PSPDFThumbnailViewController
 
 /// Designated initializer.
-- (id)initWithDocuments:(NSArray *)documents;
+- (instancetype)initWithDocuments:(NSArray *)documents NS_DESIGNATED_INITIALIZER;
 
 /// Documents that are currently loaded.
 @property (nonatomic, copy) NSArray *documents;

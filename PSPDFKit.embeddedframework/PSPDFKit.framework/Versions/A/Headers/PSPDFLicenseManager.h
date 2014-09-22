@@ -10,16 +10,48 @@
 //  This notice may not be removed from this file.
 //
 
+// PSPDFKit uses so-called "feature flags" to unlock certain features only for certain customers.
+// The license key supplied to the customer is JSON with an array of so-called "feature names".
+//
+// Be aware, there is no 1:1 correspondence, some deprecated feature names unlock more than one
+// feature flag, and for historical reasons the feature name sometimes is different from the name
+// of the feature flag.
 typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
-    PSPDFFeatureMaskNone              = 0,
-    PSPDFFeatureMaskPDFViewer         = 1 << 0, // View PDFs without watermark. PSPDFKit Viewer.
-    PSPDFFeatureMaskTextSelection     = 1 << 1, // Text Selection. Basic.
-    PSPDFFeatureMaskStrongEncryption  = 1 << 2, // Not available in the demo. Basic.
-    PSPDFFeatureMaskPDFCreation       = 1 << 3, // Create PDF documents. Basic.
-    PSPDFFeatureMaskAnnotationEditing = 1 << 4, // Edit/Create annotations. Basic.
-    PSPDFFeatureMaskAcroForms         = 1 << 5, // PDF Forms. PSPDFKit Complete.
-    PSPDFFeatureMaskIndexedFTS        = 1 << 6, // Limited to 100 chars/page in the demo.
-    PSPDFFeatureMaskAll               = UINT_MAX,
+    PSPDFFeatureMaskNone = 0,
+
+    // View PDFs without watermark. Automatically enabled by every valid license key.
+    PSPDFFeatureMaskPDFViewer = 1 << 0,
+
+    // Text Selection. Was included in PSPDFKit Basic.
+    // unlocked by "text_selection" and "annotations" (legacy)
+    PSPDFFeatureMaskTextSelection = 1 << 1,
+
+    // Enables `PSPDFAESCryptoDataProvider` and the various other crypto related classes.
+    // (`PSPDFCryptoInputStream`, `PSPDFCryptoOutputStream`, `PSPDFAESDecryptor`, `PSPDFAESEncryptor`)
+    // unlocked by "strong_encryption" and "annotations" (legacy)
+    PSPDFFeatureMaskStrongEncryption = 1 << 2,
+
+    // Create PDF documents (`PSPDFProcessor` - except flattening). Was included in PSPDFKit Basic.
+    // unlocked by "pdf_creation" and "annotations" (legacy)
+    PSPDFFeatureMaskPDFCreation = 1 << 3,
+
+    // Edit/Create annotations. Was included in PSPDFKit Basic.
+    // unlocked by "annotation_editing" and "annotations" (legacy)
+    PSPDFFeatureMaskAnnotationEditing = 1 << 4,
+
+    // PDF Forms display/editing. Was included in PSPDFKit Complete.
+    // unlocked by "acro_forms" and "acroforms" (legacy)
+    PSPDFFeatureMaskAcroForms = 1 << 5,
+
+    // Use the indexed full-text-search. (`PSPDFLibrary`)
+    // unlocked by "indexed_fts" and "fts" (legacy)
+    PSPDFFeatureMaskIndexedFTS = 1 << 6,
+
+    // Digitally Sign PDF Forms. Was included in PSPDFKit Complete.
+    // unlocked by "digital_signatures" and "acroforms" (legacy)
+    PSPDFFeatureMaskDigitalSignatures = 1 << 7,
+
+    PSPDFFeatureMaskAll = UINT_MAX,
 };
 
 #ifdef __cplusplus

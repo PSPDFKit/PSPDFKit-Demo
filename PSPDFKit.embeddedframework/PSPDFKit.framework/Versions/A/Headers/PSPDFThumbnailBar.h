@@ -10,8 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFCache.h"
+#import "PSPDFPresentationContext.h"
 
 @class PSPDFThumbnailBar;
 
@@ -28,14 +30,11 @@
 /// Bottom bar that shows a scrollable list of thumbnails.
 @interface PSPDFThumbnailBar : UICollectionView <UICollectionViewDataSource, UICollectionViewDelegate>
 
-/// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document;
-
-/// The associated document.
-@property (nonatomic, strong) PSPDFDocument *document;
-
 /// Delegate for the thumbnail controller.
 @property (nonatomic, weak) id<PSPDFThumbnailBarDelegate> thumbnailBarDelegate;
+
+/// The data source.
+@property (nonatomic, weak) id <PSPDFPresentationContext> thumbnailBarDataSource;
 
 /// Scrolls to specified page in the grid and centers the selected page.
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
@@ -43,7 +42,10 @@
 /// Stops an ongoing scroll animation.
 - (void)stopScrolling;
 
-/// Thumbnail size. Defaults to 100x130.
+/// Reload and keep the selection
+- (void)reloadDataAndKeepSelection;
+
+/// Thumbnail size. Defaults to 88x125 on iPad and 53x75 on iPhone.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
 /// Set the default height of the thumbnail bar. Defaults to 135 on iPad and 85 on iPhone.

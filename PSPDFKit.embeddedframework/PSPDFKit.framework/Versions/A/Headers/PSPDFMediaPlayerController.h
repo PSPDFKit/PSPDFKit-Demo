@@ -16,7 +16,7 @@
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
     /// Shows no controls whatsoever.
     PSPDFMediaPlayerControlStyleNone,
-    
+
     /// Shows the default control set.
     PSPDFMediaPlayerControlStyleDefault
 };
@@ -24,15 +24,15 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerContentState) {
     /// The player has no idea what the content state is and hasn't started.
     PSPDFMediaPlayerControllerContentStateUnknown,
-    
+
     /// The player is currently loading information about the content.
     PSPDFMediaPlayerControllerContentStateLoading,
-    
+
     /// The player has found that the content is playable.
     PSPDFMediaPlayerControllerContentStatePlayable,
-    
+
     /// The player has encountered an error. This might be because the Internet
-    /// connection is unavailable to fetch a remote iteam or because the item is
+    /// connection is unavailable to fetch a remote item or because the item is
     /// unsupported. You can query `contentError` to find out what exactly went wrong.
     PSPDFMediaPlayerControllerContentStateError
 };
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerContentState) {
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
     /// The player is currently loading information about the content.
     PSPDFMediaPlayerControllerStatePreparing,
-    
+
     /// The player has found that the content is playable.
     PSPDFMediaPlayerControllerStateReady
 };
@@ -48,35 +48,30 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
     /// Shows a preview of the video as the cover.
     PSPDFMediaPlayerCoverModePreview,
-    
+
     /// Shows a custom image as the cover.
     PSPDFMediaPlayerCoverModeCustom,
-    
+
     /// Hides the cover completely.
     PSPDFMediaPlayerCoverModeHidden,
-    
+
     /// Shows the cover and hides the video view while the cover is visible.
     PSPDFMediaPlayerCoverModeClear
 };
 
 @protocol PSPDFMediaPlayerControllerDelegate;
 
-@class PSPDFMediaPlayerView;
-
 /// A simply media player.
 @interface PSPDFMediaPlayerController : NSObject
 
 /// Initialize the player controller with the URL of the media file.
-- (id)initWithContentURL:(NSURL *)contentURL;
+- (instancetype)initWithContentURL:(NSURL *)contentURL NS_DESIGNATED_INITIALIZER;
 
 /// The content URL of the item that the player plays.
 @property (nonatomic, copy, readonly) NSURL *contentURL;
 
-/// If an error occured while preparing the content for playback, this will bet set.
+/// If an error occurred while preparing the content for playback, this will bet set.
 @property (nonatomic, strong, readonly) NSError *contentError;
-
-/// The player view managed by the media controller. Defaults to nil.
-@property (nonatomic, strong) PSPDFMediaPlayerView *view;
 
 /// Starts playing the media.
 - (void)play;
@@ -90,6 +85,9 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
 
 /// Seek to `time`.
 - (void)seekToTime:(CMTime)time;
+
+/// Indicates if the player did finish playing the entire video.
+@property (nonatomic, assign, readonly) BOOL didFinishPlaying;
 
 /// If the media is currently playing, this returns YES.
 @property (nonatomic, assign, readonly, getter=isPlaying) BOOL playing;

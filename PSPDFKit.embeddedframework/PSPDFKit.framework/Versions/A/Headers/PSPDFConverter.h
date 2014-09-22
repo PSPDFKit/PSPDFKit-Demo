@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
-
 @class PSPDFStream;
 
 // Get string from `CGPDFDictionary`.

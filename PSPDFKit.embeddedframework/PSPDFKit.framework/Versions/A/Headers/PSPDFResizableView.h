@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFLongPressGestureRecognizer.h"
 
 @class PSPDFResizableView, PSPDFAnnotation, PSPDFPageView;
@@ -58,7 +59,14 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
     PSPDFResizableViewModeIdle,   /// Nothing is currently happening.
     PSPDFResizableViewModeMove,   /// The annotation is being moved.
     PSPDFResizableViewModeResize, /// The annotation is being resized.
-    PSPDFResizableViewModeAdjust  /// The shape of the annotation is being adjusted.
+    PSPDFResizableViewModeAdjust  /// The shape of the annotation is being adjusted (e.g. polyline shape)
+};
+
+typedef NS_ENUM(NSUInteger, PSPDFResizableViewLimitMode) {
+    PSPDFResizableViewLimitModeNone,            /// The view can bee freely moved outside of it's superview.
+    PSPDFResizableViewLimitModeContentFrame,    /// The content frame has to stay inside the superview bounds.
+    PSPDFResizableViewLimitModeBoundingBox,     /// The bounding box (blue) has to stay inside the superview bounds.
+    PSPDFResizableViewLimitModeViewFrame        /// The entire resizable view frame has to stay inside the superview bounds.
 };
 
 /// Handles view selection with resize knobs.
@@ -66,7 +74,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 
 /// Designated initializer.
 /// This will call `self.trackedView`, so `trackedView` is the place where you'd want to override to dynamically set `allowResizing`.
-- (id)initWithTrackedView:(UIView *)trackedView;
+- (instancetype)initWithTrackedView:(UIView *)trackedView;
 
 /// View that will be changed on selection change.
 @property (nonatomic, copy) NSSet *trackedViews;
@@ -74,14 +82,15 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Set zoomscale to be able to draw the page knobs at the correct size.
 @property (nonatomic, assign) CGFloat zoomScale;
 
-/// The inner edge insets are used to create space between the bounding box (blue) and inner knobs (green).
-/// Will be applied to the contentFrame to calculate frame if an annotation has more than 2 points. Use negative
+/// The inner edge insets are used to create space between the bounding box (blue) and tracked view.
+/// They will be applied to the contentFrame in additon to outerEdgeInsets to calculate frame. Use negative
 /// values to add space around the tracked annotation view. Defaults to -20.f for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets innerEdgeInsets;
 
 /// The outer edge insets are used to create space between the bounding box (blue) and the view bounds.
-/// Will be applied to the contentFrame to calculate frame. Use negative values to add space around the
-/// tracked annotation view. Defaults to `-40.0f` for top, bottom, right, and left.
+/// They will be applied to the contentFrame in additon to innerEdgeInsets to calculate frame.
+/// Use negative values to add space around the tracked annotation view.
+/// Defaults to `-40.0f` for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets outerEdgeInsets;
 
 /// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or innerEdgeInsets.
@@ -119,8 +128,9 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// or the annotation specifies a bigger minimum height. Default is 0.f.
 @property (nonatomic, assign) CGFloat minHeight;
 
-/// Disables dragging the view outside of the parent. Defaults to YES.
-@property (nonatomic, assign) BOOL preventsPositionOutsideSuperview;
+/// Defines the reziable view behavor when dragged outside of it's superview.
+/// Defaults to PSPDFResizableViewLimitModeContentFrame.
+@property (nonatomic, assign) PSPDFResizableViewLimitMode limitMode;
 
 /// Border color. Defaults to `[UIColor.pspdf_selectionColor colorWithAlphaComponent:0.6f]`.
 @property (nonatomic, strong) UIColor *selectionBorderColor UI_APPEARANCE_SELECTOR;

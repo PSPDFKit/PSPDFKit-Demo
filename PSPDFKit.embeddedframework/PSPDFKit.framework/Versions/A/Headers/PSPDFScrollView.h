@@ -10,20 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFLongPressGestureRecognizer.h"
 #import "PSPDFKeyboardAvoidingScrollView.h"
+#import "PSPDFPresentationContext.h"
 
 @protocol PSPDFAnnotationViewProtocol;
-@class PSPDFDocument, PSPDFPageView, PSPDFViewController;
-
-typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
-    PSPDFShadowStyleFlat,   // flat shadow style (Default)
-    PSPDFShadowStyleCurl,   // curled shadow style
-};
+@class PSPDFDocument, PSPDFPageView, PSPDFViewController, PSPDFConfiguration;
 
 /**
- ScrollView that manages one or multiple `PSPDFView's`.
+ ScrollView that manages one or multiple `PSPDFPageView's`.
 
  Depending on the `pageTransition`, either every `PSPDFPageView` is embedded in a `PSPDFScrollView`,
  or there is one global `PSPDFScrollView` for all `PSPDFPageView's`.
@@ -39,10 +36,10 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @interface PSPDFScrollView : PSPDFKeyboardAvoidingScrollView <UIScrollViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
 
 // Designated initializer.
-- (id)initWithFrame:(CGRect)frame;
+- (instancetype)initWithFrame:(CGRect)frame NS_DESIGNATED_INITIALIZER;
 
 /// Display specific document with specified page.
-- (void)displayDocument:(PSPDFDocument *)document withPage:(NSUInteger)page;
+- (void)displayPage:(NSUInteger)page;
 
 /// Releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
 - (void)prepareForReuse;
@@ -50,11 +47,8 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// Current displayed page.
 @property (nonatomic, assign) NSUInteger page;
 
-/// Associated document.
-@property (atomic, strong, readonly) PSPDFDocument *document;
-
-/// Weak reference to parent pdfController.
-@property (atomic, weak) PSPDFViewController *pdfController;
+/// The configuration data source for this scroll view
+@property (nonatomic, weak) id<PSPDFPresentationContext> presentationContext;
 
 /// Left page. Always set. Not used in `PSPDFPageTransitionCurl`.
 @property (nonatomic, strong, readonly) PSPDFPageView *leftPage;
@@ -62,32 +56,8 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// Right page, if doublePageMode is enabled. Not used if the pageCurl transition is used.
 @property (nonatomic, strong, readonly) PSPDFPageView *rightPage;
 
-/// Style of the page shadow. Defaults to `PSPDFShadowStyleFlat`. Can be customized with overriding `pathShadowForView:`.
-@property (nonatomic, assign) PSPDFShadowStyle shadowStyle;
-
 /// Enables/Disables zooming. Defaults to YES. If set to NO, will lock current zoom level.
 @property (nonatomic, assign, getter=isZoomingEnabled) BOOL zoomingEnabled;
-
-
-/// @name Mirrored properties from `PSPDFViewController`
-
-/// If YES, two sites are displayed.
-@property (nonatomic, assign, getter=isDoublePageMode) BOOL doublePageMode;
-
-/// Shows first document page alone. Not relevant in `PSPDFPageModeSingle`.
-@property (nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
-
-/// Allow zooming of small documents to screen width/height.
-@property (nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
-
-/// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height)
-@property (nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
-
-/// Enables/disables page shadow.
-@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
-
-/// Tap on begin/end of page scrolls to previous/next page.
-@property (nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
 @end
 
@@ -112,7 +82,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
  Next, the `didTapOnPageView:atPoint:` delegate is called if the touch still hasn't been processed.
 
  Lastly, if even the delegate returned NO, we look if `isScrollOnTapPageEndEnabled` and scroll to the next/previous page if the border is near enough; or just toggle the HUD (if that is allowed)
- 
+
  Do note that the single and double tap gestures do not have dependencies. This has been made to improve single tap performance.
  If your app requires this, you can manually add this dependency.
  */

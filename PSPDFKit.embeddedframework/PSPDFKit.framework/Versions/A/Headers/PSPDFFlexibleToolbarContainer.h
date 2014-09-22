@@ -34,7 +34,7 @@
 /// Use this callback to perform any additional cleanup on the toolbar presenter side.
 - (void)flexibleToolbarContainerDidHide:(PSPDFFlexibleToolbarContainer *)container;
 
-/// Use this method to prove a more appropriate display aria for the toolbar.
+/// Use this method to prove a more appropriate display area for the toolbar.
 /// @note The provided `CGRect` should be in the containers coordinate system.
 /// Used during toolbar and anchor placeholder positioning. Defaults to self.bounds` if not implemented.
 - (CGRect)flexibleToolbarContainerContentRect:(PSPDFFlexibleToolbarContainer *)container;
@@ -47,7 +47,7 @@
 
 @end
 
-/// Designates common UIToolbar or UINavigationBar functionality 
+/// Designates common UIToolbar or UINavigationBar functionality
 @protocol PSPDFSystemBar <NSObject> @end
 @interface UIToolbar (PSPDFSystemBar) <PSPDFSystemBar> @end
 @interface UINavigationBar (PSPDFSystemBar) <PSPDFSystemBar> @end
@@ -97,7 +97,7 @@
 /// Also shows the overlaidBar if it was previously hidden by the toolbar container.
 - (void)hideAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;
 
-/// Hides the container and toolbar using hideAnimated:completion: and than removes the container from it's superview.
+/// Hides the container and toolbar using hideAnimated:completion: and than removes the container from its superview.
 /// Internally used by the flick to close gesture. Should also be used by done / close buttons added to the toolbar.
 - (void)hideAndRemoveAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;
 

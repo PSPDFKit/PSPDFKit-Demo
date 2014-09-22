@@ -57,6 +57,8 @@
 "Loading" = "Lädt";
 "Expand" = "Ausklappen";
 "Collapse" = "Einklappen";
+// SMS / iMessage sharing button
+"Message" = "Nachricht";
 
 // thumbnails
 "Bookmarked" = "Lesezeichen";
@@ -172,9 +174,11 @@
 "Preview" = "Vorschau";
 "Stamp Text" = "Stempel Text";
 "Add Signature" = "Unterschrift hinzufügen";
+"Remove Signature" = "Unterschrift entfernen";
 "My Signature" = "Meine Unterschrift";
 "No Signatures" = "Keine Unterschriften"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Kunden Unterschrift";
+"Please sign here" = "Bitte hier unterschreiben";
 "Note" = "Notiz";
 "Text" = "Text";
 "Delete Note" = "Notiz löschen";
@@ -207,6 +211,10 @@
 "Merge" = "Zusammenführen"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Beispiel";
 "Annotation Summary for %@:\n" = "Zusammenfassung der Annotationen von %@:\n";
+"Author Name" = "Name des Autors";
+"Please enter the author name you want to use for newly inserted annotations." = "Bitte den Namen des Autors eingeben, der für neu hinzugefügte Annotationen verwendet werden soll.";
+"Name" = "Name";
+"Dismiss" = "Schließen";
 "Fit to Text" = "Passend für Text";
 "Draw" = "Zeichnen";
 "Sound" = "Ton";
@@ -330,6 +338,9 @@
 "Speak" = "Sprechen..."; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Abspielen";
 "Pause" = "Pause";
+"Resume" = "Fortsetzen";
+"Stop" = "Stopp";
+"Play/Stop" = "Abspielen/Stopp";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Aufnehmen";
 "Pause Recording" = "Aufnahme pausieren";
@@ -380,8 +391,8 @@
 "Something went wrong" = "Es ist etwas schief gelaufen";
 "This item is currently unavailable." = "Dieses Element ist im Moment nicht verfügbar.";
 "The information for this gallery could not be loaded." = "Die Information für diese Gallerie konnte nicht geladen werden.";
-"Server Error" = "Server Fehler";
-"The information for this gallery is invalid." = "Die Information für diese Gallerie ist ungültig.";
+"Content Error" = "Fehlerhafter Inhalt";
+"This content is unsupported." = "Dieser Inhalt wird nicht unterstützt.";
 
 // Signatures
 "Digital Signature" = "Digitale Unterschrift";
@@ -397,6 +408,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Die Signatur ist gültig und das Dokument wurde nicht verändert, seit es signiert wurde.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Die Signatur ist ungültig — seit das Dokument signiert wurde, hat sich der Inhalt des Dokuments verändert.";
 "Unsigned Signature Field" = "Nicht unterschriebenes Signaturfeld";
+"Do you really want to remove the signature from the document?" = "Soll die Signatur des Dokuments wirklich entfernt werden?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +416,7 @@
 "Unable to decrypt the signature of the certificate." = "Die Signatur des Zertifikates konnte nicht entschlüsselt werden.";
 "The public key in the certificate could not be read." = "Der öffentliche Schlüssel des Zertifikates konnte nicht gelesen werden.";
 "The signature of the certificate is not valid." = "Die Signatur des Zertifikates ist nicht gültig.";
+"Signature is NOT VALID." = "Die Signatur ist nicht gültig.";
 "There is a format error in the notBefore field of the certificate." = "Formatfehler im notBefore Feld des Zertifikats."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Formatfehler im notAfter Feld des Zertifikats."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Die Signatur konnte nicht überprüft werden, weil die Zertifizierungskette nur ein Zertifikat enthält, es nicht selbst-signiert ist und dem Herausgeber nicht vertraut wird.";
@@ -423,3 +436,19 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Die keyUsage Erweiterung erlaubt keine Signierung von Zertifikaten.";
 "The certificate has expired." = "Das Zertifikat ist abgelaufen.";
 "The certificate is not valid until a date in the future." = "Das Zertifikat ist erst ab einem in der Zukunft liegenden Zeitpunkt gültig.";
+"Could not read X509 certificate from data" = "Das X509 Zertifikat konnte nicht gelesen werden";
+"No X509 certificate found" = "Es wurde kein X509 Zertifikat gefunden";
+
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Die PKCS12 Datei konnte nicht gelesen werden. Die Datei ist nicht richtig formatiert oder beschädigt.";
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Die PKCS12 Datei konnten nicht geöffnet werden. Wurde das richtige Kennwort eingegeben?";
+
+"Could not open file for signature validation" = "Die Datei konnte nicht geöffnet werden um die Signatur zu validieren";
+"Could not get signer info" = "Die Unterzeichner Information konnte nicht gelesen werden";
+
+"OpenSSL could not create PKCS7 object" = "OpenSSL konnte kein PKCS7 Objekt erstellen";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL konnte keine Signatur zu dem PKCS7 Objekt hinzufügen";
+"OpenSSL could not init PKCS7 object" = "OpenSSL konnte das PKCS7 Objekt nicht initialisieren";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL konnte die PKCS7 Signatur erstellen";
+"OpenSSL could not sign hash" = "OpenSSL konnte den Hashwert nicht signieren";
+"Could not write PKCS7 signature" = "Die PKCS7 Signatur konnte nicht geschrieben werden";
+

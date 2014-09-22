@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeGalleryInvalidManifest = 1400,
     PSPDFErrorCodeInvalidRemoteContent = 1500,
     PSPDFErrorCodeFormValidationError = 5000,
+    PSPDFErrorCodeImageProcessorInvalidImage = 6000,
     PSPDFErrorFeatureNotEnabled = 100000,
     PSPDFErrorCodeUnknown = NSIntegerMax
 };

@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFModel.h"
 #import "PSPDFUndoProtocol.h"
 #import "PSPDFJSONAdapter.h"
@@ -31,7 +30,7 @@ extern NSString *const PSPDFAnnotationStringCircle;
 extern NSString *const PSPDFAnnotationStringLine;
 extern NSString *const PSPDFAnnotationStringPolygon;
 extern NSString *const PSPDFAnnotationStringPolyLine;
-extern NSString *const PSPDFAnnotationStringSignature;  /// Signature is an `PSPDFAnnotationStringInk` annotation.
+extern NSString *const PSPDFAnnotationStringSignature;  /// Signature is a `PSPDFAnnotationStringInk` annotation.
 extern NSString *const PSPDFAnnotationStringStamp;
 
 /// Sound annotations can be played back and recorded by default, but playback and recording will not work when the host app is in the background. If you want to enable background playback and recording, you'll need to add the "audio" entry to the `UIBackgroundModes` array in the app's Info.plist. If you do not add this, then recording will be stopped and playback will be silenced when your app is sent into the background.
@@ -136,6 +135,14 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
     PSPDFAnnotationTriggerEventFormCalculate, // C (12)
 };
 
+// See PDF Reference 1.5, 1.6. Border effect names (Table 167).
+typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
+	// enum order important!
+    PSPDFAnnotationBorderEffectNoEffect = 0,
+    PSPDFAnnotationBorderEffectCloudy,
+};
+
+
 /**
  `PSPDFAnnotation` is the base class for all PDF annotations and forms.
 
@@ -144,8 +151,9 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
  `PSPDFAnnotationManager` searches the runtime for subclasses of `PSPDFAnnotation` and builds up a dictionary using `supportedTypes`.
 
  @note on Thread safety:
- Annotation objects should only ever be edited on ONE thread. Modify properties on the main thread only if they are already active (for creation, it doesn't matter which thread creates them). Before rendering, obtain a copy of the annotation to ensure it's not mutated while properties are read.
- 
+ Annotation objects should only ever be edited on the main thread. Modify properties on the main thread only if they are already active (for creation, it doesn't matter which thread creates them). Before rendering, obtain a copy of the annotation to ensure it's not mutated while properties are read.
+ Once the `documentProvider` is set, modifying properties on a background thread will throw an exception.
+
  @warning Annotations are mutable objects. Do not store them into NSSet or other objects that require a hash-value that does not change.
 */
 @interface PSPDFAnnotation : PSPDFModel <PSPDFUndoProtocol, PSPDFJSONSerializing>
@@ -156,7 +164,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 + (PSPDFAnnotation *)annotationFromJSONDictionary:(NSDictionary *)JSONDictionary document:(PSPDFDocument *)document error:(NSError **)error;
 
 /// Use this to create custom user annotations.
-- (id)initWithType:(PSPDFAnnotationType)annotationType;
+- (instancetype)initWithType:(PSPDFAnnotationType)annotationType;
 
 /// Returns YES if PSPDFKit has support to write this annotation type back into the PDF.
 + (BOOL)isWriteable;
@@ -186,8 +194,11 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 /// Returns the minimum size that an annotation can properly display. Defaults to (32.f, 32.f).
 - (CGSize)minimumSize;
 
-/// Check if point is inside annotation area.
-- (BOOL)hitTest:(CGPoint)point;
+/// Check if `point` is inside the annotation area, while making sure that the hit area is at least `minDiameter` wide.
+/// The default implementation performs hit testing based on the annotation bounding box, but concrete subclasses can (and do)
+/// override this behavior in order to perform custom checks (e.g., path-based hit testing).
+/// @note The usage of `minDiameter` is annotation specific.
+- (BOOL)hitTest:(CGPoint)point minDiameter:(CGFloat)minDiameter;
 
 /// Calculates the exact annotation position in the current page.
 - (CGRect)boundingBoxForPageRect:(CGRect)pageRect;
@@ -261,7 +272,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 @property (nonatomic, copy) id value;
 
 /// Annotation flags.
-@property (nonatomic, assign) NSUInteger flags;
+@property (nonatomic, assign) PSPDFAnnotationFlags flags;
 
 /// Shortcut that checks for `PSPDFAnnotationFlagHidden` in `flags`.
 @property (nonatomic, assign, getter=isHidden) BOOL hidden;
@@ -283,7 +294,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Date where the annotation was last modified.
 /// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
-/// Will be updated by PSPDFKit as soon as a property is changed.
+/// Will be updated when a property is changed.
 @property (atomic, strong) NSDate *lastModified;
 
 /// Border Line Width (only used in certain annotations)
@@ -294,6 +305,13 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// If borderStyle is set to `PSPDFAnnotationBorderStyleDashed`, we expect a `dashStyle` array here (int-values)
 @property (nonatomic, copy) NSArray *dashArray;
+
+/// Border effect. See PDF Reference 1.5, 1.6 (Table 167).
+@property (nonatomic, assign) PSPDFAnnotationBorderEffect borderEffect;
+
+/// (Optional; valid only if the value of borderEffect is PSPDFAnnotationBorderEffectCloudy)
+/// A number describing the intensity of the effect, in the range 0 to 2. Default value: 0.
+@property (nonatomic, assign) CGFloat borderEffectIntensity;
 
 /// Rectangle of specific annotation. (PDF coordinates)
 /// @note Other properties might be adjusted, depending what `shouldTransformOnBoundingBoxChange` returns.
@@ -378,13 +396,57 @@ extern NSString *const PSPDFAnnotationMarginKey;       // `UIEdgeInsets`.
 
 @end
 
+// Key for vertical text alignment in `fontAttributes`.
+extern NSString * const PSPDFVerticalAlignmentName;
 
-// Legacy data format compatibility helper:
+/// Vertical alignment setting.
+typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
+    PSPDFVerticalAlignmentTop    = 0, /// Align at the top.
+    PSPDFVerticalAlignmentCenter = 1, /// Align at the vertical center.
+    PSPDFVerticalAlignmentBottom = 2, /// Align at the bottom.
+};
 
-// Support v2 format. If you're using `NSKeyedArchiver` manually, call this to allow v2 archives to open.
-extern void PSPDFAnnotationSupportLegacyFormat(NSKeyedUnarchiver *unarchiver);
+// This defines shortcuts that will edit the `fontAttributes` dictionary.
+// Valid for PSPDFFreeTextAnnotation, PSPDFChoiceFormElement and PSPDF
+@interface PSPDFAnnotation (Fonts)
 
-// After you loaded your v2 annotation array, call this method to migrate to the v3 format.
-extern NSArray *PSPDFPostprocessAnnotationInLegacyFormat(NSArray *annotations);
+/// Supports attributes for the text rendering, similar to the attributes in `NSAttributedString`.
+/// @note Supported keys are:
+/// `NSUnderlineStyleAttributeName` and `NSStrikethroughStyleAttributeName`, valid values `NSUnderlineStyleNone` and `NSUnderlineStyleSingle`.
+/// A font can either be underline or strikethrough, not both.
+/// `UIFontDescriptorTraitsAttribute` takes a boxed value of `UIFontDescriptorSymbolicTraits`, valid options are `UIFontDescriptorTraitItalic` and `UIFontDescriptorTraitBold`.
+/// Setting `NSForegroundColorAttributeName` will also update the `color` property.
+/// Setting `NSFontAttributeName` will update `fontName`.
+/// Setting `PSPDFFontSizeName` will update `fontSize`.
+/// Further attributes might be rendered and saved, but are not persisted in the PDF.
+@property (nonatomic, copy) NSDictionary *fontAttributes;
+
+/// The font name, if defined.
+/// @note Shortcut for `[self.fontAttributes[NSFontAttributeName] familyName]`.
+@property (nonatomic, copy) NSString *fontName;
+
+/// Font size, if defined. Setting this to 0 will use the default size or (for forms) attempt auto-sizing the text.
+/// @note Shortcut for `self.fontAttributes[PSPDFFontSizeName]`.
+@property (nonatomic, assign) CGFloat fontSize;
+
+/// Text justification. Allows `NSTextAlignmentLeft`, `NSTextAlignmentCenter` and `NSTextAlignmentRight`.
+/// @note This is a shortcut for the data saved in `fontAttributes` (`NSParagraphStyleAttributeName`) and will modify `fontAttributes`.
+@property (nonatomic, assign) NSTextAlignment textAlignment;
+
+/// Vertical text alignment. Defaults to `PSPDFVerticalAlignmentTop`.
+/// @note Shortcut for `self.fontAttributes[PSPDFVerticalAlignmentName]`.
+/// @warning This is not defined in the PDF spec. (PSPDFKit extension)
+@property (nonatomic, assign) PSPDFVerticalAlignment verticalTextAlignment;
+
+// Return a default font size if not defined in the annotation.
+- (CGFloat)defaultFontSize;
+
+// Return a default font name (Helvetica) if not defined in the annotation.
+- (NSString *)defaultFontName;
+
+// Returns the currently set font (calculated from defaultFontSize)
+- (UIFont *)defaultFont;
+
+@end
 
 extern void PSPDFAnnotationRegisterOverrideClasses(NSKeyedUnarchiver *unarchiver, PSPDFDocument *document);

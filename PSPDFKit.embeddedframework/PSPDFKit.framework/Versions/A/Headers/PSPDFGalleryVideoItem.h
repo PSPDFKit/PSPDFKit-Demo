@@ -25,14 +25,14 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemQuality) {
 typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemCoverMode) {
     /// The cover is not visible. Correspondents to `none`.
     PSPDFGalleryVideoItemCoverModeNone,
-    
+
     /// The cover is visible and a video preview is displayed. Correspondents to `preview`.
     PSPDFGalleryVideoItemCoverModePreview,
-    
+
     /// The cover is visible and an image is displayed. Correspondents to `image`.
     PSPDFGalleryVideoItemCoverModeImage,
-    
-    /// The cover is visible and the underlaying PDF shines through. Correspondents to `clear`.
+
+    /// The cover is visible and the underlying PDF shines through. Correspondents to `clear`.
     PSPDFGalleryVideoItemCoverModeClear
 };
 
@@ -56,7 +56,7 @@ extern PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(N
 /// Indicates if the playback should loop. Defaults to `NO`.
 @property (nonatomic, assign) BOOL loopEnabled;
 
-/// Contains the order of the prefered video qualities. This only works for videos where
+/// Contains the order of the preferred video qualities. This only works for videos where
 /// the source is capable of providing different qualities.
 @property (nonatomic, copy) NSArray *preferredVideoQualities;
 
@@ -92,20 +92,11 @@ extern PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(N
 @interface PSPDFGalleryVideoItem (Protected)
 
 // This method is the designated initializer for all internal classes of the class cluster.
-- (id)initInternallyWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+- (instancetype)initInternallyWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
-/// @name Constants
-
-/// Boolean. Indicates if the content should automatically start playing.
-extern NSString *const PSPDFGalleryOptionAutoplay;
-
-/// Boolean. Indicates if controls should be displayed.
-extern NSString *const PSPDFGalleryOptionControls;
-
-/// Boolean. Indicates if the content should loop forever.
-extern NSString *const PSPDFGalleryOptionLoop;
+/// @name Video Options
 
 /// NSString. Indicates the cover mode.
 extern NSString *const PSPDFGalleryOptionCoverMode;
@@ -116,7 +107,7 @@ extern NSString *const PSPDFGalleryOptionCoverImage;
 /// NSNumber. The time in the video where the preview should be captured.
 extern NSString *const PSPDFGalleryOptionCoverPreviewCaptureTime;
 
-/// NSArray. The prefered video qualities.
+/// NSArray. The preferred video qualities.
 extern NSString *const PSPDFGalleryOptionPreferredVideoQualities;
 
 /// NSNumber. The start time of the video.
@@ -125,7 +116,7 @@ extern NSString *const PSPDFGalleryOptionStartTime;
 /// NSNumber. The end time of the video.
 extern NSString *const PSPDFGalleryOptionEndTime;
 
-/// @name Deprecated Constants
+/// @name Deprecated Video Options
 
 /// Mixed value. This is a mixture of boolean values and an URL to a cover image.
 /// Use `PSPDFGalleryOptionCoverImage` and `PSPDFGalleryOptionCoverMode` instead.

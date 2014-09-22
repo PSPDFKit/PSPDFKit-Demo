@@ -13,16 +13,17 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFSegmentedControl.h"
 #import "PSPDFDocument.h"
+#import "PSPDFPresentationContext.h"
 
 @class PSPDFThumbnailViewController, PSPDFThumbnailGridViewCell, PSPDFCenteredLabelView;
 
-// Subclass to enable UIAppearance rules on the filter.
+// Subclass to enable `UIAppearance` rules on the filter.
 @interface PSPDFThumbnailFilterSegmentedControl : PSPDFSegmentedControl @end
 
 typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
     PSPDFThumbnailViewFilterShowAll,     // Show all thumbnails.
     PSPDFThumbnailViewFilterBookmarks,   // Show bookmarked thumbnails.
-    PSPDFThumbnailViewFilterAnnotations, // All annotation types except links. PSPDFKit Basic/Complete only.
+    PSPDFThumbnailViewFilterAnnotations, // All annotation types except links. Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
 };
 
 /// Delegate for thumbnail actions.
@@ -39,13 +40,16 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @interface PSPDFThumbnailViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 
 /// The collection view used for the thumbnails.
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 /// Current displayed document.
 @property (nonatomic, strong) PSPDFDocument *document;
+
+/// Data source to get double page mode.
+@property (nonatomic, weak) id <PSPDFPresentationContext> dataSource;
 
 /// Delegate for the thumbnail controller.
 @property (nonatomic, weak) IBOutlet id<PSPDFThumbnailViewControllerDelegate> delegate;
@@ -62,7 +66,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 - (void)stopScrolling;
 
 /// Call to update any filter (if set) all visible cells (e.g. to show bookmark changes)
-- (void)updateFilterAndVisibleCellsAnimated:(BOOL)aniamted;
+- (void)updateFilterAndVisibleCellsAnimated:(BOOL)animated;
 
 /// Should the thumbnails be displayed in a fixed grid, or dynamically adapt to different page sizes?
 /// Defaults to YES. Most documents will look better when this is set to NO.
@@ -75,20 +79,21 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 /// Defaults to `PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterAnnotations, PSPDFThumbnailViewFilterBookmarks`.
 @property (nonatomic, copy) NSOrderedSet *filterOptions;
 
-/// Currently active filter. Make sure that one is also set in filterOptions.
-@property (nonatomic, assign, readonly) PSPDFThumbnailViewFilter activeFilter;
+/// Currently active filter. Make sure that one is also set in `filterOptions`.
+@property (nonatomic, assign) PSPDFThumbnailViewFilter activeFilter;
+- (void)setActiveFilter:(PSPDFThumbnailViewFilter)activeFilter animated:(BOOL)animated;
 
-/// Thumbnail size. Defaults to 170x220.
+/// Thumbnail size.
 /// @warning call `reloadData` on the `collectionView` after changing this.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
-/// Set margin for thumbnail view mode. Defaults to `UIEdgeInsetsMake(15.f, 15.f, 15.f, 15.f)`.
-/// Margin is extra space around the grid of thumbnails (sectionInset of the flow layout).
-/// @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
+/// Set margin for thumbnail view mode.
+/// Margin is extra space around the grid of thumbnails (`sectionInset` of the flow layout).
+/// @warning Will be ignored if the layout does not support `sectionInset`.
 @property (nonatomic, assign) UIEdgeInsets thumbnailMargin;
 
-/// Row margin (`minimumLineSpacing` property of the flow layout). Defaults to 20.
-/// @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
+/// Row margin (`minimumLineSpacing` property of the flow layout).
+/// @warning Will be ignored if the layout does not support `minimumLineSpacing`.
 @property (nonatomic, assign) CGFloat thumbnailRowMargin;
 
 /// Class used for thumbnails (defaults to `PSPDFThumbnailGridViewCell`)

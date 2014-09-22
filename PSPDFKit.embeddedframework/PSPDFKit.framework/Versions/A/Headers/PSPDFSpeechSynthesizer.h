@@ -20,7 +20,7 @@ extern NSString *const PSPDFSpeechSynthesizerLanguageKey;
 // Provide text to sample a language.
 extern NSString *const PSPDFSpeechSynthesizerLanguageHintKey;
 
-/// Controls text-to-speach features. iOS 7+ only.
+/// Controls text-to-speech features.
 /// @note This class should only be used from the main thread.
 @interface PSPDFSpeechSynthesizer : NSObject
 
@@ -35,7 +35,7 @@ extern NSString *const PSPDFSpeechSynthesizerLanguageHintKey;
 /// If this delegate is set, stop current text.
 - (BOOL)stopSpeakingForDelegate:(id<AVSpeechSynthesizerDelegate>)delegate;
 
-/// The internally sed speech synthesizer.
+/// The internally used speech synthesizer.
 @property (nonatomic, strong, readonly) AVSpeechSynthesizer *speechSynthesizer;
 
 /// Speech language. Defaults to `PSPDFSpeechSynthesizerAutoDetectLanguage`.

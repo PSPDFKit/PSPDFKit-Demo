@@ -13,71 +13,42 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGalleryItem.h"
+#import "PSPDFOverridable.h"
+#import "PSPDFPlugin.h"
+#import "PSPDFMultimediaViewController.h"
 
-@class PSPDFLinkAnnotation, PSPDFMediaPlayerController;
+@class PSPDFLinkAnnotation, PSPDFMediaPlayerController, PSPDFGalleryConfiguration;
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
     /// The view controller is currently not doing anything.
     PSPDFGalleryViewControllerStateIdle,
-    
+
     /// The manifest file is currently downloaded.
     PSPDFGalleryViewControllerStateLoading,
-    
+
     /// The manifest file has been downloaded and the view controller is ready.
     PSPDFGalleryViewControllerStateReady,
-    
-    /// The view controller could not download the manifest file because of a connection error.
-    PSPDFGalleryViewControllerStateConnectionError,
-    
-    /// The view controller could download the manifest file but could not parse it.
-    PSPDFGalleryViewControllerStateManifestError
+
+    /// The view controller could not load or parse the manifest file.
+    PSPDFGalleryViewControllerStateError
 };
 
 @class PSPDFGalleryViewController;
 
 /// Handles a gallery of one or multiple images.
-@interface PSPDFGalleryViewController : PSPDFBaseViewController <PSPDFOverridable>
+@interface PSPDFGalleryViewController : PSPDFBaseViewController <PSPDFOverridable, PSPDFPlugin, PSPDFMultimediaViewController>
 
-/// Create a new gallery view controller by passing in a link annotation with `linkAnnotationType` set to `PSPDFLinkAnnotationImage`.
-- (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)annotation;
+/// Create a new gallery view controller by passing in the plugin registry and an options dictionary.
+/// The options dictionary must contain the key `PSPDFMultimediaLinkAnnotationKey` that maps to an
+/// `PSPDFLinkAnnotation` object.
+- (instancetype)initWithPluginRegistry:(PSPDFPluginRegistry *)pluginRegistry options:(NSDictionary *)options NS_DESIGNATED_INITIALIZER;
 
-/// @name Configuration
+/// Create a new gallery view controller by passing in a link annotation.
+- (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)linkAnnotation;
 
-/// The max. number of concurrent downloads. Defaults to 2. Must at least be 1.
-@property (nonatomic, assign) NSUInteger maxConcurrentDownloads;
-
-/// The max. number of images after the currently visible one that should be prefetched. Defaults to 5.
-/// To disable prefetching, set this to zero.
-@property (nonatomic, assign) NSUInteger maxPrefetchDownloads;
-
-/// Controls if the user can switch between the fullscreen mode and embedded mode by double-tapping
-/// or panning. Defaults to `YES`.
-/// @note This only affects user interaction. If you call `setFullscreen:animated:` programmatically,
-/// the mode will still be set accordingly.
-@property (nonatomic, assign) BOOL displayModeUserInteractionEnabled;
-
-/// The treshold in points after which the fullscreen mode is exited after a pan. Defaults to 80pt.
-@property (nonatomic, assign) CGFloat fullscreenDismissPanTreshold;
-
-/// Set this to YES if zooming should be enabled in fullscreen mode. Defaults to YES.
-@property (nonatomic, assign, getter=isFullscreenZoomEnabled) BOOL fullscreenZoomEnabled;
-
-/// The maximum zoom scale that you want to allow. Only meaningful if `fullscreenZoomEnabled` is YES
-/// Defaults to 5.0.
-@property (nonatomic, assign) CGFloat maximumFullscreenZoomScale;
-
-/// The minimum zoom scale that you want to allow. Only meaningful if `fullscreenZoomEnabled` is YES.
-/// Defaults to 1.0.
-@property (nonatomic, assign) CGFloat minimumFullscreenZoomScale;
-
-/// Controls if the gallery should loop infinitely, that is if the user can keep scrolling forever
-/// and the content will repeat itself. Defaults to `YES`. Ignored if there's only one item set.
-@property (nonatomic, assign, getter=isLoopEnabled) BOOL loopEnabled;
-
-/// Setting this to `YES` will present a HUD whenever the user goes from the last image to the
-/// first one. Defaults to `YES`.
-/// @note This propery has no effect if `loopEnabled` is set to `NO`.
-@property (nonatomic, assign, getter=isLoopHUDEnabled) BOOL loopHUDEnabled;
+/// The configuration. Defaults to `+[PSPDFGalleryConfiguration defaultConfiguration]`.
+/// @warning You cannot set this property to `nil` since a gallery must always have a configuration.
+@property (nonatomic, strong) PSPDFGalleryConfiguration *configuration;
 
 /// @name State
 
@@ -87,7 +58,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// All `PSPDFGalleryItems` of this gallery. Only set if state is `PSPDFGalleryViewControllerStateReady`.
 @property (nonatomic, copy, readonly) NSArray *items;
 
-/// The link annotation that was used to instanciate the view controller.
+/// The link annotation that was used to instantiate the view controller.
 @property (nonatomic, strong, readonly) PSPDFLinkAnnotation *linkAnnotation;
 
 /// Used to enter or exit the fullscreen mode.
@@ -95,7 +66,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 
 /// Indicates if the view controller is currently transitioning between display modes, that
 /// is if the controller is moving from fullscreen to embedded or vice versa.
-@property (nonatomic, assign, getter=isTransitioningDisplayMode) BOOL transitioningDisplayMode;
+@property (nonatomic, assign, getter=isTransitioning) BOOL transitioning;
 
 /// Used to enter or exit the fullscreen mode with or without animation.
 /// @warning If you use this property programmatically, you must set it to `NO` once
@@ -116,24 +87,5 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 
 /// Pan: Dismiss Full-Screen mode.
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGestureRecognizer;
-
-/// @name Utility
-
-/// Returns the current `PSPDFMediaPlayerController` if a video is currently visible. Returns `nil` otherwise.
-- (PSPDFMediaPlayerController *)currentMediaPlayerController;
-
-@end
-
-@interface PSPDFGalleryViewController (Private)
-
-@property (nonatomic, weak) UIViewController <PSPDFOverridable> *overridableParentViewController;
-
-@end
-
-@interface PSPDFGalleryViewController (Deprecated)
-
-@property (nonatomic, strong) UIColor *backgroundColor PSPDF_DEPRECATED(3.7.0, "Use backgroundColor on PSPDFGalleryEmbeddedBackgroundView instead.");
-@property (nonatomic, assign) BOOL blurBackground PSPDF_DEPRECATED(3.7.0, "Use blurBackground on PSPDFGalleryEmbeddedBackgroundView instead.");
-@property (nonatomic, strong) UIColor *fullscreenBackgroundColor PSPDF_DEPRECATED(3.7.0, "Use backgroundColor on PSPDFGalleryFullscreenBackgroundView instead.");
 
 @end

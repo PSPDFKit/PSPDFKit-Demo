@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <PSPDFKit/PSPDFKit.h>
+#import "PSPDFGoToAction.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFEmbeddedGoToActionTarget) {
     PSPDFEmbeddedGoToActionTargetParentOfCurrentDocument, // Not yet supported
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, PSPDFEmbeddedGoToActionTarget) {
 /// An embedded go-to action (PDF 1.6) is similar to a remote go-to action but allows jumping to or from a PDF file that is embedded in another PDF file.
 @interface PSPDFEmbeddedGoToAction : PSPDFGoToAction
 
-- (id)initWithRemotePath:(NSString *)remotePath targetRelationship:(PSPDFEmbeddedGoToActionTarget)targetRelationship openInNewWindow:(BOOL)openInNewWindow pageIndex:(NSUInteger)pageIndex;
+- (instancetype)initWithRemotePath:(NSString *)remotePath targetRelationship:(PSPDFEmbeddedGoToActionTarget)targetRelationship openInNewWindow:(BOOL)openInNewWindow pageIndex:(NSUInteger)pageIndex;
 
 /// Target can either be parent or child of the current document.  (T.R)
 @property (nonatomic, assign, readonly) PSPDFEmbeddedGoToActionTarget targetRelationship;

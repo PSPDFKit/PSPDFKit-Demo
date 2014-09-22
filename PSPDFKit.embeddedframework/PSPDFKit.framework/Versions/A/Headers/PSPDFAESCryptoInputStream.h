@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, PSPDFAESCryptoInputStreamErrorCode) {
 /// AES encryption, RNCryptor data format  (see https://github.com/RNCryptor/RNCryptor-Spec/blob/master/RNCryptor-Spec-v3.md )
 @interface PSPDFAESCryptoInputStream : PSPDFCryptoInputStream
 
-/// Designated initializer with the passphrase. THe encryption key salt and HMAC key salt will be loaded from the file header.
+/// Designated initializer with the passphrase. The encryption key salt and HMAC key salt will be loaded from the file header.
 - (instancetype)initWithInputStream:(NSInputStream *)stream passphrase:(NSString *)passphrase;
 
 /// On the first call the provided data buffer size must be at least 98 bytes (82 bytes if original data were < 16 bytes) due to the RNCryptor data format,

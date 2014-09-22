@@ -57,6 +57,8 @@
 "Loading" = "Yükleniyor";
 "Expand" = "Genişlet";
 "Collapse" = "İçeriği Gzile";
+// SMS / iMessage sharing button
+"Message" = "Mesaj";
 
 // thumbnails
 "Bookmarked" = "Yer İmleri";
@@ -86,7 +88,7 @@
 "Search Cancelled" = "Arama İptal Edildi";
 "%tu left" = "%tu kaldı"; // Indexing Documents... 5 left
 "Searching" = "Aranıyor";
-"%tu documents indexed." = "%tu belge dizinlendi.\n";
+"%tu documents indexed." = "%tu belge dizinlendi.";
 "Done" = "Bitti";
 "Indexing Documents" = "Belgeler Dizinleniyor";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -104,7 +106,7 @@
 
 // text selection
 "Save To Camera Roll" = "Film Rulosu'na Kaydet";
-"Failed to extract image." = "Görüntünün ayıklanması başarısız oldu.";
+"Failed to extract image." = "Görüntü ayıklanması başarısız oldu.";
 "Type value or pick from list" = "Bir değer gir ya da listeden seç";
 
 // annotations
@@ -172,9 +174,11 @@
 "Preview" = "Ön İzleme";
 "Stamp Text" = "Damga Metni";
 "Add Signature" = "İmza Ekle";
+"Remove Signature" = "İmzayı Sil";
 "My Signature" = "Benim İmzam";
 "No Signatures" = "İmza Yok"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Müşteri İmzası";
+"Please sign here" = "Lütfen burayı imzalayın";
 "Note" = "Not";
 "Text" = "Metin";
 "Delete Note" = "Notu Sil";
@@ -207,6 +211,14 @@
 "Merge" = "Birleştir"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Örnek";
 "Annotation Summary for %@:\n" = "%@ için Not Özeti:\n";
+// title
+"Author Name" = "Yazar Adı";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Lütfen yeni eklenen notlar için kullanmak istediğiniz yazar adını girin.";
+// text field placeholder
+"Name" = "Ad";
+// meaning: close
+"Dismiss" = "Kapat";
 "Fit to Text" = "Metne Sabitle";
 "Draw" = "Çiz";
 "Sound" = "Ses";
@@ -330,6 +342,9 @@
 "Speak" = "Konuş"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Çal";
 "Pause" = "Duraklat";
+"Resume" = "Sürdür";
+"Stop" = "Durdur";
+"Play/Stop" = "Oynat/Durdur";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Kaydet";
 "Pause Recording" = "Kaydetmeyi Duraklat";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Bir hata oluştu";
 "This item is currently unavailable." = "Bu öğe şu an kullanılamıyor.";
 "The information for this gallery could not be loaded." = "Bu galeri bilgisi yüklenemedi.";
-"Server Error" = "Sunucu Hatası";
-"The information for this gallery is invalid." = "Bu galeri bilgisi geçersiz.";
+"Content Error" = "İçerik Hatası";
+"This content is unsupported." = "İçerik desteklenmiyor.";
 
 // Signatures
 "Digital Signature" = "Dijital İmza";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Bu imza geçerli ve belgenin içeriği imzalandığından beri değiştirilmedi.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Geçersiz imza — belgenin içeriği imzalandıktan sonra belge değiştirildi, bozuldu veya içerikle oynandı.";
 "Unsigned Signature Field" = "İmzalanmamış İmza Alanı";
+"Do you really want to remove the signature from the document?" = "Belgedeki imzayı kaldırmak istediğinizden emin misiniz?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Sertifika imzasının şifresi çözülemiyor.";
 "The public key in the certificate could not be read." = "Sertifikadaki açık anahtar okunamıyor.";
 "The signature of the certificate is not valid." = "Sertifikanın bu imzası geçerli değil.";
+"Signature is not valid." = "İmza geçerli değil.";
 "There is a format error in the notBefore field of the certificate." = "Sertifikanın notBefore alanında biçim hatası var."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Sertifikanın notAfter alanında bir biçim hatası var."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "İmzalar doğrulanamıyor çünkü sertifika zinciri yanlızca bir sertifka içeriyor, kendiliğinden imzalı değil ve sağlayıcıya güvenilemiyor.";
@@ -418,8 +435,31 @@
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Geçen sertifika otomatik olarak imzalı ve aynı sertifika güvenilir sertifikalar listesinde bulunamıyor.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Sertifika zincirinde otomatik olarak imzalanan bir imza var. Sertifika zinciri güvenilmeyen sertifikalar kullanılarak oluşturulabilir ama root CA yerel olarak bulunamıyor."; // root CA sould not be translated
 "Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "İmzalama hiyerarşisinde sertifika yetkililerinden birinin sertifikası bulunamıyor ve bu CA yerel uygulama tarafından güvenilir değil."; // CAs should not be translated;
-"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Yerel olarak aranan bir sertifikanın sertifika sağlayıcısı bulunamıyor. Bu, normal şartlarda güvenilen sertifka listesinin tam olmadığı anlamına gelir. ";
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Yerel olarak aranan bir sertifikanın sertifika sağlayıcısı bulunamıyor. Bu, normal şartlarda güvenilen sertifka listesinin tam olmadığı anlamına gelir.";
 "The certificate that was provided cannot be used for its intended purpose." = "Sağlanan sertifika amaçlanan hedefi için kullanılamıyor.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Sertifika sağlayıcının anahtar kullanım uzantısı sertifikanın imzalanmasına izin vermiyor.";
 "The certificate has expired." = "Sertifikanın süresi doldu.";
 "The certificate is not valid until a date in the future." = "Sertifika ilerideki bir tarihe kadar geçerli değil.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Verilerdeki X509 sertifikası okunamıyor";
+// X509 should not be translated
+"No X509 certificate found" = "X509 sertifikası bulunamadı";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "PKCS12 dosyası okunamıyor. Dosya düzgün şekilde formatlanmamış veya hasar görmüş.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "PKCS12 verilerinin kilidi açılamıyor. Doğru parolayı girdiğinizden emin misiniz?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "İmza doğrulama için dosya açılamıyor";
+"Could not get signer info" = "İmzalayan bilgisi alınamıyor";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL, PKCS7 nesnesi yaratamıyor";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL, PKCS7 nesnesine imza ekleyemiyor";
+"OpenSSL could not init PKCS7 object" = "OpenSSL, PKCS7 nesnesini başlatamıyor";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL, PKCS7 imzası oluşturamıyor";
+"OpenSSL could not sign hash" = "OpenSSL, sağlama imzalayamıyor";
+"Could not write PKCS7 signature" = "PKCS7 imzası yazılamıyor";
+
+

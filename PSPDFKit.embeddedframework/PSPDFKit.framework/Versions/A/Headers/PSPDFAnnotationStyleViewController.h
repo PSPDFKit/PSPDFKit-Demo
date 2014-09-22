@@ -10,10 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 #import "PSPDFColorSelectionViewController.h"
-#import "PSPDFLineEndSelectionViewController.h"
-#import "PSPDFFontSelectorViewController.h"
+#import "PSPDFFontPickerViewController.h"
 #import "PSPDFFontStyleViewController.h"
 #import "PSPDFStaticTableViewController.h"
 #import "PSPDFStyleable.h"
@@ -42,13 +41,10 @@
 
 /// Allows to set/change the style of an annotation.
 /// @note: The inspector currently only supports setting *one* annotation, but since long-term we want multi-select-change, the API has already been prepared for.
-@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFLineEndSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFStyleable>
-
-/// Returns YES if we can edit this annotation.
-+ (BOOL)hasPropertiesForAnnotations:(NSArray *)annotations;
+@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFFontPickerViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithAnnotations:(NSArray *)annotations delegate:(id<PSPDFAnnotationStyleViewControllerDelegate>)delegate;
+- (instancetype)initWithAnnotations:(NSArray *)annotations delegate:(id<PSPDFAnnotationStyleViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Controller delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationStyleViewControllerDelegate> delegate;
@@ -59,20 +55,23 @@
 /// Shows a preview area on top. Defaults to NO.
 @property (nonatomic, assign) BOOL showPreviewArea;
 
+/// Returns YES if we can edit this annotation.
++ (BOOL)hasPropertiesForAnnotations:(NSArray *)annotations;
+
 /// @name Customization
 
-/// Customize the inspector globally. Dictionary in format annotation type string : array of property strings.
+/// Customize the inspector globally. Dictionary in format annotation type string : array of arrays of property strings OR a block that returns this and takes `annotations` as argument.
 /// @note Setting `properties` to nil will re-set the default properties dictionary.
 /// @warning Only set on main thread. Set before the annotation controller is being accessed/opened.
 + (void)setPropertiesForAnnotations:(NSDictionary *)properties;
 
-/** 
+/**
  Return current dictionary of properties.
- 
- Following properites are currently supported:
- - color, fillColor, alpha
- - lineWidth, lineEnd1, lineEnd2
- - fontName, fontSize, textAlignment
+
+ Following properties are currently supported:
+ - `color`, `fillColor`, `alpha`
+ - `lineWidth`, `lineEnd1`, `lineEnd2`
+ - `fontName`, `fontSize`, `textAlignment`, `lineEnd`
  */
 + (NSDictionary *)propertiesForAnnotations;
 

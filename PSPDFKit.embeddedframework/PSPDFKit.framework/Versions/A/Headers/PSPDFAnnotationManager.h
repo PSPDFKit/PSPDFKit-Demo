@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationProvider.h"
 
@@ -24,6 +25,12 @@ extern NSString *const PSPDFAnnotationChangedNotification;                      
 extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;           // set to NO to not animate updates (if it can be animated, that is)
 extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;       // set to YES to disable handling by views.
 extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            // NSArray of selector names.
+
+/// Maks the inserted annotations as beeing user created (use a BOOL NSNumber value).
+/// @see addAnnotations:options:
+extern NSString * const PSPDFAnnotationOptionUserCreatedKey;
+/// Prevents the insertion or removal notifications from beeing sent (use a BOOL NSNumber value).
+extern NSString * const PSPDFAnnotationOptionSuppressNotificationsKey;
 
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
@@ -39,14 +46,14 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 @interface PSPDFAnnotationManager : NSObject <PSPDFAnnotationProviderChangeNotifier>
 
 /// Initializes the annotation manager with the associated `documentProvider`.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /**
  The simplest way to extend `PSPDFAnnotationManager` is to register a custom `PSPDFAnnotationProvider`.
  You can even remove the default `PSPDFFileAnnotationProvider` if you don't want file-based annotations.
 
  On default, this array will contain the fileAnnotationProvider.
- @note The order of the array is important. Setting/getting is thread safe.
+ @note The order of the array is important.
  */
 @property (nonatomic, copy) NSArray *annotationProviders;
 
@@ -85,17 +92,22 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 /**
  Add `annotations` to the currently set annotation providers.
  `page` is defined through the set page in each annotation object.
-
+ 
+ @param annotations An array of PSPDFAnnotation objects to be added.
+ @param options Insertion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
  @note `PSPDFAnnotationManager` will query all registered annotationProviders until one returns YES on addAnnotations.
+ 
  Will return NO if no annotationProvider can handle the annotations. (By default, the `PSPDFFileAnnotationProvider` will handle all annotations.)
 
  If you're just interested in being notified, you can register a custom `annotationProvider` and set in the array before the file `annotationProvider`. Implement `addAnnotations:` and return NO. You'll be notified of all add operations.
  */
-- (BOOL)addAnnotations:(NSArray *)annotations;
+- (BOOL)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Remove `annotations` from the pages they are registered in.
+/// @param annotations An array of PSPDFAnnotation objects to be removed.
+/// @param options Deletion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
 /// @note Will return NO if no annotationProvider can handle the annotations. (By default, the PSPDFFileAnnotationProvider will handle all annotations.)
-- (BOOL)removeAnnotations:(NSArray *)annotations;
+- (BOOL)removeAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /**
  Will be called by PSPDF internally every time an annotation is changed.
@@ -121,6 +133,10 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 /// Will update any visible annotation.
 - (void)updateAnnotations:(NSArray *)annotations animated:(BOOL)animated;
 
+/// Will parse the annotations in the array and add the ones that are included in the group (have the same grouping ID)
+/// `annotations` need to be handled in the annotation manager.
+- (NSArray *)annotationsIncludingGroupsFromAnnotations:(NSArray *)annotations;
+
 /// Change the protocol that's used to parse PSPDFKit-additions (links, audio, video). Defaults to `pspdfkit://`.
 /// @note This will affect all parsers that generate PSPDFAction objects.
 /// @warning Set this early on or manually clear the cache to update the parsers.
@@ -128,7 +144,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 
 /// The fileType translation table is used when we encounter `pspdfkit://` links (or whatever is set to `document.protocolStrings`)
 /// Maps e.g. "mpg" to `PSPDFLinkAnnotationVideo`. (NSString -> NSNumber)
-/// @note If you need file translation catigorization that is not related to annotations,
+/// @note If you need file translation categorization that is not related to annotations,
 /// use `PSPDFFileHelperGetFileCategory()` instead.
 + (NSDictionary *)fileTypeTranslationTable;
 

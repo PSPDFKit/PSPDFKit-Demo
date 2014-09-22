@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 #import "PSPDFModel.h"
 
 @class PSPDFAction;
@@ -20,10 +20,10 @@
 @interface PSPDFBookmark : PSPDFModel
 
 /// Initialize with page. Convenience initialization that will create a `PSPDFGoToAction`.
-- (id)initWithPage:(NSUInteger)page;
+- (instancetype)initWithPage:(NSUInteger)page;
 
 /// Initialize with action.
-- (id)initWithAction:(PSPDFAction *)action;
+- (instancetype)initWithAction:(PSPDFAction *)action;
 
 /// The PDF action. Usually this will be of type `PSPDFGoToAction`, but all action types are possible.
 /// @note A PSPDFGoToAction might has a `namedDestination` set. If so, the target page hasn't yet been resolved, use PSPDFAction to resolve.

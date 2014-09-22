@@ -21,7 +21,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFSubmitFormActionFormat) {
 
 @interface PSPDFFormRequest : NSObject
 
-- (id)initWithFormat:(PSPDFSubmitFormActionFormat)format values:(NSDictionary *)values request:(NSURLRequest *)request;
+- (instancetype)initWithFormat:(PSPDFSubmitFormActionFormat)format values:(NSDictionary *)values request:(NSURLRequest *)request NS_DESIGNATED_INITIALIZER;
 
 /// How the form data is to be encoded in the submission.
 @property (nonatomic, readonly) PSPDFSubmitFormActionFormat submissionFormat;

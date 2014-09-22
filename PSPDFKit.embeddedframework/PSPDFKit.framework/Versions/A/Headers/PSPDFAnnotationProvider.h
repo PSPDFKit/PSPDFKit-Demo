@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 
 @class PSPDFAnnotation, PSPDFDocumentProvider;
 @protocol PSPDFAnnotationProviderChangeNotifier;
@@ -23,7 +23,7 @@
 
  Ensure everything is thread safe here - methods will be called from any threads and sometimes even concurrently at the same time.
  (If you're doing parsing, block and then in the queue re-check so you're not parsing multiple times for the same page)
- 
+
  @note You should always use `PSPDFContainerAnnotationProvider` as the base class for your custom annotation provider.
  */
 @protocol PSPDFAnnotationProvider <NSObject>
@@ -52,17 +52,21 @@
 
 /// Handle adding annotations. A provider can decide that it doesn't want to add this annotation, in that case either don't implement `addAnnotations:` at all or return nil.
 /// Return all annotations that are handled by this annotation provider. `PSPDFAnnotationManager` will call all annotation providers in the list until all annotations have been processed.
+/// @param annotations An array of PSPDFAnnotation objects to be added.
+/// @param options Insertion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
 /// @note The annotation provider is responsible for emitting then `PSPDFAnnotationsAddedNotification`.
-- (NSArray *)addAnnotations:(NSArray *)annotations;
+- (NSArray *)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Handle removing annotations. A provider can decide that it doesn't want to add this annotation, in that case either don't implement `removeAnnotations:` at all or return NO. `PSPDFAnnotationManager` will query all registered `annotationProviders` until one returns YES on this method.
+/// @param annotations An array of PSPDFAnnotation objects to be removed.
+/// @param options Deletion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
 /// @note The annotation provider is responsible for emitting then `PSPDFAnnotationsRemovedNotification`.
-- (NSArray *)removeAnnotations:(NSArray *)annotations;
+- (NSArray *)removeAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// PSPDFKit requests a save. Can be ignored if you're instantly persisting.
 /// Event is e.g. fired before the app goes into background, or when `PSPDFViewController` is dismissed.
 /// Return NO + error if saving failed.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
 /// Return YES if the provider requires saving.
 - (BOOL)shouldSaveAnnotations;

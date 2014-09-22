@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFHostingAnnotationView.h"
 #import "PSPDFResizableView.h"
 

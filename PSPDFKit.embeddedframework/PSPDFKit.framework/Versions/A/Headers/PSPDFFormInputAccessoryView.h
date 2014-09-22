@@ -20,7 +20,7 @@ extern NSString *const PSPDFFormInputAccessoryViewDidPressClearButtonNotificatio
 @interface PSPDFFormInputAccessoryView : UIView
 
 /// Designated initializer.
-- (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFFormInputAccessoryViewDelegate>)delegate;
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id<PSPDFFormInputAccessoryViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Display Done button. Defaults to YES.
 @property (nonatomic) BOOL displayDoneButton;

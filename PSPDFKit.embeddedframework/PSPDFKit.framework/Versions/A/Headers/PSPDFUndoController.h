@@ -22,10 +22,16 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 /// Designated initializer.
 /// If `undoEnabled` is set to NO, the `performBlock*` operations will directly call block.
-- (id)initWithUndoEnabled:(BOOL)undoEnabled;
+- (instancetype)initWithUndoEnabled:(BOOL)undoEnabled NS_DESIGNATED_INITIALIZER;
 
 /// Returns YES if the undo controller is currently either undoing or redoing.
 - (BOOL)isWorking;
+
+/// Returns YES if the undo controller is currently undoing.
+- (BOOL)isUndoing;
+
+/// Returns YES if the undo controller is currently redoing.
+- (BOOL)isRedoing;
 
 /// Returns YES if undoable operations have been recorded.
 - (BOOL)canUndo;
@@ -51,6 +57,11 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 /// Removes all recorded actions.
 - (void)removeAllActions;
 
+/// Removes all recorded actions with the provided target.
+/// Implement `performUndoAction:` from `PSPDFUndoProtocol` to add support for conditional
+/// removal of `PSPDFUndoProtocol` tracked (observed) changes.
+- (void)removeAllActionsWithTarget:(id)target;
+
 /// Register/unregister objects.
 - (void)registerObjectForUndo:(NSObject <PSPDFUndoProtocol> *)object;
 - (void)unregisterObjectForUndo:(NSObject <PSPDFUndoProtocol> *)object;
@@ -61,6 +72,11 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 /// Performs a block and ignores all observed changes.
 - (void)performBlockWithoutUndo:(dispatch_block_t)block;
+
+/// Support for regular invocation based undo
+/// Perform the call you would normally invoke after [undoManager prepareWithInvocationTarget:target]
+/// on the proxy passed into the block.
+- (void)prepareWithInvocationTarget:(id)target block:(void (^)(id proxy))block;
 
 /// Undo can be disabled globally, set this before any objects are registered on the controller.
 @property (nonatomic, assign, getter=isUndoEnabled, readonly) BOOL undoEnabled;
@@ -75,6 +91,10 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 /// Specifies the levels of undo we allow. Defaults to 40. More means higher memory usage.
 @property (nonatomic, assign) NSUInteger levelsOfUndo;
+
+/// Required for conditional undo removal support using `removeAllActionsWithTarget:`.
+/// @see PSPDFUndoProtocol
+- (void)performUndoAction:(PSPDFUndoAction *)action;
 
 @end
 
@@ -94,3 +114,6 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 // Executes undo block if the undo controller is available.
 extern void PSPDFPerformBlockAsGroup(PSPDFUndoController *undoController, dispatch_block_t block, NSString *name);
+
+// Executes undo block if the undo controller is available.
+extern void PSPDFPerformBlockWithoutUndo(PSPDFUndoController *undoController, dispatch_block_t block);

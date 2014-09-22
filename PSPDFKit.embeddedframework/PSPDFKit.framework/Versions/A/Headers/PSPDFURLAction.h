@@ -19,13 +19,13 @@
 @interface PSPDFURLAction : PSPDFAction
 
 /// Initializes with string, will convert to URL automatically.
-- (id)initWithURLString:(NSString *)URLString;
+- (instancetype)initWithURLString:(NSString *)URLString;
 
-/// Initializes with URL.
-- (id)initWithURL:(NSURL *)URL;
+/// Initializes with `URL` and `options`.
+- (instancetype)initWithURL:(NSURL *)URL options:(NSDictionary *)options;
 
 /// The annotation URL target.
-@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy, readonly) NSURL *URL;
 
 /// The unmodified and unparsed URL.
 @property (nonatomic, copy, readonly) NSURL *unmodifiedURL;
@@ -57,11 +57,11 @@
 /// Video offset.
 @property (nonatomic, assign) CGFloat offset;
 
-/// Regenerates a pspdfkit:// style sring IF `isPSPDFPrefixed` is set.
+/// Regenerates a `pspdfkit://` style string IF `isPSPDFPrefixed` is set.
 - (NSString *)prefixedURLStringWithAnnotationManager:(PSPDFAnnotationManager *)annotationManager;
 
 // Helper to determine if the URL is an email and to configure the mail controller for email, subject, cc, bcc and body.
-- (BOOL)isEmailURL;
+@property (nonatomic, assign, getter = isEmailURL, readonly) BOOL emailURL;
 - (BOOL)configureMailComposeViewController:(MFMailComposeViewController *)mailComposeViewController;
 
 @end

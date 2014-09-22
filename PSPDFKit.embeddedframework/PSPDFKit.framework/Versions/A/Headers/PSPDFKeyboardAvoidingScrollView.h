@@ -15,9 +15,6 @@
 /// ScrollView subclass that listens to keyboard events and moves itself up accordingly.
 @interface PSPDFKeyboardAvoidingScrollView : UIScrollView
 
-/// Cancels any scheduled keyboard operations and resets keyboardVisible.
-- (void)prepareForReuse;
-
 /// YES if keyboard is currently displayed.
 /// @warning Keep in mind that there are many other ways for the keyboard. E.g. this will return NO if the keyboard is in split view mode or a physical keyboard is attached.
 @property (nonatomic, assign, readonly, getter=isKeyboardVisible) BOOL keyboardVisible;
@@ -28,15 +25,5 @@
 /// Enable/Disable keyboard avoidance features. Defaults to YES.
 /// @warning Don't change this while `isShowingKeyboard` is YES, else
 @property (nonatomic, assign) BOOL enableKeyboardAvoidance;
-
-/// Block will be called when the keyboard gets visible.
-@property (nonatomic, copy) void(^keyboardWillShowBlock)(PSPDFKeyboardAvoidingScrollView *, NSNotification *);
-
-/// Block will be called when the keyboard gets invisible.
-@property (nonatomic, copy) void(^keyboardWillHideBlock)(PSPDFKeyboardAvoidingScrollView *, NSNotification *);
-
-// Allows to manually fake a keyboard.
-- (void)moveScrollViewUpForRect:(CGRect)rect focusRect:(CGRect)focusRect animated:(BOOL)animated;
-- (void)moveScrollViewDownAnimated:(BOOL)animated;
 
 @end

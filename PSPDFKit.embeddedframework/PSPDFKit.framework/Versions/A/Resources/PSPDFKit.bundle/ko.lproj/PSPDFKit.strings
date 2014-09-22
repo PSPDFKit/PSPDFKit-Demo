@@ -57,6 +57,8 @@
 "Loading" = "로딩 중";
 "Expand" = "확장";
 "Collapse" = "접어두기";
+// SMS / iMessage sharing button
+"Message" = "메시지";
 
 // thumbnails
 "Bookmarked" = "즐겨찾기";
@@ -172,9 +174,11 @@
 "Preview" = "미리보기";
 "Stamp Text" = "텍스트 스탬프";
 "Add Signature" = "서명 추가";
+"Remove Signature" = "서명 제거하기";
 "My Signature" = "내 서명";
 "No Signatures" = "서명 없음"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "사용자 지정 서명";
+"Please sign here" = "여기 서명하십시오";
 "Note" = "메모";
 "Text" = "텍스트";
 "Delete Note" = "메모 삭제";
@@ -207,6 +211,14 @@
 "Merge" = "병합"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "샘플";
 "Annotation Summary for %@:\n" = "%@ 주석 요약:\n";
+// title
+"Author Name" = "저자 이름";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "새로 삽입한 주석에 대한 저자 이름을 입력해 주십시오.";
+// text field placeholder
+"Name" = "이름";
+// meaning: close
+"Dismiss" = "무시";
 "Fit to Text" = "텍스트에 맞추기";
 "Draw" = "그리기";
 "Sound" = "사운드";
@@ -330,6 +342,9 @@
 "Speak" = "말하기"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "재생";
 "Pause" = "일시정지";
+"Resume" = "재개";
+"Stop" = "멈춤";
+"Play/Stop" = "재생/중지";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "녹음";
 "Pause Recording" = "녹음 일시정지";
@@ -380,8 +395,8 @@
 "Something went wrong" = "예기치 않은 문제가 발생했습니다";
 "This item is currently unavailable." = "사용할 수 없는 항목입니다.";
 "The information for this gallery could not be loaded." = "갤러리 정보를 불러올 수 없습니다.";
-"Server Error" = "서버 오류";
-"The information for this gallery is invalid." = "해당 갤러리의 정보가 유효하지 않습니다.";
+"Content Error" = "콘텐츠 에러";
+"This content is unsupported." = "지원하지 않는 콘텐츠입니다.";
 
 // Signatures
 "Digital Signature" = "디지털 서명";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 서명이 유효하며, 문서에 서명이 추가된 이후 내용이 수정되지 않았습니다.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "올바르지 않은 서명 - 서명 후 문서의 내용이 수정되었거나 손상되었습니다.";
 "Unsigned Signature Field" = "서명하지 않은 서명 필드";
+"Do you really want to remove the signature from the document?" = "문서에서 서명을 제거하시겠습니까?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "인증서의 서명 정보를 복호할 수 없습니다.";
 "The public key in the certificate could not be read." = "인증서의 공개키를 읽을 수 없습니다.";
 "The signature of the certificate is not valid." = "인증서 서명이 유효하지 않습니다.";
+"Signature is not valid." = "서명이 올바르지 않습니다.";
 "There is a format error in the notBefore field of the certificate." = "인증서의 notBefore 필드에 포맷 오류가 있습니다."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "인증서의 notAfter 필드에 포맷 오류가 있습니다."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "인증서 체인에 발행인을 신뢰할 수 없고 자체 서명하지 않은 단 하나의 인증서만 포함하고 있어 서명을 확인할 수 없습니다.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "발행인 인증서의 keyUsage 확장이 인증서 서명을 허용하지 않습니다.";
 "The certificate has expired." = "인증서 기한이 만료되었습니다.";
 "The certificate is not valid until a date in the future." = "특정 날짜 전에눈 사용할 수 없는 인증서입니다.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "X509 인증서로부터 데이터를 가져올 수 없음";
+// X509 should not be translated
+"No X509 certificate found" = "X509 인증서가 없음";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "PKC12 파일을 읽을 수 없습니다. 파일 형식이 올바르지 않거나 손상되었을 수 있습니다.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "PKCS12 데이터를 잠금해제할 수 없습니다. 비밀번호를 정확히 입력하셨습니까?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "서명 확인에 필요한 파일을 불러올 수 없음";
+"Could not get signer info" = "서명자의 정보를 가져올 수 없음";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL이 PKCS7 객체를 생성할 수 없음";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL이 PKCS7 객체에 서명을 추가할 수 없음";
+"OpenSSL could not init PKCS7 object" = "OpenSSL이 PKCS7 객체를 시작할 수 없음";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL이 PKCS7 서명을 생성할 수 없음";
+"OpenSSL could not sign hash" = "OpenSSL이 hash를 서명할 수 없음";
+"Could not write PKCS7 signature" = "PKCS7 서명을 작성할 수 없음";
+
+

@@ -17,7 +17,7 @@
 @interface PSPDFRemoteGoToAction : PSPDFGoToAction
 
 /// Will create a `PSPDFActionTypeRemoteGoTo`. (Link to another document)
-- (id)initWithRemotePath:(NSString *)remotePath pageIndex:(NSUInteger)pageIndex;
+- (instancetype)initWithRemotePath:(NSString *)remotePath pageIndex:(NSUInteger)pageIndex;
 
 /// Path to the PDF.
 @property (nonatomic, copy, readonly) NSString *relativePath;

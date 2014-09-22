@@ -11,7 +11,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CommonCrypto/CommonKeyDerivation.h>
 
 extern NSString *const PSPDFCryptorErrorDomain;
 
@@ -32,12 +31,8 @@ typedef NS_ENUM(NSInteger, PSPDFCryptorErrorCode) {
 /// to generate key to decrypt legacy file format.
 - (NSData *)keyFromPassphrase:(NSString *)passphrase salt:(NSString *)salt;
 
-/// Generate a key with custom number of iterations
-/// For the current (RNCryptor https://github.com/RNCryptor/RNCryptor-Spec/blob/master/RNCryptor-Spec-v3.md ) file format):
-/// The default PRF is kCCPRFHmacAlgSHA1.
-/// The default number of iterations is PSPDFAESDefaultPBKDFNumberOfRounds (10000).
-/// For the legacy file format use kCCPRFHmacAlgSHA256 and 50k rounds
-- (NSData *)keyFromPassphrase:(NSString *)passphrase salt:(NSString *)salt PRF:(CCPseudoRandomAlgorithm)prf rounds:(uint)rounds;
+/// Generate a key with legacy file format PRF kCCPRFHmacAlgSHA256 and 50000 number of rounds
+- (NSData *)legacyKeyFromPassphrase:(NSString *)passphrase salt:(NSString *)salt;
 
 /// Encrypt a file (DOES NOT store encryption salt in the file header)
 /// Using format https://github.com/rnapier/RNCryptor/wiki/Data-Format

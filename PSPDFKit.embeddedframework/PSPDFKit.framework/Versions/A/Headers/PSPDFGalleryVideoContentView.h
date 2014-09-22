@@ -10,13 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFGalleryContentView.h"
-#import "PSPDFMediaPlayerView.h"
 
+/// `PSPDFGalleryVideoContentView` displays a video item.
 @interface PSPDFGalleryVideoContentView : PSPDFGalleryContentView
-
-/// `PSPDFGalleryVideoContentView` expects an `PSPDFMediaPlayerView` as its `contentView`.
-@property (nonatomic, strong, readonly) PSPDFMediaPlayerView *contentView;
 
 @end

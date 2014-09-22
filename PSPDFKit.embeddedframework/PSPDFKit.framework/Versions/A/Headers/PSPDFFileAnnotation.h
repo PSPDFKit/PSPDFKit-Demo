@@ -15,8 +15,6 @@
 
 @interface PSPDFFileAnnotation : PSPDFAnnotation
 
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray documentRef:(CGPDFDocumentRef)documentRef path:(NSString *)path;
-
 /// File appearance name. Defines how the attachment looks. Supported are PushPin, Paperclip, Graph and Tag.
 @property (nonatomic, copy) NSString *appearanceName;
 

@@ -57,6 +57,7 @@
 "Loading" = "Завантаження";
 "Expand" = "Розгорнути";
 "Collapse" = "Згорнути";
+"Message" = "Повідомлення";
 
 // thumbnails
 "Bookmarked" = "З закладками";
@@ -172,9 +173,11 @@
 "Preview" = "Попередній перегляд";
 "Stamp Text" = "Штамп тексту";
 "Add Signature" = "Додати підпис";
+"Remove Signature" = "Видалити підпис";
 "My Signature" = "Мій підпис";
 "No Signatures" = "Немає підписів"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Підпис клієнта";
+"Please sign here" = "Будь-ласка підпишіть тут";
 "Note" = "Примітка";
 "Text" = "Текст";
 "Delete Note" = "Видалити примітку";
@@ -207,6 +210,10 @@
 "Merge" = "Об`єднати"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Зразок";
 "Annotation Summary for %@:\n" = "Анотації для %@:\n";
+"Author Name" = "Ім'я автора";
+"Please enter the author name you want to use for newly inserted annotations." = "Будь ласка, введіть ім'я автора якого ви хочете використовувати для знову доданих анотації.";
+"Name" = "Ім'я";
+"Dismiss" = "Закрити";
 "Fit to Text" = "Вмістити в текст";
 "Draw" = "Малюнок";
 "Sound" = "Звук";
@@ -330,6 +337,9 @@
 "Speak" = "Говоріть"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Грати";
 "Pause" = "Пауза";
+"Resume" = "Продовжити";
+"Stop" = "Зупинити";
+"Play/Stop" = "Грати/Зупинити";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Записати";
 "Pause Recording" = "Призупинити запис";
@@ -380,8 +390,8 @@
 "Something went wrong" = "Щось пішло не так";
 "This item is currently unavailable." = "Цей пункт в даний час недоступний.";
 "The information for this gallery could not be loaded." = "Інформація для цієї галереї не може бути завантажена.";
-"Server Error" = "Помилка сервера";
-"The information for this gallery is invalid." = "Інформація для цієї галереї є недійсним.";
+"Content Error" = "Помилка контенту";
+"TThis content is unsupported." = "Цей контент не підтримується.";
 
 // Signatures
 "Digital Signature" = "Цифровий підпис";
@@ -397,6 +407,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Підпис дійсний і вміст документу не був змінений з часу підпису.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неправильний підпис - з моменту підписання зміст цього документа був змінений, підроблений, або пошкоджений";
 "Unsigned Signature Field" = "Непідписане поля для підпису";
+"Do you really want to remove the signature from the document?" = "Ви дійсно хочете видалити підпис з документа?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +415,7 @@
 "Unable to decrypt the signature of the certificate." = "Неможливо розшифрувати підпис сертифіката.";
 "The public key in the certificate could not be read." = "Публічний ключ сертифіката не може бути прочитаний.";
 "The signature of the certificate is not valid." = "Підпис сертифікату не є дійсним.";
+"Signature is not valid." = "Підпис не є допустимим.";
 "There is a format error in the notBefore field of the certificate." = "Існує помилка формату в області NotBefore сертифіката."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Існує Помилка формату в області NotAfter сертифіката."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Підписи неможливо перевірити оскільки ланцюг сертифікату містить тільки один сертифікат, який самопідписаний і емітент не є довіреним";
@@ -423,3 +435,23 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Розширення KeyUsage сертифікату емітента не дозволяє підписання сертифікату.";
 "The certificate has expired." = "Термін дії сертифіката минув.";
 "The certificate is not valid until a date in the future." = "Сертифікат не дійсний до дати в майбутньому.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Не вдалося прочитати сертифікат X509 на основі даних";
+// X509 should not be translated
+"No X509 certificate found" = "Сертифіката X509 не знайдено";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Неможливо прочитати PKCS12 файл. Файл має неправильний формат або пошкоджений.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Не вдалося розблокувати дані PKCS12. Знаєте ви ввести правильний пароль?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Не вдалося відкрити файл для перевірки підпису";
+"Could not get signer info" = "Не вдалося отримати інформацію підписанта";
+
+// OPENSSL and PKCS7 should never be translated"OpenSSL could not create PKCS7 object" = "OpenSSL не вдалося створити об'єкт PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL не міг додати підпис до об'єкта PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL не міг ініціалізувати об'єкт PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL може генерувати PKCS7 підпис";
+"OpenSSL could not sign hash" = "OpenSSL не міг підписати хеш";
+"Could not write PKCS7 signature" = "Не вдалося записати PKCS7 підпис";

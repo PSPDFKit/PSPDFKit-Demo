@@ -17,6 +17,6 @@
 @interface PSPDFSquigglyAnnotation : PSPDFAbstractTextOverlayAnnotation
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init;
 
 @end

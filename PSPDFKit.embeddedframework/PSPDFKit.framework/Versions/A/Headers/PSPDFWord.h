@@ -10,17 +10,18 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /// Represents a word. Formed out of (usually) multiple glyphs.
-@interface PSPDFWord : NSObject <NSCopying, NSCoding>
+@interface PSPDFWord : NSObject <NSCopying, NSSecureCoding>
 
 /// Initialize with glyphs (`PSPDFGlyph`).
 /// As an optimizations, only the first and last glyph will be used for frame calculations.
-- (id)initWithGlyphs:(NSArray *)wordGlyphs;
+- (instancetype)initWithGlyphs:(NSArray *)wordGlyphs NS_DESIGNATED_INITIALIZER;
 
 /// Initialize with word frame.
-- (id)initWithFrame:(CGRect)wordFrame;
+- (instancetype)initWithFrame:(CGRect)wordFrame NS_DESIGNATED_INITIALIZER;
 
 /// Returns the content of the word (all glyphs merged together)
 - (NSString *)stringValue;

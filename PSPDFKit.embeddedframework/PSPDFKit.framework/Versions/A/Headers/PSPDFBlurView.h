@@ -12,10 +12,11 @@
 
 #import <UIKit/UIKit.h>
 
-/// `PSPDFBlurView` allows you to get a blurred background, just like it is used in many cases on iOS 7.
+/// `PSPDFBlurView` allows you to get a blurred background.
 @interface PSPDFBlurView : UIView
 
-/// Controls if bluring is enabled.
+/// Controls if blurring is enabled. Defaults to `NO`.
+/// @warning You cannot set the `backgroundColor` property if `blurEnabled` is set to `YES`!
 @property (nonatomic, assign, getter = isBlurEnabled) BOOL blurEnabled;
 
 /// Everything from the `renderView` up the view hierarchy to this view is used to render the
@@ -28,8 +29,5 @@
 
 /// Wrapper for the `blurEnabled` property since UIAppearance can only handle object values.
 @property (nonatomic, strong) NSNumber *blurEnabledObject UI_APPEARANCE_SELECTOR;
-
-/// The frame interval used for the underlaying `CADisplayLink`. Defaults to `5`.
-@property (nonatomic, assign) NSUInteger frameInterval;
 
 @end

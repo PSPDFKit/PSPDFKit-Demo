@@ -32,6 +32,7 @@
 @class PSPDFSectionModel;
 
 // Defines the content for a `UITableViewCells`.
+// Currently this is only used in `PSPDFStaticTableViewController`!
 @interface PSPDFCellModel : NSObject
 
 + (instancetype)cellWithTitle:(NSString *)title;
@@ -40,16 +41,23 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) UIView *accessoryView;
-@property (nonatomic, strong) Class cellClass; // Defaults to UITableViewCell if nil.
+@property (nonatomic, strong) Class cellClass; // Defaults to `UITableViewCell.class`.
 @property (nonatomic, assign) UITableViewCellSelectionStyle selectionStyle;
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 @property (nonatomic, assign) CGFloat height; // Defaults to 44.f
 @property (nonatomic, copy) NSDictionary *userInfo; // save custom data.
+
 // Returns YES if cell is currently checked.
 @property (nonatomic, assign, getter=isChecked) BOOL checked;
-@property (nonatomic, copy) void (^actionBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
+
+// Action blocks for creating, updating and tapping.
 @property (nonatomic, copy) void (^updateBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
-@property (nonatomic, copy) void (^createBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cellt);
+@property (nonatomic, copy) void (^createBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
+@property (nonatomic, copy) void (^actionBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
+
+// Edit cells. If set, a tap will show/hide these additional cells.
+@property (nonatomic, copy) NSArray *editingCellModels;
+@property (nonatomic, assign, getter=isEditing) BOOL editing;
 
 // Calculates the needed height for `width`. Useful if `subtitle` is set.
 - (CGFloat)heightForWidth:(CGFloat)width;
@@ -66,6 +74,7 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 
+// Reading this will include `editingCellModels`.
 @property (nonatomic, strong) NSArray *cells;
 
 @end

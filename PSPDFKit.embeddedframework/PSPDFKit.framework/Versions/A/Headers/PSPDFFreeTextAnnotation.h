@@ -11,12 +11,13 @@
 //
 
 #import "PSPDFAnnotation.h"
+#import "PSPDFLineHelper.h"
 
-/// Vertical alignment setting.
-typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
-    PSPDFVerticalAlignmentTop    = 0, /// Align at the top.
-    PSPDFVerticalAlignmentCenter = 1, /// Align at the vertical center.
-    PSPDFVerticalAlignmentBottom = 2, /// Align at the bottom.
+/// The free text annotation intent type. (Optional; PDF 1.6)
+typedef NS_ENUM(NSInteger, PSPDFFreeTextAnnotationIntent) {
+    PSPDFFreeTextAnnotationIntentFreeText = 0,       /// Regular free text annotation (text box comment)
+    PSPDFFreeTextAnnotationIntentFreeTextCallout,    /// Callout style
+    PSPDFFreeTextAnnotationIntentFreeTextTypeWriter, /// Click- to-type or typewriter object.
 };
 
 /**
@@ -27,34 +28,32 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 @interface PSPDFFreeTextAnnotation : PSPDFAnnotation
 
 /// Designated initializer.
-- (id)init;
-- (id)initWithContents:(NSString *)contents;
+- (instancetype)initWithContents:(NSString *)contents;
 
-/// Font name as defined in the DA appearance string.
-@property (nonatomic, copy) NSString *fontName;
+/// Designated initializer for free text callout annotation.
+- (instancetype)initWithContents:(NSString *)contents calloutPoint1:(CGPoint)point1;
 
-/// Font size as defined in the DA appearance string.
-@property (nonatomic, assign) CGFloat fontSize;
+/// The free text annotation intent type. (Optional; PDF 1.6)
+@property (nonatomic, assign) PSPDFFreeTextAnnotationIntent intentType;
 
-/// The line height for fontName and fontSize. Changes if you change either of these values.
-@property (nonatomic, assign, readonly) CGFloat lineHeight;
+/// Starting point for the line if callout is present.
+/// @note Shortcut for the first point in the `points` array.
+@property (nonatomic, assign) CGPoint point1;
 
-/// Text justification. Allows `NSTextAlignmentLeft`, `NSTextAlignmentCenter` and `NSTextAlignmentRight`.
-/// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
-@property (nonatomic, assign) NSTextAlignment textAlignment;
+/// Knee point (optional) for the line if callout is present.
+/// @note Shortcut for the second point in the `points` array.
+@property (nonatomic, assign) CGPoint kneePoint;
 
-/// Vertical text alignment. Defaults to `PSPDFVerticalAlignmentTop`.
-/// @note This is not defined in the PDF spec. (PSPDFKit extension)
-@property (nonatomic, assign) PSPDFVerticalAlignment verticalTextAlignment;
+/// End point for the line if callout is present.
+/// @note Shortcut for the third point in the `points` array.
+@property (nonatomic, assign) CGPoint point2;
 
-/// Return a default font size if not defined in the annotation.
-- (CGFloat)defaultFontSize;
+// Line end type for the callout.
+@property (nonatomic, assign) PSPDFLineEndType lineEnd;
 
-/// Return a default font name (Helvetica) if not defined in the annotation.
-- (NSString *)defaultFontName;
-
-/// Returns the currently set font (calculated from defaultFontSize)
-- (UIFont *)defaultFont;
+/// Defines the inset for the text. Optional, defaults to `UIEdgeInsetsZero`.
+/// @note Only positive inset values are allowed.
+@property (nonatomic, assign) UIEdgeInsets innerRectInset;
 
 /// Resizes the annotation to fit the entire text by increasing or decreasing the height.
 /// The width and origin of the annotation are maintained.
@@ -67,15 +66,18 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 
 /// Enables automatic vertical resizing. If this property is set to YES, the annotation will
 /// adjust its bounding box as the user types in more text.
-/// Defaults to NO.
+/// Defaults to YES.
 @property (nonatomic, assign) BOOL enableVerticalResizing;
 
 /// Enables automatic horizontal resizing. If this property is set to YES, the annotation will
 /// adjust its bounding box as the user types in more text.
-/// Defaults to YES.
+/// Defaults to NO.
 @property (nonatomic, assign) BOOL enableHorizontalResizing;
 
 /// Optionally transforms the boundingBox and re-calculates the text size with it.
 - (void)setBoundingBox:(CGRect)boundingBox transformSize:(BOOL)transformSize;
+
+/// Bounding box for the inner text box if it's a callout or just a bounding box for the whole annotation
+@property (nonatomic, assign) CGRect textBoundingBox;
 
 @end

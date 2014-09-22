@@ -16,6 +16,7 @@
 
 extern const NSUInteger PSPDFPluginProtocolVersion_1;
 
+extern NSString * const PSPDFPluginIdentifierKey;
 extern NSString * const PSPDFPluginNameKey;
 extern NSString * const PSPDFPluginEnabledKey;
 extern NSString * const PSPDFPluginInitializeOnDiscoveryKey;
@@ -25,7 +26,7 @@ extern NSString * const PSPDFPluginProtocolVersionKey;
 @protocol PSPDFPlugin <NSObject>
 
 // Designated initializer. Will be called upon creation.
-- (id)initWithPluginRegistry:(PSPDFPluginRegistry *)pluginRegistry options:(NSDictionary *)options;
+- (instancetype)initWithPluginRegistry:(PSPDFPluginRegistry *)pluginRegistry options:(NSDictionary *)options;
 
 // Plugin details for auto-discovery.
 + (NSDictionary *)pluginInfo;

@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class PSPDFAnnotation, PSPDFPageView;
 
@@ -48,7 +49,7 @@
 - (BOOL)shouldSyncRemovalFromSuperview;
 
 /// View is queued for being removed, but still waits for a page sync.
-/// This is called regardles of what is returned in `shouldSyncRemovalFromSuperview`.
+/// This is called regardless of what is returned in `shouldSyncRemovalFromSuperview`.
 - (void)willRemoveFromSuperview;
 
 /// A weak reference to the page view responsible for this view.

@@ -14,7 +14,7 @@
 
 @class PSPDFDocument, PSPDFEmbeddedFilesViewController, PSPDFEmbeddedFile;
 
-/// Deletage for the `PSPDFEmbeddedFilesViewController`.
+/// Delegate for the `PSPDFEmbeddedFilesViewController`.
 @protocol PSPDFEmbeddedFilesViewControllerDelegate <NSObject>
 
 /// Will be called when the user touches an annotation cell.
@@ -26,7 +26,7 @@
 @interface PSPDFEmbeddedFilesViewController : PSPDFStatefulTableViewController
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFEmbeddedFilesViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFEmbeddedFilesViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Attached PDF controller.
 @property (nonatomic, weak) PSPDFDocument *document;

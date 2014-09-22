@@ -19,7 +19,7 @@
 @interface PSPDFHSVColorPickerController : PSPDFBaseViewController <PSPDFColorPickerViewDelegate>
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init;
 
 /// Will be set via delegate on `viewWillAppear:`, but can be modified here as well.
 @property (nonatomic, strong) UIColor *selectionColor;

@@ -10,14 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFModernizer.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 @class PSPDFFormParser, PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationManager, PSPDFViewController, PSPDFTextParser,PSPDFDocumentProvider, PSPDFBookmarkParser, PSPDFRenderReceipt;
+
+/// `NSUSerDefaults` key for the default global annotation author name.
+extern NSString * const PSPDFDocumentDefaultAnnotationUsernameKey;
 
 @protocol PSPDFDocumentDelegate;
 
@@ -32,11 +35,11 @@
 *
 * `PSPDFDocument` builds up some cache when properties like `pageCount` are first accessed.
 * You want to create those objects once and keep them around, creating and destroying them on the fly is very wasteful. Using an `NSCache` with `UID` as key is recommended.
-* If you change the underlying files the `PSPDFDocument` points to, you need to clear it's internal cache.
+* If you change the underlying files the `PSPDFDocument` points to, you need to clear its internal cache.
 *
 * To speed up the first time the document is displayed in the `PSPDFViewController`, you can call `fillCache` on any thread.
 */
-@interface PSPDFDocument : NSObject <PSPDFDocumentProviderDelegate, PSPDFOverridable, NSCopying, NSCoding, NSFastEnumeration>
+@interface PSPDFDocument : NSObject <PSPDFDocumentProviderDelegate, PSPDFOverridable, NSCopying, NSSecureCoding, NSFastEnumeration>
 
 /// @name Initialization
 
@@ -70,14 +73,14 @@
 + (instancetype)documentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 // Regular init methods.
-- (id)init NS_DESIGNATED_INITIALIZER;
-- (id)initWithURL:(NSURL *)URL;
-- (id)initWithData:(NSData *)data;
-- (id)initWithDataArray:(NSArray *)data;
-- (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
-- (id)initWithDataProviderArray:(NSArray *)dataProviders;
-- (id)initWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
-- (id)initWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithURL:(NSURL *)URL;
+- (instancetype)initWithData:(NSData *)data;
+- (instancetype)initWithDataArray:(NSArray *)data;
+- (instancetype)initWithDataProvider:(CGDataProviderRef)dataProvider;
+- (instancetype)initWithDataProviderArray:(NSArray *)dataProviders;
+- (instancetype)initWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
+- (instancetype)initWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 /// Compare two documents.
 - (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
@@ -95,8 +98,8 @@
 /// Returns position of the internal file array.
 - (NSInteger)fileIndexForPage:(NSUInteger)page;
 
-/// Returns the URL corresponding to the fileIndex
-- (NSURL *)URLForFileIndex:(NSInteger)fileIndex;
+/// Returns the URL corresponding to the `fileIndex`.
+- (NSURL *)URLForFileIndex:(NSUInteger)fileIndex;
 
 /// Returns a `NSURL` files array with the base path already added (if there is one)
 - (NSArray *)filesWithBasePath;
@@ -112,7 +115,7 @@
 - (NSString *)fileName; // Page 0
 
 /// Common base URL for PDF files. Set to nil to use absolute paths for files.
-@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy, readonly) NSURL *baseURL;
 
 /// Array of `NSString` pdf files. If basePath is set, this will be combined with the file name.
 /// If `basePath` is not set, add the full path (as `NSString`) to the files.
@@ -122,15 +125,15 @@
 /// Defines the `basePath` for the PDF `files` strings.
 @property (nonatomic, copy, readonly) NSURL *fileURL;
 
-/// PDF data when initialized with initWithData: otherwise nil.
+/// PDF data when initialized with `initWithData:` otherwise nil.
 /// This is a shortcut to the first entry of dataArray.
 @property (nonatomic, copy, readonly) NSData *data;
 
-/// A document can also have multiple NSData objects.
-/// @note If writing annotations is enabled, the dataArray's content will change after a save.
+/// A document can also have multiple `NSData` objects.
+/// @note If writing annotations is enabled, the `dataArray`'s content will change after a save.
 @property (nonatomic, copy, readonly) NSArray *dataArray;
 
-/// PDF dataProviders (can be used to dynamically decrypt a document). Will be retained when set.
+/// PDF `dataProviders` (can be used to dynamically decrypt a document). Will be retained when set.
 @property (nonatomic, copy, readonly) NSArray *dataProviderArray;
 
 /// Creates a new document with adding `objects`.
@@ -144,7 +147,6 @@
 /// You can manually set an UID here as well. Just make sure to set this before the document is used/cached/displayed.
 /// If you change the PDF *contents*, you will either have to set a new UID or clear the cache.
 /// The UID is built based on the first file name and an MD5 hash of the path (or a part of data if the document is used).
-/// @note The way the UID is generated has been changed in 3.1, see the notes on `PSPDFUseLegacyUIDGenerationMethod` if you're upgrading from an older version.
 @property (nonatomic, copy) NSString *UID;
 
 /// Returns YES if the document is valid (if it has at least one page)
@@ -184,17 +186,15 @@
 
 /// Cached rotation and aspect ratio data for specific page. Page starts at 0.
 /// Override the methods in `PSPDFDocumentProvider` instead.
+///
+/// If multiple `PSPDFDocumentProvider`s are used in one `PSPDFDocument` the returned
+/// `PSPDFPageInfo`'s `page` property can no longer be relied on to always equal to
+/// the supplied `page` argument, since `PSPDFPageInfo`'s `page` property is
+/// `PSPDFDocumentProvider`-relative, while the `page` argument is relative to
+/// all `PSPDFDocumentProvider`s in the `PSPDFDocument`.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 - (void)setPageInfo:(PSPDFPageInfo *)pageInfo forPage:(NSUInteger)page;
 
-/// @name Design and hints for `PSPDFViewController`
-
-/// If document is displayed, returns currently active `pdfController`. Don't set this yourself. Optimizes caching.
-@property (atomic, weak) PSPDFViewController *displayingPdfController;
-
-/// Currently displayed page. Updated by `PSPDFViewController`. Used to make the memory cache smarter.
-/// Set to NSNotFound if no controller displays the document.
-@property (atomic, assign, readonly) NSUInteger displayingPage;
 
 /// @name Attached Parsers
 
@@ -203,14 +203,14 @@
 @property (nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
 
 /// Save additional properties here. This will not be used by the document.
-@property (nonatomic, copy) NSDictionary *userInfo;
+@property (atomic, copy) NSDictionary *userInfo;
 
 @end
 
 @interface PSPDFDocument (Caching)
 
 /**
- Will clear all cached objects (`annotations`, `pageCount`, `outline`, `textParse`r, ...)
+ Will clear all cached objects (`annotations`, `pageCount`, `outline`, `textParser`, ...)
 
  This is called implicitly if you change the files array or append a file.
 
@@ -232,7 +232,7 @@
 
 /// Overrides the global disk caching strategy in `PSPDFCache`.
 /// Defaults to -1; which equals to the setting in `PSPDFCache`.
-/// Set this to `PSPDFDiskCacheNothing` for sensible/encrypted documents!
+/// Set this to `PSPDFDiskCacheStrategyNothing` for sensible/encrypted documents!
 @property (nonatomic, assign) PSPDFDiskCacheStrategy diskCacheStrategy;
 
 @end
@@ -290,6 +290,10 @@
 /// @note Only evaluates the first file if multiple files are set.
 /// Can also be overridden manually.
 @property (nonatomic, assign) BOOL allowsCopying;
+
+/// A flag that indicates whether changing existing annotations or creating new annotations are allowed
+/// @note Searches and checks the digital signatures on the first call (caches the result for subsequent calls)
+@property (nonatomic, assign, readonly) BOOL allowAnnotationChanges;
 
 @end
 
@@ -369,15 +373,25 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// `NSArray *annotations = [annotationManager annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];`
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
-/// Add `annotations` to the current document (and the backing store `PSPDFAnnotationProvider`)
-/// @note For each, the `absolutePage` property of the annotation is used.
-/// @warning Might change the `page` property if multiple documentProviders are set.
+/// Calls `addAnnotations:options:` with no options.
 - (BOOL)addAnnotations:(NSArray *)annotations;
 
+/// Add `annotations` to the current document (and the backing store `PSPDFAnnotationProvider`)
+/// @param annotations An array of PSPDFAnnotation objects to be inserted.
+/// @param options Insertion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
+/// @note For each, the `absolutePage` property of the annotation is used.
+/// @warning Might change the `page` property if multiple documentProviders are set.
+- (BOOL)addAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+/// Calls `removeAnnotations:options:` with no options.
+- (BOOL)removeAnnotations:(NSArray *)annotations;
+
 /// Remove `annotations` from the backing `PSPDFAnnotationProvider` object(s).
+/// @param annotations An array of PSPDFAnnotation objects to be removed.
+/// @param options Deletion options (see the `PSPDFAnnotationOption...` constants in `PSPDFAnnotationManager.h`).
 /// @note Might return NO if one or multiple annotations couldn't be deleted.
 /// This might be the case for form annotations or other objects that return NO for `isDeletable`.
-- (BOOL)removeAnnotations:(NSArray *)annotations;
+- (BOOL)removeAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Returns all annotations in this document in the form of an NSNumber->NSArray dictionary.
 /// Will not add key entries for pages without annotations.
@@ -413,7 +427,7 @@ extern NSString *const PSPDFDocumentWillSaveAnnotationsNotification;
 /// @warning This might block for a while, the PDF needs to be parsed to determine this.
 @property (nonatomic, assign, readonly) BOOL canEmbedAnnotations;
 
-/// Control if and where PSPDFObjectsAnnotationKey are saved.
+/// Control if and where PSPDFObjectsAnnotationsKey are saved.
 /// Possible options are `PSPDFAnnotationSaveModeDisabled`, `PSPDFAnnotationSaveModeExternalFile`, `PSPDFAnnotationSaveModeEmbedded` and `PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback`. (Default)
 /// @note PSPDFKit automatically saves the document for various events. See `autosaveEnabled` in `PSPDFViewController`.
 @property (nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
@@ -467,7 +481,7 @@ extern NSString *const PSPDFIgnoreDisplaySettings;   // Always draw pixels with 
 /// Set custom render options (see PSPDFPageRenderer.h for options)
 /// Options set here will override any options sent to imageForPage/renderPage.
 /// @note This is the perfect place to change the background fill color, e.g. you would do this for a black document:
-/// `renderOptions = @{PSPDFRenderBackgroundFillColor : UIColor.blackColor}`;
+/// `renderOptions = @{PSPDFRenderBackgroundFillColorKey : UIColor.blackColor}`;
 /// This fixes tiny white/gray lines at the borders of a document that else might show up.
 @property (nonatomic, copy) NSDictionary *renderOptions;
 
@@ -498,7 +512,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 // metadata keys.
 extern NSString *const PSPDFMetadataKeyTitle;
 extern NSString *const PSPDFMetadataKeyAuthor;
-extern NSString *const PSPDFMetadataKeySubject;
 extern NSString *const PSPDFMetadataKeySubject;
 extern NSString *const PSPDFMetadataKeyKeywords;
 extern NSString *const PSPDFMetadataKeyCreator;
@@ -541,10 +554,10 @@ extern NSString *const PSPDFMetadataKeyPortfolio; // For PDF portfolios
 - (NSString *)pageContentForPage:(NSUInteger)page;
 
 /// Override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to `backgroundColor`.
-/// Will use `PSPDFRenderBackgroundFillColor` if set in renderOptions.
+/// Will use `PSPDFRenderBackgroundFillColorKey` if set in renderOptions.
 - (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
-/// Default background color for pages. Can be overridden by subclassing backgroundColorForPage.
+/// Default background color for pages. Can be overridden by subclassing `backgroundColorForPage:`.
 /// Defaults to white.
 @property (nonatomic, strong) UIColor *backgroundColor;
 
@@ -572,7 +585,7 @@ extern NSString *const PSPDFMetadataKeyPortfolio; // For PDF portfolios
 /// PSPDFKit will use the box value set in the `PDFBox` property, which defaults to `kCGPDFCropBox`.
 - (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError **)error;
 
-/// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES for modern devices (not the iPad 1).
+/// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES.
 @property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;
 
 /// The undo manager attached to the document. Set to nil to disable undo/redo management.

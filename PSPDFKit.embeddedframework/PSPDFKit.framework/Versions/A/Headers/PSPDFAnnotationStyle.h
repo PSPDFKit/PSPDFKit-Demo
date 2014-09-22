@@ -18,7 +18,7 @@
 @interface PSPDFAnnotationStyle : PSPDFModel
 
 /// Initializer.
-- (id)initWithName:(NSString *)styleName;
+- (instancetype)initWithName:(NSString *)styleName NS_DESIGNATED_INITIALIZER;
 
 /// The name of the annotation style.
 @property (atomic, copy) NSString *styleName;

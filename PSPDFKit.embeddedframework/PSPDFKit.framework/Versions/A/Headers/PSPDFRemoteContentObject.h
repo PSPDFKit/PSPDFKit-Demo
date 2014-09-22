@@ -12,6 +12,9 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^PSPDFRemoteContentObjectAuthenticationBlock)(NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential));
+typedef id(^PSPDFRemoteContentObjectTransformerBlock)(NSURL *location);
+
 @protocol PSPDFRemoteContentObject <NSObject>
 
 /// The URL request used for loading the remote content.
@@ -23,7 +26,7 @@
 @optional
 
 /// The loading state of the object. This property is managed by `PSPDFDownloadManager`.
-@property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
+@property (nonatomic, assign, getter=isLoadingRemoteContent) BOOL loadingRemoteContent;
 
 /// The download progress of the object. Only meaningful if `loadingRemoteContent` is YES.
 /// This property is managed by `PSPDFDownloadManager`.
@@ -36,22 +39,28 @@
 - (BOOL)shouldCacheRemoteContent;
 
 /// Return YES if you want `PSPDFDownloadManager` to retry downloading remote content if a connection
-/// error occured. Defaults to NO.
+/// error occurred. Defaults to NO.
 - (BOOL)shouldRetryLoadingRemoteContentOnConnectionFailure;
 
 /// Return a block if you need to handle a authentication challenge.
-- (void (^)(NSURLAuthenticationChallenge *challenge))remoteContentAuthenticationChallengeBlock;
+- (PSPDFRemoteContentObjectAuthenticationBlock)remoteContentAuthenticationChallengeBlock;
 
-/// Return a custom `NSValueTransform` that is applied to the downloaded data before setting `remoteContent`.
-/// An example for this would be a transformer that transform NSData into an UIImage. The transformation
-/// happens on a background thread and is part of the loading state.
-- (NSValueTransformer *)valueTransformerForRemoteContent;
+/// Return a custom `PSPDFRemoteContentObjectTransformerBlock`. The passed-in `NSURL` points to the
+/// file that stores the downloaded data. The return value is set to `remoteContent`. If no transformer
+/// block is provided, `remoteContent` will be set to data (represented by `NSData`) of the downloaded
+/// content.
+/// @note If `shouldCacheRemoteContent` returns `YES` the location of the file is not temporary.
+/// @note `remoteContentTransformerBlock` will be called on a background queue, so you may perform
+/// long-running tasks.
+/// @warning Since this runs on a background queue, you should not access state outside of the block's
+/// scope to avoid thread-safety problems.
+- (PSPDFRemoteContentObjectTransformerBlock)remoteContentTransformerBlock;
 
 /// Return `YES` if the object actually has remote content. Since most `PSPDFRemoteContentObject`s
 /// will have remote content, this method is optional. If it is not implemented, `YES` will be assumed.
 - (BOOL)hasRemoteContent;
 
 /// The completion block, called after loading finished.
-@property (nonatomic, copy) void (^completionBlock)(id <PSPDFRemoteContentObject> remoteObject);
+@property (nonatomic, copy) void (^completionBlock)(id<PSPDFRemoteContentObject> remoteObject);
 
 @end

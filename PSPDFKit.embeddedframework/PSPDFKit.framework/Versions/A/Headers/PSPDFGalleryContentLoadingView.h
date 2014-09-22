@@ -11,9 +11,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSPDFGalleryContentViewProtocols.h"
 
 /// A round progress view used in `PSPDFContentView`.
-@interface PSPDFGalleryContentLoadingView : UIView
+@interface PSPDFGalleryContentLoadingView : UIView <PSPDFGalleryContentViewLoading>
 
 /// The current progress. Must be between 0.0 and 1.0.
 @property (nonatomic, assign) CGFloat progress;

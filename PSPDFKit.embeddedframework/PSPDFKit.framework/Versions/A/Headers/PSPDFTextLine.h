@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 #import "PSPDFWord.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFTextLineBorder) {
@@ -25,8 +25,8 @@ typedef NS_ENUM(NSUInteger, PSPDFTextLineBorder) {
 @property (nonatomic, unsafe_unretained, readonly) PSPDFTextLine *prevLine;
 @property (nonatomic, unsafe_unretained, readonly) PSPDFTextLine *nextLine;
 
-void PSPDFSetNextLineIfCloserDistance(__unsafe_unretained PSPDFTextLine *self, __unsafe_unretained PSPDFTextLine *nextLine);
-void PSPDFSetPrevLineIfCloserDistance(__unsafe_unretained PSPDFTextLine *self, __unsafe_unretained PSPDFTextLine *prevLine);
+void PSPDFSetNextLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *nextLine);
+void PSPDFSetPrevLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *prevLine);
 
 @property (nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
 @property (nonatomic, assign) NSInteger blockID;

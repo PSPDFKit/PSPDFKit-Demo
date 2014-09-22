@@ -57,6 +57,8 @@
 "Loading" = "Indlæser";
 "Expand" = "Udvid";
 "Collapse" = "Sammenfold";
+// SMS / iMessage sharing button
+"Message" = "Meddelelse";
 
 // thumbnails
 "Bookmarked" = "Bogmærket";
@@ -172,9 +174,11 @@
 "Preview" = "Vis";
 "Stamp Text" = "Stempeltekst";
 "Add Signature" = "Tilføj signatur";
+"Remove Signature" = "Fjern signatur";
 "My Signature" = "Min signatur";
 "No Signatures" = "Ingen signaturer"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Kundesignatur";
+"Please sign here" = "Underskriv her";
 "Note" = "Bemærk";
 "Text" = "Tekst";
 "Delete Note" = "Slet note";
@@ -207,12 +211,20 @@
 "Merge" = "Kombiner"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Eksempel";
 "Annotation Summary for %@:\n" = "Kommentarresumé af %@:\n";
+// title
+"Author Name" = "Forfatternavn";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Angiv venligst det forfatternavn du ønsker at bruge til indsatte noter.";
+// text field placeholder
+"Name" = "Navn";
+// meaning: close
+"Dismiss" = "Luk";
 "Fit to Text" = "Tilpas til tekst";
 "Draw" = "Tegn";
 "Sound" = "Lyd";
 "Eraser" = "Viskelæder";
 "SelectionTool" = "Valg-værktøj";
-"Saved Annotations" = "Arkiverede kommentarer";
+"Saved Annotations" = "Arkiveret";
 "Add" = "Tilføj"; // to add - infinitive
 "Date" = "Dato";
 "Time" = "Tid";
@@ -330,6 +342,9 @@
 "Speak" = "Læs op"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Afspil";
 "Pause" = "Pause";
+"Resume" = "Genoptag";
+"Stop" = "Stop";
+"Play/Stop" = "Afspil/Stop";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Optag";
 "Pause Recording" = "Optagelse på pause";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Noget gik galt";
 "This item is currently unavailable." = "Dette emne er aktuelt ikke tilgængeligt.";
 "The information for this gallery could not be loaded." = "Informationen til dette galleri kunne ikke indlæses.";
-"Server Error" = "Serverfejl";
-"The information for this gallery is invalid." = "Informationen for dette galleri er ugyldigt.";
+"Content Error" = "Indholdsfejl";
+"This content is unsupported." = "Dette indhold understøttes ikke.";
 
 // Signatures
 "Digital Signature" = "Digital signatur";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen er gyldig, og indholdet af dette dokument er ikke blevet ændret, efter det blev signeret.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur — efter indholdet af dette dokument blev signeret, er det blevet ændret, fusket med eller korrumperet.";
 "Unsigned Signature Field" = "Ikke signeret signaturfelt";
+"Do you really want to remove the signature from the document?" = "Vil du virkelig fjerne signaturen fra dokumentet?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Kunne ikke afkryptere certifikatets signatur.";
 "The public key in the certificate could not be read." = "Den offentlige nøgle i certifikatet kunne ikke læses.";
 "The signature of the certificate is not valid." = "Certifikatets signatur er ikke gyldig.";
+"Signature is not valid." = "Signatur er ikke gyldig.";
 "There is a format error in the notBefore field of the certificate." = "Der er en formateringsfejl i certifikatets notBefore-felt."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Der er en formatfejl i notAfter-feltet i certifikatet."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Ingen signaturer kunne verificeres, fordi certifikatkæden kun indeholder et certifikat, den er ikke self-signed, og udstederen er ikke godkendt.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Udstedercertifikatets „keyUsage extension“ tillader ikke certifikatsignering.";
 "The certificate has expired." = "Certifikatet er udløbet.";
 "The certificate is not valid until a date in the future." = "Certifikatet er ikke gyldigt før end en fremtidig dato.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kunne ikke læse X509-certifikat fra data";
+// X509 should not be translated
+"No X509 certificate found" = "Intet X509-certifikat blev fundet";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan ikke læse PKCS12-arkiv. Arkivet er forkert formateret eller korrupt.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kunne ikke låse PKCS12-data op. Skrev du den korrekte adgangskode?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kunne ikke åbne arkiv til signaturvalidering";
+"Could not get signer info" = "Kunne ikke finde info om underskriver";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kunne ikke oprette PKCS7-objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kunne ikke føje signatur til PKCS7-objekt";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kunne ikke starte PKCS7-objekt";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kunne generere PKCS7-signatur";
+"OpenSSL could not sign hash" = "OpenSSL kunne ikke signere hash";
+"Could not write PKCS7 signature" = "Kunne ikke skrive PKCS7-signatur";
+
+

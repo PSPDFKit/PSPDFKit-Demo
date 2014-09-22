@@ -21,7 +21,7 @@
 + (instancetype)sharedSignatureStore;
 
 /// Designated initializer.
-- (id)initWithStoreName:(NSString *)storeName;
+- (instancetype)initWithStoreName:(NSString *)storeName NS_DESIGNATED_INITIALIZER;
 
 /// Add signature to store.
 - (void)addSignature:(PSPDFInkAnnotation *)signature;

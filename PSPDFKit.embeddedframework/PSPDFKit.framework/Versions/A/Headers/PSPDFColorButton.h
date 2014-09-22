@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
-
 /// Button that shows a selected color. Highlightable.
 @interface PSPDFColorButton : UIButton
 

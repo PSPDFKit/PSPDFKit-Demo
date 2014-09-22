@@ -57,6 +57,8 @@
 "Loading" = "Laden";
 "Expand" = "Vouw uit";
 "Collapse" = "Vouw samen";
+// SMS / iMessage sharing button
+"Message" = "Bericht";
 
 // thumbnails
 "Bookmarked" = "Bladwijzers";
@@ -172,9 +174,11 @@
 "Preview" = "Voorvertoning";
 "Stamp Text" = "Stempeltekst";
 "Add Signature" = "Voeg handtekening toe";
+"Remove Signature" = "Verwijder handtekening";
 "My Signature" = "Mijn handtekening";
 "No Signatures" = "Geen handtekeningen"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Handtekening van gebruiker";
+"Please sign here" = "Teken hier";
 "Note" = "Notitie";
 "Text" = "Tekst";
 "Delete Note" = "Verwijder notitie";
@@ -207,6 +211,14 @@
 "Merge" = "Voeg samen"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Voorbeeld";
 "Annotation Summary for %@:\n" = "Overzicht van annotaties voor %@:\n";
+// title
+"Author Name" = "Naam auteur";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Voer de naam van de auteur in die u voor nieuwe annotaties wilt gebruiken.";
+// text field placeholder
+"Name" = "Naam";
+// meaning: close
+"Dismiss" = "Sluit";
 "Fit to Text" = "Pas aan tekst aan";
 "Draw" = "Teken";
 "Sound" = "Geluid";
@@ -330,6 +342,9 @@
 "Speak" = "Spreek"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Speel af";
 "Pause" = "Pauzeer";
+"Resume" = "Hervat";
+"Stop" = "Stop";
+"Play/Stop" = "Speel af/Stop";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Neem op";
 "Pause Recording" = "Pauzeer opname";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Er is iets niet goed gegaan";
 "This item is currently unavailable." = "Dit item is momenteel niet beschikbaar.";
 "The information for this gallery could not be loaded." = "De informatie voor deze galerij kan niet worden geladen.";
-"Server Error" = "Serverfout";
-"The information for this gallery is invalid." = "De informatie voor deze galerij is niet geldig.";
+"Content Error" = "Inhoudsfout";
+"This content is unsupported." = "Deze inhoud wordt niet ondersteund.";
 
 // Signatures
 "Digital Signature" = "Digitale handtekening";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- De handtekening is geldig en de inhoud van het document is niet gewijzigd na ondertekening.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ongeldige handtekening — de inhoud van het document is gewijzigd of beschadigd of er is mee geknoeid na de ondertekening.";
 "Unsigned Signature Field" = "Niet-getekend handtekeningveld";
+"Do you really want to remove the signature from the document?" = "Weet u zeker dat u de handtekening wilt verwijderen uit het document?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Kan de handtekening van het certificaat niet decoderen.";
 "The public key in the certificate could not be read." = "De openbare sleutel van het certificaat kan niet worden gelezen.";
 "The signature of the certificate is not valid." = "De handtekening van het certificaat is niet geldig.";
+"Signature is not valid." = "Handtekening is niet geldig.";
 "There is a format error in the notBefore field of the certificate." = "Het certificaat bevat een structuurout in het veld 'notBefore'."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Er is een structuurfout in het veld 'notAfter' van het certificaat."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Handtekeningen kunnen niet worden geverifieerd omdat de certificaatketen slechts één certificaat bevat, deze niet zelfondertekend is en de verstrekker niet wordt vertrouwd.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "De extensie 'keyUsage' van het verstrekkercertificaat staat geen ondertekening van het certificaat toe.";
 "The certificate has expired." = "Het certificaat is verlopen.";
 "The certificate is not valid until a date in the future." = "Het certificaat is niet geldig tot een latere datum.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kan X509-certificaat niet lezen uit gegevens";
+// X509 should not be translated
+"No X509 certificate found" = "Geen X509-certificaat gevonden";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan PKCS12-bestand niet lezen. Bestand heeft onjuistezx structuur of is beschadigd.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kan PKCS12-gegevens niet ontgrendelen. Hebt u het juiste wachtwoord ingevoerd?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kan bestand niet openen voor validatie van handtekening";
+"Could not get signer info" = "Kan info van ondertekenaar niet ophalen";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kan PKCS7-object niet aanmaken";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kan handtekening niet toevoegen aan PKCS7-object";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kan PKCS7-object niet initialiseren";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kan PKCS7-handtekening genereren";
+"OpenSSL could not sign hash" = "OpenSSL kan hash niet tekenen";
+"Could not write PKCS7 signature" = "Kan PKCS7-handtekening niet schrijven";
+
+

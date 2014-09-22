@@ -19,12 +19,12 @@ typedef NS_ENUM(NSUInteger, PSPDFReachability) {
     PSPDFReachabilityWWAN
 };
 
-/// Posted when the reachabily changes.
+/// Posted when the reachability changes.
 extern NSString *const PSPDFReachabilityDidChangeNotification;
 
 @interface PSPDFReachabilityObserver : NSObject
 
-/// The current reachability. This property is only meaningful if startObserving has been called.
+/// The current reachability. This property is only meaningful if `startObserving` has been called.
 @property (nonatomic, assign, readonly) PSPDFReachability reachability;
 
 /// Returns YES if the reachability is either `PSPDFReachabilityWiFi` or `PSPDFReachabilityWWAN`.
@@ -36,8 +36,8 @@ extern NSString *const PSPDFReachabilityDidChangeNotification;
 /// Starts observing the reachability. This method is stack-based, so multiple calls are fine.
 - (void)startObserving;
 
-/// Stops observing the reachability. This method is stack-based, so multiple calls (as long as they
-/// are balanced with startObserving) are fine.
+/// Stops observing the reachability. This method is stack-based, so multiple calls
+// (as long as they are balanced with `startObserving`) are fine.
 - (void)stopObserving;
 
 @end

@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, PSPDFAESCryptoOutputStreamErrorCode) {
 /// AES decryption, RNCryptor data format  (see https://github.com/RNCryptor/RNCryptor-Spec/blob/master/RNCryptor-Spec-v3.md )
 @interface PSPDFAESCryptoOutputStream : PSPDFCryptoOutputStream
 
-/// Designated initializer with the passphrase. THe encryption key salt and HMAC key salt will be saved in the file header.
+/// Designated initializer with the passphrase. The encryption key salt and HMAC key salt will be saved in the file header.
 - (instancetype)initWithOutputStream:(NSOutputStream *)stream passphrase:(NSString *)passphrase;
 
 /// Check the streamStatus after calling this method. Due to AES CBC encryption is working finalized data

@@ -13,8 +13,13 @@
 #import "PSPDFStyleable.h"
 #import "PSPDFBaseViewController.h"
 #import "PSPDFDrawView.h"
+#import "PSPDFOverridable.h"
 
+@class PSPDFDrawView;
 @class PSPDFSignatureViewController;
+@class PSPDFPopOutMenu;
+@class PSPDFColorButton;
+@class PSPDFSignatureBackgroundView;
 
 // Constants are used in the delegate and saved in userInfo.
 extern NSString *const PSPDFSignatureControllerShouldSaveKey;
@@ -38,30 +43,75 @@ extern NSString *const PSPDFSignatureControllerTargetRectKey;
 @interface PSPDFSignatureViewController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 /// Lines of the drawView.
 @property (nonatomic, strong, readonly) NSArray *lines;
 
+/// Color options for the color picker (limit this to about 3 UIColor instances).
+/// Defaults to black, blue and red.
+@property (nonatomic, copy) NSArray *menuColors;
+
 /// Signature controller delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFSignatureViewControllerDelegate> delegate;
 
-/// Internally used draw view. Allows line color/thickness customization.
-/// @note Created after view has been loaded.
-@property (nonatomic, strong, readonly) PSPDFDrawView *drawView;
-
 /// Save additional properties here. This will not be used by the signature controller.
 @property (nonatomic, copy) NSDictionary *userInfo;
+
+/// @name Views
+
+/// @note All views are created after the main view has been loaded.
+
+/// Internally used draw view. Use `lines` as a shortcut to get the drawn signature lines.
+@property (nonatomic, strong, readonly) PSPDFDrawView *drawView;
+
+/// Clear signature button. Clears out the draw view content.
+@property (nonatomic, strong) UIButton *clearButton;
+
+/// Color menu. Holds a set of `PSPDFColorButton` items by default.
+/// @see menuColors
+/// @see colorButtonForColor:
+@property (nonatomic, strong) PSPDFPopOutMenu *colorMenu;
+
+/// Signature area background view. Positioned directly underneath the `drawView`.
+@property (nonatomic, strong) PSPDFSignatureBackgroundView *backgroundView;
+
+/// @name Styling
+
+/// Keeps the drawing area aspect ration regardless of the interface orientation.
+/// Setting this to `NO` might produce unexpected results if the view bounds change.
+/// Defaults to YES, except if the view is presented inside a form sheet on iPad.
+@property (nonatomic, assign) BOOL keepLandscapeAspectRatio;
 
 @end
 
 @interface PSPDFSignatureViewController (SubclassingHooks)
 
-/// Internally used drawView.
-@property (nonatomic, strong, readonly) PSPDFDrawView *drawView;
-
-// To make custom buttons.
+// Actions for custom buttons.
 - (void)cancel:(id)sender;
 - (void)done:(id)sender;
+- (void)clear:(id)sender;
+- (void)color:(PSPDFColorButton *)sender;
+
+// Customize the created color menu buttons.
+- (PSPDFColorButton *)colorButtonForColor:(UIColor *)color;
+
+@end
+
+@interface PSPDFSignatureBackgroundView : UIView
+
+/// Signature guide line.
+@property (nonatomic, strong, readonly) UIView *signatureLine;
+
+/// Signature text, positioned underneath the signature line.
+@property (nonatomic, strong, readonly) UILabel *signatureLabel;
+
+/// Positioned on the top edge of the content view. Draws a dashed line.
+/// Only visible in portrait when keepLandscapeAspectRatio is set.
+@property (nonatomic, strong, readonly) UIView *topSeparator;
+
+/// Positioned on the bottom edge of the content view. Draws a dashed line.
+/// Only visible in portrait when keepLandscapeAspectRatio is set.
+@property (nonatomic, strong, readonly) UIView *bottomSeparator;
 
 @end

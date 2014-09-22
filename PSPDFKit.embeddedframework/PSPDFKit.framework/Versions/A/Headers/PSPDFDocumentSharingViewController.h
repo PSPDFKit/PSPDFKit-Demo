@@ -67,11 +67,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 
 /// Initialize with a `document` and optionally `visiblePages`.
 /// `completionHandler` will be called if the user selects an option. Will not be called in case of cancellation.
-- (id)initWithDocument:(PSPDFDocument *)document visiblePages:(NSOrderedSet *)visiblePages allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions delegate:(id <PSPDFDocumentSharingViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document visiblePages:(NSOrderedSet *)visiblePages allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions delegate:(id <PSPDFDocumentSharingViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Checks if the controller has options *at all* - and simply calls the delegate if not.
 /// This prevents showing the controller without any options and just a commit button.
-/// Will return YES if the controller has options availble, NO if the delegate has been called.
+/// Will return YES if the controller has options available, NO if the delegate has been called.
 - (BOOL)checkIfControllerHasOptionsAvailableAndCallDelegateIfNot;
 
 /// Will take the current settings and start the file crunching. Will call back on the `PSPDFDocumentSharingViewControllerDelegate` unless this returns NO.

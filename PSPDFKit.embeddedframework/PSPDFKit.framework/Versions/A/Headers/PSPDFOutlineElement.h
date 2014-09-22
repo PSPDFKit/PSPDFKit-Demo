@@ -16,7 +16,7 @@
 @interface PSPDFOutlineElement : PSPDFBookmark
 
 /// Init with title, page, child elements and indentation level.
-- (id)initWithTitle:(NSString *)title action:(PSPDFAction *)action children:(NSArray *)children level:(NSUInteger)level;
+- (instancetype)initWithTitle:(NSString *)title color:(UIColor *)color fontTraits:(UIFontDescriptorSymbolicTraits)fontTraits action:(PSPDFAction *)action children:(NSArray *)children level:(NSUInteger)level NS_DESIGNATED_INITIALIZER;
 
 /// Returns all elements + flattened subelements if they are expanded
 - (NSArray *)flattenedChildren;
@@ -26,6 +26,12 @@
 
 /// Outline title.
 @property (nonatomic, copy, readonly) NSString *title;
+
+/// Bookmark can have a color. Defaults to system text color if not set. (Optional; PDF 1.4)
+@property (nonatomic, strong, readonly) UIColor *color;
+
+/// A bookmark can be optionally bold or italic. (Optional; PDF 1.4)
+@property (nonatomic, assign, readonly) UIFontDescriptorSymbolicTraits fontTraits;
 
 /// Child elements.
 @property (nonatomic, copy, readonly) NSArray *children;

@@ -11,12 +11,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSPDFGalleryContentViewProtocols.h"
 
 /// The caption view used in `PSPDFGalleryContentCaptionView`.
-@interface PSPDFGalleryContentCaptionView : UIView
+@interface PSPDFGalleryContentCaptionView : UIView <PSPDFGalleryContentViewCaption>
+
+/// The caption.
+@property (nonatomic, copy) NSString *caption;
 
 /// The label used to display the caption.
-@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong, readonly) UILabel *label;
 
 /// The content inset by which the label is inset within this view.
 @property (nonatomic, assign) UIEdgeInsets contentInset;

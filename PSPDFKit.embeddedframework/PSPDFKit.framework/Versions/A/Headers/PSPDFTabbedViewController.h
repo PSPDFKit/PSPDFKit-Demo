@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFMultiDocumentViewController.h"
 #import "PSPDFTabBarView.h"
 
@@ -45,7 +46,7 @@
 
 /// Initialize the controller.
 /// Set a custom `pdfController` to use a subclass. If nil, a default instance will be created.
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
+- (instancetype)initWithPDFViewController:(PSPDFViewController *)pdfController NS_DESIGNATED_INITIALIZER;
 
 /// Add one or multiple documents to the documents array at the specified index.
 /// Documents that are already within documents (or are equal to those) are ignored.

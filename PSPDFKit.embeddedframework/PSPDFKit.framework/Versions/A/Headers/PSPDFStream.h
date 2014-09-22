@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import "PSPDFStreamProvider.h"
 
 @class PSPDFDocument;
 
@@ -18,8 +19,12 @@
 /// A Stream has dictionary data and stream data. Might be anything (like page commands, a video, an image)
 @interface PSPDFStream : NSObject <NSCopying>
 
+/// Get the stream from an object that can provide a stream.
+/// `options` is currently unused.
++ (PSPDFStream *)streamFromStreamProvider:(id<PSPDFStreamProvider>)streamProvider options:(NSDictionary *)options error:(NSError **)error;
+
 /// Designated initializer
-- (id)initWithStream:(CGPDFStreamRef)stream;
+- (instancetype)initWithStream:(CGPDFStreamRef)stream;
 
 /// Referenced stream. Warning! Only valid as long as the parent `CGPDFDocument` is not closed.
 @property (nonatomic, assign, readonly) CGPDFStreamRef stream;
@@ -41,7 +46,7 @@
 
 /// File URL from the converted stream.
 /// @warning This might be slow for large streams.
-- (NSURL *)fileURLWithAssetName:(NSString *)assetName document:(PSPDFDocument *)document page:(NSUInteger)page error:(NSError **)error;
+- (NSURL *)fileURLWithAssetName:(NSString *)assetName UID:(NSString *)UID page:(NSUInteger)page error:(NSError **)error;
 
 /// File URL with generic path. Path needs to be writable and any directory needs to be created.
 ///

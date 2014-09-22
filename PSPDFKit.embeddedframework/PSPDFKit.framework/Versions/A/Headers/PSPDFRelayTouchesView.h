@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
 
 /// The HUD will relay touches of subviews, but won't react on touches on this actual view.
 /// This is achieved with overriding `pointInside:withEvent:`.

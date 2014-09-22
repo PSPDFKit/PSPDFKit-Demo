@@ -20,13 +20,13 @@ extern NSString *const PSPDFGalleryItemContentStateDidChangeNotification;
 typedef NS_ENUM(NSUInteger, PSPDFGalleryItemContentState) {
     /// The item is waiting to load its content.
     PSPDFGalleryItemContentStateWaiting,
-    
+
     /// The item is currently loading its content.
     PSPDFGalleryItemContentStateLoading,
-    
+
     /// The item's content is ready.
     PSPDFGalleryItemContentStateReady,
-    
+
     /// The item has encountered an error while loading its content.
     PSPDFGalleryItemContentStateError
 };
@@ -62,8 +62,10 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 /// Indicates if the content of contentURL is considered valid.
 @property (nonatomic, assign, readonly, getter = hasValidContent) BOOL validContent;
 
-/// The error that occured while loading the content. Only valid if `contentState`
+/// The error that occurred while loading the content. Only valid if `contentState`
 /// is `PSPDFGalleryItemContentStateError`.
+/// @note This property is not related to the error pointer that can be provided when creating
+/// an `PSPDFGalleryItem`.
 @property (nonatomic, strong, readonly) NSError *error;
 
 /// The progress of loading the content. Only valid if `contentState`
@@ -72,21 +74,20 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 
 /// @name Creating Items
 
-/// Factory method to create an array of items from JSON data.
+/// Factory method to create an array of items from JSON data. Returns `nil` in case of an error.
 + (NSArray *)itemsFromJSONData:(NSData *)data error:(NSError **)error;
 
 /// Factory method that creates a single gallery item directly from a link annotation.
-/// Returns nil if the annotation doesn't point to a single image or a single video. Use
-/// `itemsFromJSONData:error:` to parse gallery manifest files.
-+ (PSPDFGalleryItem *)itemFromLinkAnnotation:(PSPDFLinkAnnotation *)annotation;
+/// Returns `nil` in case of an error.
++ (PSPDFGalleryItem *)itemFromLinkAnnotation:(PSPDFLinkAnnotation *)annotation error:(NSError **)error;
 
-/// Create an item from a given dictionary. The dictionary will usually be parsed JSON.
+/// Creates an item from a given dictionary. The dictionary will usually be parsed JSON.
+/// @warning This method triggers an assertion if `contentURL` is invalid.
 /// @note This is the designated initializer.
-- (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
 
-/// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` and
-/// `options` is optional.
-- (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption options:(NSDictionary *)options;
+/// Creates an item with the given `contentURL`, `caption` and `options`. `contentURL` is required.
+- (instancetype)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption options:(NSDictionary *)options;
 
 @end
 
@@ -112,3 +113,14 @@ extern NSString *const PSPDFGalleryItemCaptionKey;
 
 /// String. The options of an item.
 extern NSString *const PSPDFGalleryItemOptionsKey;
+
+/// @name Options
+
+/// Boolean. Indicates if the content should automatically start playing.
+extern NSString *const PSPDFGalleryOptionAutoplay;
+
+/// Boolean. Indicates if controls should be displayed.
+extern NSString *const PSPDFGalleryOptionControls;
+
+/// Boolean. Indicates if the content should loop forever.
+extern NSString *const PSPDFGalleryOptionLoop;

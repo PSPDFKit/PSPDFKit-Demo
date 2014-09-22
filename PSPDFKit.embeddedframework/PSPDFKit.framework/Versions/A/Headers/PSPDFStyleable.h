@@ -11,15 +11,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFStatusBarStyleHint.h"
 
 /// Implement in your `UIViewController` subclass to be able to match the style of PSPDFViewController.
-@protocol PSPDFStyleable <PSPDFStatusBarStyleHint>
+@protocol PSPDFStyleable <NSObject>
 
 @optional
-
-/// Tint color of the `PSPDFViewController`.
-@property (nonatomic, strong) UIColor *tintColor;
 
 /// Proposed bar style.
 @property (nonatomic, assign) UIBarStyle barStyle;
@@ -32,5 +28,8 @@
 
 /// Accesses the popover controller.
 @property (nonatomic, weak) UIPopoverController *parentPopoverController;
+
+// In contrast to the system implementation, this property is writable.
+@property (nonatomic, assign) BOOL prefersStatusBarHidden;
 
 @end

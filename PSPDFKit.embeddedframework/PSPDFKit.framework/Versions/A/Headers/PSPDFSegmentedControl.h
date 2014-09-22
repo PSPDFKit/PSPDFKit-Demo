@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // Add support to replace images as the selection changes.
 @interface PSPDFSegmentedControl : UISegmentedControl

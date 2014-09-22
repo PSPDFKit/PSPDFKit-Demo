@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFViewController.h"
 
 @class PSPDFFormRequest;
@@ -26,7 +25,7 @@
 
 @optional
 
-/// The user has activated a submission action, return to indicate whether it should be sent sent.
+/// The user has activated a submission action, return to indicate whether it should be sent.
 - (BOOL)pdfViewController:(PSPDFViewController *)viewController shouldSubmitFormRequest:(PSPDFFormRequest *)formRequest;
 
 /// The user has activated a submission action, which will go ahead.

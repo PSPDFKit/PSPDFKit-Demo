@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, PSPDFStylusConnectionStatus) {
 @protocol PSPDFStylusDriver <PSPDFPlugin>
 
 // Enable/Disable driver
-- (BOOL)enableDriver:(NSError *__autoreleasing*)error options:(NSDictionary *)options;
+- (BOOL)enableDriver:(NSError **)error options:(NSDictionary *)options;
 - (void)disableDriver;
 
 // Info of the connected stylus. Might also return data if the connection status is not connected.

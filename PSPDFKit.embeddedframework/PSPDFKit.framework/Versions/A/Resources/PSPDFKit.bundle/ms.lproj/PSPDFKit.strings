@@ -57,6 +57,8 @@
 "Loading" = "Memuatkan";
 "Expand" = "Kembangkan";
 "Collapse" = "Runtuhkan";
+// SMS / iMessage sharing button
+"Message" = "Mesej";
 
 // thumbnails
 "Bookmarked" = "Penanda";
@@ -172,9 +174,11 @@
 "Preview" = "Pratonton";
 "Stamp Text" = "Teks Cap";
 "Add Signature" = "Tambah Tandatangan";
+"Remove Signature" = "Alih Keluar Tandatangan";
 "My Signature" = "Tandatangan Saya";
 "No Signatures" = "Tiada Tandatangan"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Tandatangan Pelanggan";
+"Please sign here" = "Sila tandatangan di sini";
 "Note" = "Nota";
 "Text" = "Teks";
 "Delete Note" = "Padam Nota";
@@ -207,6 +211,14 @@
 "Merge" = "Gabungkan"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Sampel";
 "Annotation Summary for %@:\n" = "Ringkasan Anotasi untuk %@:\n";
+// title
+"Author Name" = "Nama Pengarang";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Sila masukkan nama pengarang yang anda mahu gunakan bagi anotasi yang baharu dimasukkan.";
+// text field placeholder
+"Name" = "Nama";
+// meaning: close
+"Dismiss" = "Tutup";
 "Fit to Text" = "Muatkan dengan Teks";
 "Draw" = "Lukis";
 "Sound" = "Bunyi";
@@ -330,6 +342,9 @@
 "Speak" = "Sebut"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Main";
 "Pause" = "Jeda";
+"Resume" = "Teruskan";
+"Stop" = "Hentikan";
+"Play/Stop" = "Mainkan/Hentikan";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Rakam";
 "Pause Recording" = "Jeda Rakaman";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Ada sesuatu tidak kena";
 "This item is currently unavailable." = "Item ini tidak tersedia pada masa ini.";
 "The information for this gallery could not be loaded." = "Maklumat bagi galeri ini tidak dapat dimuatkan.";
-"Server Error" = "Ralat Pelayan";
-"The information for this gallery is invalid." = "Maklumat bagi galeri ini tidak sah.";
+"Content Error" = "Ralat Kandungan";
+"This content is unsupported." = "Kandungan ini tidak disokong.";
 
 // Signatures
 "Digital Signature" = "Tandatangan Digital";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Tandatangan adalah sah dan kandungan dokumen ini tidak diubah suai sejak ia ditandatangani.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Tandatangan tidak sah — sejak menandatangani kandungan dokumen ini, ia telah diubah suai, diusik atau rosak.";
 "Unsigned Signature Field" = "Medan Tandatangan Tidak Ditandatangani";
+"Do you really want to remove the signature from the document?" = "Adakah anda benar-benar ingin mengalih keluar tandatangan daripada dokumen?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Tidak dapat nyahsulit tandatangan pada sijil.";
 "The public key in the certificate could not be read." = "Kunci awam dalam sijil tidak boleh dibaca.";
 "The signature of the certificate is not valid." = "Tandatangan pada sijil adalah tidak sah.";
+"Signature is not valid." = "Tandatangan tidak sah.";
 "There is a format error in the notBefore field of the certificate." = "Terdapat ralat format dalam medan notBefore pada sijil."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Terdapat ralat format dalam medan notAfter pada sijil."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Tiada tandatangan dapat disahkan kerana rantai sijil mengandungi hanya satu sijil, ia tidak bertandatangan sendiri dan pengeluarnya tidak dipercayai.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Sambungan keyUsage sijil pengeluar tidak membenarkan tandatangan sijil.";
 "The certificate has expired." = "Sijil telah tamat tempoh.";
 "The certificate is not valid until a date in the future." = "Sijil tidak sah sehingga suatu tarikh pada masa hadapan.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Tidak dapat membaca sijil X509 daripada data";
+// X509 should not be translated
+"No X509 certificate found" = "Tiada sijil X509 ditemui";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Tidak dapat membaca fail PKCS12. Fail diformatkan dengan tidak betul atau telah rosak.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Tidak dapat membuka kunci data PKCS12. Adakah anda telah memasukkan kata laluan yang betul?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Tidak dapat membuka fail untuk pengesahan tandatangan";
+"Could not get signer info" = "Tidak mendapat maklumat penandatangan";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL tidak dapat mencipta objek PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL tidak dapat menambah tandatangan pada objek PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL tidak dapat memulakan objek PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL tidak dapat menghasilkan tandatangan PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL tidak dapat menandatangani hash";
+"Could not write PKCS7 signature" = "Tidak dapat menulis tandatangan PKCS7";
+
+

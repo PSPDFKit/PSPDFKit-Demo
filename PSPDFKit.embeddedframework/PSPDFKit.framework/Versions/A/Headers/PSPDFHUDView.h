@@ -15,46 +15,22 @@
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFLabelView.h"
 #import "PSPDFPageLabelView.h"
+#import "PSPDFThumbnailBar.h"
 
 @class PSPDFDocumentLabelView, PSPDFPageLabelView, PSPDFScrobbleBar, PSPDFThumbnailBar, PSPDFDocument;
 
 // Empty subclass for easier debugging.
 @interface PSPDFDocumentLabelView : PSPDFLabelView @end
 
-typedef NS_ENUM(NSUInteger, PSPDFThumbnailBarMode) {
-    PSPDFThumbnailBarModeNone,            /// Don't show thumbnail bottom bar.
-    PSPDFThumbnailBarModeScrobbleBar,     /// Show scrobble bar (like iBooks, PSPDFScrobbleBar)
-    PSPDFThumbnailBarModeScrollable       /// Show scrollable thumbnail bar (PSPDFThumbnailBar)
-};
-
-typedef NS_ENUM(NSUInteger, PSPDFHUDViewMode) {
-    PSPDFHUDViewModeAlways,                   /// Always show the HUD.
-    PSPDFHUDViewModeAutomatic,                /// Show HUD on touch and first/last page.
-    PSPDFHUDViewModeAutomaticNoFirstLastPage, /// Show HUD on touch.
-    PSPDFHUDViewModeNever                     /// Never show the HUD.
-};
-
-typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
-    PSPDFHUDViewAnimationNone,            /// Don't animate HUD appearance
-    PSPDFHUDViewAnimationFade,            /// Fade HUD in/out
-    PSPDFHUDViewAnimationSlide            /// Slide HUD.
-};
-
-// Action delegate. Aggregates indivitual delegates.
-@protocol PSPDFHUDViewDelegate <PSPDFThumbnailBarDelegate, PSPDFScrobbleBarDelegate, PSPDFPageLabelViewDelegate>
-@end
-
 /// The HUD overlay for the `PSPDFViewController`. Contains the thumbnail and page/title label overlays.
 @interface PSPDFHUDView : PSPDFRelayTouchesView
 
 /// Designated initializer.
-- (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFHUDViewDelegate>)delegate dataSource:(id <PSPDFConfigurationDataSource>)dataSource;
+- (instancetype)initWithFrame:(CGRect)frame
+                   dataSource:(id <PSPDFPresentationContext>)dataSource NS_DESIGNATED_INITIALIZER;
 
 /// The data source.
-@property (nonatomic, weak, readonly) id <PSPDFConfigurationDataSource> dataSource;
-
-/// The data source
-@property (nonatomic, weak, readonly) id <PSPDFHUDViewDelegate> delegate;
+@property (nonatomic, weak, readonly) id <PSPDFPresentationContext> dataSource;
 
 /// Force subview updating.
 - (void)layoutSubviewsAnimated:(BOOL)animated;
@@ -62,14 +38,11 @@ typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
 /// Fetches data again
 - (void)reloadData;
 
-// See PSPDFViewController for explanations of these properties.
-@property (nonatomic, assign) PSPDFHUDViewMode HUDViewMode;
-@property (nonatomic, assign) PSPDFHUDViewAnimation HUDViewAnimation;
-@property (nonatomic, assign) PSPDFThumbnailBarMode thumbnailBarMode;
-@property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
-@property (nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
-
+/// Specifies the distance between the page label and the top of the scrobble bar or the
+/// bottom of the screen, depending on whether the scrobble bar is enabled. Defaults to 10.f
 @property (nonatomic, assign) CGFloat pageLabelDistance UI_APPEARANCE_SELECTOR;
+
+/// Specifies the distance between the top document label. Defaults to 10.f
 @property (nonatomic, assign) CGFloat documentLabelDistance UI_APPEARANCE_SELECTOR;
 
 @end

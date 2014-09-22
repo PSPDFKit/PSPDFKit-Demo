@@ -13,6 +13,7 @@
 #import "PSPDFBaseTableViewController.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFStatefulTableViewController.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
 
@@ -28,11 +29,11 @@
 @end
 
 /// Shows a list of signatures to select one.
-/// Will show up in landscape on iOS6 via `preferredInterfaceOrientationForPresentation`.
+/// Will show up in landscape via `preferredInterfaceOrientationForPresentation`.
 @interface PSPDFSignatureSelectorViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithSignatures:(NSArray *)signatures;
+- (instancetype)initWithSignatures:(NSArray *)signatures NS_DESIGNATED_INITIALIZER;
 
 /// Signatures that are being displayed.
 @property (nonatomic, copy, readonly) NSArray *signatures;

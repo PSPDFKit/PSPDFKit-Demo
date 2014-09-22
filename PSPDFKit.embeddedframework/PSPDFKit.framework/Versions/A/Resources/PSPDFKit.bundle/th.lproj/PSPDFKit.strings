@@ -37,7 +37,7 @@
 "Open" = "เปิด";
 "Commit" = "ดำเนินการ";
 "Sending to %@" = "ส่งไปที่ %@"; // Open document with an application
-"Pages" = "Pages";
+"Pages" = "หน้า";
 "Print with annotations" = "พิมพ์และแสดงหมายเหตุ";
 "Print document only" = "พิมพ์เอกสารเท่านั้น";
 "No Applications found" = "ไม่ได้ติดตั้งแอปที่สามารถเปิดเอกสาร PDF ได้";
@@ -57,6 +57,8 @@
 "Loading" = "กำลังโหลด";
 "Expand" = "ขยายตัว";
 "Collapse" = "ยุบ";
+// SMS / iMessage sharing button
+"Message" = "ข้อความ";
 
 // thumbnails
 "Bookmarked" = "คั่นหน้าเว็บไว้";
@@ -172,9 +174,11 @@
 "Preview" = "ดูตัวอย่าง";
 "Stamp Text" = "ข้อความของตราประทับ";
 "Add Signature" = "ลงลายเซ็น";
+"Remove Signature" = "ลบลายเซ็นออก";
 "My Signature" = "ลายเซ็นของฉัน";
 "No Signatures" = "ไม่มีลายเซ็น"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "ลายเซ็นลูกค้า";
+"Please sign here" = "กรุณาลงชื่อที่นี่";
 "Note" = "บันทึก";
 "Text" = "ข้อความ";
 "Delete Note" = "ลบบันทึก";
@@ -207,6 +211,14 @@
 "Merge" = "ผสาน"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "ตัวอย่าง";
 "Annotation Summary for %@:\n" = "บทสรุปหมายเหตุสำหรับ %@:\n";
+// title
+"Author Name" = "ชื่อผู้เขียน";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "กรุณากรอกชื่อผู้เขียนที่คุณต้องการใช้สำหรับหมายเหตุที่เพิ่งเขียนลงใหม่";
+// text field placeholder
+"Name" = "ชื่อ";
+// meaning: close
+"Dismiss" = "ปิด";
 "Fit to Text" = "ปรับให้พอดีกับข้อความ";
 "Draw" = "วาด";
 "Sound" = "เสียง";
@@ -330,6 +342,9 @@
 "Speak" = "ออกเสียง"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "เล่น";
 "Pause" = "ค้าง";
+"Resume" = "กลับไปพูดต่อ";
+"Stop" = "หยุด";
+"Play/Stop" = "เล่น/หยุด";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "อัดเสียง";
 "Pause Recording" = "ค้างการอัดเสียง";
@@ -380,8 +395,8 @@
 "Something went wrong" = "เกิดปัญหาขึ้น";
 "This item is currently unavailable." = "ของชิ้นนี้ไม่มีให้เลือกในขณะนี้";
 "The information for this gallery could not be loaded." = "โหลดข้อมูลสำหรับอัลบั้มภาพนี้ไม่ได้";
-"Server Error" = "ข้อผิดพลาดทางเซิร์ฟเวอร์";
-"The information for this gallery is invalid." = "ข้อมูลสำหรับอัลบั้มภาพนี้ถือเป็นโมฆะ";
+"Content Error" = "ข้อผิดพลาดทางเนื้อหา";
+"This content is unsupported." = "ไม่รองรับเนื้อหานี้";
 
 // Signatures
 "Digital Signature" = "ลายเซ็นดิจิตอล";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- ลายเซ็นนี้มีผลบังคับ และเนื้อหาของเอกสารนี้ไม่ได้ถูกแก้ไขหลังจากที่ลงลายเซ็น";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- ลายเซ็นเป็นโมฆะ — ตั้งแต่ที่เซ็นชื่อรับรองเนื้อหา เอกสารนี้ถูกเปลี่ยนแปลง สอดแทรก หรือทำลายเสียหาย";
 "Unsigned Signature Field" = "ช่องลายเซ็นที่ยังไม่ได้เซ็นชื่อ";
+"Do you really want to remove the signature from the document?" = "คุณต้องการลบลายเซ็นออกจากเอกสารจริง ๆ หรือ?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "ไม่สามารถถอดรหัสลายเซ็นของใบรับรอง";
 "The public key in the certificate could not be read." = "อ่านกุญแจสาธารณะในใบรับรองไม่ได้";
 "The signature of the certificate is not valid." = "ลายเซ็นของใบรับรองเป็นโมฆะ";
+"Signature is not valid." = "ลายเซ็นเป็นโมฆะ";
 "There is a format error in the notBefore field of the certificate." = "มีข้อผิดพลาดทางรูปแบบในช่อง notBefore ของใบรับรอง"; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "มีข้อผิดพลาดทางรูปแบบในช่อง notAfter ของใบรับรอง"; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "ไม่สามารถพิสูจน์ลายเซ็นใดได้ เพราะสายใบรับรองประกอบด้วยใบรับรองเพียงฉบับเดียว ซึ่งไม่ได้เซ็นรับรองเอง และ issuer ไม่ผ่านการเชื่อถือ";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "นามสกุลของ keyUsage ของ issuer certificate ไม่อนุญาตให้มีการลงชื่อใบรับรอง";
 "The certificate has expired." = "ใบรับรองหมดอายุ";
 "The certificate is not valid until a date in the future." = "ใบรับรองไม่มีผลบังคับใช้จนกว่าวันที่นั้นจะมาถึง";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "ไม่สามารถอ่านใบรับรอง X509 จากข้อมูล";
+// X509 should not be translated
+"No X509 certificate found" = "ไม่พบใบรับรอง X509";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "อ่านไฟล์ PKCS12 ไม่ได้ รูปแบบของไฟล์ไม่ถูกต้องหรือเสียหาย";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "ไม่สามารถปลดล็อกข้อมูล PKCS12 คุณกรอกรหัสผ่านถูกต้องหรือไม่?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "ไม่สามารถเปิดไฟล์เพื่อทำการตรวจสอบลายเซ็นได้";
+"Could not get signer info" = "ไม่สามารถหาข้อมูลผู้ลงลายเซ็นได้";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL ไม่สามารถสร้างวัตถุ PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL ไม่สามารถเพิ่มลายเซ็นลงในวัตถุ PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL ไม่สามารถตั้งค่าเริ่มต้นวัตถุ PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL ไม่สามารถออกลายเซ็น PKCS7 ได้";
+"OpenSSL could not sign hash" = "OpenSSL ไม่สามารถเซ็น hash";
+"Could not write PKCS7 signature" = "ไม่สามารถเขียนลายเซ็น PKCS7";
+
+

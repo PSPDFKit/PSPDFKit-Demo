@@ -10,10 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFBaseViewController.h"
-#import "PSPDFKitGlobal.h"
 #import "PSPDFTransitionProtocol.h"
 #import "PSPDFViewController.h"
+#import "PSPDFPresentationContext.h"
 
 @interface PSPDFPagingScrollView : UIScrollView @end
 
@@ -23,16 +25,13 @@
 @interface PSPDFPageScrollViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
 
 /// Designated initializer.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+- (instancetype)initWithPresentationContext:(id<PSPDFPresentationContext>)presentationContext NS_DESIGNATED_INITIALIZER;
 
-/// Associated `PSPDFViewController` class.
-@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
+/// Associated `PSPDFPresentationContext` object.
+@property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;
 
 /// Main view.
 @property (nonatomic, strong, readonly) UIScrollView *pagingScrollView;
-
-/// Page padding width between single/double pages.
-@property (nonatomic, assign) CGFloat pagePadding;
 
 /// Access visible page numbers.
 - (NSOrderedSet *)visiblePageNumbers;

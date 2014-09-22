@@ -10,8 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <CommonCrypto/CommonKeyDerivation.h>
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
 
 @class PSPDFAESDecryptor;
 
@@ -26,34 +25,31 @@ extern uint const PSPDFDefaultPBKDFNumberOfRounds;
  Use the provided encryption tool to prepare your documents.
 
  Ensure your passphrase/salt are also protected within the binary, or at least obfuscated.
-
  Encryption marginally slows down rendering, since everything is decrypted on the fly.
- Only available in PSPDFKit Basic/Complete.
+
+ @note Requires the `PSPDFFeatureMaskStrongEncryption` feature flag.
  */
 @interface PSPDFAESCryptoDataProvider : NSObject
 
 /// Designated initializer with the passphrase and salt.
 /// URL must be a file-based URL.
-- (id)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase salt:(NSString *)salt rounds:(uint)rounds;
+- (instancetype)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase salt:(NSString *)salt rounds:(uint)rounds;
 
 /// Initializer with the passphrase and salt as NSData rather than NSString.
 /// URL must be a file-based URL.
-- (id)initWithURL:(NSURL *)URL passphraseData:(NSData *)passphraseData salt:(NSData *)saltData rounds:(uint)rounds;
+- (instancetype)initWithURL:(NSURL *)URL passphraseData:(NSData *)passphraseData salt:(NSData *)saltData rounds:(uint)rounds;
 
 /// Designated initializer with the passphrase. Salt will be loaded from the header of the
 /// file format (see https://github.com/rnapier/RNCryptor/wiki/Data-Format )
 /// The default PRF is kCCPRFHmacAlgSHA1.
 /// The number of iterations will be the new default PSPDFAESDefaultPBKDFNumberOfRounds (10000)
 /// URL must be a file-based URL.
-- (id)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase;
+- (instancetype)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase;
 
-/// Designated initializer with the passphrase and customized PRF and iterations number.
+/// Designated initializer with the passphrase and legacy file format PRF kCCPRFHmacAlgSHA256 and 50000 rounds.
 /// Salt will be loaded from the header of the
-/// file format (see https://github.com/rnapier/RNCryptor/wiki/Data-Format )
-/// The default PRF is `kCCPRFHmacAlgSHA1`.
-/// The default number of iterations is `PSPDFAESDefaultPBKDFNumberOfRounds` (10000).
 /// URL must be a file-based URL.
-- (id)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase PRF:(CCPseudoRandomAlgorithm)prf rounds:(uint)rounds;
+- (instancetype)initWithLegacyFileFormatURL:(NSURL *)URL passphrase:(NSString *)passphrase;
 
 /// Designated initializer with a prepared, stretched, binary key.
 /// Warning: only use this if the key is cryptographically random and of length `kCCKeySizeAES256`.
@@ -61,15 +57,12 @@ extern uint const PSPDFDefaultPBKDFNumberOfRounds;
 /// The default number of iterations is `PSPDFAESDefaultPBKDFNumberOfRounds` (10000).
 /// For legacy file format use `kCCPRFHmacAlgSHA256` and 50000 rounds.
 /// URL must be a file-based URL.
-- (id)initWithURL:(NSURL *)URL binaryKey:(NSData *)key;
+- (instancetype)initWithURL:(NSURL *)URL binaryKey:(NSData *)key;
 
-/// `PSPDFCryptoDataProvider` will be retained as long as you retain this.
+/// Returns an autoreleased data provider that retains this parent during its lifetime.
 @property (nonatomic, readonly) CGDataProviderRef dataProvider;
 
 /// Helper to detect if this `CGDataProviderRef` is handled by `PSPDFAESCryptoDataProvider`.
 + (BOOL)isAESCryptoDataProvider:(CGDataProviderRef)dataProviderRef;
-
-/// Feature only available in PSPDFKit Basic/Complete.
-+ (BOOL)isAESCryptoFeatureAvailable;
 
 @end

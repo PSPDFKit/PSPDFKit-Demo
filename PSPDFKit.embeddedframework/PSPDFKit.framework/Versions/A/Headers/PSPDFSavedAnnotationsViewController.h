@@ -32,7 +32,7 @@
 + (id <PSPDFAnnotationSetStore>)sharedAnntationStore;
 
 /// Designated initializer.
-- (id)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// The store object that gets called when annotations are changed. Set to use the controller.
 @property (nonatomic, strong) id<PSPDFAnnotationSetStore> annotationStore;

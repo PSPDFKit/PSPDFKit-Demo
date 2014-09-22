@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class PSPDFSelectionView;
 
@@ -36,11 +37,10 @@
 @end
 
 // Captures touches and marks text as selected for annotations.
-// (Does use instant-select, not long-presses like `PSPDFSelectionView`)
 @interface PSPDFSelectionView : UIView
 
 /// Designated initializer
-- (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFSelectionViewDelegate>)delegate;
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id<PSPDFSelectionViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Selection View delegate.
 @property (nonatomic, weak) id<PSPDFSelectionViewDelegate> delegate;

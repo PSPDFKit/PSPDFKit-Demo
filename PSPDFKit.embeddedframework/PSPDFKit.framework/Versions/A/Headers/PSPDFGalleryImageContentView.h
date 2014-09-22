@@ -11,6 +11,8 @@
 //
 
 #import "PSPDFGalleryContentView.h"
+#import "PSPDFTiledImageView.h"
+#import "PSPDFGalleryImageItem.h"
 
 @interface PSPDFGalleryImageContentView : PSPDFGalleryContentView
 
@@ -33,8 +35,8 @@
 /// `minimumZoomScale <= zoomScale <= maximumZoomScale` is true.
 - (void)setZoomScale:(CGFloat)zoomScale animated:(BOOL)animated;
 
-/// `PSPDFGalleryImageContentView` expects an `UIImage` as its content.
-@property (nonatomic, strong) UIImage *content;
+/// `PSPDFGalleryImageContentView` expects an `PSPDFGalleryImageItem` as its content.
+@property (nonatomic, strong) PSPDFGalleryImageItem *content;
 
 /// `PSPDFGalleryImageContentView` expects an `UIImageView` as its `contentView`.
 @property (nonatomic, strong, readonly) UIImageView *contentView;

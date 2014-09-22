@@ -12,6 +12,7 @@
 
 #import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFDocument, PSPDFAnnotation, PSPDFAnnotationTableViewController;
 
@@ -28,7 +29,7 @@
 @interface PSPDFAnnotationTableViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFAnnotationTableViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFAnnotationTableViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Attached PDF controller.
 @property (nonatomic, weak) PSPDFDocument *document;

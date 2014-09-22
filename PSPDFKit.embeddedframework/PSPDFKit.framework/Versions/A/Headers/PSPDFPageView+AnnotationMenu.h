@@ -11,10 +11,13 @@
 //
 
 #import "PSPDFPageView.h"
+#import "PSPDFTextSelectionView.h"
 
 @class PSPDFSignatureFormElement;
 
-@interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
+extern const char PSPDFImagePickerTargetPoint;
+
+@interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationViewControllerDelegate, PSPDFFontPickerViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFTextSelectionViewDataSource, PSPDFTextSelectionViewDelegate>
 
 /// Returns available `PSPDFMenuItem's` for the current annotation.
 /// The better way to extend this is to use the `shouldShowMenuItems:*` delegates.
@@ -75,9 +78,6 @@
 
 // Show image menu.
 - (void)showNewImageMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
-
-// Show new sound overlay.
-- (void)addNewSoundAnnotationAtPoint:(CGPoint)point animated:(BOOL)animated;
 
 // Returns the default color options for the specified annotation type.
 // The array consists of arrays with NSString, UIColor pairs.

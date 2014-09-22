@@ -22,8 +22,8 @@
 
 @interface PSPDFTableViewCell (SubclassingHooks)
 
-// Called when the iOS 7+ font system base size is changed.
-- (void)contentSizeDidChangeNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+// Called when the font system base size is changed.
+- (void)contentSizeDidChange NS_REQUIRES_SUPER;
 
 @end
 

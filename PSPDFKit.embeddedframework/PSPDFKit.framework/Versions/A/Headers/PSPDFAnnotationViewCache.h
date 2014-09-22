@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class PSPDFViewController;
 
@@ -18,7 +19,7 @@
 @interface PSPDFAnnotationViewCache : NSObject
 
 // Designated Initializer.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+- (instancetype)initWithPDFController:(PSPDFViewController *)pdfController NS_DESIGNATED_INITIALIZER;
 
 // Prepare annotation view.
 - (UIView <PSPDFAnnotationViewProtocol> *)prepareAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect pageView:(PSPDFPageView *)pageView;

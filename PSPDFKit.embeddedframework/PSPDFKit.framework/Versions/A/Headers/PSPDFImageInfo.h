@@ -12,27 +12,49 @@
 
 #import <Foundation/Foundation.h>
 
-@class PSPDFDocument;
+@class PSPDFDocumentProvider;
 
 /// Defines the position if an image in the PDF.
-@interface PSPDFImageInfo : NSObject
+@interface PSPDFImageInfo : NSObject <NSCopying, NSSecureCoding>
 
-@property (nonatomic, copy)   NSString *imageID;
-@property (nonatomic, assign) NSUInteger pixelWidth;
-@property (nonatomic, assign) NSUInteger pixelHeight;
-@property (nonatomic, assign) NSUInteger bitsPerComponent;
-@property (nonatomic, assign) CGFloat displayWidth;
-@property (nonatomic, assign) CGFloat displayHeight;
-@property (nonatomic, assign) CGFloat horizontalResolution;
-@property (nonatomic, assign) CGFloat verticalResolution;
-@property (nonatomic, assign) CGAffineTransform ctm; // global transform state.
-@property (nonatomic, assign, readonly) CGPoint *vertices;
+/// Init object with page and rotation.
+- (instancetype)initWithImageID:(NSString *)imageID
+                      pixelSize:(CGSize)pixelSize
+               bitsPerComponent:(NSUInteger)bitsPerComponent
+                      transform:(CGAffineTransform)transform
+                       vertices:(CGPoint *)vertices
+                           page:(NSUInteger)page
+               documentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
-@property (atomic,    weak)   PSPDFDocument *document;
-@property (nonatomic, assign) NSUInteger page;
+// The document-global image identifier.
+@property (nonatomic, copy,   readonly) NSString *imageID;
+
+// The pixel size of the image.
+@property (nonatomic, assign, readonly) CGSize pixelSize;
+
+// The raw image bits per component.
+@property (nonatomic, assign, readonly) NSUInteger bitsPerComponent;
+
+// Transform that is applied to the image.
+@property (nonatomic, assign, readonly) CGAffineTransform transform; // global transform state.
+
+// The 4 points that define the image.
+@property (nonatomic, assign, readonly) CGPoint *vertices; // [4];
+
+// Associated document provider and page.
+@property (nonatomic, weak,   readonly) PSPDFDocumentProvider *documentProvider;
+@property (nonatomic, assign, readonly) NSUInteger page; // relative to `documentProvider`
+
+// Calculated properties
+@property (nonatomic, assign, readonly) CGSize displaySize;
+@property (nonatomic, assign, readonly) CGFloat horizontalResolution;
+@property (nonatomic, assign, readonly) CGFloat verticalResolution;
 
 /// Hit-Testing.
-- (BOOL)isPointInImage:(CGPoint)point;
+- (BOOL)hitTest:(CGPoint)point;
+
+/// Equality checking.
+- (BOOL)isEqualToImageInfo:(PSPDFImageInfo *)otherImageInfo;
 
 /// Rect that spans the 4 points.
 - (CGRect)boundingBox;

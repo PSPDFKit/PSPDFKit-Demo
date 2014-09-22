@@ -16,10 +16,10 @@
 @interface PSPDFGoToAction : PSPDFAction
 
 /// Initializer.
-- (id)initWithPageIndex:(NSUInteger)pageIndex;
+- (instancetype)initWithPageIndex:(NSUInteger)pageIndex;
 
 /// Initializer, will set pageIndex to `NSNotFound`.
-- (id)initWithNamedDestination:(NSString *)namedDestination;
+- (instancetype)initWithNamedDestination:(NSString *)namedDestination;
 
 /// Set to `NSNotFound` if not valid.
 @property (nonatomic, assign) NSUInteger pageIndex;

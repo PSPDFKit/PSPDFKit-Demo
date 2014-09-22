@@ -29,7 +29,7 @@
 @interface PSPDFSearchHighlightViewManager : NSObject
 
 // Designated initializer.
-- (id)initWithDataSource:(id<PSPDFSearchHighlightViewManagerDataSource>)dataSource;
+- (instancetype)initWithDataSource:(id<PSPDFSearchHighlightViewManagerDataSource>)dataSource NS_DESIGNATED_INITIALIZER;
 
 // The data source
 @property (nonatomic, weak) id<PSPDFSearchHighlightViewManagerDataSource> dataSource;
@@ -41,8 +41,11 @@
 // @note `animated` is currently ignored.
 - (void)clearHighlightedSearchResultsAnimated:(BOOL)animated;
 
-// Add search results.
+// Add search results using an animation.
 - (void)addHighlightSearchResults:(NSArray *)searchResults;
+
+// Add search results.
+- (void)addHighlightSearchResults:(NSArray *)searchResults animated:(BOOL)animated;
 
 // Animate search results.
 - (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;

@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 + (NSArray *)colorsFromPaletteURL:(NSURL *)paletteURL addDarkenedVariants:(BOOL)darkenedVariants;
 
 /// Initialize with array of colors.
-- (id)initWithColors:(NSArray *)colors;
+- (instancetype)initWithColors:(NSArray *)colors NS_DESIGNATED_INITIALIZER;
 
 /// Access the colors.
 @property (nonatomic, copy, readonly) NSArray *colors;

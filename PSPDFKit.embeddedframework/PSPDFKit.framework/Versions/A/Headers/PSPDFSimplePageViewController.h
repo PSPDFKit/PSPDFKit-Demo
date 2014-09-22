@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFBaseViewController.h"
 
 @protocol PSPDFSimplePageViewControllerDelegate <NSObject>
@@ -25,7 +26,7 @@
 @interface PSPDFSimplePageViewController : PSPDFBaseViewController <UIScrollViewDelegate>
 
 /// Designated initializer.
-- (id)initWithViewControllers:(NSArray *)viewControllers;
+- (instancetype)initWithViewControllers:(NSArray *)viewControllers NS_DESIGNATED_INITIALIZER;
 
 /// Get/set current page, optionally animated. Page starts at 0.
 @property (nonatomic, assign) NSUInteger page;

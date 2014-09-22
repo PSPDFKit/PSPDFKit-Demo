@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFRenderQueue.h"
 
@@ -34,11 +35,5 @@
 
 // Animated change notifications. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldAnimatedAnnotationChanges;
-
-@end
-
-@interface PSPDFAnnotationView (Private)
-
-- (void)enableKeyboardSupport;
 
 @end

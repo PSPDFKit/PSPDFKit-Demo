@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFModel.h"
 #import "PSPDFAnnotation.h"
 
@@ -20,7 +21,9 @@
 @interface PSPDFSearchResult : PSPDFModel
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection annotation:(PSPDFAnnotation *)annotation;
+- (instancetype)initWithDocumentUID:(NSString *)documentUID page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection annotation:(PSPDFAnnotation *)annotation NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection annotation:(PSPDFAnnotation *)annotation;
 
 /// Referenced page.
 @property (nonatomic, assign, readonly) NSUInteger pageIndex;
@@ -31,22 +34,25 @@
 /// Range of the search result in relation to the previewText.
 @property (nonatomic, assign, readonly) NSRange rangeInPreviewText;
 
-/// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
-@property (nonatomic, strong, readonly) PSPDFTextBlock *selection;
-
 /// Range within full page text.
 @property (nonatomic, assign, readonly) NSRange range;
 
+/// The UID of the referenced document.
+@property (nonatomic, copy, readonly) NSString *documentUID;
+
+/// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
+/// @note This property is optional.
+@property (nonatomic, strong, readonly) PSPDFTextBlock *selection;
+
 /// Referenced document.
+/// @note This property is optional, but required
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// If the search result references an annotation, the object is set.
+/// @note This property is optional.
 @property (nonatomic, weak, readonly) PSPDFAnnotation *annotation;
 
 /// Compare with other search result.
 - (BOOL)isEqualToSearchResult:(PSPDFSearchResult *)otherSearchResult;
-
-/// Cached title of the outline chapter. Will be added dynamically on first access.
-@property (nonatomic, copy) NSString *cachedOutlineTitle;
 
 @end

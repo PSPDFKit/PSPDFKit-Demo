@@ -13,6 +13,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFAnnotationSet.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFAnnotationGridViewController, PSPDFAnnotationSetCell;
 
@@ -49,7 +50,7 @@
 @interface PSPDFAnnotationGridViewController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationGridViewControllerDelegate> delegate;

@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFCache.h"
 #import "PSPDFRoundedLabel.h"
 
@@ -26,7 +27,7 @@
 /// Allow a margin. Defaults to `UIEdgeInsetsZero`.
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
-/// Enables thumbnail shadow. defaults to No for iOS 7 flat mode, else YES.
+/// Enables thumbnail shadow. defaults to NO.
 @property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.

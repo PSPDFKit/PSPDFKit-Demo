@@ -18,10 +18,11 @@
 @interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationViewProtocol>
 
 /// Initialize with a search result. Coordinates are recalculated automatically.
-- (id)initWithSearchResult:(PSPDFSearchResult *)searchResult;
+- (instancetype)initWithSearchResult:(PSPDFSearchResult *)searchResult NS_DESIGNATED_INITIALIZER;
 
 /// Animates the view with a short "pop" size animation.
 - (void)popupAnimation;
+- (void)removeFromSuperviewAnimated;
 
 /// Attached search result.
 @property (nonatomic, strong) PSPDFSearchResult *searchResult;

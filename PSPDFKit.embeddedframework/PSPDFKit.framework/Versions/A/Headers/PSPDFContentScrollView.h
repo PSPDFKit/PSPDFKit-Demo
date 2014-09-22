@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFScrollView.h"
 #import "PSPDFTransitionProtocol.h"
 
@@ -18,7 +17,7 @@
 @interface PSPDFContentScrollView : PSPDFScrollView
 
 /// Initializes the `PSPDFContentScrollView` with a `viewController`.
-- (id)initWithTransitionViewController:(UIViewController <PSPDFTransitionProtocol> *)viewController;
+- (instancetype)initWithTransitionViewController:(UIViewController <PSPDFTransitionProtocol> *)viewController;
 
 /// References the pageController
 // atomic, might be accessed from a background thread during deallocation.

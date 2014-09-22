@@ -26,7 +26,7 @@
 + (void)setDefaultStampAnnotations:(NSArray *)defaultStampAnnotations;
 
 /// Designated initializer.
-- (id)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<PSPDFAnnotationGridViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Available stamp types. Set before showing controller.
 @property (nonatomic, copy) NSArray *stamps;

@@ -46,7 +46,7 @@
 @interface PSPDFChoiceEditorViewController : PSPDFBaseTableViewController
 
 /// Designated initializer
-- (id)initWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
+- (instancetype)initWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
 
 /// The choice editor data source.
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDataSource> dataSource;

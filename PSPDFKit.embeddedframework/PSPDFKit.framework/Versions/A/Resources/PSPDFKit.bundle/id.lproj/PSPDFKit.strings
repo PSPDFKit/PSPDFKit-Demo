@@ -37,7 +37,7 @@
 "Open" = "Buka";
 "Commit" = "Lakukan";
 "Sending to %@" = "Mengirim ke %@"; // Open document with an application
-"Pages" = "Pages";
+"Pages" = "Halaman";
 "Print with annotations" = "Cetak bersama anotasi";
 "Print document only" = "Cetak hanya dokumen";
 "No Applications found" = "Tidak ada aplikasi terinstal yang dapat membuka dokumen PDF.";
@@ -57,6 +57,8 @@
 "Loading" = "Memuat";
 "Expand" = "Perluas";
 "Collapse" = "Tutup";
+// SMS / iMessage sharing button
+"Message" = "Pesan";
 
 // thumbnails
 "Bookmarked" = "Ditandai";
@@ -172,9 +174,11 @@
 "Preview" = "Pratinjau";
 "Stamp Text" = "Teks Stempel";
 "Add Signature" = "Tambah Tanda Tangan";
+"Remove Signature" = "Hapus Tanda Tangan";
 "My Signature" = "Tanda Tangan Saya";
 "No Signatures" = "Tidak Ada Tanda Tangan"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Tanda Tangan Pelanggan";
+"Please sign here" = "Tanda tangan di sini";
 "Note" = "Catatan";
 "Text" = "Teks";
 "Delete Note" = "Hapus Catatan";
@@ -207,12 +211,20 @@
 "Merge" = "Gabung"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Contoh";
 "Annotation Summary for %@:\n" = "Ringkasan Anotasi untuk %@:\n";
+// title
+"Author Name" = "Nama Penulis";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Masukkan nama penulis yang ingin digunakan untuk anotasi yang baru disisipkan.";
+// text field placeholder
+"Name" = "Nama";
+// meaning: close
+"Dismiss" = "Tutup";
 "Fit to Text" = "Sesuaikan dengan Teks";
 "Draw" = "Gambar";
 "Sound" = "Bunyi";
 "Eraser" = "Penghapus";
 "SelectionTool" = "Alat Seleksi";
-"Saved Annotations" = "Anotasi yang Disimpan";
+"Saved Annotations" = "Disimpan";
 "Add" = "Tambah"; // to add - infinitive
 "Date" = "Tanggal";
 "Time" = "Waktu";
@@ -330,6 +342,9 @@
 "Speak" = "Ucapkan"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Putar";
 "Pause" = "Jeda";
+"Resume" = "Lanjutkan";
+"Stop" = "Berhenti";
+"Play/Stop" = "Putar/Berhenti";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Rekam";
 "Pause Recording" = "Jeda Perekaman";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Ada yang salah";
 "This item is currently unavailable." = "Item saat ini tidak tersedia.";
 "The information for this gallery could not be loaded." = "Informasi untuk galeri ini tidak dapat dimuat.";
-"Server Error" = "Kesalahan Server";
-"The information for this gallery is invalid." = "Informasi untuk galeri ini tidak sah.";
+"Content Error" = "Konten Bermasalah";
+"This content is unsupported." = "Konten ini tidak didukung.";
 
 // Signatures
 "Digital Signature" = "Tanda Tangan Digital";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Tanda tangan sah dan konten dokumen ini belum pernah diubah sejak ditandatangani.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Tanda tangan tidak sah — sejak penandatanganan konten dokumen ini, tanda tangan telah dimodifikasi, dirusak, atau korup.";
 "Unsigned Signature Field" = "Bidang Tanda Tangan Belum Ditandai";
+"Do you really want to remove the signature from the document?" = "Benar-benar ingin menghapus tanda tangan dari dokumen?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Tidak dapat mendekripsi tanda tangan sertifikat.";
 "The public key in the certificate could not be read." = "Kunci publik pada sertifikat tidak dapat dibaca.";
 "The signature of the certificate is not valid." = "Tanda tangan sertifikat tidak sah.";
+"Signature is not valid." = "Tanda tangan tidak sah.";
 "There is a format error in the notBefore field of the certificate." = "Ada kesalahan format di bidang notBefore pada sertifikat."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Ada kesalahan format di bidang notAfter pada sertifikat."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Tidak ada tanda tangan yang dapat diverifikasi karena rantai sertifikat hanya memiliki satu sertifikat, tidak ditandatangani sendiri, serta pembuat tidak tepercaya.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Ekstensi keyUsage sertifikat pembuat tidak mengizinkan penandatanganan sertifikat.";
 "The certificate has expired." = "Sertifikat telah kedaluwarsa.";
 "The certificate is not valid until a date in the future." = "Sertifikat tidak sah hingga tanggal mendatang.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Tidak dapat membaca sertifikat X509 dari data";
+// X509 should not be translated
+"No X509 certificate found" = "Sertifikat X509 tidak dapat ditemukan";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Tidak dapat membaca file PKCS12. File tidak diformat dengan benar atau korup.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Tidak dapat membuka kunci data PKCS12. Apakah Anda memasukkan kata sandi yang benar?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Tidak dapat membuka file untuk pengesahan tanda tangan";
+"Could not get signer info" = "Tak dapat menerima info penandatangan";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL tidak dapat membuat objek PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL tidak dapat menambahkan tanda tangan ke objek PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL tidak dapat memulai objek PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL dapat membuat tanda tangan PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL tidak dapat menandatangani hash";
+"Could not write PKCS7 signature" = "Tidak dapat menulis tanda tangan PKCS7";
+
+

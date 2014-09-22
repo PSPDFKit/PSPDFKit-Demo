@@ -15,8 +15,8 @@
 typedef NS_ENUM(NSUInteger, PSPDFOutlineBarButtonItemOption) {
     PSPDFOutlineBarButtonItemOptionOutline,       /// The outline (Table of Contents) controller.
     PSPDFOutlineBarButtonItemOptionBookmarks,     /// Bookmark list controller.
-    PSPDFOutlineBarButtonItemOptionAnnotations,   /// Annotation list controller. PSPDFKit Basic/Complete only.
-    PSPDFOutlineBarButtonItemOptionEmbeddedFiles, /// Embedded Files. PSPDFKit Basic/Complete only.
+    PSPDFOutlineBarButtonItemOptionAnnotations,   /// Annotation list controller. Requires `PSPDFFeatureMaskAnnotationEditing`.
+    PSPDFOutlineBarButtonItemOptionEmbeddedFiles, /// Embedded Files. Requires `PSPDFFeatureMaskAnnotationEditing`.
 };
 
 /// The outline button shows a controller that can be a container for several different controllers, like outline, bookmark or annotation list.

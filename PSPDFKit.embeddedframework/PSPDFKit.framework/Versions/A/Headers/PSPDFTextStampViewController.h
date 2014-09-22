@@ -10,9 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFColorSelectionViewController.h"
 #import "PSPDFStaticTableViewController.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFStampAnnotation, PSPDFTextStampViewController;
 
@@ -30,10 +32,10 @@
 @interface PSPDFTextStampViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, UITextFieldDelegate>
 
 /// Initialize controller to create a new stamp.
-- (id)init;
+- (instancetype)init;
 
 /// Initialize controller with a preexisting stamp.
-- (id)initWithStampAnnotation:(PSPDFStampAnnotation *)stampAnnotation;
+- (instancetype)initWithStampAnnotation:(PSPDFStampAnnotation *)stampAnnotation NS_DESIGNATED_INITIALIZER;
 
 /// Text Stamp controller delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFTextStampViewControllerDelegate> delegate;

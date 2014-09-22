@@ -12,25 +12,31 @@
 
 #import <UIKit/UIKit.h>
 
-@class PSPDFMediaPlayerVideoView, PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerPlaceholderView;
+@class PSPDFMediaPlayerVideoView, PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerPlaceholderView, PSPDFErrorView;
 
-/// A view capable of displaying media. Use in combination with `AVPlayer`.
+// A view capable of displaying media. Use in combination with `AVPlayer`.
 @interface PSPDFMediaPlayerView : UIView
 
-/// The view used for displaying the video content.
+// The view used for displaying the video content.
 @property (nonatomic, strong) PSPDFMediaPlayerVideoView *videoView;
 
-/// The cover view.
+// The cover view.
 @property (nonatomic, strong) PSPDFMediaPlayerCoverView *coverView;
 
-/// The playback UI toolbar.
+// The playback UI toolbar.
 @property (nonatomic, strong) PSPDFMediaPlayerToolbar *toolbar;
 
-/// Defaults to hidden.
+// The placeholder view is displayed if the media has no video track.
 @property (nonatomic, strong) PSPDFMediaPlayerPlaceholderView *placeholderView;
 
-/// The zoom scale. Set this property if the view is used in a `UIScrollView` to optimize
-/// the way the view hierarchy is presented.
+// The loading view.
+@property (nonatomic, strong) UIActivityIndicatorView *loadingView;
+
+// The error view.
+@property (nonatomic, strong) PSPDFErrorView *errorView;
+
+// The zoom scale. Set this property if the view is used in a `UIScrollView` to optimize
+// the way the view hierarchy is presented.
 @property (nonatomic, assign) CGFloat zoomScale;
 
 @end

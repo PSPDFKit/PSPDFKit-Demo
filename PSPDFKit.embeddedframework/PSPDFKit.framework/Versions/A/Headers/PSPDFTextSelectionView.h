@@ -10,21 +10,83 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFHighlightAnnotation.h"
+#import "PSPDFOverridable.h"
 #import <AVFoundation/AVFoundation.h>
 
-@class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
+@class PSPDFTextSelectionView, PSPDFImageInfo;
 
-/// Handles text and image selection. PSPDFKit Basic/Complete feature.
+@protocol PSPDFTextSelectionViewDataSource <PSPDFOverridable>
+
+// The document we're operating on.
+@property (nonatomic, strong, readonly) PSPDFDocument *document;
+
+// The current page.
+@property (nonatomic, assign, readonly) NSUInteger page;
+
+// The parent zoom scale.
+@property (nonatomic, assign, readonly) CGFloat zoomScale;
+
+// rect converters
+- (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint;
+- (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint;
+- (CGRect)convertViewRectToPDFRect:(CGRect)viewRect;
+- (CGRect)convertPDFRectToViewRect:(CGRect)pdfRect;
+- (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
+- (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
+
+@optional
+
+// Allows feature queries.
+- (BOOL)isTextSelectionEnabledForView:(PSPDFTextSelectionView *)textSelectionView;
+- (BOOL)isImageSelectionEnabledForView:(PSPDFTextSelectionView *)textSelectionView;
+
+@end
+
+@protocol PSPDFTextSelectionViewDelegate <NSObject>
+
+// Called whenever there's a good moment to show/hide the menu based on the selection state of `selectedGlyphs` or `selectedImage`.
+- (BOOL)textSelectionView:(PSPDFTextSelectionView *)textSelectionView updateMenuAnimated:(BOOL)animated;
+
+@optional
+
+// Called when text is about to be selected. Return NO to disable text selection.
+- (BOOL)textSelectionView:(PSPDFTextSelectionView *)textSelectionView shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+
+// Called after text has been selected.
+// Will also be called when text has been deselected. Deselection sometimes cannot be stopped, so the `shouldSelectText:` will be skipped.
+- (void)textSelectionView:(PSPDFTextSelectionView *)textSelectionView didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+
+@end
+
+
+@class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation;
+@class PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
+
+/// Handles text and image selection.
+/// @note Requires the `PSPDFFeatureMaskTextSelection` feature flag.
 @interface PSPDFTextSelectionView : UIView <AVSpeechSynthesizerDelegate>
+
+/// The designated initializer for the data source and delegate.
+- (instancetype)initWithFrame:(CGRect)frame
+                   dataSource:(id <PSPDFTextSelectionViewDataSource>)dataSource
+                     delegate:(id <PSPDFTextSelectionViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+
+/// The text selection data source.
+@property (nonatomic, weak, readonly) id <PSPDFTextSelectionViewDataSource> dataSource;
+
+/// The text selection delegate.
+@property (nonatomic, weak, readonly) id <PSPDFTextSelectionViewDelegate> delegate;
 
 /// Currently selected glyphs.
 /// @note Use `sortedGlyphs:` to pre-sort your glyphs if you manually set this.
 /// @warning This method expects glyphs to be sorted from top->bottom and left->right for performance reasons.
 @property (nonatomic, copy) NSArray *selectedGlyphs;
 
-/// Currently selected text. Use `discardSelection` to clear.
+/// Currently selected text. Set via setting `selectedGlyphs`.
+/// Use `discardSelection` to clear.
 @property (nonatomic, copy, readonly) NSString *selectedText;
 
 /// Currently selected image.
@@ -42,32 +104,27 @@
 /// Currently selected text, optimized for searching
 @property (nonatomic, copy, readonly) NSString *trimmedSelectedText;
 
-/// Associated `PSPDFPageView`.
-@property (nonatomic, weak) PSPDFPageView *pageView;
+/// To make it easier to select text, we slightly increase the frame margins. Defaults to 4 pixels.
+@property (nonatomic, assign) CGFloat selectionHitTestExtension;
 
 /// Rects for the current selection, in view coordinate space.
 @property (nonatomic, assign, readonly) CGRect firstLineRect;
 @property (nonatomic, assign, readonly) CGRect lastLineRect;
 @property (nonatomic, assign, readonly) CGRect selectionRect;
 
-/// To make it easier to select text, we slightly increase the frame margins. Defaults to 4 pixels.
-@property (nonatomic, assign) CGFloat selectionHitTestExtension;
-
 /// Updates the `UIMenuController` if there is a selection.
 /// Returns YES if a menu is displayed.
 - (BOOL)updateMenuAnimated:(BOOL)animated;
 
 /// Update the selection (text menu).
-- (void)updateSelection;
+/// @note `animated` is currently ignored.
+- (void)updateSelectionAnimated:(BOOL)animated;
 
 /// Clears the current selection.
-- (void)discardSelection;
+- (void)discardSelectionAnimated:(BOOL)animated;
 
 /// Currently has a text/image selection?
 - (BOOL)hasSelection;
-
-/// Text selection is only available in PSPDFKit Basic/Complete.
-+ (BOOL)isTextSelectionFeatureAvailable;
 
 @end
 
@@ -83,12 +140,6 @@
 @end
 
 @interface PSPDFTextSelectionView (SubclassingHooks)
-
-// Returns the menu items for selected text. Can be customized here or in the `shouldShowMenu:` delegate.
-- (NSArray *)menuItemsForTextSelection:(NSString *)selectedText;
-
-// Returns the menu items for selected image. Can be customized here or in the `shouldShowMenu:` delegate.
-- (NSArray *)menuItemsForImageSelection:(PSPDFImageInfo *)imageSelection;
 
 // Called when we're adding a new highlight annotation via selected text.
 - (void)addHighlightAnnotationWithType:(PSPDFAnnotationType)highlightType;

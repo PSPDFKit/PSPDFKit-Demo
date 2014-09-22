@@ -39,36 +39,27 @@ typedef NS_ENUM(UInt8, PSPDFActionType) {
 
 @class PSPDFDocumentProvider;
 
-// Set to @YES in the options dictionary to make links modal.
-extern NSString *const PSPDFActionOptionModal;
-// Enable Autoplay if target is a video.
-extern NSString *const PSPDFActionOptionAutoplay;
-// Enable/Disable controls. (e.g. Browser back/next buttons)
-extern NSString *const PSPDFActionOptionControls;
-// Loop the video.
-extern NSString *const PSPDFActionOptionLoop;
-// Set video offset.
-extern NSString *const PSPDFActionOptionOffset;
-// Set modal size.
-extern NSString *const PSPDFActionOptionSize;
-// Show as popover.
-extern NSString *const PSPDFActionOptionPopover;
-// Show cover, accepts string path.
-extern NSString *const PSPDFActionOptionCover;
-// The target page.
-extern NSString *const PSPDFActionOptionPage;
-// Shows a button that activates links.
-extern NSString *const PSPDFActionOptionButton;
+extern NSString *const PSPDFActionOptionModal;    // Set to @YES in the options dictionary to make links modal.
+extern NSString *const PSPDFActionOptionAutoplay; // Enable Autoplay if target is a video.
+extern NSString *const PSPDFActionOptionControls; // Enable/Disable controls. (e.g. Browser back/next buttons)
+extern NSString *const PSPDFActionOptionLoop;     // Loop the video.
+extern NSString *const PSPDFActionOptionOffset;   // Set video offset.
+extern NSString *const PSPDFActionOptionSize;     // Set modal size.
+extern NSString *const PSPDFActionOptionPopover;  // Show as popover.
+extern NSString *const PSPDFActionOptionCover;    // Show cover, accepts string path.
+extern NSString *const PSPDFActionOptionPage;     // The target page.
+extern NSString *const PSPDFActionOptionButton;   // Shows a button that activates links.
+
 // Controls if a close button is displayed, when `PSPDFActionOptionButton` is used. Default will be YES.
 extern NSString *const PSPDFActionOptionCloseButton;
 
-// Constant to convert PSPDFActionType into NSString and back.
+// Constant to convert `PSPDFActionType` into `NSString` and back.
 extern NSString *const PSPDFActionTypeTransformerName;
 
 /// Defines an action that is defined in the PDF spec, either from an outline or an annotation object.
 /// See the Adobe PDF Specification for more about actions and action types.
 /// @note The PDF spec defines both 'destinations' and 'actions'. PSPDFKit will convert a 'destination' into an equivalent `PSPDFActionTypeGoTo`.
-@interface PSPDFAction : PSPDFModel <PSPDFJSONSerializing>
+@interface PSPDFAction : PSPDFModel <PSPDFJSONSerializing, NSSecureCoding>
 
 /// Return the class responsible for `actionType`.
 + (Class)actionClassForType:(PSPDFActionType)actionType;
@@ -79,14 +70,15 @@ extern NSString *const PSPDFActionTypeTransformerName;
 @property (nonatomic, assign, readonly) PSPDFActionType type;
 
 /// PDF actions can be chained together. Defines the next action.
-@property (atomic, strong) PSPDFAction *nextAction;
+@property (nonatomic, strong) PSPDFAction *nextAction;
 
 /// If the action contained a pspdfkit:// URL, options between the URL will be parsed and extracted as key/value.
 /// Can also be used for generic key/value storage (but remember that `PSPDFActions` usually are regenerated when using any of the convenience setters)
 /// Will be persisted externally but not within PDF documents.
-@property (atomic, copy) NSDictionary *options;
+@property (nonatomic, copy, readonly) NSDictionary *options;
 
 /// Returns the most appropriate description (Like "Page 3" or "http://google.com")
-- (NSString *)localizedDescription;
+/// @name `documentProvider` is used to resolve named destinations and page labels but is optional.
+- (NSString *)localizedDescriptionWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 @end

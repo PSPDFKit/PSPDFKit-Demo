@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
-
 @class PSPDFCMap, PSPDFFontFileDescriptor;
 
 typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
@@ -21,27 +19,16 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 
 /// Encapsulates formatting and encoding data of a  PDF font.
 /// This is a class cluster and part of the text parser engine.
-@interface PSPDFFontInfo : NSObject <NSCopying, NSCoding> {
-@public
-    CGFloat _ascent;
-    CGFloat _descent;
-    NSArray *_encodingArray;
-    NSUInteger _encodingArrayCount;
-    PSPDFCMap *_toUnicodeMap;
-    PSPDFCMap *_fontCMap;
-    PSPDFCMap *_ucsCMap;
-    PSPDFFontFileDescriptor *_fontFileDescriptor;
-    CGFloat *_widths;
-    CGFloat _defaultWidth;
-    size_t _widthSize;
-    PSPDFFontInfoType _type;
-}
+@interface PSPDFFontInfo : NSObject <NSCopying, NSSecureCoding>
 
 /// The font name as defined in the PDF dictionary.
 @property (nonatomic, copy, readonly) NSString *name;
 
 /// The `fontKey` is a document-global identifier for the fontKey.
 @property (nonatomic, copy, readonly) NSString *fontKey;
+
+/// The font type. (simple or composite)
+@property (nonatomic, assign, readonly) PSPDFFontInfoType type;
 
 /// Font ascent parameter.
 /// @note This parameter is normalized (divided by 1000 vs the PDF spec)
@@ -51,7 +38,8 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 /// @note This parameter is normalized (divided by 1000 vs the PDF spec)
 @property (nonatomic, assign, readonly) CGFloat descent;
 
-/// A font can have either an encodingArray or a unicode map.
+/// A font can have either an `encodingArray` or a unicode map.
+/// A encoding array contains `NSString` objects.
 @property (nonatomic, strong, readonly) NSArray *encodingArray;
 
 /// CMap that is optionally provided for converting text strings to unicode
@@ -63,12 +51,12 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 /// CMap for the given encoding name
 @property (nonatomic, strong, readonly) PSPDFCMap *fontCMap;
 
-/// CMap formed from the registery and ordering information of the font,
+/// CMap formed from the registry and ordering information of the font,
 /// used for unicode conversion when `toUnicodeMap` is not present
 @property (nonatomic, strong, readonly) PSPDFCMap *ucsCMap;
 
 /// Designated initializer. `fontKey` is optional.
-- (id)initWithFontDictionary:(CGPDFDictionaryRef)font fontKey:(NSString *)fontKey;
+- (instancetype)initWithFontDictionary:(CGPDFDictionaryRef)font fontKey:(NSString *)fontKey;
 
 /// Returns the width for the specific character.
 /// @note This parameter is normalized (divided by 1000 vs the PDF spec)

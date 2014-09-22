@@ -16,7 +16,7 @@
 @interface PSPDFRemoteFileObject : NSObject <PSPDFRemoteContentObject>
 
 // Designated initializer.
-- (id)initWithRemoteURL:(NSURL *)remoteURL targetURL:(NSURL *)targetFileURL;
+- (instancetype)initWithRemoteURL:(NSURL *)remoteURL targetURL:(NSURL *)targetFileURL NS_DESIGNATED_INITIALIZER;
 
 // The remote URL to fetch the content from.
 @property (nonatomic, copy, readonly) NSURL *remoteURL;

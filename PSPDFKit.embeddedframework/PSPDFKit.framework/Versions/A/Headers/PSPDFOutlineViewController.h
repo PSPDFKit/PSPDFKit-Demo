@@ -12,6 +12,7 @@
 
 #import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement, PSPDFOutlineCell;
 
@@ -28,7 +29,7 @@
 @interface PSPDFOutlineViewController : PSPDFStatefulTableViewController <UISearchDisplayDelegate, PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Allow to long-press to copy the title. Defaults to YES.
 @property (nonatomic, assign) BOOL allowCopy;

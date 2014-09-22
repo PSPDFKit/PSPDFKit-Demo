@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
-
 @class PSPDFViewController, PSPDFDocumentProvider, PSPDFDocument;
 
 /// Delegate to receive events regarding `PSPDFDocument`.

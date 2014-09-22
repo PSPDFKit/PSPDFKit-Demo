@@ -37,7 +37,7 @@
 "Open" = "打開";
 "Commit" = "確認";
 "Sending to %@" = "正在傳送至 %@"; // Open document with an application
-"Pages" = "Pages";
+"Pages" = "頁面";
 "Print with annotations" = "連同註釋打印";
 "Print document only" = "只打印文件";
 "No Applications found" = "沒有安裝可以打開 PDF 檔案的應用程序。";
@@ -57,6 +57,8 @@
 "Loading" = "正在載入";
 "Expand" = "擴展";
 "Collapse" = "收起";
+// SMS / iMessage sharing button
+"Message" = "訊息";
 
 // thumbnails
 "Bookmarked" = "已加入書籤";
@@ -172,9 +174,11 @@
 "Preview" = "預覽";
 "Stamp Text" = "印章文字";
 "Add Signature" = "加上簽名";
+"Remove Signature" = "刪除簽名";
 "My Signature" = "我的簽名";
 "No Signatures" = "無簽署"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "客戶簽名";
+"Please sign here" = "請簽署";
 "Note" = "備忘錄";
 "Text" = "文字";
 "Delete Note" = "刪除備忘錄";
@@ -207,6 +211,14 @@
 "Merge" = "合併"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "樣本";
 "Annotation Summary for %@:\n" = "%@的註釋摘要";
+// title
+"Author Name" = "作者名字";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "請為新註釋輸入自選的作者名字。";
+// text field placeholder
+"Name" = "名字";
+// meaning: close
+"Dismiss" = "關閉";
 "Fit to Text" = "與文字配合調整";
 "Draw" = "繪畫";
 "Sound" = "音效";
@@ -216,7 +228,7 @@
 "Add" = "加入"; // to add - infinitive
 "Date" = "日期";
 "Time" = "時間";
-"No Pages" = "無頁數";
+"No Pages" = "無頁面";
 
 // Stamps
 "Approved" = "已批准";
@@ -267,7 +279,7 @@
 "LastPage" = "最後一頁";
 "GoBack" = "返回";
 "GoForward" = "前往下一頁";
-"GoToPage" = "到頁數";
+"GoToPage" = "到此頁";
 "Find" = "尋找";
 // Print, Outline, Search, Brightness are translated via toolbar
 "ZoomIn" = "放大";
@@ -330,6 +342,9 @@
 "Speak" = "朗讀"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "播放";
 "Pause" = "暫停";
+"Resume" = "重新開始";
+"Stop" = "停止";
+"Play/Stop" = "播放/停止";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "錄音";
 "Pause Recording" = "暫停錄音";
@@ -380,8 +395,8 @@
 "Something went wrong" = "出現了問題";
 "This item is currently unavailable." = "此選項現時不能使用。";
 "The information for this gallery could not be loaded." = "未能載入此資料庫中的資料。";
-"Server Error" = "伺服器錯誤";
-"The information for this gallery is invalid." = "這圖庫中的資料無效。";
+"Content Error" = "內容錯誤";
+"This content is unsupported." = "此內容不受支援。";
 
 // Signatures
 "Digital Signature" = "數碼簽名";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 簽名有效，且此文件的內容自簽署後未被更改。";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "簽名無效：此文件簽署後，曾被更改、篡改或遭破壞。";
 "Unsigned Signature Field" = "未簽署的簽署欄";
+"Do you really want to remove the signature from the document?" = "您確定要從文件中刪除簽名嗎？";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "未能破解證書簽名的密碼。";
 "The public key in the certificate could not be read." = "不能讀取證書中的公鑰。";
 "The signature of the certificate is not valid." = "證書的簽名無效。";
+"Signature is not valid." = "簽署無效";
 "There is a format error in the notBefore field of the certificate." = "在證書中的 notBefore 欄中，有格式上的錯誤。"; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "在證書中的 notAfter 欄有一個格式錯誤。"; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "因證書鏈只有一張既不是自簽、其簽發人又不能信任的證書，所以不能確認任何簽名。";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "簽發人證書的密鑰用法不允許證書簽署。";
 "The certificate has expired." = "證書已到期。";
 "The certificate is not valid until a date in the future." = "此證書在未來某日才生效。";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "不能從資料中讀取 X509 證書";
+// X509 should not be translated
+"No X509 certificate found" = "找不到 X509 證書";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "不能讀取 PKCS12 檔案。檔案格式錯誤，或已損壞。";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "不能為 PKCS12 資料解鎖。您鍵入的密碼正確嗎？";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "不能打開檔案來驗證簽名";
+"Could not get signer info" = "未能讀取簽署人資料";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL 不能創建 PKCS7 物件";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL 不能添加簽名至 PKCS7 物件中";
+"OpenSSL could not init PKCS7 object" = "OpenSSL 不能開始建立 PKCS7 物件";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL 可以產生 PKCS7 簽名";
+"OpenSSL could not sign hash" = "OpenSSL 不能簽署 hash";
+"Could not write PKCS7 signature" = "不能寫 PKCS7 簽名";
+
+

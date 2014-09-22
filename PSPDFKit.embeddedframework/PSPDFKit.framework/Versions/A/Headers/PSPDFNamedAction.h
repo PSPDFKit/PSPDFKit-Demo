@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, PSPDFNamedActionType) {
     PSPDFNamedActionTypeZoomIn,   // not implemented
     PSPDFNamedActionTypeZoomOut,  // not implemented
     PSPDFNamedActionTypeSaveAs,   // Triggers `[document saveChangedAnnotationsWithError:]`
+    PSPDFNamedActionTypeInfo,
     PSPDFNamedActionTypeUnknown = NSUIntegerMax
 };
 
@@ -41,7 +42,7 @@ extern NSString *const PSPDFNamedActionTypeTransformerName;
 @interface PSPDFNamedAction : PSPDFAction
 
 /// Initialize with string. Will parse action, set to `PSPDFNamedActionTypeUnknown` if not recognized.
-- (id)initWithActionNamedString:(NSString *)actionNameString;
+- (instancetype)initWithActionNamedString:(NSString *)actionNameString;
 
 /// The type of the named action.
 /// @note Will update `namedAction` if set.

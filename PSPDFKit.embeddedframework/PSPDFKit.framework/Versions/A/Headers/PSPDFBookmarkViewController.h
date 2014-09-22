@@ -13,6 +13,7 @@
 #import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFBookmarkCell.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFDocument, PSPDFBookmark, PSPDFBookmarkViewController;
 
@@ -31,7 +32,7 @@
 @interface PSPDFBookmarkViewController : PSPDFStatefulTableViewController <PSPDFBookmarkTableViewCellDelegate, PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Will also reload tableView if changed.
 @property (nonatomic, strong) PSPDFDocument *document;

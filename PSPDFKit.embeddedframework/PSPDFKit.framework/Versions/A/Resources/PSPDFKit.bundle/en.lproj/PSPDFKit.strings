@@ -57,6 +57,8 @@
 "Loading" = "Loading";
 "Expand" = "Expand";
 "Collapse" = "Collapse";
+// SMS / iMessage sharing button
+"Message" = "Message";
 
 // thumbnails
 "Bookmarked" = "Bookmarked";
@@ -172,9 +174,11 @@
 "Preview" = "Preview";
 "Stamp Text" = "Stamp Text";
 "Add Signature" = "Add Signature";
+"Remove Signature" = "Remove Signature";
 "My Signature" = "My Signature";
 "No Signatures" = "No Signatures"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Customer Signature";
+"Please sign here" = "Please sign here";
 "Note" = "Note";
 "Text" = "Text";
 "Delete Note" = "Delete Note";
@@ -207,6 +211,14 @@
 "Merge" = "Merge"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Sample";
 "Annotation Summary for %@:\n" = "Annotation Summary for %@:\n";
+// title
+"Author Name" = "Author Name";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Please enter the author name you want to use for newly inserted annotations.";
+// text field placeholder
+"Name" = "Name";
+// meaning: close
+"Dismiss" = "Dismiss";
 "Fit to Text" = "Fit to Text";
 "Draw" = "Draw";
 "Sound" = "Sound";
@@ -330,6 +342,9 @@
 "Speak" = "Speak"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Play";
 "Pause" = "Pause";
+"Resume" = "Resume";
+"Stop" = "Stop";
+"Play/Stop" = "Play/Stop";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Record";
 "Pause Recording" = "Pause Recording";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Something went wrong";
 "This item is currently unavailable." = "This item is currently unavailable.";
 "The information for this gallery could not be loaded." = "The information for this gallery could not be loaded.";
-"Server Error" = "Server Error";
-"The information for this gallery is invalid." = "The information for this gallery is invalid.";
+"Content Error" = "Content Error";
+"This content is unsupported." = "This content is unsupported.";
 
 // Signatures
 "Digital Signature" = "Digital Signature";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- The signature is valid and the content of this document has not been modified since it was signed.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Invalid signature — since signing the content of this document, it has been modified, tampered with, or corrupted.";
 "Unsigned Signature Field" = "Unsigned Signature Field";
+"Do you really want to remove the signature from the document?" = "Do you really want to remove the signature from the document?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Unable to decrypt the signature of the certificate.";
 "The public key in the certificate could not be read." = "The public key in the certificate could not be read.";
 "The signature of the certificate is not valid." = "The signature of the certificate is not valid.";
+"Signature is not valid." = "Signature is not valid.";
 "There is a format error in the notBefore field of the certificate." = "There is a format error in the notBefore field of the certificate."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "There is a format error in the notAfter field of the certificate."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "The issuer certificate's keyUsage extension does not permit certificate signing.";
 "The certificate has expired." = "The certificate has expired.";
 "The certificate is not valid until a date in the future." = "The certificate is not valid until a date in the future.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Could not read X509 certificate from data";
+// X509 should not be translated
+"No X509 certificate found" = "No X509 certificate found";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Cannot read PKCS12 file. File is incorrectly formatted or corrupted.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Could not unlock PKCS12 data. Did you enter the correct password?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Could not open file for signature validation";
+"Could not get signer info" = "Could not get signer info";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL could not create PKCS7 object";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL could not add signature to PKCS7 object";
+"OpenSSL could not init PKCS7 object" = "OpenSSL could not init PKCS7 object";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL could generate PKCS7 signature";
+"OpenSSL could not sign hash" = "OpenSSL could not sign hash";
+"Could not write PKCS7 signature" = "Could not write PKCS7 signature";
+
+

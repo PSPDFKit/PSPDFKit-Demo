@@ -26,9 +26,9 @@
 "Error" = "Ошибка";
 
 // toolbar
-"Outline" = "Контурный";
-"No Outline" = "Нет контура";
-"Search Outline" = "Поиск контура";
+"Outline" = "Содержание";
+"No Outline" = "Без содержания";
+"Search Outline" = "Поиск в содержании";
 "Search" = "Поиск";
 "Email" = "E-mail";
 "Send via Email" = "Отправить по Email";
@@ -57,6 +57,8 @@
 "Loading" = "Загрузка";
 "Expand" = "Раскрыть";
 "Collapse" = "Свернуть";
+// SMS / iMessage sharing button
+"Message" = "Сообщение";
 
 // thumbnails
 "Bookmarked" = "в закладкax";
@@ -172,9 +174,11 @@
 "Preview" = "Просмотр";
 "Stamp Text" = "Текст печати";
 "Add Signature" = "Добавить подпись";
+"Remove Signature" = "Удалить подпись";
 "My Signature" = "Моя подпись";
 "No Signatures" = "Нет подписей"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Подпись пользователя";
+"Please sign here" = "Подпишите здесь";
 "Note" = "Заметка";
 "Text" = "Текст";
 "Delete Note" = "Удалить заметку";
@@ -207,12 +211,20 @@
 "Merge" = "Объединить"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Образец";
 "Annotation Summary for %@:\n" = "Обзор комментариев для %@:";
+// title
+"Author Name" = "Имя автора";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Введите имя автора, которое вы хотите использовать для новых комментариев.";
+// text field placeholder
+"Name" = "Имя";
+// meaning: close
+"Dismiss" = "Закрыть";
 "Fit to Text" = "Поместить в текст";
 "Draw" = "Рисовать";
 "Sound" = "Звук";
 "Eraser" = "Стёрка";
 "SelectionTool" = "Инструмент выделения";
-"Saved Annotations" = "Сохранён. комментарии";
+"Saved Annotations" = "Сохраненные";
 "Add" = "Добавить"; // to add - infinitive
 "Date" = "Дата";
 "Time" = "Время";
@@ -330,6 +342,9 @@
 "Speak" = "Произнести"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Воспр.";
 "Pause" = "Пауза";
+"Resume" = "Продолжить";
+"Stop" = "Стоп";
+"Play/Stop" = "Играть/Стоп";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Запись";
 "Pause Recording" = "Приостановить запись";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Произошла ошибка";
 "This item is currently unavailable." = "Данная позиция сейчас недоступна.";
 "The information for this gallery could not be loaded." = "Информация по галерее не может быть загружена.";
-"Server Error" = "Ошибка сервера";
-"The information for this gallery is invalid." = "Информация по галерее недействительна.";
+"Content Error" = "Ошибка содержимого";
+"This content is unsupported." = "Содержимое не поддерживается.";
 
 // Signatures
 "Digital Signature" = "Цифровая подпись";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Подпись действительна, содержимое документа не было изменено после его подписания.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неверная подпись - после подписания документ был изменен или нарушен.";
 "Unsigned Signature Field" = "Неподписанное поля подписи";
+"Do you really want to remove the signature from the document?" = "Вы действительно хотите удалить подпись из документа?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Не удалось расшифровать подпись сертификата.";
 "The public key in the certificate could not be read." = "Не удалось прочитать открытый ключ сертификата.";
 "The signature of the certificate is not valid." = "Подпись сертификата недействительна.";
+"Signature is not valid." = "Подпись недействительна.";
 "There is a format error in the notBefore field of the certificate." = "Произошла ошибка формата в поле notBefore сертификата."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Произошла ошибка формата в поле notAfter сертификата."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Подписи не могут быть подтверждены, поскольку цепь сертификатов содержит лишь один сертификат, он не является самоподписанным и источник не является доверенным.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Ключ продления авторского сертификата не разрешает подпись сертификата.";
 "The certificate has expired." = "Сертификат истёк.";
 "The certificate is not valid until a date in the future." = "Сертификат недействителен до даты в будущем.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Не удалось прочитать сертификат X509 из данных";
+// X509 should not be translated
+"No X509 certificate found" = "Сертификат X509 не найден";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Не удается прочитать файл PKCS12. Файл неверно отформатирован или поврежден.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Не удалось разблокировать данные PKCS12. Вы ввели верный пароль?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Не удалось открыть файл для подтверждения подписи.";
+"Could not get signer info" = "Не удалось получить данные о подписанте";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL не удалось создать объект PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL не удалось добавить подпись в объект PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL не удалось вызвать объект PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL удалось сгенерировать подпись PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL не удалось подписать хэш.";
+"Could not write PKCS7 signature" = "Не удалось записать подпись PKCS7";
+
+

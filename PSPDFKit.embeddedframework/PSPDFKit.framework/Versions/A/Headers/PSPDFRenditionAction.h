@@ -20,17 +20,21 @@ typedef NS_ENUM(NSUInteger, PSPDFRenditionActionType) {
     PSPDFRenditionActionTypePause,
     PSPDFRenditionActionTypeResume,
     PSPDFRenditionActionTypePlay,
+
+    PSPDFRenditionActionTypeUnknown = NSUIntegerMax
 };
+
+extern NSString *const PSPDFRenditionActionTypeTransformerName;
 
 /// A rendition action (PDF 1.5) controls the playing of multimedia content (see PDF Reference 1.7, 13.2, “Multimedia”).
 /// @note JavaScript actions are not supported.
 @interface PSPDFRenditionAction : PSPDFAction
 
 /// Designated initializer.
-- (id)initWithOperation:(PSPDFRenditionActionType)operation annotation:(PSPDFScreenAnnotation *)annotation;
+- (instancetype)initWithActionType:(PSPDFRenditionActionType)actionType annotation:(PSPDFScreenAnnotation *)annotation;
 
-/// The rendition action operation.
-@property (nonatomic, assign, readonly) PSPDFRenditionActionType operation;
+/// The rendition action type.
+@property (nonatomic, assign, readonly) PSPDFRenditionActionType actionType;
 
 /// The associated screen annotation. Optional. Will link to an already existing annotation.
 @property (nonatomic, weak, readonly) PSPDFScreenAnnotation *annotation;

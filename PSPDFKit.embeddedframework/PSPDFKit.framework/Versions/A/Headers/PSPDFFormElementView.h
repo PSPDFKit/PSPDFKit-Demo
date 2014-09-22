@@ -11,7 +11,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PSPDFKitGlobal.h"
 #import "PSPDFHostingAnnotationView.h"
 #import "PSPDFFormInputAccessoryView.h"
 #import "PSPDFFormInputAccessoryViewDelegate.h"

@@ -14,7 +14,6 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-
 /// List of available encodings. Used in `PSPDFSoundAnnotation.encoding` and in
 /// the `defaultEncoding` property of `PSPDFAudioHelper`.
 extern NSString *const PSPDFSoundAnnotationEncodingRaw;
@@ -25,12 +24,12 @@ extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 @class PSPDFSoundAnnotationController;
 
 /// A sound annotation (PDF 1.2) shall analogous to a text annotation except that instead of a text
-/// note, it contains sound recorded from the iPad/iPhone's microphone or imported from a file.
+/// note, it contains sound recorded from the iOS device's microphone or imported from a file.
 @interface PSPDFSoundAnnotation : PSPDFAnnotation
 
-- (id)initRecorder;
-- (id)initWithRate:(NSUInteger)rate channels:(UInt32)channels bits:(UInt32)bits encoding:(NSString *)encoding;
-- (id)initWithURL:(NSURL *)soundURL error:(NSError **)err;
+- (instancetype)initRecorder;
+- (instancetype)initWithRate:(NSUInteger)rate channels:(UInt32)channels bits:(UInt32)bits encoding:(NSString *)encoding;
+- (instancetype)initWithURL:(NSURL *)soundURL error:(NSError **)error;
 
 /// The annotation controller
 @property (nonatomic, strong) PSPDFSoundAnnotationController *controller;

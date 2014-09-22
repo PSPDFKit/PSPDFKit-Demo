@@ -28,7 +28,7 @@
 @interface PSPDFContainerViewController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (id)initWithControllers:(NSArray *)controllers titles:(NSArray *)titles delegate:(id<PSPDFContainerViewControllerDelegate>)delegate;
+- (instancetype)initWithControllers:(NSArray *)controllers titles:(NSArray *)titles delegate:(id<PSPDFContainerViewControllerDelegate>)delegate;
 
 /// The container controller delegate, notifies when the index changes.
 @property (nonatomic, weak) id<PSPDFContainerViewControllerDelegate> delegate;
@@ -56,7 +56,6 @@
 /// @name Settings
 
 /// Set to YES if you want to animate controller changes. Defaults to NO.
-/// @note Popover size change animation can't be blocked on iOS 6.
 @property (nonatomic, assign) BOOL shouldAnimateChanges;
 
 @end

@@ -18,8 +18,8 @@
 /// @name Initialization
 
 /// Default initializer.
-- (id)initWithTitle:(NSString *)title;
-- (id)initWithTitle:(NSString *)title message:(NSString *)message;
+- (instancetype)initWithTitle:(NSString *)title;
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message;
 
 /// @name Adding Buttons
 
@@ -35,10 +35,13 @@
 /// Add block that is called after the alert view has been dismissed (after animation).
 - (void)addDidDismissBlock:(void (^)(NSInteger buttonIndex))didDismissBlock;
 
+/// YES if any PSPDFAlertView instances are currently shown.
++ (BOOL)areAnyPSPDFAlertsVisible;
+
 @end
 
 @interface PSPDFAlertView (PSPDFSuperclassBlock)
 
-- (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
 
 @end

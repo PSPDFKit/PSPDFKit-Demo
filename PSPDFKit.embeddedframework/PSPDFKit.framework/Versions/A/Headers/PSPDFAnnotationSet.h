@@ -19,7 +19,7 @@
 
 /// Designated initializer. `annotations` will be a deep copy of the current annotations.
 /// The `boundingBox` of the annotations will be normalized. (upper left one will have 0,0 origin)
-- (id)initWithAnnotations:(NSArray *)annotations;
+- (instancetype)initWithAnnotations:(NSArray *)annotations NS_DESIGNATED_INITIALIZER;
 
 /// The saved annotations.
 @property (nonatomic, copy, readonly) NSArray *annotations;

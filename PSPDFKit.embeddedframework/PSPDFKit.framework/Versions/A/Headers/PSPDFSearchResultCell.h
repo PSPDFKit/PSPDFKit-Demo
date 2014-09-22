@@ -17,7 +17,11 @@
 @interface PSPDFSearchResultCell : PSPDFTableViewCell <PSPDFCacheDelegate>
 
 /// Will configure the cell with a search result model object.
+/// @note This method will perform formatting and then calls `configureWithDocument:page:text:detailText:`
 - (void)configureWithSearchResult:(PSPDFSearchResult *)searchResult;
+
+/// Will configure the cell with the given document, page, text and detail text.
+- (void)configureWithDocument:(PSPDFDocument *)document page:(NSUInteger)page text:(NSString *)text detailText:(NSAttributedString *)detailText;
 
 /// Height calculation.
 + (CGFloat)heightForSearchResult:(PSPDFSearchResult *)searchResult numberOfPreviewLines:(NSUInteger)numberOfPreviewLines;

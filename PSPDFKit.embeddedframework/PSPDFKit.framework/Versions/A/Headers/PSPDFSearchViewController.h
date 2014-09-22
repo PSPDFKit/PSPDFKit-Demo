@@ -10,14 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFExtendedPopoverController.h"
 #import "PSPDFBaseTableViewController.h"
-#import "PSPDFStatusBarStyleHint.h"
 #import "PSPDFTextSearch.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFCache.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult, PSPDFSearchResultCell;
 
@@ -58,10 +59,10 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @end
 
 /// The PDF search view controller.
-@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
+@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStyleable, PSPDFPopoverControllerDismissable>
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// The current document.
 @property (nonatomic, strong) PSPDFDocument *document;
@@ -97,7 +98,8 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @property (nonatomic, assign) BOOL useOutlineForPageNames;
 
 /// Will include annotations that have a matching type into the search results. (contents will be searched).
-/// Defaults to PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink. PSPDFKit Basic/Complete feature.
+/// Defaults to PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink.
+/// @note Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
 @property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
 
 /// Pins the search bar to the top. Defaults to YES on iPhone.

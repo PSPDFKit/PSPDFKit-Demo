@@ -10,9 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "PSPDFPresentationContext.h"
 
-@class PSPDFPageView, PSPDFViewController, PSPDFContentScrollView;
+@class PSPDFPageView, PSPDFContentScrollView;
 
 // Implement by custom `UIViewController's` to support custom transitions.
 @protocol PSPDFTransitionProtocol <NSObject>
@@ -26,8 +28,8 @@
 // Get pageView for a specific page. Returns nil if page isn't currently loaded.
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
-// Associated pdfController.
-@property (nonatomic, weak) PSPDFViewController *pdfController;
+// The configuration data source.
+@property (nonatomic, weak, readonly) id <PSPDFPresentationContext> presentationContext;
 
 // Associated scroll view. Might be nil if transition doesn't support zooming.
 @property (nonatomic, weak) PSPDFContentScrollView *scrollView;
@@ -35,7 +37,7 @@
 @optional
 
 /// Return array of pageViews. (performance optimization)
-- (NSArray *)visiblePageViews;
+- (NSArray *)visiblePageViewsForcingLayout:(BOOL)forcingLayout;
 
 /// Customized content offset for `PSPDFViewState`.
 - (CGPoint)compensatedContentOffset;

@@ -15,7 +15,7 @@
 @interface PSPDFAbstractTextOverlayAnnotation : PSPDFAnnotation
 
 /// Convenience initializer that creates a text annotation from glyphs.
-/// Get the `pageRotationTransform` from `[document pageInfoForPage:].pageRotationTransform`.
+/// Get the `rotationTransform` from `[document pageInfoForPage:].rotationTransform`.
 + (instancetype)textOverlayAnnotationWithGlyphs:(NSArray *)glyphs pageRotationTransform:(CGAffineTransform)pageRotationTransform;
 
 /// Helper that will query the associated `PSPDFDocument` to get the highlighted content.

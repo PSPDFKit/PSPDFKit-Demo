@@ -39,6 +39,10 @@ extern Class PSPDFStyleManagerClass;
 /// This defaults to YES.
 @property (nonatomic, assign) BOOL shouldUpdateDefaultsForAnnotationChanges;
 
+/// Set default annotation styles.
+/// Override if you want to set your own default annotation styles, and rely on the absence of default styles to do so.
+- (void)setupDefaultStylesIfNeeded;
+
 /// Returns the 'last used' annotation style, a special variant that is kept per annotation string type.
 /// Might return nil if there isn't anything saved yet.
 - (NSArray *)stylesForKey:(NSString *)key;
@@ -59,7 +63,7 @@ extern Class PSPDFStyleManagerClass;
 
 /// Convenience method. Will set the last used style for `key` and `styleProperty`.
 /// `value` might be a boxed CGFloat, color or whatever matches the property.
-/// `styleProperty` is the NSString-name for the property (e.g. `NSStringFromSelector(@selector(fontSize))`
+/// `styleProperty` is the NSString-name for the property (e.g. `NSStringFromSelector(@ selector(fontSize))`
 /// `key` is the annotation key, e.g. PSPDFAnnotationStringFreeText.
 - (void)setLastUsedValue:(id)value forProperty:(NSString *)styleProperty forKey:(NSString *)key;
 

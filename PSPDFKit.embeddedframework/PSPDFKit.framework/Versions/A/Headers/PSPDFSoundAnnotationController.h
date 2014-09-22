@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, PSPDFSoundAnnotationState) {
 /// Checks if we have permission to record
 + (void)requestRecordPermission:(void (^)(BOOL granted))block;
 
-- (id)initWithSoundAnnotation:(PSPDFSoundAnnotation *)annot;
+- (instancetype)initWithSoundAnnotation:(PSPDFSoundAnnotation *)annot;
 
 /// The controlled sound annotation
 @property (nonatomic, weak, readonly) PSPDFSoundAnnotation *annotation;

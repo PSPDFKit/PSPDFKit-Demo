@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFBaseTableViewController.h"
+#import "PSPDFOverridable.h"
 
 @class PSPDFFontStyleViewController;
 
@@ -26,7 +27,7 @@
 @interface PSPDFFontStyleViewController : PSPDFBaseTableViewController
 
 /// Designated initializer.
-- (id)initWithFontFamilyName:(NSString *)fontFamilyName;
+- (instancetype)initWithFontFamilyName:(NSString *)fontFamilyName;
 
 /// Font name. Set before showing.
 @property (nonatomic, copy) NSString *fontFamilyName;

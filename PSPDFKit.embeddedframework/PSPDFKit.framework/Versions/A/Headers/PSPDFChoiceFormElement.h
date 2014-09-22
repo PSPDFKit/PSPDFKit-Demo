@@ -10,8 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFAbstractTextRenderingFormElement.h"
-#import "PSPDFChoiceEditorViewController.h"
+#import "PSPDFFormElement.h"
 
 /// Choice Form Element Flags.
 typedef NS_OPTIONS(NSUInteger, PSPDFChoiceFlag) {
@@ -26,7 +25,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFChoiceFlag) {
 @class PSPDFViewController;
 
 /// Choice Form Element.
-@interface PSPDFChoiceFormElement : PSPDFAbstractTextRenderingFormElement <PSPDFChoiceEditorViewControllerDataSource, PSPDFChoiceEditorViewControllerDelegate>
+@interface PSPDFChoiceFormElement : PSPDFFormElement
 
 /// If set, the field is a combo box; if clear, the field is a list box.
 /// @note Evaluates `PSPDFChoiceFlagCombo` in the `fieldFlags` property.
@@ -49,7 +48,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFChoiceFlag) {
 /// For combo boxes only, is the selection a default or custom value
 @property (nonatomic, assign) BOOL customSelection;
 
-/// Optional) For scrollable list boxes, the top index (the index in the Opt array of the first option visible in the list). Default value: 0.
+/// Optional. For scrollable list boxes, the top index (the index in the Opt array of the first option visible in the list). Default value: 0.
 @property (nonatomic, assign) NSUInteger topIndex;
+
+/// Custom text.
+- (NSString *)customText;
 
 @end

@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFRenderQueue.h"
 #import "PSPDFResizableView.h"
 #import "PSPDFRelayTouchesView.h"
@@ -19,14 +20,15 @@
 #import "PSPDFSignatureSelectorViewController.h"
 #import "PSPDFStampViewController.h"
 #import "PSPDFNoteAnnotationViewController.h"
-#import "PSPDFFontSelectorViewController.h"
+#import "PSPDFFontPickerViewController.h"
 #import "PSPDFFontStyleViewController.h"
 #import "PSPDFAnnotationStyleViewController.h"
+#import "PSPDFPresentationContext.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFCache.h"
 
-// The page view delegate, connected with the parent scroll view.
-@protocol PSPDFPageViewDelegate <PSPDFOverridable> @end
+// The page view delegate, connected with the parent scroll view/view controller.
+@protocol PSPDFPageViewDelegate <NSObject> @end
 
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
@@ -37,19 +39,21 @@
 // `object` is the pageView.
 extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 
-/// Compound view for a single PDF page. Will be re-used.
+/// Display a single PDF page. View is reused.
 /// You can add your own views on top of the `annotationContainerView` (e.g. custom annotations)
-/// Events from a attached UIScrollView will be relayed to all visible PSPDFPageView classes.
-/// @note The UINavigationControllerDelegate is only defined to satisfy the UIImagePickerController delegate.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFAnnotationGridViewControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate>
+/// Events from a attached `UIScrollView` will be relayed to all visible `PSPDFPageView` classes.
+/// @note The `UINavigationControllerDelegate` is only defined to satisfy the `UIImagePickerController` delegate.
+@interface PSPDFPageView : UIView <PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFAnnotationGridViewControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate>
 
 /// Designated initializer.
-- (id)initWithFrame:(CGRect)frame delegate:(id <PSPDFPageViewDelegate>)delegate;
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id <PSPDFPageViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// @name Show / Destroy a document
 
 /// configure page container with data.
-- (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations pdfController:(PSPDFViewController *)pdfController;
+- (void)displayPage:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations presentationContext:(id <PSPDFPresentationContext>)presentationContext;
+
+@property (nonatomic, weak) id <PSPDFPresentationContext> presentationContext;
 
 /// Prepares the `PSPDFPageView` for reuse. Removes all unknown internal `UIViews`.
 - (void)prepareForReuse NS_REQUIRES_SUPER;
@@ -99,9 +103,6 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 /// Calculated scale. Readonly.
 @property (nonatomic, assign, readonly) CGFloat PDFScale;
 
-/// Is view currently rendering (either `contentView` or `renderView`)
-@property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
-
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
 /// @note If the scroll view is currently decelerating, this will show the TARGET rect, not the one that's currently animating.
 @property (nonatomic, assign, readonly) CGRect visibleRect;
@@ -130,14 +131,14 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 - (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
 
 /// Convert a view rect to PDF glyph rect.
-/// This is equivalent to `[self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]`
+/// This is equivalent to `[self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.rotationTransform)]`
 - (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
 
 /// Get the glyphs/words on a specific page.
 - (NSDictionary *)objectsAtPoint:(CGPoint)viewPoint options:(NSDictionary *)options;
 
 /// Get the glyphs/words on a specific rect.
-/// Usage e.g. `NSDictionary *objects = [pageView objectsAtRect:rect options:@{PSPDFObjectsFullWords : @YES}]`;
+/// Usage e.g. `NSDictionary *objects = [pageView objectsAtRect:rect options:@{PSPDFObjectsFullWords : @ YES}]`;
 - (NSDictionary *)objectsAtRect:(CGRect)viewRect options:(NSDictionary *)options;
 
 /// @name Accessors
@@ -150,14 +151,8 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 /// Returns an array of `UIView` `PSPDFAnnotationViewProtocol` objects currently in the view hierarchy.
 - (NSArray *)visibleAnnotationViews;
 
-/// Access the attached pdfController.
-@property (atomic, weak, readonly) PSPDFViewController *pdfController;
-
 /// Page that is displayed. Readonly.
-@property (atomic, assign, readonly) NSUInteger page;
-
-/// Document that is displayed. Readonly.
-@property (atomic, strong, readonly) PSPDFDocument *document;
+@property (nonatomic, assign, readonly) NSUInteger page;
 
 /// Shortcut to access the current boxRect of the set page.
 @property (nonatomic, strong, readonly) PSPDFPageInfo *pageInfo;
@@ -168,17 +163,8 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 
 /// @name Shadow settings
 
-/// Enables shadow for a single page. Only useful in combination with pageCurl.
-@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
-
-/// Set default shadowOpacity. Defaults to 0.7f.
-@property (nonatomic, assign) float shadowOpacity;
-
 /// Subclass to change shadow behavior.
 - (void)updateShadowAnimated:(BOOL)animated;
-
-/// Set block that is executed within `updateShadow` when `isShadowEnabled = YES`.
-@property (nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
 
 @end
 
@@ -211,9 +197,8 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 
 /**
  Add an `annotation` to the current pageView.
- This will either queue a re-render of the PDF, or add a UIView subclass for the matching annotation,
+ This will either queue a re-render of the PDF, or add an `UIView` subclass for the matching annotation,
  depending on the annotation type and the value of `isOverlay`.
- This will not change anything on the data model below. Also add an annotation to the document object.
 
  @note In PSPDFKit, annotations are managed in two ways:
 
@@ -228,12 +213,14 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
  Especially with `PSPDFLinkAnnotation`, the resulting views are - depending on the subtype - `PSPDFVideoAnnotationView`, `PSPDFWebAnnotationView` and much more. The classic PDF link is a `PSPDFLinkAnnotationView`.
 
  This method is called recursively with all annotation types except if they return isOverlay = NO. In case of isOverlay = NO, it will call updateView to re-render the page.
+ 
+ @warning  This will not change anything on the data model below. Also add an annotation to the document object.
  */
-- (void)addAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (void)addAnnotation:(PSPDFAnnotation *)annotation options:(NSDictionary *)options animated:(BOOL)animated;
 
 /// Removes an `annotation` from the view, either by re-rendering the page image or removing a matching UIView-subclass of the annotation was added as an overlay.
 /// @note This will not change the data model of the document.
-- (BOOL)removeAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (BOOL)removeAnnotation:(PSPDFAnnotation *)annotation options:(NSDictionary *)options animated:(BOOL)animated;
 
 /// Select annotation and show the menu for it
 - (void)selectAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
@@ -274,7 +261,7 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;
 
 // Helper to properly place an annotation.
-- (void)centerAnnotation:(PSPDFAnnotation *)annotation aroundViewPoint:(CGPoint)viewPoint;
+- (void)centerAnnotation:(PSPDFAnnotation *)annotation aroundPDFPoint:(CGPoint)pdfPoint;
 
 // Load page annotations from the PDF.
 - (void)loadPageAnnotationsAnimated:(BOOL)animated blockWhileParsing:(BOOL)blockWhileParsing;

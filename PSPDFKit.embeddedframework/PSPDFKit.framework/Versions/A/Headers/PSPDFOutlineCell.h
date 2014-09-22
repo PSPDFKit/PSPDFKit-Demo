@@ -10,10 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFTableViewCell.h"
 
-@class PSPDFOutlineCell, PSPDFOutlineElement;
+@class PSPDFOutlineCell, PSPDFOutlineElement, PSPDFDocumentProvider;
 
 /// The delegate of an outline cell.
 @protocol PSPDFOutlineCellDelegate <NSObject>
@@ -29,11 +30,17 @@
 /// Dynamically calculates the height for a cell.
 + (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier showPageLabel:(BOOL)showPageLabel;
 
-/// Delegate for cell button.
-@property (nonatomic, weak) IBOutlet id<PSPDFOutlineCellDelegate> delegate;
+/// Configures the cell. The `documentProvider` is required to resolve the outline actons to page labels.
+- (void)configureWithOutlineElement:(PSPDFOutlineElement *)outlineElement documentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Single outline element.
-@property (nonatomic, strong) PSPDFOutlineElement *outlineElement;
+@property (nonatomic, strong, readonly) PSPDFOutlineElement *outlineElement;
+
+/// The resolved page label.
+@property (nonatomic, copy, readonly) NSString *pageLabelString;
+
+/// Delegate for cell button.
+@property (nonatomic, weak) IBOutlet id<PSPDFOutlineCellDelegate> delegate;
 
 /// Shows the expand/collapse button.
 @property (nonatomic, assign) BOOL showExpandCollapseButton;

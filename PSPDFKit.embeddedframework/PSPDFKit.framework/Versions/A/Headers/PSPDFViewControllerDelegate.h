@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFViewController.h"
 
 @protocol PSPDFAnnotationViewProtocol;
@@ -26,6 +27,9 @@
 @protocol PSPDFHostableViewController <NSObject> @end
 @interface UINavigationController (PSPDFHostableViewController) <PSPDFHostableViewController> @end
 @interface UIPopoverController    (PSPDFHostableViewController) <PSPDFHostableViewController> @end
+
+// Helper method that will dig into popovers, navigation controllers, container view controllers or other controller view hierarchies and dig out the requested class if found.
+extern UIViewController *PSPDFChildViewControllerForClass(id<PSPDFPresentableViewController> controller, Class controllerClass, BOOL onlyReturnIfVisible);
 
 
 // NSNotification equivalent to `didShowPageView:` delegate.
@@ -108,7 +112,7 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
  `didTapOnPageView:` will be called if a user taps on the page view.
 
  Taps that can't be associated to a specific `pageView` will still be reported, but `pageView` is nil and the point will be relative to the view of the `PSPDFViewController`.
- 
+
  Return YES if you want to set this touch as processed; this will disable automatic touch processing like showing/hiding the HUDView or scrolling to the next/previous page.
 
  @note This will not send events when the controller is in thumbnail view.
@@ -156,7 +160,7 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
  Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
 
  Use `PSPDFMenuItem's` `identifier` property to check and modify the menu items. This string will not be translated. (vs the title property)
- 
+
  `rect` is in the coordinate space of the `pageView`.
  `annotationRect` or `textRect` is in the PDF coordinate space of the current page.
 */

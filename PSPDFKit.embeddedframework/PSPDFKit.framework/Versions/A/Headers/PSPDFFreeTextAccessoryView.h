@@ -30,7 +30,7 @@ extern NSString *const PSPDFFreeTextAccessoryViewDidPressClearButtonNotification
 @interface PSPDFFreeTextAccessoryView : UIView
 
 /// Designated initializer.
-- (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFFreeTextAccessoryViewDelegate>)delegate;
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id<PSPDFFreeTextAccessoryViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// The input accessory delegate.
 @property (nonatomic, weak) id<PSPDFFreeTextAccessoryViewDelegate> delegate;
@@ -42,7 +42,7 @@ extern NSString *const PSPDFFreeTextAccessoryViewDidPressClearButtonNotification
 
 @interface PSPDFFreeTextAccessoryView (SubclassingHooks)
 
-// Getters are lazily initialized. Never returnn nil for these!
+// Getters are lazily initialized. Never return nil for these!
 @property (nonatomic, strong, readonly) UIBarButtonItem *doneButton;
 @property (nonatomic, strong, readonly) UIBarButtonItem *clearButton;
 @property (nonatomic, strong, readonly) UIBarButtonItem *inspectorButton;

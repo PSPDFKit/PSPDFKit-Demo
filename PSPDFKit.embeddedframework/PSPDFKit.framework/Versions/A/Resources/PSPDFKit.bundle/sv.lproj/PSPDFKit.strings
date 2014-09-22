@@ -57,6 +57,8 @@
 "Loading" = "Läser in";
 "Expand" = "Expandera";
 "Collapse" = "Förminska";
+// SMS / iMessage sharing button
+"Message" = "Meddelande";
 
 // thumbnails
 "Bookmarked" = "Bokmärkt";
@@ -115,7 +117,7 @@
 "Undo" = "Ångra";
 "Nothing to undo" = "Inget att ångra";
 "Redo" = "Gör om";
-"Nothing to redo" = "Inget att göra om";
+"Nothing to redo" = "Inget att ångra";
 "Type" = "Typ"; // kind of Annotation can be selected
 "Size" = "Storlek";
 "Font" = "Typsnitt";
@@ -162,7 +164,7 @@
 "Signatures" = "Underskrifter";
 "Signed" = "Underskrivet";
 "Sign" = "Skriv under";
-"Sign using %@" = "Signera med %@"; // e.g. Adobe.PPKLite
+"Sign using %@" = "Skriv under med %@"; // e.g. Adobe.PPKLite
 "Methods" = "Metoder"; // text on a button. An example for a method would be signing.
 "Choose Identity" = "Välj identitet"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "Stämpel";
@@ -172,9 +174,11 @@
 "Preview" = "Förhandsvisa";
 "Stamp Text" = "Stämpeltext";
 "Add Signature" = "Lägg till signatur";
+"Remove Signature" = "Ta bort signatur";
 "My Signature" = "Min signatur";
 "No Signatures" = "Inga signaturer"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Kundsignatur";
+"Please sign here" = "Signera här";
 "Note" = "Anteckning";
 "Text" = "Text";
 "Delete Note" = "Ta bort anteckning";
@@ -207,12 +211,20 @@
 "Merge" = "Slå samman"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Exempel";
 "Annotation Summary for %@:\n" = "Sammanfattning av anteckningar i %@:\n";
+// title
+"Author Name" = "Författarnamn";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Ange det författarnamn som ska användas för nya anteckningar.";
+// text field placeholder
+"Name" = "Namn";
+// meaning: close
+"Dismiss" = "Avfärda";
 "Fit to Text" = "Anpassa till texten";
 "Draw" = "Rita";
 "Sound" = "Ljud";
 "Eraser" = "Radergummi";
 "SelectionTool" = "Markeringsverktyg";
-"Saved Annotations" = "Sparade anteckningar";
+"Saved Annotations" = "Sparade";
 "Add" = "Lägg till"; // to add - infinitive
 "Date" = "Datum";
 "Time" = "Tid";
@@ -330,6 +342,9 @@
 "Speak" = "Tala"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Spela";
 "Pause" = "Pausa";
+"Resume" = "Återuppta";
+"Stop" = "Stopp";
+"Play/Stop" = "Spela/Stoppa";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Spela in";
 "Pause Recording" = "Pausa inspelning";
@@ -343,7 +358,7 @@
 "Could not resume playback." = "Kunde inte återuppta uppspelning.";
 "Microphone permission not granted." = "Fick ej åtkomst till mikrofonen.";
 "Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Tyvärr går det inte att spela in ljud just nu. Ge appen tillstånd att använda mikrofonen.";
-"There was a problem trying to record audio." = "Tyvärr gick det inte att spela in ljud.";
+"There was a problem trying to record audio." = "Det gick inte att spela in ljud.";
 "Already Recording" = "Inspelning pågår";
 "You are already recording on page %@." = "Du spelar redan in på sidan %@.";
 "Go to page %@" = "Gå till sida %@";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Någonting gick fel";
 "This item is currently unavailable." = "Det går inte att komma åt objektet just nu.";
 "The information for this gallery could not be loaded." = "Det gick inte att läsa in informationen om detta galleri.";
-"Server Error" = "Serverfel";
-"The information for this gallery is invalid." = "Informationen om detta galleri är ogiltig.";
+"Content Error" = "Innehållsfel";
+"This content is unsupported." = "Innehållet stöds ej.";
 
 // Signatures
 "Digital Signature" = "Digital signatur";
@@ -389,7 +404,7 @@
 "Signature is valid, but there are some warnings." = "Signaturen är giltig, men det finns varningar.";
 "It was signed by %@ on %@ at %@." = "Den signerades av %@ den %@ klockan %@."; // the document was signed by name on date at time
 // the document was signed on date at time
-"It was signed on %@ at %@." = "Den signerades %@ den %@.";
+"It was signed on %@ at %@." = "Den signerades den %@ klockan %@.";
 "It claims to have been signed by %@ on %@ at %@." = "Den hävdar att den signerades av %@ den %@ klockan %@."; // by name on date at time
 // on date at time
 "It claims to have been signed on %@ at %@." = "Den hävdar att den signerades %@ den %@.";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen är giltig och innehållet i dokumentet har inte ändrats sedan det signerades.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ogiltig signatur – innehållet i dokumentet har ändrats, förvanskats eller skadats sedan det signerades.";
 "Unsigned Signature Field" = "Ej signerat signaturfält";
+"Do you really want to remove the signature from the document?" = "Vill du ta bort signaturen från dokumentet?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Kan inte avkryptera signaturen i certifikatet.";
 "The public key in the certificate could not be read." = "Kunde inte läsa den publika nyckeln i certifikatet.";
 "The signature of the certificate is not valid." = "Signaturen i certifikatet är ogiltig.";
+"Signature is not valid." = "Ogiltig signatur.";
 "There is a format error in the notBefore field of the certificate." = "Det finns ett formatfel i fältet notBefore i certifikatet."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Det finns ett formatfel i fältet notAfter i certifikatet."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Inga signaturer kunde kontrolleras eftersom certifikatkedjan endast innehåller ett certifikat, det är inte självsignerat och utfärdaren inte är betrodd.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Utfärdarcertifikatets keyUsage-tillägg tillåter inte signering av certifikat.";
 "The certificate has expired." = "Certifikatet har förfallit.";
 "The certificate is not valid until a date in the future." = "Certifikatet första giltighetsdatum är i framtiden.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Kunde inte läsa X509-certifikat från datat";
+// X509 should not be translated
+"No X509 certificate found" = "Hittade inget X509-certifikat";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Kan inte läsa PKCS12-fil. Filen har ogiltig form eller är skadad.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Kunde inte låsa upp PKCS12-data. Angav du rätt lösenord?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Kunde inte öppna fil för signaturkontroll";
+"Could not get signer info" = "Kunde inte hämta info om den som signerade";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL kunde inte skapa PKCS7-objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL kunde inte lägga till signaturen till PKCS7-objektet";
+"OpenSSL could not init PKCS7 object" = "OpenSSL kunde inte initiera PKCS7-objektet";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL kunde inte skapa PKCS7-signatur";
+"OpenSSL could not sign hash" = "OpenSSL kunde inte signera hashen";
+"Could not write PKCS7 signature" = "Kunde inte skriva PKCS7-signatur";
+
+

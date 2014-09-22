@@ -10,20 +10,24 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "PSPDFTransitionProtocol.h"
 
 /// Implements the PageCurl-style famously presented in iBooks.
 /// @note Due to the nature of the animation, it doesn't look well with non-equal sized documents.
 @interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionProtocol, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-/// Designated initializer.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+/// Initializes the page view controller with the configuration data source.
+- (instancetype)initWithPresentationContext:(id <PSPDFPresentationContext>)presentationContext NS_DESIGNATED_INITIALIZER;
+
+/// Associated `PSPDFPresentationContext`.
+@property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;
 
 /// If set to YES, the background of the `UIViewController` is used. Else you may get some animation artifacts. Defaults to NO.
 @property (nonatomic, assign) BOOL useSolidBackground;
 
-/// Clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
+/// Clips the page to its boundaries, not showing a page curl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
 @property (nonatomic, assign) BOOL clipToPageBoundaries;
 

@@ -22,12 +22,12 @@ typedef NSArray *(^PSPDFCacheInfoArraySelector)(NSOrderedSet *);
 typedef UIImage *(^PSPDFCacheDecryptionHelper)(NSString *path);
 typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 
-/// The disk cache is designed to store and get images including metadata in a fast way.
-/// No actual images will be held in memory (besides during the time they are scheduled for a disk write)
+/// The disk cache is designed to store and fetch images, including metadata, in a fast way.
+/// No actual images will be held in memory (besides during the time they are scheduled for writing to disk).
 @interface PSPDFDiskCache : NSObject
 
 /// Initializes the disk cache with the specified directory and the file ending (jpg, png)
-- (id)initWithCacheDirectory:(NSString *)cacheDirectory fileFormat:(NSString *)fileFormat;
+- (instancetype)initWithCacheDirectory:(NSString *)cacheDirectory fileFormat:(NSString *)fileFormat NS_DESIGNATED_INITIALIZER;
 
 /// @name Accessing Data
 
@@ -47,6 +47,9 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 /// The `encryptionHelper` is mandatory.
 - (void)storeImage:(UIImage *)image UID:(NSString *)UID page:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper receipt:(NSString *)renderReceipt;
 
+/// Store the image into the cache and execute the completion block when the disk write is complete.
+- (void)storeImage:(UIImage *)image UID:(NSString *)UID page:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper receipt:(NSString *)renderReceipt completionBlock:(void(^)(PSPDFCacheInfo *cacheInfo))completionBlock;
+
 /// @name Invalidating Cache Entries
 
 /// Invalidate all images that match `UID`. Will also invalidate any open writes.
@@ -64,11 +67,11 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 
 /// @name Settings
 
-/// Maximum number of disk space we're allowed to take up. In Byte. Defaults to 500MB (500*1024*1024)
-/// @note Set this to 0 to disable the disk cache.
+/// The maximum amount of disk space the cache is allowed to use (in bytes). Defaults to 500MB (500*1024*1024).
+/// @note Set to 0 to disable the disk cache.
 @property (nonatomic, assign) unsigned long long allowedDiskSpace;
 
-/// Disk space we're currently using. (in byte)
+/// The disk space currently used by the cache (in bytes).
 @property (nonatomic, assign, readonly) unsigned long long usedDiskSpace;
 
 /// Returns the available free disk space. (Calculated on every access)
@@ -79,9 +82,3 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 
 @end
 
-@interface PSPDFDiskCache (Private)
-
-// Returns YES when the writer queue has the maximum amount of operations already queued up and waiting.
-- (BOOL)writeQueueIsFull;
-
-@end

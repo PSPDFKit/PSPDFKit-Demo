@@ -57,6 +57,8 @@
 "Loading" = "Ładowanie";
 "Expand" = "Rozwiń";
 "Collapse" = "Zwiń";
+// SMS / iMessage sharing button
+"Message" = "Wiadomość";
 
 // thumbnails
 "Bookmarked" = "Z zakładką";
@@ -172,9 +174,11 @@
 "Preview" = "Podgląd";
 "Stamp Text" = "Tekst pieczęci";
 "Add Signature" = "Dodaj podpis";
+"Remove Signature" = "Usuń podpis";
 "My Signature" = "Mój podpis";
 "No Signatures" = "Bez podpisów"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Podpis klienta";
+"Please sign here" = "Podpisz tutaj";
 "Note" = "Uwaga";
 "Text" = "Tekst";
 "Delete Note" = "Usuń notatkę";
@@ -207,12 +211,20 @@
 "Merge" = "Złącz"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Próbka";
 "Annotation Summary for %@:\n" = "%@ – zestawienie adnotacji:";
+// title
+"Author Name" = "Nazwisko autora";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Wpisz nazwisko autora, które ma być widoczne przy nowo wstawianych adnotacjach.";
+// text field placeholder
+"Name" = "Nazwisko";
+// meaning: close
+"Dismiss" = "Zamknij";
 "Fit to Text" = "Dopasuj do tekstu";
 "Draw" = "Rysowanie";
 "Sound" = "Dźwięk";
 "Eraser" = "Gumka";
 "SelectionTool" = "Narzędzie wyboru";
-"Saved Annotations" = "Zapisane adnotacje";
+"Saved Annotations" = "Zapisane";
 "Add" = "Dodaj"; // to add - infinitive
 "Date" = "Data";
 "Time" = "Czas";
@@ -330,6 +342,9 @@
 "Speak" = "Mowa"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Odtwarzaj";
 "Pause" = "Wstrzymaj";
+"Resume" = "Wznów";
+"Stop" = "Stop";
+"Play/Stop" = "Odtwarzaj/Stop";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Nagraj";
 "Pause Recording" = "Wstrzymaj nagrywanie";
@@ -380,8 +395,8 @@
 "Something went wrong" = "Wystąpił błąd";
 "This item is currently unavailable." = "Ta pozycja jest aktualnie niedostępna.";
 "The information for this gallery could not be loaded." = "Nie można załadować informacji dot. tej galerii.";
-"Server Error" = "Błąd serwera";
-"The information for this gallery is invalid." = "Informacje dot. tej galerii są nieprawidłowe.";
+"Content Error" = "Błąd zawartości.";
+"This content is unsupported." = "Nieobsługiwana zawartość.";
 
 // Signatures
 "Digital Signature" = "Podpis cyfrowy";
@@ -397,6 +412,7 @@
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Podpis jest prawidłowy, a zawartość dokumentu nie uległa zmianie od czasu podpisania.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Nieprawidłowy podpis – od podpisania dokumentu wprowadzono zmiany w tym dokumencie, ewentualnie próbowano go naruszyć lub został uszkodzony.";
 "Unsigned Signature Field" = "Brak podpisu w polu podpisu";
+"Do you really want to remove the signature from the document?" = "Na pewno usunąć podpis z dokumentu?";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -404,6 +420,7 @@
 "Unable to decrypt the signature of the certificate." = "Nie można odszyfrować podpisu certyfikatu.";
 "The public key in the certificate could not be read." = "Nie można odczytać klucza publicznego certyfikatu.";
 "The signature of the certificate is not valid." = "Nieprawidłowy podpis certyfikatu.";
+"Signature is not valid." = "Podpis jest nieprawidłowy.";
 "There is a format error in the notBefore field of the certificate." = "Błąd formatu w polu notBefore certyfikatu."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Błąd formatowania w polu notAfter certyfikatu."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Nie zweryfikowano podpisów, ponieważ łańcuch podpisów zawiera tylko jeden certyfikat, ten certyfikat nie jest samopodpisany, a wystawca nie jest wiarygodny.";
@@ -423,3 +440,26 @@
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Rozszerzenie keyUsage certyfikatu wystawcy nie zezwala na podpisywanie certyfikatów.";
 "The certificate has expired." = "Certyfikat wygasł";
 "The certificate is not valid until a date in the future." = "Certyfikat ważny dopiero od określonej daty w przyszłości.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Nie można odczytać certyfikatu X509 z danych";
+// X509 should not be translated
+"No X509 certificate found" = "Nie znaleziono certyfikatu X509";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Nie można odczytać pliku PKCS12. Plik nieprawidłowo sformatowany lub uszkodzony.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Nie można odblokować danych PKCS12. Czy wprowadzono prawidłowe hasło?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Nie można otworzyć pliku w celu sprawdzenia poprawności podpisu";
+"Could not get signer info" = "Nie można uzyskać danych podpisującego";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL nie może utworzyć obiektu PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL nie może dodać podpisu do obiektu PKCS7";
+"OpenSSL could not init PKCS7 object" = "OpenSSL nie może zainicjować obiektu PKCS7";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL nie może wygenerować podpisu PKCS7";
+"OpenSSL could not sign hash" = "OpenSSL nie może podpisać obiektu hash";
+"Could not write PKCS7 signature" = "Nie można zapisać podpisu PKCS7";
+
+

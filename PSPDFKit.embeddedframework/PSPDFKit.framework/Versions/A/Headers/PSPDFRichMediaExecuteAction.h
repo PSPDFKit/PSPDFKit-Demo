@@ -18,7 +18,7 @@
 @interface PSPDFRichMediaExecuteAction : PSPDFAction
 
 /// Designated initializer.
-- (id)initWithCommand:(NSString *)command argument:(NSString *)argument annotation:(PSPDFRichMediaAnnotation *)annotation;
+- (instancetype)initWithCommand:(NSString *)command argument:(NSString *)argument annotation:(PSPDFRichMediaAnnotation *)annotation;
 
 /// The rich media action command.
 @property (nonatomic, copy, readonly) NSString *command;

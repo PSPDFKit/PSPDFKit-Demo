@@ -93,6 +93,26 @@
                     -webkit-background-size: 130px 130px;
                 }
             }
+            @media screen and (-webkit-device-pixel-ratio:3) {
+                body {
+                    font-family: 'Helvetica Neue';
+                    font-weight: bold;
+                }
+
+                .privateBrowsing {
+                    color: #808080;
+                }
+
+                .ipad .icon {
+                    background-image: url('./embossed-icon@3x~ipad.png');
+                    -webkit-background-size: 160px 160px;
+                }
+
+                .iphone .icon {
+                    background-image: url('./embossed-icon@3x~iphone.png');
+                    -webkit-background-size: 130px 130px;
+                }
+            }
         </style>
         <title>{TITLE}</title>
     </head>

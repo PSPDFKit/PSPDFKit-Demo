@@ -18,7 +18,7 @@
 @interface PSPDFFormParser : NSObject
 
 /// Initializes the annotation parser with the associated `documentProvider`.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+- (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
 /// Attached document provider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;

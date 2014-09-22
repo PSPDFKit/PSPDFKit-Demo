@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "PSPDFKitGlobal.h"
 
 /// Generic table view controller with popover resizing code.
 @interface PSPDFBaseTableViewController : UITableViewController
@@ -44,7 +44,7 @@
 // Returns the required popover size. Override to customize.
 - (CGSize)requiredPopoverSize;
 
-// Called when the iOS 7+ font system base size is changed.
-- (void)contentSizeDidChangeNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+// Called when the font system base size is changed.
+- (void)contentSizeDidChange NS_REQUIRES_SUPER;
 
 @end

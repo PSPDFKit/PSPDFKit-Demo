@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
 #import "PSPDFDocumentProviderDelegate.h"
 
 @class PSPDFFormParser, PSPDFEmbeddedFilesParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
@@ -21,22 +20,21 @@
 @interface PSPDFDocumentProvider : NSObject
 
 /// Initialize with a local file URL.
-- (id)initWithFileURL:(NSURL *)fileURL document:(PSPDFDocument *)document;
+- (instancetype)initWithFileURL:(NSURL *)fileURL document:(PSPDFDocument *)document;
 
 /// Initialize with `NSData`. (can be memory or mapped data)
-- (id)initWithData:(NSData *)data document:(PSPDFDocument *)document;
+- (instancetype)initWithData:(NSData *)data document:(PSPDFDocument *)document;
 
 /// Initialize with `CGDataProviderRef`. (can be used for dynamic decryption)
-- (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
+- (instancetype)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
 
 /// Referenced NSURL. If this is set, data is nil.
 @property (nonatomic, readonly) NSURL *fileURL;
 
-/// Referenced NSData. If this is set, fileURL is nil.
-/// NOT readonly, since we may write back annotation data.
-@property (nonatomic, strong) NSData *data;
+/// Referenced NSData. If this is set, `fileURL` is nil.
+@property (nonatomic, strong, readonly) NSData *data;
 
-/// Referenced dataProvider. (if data is set, or directly). Will be retained.
+/// Referenced data provider. (if data is set, or directly). Will be retained.
 @property (nonatomic, readonly) CGDataProviderRef dataProvider;
 
 /// Returns a NSData representation, memory-maps files, tries to copy a `CGDataProviderRef`.
@@ -52,6 +50,8 @@
 @property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
 
 /// Cached rotation and aspect ratio data for specific page. Page starts at 0.
+/// Unlike with `-[PSPDFDocument pageInfoForPage:]` here the returned `PSPDFPageInfo`'s
+/// `page` propety always equals the supplied `page` argument
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
 /// Number of pages in the PDF. 0 if source is invalid. Will be filtered by pageRange.
@@ -80,6 +80,10 @@
 /// Are we able to add/change annotations in this file?
 /// Annotations can't be added to encrypted documents or if there are parsing errors.
 @property (nonatomic, assign) BOOL canEmbedAnnotations;
+
+/// A flag that indicates whether changing existing annotations or creating new annotations are allowed
+/// @note Searches and checks the digital signatures on the first call (caches the result for subsequent calls)
+@property (nonatomic, assign, readonly) BOOL allowAnnotationChanges;
 
 /// Access the PDF title. (".pdf" will be truncated)
 /// @note If there's no title in the PDF metadata, the file name will be used.
@@ -135,6 +139,9 @@
 /// Translates the real page to the capped page.
 /// Will only return something different if `pageRange` is set.
 - (NSUInteger)translateRealPageToCappedPage:(NSUInteger)page;
+
+// Returns the page offset relative to the document.
+- (NSUInteger)pageOffsetForDocument;
 
 @end
 

@@ -11,70 +11,68 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSPDFGalleryContentViewProtocols.h"
+#import "PSPDFModernizer.h"
 
-@class PSPDFGalleryItem, PSPDFGalleryContentLoadingView, PSPDFGalleryContentCaptionView, PSPDFGalleryErrorView;
+@class PSPDFGalleryItem;
 
 /// The (reusable) content view of a `PSPDFGalleryView`.
 @interface PSPDFGalleryContentView : UIView
 
-/// Might return a specially configured instance of a given content view used for transitioning
-/// from or to fullscreen mode. The default implementation returns self.
-- (instancetype)transitionView;
+/// @name Initialization
 
 /// Creates a new content view with a reuse identifier. It is highly recommended that you always
 /// reuse content views to avoid performance issues. The API works exactly like `UITableView`.
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier NS_DESIGNATED_INITIALIZER;
 
-/// The image view. Please use setContent: to change the value.
+/// @name Views
+
+/// The content view.
 @property (nonatomic, strong, readonly) UIView *contentView;
 
-/// The loading view.  Please use setLoading: to change the loading state.
-@property (nonatomic, strong, readonly) PSPDFGalleryContentLoadingView *loadingView;
+/// The loading view.
+@property (nonatomic, strong, readonly) UIView<PSPDFGalleryContentViewLoading> *loadingView;
 
-/// The caption view. Please setCaption: to change the caption.
-@property (nonatomic, strong, readonly) PSPDFGalleryContentCaptionView *captionView;
+/// The caption view.
+@property (nonatomic, strong, readonly) UIView<PSPDFGalleryContentViewCaption> *captionView;
 
-/// The error view. Please use setError: to change the error.
-@property (nonatomic, strong, readonly) PSPDFGalleryErrorView *errorView;
+/// The error view.
+@property (nonatomic, strong, readonly) UIView<PSPDFGalleryContentViewError> *errorView;
+
+/// @name State
 
 /// The reuse identifier if the view was created with `initWithReuseIdentifier:`. You should always
 /// reuse views to avoid performance issues.
 @property (nonatomic, strong, readonly) NSString *reuseIdentifier;
 
-/// The caption. If this is set to nil, `captionView` is not visible.
-@property (nonatomic, copy) NSString *caption;
+/// The content item.
+@property (nonatomic, strong) PSPDFGalleryItem *content;
 
-/// The content. Only visible if loading = NO and error = nil.
-@property (nonatomic, strong) id content;
-
-/// Indicates that the content is loading. If this is set, the imageView will be invisible.
-@property (nonatomic, assign, getter = isLoading) BOOL loading;
-
-/// An error that might have occurred. If this is set, `imageView` and `loadingView` will be hidden.
-@property (nonatomic, strong) NSError *error;
-
-/// Called before reusing the content view to give it a chance to restore its initial state.
-- (void)prepareForReuse;
+/// Indicates if the caption should be visible. Defaults to `NO`.
+/// @note This property is only a hint to the content view. The caption might still be hidden
+/// even if this property is set to `NO`.
+@property (nonatomic, assign) BOOL shouldHideCaption;
 
 @end
 
 @interface PSPDFGalleryContentView (SubclassingHooks)
 
-/// Defaults to `UIView.class`.
+/// Returns the class for `contentView`. Defaults to `Nil`.
+/// @note The class must be a subclass of `UIView`.
+/// @warning This is an abstract class. Your subclass must override this method!
 + (Class)contentViewClass;
 
-/// Defaults to `PSPDFGalleryContentLoadingView.class`.
+/// Returns the class for `loadingView`. Defaults to `PSPDFGalleryContentLoadingView.class`.
+/// @note The class must be a subclass of `UIView` and conform to the `PSPDFGalleryContentViewLoading` protocol.
 + (Class)loadingViewClass;
 
-/// Defaults to `PSPDFGalleryContentCaptionView.class`.
+/// Returns the class for `captionView`. Defaults to `PSPDFGalleryContentCaptionView.class`.
+/// @note The class must be a subclass of `UIView` and conform to the `PSPDFGalleryContentViewCaption` protocol.
 + (Class)captionViewClass;
 
-/// Defaults to `PSPDFGalleryErrorView.class`.
+/// Returns the class for `errorView`. Defaults to `PSPDFErrorView.class`.
+/// @note The class must be a subclass of `UIView` and conform to the `PSPDFGalleryContentViewError` protocol.
 + (Class)errorViewClass;
-
-/// Called when the view state of the content view has changed and subview visiblity is likely
-/// going to change.
-- (void)updateSubviewVisibility;
 
 /// The frame of the content view.
 - (CGRect)contentViewFrame;
@@ -87,5 +85,28 @@
 
 /// The frame of the error view.
 - (CGRect)errorViewFrame;
+
+/// Updates the content view's contents.
+/// @warning This is an abstract class. Your subclass must override this method!
+- (void)updateContentView;
+
+/// Updates the caption view's contents.
+- (void)updateCaptionView NS_REQUIRES_SUPER;
+
+/// Updates the error view's contents.
+- (void)updateErrorView NS_REQUIRES_SUPER;
+
+/// Updates the loading view's contents.
+- (void)updateLoadingView NS_REQUIRES_SUPER;
+
+/// Called before reusing the content view to give it a chance to restore its initial state.
+- (void)prepareForReuse NS_REQUIRES_SUPER;
+
+/// Use this method to update your content view.
+- (void)contentDidChange NS_REQUIRES_SUPER;
+
+/// Called when the view state of the content view has changed and subview visibility is likely
+/// going to change.
+- (void)updateSubviewVisibility NS_REQUIRES_SUPER;
 
 @end

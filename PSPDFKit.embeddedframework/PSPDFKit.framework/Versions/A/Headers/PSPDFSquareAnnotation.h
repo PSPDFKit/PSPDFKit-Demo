@@ -16,7 +16,7 @@
 @interface PSPDFSquareAnnotation : PSPDFAnnotation
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init;
 
 /// The path that represents the square.
 @property (nonatomic, strong, readonly) UIBezierPath *bezierPath;

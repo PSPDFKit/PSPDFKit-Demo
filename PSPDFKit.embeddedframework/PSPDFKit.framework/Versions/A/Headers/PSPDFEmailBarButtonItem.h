@@ -40,7 +40,4 @@
 // Shows the email controller.
 - (void)showEmailControllerWithSendOptions:(PSPDFDocumentSharingOptions)sendOptions dataArray:(NSArray *)dataArray fileNames:(NSArray *)fileNames sender:(id)sender annotationSummary:(NSAttributedString *)annotationSummary animated:(BOOL)animated;
 
-// Cached variant of MFMailComposeViewController.canSendMail - because former is quite slow.
-+ (BOOL)canSendMail;
-
 @end

@@ -13,12 +13,13 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFStatusHUDStyle) {
-    PSPDFStatusHUDStyleNone = 0, // user interactions enabled, no UI mask
-    PSPDFStatusHUDStyleClear,    // user interactions disabled, clear UI mask
-    PSPDFStatusHUDStyleBlack,    // user interactions disabled, black UI mask
-    PSPDFStatusHUDStyleGradient  // user interactions disabled, gradient UI mask
+    PSPDFStatusHUDStyleNone = 0, /// user interactions enabled, no UI mask
+    PSPDFStatusHUDStyleClear,    /// user interactions disabled, clear UI mask
+    PSPDFStatusHUDStyleBlack,    /// user interactions disabled, black UI mask
+    PSPDFStatusHUDStyleGradient  /// user interactions disabled, gradient UI mask
 };
 
+/// A globally usable progress view.
 @interface PSPDFStatusHUD : NSObject
 
 + (NSArray *)items;
@@ -26,7 +27,9 @@ typedef NS_ENUM(NSUInteger, PSPDFStatusHUDStyle) {
 
 @end
 
+/// Only use this class on the main thread.
 @interface PSPDFStatusHUDItem : NSObject
+
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSString *text;

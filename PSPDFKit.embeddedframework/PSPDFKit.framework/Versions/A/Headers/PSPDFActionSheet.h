@@ -10,7 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /// Helper to add block features to `UIActionSheet`.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
@@ -19,7 +20,7 @@
 /// @name Initialization
 
 /// Default initializer.
-- (id)initWithTitle:(NSString *)title;
+- (instancetype)initWithTitle:(NSString *)title;
 
 /// @name Adding Buttons
 
@@ -58,6 +59,6 @@
 
 @interface PSPDFActionSheet (PSPDFSuperclassBlock)
 
-- (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
 
 @end

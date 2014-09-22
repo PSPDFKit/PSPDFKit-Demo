@@ -10,14 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFModel.h"
 
 /// Represents a certain view state (document position, zoom) of a `PSPDFDocument`.
 @interface PSPDFViewState : PSPDFModel
 
 /// Designated initializer.
-- (id)initWithPage:(NSUInteger)page;
+- (instancetype)initWithPage:(NSUInteger)page;
 
 /// Zoom scale.
 @property (nonatomic, assign) CGFloat zoomScale;

@@ -28,7 +28,7 @@
 @interface PSPDFStylusViewController : PSPDFStaticTableViewController
 
 /// Designated initializer.
-- (id)initWithDriverClasses:(NSArray *)driverClasses;
+- (instancetype)initWithDriverClasses:(NSArray *)driverClasses NS_DESIGNATED_INITIALIZER;
 
 /// The currently selected driver class.
 @property (nonatomic, strong) Class selectedDriverClass;

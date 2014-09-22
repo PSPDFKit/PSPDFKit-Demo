@@ -15,7 +15,7 @@
 @interface PSPDFPolyLineAnnotation : PSPDFAbstractLineAnnotation
 
 /// Designated initializer.
-- (id)init;
+- (instancetype)init;
 
 /// The points of the polygon.
 /// Contains `NSValue` objects that box a `CGPoint`.
