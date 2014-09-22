@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 @class PSCGridViewController;
 
 @interface PSCAppDelegate : UIResponder <UIApplicationDelegate>
