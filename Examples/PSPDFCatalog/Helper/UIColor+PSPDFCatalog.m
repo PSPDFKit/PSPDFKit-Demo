@@ -11,7 +11,7 @@
 @implementation UIColor (PSPDFCatalogAdditions)
 
 + (UIColor *)pspdfColor {
-    return [UIColor colorWithRed:0.110 green:0.529 blue:0.757 alpha:1];
+    return [UIColor colorWithRed:0.110f green:0.529f blue:0.757f alpha:1.f];
 }
 
 @end
