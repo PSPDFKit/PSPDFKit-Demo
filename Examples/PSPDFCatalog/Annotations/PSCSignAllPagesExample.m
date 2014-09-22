@@ -10,9 +10,9 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 #import "PSCExample.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 static const char PSCSignatureCompletionBlock;
 

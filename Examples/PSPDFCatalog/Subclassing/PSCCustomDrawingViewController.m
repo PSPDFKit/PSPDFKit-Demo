@@ -9,7 +9,7 @@
 //
 
 #import "PSCCustomDrawingViewController.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 @interface PSCDocumentDrawer : NSObject <PSPDFDocumentDelegate> @end
 

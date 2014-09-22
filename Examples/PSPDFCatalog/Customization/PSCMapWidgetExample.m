@@ -10,7 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
-@import MapKit;
+#import <MapKit/MapKit.h>
 
 @interface PSCMapWidgetExample : PSCExample <PSPDFViewControllerDelegate> @end
 

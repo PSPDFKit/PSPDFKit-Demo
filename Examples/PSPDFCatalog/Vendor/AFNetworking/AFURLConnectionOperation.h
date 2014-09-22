@@ -20,9 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
-@import Darwin.Availability;
+#import <Availability.h>
 #import "AFURLRequestSerialization.h"
 #import "AFURLResponseSerialization.h"
 #import "AFSecurityPolicy.h"

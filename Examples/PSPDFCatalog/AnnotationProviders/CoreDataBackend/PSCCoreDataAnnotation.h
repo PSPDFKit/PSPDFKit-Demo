@@ -8,8 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import Foundation;
-@import CoreData;
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface PSCCoreDataAnnotation : NSManagedObject
 

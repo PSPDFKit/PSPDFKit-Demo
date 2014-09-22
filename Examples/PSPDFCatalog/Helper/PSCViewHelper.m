@@ -8,8 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import Darwin.C.tgmath;
-@import MachO.dyld;
+#import <tgmath.h>
+#import <mach-o/dyld.h>
 #import "PSCViewHelper.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////

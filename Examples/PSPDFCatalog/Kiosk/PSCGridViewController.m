@@ -794,7 +794,7 @@
 @end
 
 // Fixes the missing action method crash on updating when the keyboard is visible.
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
     @autoreleasepool {

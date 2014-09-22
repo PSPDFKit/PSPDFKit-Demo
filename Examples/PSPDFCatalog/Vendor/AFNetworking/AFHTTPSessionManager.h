@@ -20,12 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import Foundation;
-@import SystemConfiguration;
-@import Darwin.Availability;
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <Availability.h>
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-@import MobileCoreServices;
+#import <MobileCoreServices/MobileCoreServices.h>
 #else
 #import <CoreServices/CoreServices.h>
 #endif

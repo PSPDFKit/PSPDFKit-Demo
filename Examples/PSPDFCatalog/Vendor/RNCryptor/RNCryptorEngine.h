@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import "RNCryptor.h"
 

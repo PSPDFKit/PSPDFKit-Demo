@@ -23,7 +23,7 @@
 #import "AFURLResponseSerialization.h"
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-@import UIKit;
+#import <UIKit/UIKit.h>
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 #import <Cocoa/Cocoa.h>
 #endif
@@ -517,7 +517,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 #pragma mark -
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-@import CoreGraphics;
+#import <CoreGraphics/CoreGraphics.h>
 
 static UIImage * AFImageWithDataAtScale(NSData *data, CGFloat scale) {
     UIImage *image = [[UIImage alloc] initWithData:data];

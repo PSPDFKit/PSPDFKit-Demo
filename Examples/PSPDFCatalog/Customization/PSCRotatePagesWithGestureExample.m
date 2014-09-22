@@ -10,7 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 @interface PSCRotatablePDFViewController : PSPDFViewController
 - (void)rotatePage:(NSUInteger)page byDegrees:(NSUInteger)degrees;

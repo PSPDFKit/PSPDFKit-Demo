@@ -24,10 +24,10 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonKeyDerivation.h>
-@import Security;
+#import <Security/Security.h>
 
 extern NSString *const kRNCryptorErrorDomain;
 extern const uint8_t kRNCryptorFileVersion;

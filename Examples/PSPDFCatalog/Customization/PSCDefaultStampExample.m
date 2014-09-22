@@ -10,7 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 @interface PSCCustomStampAnnotationToolbar : PSPDFAnnotationToolbar @end
 @interface PSCInvisibleResizableView : PSPDFResizableView @end

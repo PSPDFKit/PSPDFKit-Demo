@@ -27,19 +27,19 @@
 #import "AFURLRequestSerialization.h"
 #import "AFURLResponseSerialization.h"
 
-@import Darwin.Availability;
-@import Security;
+#import <Availability.h>
+#import <Security/Security.h>
 
 #ifdef _SYSTEMCONFIGURATION_H
-@import Darwin.POSIX.netinet.in;
+#import <netinet/in.h>
 #import <netinet6/in6.h>
-@import Darwin.POSIX.arpa.inet;
+#import <arpa/inet.h>
 #import <ifaddrs.h>
-@import Darwin.POSIX.netdb;
+#import <netdb.h>
 #endif
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-@import UIKit;
+#import <UIKit/UIKit.h>
 #endif
 
 @interface AFHTTPSessionManager ()

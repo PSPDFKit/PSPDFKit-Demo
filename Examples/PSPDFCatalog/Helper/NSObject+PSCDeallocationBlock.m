@@ -9,7 +9,7 @@
 //
 
 #import "NSObject+PSCDeallocationBlock.h"
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 
 @interface PSCBlockWrapper : NSObject
 @property (nonatomic, copy) dispatch_block_t block;

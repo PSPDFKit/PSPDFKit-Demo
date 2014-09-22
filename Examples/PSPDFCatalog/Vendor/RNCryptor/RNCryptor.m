@@ -26,9 +26,9 @@
 //
 #import "RNCryptor.h"
 #import "RNCryptor+Private.h"
-@import Security.SecRandom;
-@import Darwin.POSIX.strings;
-@import Darwin.C.string;
+#import <Security/SecRandom.h>
+#include <strings.h>
+#include <string.h>
 
 extern int SecRandomCopyBytes(SecRandomRef rnd, size_t count, uint8_t *bytes) __attribute__((weak_import));
 extern int

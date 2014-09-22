@@ -16,7 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "PSCRoundProgressView.h"
 #import "PSCAvailability.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 #define PSCDownloadingKey @"downloading"
 

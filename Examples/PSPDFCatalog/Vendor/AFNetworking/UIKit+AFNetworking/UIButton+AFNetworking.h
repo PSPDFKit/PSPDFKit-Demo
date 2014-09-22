@@ -20,13 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
-@import Darwin.Availability;
+#import <Availability.h>
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /**
  This category adds methods to the UIKit framework's `UIButton` class. The methods in this category provide support for loading remote images and background images asynchronously from a URL.

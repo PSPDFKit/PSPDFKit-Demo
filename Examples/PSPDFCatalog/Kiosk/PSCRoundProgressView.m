@@ -9,7 +9,7 @@
 //
 
 #import "PSCRoundProgressView.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 @interface PSCRoundProgressView ()
 @property (nonatomic, strong) CAShapeLayer *backgroundShape;

@@ -9,7 +9,7 @@
 //
 
 #import "PSCExampleManager.h"
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 
 @interface PSCExampleManager ()
 @property (nonatomic, copy) NSArray *allExamples;

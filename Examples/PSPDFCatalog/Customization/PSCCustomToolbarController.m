@@ -9,7 +9,7 @@
 //
 
 #import "PSCCustomToolbarController.h"
-@import Darwin.C.tgmath;
+#import <tgmath.h>
 
 @interface PSCCustomToolbarController ()
 @property (nonatomic, strong) UISegmentedControl *customViewModeSegment;
