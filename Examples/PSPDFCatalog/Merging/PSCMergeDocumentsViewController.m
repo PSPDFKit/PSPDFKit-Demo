@@ -265,7 +265,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-- (void)performWithPreservingPages:(dispatch_block_t)block {
+- (void)performWithPreservingPages:(void (^)(void))block {
     NSUInteger leftPage  = self.leftController.page;
     NSUInteger rightPage = self.rightController.page;
     block();

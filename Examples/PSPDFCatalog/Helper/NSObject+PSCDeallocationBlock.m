@@ -21,7 +21,7 @@
 @implementation NSObject (PSCDeallocationBlock)
 
 static const char PSCDeallocationKey;
-- (void)psc_addDeallocBlock:(dispatch_block_t)block {
+- (void)psc_addDeallocBlock:(void (^)(void))block {
     @synchronized(self) {
         // Get current block array and add one element.
         NSArray *blocks = objc_getAssociatedObject(self, &PSCDeallocationKey);

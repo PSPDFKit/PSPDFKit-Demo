@@ -13,6 +13,6 @@
 @interface NSObject (PSCDeallocationBlock)
 
 // Register block to be called when `self` is deallocated.
-- (void)psc_addDeallocBlock:(dispatch_block_t)block;
+- (void)psc_addDeallocBlock:(void (^)(void))block;
 
 @end
