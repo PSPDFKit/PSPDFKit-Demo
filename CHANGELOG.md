@@ -4,6 +4,15 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.0.1 - 23/September/2014__
+
+*  Various improvements to the PSPDFCatalog examples.
+*  The `PSPDFSearchViewController` now always rememberse the last used search string.
+*  Fixes a minor rendering artifact on the iPhone 6 Plus.
+*  Fixes an issue in the gallery image tiler that is specific to the iPhone 6.
+*  Fixes an issue with detecting gallery URLs that are scaled (@2x, @3x)
+*  Fixes an issue with link annotation options that contain an URL parsed from an XFDF.
+
 __v4.0.0 - 22/September/2014__
 
 PSPDFKit 4 is a major new release. Please study the migration guide:
