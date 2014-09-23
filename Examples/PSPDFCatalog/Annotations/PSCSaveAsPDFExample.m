@@ -157,6 +157,9 @@
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:newURL];
         newDocument.title = self.document.title; // preserve title.
         self.document = newDocument;
+
+        // Dismiss any open popover as annotation backing store changed.
+        [self dismissPopoverAnimated:NO class:nil completion:NULL];
     }
 }
 
