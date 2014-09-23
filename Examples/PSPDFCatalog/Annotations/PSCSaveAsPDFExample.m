@@ -156,10 +156,29 @@
         // Finally update the fileURL, this will clear the current document cache.
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:newURL];
         newDocument.title = self.document.title; // preserve title.
+
+        // Preserve annotation selection
+        PSPDFPageView *pageView = [self pageViewForPage:self.page];
+        NSArray *selectedAnnotations = pageView.selectedAnnotations;
+
         self.document = newDocument;
 
-        // Dismiss any open popover as annotation backing store changed.
-        [self dismissPopoverAnimated:NO class:nil completion:NULL];
+        // Restore selection
+        pageView = [self pageViewForPage:self.page];
+        NSMutableArray *newSelectedAnnotations = [NSMutableArray array];
+        for (PSPDFAnnotation *annotation in [newDocument annotationsForPage:self.page type:PSPDFAnnotationTypeAll]) {
+            for (PSPDFAnnotation *selectedAnnotation in selectedAnnotations) {
+                if ([annotation.name isEqualToString:selectedAnnotation.name]) {
+                    [newSelectedAnnotations addObject:annotation];
+                }
+            }
+        }
+        pageView.selectedAnnotations = newSelectedAnnotations;
+
+        // To re-show the popover, we need to wait until the alert view disappears.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[self pageViewForPage:self.page] showMenuIfSelectedAnimated:NO allowPopovers:YES];
+        });
     }
 }
 
