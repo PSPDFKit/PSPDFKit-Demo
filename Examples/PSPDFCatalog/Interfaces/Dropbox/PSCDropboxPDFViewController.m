@@ -119,7 +119,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {
-    [self searchForString:nil options:0 animated:YES];
+    [self searchForString:nil options:0 sender:sender animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
