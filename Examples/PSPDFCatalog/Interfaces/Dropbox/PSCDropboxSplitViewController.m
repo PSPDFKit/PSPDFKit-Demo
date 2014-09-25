@@ -39,7 +39,8 @@
 		[documentWrapper addChildViewController:self.documentPicker];
 		[documentWrapper.view addSubview:self.documentPicker.view];
 		CGRect frame = documentWrapper.view.frame;
-		frame.origin.y += UIApplication.sharedApplication.statusBarFrame.size.height;
+        CGSize statusBarSize = UIApplication.sharedApplication.statusBarFrame.size;
+        frame.origin.y += MIN(statusBarSize.width, statusBarSize.height);
 		frame.size.height -= frame.origin.y;
 		documentWrapper.view.backgroundColor = [UIColor lightGrayColor];
 		self.documentPicker.view.frame = frame;
