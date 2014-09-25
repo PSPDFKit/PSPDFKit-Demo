@@ -198,7 +198,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return (UIViewController *)nil;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" description:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Split-Screen interface" description:@"Uses a split screen interface with a floating toolbar." block:^{
         if (PSCIsIPad()) {
 			PSCDropboxSplitViewControllerContainer *containerController = [[PSCDropboxSplitViewControllerContainer alloc] init];
             [self presentViewController:containerController animated:YES completion:NULL];
