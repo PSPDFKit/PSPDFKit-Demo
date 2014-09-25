@@ -116,7 +116,7 @@
     self.pdfController.page = pageIndex;
 
     if (searchString && documentPickerController.fullTextSearchEnabled) {
-        [self.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} animated:YES];
+        [self.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} sender:nil animated:YES];
     }
 }
 

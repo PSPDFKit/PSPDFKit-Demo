@@ -46,7 +46,7 @@
     tabbedViewController.pdfController.page = pageIndex;
 
     if (searchString && documentPickerController.fullTextSearchEnabled) {
-        [tabbedViewController.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} animated:YES];
+        [tabbedViewController.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} sender:nil animated:YES];
     }
 
     // Hide controller.

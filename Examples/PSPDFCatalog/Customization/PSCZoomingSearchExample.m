@@ -44,7 +44,7 @@
     [super viewDidAppear:animated];
 
     // Automatically start searching.
-    [self searchForString:@"Tomat" options:nil animated:YES];
+    [self searchForString:@"Tomat" options:nil sender:nil animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

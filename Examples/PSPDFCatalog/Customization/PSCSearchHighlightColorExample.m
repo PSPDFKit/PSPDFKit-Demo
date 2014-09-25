@@ -36,7 +36,7 @@
 
     // We're lazy - automatically start search.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [pdfController searchForString:@"Tom" options:nil animated:YES];
+        [pdfController searchForString:@"Tom" options:nil sender:nil animated:YES];
     });
 
     return pdfController;
