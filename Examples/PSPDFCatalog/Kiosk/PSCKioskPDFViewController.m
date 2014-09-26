@@ -188,19 +188,17 @@
     // Define additional buttons with an action icon.
     NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
     NSMutableArray *activities = [NSMutableArray arrayWithObject:PSPDFActivityTypeGoToPage];
-    if ([settings[PROPERTY(additionalActionsButtonItem)] boolValue] || [settings[PROPERTY(activityButtonItem)] boolValue]) {
-        if ([settings[PROPERTY(printButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.printButtonItem];
-            // default activity
-        }
-        if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.openInButtonItem];
-            [activities addObject:PSPDFActivityTypeOpenIn];
-        }
-        if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.emailButtonItem];
-            // default activity
-        }
+    if ([settings[PROPERTY(printButtonItem)] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.printButtonItem];
+        // default activity
+    }
+    if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.openInButtonItem];
+        [activities addObject:PSPDFActivityTypeOpenIn];
+    }
+    if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.emailButtonItem];
+        // default activity
     }
 
     if (!PSCIsIPad()) {
