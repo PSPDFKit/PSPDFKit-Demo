@@ -68,10 +68,10 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 - (BOOL)isObjectRegisteredForUndo:(NSObject <PSPDFUndoProtocol> *)object;
 
 /// Performs a block and groups all observed changes into one event.
-- (void)performBlockAsGroup:(dispatch_block_t)block name:(NSString *)groupName;
+- (void)performBlockAsGroup:(void (^)(void))block name:(NSString *)groupName;
 
 /// Performs a block and ignores all observed changes.
-- (void)performBlockWithoutUndo:(dispatch_block_t)block;
+- (void)performBlockWithoutUndo:(void (^)(void))block;
 
 /// Support for regular invocation based undo
 /// Perform the call you would normally invoke after [undoManager prepareWithInvocationTarget:target]

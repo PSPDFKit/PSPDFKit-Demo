@@ -12,6 +12,7 @@
 
 #import "PSPDFBarButtonItem.h"
 
+/// Presents an `UIActionSheet` for bar button items that don't fit into the toolbar.
 @interface PSPDFMoreBarButtonItem : PSPDFBarButtonItem
 
 /// If there's only one valid action in the list, instead directly use this button.

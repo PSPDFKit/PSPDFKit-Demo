@@ -16,7 +16,7 @@
 
 // We need to explicitly disable animations here, else image weirdly animates because of an implicit animation context when the popover animates.
 // Don't do this when we edit, since we do want the animation there.
-- (void)performBlockWithoutAnimationIfResizingPopover:(dispatch_block_t)block;
+- (void)performBlockWithoutAnimationIfResizingPopover:(void (^)(void))block;
 
 @end
 

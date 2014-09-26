@@ -4,6 +4,26 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.0.2 - 26/September/2014__
+
+*  The UID generation in `PSPDFDocument` now works better with new app container locations in iOS 8. (See https://developer.apple.com/library/ios/technotes/tn2406/_index.html)
+*  Improves video scrubbing behavior and the animation when the gallery is displayed in fullscreen.
+*  FreeText Callout annotations now support dashed borders and better deal with different border/text colors.
+*  Various smaller improvements related to the HUD visibility and thumbnail grid on the iPhone 6 Plus.
+*  License is now validated later to allow setting the `PSPDFViewController` via Storyboards.
+*  Improvements to the search animation in `PSPDFOutlineViewController`.
+*  Digital Signatures now support up to 10k of payload data.
+*  Works around an issue with extremely large image tiling on 64-bit devices.
+*  API: Rename `searchStyle` to `searchMode` to keep it consistent with the enum name.
+*  API: `searchForString:options:animated:` in `PSPDFViewController` now has an additional `sender` parameter to control popover placement.
+*  Fixes an issue where `fitToWidth` didn't work as expected.
+*  Fixes an issue where the software brightness dimming would not fill the whole screen on iOS 8 in landscape.
+*  Fixes an issue where the stylus selection controller would hide other stylus options after one stylus has been chosen.
+*  Fixes a small issue with calculating the content scroll view offset.
+*  Fixes an issue where reordering apps in the “Open In” menu did not work. (iOS 8 only)
+*  Fixes an issue where the actions in the `moreBarButtonItem` sometimes wouldn’t invoke under iOS 8 because they were committed while the action sheet was still dismissing.
+*  Fixes an array overflow issue when a certain (corrupt) PDF was parsed.
+
 __v4.0.1 - 23/September/2014__
 
 *  Various improvements to the PSPDFCatalog examples.

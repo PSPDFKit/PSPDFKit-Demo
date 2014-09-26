@@ -20,15 +20,16 @@ extern NSString *const PSPDFDocumentInteractionControllerDidEndSendingToApplicat
 
 @class PSPDFDocument;
 
-/// Open in is only possible if the `PSPDFDocument` is backed by exactly one file-based PDF.
+/// Presents the `UIDocumentInteractionController` for the Open In... feature.
+/// @note Depending on `openOptions`, the `PSPDFDocumentSharingViewController` will be presented first.
 /// Before sending the file to another application, annotations will be saved.
 @interface PSPDFOpenInBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
-/// Defines what we are sending. If more than one option is set, user will get a dialog to choose.
+/// Defines how the document is sent. If more than one option is set, user will get a dialog to choose (`PSPDFDocumentSharingViewController`).
 /// Defaults to `PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionForceMergeFiles`.
 @property (nonatomic, assign) PSPDFDocumentSharingOptions openOptions;
 
-/// Document interaction controller that is used internally.
+/// Internally used document interaction controller.
 @property (nonatomic, strong, readonly) UIDocumentInteractionController *documentInteractionController;
 
 @end

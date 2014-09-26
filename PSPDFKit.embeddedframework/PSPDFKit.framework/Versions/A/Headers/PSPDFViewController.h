@@ -122,7 +122,9 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Searches for `searchText` within the current document.
 /// Opens the `PSPDFSearchViewController` unless specified differently in `options`.
 /// The only valid option is `PSPDFViewControllerSearchHeadlessKey` to disable the search UI.
-- (void)searchForString:(NSString *)searchText options:(NSDictionary *)options animated:(BOOL)animated;
+/// `options` are also passed through to the `presentViewController:options:animated:sender:completion:` method.
+/// `sender` is used to anchor the search popover, if one should be displayed (see `searchMode` in `PSPDFConfiguration`).
+- (void)searchForString:(NSString *)searchText options:(NSDictionary *)options sender:(id)sender animated:(BOOL)animated;
 
 /// The search view manager
 @property (nonatomic, strong, readonly) PSPDFSearchHighlightViewManager *searchHighlightViewManager;
@@ -297,44 +299,60 @@ extern NSString *const PSPDFPresentationPersistentCloseButtonKey;   // See `PSPD
 /// `[self overrideClass:PSPDFCloseBarButtonItem.class withClass:MyCustomButtonSubclass.class]`
 @property (nonatomic, strong, readonly) PSPDFCloseBarButtonItem *closeButtonItem;
 
-/// Show Outline/Table Of Contents (if available in the PDF)
+/// Presents the `PSPDFOutlineViewController` if there is an outline defined in the PDF.
+/// @note Also available as activity via `PSPDFActivityTypeOutline`.
 @property (nonatomic, strong, readonly) PSPDFOutlineBarButtonItem *outlineButtonItem;
 
-/// Enable Search.
+/// Presents the `PSPDFSearchViewController` or the `PSPDFInlineSearchManager`
+/// for searching text in the current `document`.
+/// @see `PSPDFSearchMode` in `PSPDFConfiguration` to configure this.
+/// @note Also available as activity via `PSPDFActivityTypeSearch`.
 @property (nonatomic, strong, readonly) PSPDFSearchBarButtonItem *searchButtonItem;
 
-/// Document/Thumbnail toggle.
+/// Toggles between the document and the thumbnail view state. (See `PSPDFViewMode` and `setViewMode:animated:`)
 @property (nonatomic, strong, readonly) PSPDFViewModeBarButtonItem *viewModeButtonItem;
 
-/// Print feature. Only displayed if document is allowed to be printed.
+/// Presents the `UIPrintInteractionController` for document printing.
+/// @note Only displayed if document is allowed to be printed (see `allowsPrinting` in `PSPDFDocument`)
+/// @note You should use the `activityButtonItem` instead (`UIActivityTypePrint`).
 @property (nonatomic, strong, readonly) PSPDFPrintBarButtonItem *printButtonItem;
 
-/// Shows the Open In... iOS dialog. Only works with single-file PDFs.
+/// Presents the `UIDocumentInteractionController` controller to open documents in other apps.
+/// @note You should use the `activityButtonItem` instead (`PSPDFActivityTypeOpenIn`).
 @property (nonatomic, strong, readonly) PSPDFOpenInBarButtonItem *openInButtonItem;
 
-/// Send current pdf via email. Only works with single-file/data PDFs.
+/// Presents the `MFMailComposeViewController` to send the document via email.
+/// @note Will only work when sending emails is configured on the device.
+/// @note You should use the `activityButtonItem` instead (`UIActivityTypeMail`).
 @property (nonatomic, strong, readonly) PSPDFEmailBarButtonItem *emailButtonItem;
 
-/// Send current pdf via message. Only works with single-file/data PDFs.
+/// Presents the `MFMessageComposeViewController` to send the document via SMS/iMessage.
+/// @note Will only work if iMessage or SMS is configured on the device.
+/// @note You should use the `activityButtonItem` instead (`UIActivityTypeMessage`).
 @property (nonatomic, strong, readonly) PSPDFMessageBarButtonItem *messageButtonItem;
 
-/// Show the annotation menu.
+/// Shows and hides the `PSPDFAnnotationToolbar` toolbar for creating annotations.
 /// @note Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
 @property (nonatomic, strong, readonly) PSPDFAnnotationBarButtonItem *annotationButtonItem;
 
-/// Show the bookmarks menu.
+/// Presents the `PSPDFBookmarkViewController` for creating/editing/viewing bookmarks.
+/// @note Also available as activity via `PSPDFActivityTypeBookmarks`.
 @property (nonatomic, strong, readonly) PSPDFBookmarkBarButtonItem *bookmarkButtonItem;
 
-/// Show a button to control the brightness.
+/// Presents the `PSPDFBrightnessViewController` to control screen brightness.
+/// @note iOS has a similar feature in the control center, but PSPDFKit brightness includes an additional software brightener.
 @property (nonatomic, strong, readonly) PSPDFBrightnessBarButtonItem *brightnessButtonItem;
 
-/// Show a button to show `UIActivityViewController`.
+/// Presents the `UIActivityViewController` for various actions, including many of the above button items.
+/// See `applicationActivities` in `PSPDFActivityBarButtonItem` for details.
 @property (nonatomic, strong, readonly) PSPDFActivityBarButtonItem *activityButtonItem;
 
-/// If added to the left/rightBarButtonItems, the position of the `additionalRightBarButtonItems` action button can be customized.
-/// By default this button is added to the rightBarButtonItems on the left. Button only visible if `additionalRightBarButtonItems.count > 1`.
+/// If added to `leftBarButtonItems` or `rightBarButtonItems`, the position of the
+/// `additionalActionsButtonItem` action button can be customized.
+/// By default this button is added to the `rightBarButtonItems` on the leftmost position.
+/// The button only visible if `additionalActionsButtonItem.count > 1`.
 /// @note Most implementations should use the more modern `activityButtonItem` instead.
-/// @warning Do not add this to `additionalRightBarButtonItems`.
+/// @warning Do not add this to `additionalActionsButtonItem`.
 @property (nonatomic, strong, readonly) PSPDFMoreBarButtonItem *additionalActionsButtonItem;
 
 /// Bar button items displayed at the left of the toolbar. Must be `UIBarButtonItem` or `PSPDFBarButtonItem` instances. Defaults to `[closeButtonItem]` if view is presented modally.

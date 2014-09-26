@@ -12,6 +12,8 @@
 
 #import "PSPDFBarButtonItem.h"
 
+/// Simple button that closes the `PSPDFViewController` if presented modally.
+/// @note Will only show up if presented modally.
 @interface PSPDFCloseBarButtonItem : PSPDFBarButtonItem
 
 @end

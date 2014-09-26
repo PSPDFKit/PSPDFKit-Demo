@@ -30,7 +30,7 @@
 
 /// Global helper to dismiss any open popover handled by `PSPDFViewController`.
 /// This will even dismiss popovers that don't expose their popover, such as `UIActionSheet` or `UIPrintInteractionController`.
-+ (BOOL)dismissPopoverAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
++ (BOOL)dismissPopoverAnimated:(BOOL)animated completion:(void (^)(void))completion;
 
 /// Returns if any of the bar button items is active. Takes UIKit-managed popovers into account.
 + (BOOL)isPopoverVisible;
@@ -69,7 +69,7 @@
 /// Return an `UIPopoverController` if you presented a popover or a "parent" object if you indirectly presented a popover controller.
 /// Sender can be either an `UIBarButtonItem` or a generic view.
 - (id)presentAnimated:(BOOL)animated sender:(id)sender;
-- (BOOL)dismissAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
+- (BOOL)dismissAnimated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)didDismiss;
 
 /// Use if presentModal needs to return nil because of a long-running process.
@@ -78,7 +78,7 @@
 
 /// Helper method to present and dismiss a view controller inside a popover controller on iPad or modally on iPhone.
 - (id)presentViewController:(UIViewController *)viewController sender:(id)sender;
-- (BOOL)dismissModalOrPopoverAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
+- (BOOL)dismissModalOrPopoverAnimated:(BOOL)animated completion:(void (^)(void))completion;
 
 /**
  Peeks into certain Apple classes to get the internal `UIPopoverController`. (e.g. `UIPrintInteractionController`. I've written rdars to allow access to the internal `popoverController` - but this is the best way in the mean time)

@@ -12,6 +12,6 @@
 
 #import "PSPDFBarButtonItem.h"
 
+/// Simple button that invokes `searchForString:options:sender:animated:` in the set `PSPDFViewController`.
 @interface PSPDFSearchBarButtonItem : PSPDFBarButtonItem
-
 @end

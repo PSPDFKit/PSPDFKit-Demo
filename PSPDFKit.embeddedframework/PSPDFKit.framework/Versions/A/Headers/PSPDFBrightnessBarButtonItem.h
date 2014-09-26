@@ -14,7 +14,8 @@
 
 @class PSPDFBrightnessViewController;
 
-/// Controls the system brightness.
+/// Presents the `PSPDFBrightnessViewController` to control screen brightness.
+/// @note iOS has a similar feature in the control center, but PSPDFKit brightness includes an additional software brightener.
 @interface PSPDFBrightnessBarButtonItem : PSPDFBarButtonItem
 
 /// Allows customization of the brightness controller before it's displayed. (e.g. set custom body text)

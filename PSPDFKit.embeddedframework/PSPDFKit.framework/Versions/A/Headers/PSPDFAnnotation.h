@@ -116,32 +116,30 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationFlags) {
     PSPDFAnnotationFlagLockedContents = 1 << 9, // [IGNORED] If set, don't allow the contents of the annotation to be modified by the user.
 };
 
-// See PDF Reference 1.7, 423ff. PSPDFKit currently only supports the `PSPDFAnnotationTriggerEventMouseDown` event.
+/// Trigger events for certain viewer actions. See PDF Reference 1.7, 423ff.
 typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
-    PSPDFAnnotationTriggerEventCursorEnters,  // E  (0)
-    PSPDFAnnotationTriggerEventCursorExits,   // X  (1)
-    PSPDFAnnotationTriggerEventMouseDown,     // D  (2, Supported)
-    PSPDFAnnotationTriggerEventMouseUp,       // U  (3, Supported)
-    PSPDFAnnotationTriggerEventReceiveFocus,  // Fo (4, Supported)
-    PSPDFAnnotationTriggerEventLooseFocus,    // Bl (5, Supported)
-    PSPDFAnnotationTriggerEventPageOpened,    // PO (6)
-    PSPDFAnnotationTriggerEventPageClosed,    // PC (7)
-    PSPDFAnnotationTriggerEventPageVisible,   // PV (8)
+    PSPDFAnnotationTriggerEventCursorEnters,  /// Cursor Enters. (Unsupported) E (0)
+    PSPDFAnnotationTriggerEventCursorExits,   /// Cursor Exits. (Unsupported) X  (1)
+    PSPDFAnnotationTriggerEventMouseDown,     /// Triggered on `touchesBegan:` D  (2)
+    PSPDFAnnotationTriggerEventMouseUp,       /// Triggered on `touchesEnded:` U  (3)
+    PSPDFAnnotationTriggerEventReceiveFocus,  /// Triggers when the annotation is tapped. Fo (4)
+    PSPDFAnnotationTriggerEventLooseFocus,    /// Triggers when the annotation is tapped. Bl (5)
+    PSPDFAnnotationTriggerEventPageOpened,    /// Page opens. (Unsupported) PO (6)
+    PSPDFAnnotationTriggerEventPageClosed,    /// Page closes. (Unsupported) PC (7)
+    PSPDFAnnotationTriggerEventPageVisible,   /// Page becomes visible. (Unsupported) PV (8)
 
     // Form extensions
-    PSPDFAnnotationTriggerEventFormChanged,   // K  (9)
-    PSPDFAnnotationTriggerEventFieldFormat,   // F (10)
-    PSPDFAnnotationTriggerEventFormValidate,  // V (11)
-    PSPDFAnnotationTriggerEventFormCalculate, // C (12)
+    PSPDFAnnotationTriggerEventFormChanged,   /// Form value changes. K  (9)
+    PSPDFAnnotationTriggerEventFieldFormat,   /// Form is formatted. F (10)
+    PSPDFAnnotationTriggerEventFormValidate,  /// Form is validated. V (11)
+    PSPDFAnnotationTriggerEventFormCalculate, /// Form is calculated. C (12)
 };
 
-// See PDF Reference 1.5, 1.6. Border effect names (Table 167).
+/// Border effect names. See PDF Reference 1.5, 1.6. (Table 167).
 typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
-	// enum order important!
     PSPDFAnnotationBorderEffectNoEffect = 0,
     PSPDFAnnotationBorderEffectCloudy,
 };
-
 
 /**
  `PSPDFAnnotation` is the base class for all PDF annotations and forms.

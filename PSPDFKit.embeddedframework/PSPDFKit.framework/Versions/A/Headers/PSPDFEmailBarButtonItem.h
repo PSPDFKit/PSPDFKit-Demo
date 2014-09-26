@@ -21,15 +21,18 @@
  To figure out the name, `PSPDFDocument's` `fileNamesWithDataDictionary` will be used.
 
  IF you want to customize the body text, use the `shouldShowController:` delegate in `PSPDFViewController`. To check that this mail controller was created via `PSPDFEmailBarButtonItem`, compare the delegate destination.
+
+  @note Depending on `sendOptions`, the `PSPDFDocumentSharingViewController` will be presented first.
  */
 @interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /**
  Control what data is sent. Defaults to `PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionAnnotationsSummary|PSPDFDocumentSharingOptionOfferMergeFiles`.
+
  If only one option is set here, no menu will be displayed.
 
- *Flattened controls if annotations should be flattened.
- Annotations that are not flattened are not displayed in Mobile Mail/Mobile Safari (partly as of iOS 7).
+ @note Annotations that are not flattened will not displayed in Mobile Mail/Mobile Safari.
+ (This is a technical limitation and Apple adde partial but mostly incomplete support since iOS 7)
  */
 @property (nonatomic, assign) PSPDFDocumentSharingOptions sendOptions;
 
@@ -39,5 +42,8 @@
 
 // Shows the email controller.
 - (void)showEmailControllerWithSendOptions:(PSPDFDocumentSharingOptions)sendOptions dataArray:(NSArray *)dataArray fileNames:(NSArray *)fileNames sender:(id)sender annotationSummary:(NSAttributedString *)annotationSummary animated:(BOOL)animated;
+
+// Keeps a reference to the mail compose view controller, if visible.
+@property (nonatomic, weak, readonly) MFMailComposeViewController *mailComposeViewController;
 
 @end

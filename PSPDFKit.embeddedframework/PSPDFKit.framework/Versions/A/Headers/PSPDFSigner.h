@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, PSPDFSigningAlgorithm) {
 - (void)signFormElement:(PSPDFSignatureFormElement *)element
 		withCertificate:(PSPDFX509 *)x509
 				writeTo:(NSString *)path
-			 completion:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))done;
+			 completion:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))done NS_REQUIRES_SUPER;
 
 /// (Optional) Allows customization of the signing process, e.g. in cases where
 /// the private key is not present on the device and signing happens with

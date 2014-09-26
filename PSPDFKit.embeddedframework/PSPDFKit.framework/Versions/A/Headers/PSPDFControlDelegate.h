@@ -34,7 +34,7 @@
 
 - (BOOL)executePDFAction:(PSPDFAction *)action inTargetRect:(CGRect)targetRect forPage:(NSUInteger)page animated:(BOOL)animated actionContainer:(id)actionContainer;
 
-- (void)searchForString:(NSString *)searchText options:(NSDictionary *)options animated:(BOOL)animated;
+- (void)searchForString:(NSString *)searchText options:(NSDictionary *)options sender:(id)sender animated:(BOOL)animated;
 
 - (void)reloadData;
 

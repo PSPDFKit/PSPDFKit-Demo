@@ -13,6 +13,8 @@
 #import "PSPDFBarButtonItem.h"
 #import "PSPDFDocumentSharingViewController.h"
 
+/// Presents the `UIPrintInteractionController` for printing documents.
+/// @note Depending on `printOptions`, the `PSPDFDocumentSharingViewController` will be presented first.
 @interface PSPDFPrintBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, UIPrintInteractionControllerDelegate>
 
 /// Control what data is printed. If more than one option is set, user will get a dialog to choose.

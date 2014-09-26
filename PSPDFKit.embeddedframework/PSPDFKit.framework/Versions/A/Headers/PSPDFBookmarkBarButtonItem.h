@@ -12,6 +12,7 @@
 
 #import "PSPDFBarButtonItem.h"
 
+/// Presents the `PSPDFBookmarkViewController` for creating/editing/viewing bookmarks.
 @interface PSPDFBookmarkBarButtonItem : PSPDFBarButtonItem
 
 /// Defaults to YES. NO will show the `PSPDFBookmarkViewController` instantly.

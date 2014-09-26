@@ -100,7 +100,10 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 
 @class PSPDFConfigurationBuilder;
 
-/// A `PSPDFConfiguration` defines the behavior of a `PSPDFViewController`.
+/**
+ A `PSPDFConfiguration` defines the behavior of a `PSPDFViewController`.
+ It uses the builder pattern via `PSPDFConfigurationBuilder` to create an immutable copy via a block.
+ */
 @interface PSPDFConfiguration : PSPDFModel <PSPDFOverridable>
 
 /// Returns a copy with the default configuration.
@@ -141,7 +144,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
 /// iPhone switches to yes in `willRotateToInterfaceOrientation:` - reset back to no if you don't want this.
-/// @note `fitToWidthEnabled` is not supported for vertical scrolling or pageCurl mode. (You might want `PSPDFPageTransitionScrollContinuous`)
+/// @note `fitToWidthEnabled` is not supported for `PSPDFPageTransitionCurl`.
 @property (nonatomic, assign, getter=isFitToWidthEnabled, readonly) BOOL fitToWidthEnabled;
 
 /// If this is set to YES, the page remembers its vertical position if `fitToWidthEnabled` is enabled.
@@ -375,8 +378,8 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// @name Search
 
 /// Controls whether to display search results directly in a PDF, or as a list in a modal.
-/// Defaults to PSPDFSearchStyleInline on iPhone, PSPDFSearchStyleModal on iPad.
-@property (nonatomic, assign, readonly) PSPDFSearchMode searchStyle;
+/// Defaults to `PSPDFSearchModeInline` on iPhone, `PSPDFSearchModeModal` on iPad.
+@property (nonatomic, assign, readonly) PSPDFSearchMode searchMode;
 
 
 /// @name Advanced Properties
@@ -469,7 +472,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign) BOOL allowBackgroundSaving;
 @property (nonatomic, assign) BOOL shouldCacheThumbnails;
 @property (nonatomic, assign) BOOL shouldScrollToChangedPage;
-@property (nonatomic, assign) PSPDFSearchMode searchStyle;
+@property (nonatomic, assign) PSPDFSearchMode searchMode;
 
 @end
 

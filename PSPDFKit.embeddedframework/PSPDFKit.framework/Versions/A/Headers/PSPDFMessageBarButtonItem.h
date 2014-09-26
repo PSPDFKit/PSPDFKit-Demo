@@ -14,7 +14,9 @@
 #import "PSPDFDocumentSharingViewController.h"
 #import <MessageUI/MessageUI.h>
 
+/// Presents a `MFMessageComposeViewController`.
 /// Allows to share via iMessage/SMS on the devices supporting this.
+/// @note Depending on `sendOptions`, the `PSPDFDocumentSharingViewController` will be presented first.
 @interface PSPDFMessageBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 /// The send options for iMessage/SMS sharing.

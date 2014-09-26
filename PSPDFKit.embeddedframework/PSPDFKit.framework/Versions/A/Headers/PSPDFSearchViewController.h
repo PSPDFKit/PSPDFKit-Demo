@@ -58,7 +58,7 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 @end
 
-/// The PDF search view controller.
+/// Allows to search within the current `document`.
 @interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStyleable, PSPDFPopoverControllerDismissable>
 
 /// Designated initializer.
