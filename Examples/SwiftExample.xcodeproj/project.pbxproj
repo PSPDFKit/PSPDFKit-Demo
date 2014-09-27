@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7844642C1956846C00BE4011 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7844642B1956846C00BE4011 /* Samples */; };
+		788E9F6819D6BA1C009FC36F /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788E9F6719D6BA1C009FC36F /* Media.xcassets */; };
 		7892571819CF7AC7002D7FAD /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7892570F19CF7AC7002D7FAD /* PSPDFKit.framework */; };
 		7892571919CF7AC7002D7FAD /* PSPDFKit-Acknowledgements in Resources */ = {isa = PBXBuildFile; fileRef = 7892571119CF7AC7002D7FAD /* PSPDFKit-Acknowledgements */; };
 		7892571A19CF7AC7002D7FAD /* PSPDFKit-License in Resources */ = {isa = PBXBuildFile; fileRef = 7892571219CF7AC7002D7FAD /* PSPDFKit-License */; };
@@ -17,12 +18,12 @@
 		7892571E19CF7AC7002D7FAD /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7892571619CF7AC7002D7FAD /* PSPDFKit.bundle */; };
 		7892571F19CF7AC7002D7FAD /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7892571719CF7AC7002D7FAD /* PSPDFKit.xcconfig */; };
 		78DE043C19563B73006CB968 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE043B19563B73006CB968 /* AppDelegate.swift */; };
-		78DE043E19563B73006CB968 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DE043D19563B73006CB968 /* Images.xcassets */; };
 		78DE04F319567F64006CB968 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE04F219567F64006CB968 /* PDFViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7844642B1956846C00BE4011 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
+		788E9F6719D6BA1C009FC36F /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = PSPDFCatalog/Resources/Media.xcassets; sourceTree = SOURCE_ROOT; };
 		7892570F19CF7AC7002D7FAD /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
 		7892571119CF7AC7002D7FAD /* PSPDFKit-Acknowledgements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PSPDFKit-Acknowledgements"; sourceTree = "<group>"; };
 		7892571219CF7AC7002D7FAD /* PSPDFKit-License */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PSPDFKit-License"; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		78DE043619563B73006CB968 /* SwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DE043A19563B73006CB968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DE043B19563B73006CB968 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78DE043D19563B73006CB968 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78DE04F219567F64006CB968 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 			children = (
 				78DE043B19563B73006CB968 /* AppDelegate.swift */,
 				78DE04F219567F64006CB968 /* PDFViewController.swift */,
-				78DE043D19563B73006CB968 /* Images.xcassets */,
+				788E9F6719D6BA1C009FC36F /* Media.xcassets */,
 				7844642B1956846C00BE4011 /* Samples */,
 				78DE043919563B73006CB968 /* Supporting Files */,
 				7892570E19CF7AC7002D7FAD /* PSPDFKit.embeddedframework */,
@@ -167,6 +167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788E9F6819D6BA1C009FC36F /* Media.xcassets in Resources */,
 				7892571D19CF7AC7002D7FAD /* PSPDFKit-Version in Resources */,
 				7892571C19CF7AC7002D7FAD /* PSPDFKit-nosqlite.xcconfig in Resources */,
 				7844642C1956846C00BE4011 /* Samples in Resources */,
@@ -175,7 +176,6 @@
 				7892571E19CF7AC7002D7FAD /* PSPDFKit.bundle in Resources */,
 				7892571A19CF7AC7002D7FAD /* PSPDFKit-License in Resources */,
 				7892571919CF7AC7002D7FAD /* PSPDFKit-Acknowledgements in Resources */,
-				78DE043E19563B73006CB968 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
