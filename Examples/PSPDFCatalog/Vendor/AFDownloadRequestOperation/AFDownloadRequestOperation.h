@@ -93,7 +93,7 @@
  
  Returns `NO` if an error happened, `YES` if the file is removed or did not exist in the first place.
  */
-- (BOOL)deleteTempFileWithError:(NSError **)error;
+- (BOOL)deleteTempFileWithError:(NSError *__autoreleasing*)error;
 
 /** 
  Returns the path used for the temporary file. Returns `nil` if the targetPath has not been set.

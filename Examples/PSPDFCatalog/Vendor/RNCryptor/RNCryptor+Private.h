@@ -44,7 +44,7 @@
 @property (nonatomic, readwrite, assign) RNCryptorOptions options;
 
 - (instancetype)initWithHandler:(RNCryptorHandler)handler;
-+ (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(NSError **)anError;
++ (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(NSError *__autoreleasing*)anError;
 - (void)cleanupAndNotifyWithError:(NSError *)error;
 - (BOOL)hasHMAC;
 @end
