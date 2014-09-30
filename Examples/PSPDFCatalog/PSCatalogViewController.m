@@ -81,6 +81,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             self.title = [PSPDFKit.sharedInstance.version stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
+		// We need to call this before the view loads initially
+		[self applyCatalogAppearanceUsingCustomTinting:YES];
     }
     return self;
 }
@@ -1440,9 +1442,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
     self.searchDisplayController = searchDisplayController;
-
-	// On iOS 8 doing this is viewWillAppear: seems to be too late
-	[self applyCatalogAppearanceUsingCustomTinting:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1455,6 +1454,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 		[self.navigationController setNavigationBarHidden:NO animated:animated];
 	}
     [self.navigationController setToolbarHidden:YES animated:animated];
+	// Restore appearance back to defaults, in case an example change it
 	[self applyCatalogAppearanceUsingCustomTinting:YES];
 
     // clear cache (for night mode)
