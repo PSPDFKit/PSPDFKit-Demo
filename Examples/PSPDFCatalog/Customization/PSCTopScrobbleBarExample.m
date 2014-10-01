@@ -15,6 +15,8 @@
 #pragma mark - PSCTopScrobbleBarExample
 
 @interface PSCCustomHUDView : PSPDFHUDView @end
+@interface PSCCustomScrobbleBar : PSPDFScrobbleBar @end
+
 @interface PSCTopScrobbleBarExample : PSCExample @end
 @implementation PSCTopScrobbleBarExample
 
@@ -33,6 +35,9 @@
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.pageLabelDistance = 49.f;
         [builder overrideClass:PSPDFHUDView.class withClass:PSCCustomHUDView.class];
+
+        // There's no need for actually overriding the scrobble bar in this example - it's just for testing.
+        [builder overrideClass:PSPDFScrobbleBar.class withClass:PSCCustomScrobbleBar.class];
     }]];
     return pdfController;
 }
@@ -48,6 +53,17 @@
     CGRect newFrame = self.dataSource.contentRect;
     newFrame.size.height = 44.f;
     self.scrobbleBar.frame = newFrame;
+}
+
+@end
+
+@implementation PSCCustomScrobbleBar
+
+- (instancetype)init {
+    if ((self = [super init])) {
+        NSLog(@"Using custom subclass");
+    }
+    return self;
 }
 
 @end
