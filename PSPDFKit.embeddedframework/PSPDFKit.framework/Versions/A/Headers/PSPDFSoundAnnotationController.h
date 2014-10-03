@@ -50,10 +50,10 @@ typedef NS_ENUM(NSInteger, PSPDFSoundAnnotationState) {
 @property (nonatomic, strong, readonly) AVAudioPlayer *audioPlayer;
 
 /// Starts or resumes playback
-- (BOOL)startPlayback:(NSError **)error;
+- (BOOL)startPlayback:(NSError *__autoreleasing*)error;
 
 /// Starts or resumes recording
-- (BOOL)startRecording:(NSError **)error;
+- (BOOL)startRecording:(NSError *__autoreleasing*)error;
 
 /// Pauses playback or recording
 - (void)pause;
@@ -62,6 +62,6 @@ typedef NS_ENUM(NSInteger, PSPDFSoundAnnotationState) {
 - (void)discardRecording;
 
 /// Stops playback or recording
-- (BOOL)stop:(NSError **)error;
+- (BOOL)stop:(NSError *__autoreleasing*)error;
 
 @end

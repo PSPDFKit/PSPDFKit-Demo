@@ -101,6 +101,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// @note The cache will always return an aspect ratio corrected size of the image, so resulting size might be different.
 - (UIImage *)imageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size options:(PSPDFCacheOptions)options;
 
+/// Like above but takes a completion block as the last parameter. This method still calls the delegate in addition to the block!
+- (UIImage *)imageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size options:(PSPDFCacheOptions)options completionBlock:(void(^)(UIImage *image, PSPDFDocument *document, NSUInteger page, CGSize size))completionBlock;
+
 /// @name Store into cache
 
 /// Caches the image in memory and disk for later re-use.
@@ -140,7 +143,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// Removes the whole cache (memory/disk) for `document`. Will cancel any open writes as well.
 /// Enable `deleteDocument` to remove the document and the associated metadata.
-- (BOOL)removeCacheForDocument:(PSPDFDocument *)document deleteDocument:(BOOL)deleteDocument error:(NSError **)error;
+- (BOOL)removeCacheForDocument:(PSPDFDocument *)document deleteDocument:(BOOL)deleteDocument error:(NSError *__autoreleasing*)error;
 
 /// Clears the disk and memory cache.
 - (void)clearCache;

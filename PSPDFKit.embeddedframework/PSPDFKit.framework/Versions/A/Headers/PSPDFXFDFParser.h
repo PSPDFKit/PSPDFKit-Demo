@@ -23,7 +23,7 @@
 
 /// Parse XML and block until it's done. Returns the resulting annotations after parsing is finished
 /// (which can also be accessed later on).
-- (NSArray *)parseWithError:(NSError **)error;
+- (NSArray *)parseWithError:(NSError *__autoreleasing*)error;
 
 /// Return all annotations as array. Annotations are sorted by page.
 @property (nonatomic, copy, readonly) NSArray *annotations;

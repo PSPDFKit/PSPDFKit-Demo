@@ -52,7 +52,11 @@
 /// @note See `psc_indexSet` to convert `NSNumber-NSArrays` to an `NSIndexSet`.
 - (void)searchForString:(NSString *)searchTerm inRanges:(NSIndexSet *)ranges rangesOnly:(BOOL)rangesOnly;
 
-/// Stops all operations. Blocks until all operations are finished.
+/// Cancels all operations. Returns immediately.
+- (void)cancelAllOperations;
+
+/// Cancels all operations. Blocks current thread until all operations are processed.
+/// @note Use `cancelAllOperations` if you don't with to wait untill all opearetions are processed.
 - (void)cancelAllOperationsAndWait;
 
 /// Defaults to `NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch|NSWidthInsensitiveSearch|NSRegularExpressionSearch`.

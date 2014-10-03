@@ -23,7 +23,7 @@ typedef void *OPENSSL_X509;
 + (instancetype)adobeCA;
 
 /// Initializes the certificate from certificate data
-+ (NSArray *)certificatesFromPKCS7Data:(NSData *)data error:(NSError **)err;
++ (NSArray *)certificatesFromPKCS7Data:(NSData *)data error:(NSError *__autoreleasing*)error;
 
 /// Initializes the certificate with an OpenSSL X509 type
 - (instancetype)initWithX509:(OPENSSL_X509)x509 NS_DESIGNATED_INITIALIZER;

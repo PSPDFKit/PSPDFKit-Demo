@@ -30,7 +30,7 @@
 #import <MessageUI/MessageUI.h>
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFMessageBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager, PSPDFAction, PSPDFAnnotationToolbar;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFMessageBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager, PSPDFAction, PSPDFAnnotationToolbar, PSPDFInlineSearchManager;
 
 /**
  This is the main view controller to display PDFs. Can be displayed in full-screen or embedded. Everything in PSPDFKit is based around `PSPDFViewController`. This is the class you want to override and customize.
@@ -120,11 +120,17 @@
 extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 
 /// Searches for `searchText` within the current document.
-/// Opens the `PSPDFSearchViewController` unless specified differently in `options`.
+/// Opens the `PSPDFSearchViewController`, or presents inline search UI based `searchMode` in `PSPDFConfiguration`.
 /// The only valid option is `PSPDFViewControllerSearchHeadlessKey` to disable the search UI.
 /// `options` are also passed through to the `presentViewController:options:animated:sender:completion:` method.
 /// `sender` is used to anchor the search popover, if one should be displayed (see `searchMode` in `PSPDFConfiguration`).
 - (void)searchForString:(NSString *)searchText options:(NSDictionary *)options sender:(id)sender animated:(BOOL)animated;
+
+/// Returns YES if a search UI is currently being presented.
+@property (nonatomic, assign, getter=isSearchActive, readonly) BOOL searchActive;
+
+/// Cancels search and hides search UI.
+- (void)cancelSearchAnimated:(BOOL)animated;
 
 /// The search view manager
 @property (nonatomic, strong, readonly) PSPDFSearchHighlightViewManager *searchHighlightViewManager;
@@ -133,6 +139,9 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// The delegate is set to this controller. Don't change but create your own text search class instead if you need a different delegate.
 /// Will be recreated as the document changes. Returns nil if the document is nil. Thread safe.
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
+
+/// The inline search mananger used when `PSPDFSearchModeInline` is set.
+@property (nonatomic, strong, readonly) PSPDFInlineSearchManager *inlineSearchManager;
 
 
 /// @name HUD Controls

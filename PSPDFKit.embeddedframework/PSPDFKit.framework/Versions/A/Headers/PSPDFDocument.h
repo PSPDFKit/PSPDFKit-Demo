@@ -228,7 +228,7 @@ extern NSString * const PSPDFDocumentDefaultAnnotationUsernameKey;
 @property (nonatomic, copy) NSString *dataDirectory;
 
 /// Make sure 'dataDirectory' exists. Returns error if creation is not possible.
-- (BOOL)ensureDataDirectoryExistsWithError:(NSError **)error;
+- (BOOL)ensureDataDirectoryExistsWithError:(NSError *__autoreleasing*)error;
 
 /// Overrides the global disk caching strategy in `PSPDFCache`.
 /// Defaults to -1; which equals to the setting in `PSPDFCache`.
@@ -448,7 +448,7 @@ extern NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTyp
 /// Can be called on any thread.
 /// @note Not available in PSPDFKit Viewer.
 - (void)saveAnnotationsWithCompletionBlock:(void (^)(NSArray *savedAnnotations, NSError *error))completionBlock;
-- (BOOL)saveAnnotationsWithError:(NSError **)error; // sync variant.
+- (BOOL)saveAnnotationsWithError:(NSError *__autoreleasing*)error; // sync variant.
 
 /// Returns YES if there are unsaved annotations.
 /// @note This might not include unsaved open annotation creation operations, like a partial drawing. First set `pdfController.annotationStateManager.state = nil` to make sure you're not in an editing mode before evaluating this.
@@ -471,12 +471,12 @@ extern NSString *const PSPDFIgnoreDisplaySettings;   // Always draw pixels with 
 /// @param receipt       Returns the render receipt for the render action.
 /// @param error         Returns an error object. (then image will be nil)
 /// @return              A new UIImage with the rendered page content
-- (UIImage *)imageForPage:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError **)error;
+- (UIImage *)imageForPage:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError *__autoreleasing*)error;
 
 /// Draw a page into a specified context.
 /// If for some reason renderPage: doesn't return a Render Receipt, an error occurred.
 /// @note if `annotations` is nil, they will be auto-fetched. Add an empty array if you don't want to render annotations.
-- (PSPDFRenderReceipt *)renderPage:(NSUInteger)page context:(CGContextRef)context size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options error:(NSError **)error;
+- (PSPDFRenderReceipt *)renderPage:(NSUInteger)page context:(CGContextRef)context size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /// Set custom render options (see PSPDFPageRenderer.h for options)
 /// Options set here will override any options sent to imageForPage/renderPage.
@@ -583,7 +583,7 @@ extern NSString *const PSPDFMetadataKeyPortfolio; // For PDF portfolios
 /// @note A PDF can have different box rect values for different types, or only one of the defined. This call will always return a valid rect info, thus will behave similar to `CGPDFPageGetBoxRect()`.
 /// @warning Values will be evaluated each time asked - cache or use `pageInfoForPage:` to get cached variants.
 /// PSPDFKit will use the box value set in the `PDFBox` property, which defaults to `kCGPDFCropBox`.
-- (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError **)error;
+- (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError *__autoreleasing*)error;
 
 /// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES.
 @property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;

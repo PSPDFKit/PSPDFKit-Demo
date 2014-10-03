@@ -24,6 +24,6 @@
 @property (nonatomic, copy, readonly) NSString *streamPath;
 
 // Will parse the stream and also set the URL if applicible.
-- (NSURL *)fileURLWithError:(NSError **)error;
+- (NSURL *)fileURLWithError:(NSError *__autoreleasing*)error;
 
 @end

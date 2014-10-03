@@ -66,7 +66,7 @@
 /// PSPDFKit requests a save. Can be ignored if you're instantly persisting.
 /// Event is e.g. fired before the app goes into background, or when `PSPDFViewController` is dismissed.
 /// Return NO + error if saving failed.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /// Return YES if the provider requires saving.
 - (BOOL)shouldSaveAnnotations;

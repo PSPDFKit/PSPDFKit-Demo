@@ -17,12 +17,12 @@
 @class PSPDFMenuItem;
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFlexibleToolbarPosition) {
-    PSPDFFlexibleToolbarPositionNone = 0,
-    PSPDFFlexibleToolbarPositionInTopBar = 1 << 0,
-    PSPDFFlexibleToolbarPositionLeft = 1 << 1,
-    PSPDFFlexibleToolbarPositionRight = 1 << 2,
+    PSPDFFlexibleToolbarPositionNone      = 0,
+    PSPDFFlexibleToolbarPositionInTopBar  = 1 << 0,
+    PSPDFFlexibleToolbarPositionLeft      = 1 << 1,
+    PSPDFFlexibleToolbarPositionRight     = 1 << 2,
     PSPDFFlexibleToolbarPositionsVertical = PSPDFFlexibleToolbarPositionLeft | PSPDFFlexibleToolbarPositionRight,
-    PSPDFFlexibleToolbarPositionsAll = PSPDFFlexibleToolbarPositionInTopBar | PSPDFFlexibleToolbarPositionsVertical
+    PSPDFFlexibleToolbarPositionsAll      = PSPDFFlexibleToolbarPositionInTopBar | PSPDFFlexibleToolbarPositionsVertical
 };
 
 typedef NS_ENUM(NSInteger, PSPDFFlexibleToolbarGroupButtonIndicatorPosition) {

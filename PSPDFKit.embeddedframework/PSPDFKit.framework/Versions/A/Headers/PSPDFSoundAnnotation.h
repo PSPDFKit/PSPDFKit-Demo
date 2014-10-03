@@ -29,7 +29,7 @@ extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 
 - (instancetype)initRecorder;
 - (instancetype)initWithRate:(NSUInteger)rate channels:(UInt32)channels bits:(UInt32)bits encoding:(NSString *)encoding;
-- (instancetype)initWithURL:(NSURL *)soundURL error:(NSError **)error;
+- (instancetype)initWithURL:(NSURL *)soundURL error:(NSError *__autoreleasing*)error;
 
 /// The annotation controller
 @property (nonatomic, strong) PSPDFSoundAnnotationController *controller;

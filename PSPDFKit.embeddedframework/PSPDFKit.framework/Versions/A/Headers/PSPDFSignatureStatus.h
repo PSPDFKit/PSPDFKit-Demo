@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, PSPDFSignatureStatusSeverity) {
 
 /// Adds a signature problem report to the status summary and adjusts the
 /// status severity if necessary.
-- (void)reportSignatureProblem:(OPENSSL_X509_ERR)err;
+- (void)reportSignatureProblem:(OPENSSL_X509_ERR)error;
 
 /// The signer name
 @property (nonatomic, copy, readonly) NSString *signer;

@@ -11,6 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @class PSPDFAction;
 @protocol PSPDFOverridable;

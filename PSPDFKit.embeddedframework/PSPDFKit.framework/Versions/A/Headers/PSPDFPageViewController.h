@@ -27,8 +27,8 @@
 /// If set to YES, the background of the `UIViewController` is used. Else you may get some animation artifacts. Defaults to NO.
 @property (nonatomic, assign) BOOL useSolidBackground;
 
-/// Clips the page to its boundaries, not showing a page curl on empty background. Defaults to YES.
-/// Usually you want this, unless your document is variable sized.
+/// Clips the page to its boundaries, not showing a page curl on empty background. Defaults to value set in `PSPDFConfiguration`.
+/// You usually want this with `PSPDFPageTransitionCurl`, unless your document is variable sized.
 @property (nonatomic, assign) BOOL clipToPageBoundaries;
 
 @end

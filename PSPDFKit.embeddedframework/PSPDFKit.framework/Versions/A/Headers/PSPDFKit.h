@@ -157,6 +157,7 @@ extern "C" {
 #import "PSPDFSubmitFormAction.h"
 #import "PSPDFResetFormAction.h"
 #import "PSPDFHideAction.h"
+#import "PSPDFEraseOverlay.h"
 
 // views
 #import "PSPDFPageLabelView.h"

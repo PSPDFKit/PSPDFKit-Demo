@@ -64,6 +64,6 @@ typedef NS_ENUM(NSInteger, PSPDFSigningAlgorithm) {
 /// used algorithm `algo`. When you are done signing return the signed bytes.
 - (NSData *)signHash:(NSData *)hash
            algorithm:(PSPDFSigningAlgorithm)algorithm
-               error:(NSError **)error;
+               error:(NSError *__autoreleasing*)error;
 
 @end

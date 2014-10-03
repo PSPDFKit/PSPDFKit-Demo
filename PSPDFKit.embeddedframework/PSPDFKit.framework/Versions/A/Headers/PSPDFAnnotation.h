@@ -159,7 +159,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
 /// Converts JSON representation back into `PSPDFAnnotation` subclasses.
 /// Will return nil for invalid JSON or not recognized types.
 /// `document` is optional and if given the override dictionary will be honored (to return your custom `PSPDFAnnotation*` subclasses)
-+ (PSPDFAnnotation *)annotationFromJSONDictionary:(NSDictionary *)JSONDictionary document:(PSPDFDocument *)document error:(NSError **)error;
++ (PSPDFAnnotation *)annotationFromJSONDictionary:(NSDictionary *)JSONDictionary document:(PSPDFDocument *)document error:(NSError *__autoreleasing*)error;
 
 /// Use this to create custom user annotations.
 - (instancetype)initWithType:(PSPDFAnnotationType)annotationType;

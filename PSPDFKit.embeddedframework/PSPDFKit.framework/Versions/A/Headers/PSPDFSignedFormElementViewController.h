@@ -31,7 +31,7 @@
 
 /// Verifies the signature. You can check if the signature is valid by using
 /// the returned signature status' severity flag.
-- (PSPDFSignatureStatus *)verifySignature:(NSError **)error;
+- (PSPDFSignatureStatus *)verifySignature:(NSError *__autoreleasing*)error;
 
 /// The signed form element view controller delegate
 @property (nonatomic, weak) id<PSPDFSignedFormElementViewControllerDelegate> delegate;

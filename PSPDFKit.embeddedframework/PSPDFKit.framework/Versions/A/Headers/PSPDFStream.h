@@ -21,7 +21,7 @@
 
 /// Get the stream from an object that can provide a stream.
 /// `options` is currently unused.
-+ (PSPDFStream *)streamFromStreamProvider:(id<PSPDFStreamProvider>)streamProvider options:(NSDictionary *)options error:(NSError **)error;
++ (PSPDFStream *)streamFromStreamProvider:(id<PSPDFStreamProvider>)streamProvider options:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /// Designated initializer
 - (instancetype)initWithStream:(CGPDFStreamRef)stream;
@@ -46,12 +46,12 @@
 
 /// File URL from the converted stream.
 /// @warning This might be slow for large streams.
-- (NSURL *)fileURLWithAssetName:(NSString *)assetName UID:(NSString *)UID page:(NSUInteger)page error:(NSError **)error;
+- (NSURL *)fileURLWithAssetName:(NSString *)assetName UID:(NSString *)UID page:(NSUInteger)page error:(NSError *__autoreleasing*)error;
 
 /// File URL with generic path. Path needs to be writable and any directory needs to be created.
 ///
 /// @warning This might be slow for large streams.
-- (NSURL *)fileURLWithPath:(NSString *)path error:(NSError **)error;
+- (NSURL *)fileURLWithPath:(NSString *)path error:(NSError *__autoreleasing*)error;
 
 @end
 

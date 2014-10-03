@@ -15,7 +15,7 @@
 
 /// The free text annotation intent type. (Optional; PDF 1.6)
 typedef NS_ENUM(NSInteger, PSPDFFreeTextAnnotationIntent) {
-    PSPDFFreeTextAnnotationIntentFreeText = 0,       /// Regular free text annotation (text box comment)
+    PSPDFFreeTextAnnotationIntentFreeText,           /// Regular free text annotation (text box comment)
     PSPDFFreeTextAnnotationIntentFreeTextCallout,    /// Callout style
     PSPDFFreeTextAnnotationIntentFreeTextTypeWriter, /// Click- to-type or typewriter object.
 };

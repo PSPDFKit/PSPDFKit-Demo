@@ -23,7 +23,7 @@
 
 // Returns a new instance of the receiver initialized using
 // -initWithDictionary:error:.
-+ (instancetype)modelWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error;
++ (instancetype)modelWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing*)error;
 
 // Initializes the receiver using key-value coding, setting the keys and values
 // in the given dictionary.
@@ -37,7 +37,7 @@
 //                   (like a KVC validation error).
 //
 // Returns an initialized model object, or nil if validation failed.
-- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing*)error;
 
 // Returns the keys for all @property declarations, except for `readonly`
 // properties without ivars, or properties on PSPDFModel itself.
@@ -87,6 +87,6 @@
 //         validation
 //
 // Returns YES if the model is valid, or NO if the validation failed.
-- (BOOL)validate:(NSError **)error;
+- (BOOL)validate:(NSError *__autoreleasing*)error;
 
 @end

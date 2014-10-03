@@ -21,12 +21,12 @@ extern NSString *const PSPDFPageRendererPageInfoKey;       // The `PSPDFPageInfo
 @protocol PSPDFPageRenderer <PSPDFPlugin>
 
 // Currently `options` contains `PSPDFPageRendererPageInfoKey`.
-- (BOOL)drawPage:(NSUInteger)page inContext:(CGContextRef)context withOptions:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)drawPage:(NSUInteger)page inContext:(CGContextRef)context withOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 @optional
 
 // Renders annotation appearance streams.
-- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context error:(NSError **)error;
+- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context error:(NSError *__autoreleasing*)error;
 
 @end
 

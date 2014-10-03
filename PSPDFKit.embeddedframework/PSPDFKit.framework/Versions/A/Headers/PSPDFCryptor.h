@@ -36,21 +36,21 @@ typedef NS_ENUM(NSInteger, PSPDFCryptorErrorCode) {
 
 /// Encrypt a file (DOES NOT store encryption salt in the file header)
 /// Using format https://github.com/rnapier/RNCryptor/wiki/Data-Format
-- (BOOL)encryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL key:(NSData *)key error:(NSError **)error;
+- (BOOL)encryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL key:(NSData *)key error:(NSError *__autoreleasing*)error;
 
 /// Decrypt a file.
 /// Both the legacy and the current file formats are supported.
-- (BOOL)decryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL key:(NSData *)key error:(NSError **)error;
+- (BOOL)decryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL key:(NSData *)key error:(NSError *__autoreleasing*)error;
 
 /// Encrypt a file (stores encryption salt in the file header)
 /// Using format https://github.com/rnapier/RNCryptor/wiki/Data-Format
-- (BOOL)encryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL passphrase:(NSString *)passphrase error:(NSError **)error;
+- (BOOL)encryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL passphrase:(NSString *)passphrase error:(NSError *__autoreleasing*)error;
 
 /// Decrypt a file.
 /// Both the legacy and the current RNCryptor file formats are supported.
 /// For the current file format encryption salt from the file header will be used to construct the encryption key.
 /// https://github.com/rnapier/RNCryptor/wiki/Data-Format
-- (BOOL)decryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL passphrase:(NSString *)passphrase error:(NSError **)error;
+- (BOOL)decryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL passphrase:(NSString *)passphrase error:(NSError *__autoreleasing*)error;
 
 
 @end

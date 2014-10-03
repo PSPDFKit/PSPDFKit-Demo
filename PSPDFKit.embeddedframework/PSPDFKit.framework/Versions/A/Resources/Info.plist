@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>PSPDFKit</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.petersteinberger.pspdfkit</string>
+	<string>com.pspdfkit</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -15,10 +15,10 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.0.2</string>
+	<string>4.0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>30262</string>
+	<string>30433</string>
 </dict>
 </plist>

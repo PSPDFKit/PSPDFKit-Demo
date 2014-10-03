@@ -52,7 +52,7 @@
 - (void)clearCache;
 
 /// Try to load annotations from file and set them if successful.
-- (BOOL)tryLoadAnnotationsFromFileWithError:(NSError **)error;
+- (BOOL)tryLoadAnnotationsFromFileWithError:(NSError *__autoreleasing*)error;
 
 @end
 
@@ -84,9 +84,9 @@
 - (NSArray *)parseAnnotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 // Saving code.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 // Load annotations (returning NO + eventually an error if it fails)
-- (NSDictionary *)loadAnnotationsWithError:(NSError **)error;
+- (NSDictionary *)loadAnnotationsWithError:(NSError *__autoreleasing*)error;
 
 @end

@@ -38,7 +38,7 @@
 
 /// Parses the AP stream, searches for an image and loads it.
 /// Will also update `imageTransform`.
-- (UIImage *)loadImageWithError:(NSError **)error;
+- (UIImage *)loadImageWithError:(NSError *__autoreleasing*)error;
 
 /// Stamp image transform. Defaults to `CGAffineTransformIdentity`.
 @property (nonatomic, assign) CGAffineTransform imageTransform;

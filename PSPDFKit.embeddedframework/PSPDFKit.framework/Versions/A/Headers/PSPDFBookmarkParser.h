@@ -48,7 +48,7 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 - (BOOL)removeBookmarkForPage:(NSUInteger)page;
 
 /// Clears all bookmarks. Also deletes file.
-- (BOOL)clearAllBookmarksWithError:(NSError **)error;
+- (BOOL)clearAllBookmarksWithError:(NSError *__autoreleasing*)error;
 
 /// Returns the bookmark if page has a bookmark.
 - (PSPDFBookmark *)bookmarkForPage:(NSUInteger)page;
@@ -67,10 +67,10 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 - (NSString *)bookmarkPath;
 
 /// Read bookmarks out of the plist in bookmarkPath.
-- (NSArray *)loadBookmarksWithError:(NSError **)error;
+- (NSArray *)loadBookmarksWithError:(NSError *__autoreleasing*)error;
 
 /// Saves the bookmark into a plist file at bookmarkPath.
 /// @note Saving is done async.
-- (BOOL)saveBookmarksWithError:(NSError **)error;
+- (BOOL)saveBookmarksWithError:(NSError *__autoreleasing*)error;
 
 @end

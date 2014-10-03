@@ -4,6 +4,35 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.0.3 - 3/October/2014__
+
+*  Add API on `PSPDFViewController` to check if a search is running `isSearchActive` and to cancel a running search `cancelSearchAnimated:`.
+*  Improves various animation effects under iOS 8.
+*  Updates the optional SQLite library to 3.8.6.
+*  Reduced the default speak rate in `PSPDFSpeechSynthesizer` from fast to normal.
+*  Enables many new warnings to improve code quality and keeps our headers warning free in -Weverything environments.
+*  Adds support for loading the PSPDFKit.bundle from unusual locations which improves compatibility with dynamic framworks.
+*  Improves annotation moving/resizing logic to be more pixel accurate.
+*  The `PSPDFInlineSearchManager` instance is now exposed inside the `PSPDFViewController`, when used.
+*  The `PSPDFViewController` now shows page labels if set for search results cells.
+*  The play button in the gallery component will no longer zoom in but always stay at the optimal size.
+*  PSPDFKit now emits a log warning if `UIViewControllerBasedStatusBarAppearance` is set to NO.
+*  PSPDFKit will now assert if the license is set on a background thread. This is a very fast operation and needs to be done on the main thread.
+*  `PSPDFEraseOverlayLayer` has been refactored to `PSPDFEraseOverlay` to allow property customization via `UIAppearance`.
+*  The navigation bar will no longer be modified if PSPDFKit is embedded via child view controller containment and `useParentNavigationBar` is set to NO.
+*  Free text annotations are now always rendered aspect ratio correct.
+*  Various improvements to the undo/redo feature.
+*  Trying to show the print or open in sheet now no longer throws a popover exception if the `PSPDFViewController` is not visible.
+*  Works around a regression in iOS 8.1b1 related to UIAppearance with  (rdar://problem/18501844)
+*  Works around a regression in iOS 8 where dismissing a popover controller could result in accessing a deallocated object on iOS 8. (rdar://problem/18500786)
+*  Works around a regression in iOS 8 where dismissing a popover could dismiss the parent modal controller. (rdar://18512973)
+*  Works around an issue where UIKit throws an unexpected exception when accessing the image in the general pasteboard. (rdar://problem/18537933)
+*  Works around an issue where UIKit forwards `_UIPhysicalButton` objects when we expect `UITouch` objects. (rdar://problem/18537814)
+*  Fixes an issue with a non-standard-conforming PDF not defining "Subtype" in the font dictionary.
+*  Fixes an issue where the `PSPDFPopoverController` could be presented rotated on landscape under iOS 8.
+*  Fixes an issue that would indicate "No page text" on the whole document after a search if the last document page contained no text.
+*  Fixes an issue where in some cases RichMedia/Screen annotation video content was cached but not re-fetched if the cache was deleted by the system.
+
 __v4.0.2 - 26/September/2014__
 
 *  The UID generation in `PSPDFDocument` now works better with new app container locations in iOS 8. (See https://developer.apple.com/library/ios/technotes/tn2406/_index.html)

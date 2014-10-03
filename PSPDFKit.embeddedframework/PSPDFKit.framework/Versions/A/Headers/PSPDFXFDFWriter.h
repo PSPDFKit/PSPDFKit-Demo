@@ -19,6 +19,6 @@
 @interface PSPDFXFDFWriter : NSObject
 
 /// Writes the given annotations to the given `outputStream` and blocks until done.
-- (BOOL)writeAnnotations:(NSArray *)annotations toOutputStream:(NSOutputStream *)outputStream documentProvider:(PSPDFDocumentProvider *)documentProvider error:(NSError **)error;
+- (BOOL)writeAnnotations:(NSArray *)annotations toOutputStream:(NSOutputStream *)outputStream documentProvider:(PSPDFDocumentProvider *)documentProvider error:(NSError *__autoreleasing*)error;
 
 @end

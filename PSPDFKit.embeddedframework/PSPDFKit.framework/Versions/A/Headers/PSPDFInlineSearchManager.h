@@ -45,14 +45,15 @@
 @interface PSPDFInlineSearchManager : NSObject
 
 /// Search UI will be presented as as a subview of containerView and brought to front every time `presentInlineSearch` is called.
-- (instancetype)initWithConfigurationDataSource:(id<PSPDFPresentationContext>)presentationContext containerView:(UIView *)containerView NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPresentationContext:(id<PSPDFPresentationContext>)presentationContext containerView:(UIView *)containerView NS_DESIGNATED_INITIALIZER;
 
 /// Presents search UI in provided container view with prefilled text.
-- (void)presentInlineSearchWithSearchText:(NSString *)text;
-/// Presents search UI in provided container.
-- (void)presentInlineSearch;
+/// @note `text` can be nil.
+- (void)presentInlineSearchWithSearchText:(NSString *)text animated:(BOOL)animated;
+
 /// Hides search UI.
-- (BOOL)hideInlineSearch;
+- (BOOL)hideInlineSearchAnimated:(BOOL)animated;
+
 /// Hides the keyboard, but the search UI stays visible.
 - (void)hideKeyboard;
 
@@ -60,9 +61,9 @@
 - (BOOL)isSearchVisible;
 
 /// The configuration data source for this class.
-@property (nonatomic, weak) id<PSPDFPresentationContext> presentationContext;
+@property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;
 
-/// Internally used `PSPDFTextSearch` object. (is a copy of the PSPDFTextSearch class in document)
+/// Internally used `PSPDFTextSearch` object. (is a copy of the `PSPDFTextSearch` class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 
 /// Current searchText.
@@ -81,10 +82,10 @@
 @property (nonatomic, strong) PSPDFDocument *document;
 
 /// Defaults to 600. A too high number will be slow.
-@property (nonatomic) NSUInteger maximumNumberOfSearchResultsDisplayed;
+@property (nonatomic, assign) NSUInteger maximumNumberOfSearchResultsDisplayed;
 
 /// Will include annotations that have a matching type into the search results. (contents will be searched).
-/// Defaults to PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink.
+/// Defaults to `PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink`.
 /// @note Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
 @property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
 

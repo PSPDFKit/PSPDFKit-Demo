@@ -18,7 +18,7 @@
 typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
     PSPDFPageTransitionScrollPerPage,      /// One scroll view per page.
     PSPDFPageTransitionScrollContinuous,   /// Similar to `UIWebView`. Ignores `PSPDFPageModeDouble`.
-    PSPDFPageTransitionCurl                /// Page curl mode, similar to iBooks.
+    PSPDFPageTransitionCurl                /// Page curl mode, similar to iBooks. Not supported with variable sized PDFs.
 };
 
 /// Active page mode.

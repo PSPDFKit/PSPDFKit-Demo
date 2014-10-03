@@ -60,11 +60,11 @@
 - (CGRect)boundingBox;
 
 /// The actual image. Will be extracted on the fly. Might have other dimensions than the displayed dimensions.
-- (UIImage *)imageWithError:(NSError **)error;
+- (UIImage *)imageWithError:(NSError *__autoreleasing*)error;
 
 /// Some PDF images are in CMYK color space, which is not a supported encoding.
 /// (`UIImageJPEGRepresentation` will return nil in that case)
 /// This method checks against this case and converts the image into RGB color space.
-- (UIImage *)imageInRGBColorSpaceWithError:(NSError **)error;
+- (UIImage *)imageInRGBColorSpaceWithError:(NSError *__autoreleasing*)error;
 
 @end

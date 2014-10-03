@@ -123,7 +123,7 @@ extern NSString * const PSPDFAnnotationOptionSuppressNotificationsKey;
 /// Save annotations. (returning NO + eventually an error if it fails)
 /// Saving will be forwarded to all annotation providers.
 /// Usually you want to override the method in `PSPDFFileAnnotationProvider` instead.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /// Return YES if the manager requires saving.
 /// @note You should first ensure the `state` property in the `annotationStateManager` to nil to commit any draft annotations.

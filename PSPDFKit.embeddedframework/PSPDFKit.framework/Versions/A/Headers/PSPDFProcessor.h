@@ -53,21 +53,21 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
 /// Generate a PDF from a `PSPDFDocument` into a file. `options` can also contain `CGPDFContext` options.
 /// @note For `pageRanges` you can use `@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]]` to convert the whole document.
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError *__autoreleasing*)error;
 
 /// Generate a PDF from a `PSPDFDocument` into data. 'options' can also contain `CGPDFContext` options.
 /// @note For `pageRanges` you can use `@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]]` to convert the whole document.
 /// @warning Don't use with large files, since iOS has no virtual memory the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe in-memory usage.
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError *__autoreleasing*)error;
 
 /// Generates a PDF from a string. Does allow simple html tags. Will not work with complex HTML pages.
 /// e.g. `@"This is a <b>test</b>` in `<span style='color:red'>color.</span>`
 /// @note Must be called from the main thread.
-- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /// Like the above, but create a temporary PDF in memory.
 /// @note Must be called from the main thread.
-- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options error:(NSError **)error;
+- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 /**
  Renders a PDF from an `URL` (web or `fileURL`). This will take a while and is non-blocking.

@@ -27,7 +27,7 @@
 /// @note To analyze the whole document, use `[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]`
 /// @warning Performs text and annotation extraction and analysis. Might be slow.
 /// @warning `progressBlock` might be called from different threads - ensure you dispatch to the main queue for progress updates.
-- (NSDictionary *)annotationsFromDetectingLinkTypes:(PSPDFTextCheckingType)textLinkTypes pagesInRange:(NSIndexSet *)pageRange progress:(void (^)(NSArray *annotations, NSUInteger page, BOOL *stop))progressBlock error:(NSError **)error;
+- (NSDictionary *)annotationsFromDetectingLinkTypes:(PSPDFTextCheckingType)textLinkTypes pagesInRange:(NSIndexSet *)pageRange progress:(void (^)(NSArray *annotations, NSUInteger page, BOOL *stop))progressBlock error:(NSError *__autoreleasing*)error;
 
 @end
 

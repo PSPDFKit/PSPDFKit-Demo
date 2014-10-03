@@ -28,11 +28,11 @@ typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
 /// Must pass appropriate values in the eventParams dictionary. In particular, `willCommit` and `change`, should be set correctly.
 /// The returned dictionary contains the response code and the modified change value possibly
 /// Handles K and V actions.
-- (NSDictionary *)executeValueChangedJSActionSequenceWithActionContainer:(id)actionContainer application:(id<PSPDFApplicationJSExport>)application eventParams:(NSDictionary *)eventParams error:(NSError **)error;
+- (NSDictionary *)executeValueChangedJSActionSequenceWithActionContainer:(id)actionContainer application:(id<PSPDFApplicationJSExport>)application eventParams:(NSDictionary *)eventParams error:(NSError *__autoreleasing*)error;
 
 /// Executes the format action for the container. If no action exists, returns the value unchanged.
 /// Handles F actions from the additional actions dictionary.
-- (NSString *)executeFormatActionWithActionContainer:(id)actionContainer application:(id<PSPDFApplicationJSExport>)application eventParams:(NSDictionary *)eventParams error:(NSError **)error;
+- (NSString *)executeFormatActionWithActionContainer:(id)actionContainer application:(id<PSPDFApplicationJSExport>)application eventParams:(NSDictionary *)eventParams error:(NSError *__autoreleasing*)error;
 
 /*
  Note for the calculation method below (Adobe Acrobat SDK JavaScript API - JavaScript for Acrobat API Reference) :
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
 
 // Executes all calculate actions in the document that depend on the sourceForm value.
 // Executes synchronously. Use with caution for complex actions, as it blocks the main thread. (Must be run on main thread). Returns YES if successful.
-- (BOOL)updateCalculatedFieldsDependingOnForm:(PSPDFFormElement *)sourceForm error:(NSError **)error;
+- (BOOL)updateCalculatedFieldsDependingOnForm:(PSPDFFormElement *)sourceForm error:(NSError *__autoreleasing*)error;
 
 @end
 
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
 
 /// Tries to execute the JavaScript in the context of a document provider.
 /// Use the event params to override certain values for the event object in the executed script.
-- (NSDictionary *)executeScriptAppliedToDocumentProvider:(PSPDFDocumentProvider *)documentProvider application:(id<PSPDFApplicationJSExport>)application eventDictionary:(NSDictionary *)eventDictionary sender:(id)sender error:(NSError **)error;
+- (NSDictionary *)executeScriptAppliedToDocumentProvider:(PSPDFDocumentProvider *)documentProvider application:(id<PSPDFApplicationJSExport>)application eventDictionary:(NSDictionary *)eventDictionary sender:(id)sender error:(NSError *__autoreleasing*)error;
 
 @end
 

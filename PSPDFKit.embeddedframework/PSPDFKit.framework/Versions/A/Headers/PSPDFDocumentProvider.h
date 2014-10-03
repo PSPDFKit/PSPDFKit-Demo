@@ -38,7 +38,7 @@
 @property (nonatomic, readonly) CGDataProviderRef dataProvider;
 
 /// Returns a NSData representation, memory-maps files, tries to copy a `CGDataProviderRef`.
-- (NSData *)dataRepresentationWithError:(NSError **)error;
+- (NSData *)dataRepresentationWithError:(NSError *__autoreleasing*)error;
 
 /// Returns the `fileSize` of this documentProvider.
 - (unsigned long long)fileSize;
@@ -177,7 +177,7 @@
 
 /// Saves changed annotations.
 /// @warning You shouldn't call this method directly, use the high-level save method in `PSPDFDocument` instead.
-- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
 // Resolves a path like `/localhost/Library/test.pdf` into a full path.
 // If either `alwaysLocal` is set or `localhost` is part of the path, we'll handle this as a local URL.

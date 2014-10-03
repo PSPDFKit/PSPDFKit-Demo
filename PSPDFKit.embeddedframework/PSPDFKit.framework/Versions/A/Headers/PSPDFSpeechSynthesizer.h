@@ -47,7 +47,7 @@ extern NSString *const PSPDFSpeechSynthesizerLanguageHintKey;
 /// Speech rate.
 @property (nonatomic, assign) float speakRate;
 
-/// Speech pitch.
+/// Speech pitch. Defaults to 0.5f.
 @property (nonatomic, assign) float pitchMultiplier;
 
 @end
