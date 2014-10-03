@@ -69,7 +69,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
         // Ee assume that at least the directory has to exist on the targetPath
         BOOL isDirectory;
-        if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
             isDirectory = NO;
         }
         // \If targetPath is a directory, use the file name we got from the urlRequest.
@@ -213,7 +213,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
                 }
 
                 // loss of network connections = error set, but not cancel
-            }else if(!self.error) {
+            }else if (!self.error) {
                 // move file to final position and capture error
                 NSFileManager *fileManager = [NSFileManager new];
                 if (self.shouldOverwrite) {
@@ -248,7 +248,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     // check for valid response to resume the download if possible
     long long totalContentLength = self.response.expectedContentLength;
     long long fileOffset = 0;
-    if(httpResponse.statusCode == 206) {
+    if (httpResponse.statusCode == 206) {
         NSString *contentRange = [httpResponse.allHeaderFields valueForKey:@"Content-Range"];
         if ([contentRange hasPrefix:@"bytes"]) {
             NSArray *bytes = [contentRange componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" -/"]];
@@ -308,7 +308,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
     // ensure all cache directories are there
     NSError *error = nil;
-    if(![filemgr createDirectoryAtPath:cacheFolder withIntermediateDirectories:YES attributes:nil error:&error]) {
+    if (![filemgr createDirectoryAtPath:cacheFolder withIntermediateDirectories:YES attributes:nil error:&error]) {
         NSLog(@"Failed to create cache directory at %@", cacheFolder);
         cacheFolder = nil;
     }

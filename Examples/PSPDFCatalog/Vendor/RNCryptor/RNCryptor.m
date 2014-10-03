@@ -178,7 +178,7 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
     size_t r, nblocks;
 	size_t	hlen, offset;
 
-	if(algorithm != kCCPBKDF2) return -1;
+	if (algorithm != kCCPBKDF2) return -1;
 
 	/*
 	 * Check initial parameters

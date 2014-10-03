@@ -100,7 +100,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
                     // Change model on main thread and send a change notification.
                     formElement.contents = [NSString stringWithFormat:@"Test %@", formElement.fieldName];
                     [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationChangedNotification object:formElement userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[@"contents"]}];
-                }else if([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
+                }else if ([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
                     [(PSPDFButtonFormElement *)formElement toggleButtonSelectionStateAndSendNotification:YES];
                 }
             });
@@ -211,7 +211,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
     [document annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
     for (PSPDFFormElement *formElement in document.formParser.forms) {
-        if([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
+        if ([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
             if ([formElement.fieldName isEqualToString:@"bereits Kunde"]) {
                 [(PSPDFButtonFormElement *)formElement.kids[1] select];
             }
