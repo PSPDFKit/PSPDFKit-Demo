@@ -81,12 +81,15 @@ static NSArray *PSCGetAllExampleSubclasses(void) {
     NSMutableArray *annotations = [NSMutableArray array];
     unsigned int count = 0;
     Class *classList = objc_copyClassList(&count);
-    for (NSUInteger idx = 0; idx < count; ++idx) {
-        Class class = classList[idx];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_apply(count, queue, ^(size_t idx) {
+        __unsafe_unretained Class class = classList[idx];
         if (PSCIsSubclassOfClass(class, PSCExample.class)) {
-            [annotations addObject:class];
+            @synchronized(PSCExampleManager.class) {
+                [annotations addObject:class];
+            }
         }
-    }
+    });
     free(classList);
     return annotations;
 }
