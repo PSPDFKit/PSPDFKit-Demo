@@ -35,7 +35,7 @@
 
     // Basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.baseURL) {
-        coverImage = [PSPDFCache.sharedCache imageFromDocument:self page:0 size:size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
+        coverImage = [PSPDFKit.sharedInstance.cache imageFromDocument:self page:0 size:size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
     }
 
     // Draw a custom, centered lock image if the magazine is password protected.

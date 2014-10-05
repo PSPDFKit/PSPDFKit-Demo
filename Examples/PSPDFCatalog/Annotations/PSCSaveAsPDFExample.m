@@ -65,7 +65,7 @@
 
 - (void)dealloc {
     // Clear document cache, so we don't get annotation-artefacts when loading the doc again.
-    [PSPDFCache.sharedCache removeCacheForDocument:self.document deleteDocument:NO error:NULL];
+    [PSPDFKit.sharedInstance.cache removeCacheForDocument:self.document deleteDocument:NO error:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

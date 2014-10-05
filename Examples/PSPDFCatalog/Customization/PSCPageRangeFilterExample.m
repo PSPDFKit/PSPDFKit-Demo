@@ -53,7 +53,7 @@
         document.pageRange = set;
 
         // After setting pageRange, we need to clear the cache and reload the controller.
-        [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
+        [PSPDFKit.sharedInstance.cache removeCacheForDocument:document deleteDocument:NO error:NULL];
         [weakController reloadData];
     }];
 

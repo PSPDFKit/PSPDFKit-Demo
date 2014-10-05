@@ -191,7 +191,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             self.magazineCount = 0;
 
             // First, check memory.
-            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:self.frame.size options:PSPDFCacheOptionDiskLoadSync];
+            UIImage *memoryImage = [PSPDFKit.sharedInstance.cache imageFromDocument:magazine page:0 size:self.frame.size options:PSPDFCacheOptionDiskLoadSync];
             [self setImage:memoryImage animated:NO];
             if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
 

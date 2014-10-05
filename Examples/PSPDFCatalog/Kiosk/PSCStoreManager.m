@@ -99,7 +99,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
         }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [PSPDFCache.sharedCache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
+            [PSPDFKit.sharedInstance.cache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
         });
     }
 
@@ -137,7 +137,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
 
     // Clear everything
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [PSPDFCache.sharedCache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
+        [PSPDFKit.sharedInstance.cache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
     });
 
     // if magazine has no URL - delete.

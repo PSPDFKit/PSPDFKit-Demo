@@ -39,7 +39,7 @@
 
     // Setup graphics context for current PDF page.
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];
-    [PSPDFRenderManager.sharedInstance setupGraphicsContext:context rectangle:clipRect pageInfo:pageInfo];
+    [PSPDFKit.sharedInstance.renderManager setupGraphicsContext:context rectangle:clipRect pageInfo:pageInfo];
 
 	// Set up the text and it's drawing attributes.
     NSString *overlayText = @"Example overlay";

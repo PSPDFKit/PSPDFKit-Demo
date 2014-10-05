@@ -89,14 +89,14 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     // We need to invalidate the cache of the current page.
     // If we were to rotate all pages in the document we wouldn't need to invalidate and rerender
     // the image for all pages only, doing it for only the currently visible page would be enough.
-    [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:page];
+    [PSPDFKit.sharedInstance.cache invalidateImageFromDocument:self.document page:page];
 
     PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:page];
     PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.rect rotation:PSCNormalizeRotation(pageInfo.rotation + degrees) documentProvider:pageInfo.documentProvider];
     [self.document setPageInfo:newPageInfo forPage:page];
 
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
-    [PSPDFCache.sharedCache imageFromDocument:self.document page:page size:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+    [PSPDFKit.sharedInstance.cache imageFromDocument:self.document page:page size:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 }
 
 @end

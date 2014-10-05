@@ -68,8 +68,8 @@
     }];
 
     // Set some default colors.
-    [[PSPDFStyleManager sharedStyleManager] setLastUsedValue:PSCCustomNewTintColor forProperty:@"color" forKey:PSPDFAnnotationStringHighlight];
-    [[PSPDFStyleManager sharedStyleManager] setLastUsedValue:PSCCustomNewTintColor forProperty:@"color" forKey:PSPDFAnnotationStringNote];
+    [[PSPDFKit sharedInstance].styleManager setLastUsedValue:PSCCustomNewTintColor forProperty:@"color" forKey:PSPDFAnnotationStringHighlight];
+    [[PSPDFKit sharedInstance].styleManager setLastUsedValue:PSCCustomNewTintColor forProperty:@"color" forKey:PSPDFAnnotationStringNote];
 
     return pdfController;
 }

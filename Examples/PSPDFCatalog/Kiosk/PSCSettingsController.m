@@ -384,7 +384,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             cell.accessoryType = (indexPath.row == linkAction) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCacheSettings: {
-            PSPDFDiskCacheStrategy cacheStrategy = PSPDFCache.sharedCache.diskCacheStrategy;
+            PSPDFDiskCacheStrategy cacheStrategy = PSPDFKit.sharedInstance.cache.diskCacheStrategy;
             cell.accessoryType = (indexPath.row == cacheStrategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFDebugSettings: {
@@ -410,7 +410,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case PSPDFClearCacheButton: [PSPDFCache.sharedCache clearCache]; break;
+        case PSPDFClearCacheButton: [PSPDFKit.sharedInstance.cache clearCache]; break;
         case PSPDFOpenAPIButton: {
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
             [self presentViewController:webController animated:YES completion:NULL];
@@ -434,8 +434,8 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFThumbnailModeSettings: _settings[PROPERTY(thumbnailBarMode)] = @(indexPath.row); break;
         case PSPDFLinkActionSettings: _settings[PROPERTY(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
-            [PSPDFCache.sharedCache clearCache];
-            PSPDFCache.sharedCache.diskCacheStrategy = indexPath.row;
+            [PSPDFKit.sharedInstance.cache clearCache];
+            PSPDFKit.sharedInstance.cache.diskCacheStrategy = indexPath.row;
             break;
         default: break;
     }

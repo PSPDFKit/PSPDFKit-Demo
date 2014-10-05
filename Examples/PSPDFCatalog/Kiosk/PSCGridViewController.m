@@ -275,10 +275,10 @@
 	PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
 
 	// Try to get full-size image, if that fails try getting the thumbnail.
-	self.coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
+	self.coverImage = [PSPDFKit.sharedInstance.cache imageFromDocument:magazine page:0 size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
 	// Prepare the target page image, if it differes from the cover image
 	if (animated && pdfController.page != 0 && !pdfController.isDoublePageMode) {
-		self.targetPageImage = [PSPDFCache.sharedCache imageFromDocument:self.lastOpenedMagazine page:pdfController.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
+		self.targetPageImage = [PSPDFKit.sharedInstance.cache imageFromDocument:self.lastOpenedMagazine page:pdfController.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
 	}
 
 	[self.navigationController pushViewController:pdfController animated:animated];
@@ -300,7 +300,7 @@
     NSArray *magazines = [self.magazineFolder.magazines copy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         for (PSCMagazine *magazine in magazines) {
-            [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever];
+            [PSPDFKit.sharedInstance.cache imageFromDocument:magazine page:0 size:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever];
         }
     });
 
@@ -728,7 +728,7 @@
 	coverImageView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
 
 	// Update image for a nicer animation (get the correct page)
-	UIImage *updatedImage = [PSPDFCache.sharedCache imageFromDocument:self.lastOpenedMagazine page:self.lastOpenedMagazine.lastViewState.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
+	UIImage *updatedImage = [PSPDFKit.sharedInstance.cache imageFromDocument:self.lastOpenedMagazine page:self.lastOpenedMagazine.lastViewState.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
 	UIImageView *sourcePageImageView = nil;
 	if (updatedImage) {
 		sourcePageImageView = self.magazineCurrentPageView;

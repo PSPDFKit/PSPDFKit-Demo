@@ -117,7 +117,7 @@
         [self.magazine setValue:destinationURL forKey:@"fileURL"];
 
         // Start caching thumbnail and full-image sizes so that the document will render faster.
-        [PSPDFCache.sharedCache cacheDocument:self.magazine pageSizes:@[BOXED(CGSizeMake(170.f, 220.f)), BOXED(UIScreen.mainScreen.bounds.size)] withDiskCacheStrategy:PSPDFDiskCacheStrategyNearPages aroundPage:0];
+        [PSPDFKit.sharedInstance.cache cacheDocument:self.magazine pageSizes:@[BOXED(CGSizeMake(170.f, 220.f)), BOXED(UIScreen.mainScreen.bounds.size)] withDiskCacheStrategy:PSPDFDiskCacheStrategyNearPages aroundPage:0];
 
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         NSError *error = nil;

@@ -332,7 +332,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Encrypting the images will be a 5-10% slowdown, nothing substantial at all.
     [passwordSection addContent:[PSContent contentWithTitle:@"Enable PSPDFCache encryption" block:^UIViewController *{
-        PSPDFCache *cache = PSPDFCache.sharedCache;
+        PSPDFCache *cache = PSPDFKit.sharedInstance.cache;
         // Clear existing cache
         [cache clearCache];
 
@@ -1460,7 +1460,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
         _clearCacheNeeded = NO;
-        [PSPDFCache.sharedCache clearCache];
+        [PSPDFKit.sharedInstance.cache clearCache];
     }
 }
 
@@ -1726,8 +1726,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 }
 
 - (void)debugClearCache {
-    [PSPDFRenderQueue.sharedRenderQueue cancelAllJobs];
-    [PSPDFCache.sharedCache clearCache];
+    [PSPDFKit.sharedInstance.renderManager.renderQueue cancelAllJobs];
+    [PSPDFKit.sharedInstance.cache clearCache];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

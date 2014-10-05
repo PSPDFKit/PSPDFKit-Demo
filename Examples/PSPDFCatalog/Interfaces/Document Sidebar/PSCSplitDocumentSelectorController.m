@@ -42,7 +42,7 @@
 
 // tests fast cycling through the pdf elements
 - (void)cycleAction {
-    [PSPDFCache.sharedCache clearCache];
+    [PSPDFKit.sharedInstance.cache clearCache];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         for (NSInteger sectionIndex = 0; sectionIndex < [self numberOfSectionsInTableView:self.tableView]; sectionIndex++) {
