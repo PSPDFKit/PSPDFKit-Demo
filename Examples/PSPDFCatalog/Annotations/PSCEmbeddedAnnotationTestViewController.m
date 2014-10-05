@@ -67,6 +67,8 @@
     NSLog(@"Successfully saved annotations: %@", annotations);
 
     if (document.data) NSLog(@"This is your time to save the updated data!");
+
+    NSLog(@"File: %@", document.fileURL.path);
 }
 
 - (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
