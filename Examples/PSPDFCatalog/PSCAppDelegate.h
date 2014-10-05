@@ -8,8 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#if !defined(__clang__) || __clang_major__ < 5
-#error This project must be compiled with ARC and Xcode 6.0.
+#if !defined(__clang__) || __clang_major__ < 6  || !defined(__IPHONE_8_0)
+#error This project must be compiled with ARC and Xcode 6.0 with SDK 8.
 #endif
 
 @interface PSCAppDelegate : UIResponder <UIApplicationDelegate>
