@@ -350,7 +350,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
     NSString *dirPath = [PSCStoreManager.storagePath stringByAppendingPathComponent:@"downloads"];
     [folders addObjectsFromArray:[self searchFolder:dirPath]];
 
-    // Add files from Open In...PSPDFFileManager.defaultManager.documentDirectory
+    // Add files from Open In...
     NSString *documentsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     [folders addObjectsFromArray:[self searchFolder:documentsFolder]];
 
