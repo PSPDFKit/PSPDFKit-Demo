@@ -240,7 +240,7 @@
         builder.fitToWidthEnabled = [settings[PROPERTY(isFitToWidthEnabled)] boolValue];
         builder.scrollOnTapPageEndEnabled = [settings[PROPERTY(isScrollOnTapPageEndEnabled)] boolValue];
         builder.pageLabelEnabled = [settings[PROPERTY(isPageLabelEnabled)] boolValue];
-
+        builder.naturalDrawingAnnotationEnabled= [settings[PROPERTY(naturalDrawingAnnotationEnabled)] boolValue];
         builder.pageTransition = [settings[PROPERTY(pageTransition)] integerValue];
         builder.renderingMode = [settings[PROPERTY(renderingMode)] integerValue];
         builder.scrollDirection = [settings[PROPERTY(scrollDirection)] integerValue];

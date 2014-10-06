@@ -69,6 +69,7 @@ static NSMutableDictionary *_settings;
         _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
         _settings[PROPERTY(isPageLabelEnabled)] = @YES;
         _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
+        _settings[PROPERTY(naturalDrawingAnnotationEnabled)] = @YES;
         _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
         _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
         _settings[PROPERTY(viewModeButtonItem)] = @YES;
@@ -105,7 +106,7 @@ static NSMutableDictionary *_settings;
                      @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
                      @[_(@"Single First Page"), _(@"No Cover Page")],
                      @[_(@"No Thumbnail Bar"), _(@"Scrobble Bar (like iBooks)"), _(@"Scrollable Thumbnails")],
-                     @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View")],
+                     @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View"), _(@"Natural Drawing")],
                      @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode")],
                      @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
                      @[_(@"No Disk Cache"), _(@"Thumbnails only"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
@@ -118,7 +119,7 @@ static NSMutableDictionary *_settings;
                              @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
                              @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
                              @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
-                             @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
+                             @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled"), _(@"naturalDrawingAnnotationEnabled")],
                              @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem")],
                              @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
                              @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
@@ -261,6 +262,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 3: _settings[PROPERTY(isFitToWidthEnabled)] = value; break;
                 case 4: _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = value; break;
                 case 5: _settings[PROPERTY(isPageLabelEnabled)] = value; break;
+                case 6: _settings[PROPERTY(naturalDrawingAnnotationEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
@@ -361,6 +363,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 3: cellSwitch.on = [_settings[PROPERTY(isFitToWidthEnabled)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[PROPERTY(isScrollOnTapPageEndEnabled)] boolValue]; break;
                 case 5: cellSwitch.on = [_settings[PROPERTY(isPageLabelEnabled)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[PROPERTY(naturalDrawingAnnotationEnabled)] boolValue]; break;
                 default: break;
             }
         }break;
