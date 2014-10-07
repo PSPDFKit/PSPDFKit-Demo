@@ -43,36 +43,55 @@
         builder.shouldHideNavigationBarWithHUD = NO;
     }]];
     self.pdfController.delegate = self;
-
+    
     // Those need to be nilled out if you use the barButton items externally!
     self.pdfController.leftBarButtonItems = nil;
     self.pdfController.rightBarButtonItems = nil;
-
+    
     [self addChildViewController:self.pdfController];
     [self.pdfController didMoveToParentViewController:self];
     [self.view addSubview:self.pdfController.view];
-
+    
     // As an example, here we're not using the UINavigationController but instead a custom UIToolbar.
     // Note that if you're going that way, you'll loose some features that PSPDFKit provides, like dynamic toolbar updating or accessibility.
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.f, 64.f, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
     // Ensure we're top attached.
     toolbar.barTintColor = UIColor.pspdfColor;
     toolbar.delegate = self;
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     fixedSpace.width = 8;
-
+    
     NSMutableArray *toolbarItems = [NSMutableArray array];
     [toolbarItems addObjectsFromArray:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)], flexibleSpace, self.pdfController.searchButtonItem]];
-
+    
     if ([self.pdfController.outlineButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.outlineButtonItem]];
     if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.annotationButtonItem]];
     [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.bookmarkButtonItem]];
-
+    
     toolbar.items = toolbarItems;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
+    
+    
+    // Layout views using auto layout.
+    UIToolbar *statusBarBackgroundView = [UIToolbar new];
+    statusBarBackgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:statusBarBackgroundView];
+    UIView *pdfControllerView = self.pdfController.view;
+    id topLayoutGuide = self.topLayoutGuide;
+    pdfControllerView.translatesAutoresizingMaskIntoConstraints = NO;
+    toolbar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSDictionary *bindings = NSDictionaryOfVariableBindings(pdfControllerView, toolbar, topLayoutGuide, statusBarBackgroundView);
+    
+    // Lyout PSPDFViewController.
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[pdfControllerView]-50-|" options:0 metrics:nil views:bindings]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-50-[pdfControllerView]-50-|" options:0 metrics:nil views:bindings]];
+    // Layout the toolbar.
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[statusBarBackgroundView]|" options:0 metrics:nil views:bindings]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[toolbar]|" options:0 metrics:nil views:bindings]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[statusBarBackgroundView(topLayoutGuide)][toolbar]" options:0 metrics:nil views:bindings]];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -87,15 +106,13 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-	// viewWillAppear: is too early for this, we need to hide the navBar here (UISearchDisplayController related issue)
-	self.navigationController.navigationBarHidden = YES;
-    // Center view with margins.
-    self.pdfController.view.frame = CGRectInset(CGRectMake(0, self.toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.toolbar.bounds.size.height), 50.f, 50.f);
+    // viewWillAppear: is too early for this, we need to hide the navBar here (UISearchDisplayController related issue)
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
+    
     // Manually unload view.
     if (self.isViewLoaded && !self.view.window) {
         [self.pdfController willMoveToParentViewController:nil];
