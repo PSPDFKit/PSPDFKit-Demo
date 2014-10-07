@@ -11,7 +11,11 @@
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
 
-@interface PSCZoomingSearchPDFViewController : PSPDFViewController @end
+@interface PSCZoomingSearchPDFViewController : PSPDFViewController
+
+@property (nonatomic, assign, getter=isInitialSearchAlreadyPerformed) BOOL initialSearchAlreadyPerformed;
+
+@end
 
 @interface PSCZoomingSearchExample : PSCExample @end
 @implementation PSCZoomingSearchExample
@@ -43,8 +47,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // Automatically start searching.
-    [self searchForString:@"Tomat" options:nil sender:nil animated:YES];
+    // Automatically start searching for the first time this view is displayed.
+    if (!self.isInitialSearchAlreadyPerformed) {
+        [self searchForString:@"Tomat" options:nil sender:nil animated:YES];
+        self.initialSearchAlreadyPerformed = YES;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
