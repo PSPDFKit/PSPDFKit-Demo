@@ -26,7 +26,7 @@
 
         if (PSCIsIPad()) {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
-        }else {
+        } else {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.viewModeButtonItem];
         }
     }
@@ -50,7 +50,7 @@
     NSError *error = nil;
     if (![self.document saveAnnotationsWithError:&error]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil] show];
-    }else {
+    } else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
         //NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);

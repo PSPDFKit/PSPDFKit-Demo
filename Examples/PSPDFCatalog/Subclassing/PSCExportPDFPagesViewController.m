@@ -33,7 +33,7 @@
 - (void)updateToolbarButtons {
     if (self.viewMode == PSPDFViewModeDocument) {
         self.rightBarButtonItems = @[self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
-    }else {
+    } else {
         self.rightBarButtonItems = @[self.thumbnailController.editButtonItem, self.viewModeButtonItem];
     }
 }
@@ -137,7 +137,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
                 if (data) {
                     [mailViewController addAttachmentData:data mimeType:@"application/pdf" fileName:@"SelectedPages.pdf"];
                     [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal)} animated:YES sender:nil completion:NULL];
-                }else {
+                } else {
                     // Handle error state
                     [[[PSPDFAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
                 }
@@ -153,7 +153,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
     // Return regular filter bar OR our custon action bar if we're editing.
     if (!self.isEditing) {
         return (UICollectionReusableView *)[super collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
-    }else {
+    } else {
         UICollectionReusableView *headerView = nil;
         if ([kind isEqualToString:UICollectionElementKindSectionHeader] && indexPath.section == 0) {
             headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar forIndexPath:indexPath];
@@ -175,7 +175,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isEditing) {
         [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    }else {
+    } else {
         [self updateActionButtonEnabledState];
     }
 }

@@ -55,7 +55,7 @@
 - (NSIndexSet *)searchViewController:(PSPDFSearchViewController *)searchController searchRangeForScope:(NSString *)scope {
     if ([scope isEqualToString:@"This page"]) {
         return self.visiblePageNumbers.array.psc_indexSet;
-    }else {
+    } else {
         return nil; // all pages
     }
 }

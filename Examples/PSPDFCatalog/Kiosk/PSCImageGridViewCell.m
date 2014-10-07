@@ -121,7 +121,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.font = [UIFont boldSystemFontOfSize:PSCIsIPad() ? 16.f : 12.f];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
-    }else if (!self.isPageLabelEnabled && self.pageLabel.superview) {
+    } else if (!self.isPageLabelEnabled && self.pageLabel.superview) {
         [self.pageLabel removeFromSuperview];
     }
 
@@ -150,7 +150,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
-        }else if ([keyPath isEqualToString:PSCDownloadingKey]) {
+        } else if ([keyPath isEqualToString:PSCDownloadingKey]) {
             // Check if magazine needs to be observed. (if download progress is active)
             if (self.magazine.isDownloading && ![_observedMagazineDownloads containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -158,7 +158,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 });
             }
         }
-    }else {
+    } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
@@ -242,7 +242,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
                 if (self.immediatelyLoadCellImages) {
                     [imageLoadOperation start]; // start directly.
-                }else {
+                } else {
                     [self.class.thumbnailQueue addOperation:imageLoadOperation];
                     _imageLoadOperation = imageLoadOperation;
                 }
@@ -362,10 +362,10 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             [UIView animateWithDuration:0.25f animations:^{
                 self.progressViewBackground.alpha = 0.5f;
             }];
-        }else {
+        } else {
             self.progressViewBackground.alpha = 0.5f;
         }
-    }else if (!darken && self.progressViewBackground.superview) {
+    } else if (!darken && self.progressViewBackground.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25f animations:^{
                 self.progressViewBackground.alpha = 0.f;
@@ -374,7 +374,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
                     [self.progressViewBackground removeFromSuperview];
                 }
             }];
-        }else {
+        } else {
             [self.progressViewBackground removeFromSuperview];
         }
     }

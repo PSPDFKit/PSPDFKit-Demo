@@ -211,7 +211,7 @@
         for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
             if (NSLocationInRange(coreDataAnnotation.page, pageRange)) {
                 [self.managedObjectContext deleteObject:coreDataAnnotation];
-            }else {
+            } else {
                 coreDataAnnotation.page -= pageRange.length;
             }
         }

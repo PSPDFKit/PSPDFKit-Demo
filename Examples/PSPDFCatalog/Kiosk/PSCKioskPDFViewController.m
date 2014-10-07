@@ -72,7 +72,7 @@
     // Support the case where we pop in the nav stack
     if (self.navigationController.viewControllers.count > 1) {
         [self.navigationController popViewControllerAnimated:YES];
-    }else {
+    } else {
         // We might have opened a linked document modally.
         [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -226,7 +226,7 @@
 
     if (![settings[PROPERTY(activityButtonItem)] boolValue]) {
         self.additionalBarButtonItems = additionalRightBarButtonItems;
-    }else {
+    } else {
         self.activityButtonItem.applicationActivities = activities;
     }
 #endif
@@ -344,7 +344,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
                     }
                 });
             });
-        }else {
+        } else {
             for (PSPDFPageView *visiblePageView in visiblePageViews) {
                 [visiblePageView.selectionView showTextFlowData:NO animated:NO];
             }
@@ -356,9 +356,9 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 static id PSCControllerForClass(id theController, Class klass) {
     if ([theController isKindOfClass:klass]) {
         return theController;
-    }else if ([theController isKindOfClass:UINavigationController.class]) {
+    } else if ([theController isKindOfClass:UINavigationController.class]) {
         return PSCControllerForClass(((UINavigationController *)theController).topViewController, klass);
-    }else if ([theController isKindOfClass:PSPDFContainerViewController.class]) {
+    } else if ([theController isKindOfClass:PSPDFContainerViewController.class]) {
         for (UIViewController *contained in ((PSPDFContainerViewController *)theController).viewControllers) {
             if (PSCControllerForClass(contained, klass)) return PSCControllerForClass(contained, klass);
         }

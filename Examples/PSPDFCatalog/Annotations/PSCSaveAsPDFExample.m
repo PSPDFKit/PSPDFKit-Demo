@@ -91,7 +91,7 @@
 		// The notification might not be on main thread.
 		if (NSThread.isMainThread) {
 			[self askUserAboutSaveLocationIfNeeded];
-		}else {
+		} else {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self askUserAboutSaveLocationIfNeeded];
 			});
@@ -127,7 +127,7 @@
         NSString *appendSuffix = [NSString stringWithFormat:@"_annotated%@.pdf", appendFileCount == 0 ? @"" : @(appendFileCount)];
         if ([newPath.lowercaseString hasSuffix:@".pdf"]) {
             newPath = [newPath stringByReplacingOccurrencesOfString:@".pdf" withString:appendSuffix options:NSCaseInsensitiveSearch range:NSMakeRange(newPath.length-4, 4)];
-        }else {
+        } else {
             newPath = [newPath stringByAppendingString:appendSuffix];
         }
         appendFileCount++;
@@ -137,7 +137,7 @@
     NSError *error;
     if (![NSFileManager.defaultManager copyItemAtURL:self.document.fileURL toURL:newURL error:&error]) {
         NSLog(@"Failed to copy file to %@: %@", newURL.path, error.localizedDescription);
-    }else {
+    } else {
         // Since the annotation has already been edited, we copy the file *before* it will be saved
         // then save the current state and switch out the documents.
         if (![self.document saveAnnotationsWithError:&error]) {

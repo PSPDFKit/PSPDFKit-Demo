@@ -76,7 +76,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
         if (isDirectory) {
             NSString *fileName = [urlRequest.URL lastPathComponent];
             _targetPath = [NSString pathWithComponents:@[targetPath, fileName]];
-        }else {
+        } else {
             _targetPath = targetPath;
         }
 
@@ -213,7 +213,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
                 }
 
                 // loss of network connections = error set, but not cancel
-            }else if (!self.error) {
+            } else if (!self.error) {
                 // move file to final position and capture error
                 NSFileManager *fileManager = [NSFileManager new];
                 if (self.shouldOverwrite) {

@@ -40,7 +40,7 @@
     NSURL *tempURL = PSCTempFileURLWithPathExtension([NSString stringWithFormat:@"locked_%@", documentSamplesURL.lastPathComponent], @"pdf");
     if ([NSFileManager.defaultManager fileExistsAtPath:documentSamplesURL.path]) {
         [NSFileManager.defaultManager copyItemAtURL:documentSamplesURL toURL:tempURL error:NULL];
-    }else {
+    } else {
         [NSFileManager.defaultManager copyItemAtURL:annotationSavingURL toURL:tempURL error:NULL];
     }
 

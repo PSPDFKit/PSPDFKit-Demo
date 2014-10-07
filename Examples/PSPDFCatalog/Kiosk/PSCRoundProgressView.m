@@ -105,7 +105,7 @@
                     scaleAnimation.fillMode = kCAFillModeForwards;
                     [self.backgroundShape addAnimation:scaleAnimation forKey:@"transform.scale"];
                 } [CATransaction commit];
-            }else {
+            } else {
                 self.hidden = YES;
             }
         }

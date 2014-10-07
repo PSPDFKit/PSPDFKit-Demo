@@ -282,7 +282,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed:)];
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Save") style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonPressed:)];
         _noteToolbar.items = @[cancelButton, spacer, saveButton];
-    }else {
+    } else {
         NSUInteger noteNumber = PSCNumberOfAnnotationOfType(self.annotation);
         // Use custom view to make this non-clickable.
         UIBarButtonItem *titleButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalizeFormatted(@"Note %tu", noteNumber) style:UIBarButtonItemStylePlain target:nil action:NULL];

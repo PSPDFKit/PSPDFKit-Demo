@@ -99,7 +99,7 @@
         } completion:^(BOOL finished) {
             if (hidden) [self.closeButton removeFromSuperview];
         }];
-    }else {
+    } else {
         if (hidden) [self.closeButton removeFromSuperview];
         else [self.view addSubview:self.closeButton];
     }

@@ -76,7 +76,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
     if (context == &PSCKVOToken) {
         if ([keyPath isEqualToString:PROPERTY(status)]) {
             [self processStatusChangeForMagazineDownload:object];
-        }else {
+        } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
     }
@@ -146,12 +146,12 @@ static char PSCKVOToken; // we need a static address for the KVO token
 
         if (folder.magazines.count > 0) {
             [delegate magazineStoreFolderModified:folder]; // was just modified
-        }else {
+        } else {
             dispatch_barrier_sync(_magazineFolderQueue, ^{
                 [_magazineFolders removeObject:folder]; // remove!
             });
         }
-    }else {
+    } else {
         // just set availability to now - needs redownloading!
         magazine.available = NO;
         [delegate magazineStoreMagazineModified:magazine];
@@ -189,7 +189,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
 - (void)processStatusChangeForMagazineDownload:(PSCDownload *)download {
     if (download.status == PSCStoreDownloadStatusFinished) {
         [self finishDownload:download];
-    }else if (download.status == PSCStoreDownloadStatusFailed) {
+    } else if (download.status == PSCStoreDownloadStatusFailed) {
         if (!download.isCancelled) {
             NSString *magazineTitle = download.magazine.title.length ? download.magazine.title : NSLocalizedString(@"Magazine", @"");
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ could not be downloaded. Please try again.", @""), magazineTitle];
@@ -248,7 +248,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
     // update user defaults
     if (magazine.UID) {
         [NSUserDefaults.standardUserDefaults setObject:magazine.UID forKey:kNewsstandIconUID];
-    }else {
+    } else {
         [NSUserDefaults.standardUserDefaults removeObjectForKey:kNewsstandIconUID];
     }
 }
@@ -274,7 +274,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
             // folder fresh or updated?
             if (folder.magazines.count == 1) {
                 [delegate magazineStoreFolderAdded:folder];
-            }else {
+            } else {
                 [delegate magazineStoreFolderModified:folder];
             }
 
@@ -325,7 +325,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
                 if (contentFolder.magazines.count) {
                     [folders addObject:contentFolder];
                 }
-            }else if ([fullPath.lowercaseString hasSuffix:@"pdf"]) {
+            } else if ([fullPath.lowercaseString hasSuffix:@"pdf"]) {
                 @autoreleasepool {
                     PSCMagazine *magazine = [PSCMagazine magazineWithPath:fullPath];
                     [rootFolder addMagazine:magazine];
@@ -428,7 +428,7 @@ static char PSCKVOToken; // we need a static address for the KVO token
         for (NSDictionary *dlMagazine in dlMagazines) {
             if (![dlMagazine isKindOfClass:NSDictionary.class]) {
                 PSCLog(@"Error while parsing magazine JSON - Dictionary expected. Got this instead: %@", dlMagazine);
-            }else {
+            } else {
                 // create and fill PSPDFMagazine
                 NSString *title = dlMagazine[@"name"];
                 NSString *URLString = dlMagazine[@"url"];

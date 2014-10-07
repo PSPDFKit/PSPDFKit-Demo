@@ -51,7 +51,7 @@
         PSPDFColorSelectionViewController *colorsViewController = [[self alloc] initWithColors:colors];
         colorsViewController.title = PSPDFLocalize(@"Custom");
         return colorsViewController;
-    }else {
+    } else {
         return [super colorPickerForType:type];
     }
 }

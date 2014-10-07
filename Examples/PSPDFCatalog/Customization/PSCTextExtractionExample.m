@@ -145,7 +145,7 @@ static const char PSCAlertViewKey;
             if (error) {
                 [status popAnimated:YES];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
-            }else {
+            } else {
                 // generate document and show it
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
                 [statusDone pushAndPopWithDelay:2.0f animated:YES];
@@ -170,8 +170,12 @@ static const char PSCAlertViewKey;
 // enable the return key on the alert view
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
-    if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
-    }else return NO;
+    if (alertView) {
+        [alertView dismissWithClickedButtonIndex:1 animated:YES];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

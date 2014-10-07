@@ -52,7 +52,7 @@
 
     if (self.pdfController && (arc4random_uniform(2) == 1 || YES)) {
         self.pdfController.document = randomDocument;
-    }else {
+    } else {
         // remove old controller
         [self.pdfController willMoveToParentViewController:nil];
         [self.pdfController.view removeFromSuperview];

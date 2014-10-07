@@ -80,7 +80,7 @@
     // Only show the option button if we're at root. (else we hide the back button)
     if ((self.navigationController.viewControllers)[0] == self) {
         self.navigationItem.leftBarButtonItem = optionButton;
-    }else {
+    } else {
         self.navigationItem.leftBarButtonItem = optionButton;
         self.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -233,14 +233,14 @@
     if (alreadyDisplayed) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
-    }else {
+    } else {
         PSCSettingsController *settingsController = [PSCSettingsController new];
         settingsController.owningViewController = self;
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
         if (PSCIsIPad()) {
             self.popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
             [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }else {
+        } else {
             [self presentModalViewControllerWithCloseButton:settingsController animated:YES];
         }
     }
@@ -312,7 +312,7 @@
     if (editing) {
         if (cell.magazine) {
             editing =  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
-        }else {
+        } else {
             NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
             editing = fixedMagazines.count == 0;
         }
@@ -355,14 +355,14 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (self.magazineFolder) {
         _filteredData = self.magazineFolder.magazines;
-    }else {
+    } else {
         _filteredData = PSCStoreManager.sharedStoreManager.magazineFolders;
     }
 
     NSString *searchString = _searchBar.text;
     if ([searchString length]) { // title CONTAINS[cd] '%@' ||
         _filteredData = [_filteredData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fileURL.path CONTAINS[cd] %@", searchString]];
-    }else {
+    } else {
         _filteredData = [_filteredData copy];
     }
 
@@ -380,7 +380,7 @@
     cell.immediatelyLoadCellImages = self.immediatelyLoadCellImages;
     if (self.magazineFolder) {
         cell.magazine = _filteredData[indexPath.item];
-    }else {
+    } else {
         cell.magazineFolder = _filteredData[indexPath.item];
     }
     cell.showDeleteImage = [self canEditCell:cell];
@@ -400,10 +400,10 @@
         if (self.magazineFolder) {
             if (magazine.isDownloading) {
                 [PSCStoreManager.sharedStoreManager cancelDownloadForMagazine:magazine];
-            }else {
+            } else {
                 [PSCStoreManager.sharedStoreManager deleteMagazine:magazine];
             }
-        }else {
+        } else {
             [PSCStoreManager.sharedStoreManager deleteMagazineFolder:folder];
         }
     };
@@ -425,7 +425,7 @@
     if (self.magazineFolder) {
         folder = self.magazineFolder;
         magazine = (_filteredData)[indexPath.item];
-    }else {
+    } else {
         folder = (_filteredData)[indexPath.item];
         magazine = [folder firstMagazine];
     }
@@ -447,7 +447,7 @@
         } else {
             [self openMagazine:magazine animated:YES cellIndex:indexPath.item];
         }
-    }else {
+    } else {
         PSCGridViewController *gridController = [[PSCGridViewController alloc] initWithMagazineFolder:folder];
 
         // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
@@ -456,7 +456,7 @@
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
             [self.navigationController pushViewController:gridController animated:NO];
 
-        }else {
+        } else {
             [self.navigationController pushViewController:gridController animated:YES];
         }
     }
@@ -489,7 +489,7 @@
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
     }
@@ -502,7 +502,7 @@
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
     }
@@ -515,7 +515,7 @@
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
     }
@@ -525,7 +525,7 @@
     NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
     if (cellIndex != NSNotFound) {
         [self openMagazine:magazine animated:YES cellIndex:cellIndex];
-    }else {
+    } else {
         PSCLog(@"index not found for %@", magazine);
     }
 }
@@ -537,7 +537,7 @@
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
             [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazine);
         }
     }
@@ -550,7 +550,7 @@
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
             [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazine);
         }
     }
@@ -563,7 +563,7 @@
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
             [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
-        }else {
+        } else {
             PSCLog(@"index not found for %@", magazine);
         }
     }
@@ -641,15 +641,15 @@
 		// Fallback to a crossfade animation, if we can't get a usable cover image
 		if (!self.coverImage || self.lastOpenedMagazine.isLocked) {
 			[self animateCrossFadeTrasition:transitionContext];
-		}else {
+		} else {
 			[self animateZoomInTrasition:transitionContext];
 		}
-	}else {
+	} else {
 		// Fallback to a crossfade animation, if we can't get a usable cover image
 		// or if the index is left in an invalid state
 		if (!self.coverImage || self.cellIndex >= self.magazineFolder.magazines.count) {
 			[self animateCrossFadeTrasition:transitionContext];
-		}else {
+		} else {
 			[self animateZoomOutTrasition:transitionContext];
 		}
 	}

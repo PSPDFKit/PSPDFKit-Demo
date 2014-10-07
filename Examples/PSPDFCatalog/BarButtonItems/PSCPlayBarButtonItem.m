@@ -66,7 +66,7 @@
         self.autoplaying = YES;
         self.autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:PSCSlideshowDuration target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
-    }else {
+    } else {
         self.autoplaying = NO;
         [self.autoplayTimer invalidate];
         [self updatePlayButton];
@@ -88,7 +88,7 @@
     pdfController.viewLockEnabled = NO;
     if ([pdfController isLastPage]) {
         [pdfController setPage:0 animated:YES];
-    }else {
+    } else {
         [pdfController scrollToNextPageAnimated:YES];
     }
     pdfController.viewLockEnabled = self.isAutoplaying;

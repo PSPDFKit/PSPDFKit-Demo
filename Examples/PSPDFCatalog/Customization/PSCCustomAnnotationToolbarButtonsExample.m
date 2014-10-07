@@ -81,7 +81,7 @@
         for (PSPDFDrawView *drawView in self.annotationStateManager.drawViews.allValues) {
             [drawView clearAllActions];
         }
-    }else {
+    } else {
         // Iterate over all visible pages and remove all but links.
         PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         PSPDFDocument *document = pdfController.document;

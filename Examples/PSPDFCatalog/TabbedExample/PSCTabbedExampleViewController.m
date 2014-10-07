@@ -37,7 +37,7 @@
         if (PSCIsIPad()) {
             PSCAddDocumentsBarButtonItem *addDocumentsButton = [[PSCAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfController];
             self.pdfController.leftBarButtonItems = @[addDocumentsButton, clearTabsButton];
-        }else {
+        } else {
             self.pdfController.leftBarButtonItems = @[clearTabsButton];
             self.pdfController.rightBarButtonItems = @[self.pdfController.annotationButtonItem, self.pdfController.outlineButtonItem, self.pdfController.activityButtonItem, self.pdfController.viewModeButtonItem];
             self.pdfController.activityButtonItem.applicationActivities = @[PSPDFActivityTypeSearch, PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks];

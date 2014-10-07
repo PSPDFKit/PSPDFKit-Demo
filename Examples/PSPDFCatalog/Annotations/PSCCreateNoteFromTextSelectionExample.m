@@ -51,7 +51,7 @@
             [pageView showNoteControllerForAnnotation:noteAnnotation showKeyboard:YES animated:YES]; // show popover
         }];
         return [menuItems arrayByAddingObjectsFromArray:@[createNoteMenu]];
-    }else {
+    } else {
         return menuItems;
     }
 }

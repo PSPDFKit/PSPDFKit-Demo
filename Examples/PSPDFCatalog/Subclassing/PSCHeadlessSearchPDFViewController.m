@@ -52,7 +52,7 @@
 - (void)updateTextHighlight {
     if ([self.highlightedSearchText length]) {
         [self.textSearch searchForString:self.highlightedSearchText];
-    }else {
+    } else {
         [self.searchHighlightViewManager clearHighlightedSearchResultsAnimated:NO];
         [self.textSearch cancelAllOperationsAndWait];
     }

@@ -105,7 +105,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
 - (void)thumbnailButtonPressed:(UIButton *)sender {
     if (self.viewMode == PSPDFViewModeDocument) {
         [self setViewMode:PSPDFViewModeThumbnails animated:YES];
-    }else {
+    } else {
         [self setViewMode:PSPDFViewModeDocument animated:YES];
     }
 }

@@ -72,7 +72,7 @@
             if (!error) {
                 unsigned long long XFDFFileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:fileXML.path error:NULL] fileSize];
                 NSLog(@"Saving done. (XFDF file size: %lld)", XFDFFileSize);
-            }else {
+            } else {
                 NSLog(@"Saving failed: %@", error.localizedDescription);
             }
         }];

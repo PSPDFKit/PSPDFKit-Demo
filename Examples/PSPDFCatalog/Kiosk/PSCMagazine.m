@@ -82,7 +82,7 @@
         if (lastViewState) {
             NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:lastViewState];
             [NSUserDefaults.standardUserDefaults setObject:viewStateData forKey:self.UID];
-        }else {
+        } else {
             [NSUserDefaults.standardUserDefaults removeObjectForKey:self.UID];
         }
     }

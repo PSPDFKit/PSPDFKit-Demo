@@ -50,7 +50,7 @@
 
     if (option == PSPDFOutlineBarButtonItemOptionOutline) {
         viewController = [[PSCCustomOutlineViewController alloc] init];
-    }else {
+    } else {
         viewController = [super controllerForOption:option];
     }
     return viewController;

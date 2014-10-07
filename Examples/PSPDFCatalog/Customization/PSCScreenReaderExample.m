@@ -89,12 +89,12 @@
         if (self.currentWords.count > 0) {
             self.currentWord = (self.currentWords)[0];
         }
-    }else {
+    } else {
         NSUInteger index = [self.currentWords indexOfObjectIdenticalTo:self.currentWord];
         index++;
         if (index < self.currentWords.count) {
             self.currentWord = self.currentWords[index];
-        }else {
+        } else {
             // we hit the end of the page.
             self.currentWord = nil;
             [self stopWordTimer];
@@ -139,7 +139,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
     if (viewMode == PSPDFViewModeThumbnails) {
         [self stopWordTimer];
-    }else {
+    } else {
         [self startWordTimer];
     }
 }

@@ -85,7 +85,7 @@
     if (self.document) {
         // Internally, pages start at 0. But be user-friendly and start at 1.
         self.title = [NSString stringWithFormat:@"%@ - Page %tu", self.document.title, self.page];
-    }else {
+    } else {
         self.title = @"No document loaded.";
         [self setHUDVisible:NO animated:NO]; // ensure HUD is disabled if no document is loaded.
     }

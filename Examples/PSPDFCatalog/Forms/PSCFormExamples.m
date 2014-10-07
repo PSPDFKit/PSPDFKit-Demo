@@ -100,7 +100,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
                     // Change model on main thread and send a change notification.
                     formElement.contents = [NSString stringWithFormat:@"Test %@", formElement.fieldName];
                     [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationChangedNotification object:formElement userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[@"contents"]}];
-                }else if ([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
+                } else if ([formElement isKindOfClass:PSPDFButtonFormElement.class]) {
                     [(PSPDFButtonFormElement *)formElement toggleButtonSelectionStateAndSendNotification:YES];
                 }
             });

@@ -55,7 +55,7 @@ UIView *PSCGetViewInsideView(UIView *view, NSString *classNamePrefix) {
         if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] ||
             [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
             return subview;
-        }else {
+        } else {
             if ((theView = PSCGetViewInsideView(subview, classNamePrefix))) break;
         }
     }

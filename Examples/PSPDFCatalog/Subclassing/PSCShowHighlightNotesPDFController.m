@@ -45,7 +45,7 @@
         // Show note controller directly, skipping the menu.
         [pageView showNoteControllerForAnnotation:annotation showKeyboard:NO animated:YES];
         return nil;
-    }else {
+    } else {
         return menuItems;
     }
 }

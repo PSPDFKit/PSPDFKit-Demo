@@ -67,7 +67,7 @@
     if (![metadata isKindOfClass:[NSString class]]) {
         if ([metadata isKindOfClass:[NSArray class]]) {
             metadata = [(NSArray *)metadata componentsJoinedByString:@", "];
-        }else {
+        } else {
             metadata = [metadata description];
         }
     }

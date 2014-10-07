@@ -60,7 +60,7 @@ static const char PSCAlertViewKey;
 
         if (pageIndex == NSNotFound) {
             [[[UIAlertView alloc] initWithTitle:PSPDFLocalizeFormatted(@"Page %@ not found", pageLabel) message:nil delegate:nil cancelButtonTitle:PSPDFLocalize(@"Dismiss") otherButtonTitles:nil] show];
-        }else {
+        } else {
             [pdfController setViewMode:PSPDFViewModeDocument animated:YES];
             [pdfController setPage:pageIndex animated:YES];
         }
@@ -78,7 +78,7 @@ static const char PSCAlertViewKey;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
     if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
-    }else return NO;
+    } elsereturn NO;
 }
 
 @end

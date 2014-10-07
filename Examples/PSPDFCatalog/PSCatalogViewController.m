@@ -104,7 +104,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
 
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"1.pdf"]];
+        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -129,7 +129,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" description:@"Allows to open multiple documents via a tabbed interface." block:^{
         if (PSCIsIPad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
-        }else {
+        } else {
             // on iPhone, we do things a bit different, and push/pull the controller.
             PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
             objc_setAssociatedObject(documentSelector, &PSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -205,7 +205,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 			PSCDropboxSplitViewControllerContainer *containerController = [[PSCDropboxSplitViewControllerContainer alloc] init];
             [self presentViewController:containerController animated:YES completion:NULL];
             return (UIViewController *)nil;
-        }else {
+        } else {
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
             PSCDropboxPDFViewController *dropboxPDFController = [[PSCDropboxPDFViewController alloc] initWithDocument:document];
             return (UIViewController *)dropboxPDFController;
@@ -350,7 +350,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             if (!encryptedData) {
                 NSLog(@"Failed to encrypt: %@", error.localizedDescription);
                 [data setData:[NSData data]]; // clear data - better save nothing than unencrypted!
-            }else {
+            } else {
                 [data setData:encryptedData];
             }
         }];
@@ -1361,7 +1361,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             if (error) {
                 [status popAnimated:YES];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }else {
+            } else {
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
                 [statusDone setHUDStyle:PSPDFStatusHUDStyleGradient];
                 [statusDone pushAndPopWithDelay:2.0f animated:YES];
@@ -1487,7 +1487,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             }
         }
         _firstShown = YES;
-    }else {
+    } else {
         // Second display, remove user default.
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCLastIndexPath];
     }
@@ -1573,7 +1573,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSContent *contentDescriptor;
     if (tableView == self.tableView) {
         contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
-    }else {
+    } else {
         contentDescriptor = self.filteredContent[indexPath.row];
     }
 
@@ -1593,7 +1593,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     if (tableView == self.tableView) {
         contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
         unfilteredIndexPath = indexPath;
-    }else {
+    } else {
         contentDescriptor = self.filteredContent[indexPath.row];
         // Find original index path so we can persist.
         [self.content enumerateObjectsUsingBlock:^(PSCSectionDescriptor *section, NSUInteger sectionIndex, BOOL *stop) {
@@ -1617,7 +1617,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             controller = [((UINavigationController *)controller) topViewController];
         }
         [self.navigationController pushViewController:controller animated:YES];
-    }else {
+    } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -1634,7 +1634,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
         tabbedViewController.pdfController.page = pageIndex;
         [controller.navigationController pushViewController:tabbedViewController animated:YES];
-    }else {
+    } else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = pageIndex;
         pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
@@ -1660,8 +1660,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 // enable the return key on the alert view
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
-    if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
-    }else return NO;
+    if (alertView) {
+        [alertView dismissWithClickedButtonIndex:1 animated:YES];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

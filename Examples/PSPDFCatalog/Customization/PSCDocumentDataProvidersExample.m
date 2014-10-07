@@ -178,7 +178,7 @@
         NSData *data2 = [NSData dataWithContentsOfURL:file2 options:NSDataReadingMappedIfSafe error:NULL];
         NSData *data3 = [NSData dataWithContentsOfURL:file3 options:NSDataReadingMappedIfSafe error:NULL];
         document = [PSPDFDocument documentWithDataArray:@[data1, data2, data3]];
-    }else {
+    } else {
         // this is not needed, just an example how to use the changed dataArray (the data will be changed when annotations are written back)
         document = [PSPDFDocument documentWithDataArray:document.dataArray];
     }
