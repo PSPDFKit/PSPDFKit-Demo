@@ -53,8 +53,24 @@
 - (void)searchViewController:(PSPDFSearchViewController *)searchController didTapSearchResult:(PSPDFSearchResult *)searchResult {
     [super searchViewController:searchController didTapSearchResult:searchResult];
 
+    [self zoomToSearchResult:searchResult];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFInlineSearchManagerDelegate
+
+- (void)inlineSearchManager:(PSPDFInlineSearchManager *)manager didFocusSearchResult:(PSPDFSearchResult *)searchResult {
+    [super inlineSearchManager:manager didFocusSearchResult:searchResult];
+
+    [self zoomToSearchResult:searchResult];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)zoomToSearchResult:(PSPDFSearchResult *)searchResult {
     CGRect viewRect = [[self pageViewForPage:searchResult.pageIndex] convertPDFRectToViewRect:searchResult.selection.frame];
-//    viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
+    //    viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
     [self zoomToRect:viewRect page:searchResult.pageIndex animated:YES];
 }
 
