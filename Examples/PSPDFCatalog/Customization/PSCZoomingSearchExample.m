@@ -11,7 +11,11 @@
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
 
-@interface PSCZoomingSearchPDFViewController : PSPDFViewController @end
+@interface PSCZoomingSearchPDFViewController : PSPDFViewController
+
+@property (nonatomic, assign, getter=isInitialSearchAlreadyPerformed) BOOL initialSearchAlreadyPerformed;
+
+@end
 
 @interface PSCZoomingSearchExample : PSCExample @end
 @implementation PSCZoomingSearchExample
@@ -43,8 +47,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // Automatically start searching.
-    [self searchForString:@"Tomat" options:nil sender:nil animated:YES];
+    // Automatically start searching for the first time this view is displayed.
+    if (!self.isInitialSearchAlreadyPerformed) {
+        [self searchForString:@"Tomat" options:nil sender:nil animated:YES];
+        self.initialSearchAlreadyPerformed = YES;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -53,8 +60,24 @@
 - (void)searchViewController:(PSPDFSearchViewController *)searchController didTapSearchResult:(PSPDFSearchResult *)searchResult {
     [super searchViewController:searchController didTapSearchResult:searchResult];
 
+    [self zoomToSearchResult:searchResult];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFInlineSearchManagerDelegate
+
+- (void)inlineSearchManager:(PSPDFInlineSearchManager *)manager didFocusSearchResult:(PSPDFSearchResult *)searchResult {
+    [super inlineSearchManager:manager didFocusSearchResult:searchResult];
+
+    [self zoomToSearchResult:searchResult];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)zoomToSearchResult:(PSPDFSearchResult *)searchResult {
     CGRect viewRect = [[self pageViewForPage:searchResult.pageIndex] convertPDFRectToViewRect:searchResult.selection.frame];
-//    viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
+    //    viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
     [self zoomToRect:viewRect page:searchResult.pageIndex animated:YES];
 }
 
