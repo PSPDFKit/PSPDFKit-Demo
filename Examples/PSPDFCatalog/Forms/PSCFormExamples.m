@@ -23,6 +23,8 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormExample
 
+#if defined(PSPDFEnableOpenSSLFeatures) && PSPDFEnableOpenSSLFeatures
+
 @interface PSCFormExample : PSCExample @end
 @implementation PSCFormExample
 
@@ -66,6 +68,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 }
 
 @end
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Programmatic Form Filling
