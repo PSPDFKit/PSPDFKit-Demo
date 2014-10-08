@@ -10,7 +10,6 @@
 
 #import "PSCFileHelper.h"
 #import "PSCExample.h"
-#import <objc/runtime.h>
 
 @interface PSCFullTextSearchExample : PSCExample @end
 @interface PSCConvertMarkupStringToPDFExample : PSCExample @end
@@ -99,14 +98,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCConvertWebsiteOrFilesToPDFExample
 
-@interface PSCConvertWebsiteOrFilesToPDFExample () <UITextFieldDelegate> {
+@interface PSCConvertWebsiteOrFilesToPDFExample () {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
 }
 @end
-
-static const char PSCAlertViewKey;
 
 @implementation PSCConvertWebsiteOrFilesToPDFExample
 
@@ -158,24 +155,9 @@ static const char PSCAlertViewKey;
             }
         }];
     }];
-    [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
-    objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [websitePrompt enableReturnKeyForTextFieldAtIndex:0];
     [websitePrompt show];
     return nil;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UITextFieldDelegate
-
-// enable the return key on the alert view
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
-    if (alertView) {
-        [alertView dismissWithClickedButtonIndex:1 animated:YES];
-        return YES;
-    } else {
-        return NO;
-    }
 }
 
 @end

@@ -64,7 +64,6 @@
 @end
 
 static const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
-static const char PSCAlertViewKey;
 static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
@@ -1652,20 +1651,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
     PSCLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UITextFieldDelegate
-
-// enable the return key on the alert view
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
-    if (alertView) {
-        [alertView dismissWithClickedButtonIndex:1 animated:YES];
-        return YES;
-    } else {
-        return NO;
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

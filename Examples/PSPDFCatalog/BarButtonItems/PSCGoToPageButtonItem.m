@@ -9,14 +9,8 @@
 //
 
 #import "PSCGoToPageButtonItem.h"
-#import <objc/runtime.h>
-
-@interface PSCGoToPageButtonItem() <UITextFieldDelegate>
-@end
 
 @implementation PSCGoToPageButtonItem
-
-static const char PSCAlertViewKey;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
@@ -66,19 +60,8 @@ static const char PSCAlertViewKey;
         }
     }];
 
-    [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
-    objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_ASSIGN);
+    [websitePrompt enableReturnKeyForTextFieldAtIndex:0];
     [websitePrompt show];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UITextFieldDelegate
-
-// Enable the return key on the alert view.
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
-    if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
-    } elsereturn NO;
 }
 
 @end
