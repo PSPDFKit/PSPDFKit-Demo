@@ -15,7 +15,7 @@
 - (UIView *)inlineSearchManagerContainerView:(PSPDFInlineSearchManager *)manager {
     // We want to display search UI over parent view controller's navigation controller.
     UIView *containerView = self.parentViewController.navigationController.view;
-    // Fallback to default bevahior if something went wrong.
+    // Fallback to default behavior if something went wrong.
     if (!containerView) {
         containerView = [super inlineSearchManagerContainerView:manager];
     }
