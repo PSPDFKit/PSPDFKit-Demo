@@ -59,8 +59,6 @@
             [pdfController setPage:pageIndex animated:YES];
         }
     }];
-
-    [websitePrompt enableReturnKeyForTextFieldAtIndex:0];
     [websitePrompt show];
 }
 

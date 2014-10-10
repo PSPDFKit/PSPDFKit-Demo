@@ -155,7 +155,6 @@
             }
         }];
     }];
-    [websitePrompt enableReturnKeyForTextFieldAtIndex:0];
     [websitePrompt show];
     return nil;
 }
