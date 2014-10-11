@@ -20,6 +20,7 @@ typedef UIViewController* (^PSControllerBlock)();
 @property (nonatomic, copy) NSArray *contentDescriptors;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *footer;
+@property (nonatomic, strong) UIView *headerView;
 
 @end
 

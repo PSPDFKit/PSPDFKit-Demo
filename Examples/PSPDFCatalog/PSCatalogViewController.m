@@ -96,10 +96,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     NSMutableOrderedSet *sections = [NSMutableOrderedSet orderedSet];
 
     // Full Apps
-    PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:@"Example Applications" footer:nil];
+    PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:nil footer:nil];
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo-flat"]];
+    logo.contentMode = UIViewContentModeCenter;
+    [logo sizeToFit];
+    appSection.headerView = logo;
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" description:@"Simple Test-Bed for the PSPDFViewController" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" description:@"Exposes common settings and defaults." block:^{
         PSPDFDocument *document;
         document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
 
@@ -1433,8 +1437,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.tableView.tableHeaderView = searchBar;
     self.searchBar = searchBar;
+    self.tableView.tableHeaderView = searchBar;
 
     UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     searchDisplayController.delegate = self;
@@ -1549,15 +1553,24 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return tableView == self.tableView ? [_content[section] contentDescriptors].count : self.filteredContent.count;
+    return tableView == self.tableView ? [self.content[section] contentDescriptors].count : self.filteredContent.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return tableView == self.tableView ? [_content[section] title] : nil;
+    return tableView == self.tableView ? [self.content[section] title] : nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return tableView == self.tableView ? [self.content[section] headerView] : nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [self.content[section] headerView];
+    return headerView ? headerView.frame.size.height : UITableViewAutomaticDimension;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return tableView == self.tableView ? [_content[section] footer] : nil;
+    return tableView == self.tableView ? [self.content[section] footer] : nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -1571,7 +1584,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Get correct content descriptor
     PSContent *contentDescriptor;
     if (tableView == self.tableView) {
-        contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+        contentDescriptor = [self.content[indexPath.section] contentDescriptors][indexPath.row];
     } else {
         contentDescriptor = self.filteredContent[indexPath.row];
     }
@@ -1590,7 +1603,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     __block NSIndexPath *unfilteredIndexPath;
     PSContent *contentDescriptor;
     if (tableView == self.tableView) {
-        contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+        contentDescriptor = [self.content[indexPath.section] contentDescriptors][indexPath.row];
         unfilteredIndexPath = indexPath;
     } else {
         contentDescriptor = self.filteredContent[indexPath.row];
