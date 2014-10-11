@@ -200,15 +200,15 @@
         [additionalRightBarButtonItems addObject:self.emailButtonItem];
         // default activity
     }
+    if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
+        [additionalRightBarButtonItems insertObject:self.bookmarkButtonItem atIndex:0];
+        [activities addObject:PSPDFActivityTypeBookmarks];
+    }
 
     if (!PSCIsIPad()) {
         if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [additionalRightBarButtonItems insertObject:self.outlineButtonItem atIndex:0];
             [activities addObject:PSPDFActivityTypeOutline];
-        }
-        if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
-            [additionalRightBarButtonItems insertObject:self.bookmarkButtonItem atIndex:0];
-            [activities addObject:PSPDFActivityTypeBookmarks];
         }
         if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
             [additionalRightBarButtonItems insertObject:self.searchButtonItem atIndex:0];
