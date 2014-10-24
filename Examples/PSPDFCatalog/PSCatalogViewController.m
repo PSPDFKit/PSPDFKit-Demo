@@ -1565,8 +1565,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [self.content[section] headerView];
-    return headerView ? headerView.frame.size.height : UITableViewAutomaticDimension;
+    if (tableView == self.tableView) {
+        UIView *headerView = [self.content[section] headerView];
+        return headerView ? headerView.frame.size.height : UITableViewAutomaticDimension;
+    }
+    return 0.f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
