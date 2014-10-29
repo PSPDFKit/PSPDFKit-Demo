@@ -31,9 +31,10 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    [PSCCustomHUDView appearance].pageLabelDistance = 49.f;
+
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        builder.pageLabelDistance = 49.f;
         [builder overrideClass:PSPDFHUDView.class withClass:PSCCustomHUDView.class];
 
         // There's no need for actually overriding the scrobble bar in this example - it's just for testing.
