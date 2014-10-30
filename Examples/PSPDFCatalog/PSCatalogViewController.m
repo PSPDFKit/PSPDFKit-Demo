@@ -40,11 +40,6 @@
 #import "PSCViewHelper.h"
 #import "UIColor+PSPDFCatalog.h"
 #import "NSArray+PSCHelper.h"
-
-#ifdef PSPDF_USE_SOURCE
-#import "PSCPopoverTestViewController.h"
-#endif
-
 #import <objc/runtime.h>
 
 // Crypto support
