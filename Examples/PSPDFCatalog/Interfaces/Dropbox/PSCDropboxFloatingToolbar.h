@@ -13,7 +13,7 @@
 @interface PSCDropboxFloatingToolbar : PSPDFGradientView
 
 /// Buttons will be placed next to each other.
-@property (nonatomic, strong) NSArray *buttons;
+@property (nonatomic, copy) NSArray *buttons;
 
 /// Margin between the buttons. Defaults to 5.
 @property (nonatomic, assign) CGFloat margin;

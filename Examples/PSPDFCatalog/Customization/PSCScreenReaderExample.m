@@ -15,7 +15,7 @@
 @property (nonatomic, strong) PSPDFSearchHighlightView *highlightView;
 @property (nonatomic, strong) NSTimer *wordTimer;
 @property (nonatomic, strong) PSPDFWord *currentWord;
-@property (nonatomic, strong) NSArray *currentWords;
+@property (nonatomic, copy) NSArray *currentWords;
 @end
 
 @interface PSCScreenReaderExample : PSCExample @end

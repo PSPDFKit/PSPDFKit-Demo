@@ -21,7 +21,7 @@
 @interface PSCGridViewController() <UISearchBarDelegate, UINavigationControllerDelegate, UIViewControllerAnimatedTransitioning>
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
 @property (nonatomic, assign) BOOL animationDoubleWithPageCurl;
-@property (nonatomic, strong) NSArray *filteredData;
+@property (nonatomic, copy) NSArray *filteredData;
 
 @property (nonatomic, strong) PSCMagazine *lastOpenedMagazine;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;

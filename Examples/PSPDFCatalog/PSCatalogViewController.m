@@ -52,8 +52,8 @@
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
 }
-@property (nonatomic, strong) NSArray *content;
-@property (nonatomic, strong) NSArray *filteredContent;
+@property (nonatomic, copy) NSArray *content;
+@property (nonatomic, copy) NSArray *filteredContent;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISearchDisplayController *searchDisplayController;
 @end
@@ -1596,8 +1596,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Invoking [NSIndexPath indexPathForRow:%tu inSection:%tu]", indexPath.row, indexPath.section);
-
     __block NSIndexPath *unfilteredIndexPath;
     PSContent *contentDescriptor;
     if (tableView == self.tableView) {
