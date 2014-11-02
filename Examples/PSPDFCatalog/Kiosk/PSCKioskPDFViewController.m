@@ -110,6 +110,10 @@
 	[super viewWillAppear:animated];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
