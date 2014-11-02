@@ -37,7 +37,6 @@
     NSURL *hackerPDFURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
     NSURL *paperPDFURL = [samplesURL URLByAppendingPathComponent:PSPDFDeveloperGuideAsset];
 
-
     NSURL *originalPDF = PSCCopyFileURLToDocumentFolderAndOverride(hackerPDFURL, NO);
     [NSFileManager.defaultManager copyItemAtURL:hackerPDFURL toURL:originalPDF error:NULL];
 
