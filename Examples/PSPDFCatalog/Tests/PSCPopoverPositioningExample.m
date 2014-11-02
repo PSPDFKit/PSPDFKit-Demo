@@ -26,7 +26,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];

@@ -32,7 +32,7 @@
 // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
     //NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Form_YesNo.pdf"];
 
     // Load from an example XFDF file.
@@ -103,7 +103,7 @@
 // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     // Load from an example XFDF file.
     NSString *passphrase = @"jJ9A3BiMXoq+rEoYMdqBoBNzgxagTf";

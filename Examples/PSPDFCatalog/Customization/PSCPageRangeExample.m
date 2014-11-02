@@ -23,7 +23,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     document.UID = @"PageRangeExampleUID"; // custom so this won't affect other examples.
     document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {

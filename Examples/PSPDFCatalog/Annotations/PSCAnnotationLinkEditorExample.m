@@ -27,7 +27,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                         // Annotations
                                         PSPDFAnnotationStringLink, // important!

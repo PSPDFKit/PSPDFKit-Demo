@@ -32,7 +32,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *pdfController = [[PSCReaderPDFViewController alloc] initWithDocument:document];
     pdfController.page = 3;
     return pdfController;

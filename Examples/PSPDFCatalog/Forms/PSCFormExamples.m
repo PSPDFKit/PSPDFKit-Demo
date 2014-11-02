@@ -182,7 +182,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"Forms_formatted.pdf"];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:@"Forms_formatted.pdf"];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;
 }

@@ -44,7 +44,7 @@ static const char PSCSignatureCompletionBlock;
     // To make the example more concise, we're using a callback block here.
     void(^signatureCompletionBlock)(PSPDFSignatureViewController *theSignatureController) = ^(PSPDFSignatureViewController *theSignatureController) {
         // Create the document.
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // Don't pollute other examples.
 
         // We want to add signture at the bottom of the page.

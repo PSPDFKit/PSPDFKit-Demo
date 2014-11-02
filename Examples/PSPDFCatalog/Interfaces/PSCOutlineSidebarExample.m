@@ -38,7 +38,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     PSPDFSidebarViewController *sidebarController = [[PSPDFSidebarViewController alloc] initWithDocument:document];

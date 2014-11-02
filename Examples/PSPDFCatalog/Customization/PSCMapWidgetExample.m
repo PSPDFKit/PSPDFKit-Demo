@@ -26,7 +26,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // This annotation could be already in the document - we just add it programmatically for this example.

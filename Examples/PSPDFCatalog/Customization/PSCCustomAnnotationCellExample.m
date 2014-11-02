@@ -38,7 +38,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFQuickStartAsset];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         // Register the class overrides.
         [builder overrideClass:PSPDFAnnotationCell.class withClass:PSCCustomAnnotationCell.class];

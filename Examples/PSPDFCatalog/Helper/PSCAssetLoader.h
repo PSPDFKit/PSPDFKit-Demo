@@ -10,16 +10,16 @@
 
 #import <Foundation/Foundation.h>
 
-#define kDevelopersGuideFileName @"DevelopersGuide.pdf"
-#define kPaperExampleFileName    @"amazon-dynamo-sosp2007.pdf"
-#define kHackerMagazineExample   @"hackermonthly-issue.pdf"
-#define kPSPDFQuickStart         @"PSPDFKit QuickStart Guide.pdf"
-#define kCaseStudyBox            @"Case Study Box.pdf"
+extern NSString *const PSPDFQuickStartAsset;
+extern NSString *const PSPDFQuickStartAssetLandscape;
+extern NSString *const PSPDFDeveloperGuideAsset;
+extern NSString *const PSPDFHackerMagazineAsset;
+extern NSString *const PSPDFCaseStudyAsset;
 
 @interface PSCAssetLoader : NSObject
 
 // Load sample file with file `name`.
-+ (PSPDFDocument *)sampleDocumentWithName:(NSString *)name;
++ (PSPDFDocument *)documentWithName:(NSString *)name;
 
 // Generates a test PDF with `string` as content.
 + (PSPDFDocument *)temporaryDocumentWithString:(NSString *)string;

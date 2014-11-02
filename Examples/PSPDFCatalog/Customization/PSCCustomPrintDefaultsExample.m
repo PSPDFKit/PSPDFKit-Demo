@@ -26,7 +26,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFQuickStartAsset];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.delegate = self;
     return pdfController;

@@ -36,7 +36,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
     NSURL *writableDocumentURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, NO);
     PSPDFDocument *document = [PSPDFDocument documentWithURL:writableDocumentURL];
     return [[PSCSaveAsPDFViewController alloc] initWithDocument:document];

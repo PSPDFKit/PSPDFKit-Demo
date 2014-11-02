@@ -43,8 +43,8 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
+    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
+    //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFDeveloperGuideAsset];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"news-portrait.pdf"];
 
     // Copy file from the bundle to a location where we can write on it.
@@ -98,7 +98,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
     PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
     return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
 }
@@ -159,7 +159,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     // we use a NSData document here but it'll work even better with a file-based variant.
     PSPDFDocument *document = [PSPDFDocument documentWithData:[NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL]];
@@ -200,7 +200,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"one.pdf"];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:@"one.pdf"];
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
 

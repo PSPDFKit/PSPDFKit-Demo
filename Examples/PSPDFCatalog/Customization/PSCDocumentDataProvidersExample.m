@@ -27,7 +27,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.emailButtonItem, controller.printButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
     return controller;
@@ -51,7 +51,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     NSData *data = [NSData dataWithContentsOfMappedFile:[hackerMagURL path]];
     PSPDFDocument *document = [PSPDFDocument documentWithData:data];
@@ -78,7 +78,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)(data));
@@ -109,7 +109,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)(data));
@@ -291,7 +291,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
 
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
 
     // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
     NSMutableIndexSet *pageIndexes = [[NSMutableIndexSet alloc] initWithIndex:1];
@@ -302,7 +302,7 @@
     NSData *newDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[pageIndexes] options:nil progressBlock:NULL error:NULL];
 
     // add a page from a second document
-    PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
     NSData *newLandscapeDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:landscapeDocument pageRanges:@[[NSIndexSet indexSetWithIndex:0]] options:nil progressBlock:NULL error:NULL];
 
     // merge into new PDF
@@ -336,7 +336,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
 
-    PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[kHackerMagazineExample, kPaperExampleFileName]];
+    PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[PSPDFHackerMagazineAsset, PSPDFDeveloperGuideAsset]];
     document.undoEnabled = NO; // faster!
 
     // Here we use the `pageRange` feature to skip the intermediate `NSDate` objects we had to create in the last example.

@@ -11,9 +11,7 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCPredefinedEmailBodyExample : PSCExample <PSPDFViewControllerDelegate>
-@end
-
+@interface PSCPredefinedEmailBodyExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCPredefinedEmailBodyExample
 
 - (instancetype)init {
@@ -26,7 +24,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFQuickStartAsset];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.rightBarButtonItems = @[pdfController.emailButtonItem];
     pdfController.delegate = self;

@@ -27,7 +27,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
 
     document.UID = @"multimedia_with_user_annotations"; // give it a unique ID so this example doesn't mix with others.
     document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile; // we want to save this into external storage.

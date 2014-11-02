@@ -24,7 +24,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
 	document.title = @"This PDF document has a pretty long title. It should wrap into multiple lines on an iPhone.";
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 

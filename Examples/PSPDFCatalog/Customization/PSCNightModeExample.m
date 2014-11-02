@@ -26,7 +26,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     // Set up the document.
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     document.UID = @"NIGHT_MODE"; // different UID to not influence other examples.
     document.renderOptions = @{PSPDFRenderInvertedKey : @YES};
     document.backgroundColor = UIColor.blackColor;

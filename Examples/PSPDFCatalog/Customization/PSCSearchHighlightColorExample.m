@@ -27,7 +27,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
 
     // We use a custom subclass of the PSPDFViewController here, to not pollute other examples, since UIAppearance can't be re-set to the default.
     [PSPDFSearchHighlightView appearanceWhenContainedIn:PSCCustomColoredSearchHighlightPDFViewController.class, nil].selectionBackgroundColor = [UIColor.blueColor colorWithAlphaComponent:0.5f];

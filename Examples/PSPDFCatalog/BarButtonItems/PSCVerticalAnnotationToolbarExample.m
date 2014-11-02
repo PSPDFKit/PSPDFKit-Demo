@@ -30,7 +30,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
 	// Remove the default annotationBarButtonItem
 	NSMutableArray *items = [controller.rightBarButtonItems mutableCopy];

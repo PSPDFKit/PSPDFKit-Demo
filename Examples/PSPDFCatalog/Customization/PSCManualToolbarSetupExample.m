@@ -33,7 +33,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-	PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
+	PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFDeveloperGuideAsset];
 	PSCManualToolbarSetupViewController *controller = [[PSCManualToolbarSetupViewController alloc] initWithDocument:document];
 	// Present modally, so we can more easily configure it to have a different style.
 	[delegate.currentViewController presentViewController:controller animated:YES completion:NULL];

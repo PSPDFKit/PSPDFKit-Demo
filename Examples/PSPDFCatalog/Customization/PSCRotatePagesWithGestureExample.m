@@ -31,7 +31,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     // Set up the document.
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
 
     // And also the controller.
     PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];

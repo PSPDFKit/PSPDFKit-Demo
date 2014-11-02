@@ -30,7 +30,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFQuickStartAsset];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         [builder overrideClass:PSPDFColorSelectionViewController.class withClass:PSCCustomColorSelectionViewController.class];

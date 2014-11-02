@@ -10,9 +10,15 @@
 
 #import "PSCAssetLoader.h"
 
+NSString *const PSPDFQuickStartAsset = @"PSPDFKit QuickStart Guide.pdf";
+NSString *const PSPDFQuickStartAssetLandscape = @"PSPDFKit QuickStart Guide Landscape.pdf";
+NSString *const PSPDFDeveloperGuideAsset = @"amazon-dynamo-sosp2007.pdf";
+NSString *const PSPDFHackerMagazineAsset = @"hackermonthly-issue.pdf";
+NSString *const PSPDFCaseStudyAsset = @"Case Study Box.pdf";
+
 @implementation PSCAssetLoader
 
-+ (PSPDFDocument *)sampleDocumentWithName:(NSString *)name {
++ (PSPDFDocument *)documentWithName:(NSString *)name {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:name]];
     return document;

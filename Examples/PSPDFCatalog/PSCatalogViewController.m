@@ -87,7 +87,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)createTableContent {
     // Common paths
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
     NSMutableOrderedSet *sections = [NSMutableOrderedSet orderedSet];
 
     // Full Apps
@@ -98,17 +98,17 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     appSection.headerView = logo;
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" description:@"Exposes common settings and defaults." block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" description:@"Start here" block:^{
         PSPDFDocument *document;
-        document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
-
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase.pdf"]];
+        BOOL isLandscape = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+        document = [PSCAssetLoader documentWithName:isLandscape ? PSPDFQuickStartAssetLandscape : PSPDFQuickStartAsset];
+        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pspdfkit_playground.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Case Study from Box" description:@"Incudes a RichMedia inline video that works in Acrobat and PSPDFKit." block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kCaseStudyBox]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFCaseStudyAsset]];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
             builder.shouldShowHUDOnViewWillAppear = NO;
@@ -173,7 +173,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" description:@"Automatic text link detection, continuous scrolling, default style." block:^{
         // Initialize document and enable link autodetection.
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFDeveloperGuideAsset];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.pageTransition = PSPDFPageTransitionScrollContinuous;
@@ -366,7 +366,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return decryptedData;
         }];
 
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -586,14 +586,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Search for Week, without controller" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
         pdfController.highlightedSearchText = @"Week";
         return pdfController;
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Remove Ink from the annotation toolbar" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
@@ -603,14 +603,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Set custom default zoom level" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         PSPDFViewController *pdfController = [[PSCCustomDefaultZoomScaleViewController alloc] initWithDocument:document];
         [self presentViewController:pdfController animated:YES completion:NULL];
         return nil;
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Open and immediately request signing" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
         // Delay the presentation of the controller until after the present animation is finished.
@@ -624,7 +624,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
         PSCExportPDFPagesViewController *pdfController = [[PSCExportPDFPagesViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -652,7 +652,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         multimediaDoc.outlineParser.outline = rootOutline;
 
         tabbedController.documents = @[multimediaDoc,
-                                       [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]]];
+                                       [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]]];
         return tabbedController;
     }]];
 
@@ -668,7 +668,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         multimediaDoc.outlineParser.outline = rootOutline;
 
         tabbedController.documents = @[multimediaDoc,
-                                       [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]]];
+                                       [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]]];
         return tabbedController;
     }]];
 
@@ -706,7 +706,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[PSContent contentWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithArray:@[PSPDFAnnotationStringHighlight, PSPDFAnnotationStringInk]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
@@ -724,7 +724,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // check that the brightness works on iPhone as well.
     [testSection addContent:[PSContent contentWithTitle:@"Brightness on iPhone" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.brightnessButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
@@ -1018,7 +1018,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Test that the green shape is properly displayed in Adobe Acrobat for iOS.
     [testSection addContent:[PSContent contentWithTitle:@"Shape annotation AP test" block:^UIViewController *{
         // Copy file from the bundle to a location where we can write on it.
-        NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:kHackerMagazineExample], NO);
+        NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset], NO);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
         // Add the annotation
         PSPDFSquareAnnotation *annotation = [PSPDFSquareAnnotation new];
@@ -1121,7 +1121,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Check that text can be properly selected
     [testSection addContent:[PSContent contentWithTitle:@"Test bookmark + pageRange" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         [document.bookmarkParser addBookmarkForPage:0];
         [document.bookmarkParser addBookmarkForPage:1];
         [document.bookmarkParser addBookmarkForPage:2];
@@ -1145,7 +1145,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Add note annotation via toolbar, close toolbar, ensure that the PDF was saved correctly, then test if the annotation still can be moved. If annotations haven't been correctly reloaded after saving the move will fail.
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation updating after a save" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 		pdfController.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
@@ -1224,7 +1224,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [testSection addContent:[PSContent contentWithTitle:@"View state restoration for continuous scrolling" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 10;
         pdfController.pageTransition = PSPDFPageTransitionScrollContinuous;
@@ -1309,7 +1309,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation flattening 2" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest2", @"pdf");
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
@@ -1326,7 +1326,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Check that annotations are there, links work.
     [testSection addContent:[PSContent contentWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
         [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file

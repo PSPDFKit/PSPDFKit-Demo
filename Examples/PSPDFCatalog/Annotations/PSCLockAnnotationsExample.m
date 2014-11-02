@@ -31,7 +31,7 @@
 
     // Original URL for the example file.
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
 
     // Document-based URL (we use the changed file from "writing annotations into a file" for additional test annotations)
     NSURL *documentSamplesURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);

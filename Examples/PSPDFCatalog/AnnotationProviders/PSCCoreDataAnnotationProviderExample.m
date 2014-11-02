@@ -29,7 +29,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"A.pdf"];
+    PSPDFDocument *document = [PSCAssetLoader documentWithName:@"A.pdf"];
     // Set annotation provider block.
     [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
         PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider databasePath:nil];
