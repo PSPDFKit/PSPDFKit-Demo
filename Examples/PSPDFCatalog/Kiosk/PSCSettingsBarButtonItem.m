@@ -34,7 +34,7 @@
     PSPDFViewController *pdfController = self.pdfController;
     settingsController.owningViewController = pdfController;
 
-    // We need to this to YES to give view controllers presented by settingsController popover, like PSPDFWebViewController, access to the status bar.
+    // We need to set this to YES to give view controllers presented by settingsController popover, like `PSPDFWebViewController`, access to the status bar.
     settingsController.modalPresentationCapturesStatusBarAppearance = YES;
 
     return [pdfController presentViewController:settingsController options:@{PSPDFPresentationModalStyleKey: @(UIModalPresentationPopover),

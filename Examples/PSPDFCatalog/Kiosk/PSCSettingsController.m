@@ -183,7 +183,7 @@ static NSMutableDictionary *_settings;
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     if (self.modalPresentationStyle == UIModalPresentationPopover) {
-        // This method has been invoked by setting 'modalPresentationCapturesStatusBarAppearance = YES'.
+        // This method has been invoked by setting `modalPresentationCapturesStatusBarAppearance = YES`.
         // We just mimic paren't status bar style when being presented as a popover.
         return [self.owningViewController preferredStatusBarStyle];
     } else {
