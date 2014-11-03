@@ -423,7 +423,6 @@ static CGFloat pscSettingsLastYOffset = 0;
     switch (indexPath.section) {
         case PSPDFClearCacheButton: [PSPDFKit.sharedInstance.cache clearCache]; break;
         case PSPDFOpenAPIButton: {
-            self.modalPresentationCapturesStatusBarAppearance = YES;
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
             [self presentViewController:webController animated:YES completion:NULL];
         }break;
