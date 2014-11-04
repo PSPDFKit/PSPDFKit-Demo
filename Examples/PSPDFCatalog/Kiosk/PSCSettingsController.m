@@ -180,6 +180,17 @@ static NSMutableDictionary *_settings;
     return [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if (self.modalPresentationStyle == UIModalPresentationPopover) {
+        // This method has been invoked by setting `modalPresentationCapturesStatusBarAppearance = YES`.
+        // We just mimic paren't status bar style when being presented as a popover.
+        return [self.owningViewController preferredStatusBarStyle];
+    } else {
+        return [super preferredStatusBarStyle];
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
