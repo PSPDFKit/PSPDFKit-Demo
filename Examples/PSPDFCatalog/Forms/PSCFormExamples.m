@@ -13,6 +13,7 @@
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
+#import "NSArray+PSPDFFoundation.h"
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -21,50 +22,114 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCFormExample
+#pragma mark - Interactive digital signing process
 
-@interface PSCFormExample : PSCExample @end
-@implementation PSCFormExample
+@interface PSCFormInteractiveDigitalSigningExample : PSCExample @end
+@implementation PSCFormInteractiveDigitalSigningExample
 
 - (instancetype)init {
     if ((self = [super init])) {
         self.title = @"Digital signing process (password: test)";
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
-
-        NSURL *resURL = NSBundle.mainBundle.resourceURL;
-        NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
-        NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
-
-        NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
-        PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
-        if (p12) {
-            PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed" PKCS12:p12];
-
-            PSPDFSignatureManager *signatureManager = [PSPDFSignatureManager sharedManager];
-            [signatureManager registerSigner:p12signer];
-
-            // Add certs to trust store
-            NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
-            NSData *certData = [NSData dataWithContentsOfURL:certURL];
-
-            NSError *error = nil;
-            NSArray *certificates = [PSPDFX509 certificatesFromPKCS7Data:certData error:&error];
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                for (PSPDFX509 *x509 in certificates) {
-                    [signatureManager addTrustedCertificate:x509];
-                }
-            }
-        }
-
     }
     return self;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    NSURL *resURL = NSBundle.mainBundle.resourceURL;
+    NSURL *samplesURL = [resURL URLByAppendingPathComponent:@"Samples"];
+    NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
+
+    NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
+    PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
+    if (p12) {
+        PSPDFPKCS12Signer *p12signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed" PKCS12:p12];
+
+        PSPDFSignatureManager *signatureManager = [PSPDFSignatureManager sharedManager];
+        [signatureManager registerSigner:p12signer];
+
+        // Add certs to trust store for the signature validation process
+        NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
+        NSData *certData = [NSData dataWithContentsOfURL:certURL];
+
+        NSError *error = nil;
+        NSArray *certificates = [PSPDFX509 certificatesFromPKCS7Data:certData error:&error];
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            for (PSPDFX509 *x509 in certificates) {
+                [signatureManager addTrustedCertificate:x509];
+            }
+        }
+    } else {
+        NSLog(@"OpenSSL version of the PSPDFKit is required");
+    }
     return PSPDFFormExampleInvokeWithFilename(@"Form_example.pdf");
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Automated digital signing process
+
+@interface PSCFormDigitalSigningExample : PSCExample @end
+@implementation PSCFormDigitalSigningExample
+
+- (instancetype)init {
+    if ((self = [super init])) {
+        self.title = @"Automated digital signing process";
+        self.category = PSCExampleCategoryForms;
+        self.priority = 20;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    NSURL *p12URL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p12"];
+
+    NSData *p12data = [NSData dataWithContentsOfURL:p12URL];
+    NSAssert(p12data, @"Error reading p12 data from %@", p12URL);
+    PSPDFPKCS12 *p12 = [[PSPDFPKCS12 alloc] initWithData:p12data];
+    if (!p12) {
+        NSLog(@"OpenSSL version of the PSPDFKit is required");
+        return nil;
+    }
+    PSPDFPKCS12Signer *signer = [[PSPDFPKCS12Signer alloc] initWithDisplayName:@"John Appleseed" PKCS12:p12];
+    PSPDFSignatureManager *signatureManager = [PSPDFSignatureManager sharedManager];
+    [signatureManager registerSigner:signer];
+
+    // Add certs to trust store for the signature validation process
+    NSURL *certURL = [samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"];
+    NSData *certData = [NSData dataWithContentsOfURL:certURL];
+
+    NSError *error = nil;
+    NSArray *certificates = [PSPDFX509 certificatesFromPKCS7Data:certData error:&error];
+    NSAssert(error == nil, @"Error loading certificates - %@", error.localizedDescription);
+    for (PSPDFX509 *x509 in certificates) {
+        [signatureManager addTrustedCertificate:x509];
+    }
+
+    PSPDFDocument *unsignedDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Form_example.pdf"]];
+    NSArray *annots = [unsignedDocument annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
+    PSPDFSignatureFormElement *elem = [annots pspdf_objectPassingTest:^BOOL(id obj, NSUInteger index, BOOL *stop) {
+        return [obj isKindOfClass:PSPDFSignatureFormElement.class];
+    }];
+    NSAssert(elem, @"Cannot find the signature field");
+
+    NSString *fileName = [NSString stringWithFormat:@"%@.pdf", [[NSUUID UUID] UUIDString]];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+    __block PSPDFDocument *signedDocument = nil;
+    // sign the document
+    [signer signFormElement:@"test" usingPassword:elem writeTo:path completion:^(BOOL success, PSPDFDocument *document, NSError *err) {
+        signedDocument = document;
+    }];
+    NSAssert(signedDocument, @"Error signing document");
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:signedDocument];
+
+    return pdfController;
 }
 
 @end
