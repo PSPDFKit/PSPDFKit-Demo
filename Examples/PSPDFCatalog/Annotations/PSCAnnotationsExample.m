@@ -43,7 +43,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset];
+    NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFQuickStartAsset];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:PSPDFDeveloperGuideAsset];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"news-portrait.pdf"];
 
