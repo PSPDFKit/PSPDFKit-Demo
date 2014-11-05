@@ -13,7 +13,6 @@
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
-#import "NSArray+PSPDFFoundation.h"
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -114,9 +113,13 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 
     PSPDFDocument *unsignedDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Form_example.pdf"]];
     NSArray *annots = [unsignedDocument annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
-    PSPDFSignatureFormElement *elem = [annots pspdf_objectPassingTest:^BOOL(id obj, NSUInteger index, BOOL *stop) {
-        return [obj isKindOfClass:PSPDFSignatureFormElement.class];
-    }];
+    PSPDFSignatureFormElement *elem = nil;
+    for (PSPDFAnnotation *annot in annots) {
+        if ([annot isKindOfClass:PSPDFSignatureFormElement.class]) {
+            elem = (PSPDFSignatureFormElement *)annot;
+            break;
+        }
+    }
     NSAssert(elem, @"Cannot find the signature field");
 
     NSString *fileName = [NSString stringWithFormat:@"%@.pdf", [[NSUUID UUID] UUIDString]];
