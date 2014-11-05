@@ -34,7 +34,7 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  The inline search manager now shows the current search status with a slight delay to be more visually pleasing.
 *  Absolute paths, while discouraged, are now properly detected in the gallery on iOS 8.
 *  The gallery now automatically resolves URL endpoints that have no pre-set type. (video/image/etc)
-*  Works around an issue where `UIDocumentInteractionController` sometimes would print extremly long log statements.
+*  Works around an issue where `UIDocumentInteractionController` sometimes would print extremely long log statements.
 *  Makes sure the `PSPDFViewController` always correctly reloads, even when the document is changed while the controller is off-screen.
 *  Various stylus drivers have been updated to be compatible with their API changes.
 *  Search previews generated via `PSPDFLibrary` now also support text containing diactritics.
@@ -46,7 +46,7 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Improves reliability of sound annotations, especially on iOS 8 and 64 bit.
 *  Improves code paths around setting a default line width when a border is set.
 *  Improves compatibility with a certain set of annotations with appearance streams that uses custom transforms.
-*  Improves reported frame when callng the shouldShowMenuItems: delegate in annotation sub-menus. (e.g. Highlight->Color)
+*  Improves reported frame when calling the shouldShowMenuItems: delegate in annotation sub-menus. (e.g. Highlight->Color)
 *  Improves menu placement for annotations that can't be resized or moved.
 *  Improves gallery error handling while the manifest is loaded.
 *  Various improvements and better error detection/logging for the digital signing process.
