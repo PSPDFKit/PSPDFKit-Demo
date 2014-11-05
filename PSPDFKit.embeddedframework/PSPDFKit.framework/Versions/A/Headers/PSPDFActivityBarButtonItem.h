@@ -35,7 +35,8 @@ extern NSString *const PSPDFActivityTypeOpenIn;
 
 /// Set a custom activity completion handler when an activity finishes.
 /// @note Unlike `UIActivityViewController`, this will not be nilled out after a call, so be careful about retain cycles.
+/// @note On iOS 7, `returnedItems` and `activityError` will be nil.
 /// @warning The completionHandler will fire with `completed = YES` even if the activity just shows another popover with options - since by then the activity is long gone. To further track such activities, hook into the implementations of the respective `PSPDFBarButtonItem` subclasses.
-@property (nonatomic, copy) UIActivityViewControllerCompletionHandler completionHandler;
+@property (nonatomic, copy) UIActivityViewControllerCompletionWithItemsHandler completionHandler;
 
 @end

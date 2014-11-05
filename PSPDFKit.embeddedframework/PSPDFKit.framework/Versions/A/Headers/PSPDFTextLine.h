@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PSPDFWord.h"
+#import "PSPDFMacros.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFTextLineBorder) {
     PSPDFTextLineBorderUndefined = 0,
@@ -25,10 +26,14 @@ typedef NS_ENUM(NSUInteger, PSPDFTextLineBorder) {
 @property (nonatomic, unsafe_unretained, readonly) PSPDFTextLine *prevLine;
 @property (nonatomic, unsafe_unretained, readonly) PSPDFTextLine *nextLine;
 
-void PSPDFSetNextLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *nextLine);
-void PSPDFSetPrevLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *prevLine);
-
 @property (nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
 @property (nonatomic, assign) NSInteger blockID;
 
 @end
+
+PSPDFKIT_EXTERN_C_BEGIN
+
+void PSPDFSetNextLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *nextLine);
+void PSPDFSetPrevLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *prevLine);
+
+PSPDFKIT_EXTERN_C_END

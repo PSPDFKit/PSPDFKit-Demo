@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "PSPDFMacros.h"
 
 @class PSPDFDocumentProvider;
 
@@ -55,6 +56,8 @@ typedef NS_ENUM(NSUInteger, PSPDFPageTriggerEvent) {
 
 @end
 
+PSPDFKIT_EXTERN_C_BEGIN
+
 /// Convert a view point to a pdf point. `bounds` is from the view. (usually `PSPDFPageView.bounds`)
 extern CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
@@ -66,3 +69,5 @@ extern CGRect PSPDFConvertPDFRectToViewRect(CGRect pdfRect, CGRect cropBox, NSUI
 
 /// Convert a view rect to a normalized pdf rect.
 extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+PSPDFKIT_EXTERN_C_END

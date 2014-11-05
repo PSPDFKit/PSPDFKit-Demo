@@ -55,6 +55,9 @@
 
 // Allows to override the annotation cache directly. Faster than using `setAnnotations:`.
 - (void)setAnnotationCacheDirect:(NSDictionary *)annotationCache;
+
+// Registers annotations for the undo system.
+// @warning Ensure this is called within a write block!
 - (void)registerAnnotationsForUndo:(NSArray *)annotations;
 
 // Allows to directly access the internally used annotation cache.

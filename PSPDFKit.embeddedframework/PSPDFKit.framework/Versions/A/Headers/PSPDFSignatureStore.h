@@ -12,16 +12,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
+@class PSPDFInkAnnotation;
 
 /// Allows to securely store ink signatures (as ink annotations) in the keychain.
-@interface PSPDFSignatureStore : NSObject
-
-/// Shared object.
-+ (instancetype)sharedSignatureStore;
+/// Supports `NSSecureCoding` since this is part of the `PSPDFConfiguration` object.
+@protocol PSPDFSignatureStore <NSObject, NSSecureCoding>
 
 /// Designated initializer.
-- (instancetype)initWithStoreName:(NSString *)storeName NS_DESIGNATED_INITIALIZER;
+/// `storeName` can be used to differentiate between different stores.
+- (instancetype)initWithStoreName:(NSString *)storeName;
 
 /// Add signature to store.
 - (void)addSignature:(PSPDFInkAnnotation *)signature;
@@ -30,17 +29,16 @@
 - (BOOL)removeSignature:(PSPDFInkAnnotation *)signature;
 
 /// Access the saved signatures (`PSPDFInkAnnotation` objects).
-@property (atomic, copy) NSArray *signatures;
+@property (nonatomic, copy) NSArray *signatures;
 
 /// The store name used for the keychain storage.
 @property (nonatomic, copy, readonly) NSString *storeName;
 
-/// If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
-/// Defaults to YES.
-@property (atomic, assign) BOOL signatureSavingEnabled;
-
-/// If enabled, the signature feature will show a menu with a customer signature. (will not be saved)
-/// Defaults to YES.
-@property (atomic, assign) BOOL customerSignatureFeatureEnabled;
-
 @end
+
+// The default store name used in the `PSPDFKeychainSignatureStore`.
+extern NSString *const PSPDFKeychainSignatureStoreDefaultStoreName;
+
+// Default signature store implementation that uses the keychain.
+// `storeName` is used as the service name in the keychain.
+@interface PSPDFKeychainSignatureStore : NSObject <PSPDFSignatureStore> @end

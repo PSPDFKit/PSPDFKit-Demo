@@ -12,7 +12,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef int OPENSSL_X509_ERR;
 
 typedef NS_ENUM(NSInteger, PSPDFSignatureStatusSeverity) {

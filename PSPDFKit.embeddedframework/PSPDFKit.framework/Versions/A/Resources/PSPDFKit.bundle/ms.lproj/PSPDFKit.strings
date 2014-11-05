@@ -45,8 +45,6 @@
 "Annotation" = "Anotasi";
 "Annotations" = "Anotasi";
 "No Annotations" = "Tiada Anotasi";
-"%tu Annotation" = "%tu Anotasi";
-"%tu Annotations" = "%tu Anotasi";
 "Bookmarks" = "Penanda";
 "No Bookmarks" = "Tiada Penanda";
 "Add Bookmark" = "Tambah Penanda";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Cari Dokumen"; // to search for a string in the given document
-"No matches found" = "Tiada padanan ditemui";
-"One match found" = "Satu padanan ditemui";
-"%tu matches found" = "%tu padanan ditemui";
 "Searching Page %tu of %tu" = "Mencari di Halaman %tu daripada %tu";
 "Search Completed" = "Carian Selesai";
 "Search Cancelled" = "Carian Dibatalkan";
 "%tu left" = "tinggal %tu"; // Indexing Documents... 5 left
 "Searching" = "Mencari";
-"%tu documents indexed." = "%tu dokumen diindeks.";
 "Done" = "Selesai";
 "Indexing Documents" = "Mengindeks Dokumen";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Pangkal";
 "Line Start" = "Mula Garis";
 "Line End" = "Akhir Garis";
-"%tu Points" = "%tu Poin";
 
 // link annotation editing
 "Create Link" = "Cipta Pautan";

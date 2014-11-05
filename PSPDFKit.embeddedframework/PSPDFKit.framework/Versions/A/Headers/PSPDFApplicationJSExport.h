@@ -42,13 +42,16 @@
  In this case, we simply add the method both to the protocol and the category and finally implement the method.
  */
 
+// doc
+
 @property (nonatomic) NSUInteger pageNum;
-
 - (PSPDFFormElement *)getField:(NSString *)name;
-
-- (void)alert:(id)params;
 - (void)print:(id)params;
 - (void)mailDoc:(id)params;
+
+// app
+
+- (void)alert:(id)params;
 
 JSExportAs(buttonImportIcon, - (NSInteger)buttonImportIcon:(NSString *)cPath page:(NSNumber *)nPage sourceForm:(PSPDFFormElement *)formElement);
 JSExportAs(launchURL, - (void)launchURL:(NSString *)cURL newFrame:(NSNumber *)bNewFrame);

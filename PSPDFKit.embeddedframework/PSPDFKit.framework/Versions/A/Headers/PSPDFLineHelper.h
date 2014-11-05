@@ -13,6 +13,9 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PSPDFAnnotation.h"
+#import "PSPDFMacros.h"
+
+PSPDFKIT_EXTERN_C_BEGIN
 
 #define PSPDFAllLineEndsAreInside   1                   // Define to 1 to keep all line endings extruding from the line/polyline coordinates to a minimum
                                                         // (i.e. reverse arrow line ends are kept from jutting out past the line/polyline endpoints).
@@ -34,8 +37,10 @@ typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
     PSPDFLineEndTypeSlash
 };
 
+CF_IMPLICIT_BRIDGING_ENABLED
+
 // Constructs a polyline between all given points. The two ends of this line can have a `PSPDFLineEndType`.
-extern void PSPDFConstructPolyLine(CGPoint *points, NSUInteger pointsCount, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth,
+extern void PSPDFConstructPolyLine(const CGPoint *points, NSUInteger pointsCount, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth,
                                    CGPathRef *storedLinePath, CGPathRef *storedLineEnd1FillPath, CGPathRef *storedLineEnd1StrokePath, CGPathRef *storedLineEnd2FillPath, CGPathRef *storedLineEnd2StrokePath,
                                    BOOL originUpperLeft);
 
@@ -43,7 +48,7 @@ extern void PSPDFConstructPolyLine(CGPoint *points, NSUInteger pointsCount, PSPD
 extern void PSPDFConstructPolyLineBezierPathWithPoints(NSArray *points, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth, BOOL originUpperLeft, UIBezierPath **outStrokePath, UIBezierPath **outFillPath);
 
 // Draws a polyline between all given points. The two ends of this line can have a PSPDFLineEndType.
-extern void PSPDFDrawPolyLine(CGContextRef context, CGPoint *points, NSUInteger pointsCount, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth);
+extern void PSPDFDrawPolyLine(CGContextRef context, const CGPoint *points, NSUInteger pointsCount, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth);
 
 // Draws a line between two points with the specified line end types.
 extern void PSPDFDrawLine(CGContextRef context, CGPoint point1, CGPoint point2, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth);
@@ -53,7 +58,7 @@ extern void PSPDFDrawLine(CGContextRef context, CGPoint point1, CGPoint point2, 
 extern BOOL PSPDFLineEndNeedsFullLine(PSPDFLineEndType lineEnd);
 
 // Returns the fill and stroke paths corresponding to a given line end type.
-extern void PSPDFCreatePathsForLineEndType(PSPDFLineEndType endType, CGPoint *points, NSUInteger pointsCount, CGFloat lineWidth, CGPathRef *storedFillPath, CGPathRef *storedStrokePath);
+extern void PSPDFCreatePathsForLineEndType(PSPDFLineEndType endType, const CGPoint *points, NSUInteger pointsCount, CGFloat lineWidth, CGPathRef *storedFillPath, CGPathRef *storedStrokePath);
 
 // Returns the rectangle encompassing the line end at the first of two points.
 extern CGRect PSPDFGetLineEndRectangle(CGPoint point1, CGPoint point2, PSPDFLineEndType lineEnd, CGFloat lineWidth);
@@ -65,25 +70,23 @@ extern NSString * const PSPDFLineEndTypeTransformerName;
 extern void PSPDFUpdateShapeLayerLineStyleForAnnotationType(CAShapeLayer *shapeLayer, PSPDFAnnotationType annotationType);
 
 // Converts the `dashArray` of an annotation into the array usage in CoreGraphics.
-extern CGFloat *PSPDFCreateLineDashArrayForAnnotation(PSPDFAnnotation *annotation, NSUInteger *outDashCount);
+// @note We work around an analyzer issue that would produce false positives if we use PSPDFCreate* as name instead of Allocate.
+extern CGFloat *PSPDFAllocateLineDashArrayForAnnotation(PSPDFAnnotation *annotation, NSUInteger *outDashCount);
 
 // Returns perimeter for a given polygon.
-extern CGFloat PSPDFPolygonPerimeter(CGPoint *points, NSUInteger pointsCount);
+extern CGFloat PSPDFPolygonPerimeter(const CGPoint *points, NSUInteger pointsCount);
 
 // Returns distance between given points.
 extern CGFloat PSPDFDistanceBetweenPoints(CGPoint p1, CGPoint p2);
 
 // Return YES if points for the polygon is given in clockwise direction, otherwise returns NO.
-extern BOOL PSPDFPolygonPathIsClockwise(CGPoint *points, NSUInteger pointsCount);
+extern BOOL PSPDFPolygonPathIsClockwise(const CGPoint *points, NSUInteger pointsCount);
 
 // Returns polygon path with a "cloudy" border effect applied
-
-CF_IMPLICIT_BRIDGING_ENABLED
-
-extern CGMutablePathRef PSPDFCreateCloudyPathForPolygon(CGPoint *points, NSUInteger pointsCount, CGFloat intensity);
+extern CGMutablePathRef PSPDFCreateCloudyPathForPolygon(const CGPoint *points, NSUInteger pointsCount, CGFloat intensity);
 
 // Returns polygon path
-extern CGPathRef PSPDFCreatePathForPolygon(CGPoint *points, NSUInteger pointsCount);
+extern CGPathRef PSPDFCreatePathForPolygon(const CGPoint *points, NSUInteger pointsCount);
 
 // Returns path for a given rect with a "cloudy" border effect
 extern CGPathRef PSPDFCreateCloudyPathForRect(CGRect rect, CGFloat intensity);
@@ -96,3 +99,4 @@ extern CGPathRef PSPDFCreateCloudyPathForEllipse(CGRect rect, CGFloat intensity)
 
 CF_IMPLICIT_BRIDGING_DISABLED
 
+PSPDFKIT_EXTERN_C_END

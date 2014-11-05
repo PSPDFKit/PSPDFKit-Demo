@@ -45,8 +45,6 @@
 "Annotation" = "Комментарий";
 "Annotations" = "Аннотации";
 "No Annotations" = "Нет комментариев";
-"%tu Annotation" = "%tu комментарий";
-"%tu Annotations" = "%tu комментарии";
 "Bookmarks" = "Закладки";
 "No Bookmarks" = "Нет закладок";
 "Add Bookmark" = "Добавить закладку";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Поиск документа"; // to search for a string in the given document
-"No matches found" = "Совпадений не найдено";
-"One match found" = "Найдено одно совпадение";
-"%tu matches found" = "%tu совпадений найдено";
 "Searching Page %tu of %tu" = "Поиск страницы %tu из %tu";
 "Search Completed" = "Поиск завершен";
 "Search Cancelled" = "Поиск отменен";
 "%tu left" = "%tu осталось"; // Indexing Documents... 5 left
 "Searching" = "Поиск";
-"%tu documents indexed." = "%tu документов проиндексировано.\n";
 "Done" = "Готово";
 "Indexing Documents" = "Индексация документов";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Конец";
 "Line Start" = "Начало линии";
 "Line End" = "Конец линии";
-"%tu Points" = "%tu очки";
 
 // link annotation editing
 "Create Link" = "Создать ссылку";
@@ -342,9 +335,9 @@
 "Speak" = "Произнести"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Воспр.";
 "Pause" = "Пауза";
-"Resume" = "Продолжить";
+"Resume" = "Возобновить";
 "Stop" = "Стоп";
-"Play/Stop" = "Играть/Стоп";
+"Play/Stop" = "Воспр./Стоп";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Запись";
 "Pause Recording" = "Приостановить запись";

@@ -12,24 +12,22 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PSPDFX509.h"
-#import "PSPDFSigner.h"
-
+@class PSPDFSigner, PSPDFX509;
 
 @interface PSPDFSignatureManager : NSObject
 
 + (instancetype)sharedManager;
 
-/// Returns all registered signers
+/// Returns all registered signers.
 - (NSArray *)registeredSigners;
 
-/// Registers a signer
+/// Registers a signer.
 - (void)registerSigner:(PSPDFSigner *)signer;
 
 /// Returns the trusted certificate stack.
 - (NSArray *)trustedCertificates;
 
-/// Adds a trusted certificate to the stack
+/// Adds a trusted certificate to the stack.
 - (void)addTrustedCertificate:(PSPDFX509 *)x509;
 
 @end

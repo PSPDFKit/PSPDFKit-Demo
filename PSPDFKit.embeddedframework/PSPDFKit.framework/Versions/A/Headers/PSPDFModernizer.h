@@ -12,15 +12,6 @@
 
 #import <Foundation/Foundation.h>
 
-// Only required for Xcode 5
-#ifndef NS_DESIGNATED_INITIALIZER
-#if __has_attribute(objc_designated_initializer)
-#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
-#else
-#define NS_DESIGNATED_INITIALIZER
-#endif
-#endif
-
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 80000
 
 @interface NSString (PSPDFModernizer)

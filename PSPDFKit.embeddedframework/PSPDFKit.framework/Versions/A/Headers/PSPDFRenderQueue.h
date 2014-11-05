@@ -10,6 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
+#import <Foundation/Foundation.h>
+
 @class PSPDFDocument, PSPDFRenderJob, PSPDFRenderQueue, PSPDFRenderReceipt;
 
 /// Notification that will be thrown when we enqueue a job.
@@ -40,20 +42,15 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
     PSPDFRenderQueuePriorityVeryHigh, /// Highest priority. Unused.
 };
 
-typedef void(^PSPDFRenderJobCompletionBlock)(PSPDFRenderJob *renderJob, PSPDFRenderQueue *renderQueue);
-
 /// Render Queue. Does not cache. Used for rendering pages/page parts in `PSPDFPageView`.
 @interface PSPDFRenderQueue : NSObject
-
-/// Render Queue is a singleton.
-+ (instancetype)sharedRenderQueue;
 
 /// @name Requests
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 /// For options, see `PSPDFPageRender`.
 /// IF `queueAsNext` is set, the request will be processed ASAP, skipping the current queue.
-- (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate completionBlock:(PSPDFRenderJobCompletionBlock)completionBlock;
+- (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate completionBlock:(void (^)(PSPDFRenderJob *renderJob, PSPDFRenderQueue *renderQueue))completionBlock;
 
 /// Return all queued jobs for the current `document` and `page`. (bound to `delegate`)
 - (NSArray *)renderJobsForDocument:(PSPDFDocument *)document page:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
@@ -89,26 +86,6 @@ typedef void(^PSPDFRenderJobCompletionBlock)(PSPDFRenderJob *renderJob, PSPDFRen
 /// Amount of render requests that run at the same time. Defaults to 1.
 /// @note Apple's PDF renderer has concurrency issues, increasing this value might reduce the framework stability.
 @property (atomic, assign) NSUInteger concurrentRunningRenderRequests;
-
-@end
-
-// A render job is designed to be created and then treated as immutable.
-// The internal hash is cached and you'll get weird results if renderJob is changed after being added to the queue.
-@interface PSPDFRenderJob : NSObject
-
-@property (nonatomic, strong, readonly) PSPDFDocument *document;
-@property (nonatomic, assign, readonly) NSUInteger page;
-@property (nonatomic, assign, readonly) CGSize size;
-@property (nonatomic, assign, readonly) CGRect clipRect;
-@property (nonatomic, assign, readonly) float zoomScale;
-@property (nonatomic, copy,   readonly) NSArray *annotations;
-@property (nonatomic, assign, readonly) PSPDFRenderQueuePriority priority;
-@property (nonatomic, copy,   readonly) NSDictionary *options;
-@property (nonatomic, weak,   readonly) id<PSPDFRenderDelegate> delegate;
-@property (nonatomic, copy)             PSPDFRenderJobCompletionBlock completionBlock;
-@property (nonatomic, strong, readonly) UIImage *renderedImage;
-@property (nonatomic, strong, readonly) PSPDFRenderReceipt *renderReceipt;
-@property (nonatomic, assign, readonly) uint64_t renderTime;
 
 @end
 

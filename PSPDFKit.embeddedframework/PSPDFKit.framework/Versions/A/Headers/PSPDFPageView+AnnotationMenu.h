@@ -89,7 +89,7 @@ extern const char PSPDFImagePickerTargetPoint;
 // Used to prepare the `UIMenuController`-based color menu.
 - (void)selectColorForAnnotation:(PSPDFAnnotation *)annotation isFillColor:(BOOL)isFillColor;
 
-// By default, the highlight menu on iPad and iPhone is different, since on iPad there's more screen real estate - thus we pack the menu options into a "Style..." submenu on iPhone. Override this to customize the behavior. Returns `!PSPDFIsIPad();` by default.
+// By default, the highlight menu on iPad and iPhone is different, since on iPad there's more screen real estate - thus we pack the menu options into a "Style..." submenu on iPhone. Override this to customize the behavior. Returns `!PSPDFIsiPad();` by default.
 - (BOOL)shouldMoveStyleMenuEntriesIntoSubmenu;
 
 // Will create and show the action sheet on long-press above a `PSPDFLinkAnnotation`.

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>%tu match(es) found</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_matches_found@</string>
+        <key>tu_matches_found</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Совпадений не обнаружено</string>
+            <key>one</key>
+            <string>%tu совпадение обнаружено</string>
+            <key>many</key>
+            <string>%tu совпадений обнаружено</string>
+            <key>other</key>
+            <string>%tu совпадения обнаружено</string>
+        </dict>
+    </dict>
+    <key>%tu document(s) indexed.</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_documents_indexed@</string>
+        <key>tu_documents_indexed</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Документы не индексированы</string>
+            <key>one</key>
+            <string>%tu документ индексирован</string>
+            <key>many</key>
+            <string>%tu документов индексированы</string>
+            <key>other</key>
+            <string>%tu документа индексированы</string>
+        </dict>
+    </dict>
+    <key>%tu Annotation(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_annotations@</string>
+        <key>tu_annotations</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Аннотаций нет</string>
+            <key>one</key>
+            <string>%tu аннотация</string>
+            <key>many</key>
+            <string>%tu аннотаций</string>
+            <key>other</key>
+            <string>%tu аннотации</string>
+        </dict>
+    </dict>
+    <key>%tu Point(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_points@</string>
+        <key>tu_points</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu очко</string>
+            <key>many</key>
+            <string>%tu очков</string>
+            <key>other</key>
+            <string>%tu очка</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

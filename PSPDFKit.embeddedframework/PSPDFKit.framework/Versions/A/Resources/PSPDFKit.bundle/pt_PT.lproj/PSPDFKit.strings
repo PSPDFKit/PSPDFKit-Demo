@@ -45,8 +45,6 @@
 "Annotation" = "Anotação";
 "Annotations" = "Anotações";
 "No Annotations" = "Nenhuma anotação";
-"%tu Annotation" = "%tu anotação";
-"%tu Annotations" = "%tu anotações";
 "Bookmarks" = "Marcadores";
 "No Bookmarks" = "Nenhum marcador";
 "Add Bookmark" = "Adicionar marcador";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Pesquisar documento"; // to search for a string in the given document
-"No matches found" = "Nenhuma correspondência encontrada";
-"One match found" = "Uma correspondência encontrada";
-"%tu matches found" = "%tu correspondências encontradas";
 "Searching Page %tu of %tu" = "A pesquisar página %tu de %tu";
 "Search Completed" = "Pesquisa concluída";
 "Search Cancelled" = "Pesquisa cancelada";
 "%tu left" = "%tu restantes"; // Indexing Documents... 5 left
 "Searching" = "A pesquisar";
-"%tu documents indexed." = "%tu documentos indexados.";
 "Done" = "Feito";
 "Indexing Documents" = "A indexar documentos";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Puxador";
 "Line Start" = "Início de linha";
 "Line End" = "Fim de linha";
-"%tu Points" = "%tu pontos";
 
 // link annotation editing
 "Create Link" = "Criar link";
@@ -344,7 +337,7 @@
 "Pause" = "Pausar";
 "Resume" = "Retomar";
 "Stop" = "Parar";
-"Play/Stop" = "Reproduzir/Parar";
+"Play/Stop" = "Reproduzir/Pausar";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Gravar";
 "Pause Recording" = "Pausar gravação";

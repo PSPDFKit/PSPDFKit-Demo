@@ -130,6 +130,9 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
 /// Enables playback looping. Defaults to `NO`.
 @property (nonatomic, assign) BOOL loopEnabled;
 
+/// Uses external playback automatically while an external screen is active. Defaults to `YES`.
+@property (nonatomic, assign) BOOL usesExternalPlaybackWhileExternalScreenIsActive;
+
 /// The control style of the media player. Defaults to `PSPDFMediaPlayerControlStyleDefault`.
 @property (nonatomic, assign) PSPDFMediaPlayerControlStyle controlStyle;
 

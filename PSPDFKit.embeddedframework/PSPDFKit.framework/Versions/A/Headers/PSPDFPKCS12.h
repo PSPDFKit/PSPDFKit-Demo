@@ -10,12 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-
 #import <Foundation/Foundation.h>
-
 #import "PSPDFX509.h"
 #import "PSPDFRSAKey.h"
-
 
 typedef NS_ENUM(NSUInteger, PSPDFPKCS12Error) {
     PSPDFPKCS12ErrorNone = noErr,

@@ -12,14 +12,9 @@
 
 #import "PSPDFAbstractLineAnnotation.h"
 
+/// Polyline annotations (PDF 1.5) are similar to polygons (`PSPDFPolygonAnnotation),
+/// except that the first and last vertex are not implicitly connected.
+/// @note See `PSPDFAbstractLineAnnotation` for details how to use and initialize.
 @interface PSPDFPolyLineAnnotation : PSPDFAbstractLineAnnotation
-
-/// Designated initializer.
-- (instancetype)init;
-
-/// The points of the polygon.
-/// Contains `NSValue` objects that box a `CGPoint`.
-/// @warning These values are generated on the fly from an internal representation, so use carefully.
-@property (nonatomic, copy) NSArray *points;
 
 @end

@@ -12,16 +12,15 @@
 
 #import "PSPDFAnnotation.h"
 
-// PSPDFKit has some custom sub-sets of the `PSPDFAnnotationTypeLink` that can be resolved to Video, Audio, Image or Browser views.
 typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationPage = 0,
-    PSPDFLinkAnnotationWebURL,  // 1
-    PSPDFLinkAnnotationDocument,// 2
-    PSPDFLinkAnnotationVideo,   // 3
-    PSPDFLinkAnnotationYouTube, // 4
-    PSPDFLinkAnnotationAudio,   // 5
-    PSPDFLinkAnnotationImage,   // 6
-    PSPDFLinkAnnotationBrowser, // 7
+    PSPDFLinkAnnotationWebURL,
+    PSPDFLinkAnnotationDocument,
+    PSPDFLinkAnnotationVideo,
+    PSPDFLinkAnnotationYouTube,
+    PSPDFLinkAnnotationAudio,
+    PSPDFLinkAnnotationImage,
+    PSPDFLinkAnnotationBrowser,
     PSPDFLinkAnnotationCustom   // Any annotation format that is not recognized is custom. (e.g. tel://)
 };
 
@@ -35,7 +34,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
  If you create a `PSPDFLinkAnnotation` at runtime, be sure to set the correct type and use the URL parameter for your link.
  `boundingBox` defines the frame, in PDF space coordinates.
 
- If you want to customize how links look in the PDF, customize `PSPDFLinkAnnotationView's` properties. There's currently no mapping between color/lineWidth/etc and the properties of the view. This might change in future releases.
+ If you want to customize how links look in the PDF, customize `PSPDFLinkAnnotationView's` properties. There's currently no mapping between `color`/`lineWidth`/etc and the properties of the view. This might change in a future release.
  */
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
 

@@ -18,19 +18,15 @@
 - (CGFloat)progress;
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 
-/// Protocol for `UIView`s that wish to be the `loadingView` of a `PSPDFGalleryContentView`.
+/// Protocol for `UIView`s that wish to be the `errorView` of a `PSPDFGalleryContentView`.
 @protocol PSPDFGalleryContentViewError <NSObject>
 - (void)setError:(NSError *)error;
 - (NSError *)error;
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 
-/// Protocol for `UIView`s that wish to be the `loadingView` of a `PSPDFGalleryContentView`.
+/// Protocol for `UIView`s that wish to be the `captionView` of a `PSPDFGalleryContentView`.
 @protocol PSPDFGalleryContentViewCaption <NSObject>
 - (void)setCaption:(NSString *)caption;
 - (NSString *)caption;

@@ -11,16 +11,25 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "PSPDFX509.h"
 #import "PSPDFDocument.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFSignatureFormElement.h"
 
-
 typedef NS_ENUM(NSInteger, PSPDFSigningAlgorithm) {
     PSPDFSigningAlgorithmRSASHA256 = 0
 };
+
+typedef NS_ENUM(NSUInteger, PSPDFSignerError) {
+    PSPDFSignerErrorNone = noErr,
+    PSPDFSignerErrorCannotNotCreatePKCS7 = 0x100,
+    PSPDFSignerErrorCannotNotAddSignatureToPKCS7 = 0x101,
+    PSPDFSignerErrorCannotNotInitPKCS7 = 0x102,
+    PSPDFSignerErrorCannotGeneratePKCS7Signature = 0x103,
+    PSPDFSignerErrorCannotWritePKCS7Signature = 0x104,
+    PSPDFSignerErrorOpenSSLCannotVerifySignature = 0x105
+};
+
 
 /// `PSPDFSigner` is an abstract signer class. Override methods in subclasses as necessary
 @interface PSPDFSigner : NSObject

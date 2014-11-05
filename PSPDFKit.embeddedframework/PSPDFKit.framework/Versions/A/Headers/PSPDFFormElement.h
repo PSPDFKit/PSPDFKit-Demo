@@ -28,10 +28,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// The field that is the immediate parent of this one (the field, if any, whose
 /// Kids array includes this field). A field can have at most one parent; that
 /// is, it can be included in the Kids array of at most one other field.
-@property (nonatomic, weak) PSPDFFormElement *parent;
+@property (nonatomic, weak, readonly) PSPDFFormElement *parent;
 
 /// An array of indirect references to the immediate children of this field.
-@property (nonatomic, copy) NSArray *kids;
+@property (nonatomic, copy, readonly) NSArray *kids;
 
 /// Field type (see table 220, PDF Reference).
 /// (Required for terminal fields; inheritable).
@@ -65,10 +65,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// @note PSPDFKit extension. Won't be saved into the PDF.
 @property (nonatomic, strong) UIColor *highlightColor;
 
-/// Links for previous control in tab order.
+/// The previous control in tab order.
 @property (nonatomic, weak) PSPDFFormElement *next;
 
-/// Links for next control in tab order.
+/// The next control in tab order.
 @property (nonatomic, weak) PSPDFFormElement *previous;
 
 // Page that this form element is on, set during parse.

@@ -78,6 +78,9 @@ typedef NS_ENUM(NSInteger, PSPDFDrawViewInputMode) {
 /// Ending line end type for lines and polylines.
 @property (nonatomic, assign) PSPDFLineEndType lineEnd2;
 
+/// Natural drawing.
+@property (nonatomic, assign) BOOL naturalDrawingEnabled;
+
 /// @name Undo/Redo
 
 /// The managing undo controller. Set this to the document's undo controller.

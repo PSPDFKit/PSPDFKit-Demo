@@ -30,7 +30,7 @@
 @property (nonatomic, assign, readonly) CGSize size;
 
 /// The render receipt. Allows to detect changes in the PDF such as annotation changes.
-@property (nonatomic, strong) NSString *renderFingerprint;
+@property (nonatomic, copy) NSString *renderFingerprint;
 
 /// The last time the image has been accessed. Atomic because it might change at any time.
 @property (atomic, assign) NSTimeInterval lastAccessTime;

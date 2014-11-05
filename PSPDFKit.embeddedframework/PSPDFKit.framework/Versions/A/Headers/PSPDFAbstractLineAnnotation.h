@@ -16,6 +16,9 @@
 // Common methods for Line and PolyLine.
 @interface PSPDFAbstractLineAnnotation : PSPDFAnnotation
 
+/// Designated initializer.
+- (instancetype)initWithPoints:(NSArray *)points;
+
 /// Starting line end type.
 @property (nonatomic, assign) PSPDFLineEndType lineEnd1;
 

@@ -10,8 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "PSPDFMacros.h"
 
 @class PSPDFFontInfo;
 
@@ -28,7 +29,7 @@
 @property (nonatomic, assign, readonly) CGRect frame;
 
 /// Character content (usually a single character)
-@property (nonatomic, strong, readonly) NSString *content;
+@property (nonatomic, copy, readonly) NSString *content;
 
 /// Used font info.
 /// @warning font is not retained for performance reasons. Don't access after the corresponding `textParser` has been deallocated.
@@ -53,13 +54,15 @@
 /// Compare glyph with other glyph if it's approximately on the same line.
 - (BOOL)isOnSameLineAs:(PSPDFGlyph *)glyph;
 
-/// Compare glyph with other glyph if it's approximately on the same line segment (block detection).
-extern BOOL PSPDFGlyphIsOnSameLineSegmentAsGlyph(PSPDFGlyph *glyph1, PSPDFGlyph *glyph2);
-
 /// Compare glyph.
 - (BOOL)isEqualToGlyph:(PSPDFGlyph *)otherGlyph;
 
 @end
+
+PSPDFKIT_EXTERN_C_BEGIN
+
+/// Compare glyph with other glyph if it's approximately on the same line segment (block detection).
+extern BOOL PSPDFGlyphIsOnSameLineSegmentAsGlyph(PSPDFGlyph *glyph1, PSPDFGlyph *glyph2);
 
 /// Global helper to convert glyphs to rects.
 /// `t` is `the rotationTransform` of `PSPDFPageInfo`.
@@ -72,3 +75,5 @@ extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
 
 /// Scans glyphs and reduces the selection to columns.
 extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
+
+PSPDFKIT_EXTERN_C_END

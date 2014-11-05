@@ -22,10 +22,6 @@
 /// Designated initializer.
 - (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
 
-/// Default annotation username. Defaults to nil.
-/// Written as the "T" (title/user) property of newly created annotations.
-@property (atomic, copy) NSString *defaultAnnotationUsername;
-
 /// Set to enable auto-detection of various link types. Defaults to `PSPDFTextCheckingTypeNone`.
 /// @warning Detecting links might be an expensive operation.
 @property (nonatomic, assign) PSPDFTextCheckingType autodetectTextLinkTypes;

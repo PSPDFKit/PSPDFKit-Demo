@@ -45,8 +45,6 @@
 "Annotation" = "Annotatie";
 "Annotations" = "Annotaties";
 "No Annotations" = "Geen annotaties";
-"%tu Annotation" = "%tu Annotatie";
-"%tu Annotations" = "%tu Annotaties";
 "Bookmarks" = "Bladwijzers";
 "No Bookmarks" = "Geen bladwijzers";
 "Add Bookmark" = "Voeg bladwijzer toe";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Zoek in document"; // to search for a string in the given document
-"No matches found" = "Geen resultaten";
-"One match found" = "Eén resultaat";
-"%tu matches found" = "%tu resultaten";
 "Searching Page %tu of %tu" = "Zoeken in pagina %tu van %tu";
 "Search Completed" = "Zoeken voltooid";
 "Search Cancelled" = "Zoeken geannuleerd";
 "%tu left" = "%tu over"; // Indexing Documents... 5 left
 "Searching" = "Zoeken";
-"%tu documents indexed." = "%tu documenten geïndexeerd.";
 "Done" = "Gereed";
 "Indexing Documents" = "Documenten indexeren";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Knop";
 "Line Start" = "Begin van lijn";
 "Line End" = "Einde van lijn";
-"%tu Points" = "%tu punten";
 
 // link annotation editing
 "Create Link" = "Maak koppeling";

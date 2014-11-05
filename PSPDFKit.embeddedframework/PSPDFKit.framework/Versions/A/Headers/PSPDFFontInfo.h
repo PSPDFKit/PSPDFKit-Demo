@@ -10,6 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
+#import <Foundation/Foundation.h>
+#import "PSPDFMacros.h"
+
 @class PSPDFCMap, PSPDFFontFileDescriptor;
 
 typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
@@ -40,7 +43,7 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 
 /// A font can have either an `encodingArray` or a unicode map.
 /// A encoding array contains `NSString` objects.
-@property (nonatomic, strong, readonly) NSArray *encodingArray;
+@property (nonatomic, copy, readonly) NSArray *encodingArray;
 
 /// CMap that is optionally provided for converting text strings to unicode
 @property (nonatomic, strong, readonly) PSPDFCMap *toUnicodeMap;
@@ -77,5 +80,9 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 
 @end
 
+PSPDFKIT_EXTERN_C_BEGIN
+
 // Normalize strings into KC form.
 extern NSString *PSPDFNormalizeString(__unsafe_unretained NSString *string);
+
+PSPDFKIT_EXTERN_C_END

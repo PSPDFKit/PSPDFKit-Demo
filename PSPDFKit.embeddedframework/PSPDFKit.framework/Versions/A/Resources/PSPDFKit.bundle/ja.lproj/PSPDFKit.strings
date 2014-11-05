@@ -45,8 +45,6 @@
 "Annotation" = "注釈";
 "Annotations" = "注釈";
 "No Annotations" = "注釈なし";
-"%tu Annotation" = "%tu件の注釈";
-"%tu Annotations" = "%tu件の注釈";
 "Bookmarks" = "ブックマーク";
 "No Bookmarks" = "ブックマークがありません";
 "Add Bookmark" = "ブックマークを追加";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "書類を検索"; // to search for a string in the given document
-"No matches found" = "一致するものが見つかりませんでした";
-"One match found" = "一致するものが1件見つかりました";
-"%tu matches found" = "一致するものが%tu件見つかりました";
 "Searching Page %tu of %tu" = "ページ%tu/%tuを検索中";
 "Search Completed" = "検索を完了";
 "Search Cancelled" = "検索がキャンセルされました";
 "%tu left" = "残り%tu件"; // Indexing Documents... 5 left
 "Searching" = "検索中";
-"%tu documents indexed." = "%tu個の書類がインデックス済み";
 "Done" = "完了";
 "Indexing Documents" = "書類に索引を付けています";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "端点";
 "Line Start" = "線の始点";
 "Line End" = "線の終点";
-"%tu Points" = "%tuポイント";
 
 // link annotation editing
 "Create Link" = "リンクを作成";
@@ -335,7 +328,7 @@
 "Annotation Summary" = "注釈の概要";
 "Embed Annotations into the PDF and also list them in the email." = "PDFに注釈を埋め込み、またメールにリスト表示します。";
 "Files" = "ファイル";
-"Send as single files" = "1つのファイルとして送信";
+"Send as single files" = "１つのファイルとして送信";
 "Merge files" = "ファイルを結合";
 
 // sound annotations
@@ -344,7 +337,7 @@
 "Pause" = "一時停止";
 "Resume" = "再開";
 "Stop" = "停止";
-"Play/Stop" = "再生と停止";
+"Play/Stop" = "再生／停止";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "録音";
 "Pause Recording" = "録音を一時停止";
@@ -423,7 +416,7 @@
 "Signature is not valid." = "署名が有効ではありません。";
 "There is a format error in the notBefore field of the certificate." = "証明書のnotBeforeフィールドにフォーマットエラーがあります。"; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "証明書のnotAfterフィールドにフォーマットエラーがあります。"; // notAfter should not be translated
-"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "証明書チェーンに証明書が1つしか含まれていない、自己署名されていない、そして発行元が信頼されないため、署名が認証されませんでした。";
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "証明書チェーンに証明書が１つしか含まれていない、自己署名されていない、そして発行元が信頼されないため、署名が認証されませんでした。";
 "A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "認証局の証明書は、それが認証局ではない、あるいはその拡張子が意図する目的と矛盾するため、有効ではありません。"; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "basicConstraintsパス長パラメーターを超えています。"; // basicContraints pathlength should not be translated
 "The root CA is not marked as trusted for its intended purpose." = "ルート認証局は意図した目的に信頼できるとして指定されています。"; // root CA sould not be translated
@@ -434,7 +427,7 @@
 "The certificate was revoked by the issuer." = "証明書は発行元によって取り消されました。";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "渡された証明書は自己署名されてあり、同じ証明書は信頼された証明書リストに見つけられません。";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "自己署名された証明書が証明書チェーンに存在します。証明書チェーンは信頼されない証明書を使用して立ち上げることはできませんが、ルート認証局（CA）をローカルに見つけることができませんでした。"; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "署名階層にある証明書認証局の1つに証明書を見つけることができず、認証局はローカルアプリケーションに信頼されていません。"; // CAs should not be translated;
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "署名階層にある証明書認証局の１つに証明書を見つけることができず、認証局はローカルアプリケーションに信頼されていません。"; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "ローカルに検索した証明書の発行元証明書を見つけられませんでした。これは通常、信頼される証明書リストが完全でないことを意味します。";
 "The certificate that was provided cannot be used for its intended purpose." = "指定された証明書は意図した目的に使用できませんでした。";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "発行元証明書のkeyUsage拡張子は、証明書の署名を許可しません。";

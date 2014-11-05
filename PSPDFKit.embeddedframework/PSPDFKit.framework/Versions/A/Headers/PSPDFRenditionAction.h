@@ -14,14 +14,13 @@
 
 @class PSPDFScreenAnnotation;
 
-typedef NS_ENUM(NSUInteger, PSPDFRenditionActionType) {
+typedef NS_ENUM(NSInteger, PSPDFRenditionActionType) {
+    PSPDFRenditionActionTypeUnknown = -1,
     PSPDFRenditionActionTypePlayStop,
     PSPDFRenditionActionTypeStop,
     PSPDFRenditionActionTypePause,
     PSPDFRenditionActionTypeResume,
     PSPDFRenditionActionTypePlay,
-
-    PSPDFRenditionActionTypeUnknown = NSUIntegerMax
 };
 
 extern NSString *const PSPDFRenditionActionTypeTransformerName;

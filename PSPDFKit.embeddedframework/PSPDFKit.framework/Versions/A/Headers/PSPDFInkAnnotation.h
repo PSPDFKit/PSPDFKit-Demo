@@ -17,15 +17,19 @@
 @interface PSPDFInkAnnotation : PSPDFAnnotation
 
 /// Designated initializer.
-- (instancetype)init;
+- (instancetype)initWithLines:(NSArray *)lines;
 
 /// Array of arrays of boxed `CGPoints`.
 /// Example: `annotation.lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))]]`;
-/// @warning: After setting lines, the boundingBox will be automatically recalculated.
+/// @warning: After setting lines, `boundingBox` will be automatically recalculated.
 @property (nonatomic, copy) NSArray *lines;
 
 /// The `UIBezierPath` will be dynamically crated from the lines array.
 @property (nonatomic, copy, readonly) UIBezierPath *bezierPath;
+
+/// Will return YES if this ink annotation is in the natural drawing style.
+/// This is a proprietary extension - other viewer will not be able to detect this.
+@property (nonatomic, assign) BOOL naturalDrawingEnabled;
 
 /// Will return YES if this ink annotation is a PSPDFKit signature.
 /// This is a proprietary extension - other viewer will not be able to detect this.
@@ -40,6 +44,8 @@
 - (NSArray *)copyLinesByApplyingTransform:(CGAffineTransform)transform;
 
 @end
+
+PSPDFKIT_EXTERN_C_BEGIN
 
 // Helper to convert `UIBezierPath` into an array of points (of `CGPoints` inside `NSValues`).
 NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
@@ -80,3 +86,5 @@ NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUIntege
 
 // Will convert PDF lines to view lines (operates on every point)
 NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+PSPDFKIT_EXTERN_C_END

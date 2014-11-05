@@ -11,6 +11,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PSPDFMacros.h"
+
+PSPDFKIT_EXTERN_C_BEGIN
 
 /// Localizes strings.
 /// Will first look up the string in the PSPDFKit.bundle
@@ -33,3 +36,5 @@ extern UIImage *PSPDFBundleImage(NSString *imageName);
 /// If this block is NULL or returns nil, PSPDFKit.bundle will use for the lookup.
 /// @note Images are cached, so don't return different images for the same `imageName` during an app session.
 extern void PSPDFSetBundleImageBlock(UIImage *(^imageBlock)(NSString *imageName));
+
+PSPDFKIT_EXTERN_C_END

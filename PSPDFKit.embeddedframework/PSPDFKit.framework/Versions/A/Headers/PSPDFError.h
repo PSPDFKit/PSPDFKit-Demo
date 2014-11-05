@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFDFWriterCannotWriteToStream = 1250,
     PSPDFErrorCodeSoundEncoderInvalidInput = 1300,
     PSPDFErrorCodeGalleryInvalidManifest = 1400,
+    PSPDFErrorCodeGalleryUnknownItem = 1450,
     PSPDFErrorCodeInvalidRemoteContent = 1500,
     PSPDFErrorCodeFormValidationError = 5000,
     PSPDFErrorCodeImageProcessorInvalidImage = 6000,

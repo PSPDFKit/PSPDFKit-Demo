@@ -14,6 +14,8 @@
 #import "PSPDFOverridable.h"
 #import "PSPDFModel.h"
 
+@protocol PSPDFSignatureStore;
+
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
     PSPDFPageTransitionScrollPerPage,      /// One scroll view per page.
@@ -98,7 +100,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
     PSPDFSearchModeInline            /// Display search results inline
 };
 
-@class PSPDFConfigurationBuilder;
+@class PSPDFConfigurationBuilder, PSPDFGalleryConfiguration;
 
 /**
  A `PSPDFConfiguration` defines the behavior of a `PSPDFViewController`.
@@ -128,7 +130,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 
 
 /// Defines the page transition.
-/// @warning If you change the property dynamically depending on the screen orientation, don't use `willRotateToInterfaceOrientation:` but `didRotateFromInterfaceOrientation:`, else the controller will get in an invalid state. Child view controllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a `dispatch_async(dispatch_get_main_queue(), ^{ ... });` to set. You might just want to override `updateSettingsForRotation:` and set your properties there.
+/// @warning If you change the property dynamically depending on the screen orientation, don't use `willRotateToInterfaceOrientation:` but `didRotateFromInterfaceOrientation:`, else the controller will get in an invalid state. Child view controllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a `dispatch_async(dispatch_get_main_queue(), ^{ ... });` to set. You might just want to set `updateSettingsForBoundsChangeBlock` and set your properties there.
 /// @note , we enable the `automaticallyAdjustsScrollViewInsets` by default. If you don't want this behavior, subclass `reloadData` and set this property to NO.
 @property (nonatomic, assign, readonly) PSPDFPageTransition pageTransition;
 
@@ -216,7 +218,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// @warning `PSPDFPageRenderingModeFullPageBlocking` will disable certain page scroll animations.
 @property (nonatomic, assign, readonly) PSPDFPageRenderingMode renderingMode;
 
-/// If YES, shows an `UIActivityIndicator` on the top right while page is rendering. Defaults to YES.
+/// If YES, shows an `UIActivityIndicatorView` on the top right while page is rendering. Defaults to YES.
 @property (nonatomic, assign, getter=isRenderAnimationEnabled, readonly) BOOL renderAnimationEnabled;
 
 
@@ -345,11 +347,14 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// @note There is no visual separation for different groups.
 @property (nonatomic, copy, readonly) NSArray *createAnnotationMenuGroups;
 
+/// Enables natural drawing for ink annotations.
+@property (nonatomic, assign, readonly) BOOL naturalDrawingAnnotationEnabled;
+
 /// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
 @property (nonatomic, assign, readonly) BOOL showAnnotationMenuAfterCreation;
 
-/// If YES, asks the user to specify a custom annotation username when the first annotations get inserted
-/// (only if the inserted annotations are inserted with the `PSPDFAnnotationOptionUserCreatedKey` set to `@ YES`).
+/// If YES, asks the user to specify a custom annotation username when first creating a new annotation
+/// (triggered by the `PSPDFAnnotationStateManager` changing its state).
 /// A default name will already be suggested based on the device name.
 /// You can change the default username by setting `-[PSPDFDocument defaultAnnotationUsername]`.
 /// Defaults to YES.
@@ -382,6 +387,23 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign, readonly) PSPDFSearchMode searchMode;
 
 
+/// @name Signatures
+
+/// If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
+/// Defaults to YES.
+@property (nonatomic, assign, readonly) BOOL signatureSavingEnabled;
+
+/// If enabled, the signature feature will show a menu with a customer signature. (will not be saved)
+/// Defaults to YES.
+@property (nonatomic, assign, readonly) BOOL customerSignatureFeatureEnabled;
+
+/// Enables natural drawing for signatures. Defaults to YES.
+@property (nonatomic, assign, readonly) BOOL naturalSignatureDrawingEnabled;
+
+/// The default signature store implementation.
+@property (nonatomic, strong, readonly) id <PSPDFSignatureStore> signatureStore;
+
+
 /// @name Advanced Properties
 
 /// Enable/Disable all internal gesture recognizers. Defaults to YES.
@@ -396,6 +418,11 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// Set this to NO if you are not using thumbnails to improve speed.
 /// @warning Does not delete any cache and doesn't change if set after the controller has been presented.
 @property (nonatomic, assign, readonly) BOOL shouldCacheThumbnails;
+
+/// @name Gallery Configuration
+
+/// The configuration used for the gallery system. Defaults to `PSPDFGalleryConfiguration.defaultConfiguration`.
+@property (nonatomic, strong, readonly) PSPDFGalleryConfiguration *galleryConfiguration;
 
 @end
 
@@ -432,7 +459,6 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign) PSPDFThumbnailBarMode thumbnailBarMode;
 @property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
 @property (nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
-@property (nonatomic, assign) CGFloat pageLabelDistance;
 @property (nonatomic, assign) BOOL shouldHideHUDOnPageChange;
 @property (nonatomic, assign) BOOL shouldShowHUDOnViewWillAppear;
 @property (nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
@@ -465,6 +491,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign) BOOL annotationGroupingEnabled;
 @property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
 @property (nonatomic, copy) NSArray *createAnnotationMenuGroups;
+@property (nonatomic, assign) BOOL naturalDrawingAnnotationEnabled;
 @property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
 @property (nonatomic, assign) BOOL shouldAskForAnnotationUsername;
 @property (nonatomic, assign) BOOL annotationEntersEditModeAfterSecondTapEnabled;
@@ -473,6 +500,9 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign) BOOL shouldCacheThumbnails;
 @property (nonatomic, assign) BOOL shouldScrollToChangedPage;
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
-
+@property (nonatomic, assign) BOOL signatureSavingEnabled;
+@property (nonatomic, assign) BOOL customerSignatureFeatureEnabled;
+@property (nonatomic, assign) BOOL naturalSignatureDrawingEnabled;
+@property (nonatomic, strong) id <PSPDFSignatureStore> signatureStore;
+@property (nonatomic, strong) PSPDFGalleryConfiguration *galleryConfiguration;
 @end
-

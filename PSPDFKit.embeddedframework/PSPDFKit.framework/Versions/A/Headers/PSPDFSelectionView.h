@@ -52,7 +52,7 @@
 @property (nonatomic, strong) UIColor *wordSelectionColor;
 
 /// Allows to mark an array of `CGRects` on the view. `rects` and `rawRects` are mutually exclusive and will nil out each other.
-@property (nonatomic, strong) NSArray *rects;
+@property (nonatomic, copy) NSArray *rects;
 
 /// Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
 /// rects and rawRects are mutually exclusive and will nil out each other.

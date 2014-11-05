@@ -19,17 +19,10 @@ extern NSString *const PSPDFStyleManagerLastUsedStylesKey;
 // This key will mark styles as generic, thus they'll be returned with all other style types except the last used trait.
 extern NSString *const PSPDFStyleManagerGenericStylesKey;
 
-// Can be used to use a custom subclass of the `PSPDFStyleManager`. Defaults to nil, which will use `PSPDFStyleManager.class`.
-// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
-extern Class PSPDFStyleManagerClass;
-
 /// The style manager will save UI-specific properties for annotations and apply them after creation.
 /// It also offers a selection of user-defined styles.
 /// There are three categories: Last used, key-specific and generic styles.
 @interface PSPDFStyleManager : NSObject
-
-/// Access the style manager singleton.
-+ (instancetype)sharedStyleManager;
 
 /// Keeps a list of style keys we want to listen to (like `color` or `lineWidth`).
 /// @note If you want to disable automatic style saving, set this to nil.

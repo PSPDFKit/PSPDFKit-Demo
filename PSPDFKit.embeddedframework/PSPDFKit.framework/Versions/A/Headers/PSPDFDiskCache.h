@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PSPDFCacheInfo, PSPDFRenderReceipt;
+@class PSPDFCacheInfo, PSPDFRenderReceipt, PSPDFKit;
 
 // Cache selector (to fetch sizes)
 typedef PSPDFCacheInfo *(^PSPDFCacheInfoSelector)(NSOrderedSet *);
@@ -27,7 +27,7 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 @interface PSPDFDiskCache : NSObject
 
 /// Initializes the disk cache with the specified directory and the file ending (jpg, png)
-- (instancetype)initWithCacheDirectory:(NSString *)cacheDirectory fileFormat:(NSString *)fileFormat NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCacheDirectory:(NSString *)cacheDirectory fileFormat:(NSString *)fileFormat settings:(PSPDFKit *)settings NS_DESIGNATED_INITIALIZER;
 
 /// @name Accessing Data
 

@@ -149,7 +149,7 @@ extern NSString * const PSPDFAnnotationOptionSuppressNotificationsKey;
 + (NSDictionary *)fileTypeTranslationTable;
 
 /// Document provider for annotation parser.
-@property (nonatomic, unsafe_unretained, readonly) PSPDFDocumentProvider *documentProvider;
+@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 @end
 

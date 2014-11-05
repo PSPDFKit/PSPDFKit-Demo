@@ -24,7 +24,8 @@
 /// the value of properties.
 + (instancetype)configurationWithBuilder:(void (^)(PSPDFGalleryConfigurationBuilder *))builderBlock;
 
-/// The max. number of concurrent downloads. Defaults to 2. Must at least be 1.
+/// The max. number of concurrent downloads. Defaults to 0, which indicates that the number of downloads
+/// will be dynamically decided depending on the connection.
 @property (nonatomic, assign, readonly) NSUInteger maximumConcurrentDownloads;
 
 /// The max. number of images after the currently visible one that should be prefetched. Defaults to 3.
@@ -60,6 +61,10 @@
 /// @note This property has no effect if `loopEnabled` is set to `NO`.
 @property (nonatomic, assign, readonly, getter=isLoopHUDEnabled) BOOL loopHUDEnabled;
 
+/// Indicates whether a media player in the gallery should automatically switch to external playback
+/// mode while the external screen mode is active in order to play video content. Defaults to `YES`.
+@property (nonatomic, assign, readonly) BOOL usesExternalPlaybackWhileExternalScreenIsActive;
+
 @end
 
 @interface PSPDFGalleryConfigurationBuilder : NSObject
@@ -73,5 +78,6 @@
 @property (nonatomic, assign) CGFloat minimumFullscreenZoomScale;
 @property (nonatomic, assign) BOOL loopEnabled;
 @property (nonatomic, assign) BOOL loopHUDEnabled;
+@property (nonatomic, assign) BOOL usesExternalPlaybackWhileExternalScreenIsActive;
 
 @end

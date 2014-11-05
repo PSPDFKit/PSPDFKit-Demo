@@ -30,4 +30,8 @@
 /// Finds a form element with its field name. Returns nil if not found.
 - (PSPDFFormElement *)findAnnotationWithFieldName:(NSString *)fieldName;
 
+/// Finds a form element with its fully qualified field name. Returns nil if not found.
+/// Set the parent to nil to search over all fields.
+- (PSPDFFormElement *)findAnnotationWithFullFieldName:(NSString *)fullFieldName descendingFromForm:(PSPDFFormElement *)parent;
+
 @end

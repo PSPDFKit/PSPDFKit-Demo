@@ -14,5 +14,4 @@
 
 // Do NOT use this class. It's sometimes used internally to find PSPDF* related stuff.
 @interface PSPDFTransparentToolbar : PSPDFTranslucentToolbar
-
 @end

@@ -18,9 +18,6 @@
 /// Advanced HSV color picker with loupe feature.
 @interface PSPDFHSVColorPickerController : PSPDFBaseViewController <PSPDFColorPickerViewDelegate>
 
-/// Designated initializer.
-- (instancetype)init;
-
 /// Will be set via delegate on `viewWillAppear:`, but can be modified here as well.
 @property (nonatomic, strong) UIColor *selectionColor;
 

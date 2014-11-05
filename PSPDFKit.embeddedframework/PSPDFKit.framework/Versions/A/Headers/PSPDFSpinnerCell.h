@@ -14,7 +14,6 @@
 
 // Base class that shows centered labels and a spinner label.
 @interface PSPDFSpinnerCell : PSPDFTableViewCell
-
 @end
 
 @interface PSPDFSpinnerCell (SubclassingHooks)

@@ -445,7 +445,6 @@ extern NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTyp
 @property (nonatomic, copy) NSDictionary *annotationWritingOptions;
 
 /// Saves changed annotations in an external file or PDF, depending on `annotationSaveMode`.
-/// Can be called on any thread.
 /// @note Not available in PSPDFKit Viewer.
 - (void)saveAnnotationsWithCompletionBlock:(void (^)(NSArray *savedAnnotations, NSError *error))completionBlock;
 - (BOOL)saveAnnotationsWithError:(NSError *__autoreleasing*)error; // sync variant.
@@ -460,8 +459,8 @@ extern NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTyp
 @interface PSPDFDocument (Rendering)
 
 // Special PDF rendering options for the methods in `PSPDFDocument`. For more options, see `PSPDFPageRenderer.h`
-extern NSString *const PSPDFPreserveAspectRatio;     // If added to options, this will change size to fit the aspect ratio.
-extern NSString *const PSPDFIgnoreDisplaySettings;   // Always draw pixels with a 1.0 scale.
+extern NSString *const PSPDFPreserveAspectRatioKey;     // If added to options, this will change size to fit the aspect ratio.
+extern NSString *const PSPDFIgnoreDisplaySettingsKey;   // Always draw pixels with a 1.0 scale.
 
 /// Renders the page or a part of it with default display settings into a new image.
 /// @param size          The size of the page, in pixels, if it was rendered without clipping

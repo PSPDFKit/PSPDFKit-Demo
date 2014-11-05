@@ -21,9 +21,6 @@
 /// Compatible driver classes will be automatically detected at runtime.
 @interface PSPDFStylusManager : NSObject
 
-/// The stylus manager is a singleton.
-+ (instancetype)sharedInstance;
-
 /// Set the current pen type. Disables internal SDKs and re-enables selected one.
 @property (nonatomic, assign) Class currentDriverClass;
 
@@ -70,5 +67,6 @@
 // Convert the `PSPDFStylusConnectionStatus` enum value to a string.
 NSString *PSPDFStylusConnectionStatusToString(PSPDFStylusConnectionStatus connectionStatus);
 
+// Notification is shtown when the `connectionStatus` changes.
 extern NSString *const PSPDFStylusManagerConnectionStatusChangedNotification;
 

@@ -45,8 +45,6 @@
 "Annotation" = "註釋";
 "Annotations" = "註解";
 "No Annotations" = "無註釋";
-"%tu Annotation" = "%tu 個註釋";
-"%tu Annotations" = "%tu項註釋";
 "Bookmarks" = "書籤";
 "No Bookmarks" = "無書籤";
 "Add Bookmark" = "添加書籤";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "搜尋文件"; // to search for a string in the given document
-"No matches found" = "找不到符合的名片";
-"One match found" = "找到一個配對";
-"%tu matches found" = "找到%tu個配對";
 "Searching Page %tu of %tu" = "正在搜尋第%tu頁（全%tu頁）";
 "Search Completed" = "搜尋完畢";
 "Search Cancelled" = "取消搜尋";
 "%tu left" = "剩下%tu份"; // Indexing Documents... 5 left
 "Searching" = "搜尋中";
-"%tu documents indexed." = "已把%tu份文件編入索引。";
 "Done" = "完成";
 "Indexing Documents" = "正在把文件編入目錄";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "方形末端";
 "Line Start" = "線條開始";
 "Line End" = "線條終端";
-"%tu Points" = "%tu級字";
 
 // link annotation editing
 "Create Link" = "創建鏈結";
@@ -342,7 +335,7 @@
 "Speak" = "朗讀"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "播放";
 "Pause" = "暫停";
-"Resume" = "重新開始";
+"Resume" = "恢復";
 "Stop" = "停止";
 "Play/Stop" = "播放/停止";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files

@@ -10,6 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 typedef NS_ENUM(NSUInteger, PSPDFPopOutMenuExpansionDirection) {
     PSPDFPopOutMenuExpansionDirectionUp = 0,
     PSPDFPopOutMenuExpansionDirectionDown,

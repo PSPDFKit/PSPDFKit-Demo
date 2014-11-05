@@ -45,8 +45,6 @@
 "Annotation" = "주석";
 "Annotations" = "주석";
 "No Annotations" = "주석 없음";
-"%tu Annotation" = "%tu개의 주석";
-"%tu Annotations" = "%tu개의 주석";
 "Bookmarks" = "즐겨찾기";
 "No Bookmarks" = "즐겨찾기 없음";
 "Add Bookmark" = "즐겨찾기 추가";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "문서 검색"; // to search for a string in the given document
-"No matches found" = "검색 결과 없음";
-"One match found" = "검색 결과 1개 발견";
-"%tu matches found" = "검색 결과 %tu개 발견";
 "Searching Page %tu of %tu" = "2%tu 페이지 중의 1%tu 페이지 검색 중";
 "Search Completed" = "검색 완료";
 "Search Cancelled" = "검색 취소";
 "%tu left" = "%tu개 남음"; // Indexing Documents... 5 left
 "Searching" = "검색 중";
-"%tu documents indexed." = "%tu개의 문서가 색인되었습니다.";
 "Done" = "완료";
 "Indexing Documents" = "문서 색인 중";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "밑동";
 "Line Start" = "선 시작";
 "Line End" = "선 끝";
-"%tu Points" = "%tu 포인트";
 
 // link annotation editing
 "Create Link" = "링크 생성";
@@ -343,8 +336,8 @@
 "Play" = "재생";
 "Pause" = "일시정지";
 "Resume" = "재개";
-"Stop" = "멈춤";
-"Play/Stop" = "재생/중지";
+"Stop" = "정지";
+"Play/Stop" = "재생/정지";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "녹음";
 "Pause Recording" = "녹음 일시정지";

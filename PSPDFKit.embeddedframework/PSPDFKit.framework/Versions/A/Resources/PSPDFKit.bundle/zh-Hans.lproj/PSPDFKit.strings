@@ -45,8 +45,6 @@
 "Annotation" = "批注";
 "Annotations" = "批注";
 "No Annotations" = "没有批注";
-"%tu Annotation" = "%tu 批注";
-"%tu Annotations" = "%tu 条批注";
 "Bookmarks" = "书签";
 "No Bookmarks" = "没有书签";
 "Add Bookmark" = "添加书签";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "搜索文稿"; // to search for a string in the given document
-"No matches found" = "未找到匹配";
-"One match found" = "找到一个匹配";
-"%tu matches found" = "找到 %tu 个匹配";
 "Searching Page %tu of %tu" = "正在搜索第 %tu 页（共 %tu 页）";
 "Search Completed" = "搜索完成";
 "Search Cancelled" = "搜索取消";
 "%tu left" = "剩下 %tu"; // Indexing Documents... 5 left
 "Searching" = "正在搜索";
-"%tu documents indexed." = "%tu 个文稿已加索引。";
 "Done" = "完成";
 "Indexing Documents" = "正在索引文稿";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "对接";
 "Line Start" = "直线起点";
 "Line End" = "直线终点";
-"%tu Points" = "%tu 点";
 
 // link annotation editing
 "Create Link" = "创建链接";
@@ -344,7 +337,7 @@
 "Pause" = "暂停";
 "Resume" = "继续";
 "Stop" = "停止";
-"Play/Stop" = "播放/停止";
+"Play/Stop" = "播放／停止";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "录制";
 "Pause Recording" = "暂停录制";

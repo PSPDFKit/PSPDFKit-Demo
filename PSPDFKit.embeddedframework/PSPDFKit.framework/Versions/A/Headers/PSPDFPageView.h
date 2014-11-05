@@ -43,7 +43,7 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 /// You can add your own views on top of the `annotationContainerView` (e.g. custom annotations)
 /// Events from a attached `UIScrollView` will be relayed to all visible `PSPDFPageView` classes.
 /// @note The `UINavigationControllerDelegate` is only defined to satisfy the `UIImagePickerController` delegate.
-@interface PSPDFPageView : UIView <PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFAnnotationGridViewControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate>
+@interface PSPDFPageView : UIView <PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFAnnotationGridViewControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 /// Designated initializer.
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id <PSPDFPageViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;

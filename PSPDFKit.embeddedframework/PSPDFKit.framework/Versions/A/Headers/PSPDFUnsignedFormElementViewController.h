@@ -13,9 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFBaseTableViewController.h"
 
-@class PSPDFDocument;
-@class PSPDFSignatureFormElement;
-
+@class PSPDFDocument, PSPDFSignatureFormElement;
 @protocol PSPDFUnsignedFormElementViewControllerDelegate;
 
 @interface PSPDFUnsignedFormElementViewController : PSPDFBaseTableViewController
@@ -43,8 +41,6 @@
 
 @optional
 
-- (void)unsignedFormElementViewController:(PSPDFUnsignedFormElementViewController *)controller
-						   signedDocument:(PSPDFDocument *)document
-									error:(NSError *)error;
+- (void)unsignedFormElementViewController:(PSPDFUnsignedFormElementViewController *)controller signedDocument:(PSPDFDocument *)document error:(NSError *)error;
 
 @end

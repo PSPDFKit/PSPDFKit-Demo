@@ -54,14 +54,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
     PSPDFFeatureMaskAll = UINT_MAX,
 };
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+PSPDFKIT_EXTERN_C_BEGIN
 
 /// Should be set directly in `application:didFinishLaunchingWithOptions:` to enable PSPDFKit, or at latest before any PSPDF* classes are used. Call from the main thread.
 /// @return feature mask available for the give license key.
 extern PSPDFFeatureMask PSPDFSetLicenseKey(const char *licenseKey);
 
-#ifdef __cplusplus
-}
-#endif
+PSPDFKIT_EXTERN_C_END

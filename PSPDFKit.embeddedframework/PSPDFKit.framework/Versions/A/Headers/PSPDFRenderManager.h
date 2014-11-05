@@ -13,9 +13,9 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFPlugin.h"
 
-extern NSString *const PSPDFPageRendererPageInfoKey;       // The `PSPDFPageInfo` object containing page info.
+extern NSString *const PSPDFPageRendererPageInfoKey; // The `PSPDFPageInfo` object containing page info.
 
-@class PSPDFAnnotation;
+@class PSPDFAnnotation, PSPDFRenderQueue;
 
 // Abstract interface for a page renderer.
 @protocol PSPDFPageRenderer <PSPDFPlugin>
@@ -48,18 +48,20 @@ extern NSString *const PSPDFRenderDrawBlockKey;            // Allow custom conte
 typedef void (^PSPDFRenderDrawBlock)(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary *options);
 
 /// The PDF render mananger coordinates the PDF renderer used.
-@interface PSPDFRenderManager : NSObject
-
-/// Singleton accessor.
-+ (instancetype)sharedInstance;
+@protocol PSPDFRenderManager <NSObject>
 
 /// Setup the graphics context to the current PDF.
 - (void)setupGraphicsContext:(CGContextRef)context rectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
 
+/// The render queue.
+@property (nonatomic, strong, readonly) PSPDFRenderQueue *renderQueue;
+
 /// Returns the name of the current PDF renderer.
 @property (nonatomic, copy, readonly) NSDictionary *rendererInfo;
 
-// Will re-query `PSPDFRenderIdentifierKey` in the PSPDFKit registry and re-setup the renderer.
-- (void)setupRenderer;
+/// Allows to set a custom renderer.
+/// @note PSPDFKit will find custom renderers automatically (classes that implement <PSPDFPageRenderer> and use the one with the highest plugin priority)
+/// If this is set to nil, PSPDFKit will fall back to the default core graphics renderer.
+@property (atomic, strong) id<PSPDFPageRenderer> renderer;
 
 @end

@@ -45,8 +45,6 @@
 "Annotation" = "Annotation";
 "Annotations" = "Annotations";
 "No Annotations" = "No Annotations";
-"%tu Annotation" = "%tu Annotation";
-"%tu Annotations" = "%tu Annotations";
 "Bookmarks" = "Bookmarks";
 "No Bookmarks" = "No Bookmarks";
 "Add Bookmark" = "Add Bookmark";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Search Document"; // to search for a string in the given document
-"No matches found" = "No matches found";
-"One match found" = "One match found";
-"%tu matches found" = "%tu matches found";
 "Searching Page %tu of %tu" = "Searching Page %tu of %tu";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
 "%tu left" = "%tu left"; // Indexing Documents... 5 left
 "Searching" = "Searching";
-"%tu documents indexed." = "%tu documents indexed.";
 "Done" = "Done";
 "Indexing Documents" = "Indexing Documents";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Butt";
 "Line Start" = "Line Start";
 "Line End" = "Line End";
-"%tu Points" = "%tu Points";
 
 // link annotation editing
 "Create Link" = "Create Link";

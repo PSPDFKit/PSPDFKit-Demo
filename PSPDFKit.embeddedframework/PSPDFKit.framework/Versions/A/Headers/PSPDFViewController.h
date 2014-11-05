@@ -27,6 +27,7 @@
 #import "PSPDFThumbnailBar.h"
 #import "PSPDFHUDView.h"
 #import "PSPDFConfiguration.h"
+#import "PSPDFInlineSearchManager.h"
 #import <MessageUI/MessageUI.h>
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
@@ -39,9 +40,9 @@
 
  For subclassing, use `overrideClass:withClass:` to register your custom subclasses.
 
- The best time for setting the properties is during initialization in `commonInitWithDocument:configuration:`. Some properties require a call to `reloadData` if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. use `viewDidAppear:` instead of `viewWillAppear:`) since that could corrupt internal state, instead use `updateSettingsForRotation:`.
+ The best time for setting the properties is during initialization in `commonInitWithDocument:configuration:`. Some properties require a call to `reloadData` if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. use `viewDidAppear:` instead of `viewWillAppear:`) since that could corrupt internal state, instead use `updateSettingsForBoundsChangeBlock`.
 */
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFSearchViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, PSPDFOverridable, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, PSPDFPresentationContext, PSPDFControlDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFSearchViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, PSPDFOverridable, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, PSPDFPresentationContext, PSPDFControlDelegate, PSPDFInlineSearchManagerDelegate>
 
 /// @name Initialization and essential properties.
 
@@ -247,10 +248,9 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 @interface PSPDFViewController (Presentation)
 
 typedef NS_ENUM(NSUInteger, PSPDFPresentationStyle) {
-    PSPDFPresentationStyleDefault,  /// Chooses automatically
-    PSPDFPresentationStyleModal,    /// Always presents the view controller modally
-    PSPDFPresentationStylePopover,  /// Always presents the view controller in a popover (even for `UIUserInterfaceSizeClassCompact`)
-    PSPDFPresentationStyleHalfModal /// Presents the view controller in a half modal mode (`UIUserInterfaceSizeClassCompact` only)
+    PSPDFPresentationStyleDefault,  /// Chooses automatically.
+    PSPDFPresentationStyleModal,    /// Always presents the view controller modally.
+    PSPDFPresentationStyleHalfModal /// Presents the view controller in a half modal mode. (`UIUserInterfaceSizeClassCompact` only)
 };
 
 // Presentation style.
@@ -271,6 +271,11 @@ extern NSString *const PSPDFPresentationPopoverPassthroughViewsKey; // Customize
 extern NSString *const PSPDFPresentationInNavigationControllerKey;  // Set to YES to embedd the controller into a navigation controller.
 extern NSString *const PSPDFPresentationCloseButtonKey;             // Set to YES to add a close button.
 extern NSString *const PSPDFPresentationPersistentCloseButtonKey;   // See `PSPDFPersistentCloseButtonMode`
+
+// Allows detection if the current OS environment suports displaying native popovers.
+// This will always return YES with the exception of iOS 7 / iPhone.
+// (iOS allows using popovers on iPhone since iOS 8 if they are created using regular `presentViewController:` syntax)
+extern BOOL PSPDFSupportsPopover(void);
 
 /// Show a modal view controller or a popover with automatically added close button on the left side.
 /// Use sender (`UIBarButtonItem` or `UIView`) OR rect in options (both only needed for the popover)
@@ -365,7 +370,7 @@ extern NSString *const PSPDFPresentationPersistentCloseButtonKey;   // See `PSPD
 @property (nonatomic, strong, readonly) PSPDFMoreBarButtonItem *additionalActionsButtonItem;
 
 /// Bar button items displayed at the left of the toolbar. Must be `UIBarButtonItem` or `PSPDFBarButtonItem` instances. Defaults to `[closeButtonItem]` if view is presented modally.
-/// @warning UIKit limits the left toolbar size if space is low in the toolbar, potentially cutting off buttons in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to fix this problem. It also appears that UIKit focuses on the leftToolbar, the right one is cut off much later. This problem only appears on the iPad in portrait mode. You can also use `updateSettingsForRotation:` to adapt the toolbar for portrait/landscape mode.
+/// @warning UIKit limits the left toolbar size if space is low in the toolbar, potentially cutting off buttons in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to fix this problem. It also appears that UIKit focuses on the leftToolbar, the right one is cut off much later. This problem only appears on the iPad in portrait mode. You can also use `updateSettingsForBoundsChangeBlock` to adapt the toolbar for portrait/landscape mode.
 /// @note If you use any of the provided bar button items in a custom toolbar, make sure to set `leftBarButtonItems` and `rightBarButtonItems` to nil - an `UIBarButtonItem` can only ever have one parent, else some icons might "vanish" from your toolbar.
 @property (nonatomic, copy) NSArray *leftBarButtonItems;
 

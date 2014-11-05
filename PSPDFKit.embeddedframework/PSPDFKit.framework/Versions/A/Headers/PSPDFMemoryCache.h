@@ -14,10 +14,14 @@
 #import "PSPDFDiskCache.h"
 
 @class PSPDFRenderReceipt;
+@protocol PSPDFSettings;
 
 /// The memory cache is designed to take up as much memory as it can possibly get (the more, the faster!)
 /// On a memory warning, it will call `clearCache` all release all stored images.
 @interface PSPDFMemoryCache : NSObject
+
+/// The designated initializer.
+- (instancetype)initWithSettings:(id<PSPDFSettings>)settings NS_DESIGNATED_INITIALIZER;
 
 /// @name Accessing Data
 

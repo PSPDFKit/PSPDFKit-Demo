@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@class PSPDFAction;
+@class PSPDFAction, PSPDFConfiguration;
 @protocol PSPDFOverridable;
 
 /// A key in the `options` dictionary when initializing a multimedia plugin. Maps to the `PSPDFLinkAnnotation`
@@ -40,5 +40,10 @@ extern NSString *const PSPDFMultimediaLinkAnnotationKey;
 /// Called when a multimedia action (either `PSPDFRenditionAction` or `PSPDFRichMediaExecuteAction`)
 /// should be performed.
 - (void)performAction:(PSPDFAction *)action;
+
+@optional
+
+/// Configures the controller with the given `PSPDFConfiguration`.
+- (void)configure:(PSPDFConfiguration *)configuration;
 
 @end

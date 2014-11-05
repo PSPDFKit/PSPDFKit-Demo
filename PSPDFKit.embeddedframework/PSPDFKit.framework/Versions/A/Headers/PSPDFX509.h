@@ -11,9 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "PSPDFRSAKey.h"
-
 
 typedef void *OPENSSL_X509;
 

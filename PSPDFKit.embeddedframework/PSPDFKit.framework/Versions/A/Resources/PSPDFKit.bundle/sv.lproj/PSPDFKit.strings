@@ -45,8 +45,6 @@
 "Annotation" = "Anteckning";
 "Annotations" = "Anteckningar";
 "No Annotations" = "Inga anteckningar";
-"%tu Annotation" = "%tu anteckning";
-"%tu Annotations" = "%tu anteckningar";
 "Bookmarks" = "Bokmärken";
 "No Bookmarks" = "Inga bokmärken";
 "Add Bookmark" = "Lägg till bokmärke";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Sök dokument"; // to search for a string in the given document
-"No matches found" = "Hittade inga träffar";
-"One match found" = "Hittade en träff";
-"%tu matches found" = "Hittade %tu träffar";
 "Searching Page %tu of %tu" = "Söker sida %tu av %tu";
 "Search Completed" = "Sökningen är klar";
 "Search Cancelled" = "Sökningen avbröts";
 "%tu left" = "%tu kvar"; // Indexing Documents... 5 left
 "Searching" = "Söker";
-"%tu documents indexed." = "Indexerat %tu dokument.";
 "Done" = "Klar";
 "Indexing Documents" = "Indexerar dokument";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Intill";
 "Line Start" = "Linjestart";
 "Line End" = "Linjeslut";
-"%tu Points" = "%tu punkter";
 
 // link annotation editing
 "Create Link" = "Skapa länk";
@@ -342,9 +335,9 @@
 "Speak" = "Tala"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Spela";
 "Pause" = "Pausa";
-"Resume" = "Återuppta";
-"Stop" = "Stopp";
-"Play/Stop" = "Spela/Stoppa";
+"Resume" = "Fortsätt";
+"Stop" = "Stoppa";
+"Play/Stop" = "Spela/stoppa";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files
 "Record" = "Spela in";
 "Pause Recording" = "Pausa inspelning";

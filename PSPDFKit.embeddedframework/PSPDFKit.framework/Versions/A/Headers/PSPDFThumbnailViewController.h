@@ -123,7 +123,4 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 // Updates the empty view.
 - (void)updateEmptyView;
 
-// The empty view
-@property (nonatomic, strong) PSPDFCenteredLabelView *emptyView;
-
 @end

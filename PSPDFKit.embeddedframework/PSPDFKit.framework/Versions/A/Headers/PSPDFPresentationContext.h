@@ -24,9 +24,9 @@
 @property (nonatomic, copy, readonly) PSPDFConfiguration *configuration;
 
 // The displaying view controller and popover/half modal controllers
-@property (nonatomic, strong, readonly) UIViewController    *displayingViewController;
+@property (nonatomic, strong, readonly) UIViewController *displayingViewController;
 @property (nonatomic, strong, readonly) UIPopoverController *popoverController;
-@property (nonatomic, strong, readonly) UIViewController    *halfModalController;
+@property (nonatomic, strong, readonly) UIViewController *halfModalController;
 
 // Could be removed
 @property (nonatomic, strong, readonly) UIViewController *visibleViewControllerInPopoverController;

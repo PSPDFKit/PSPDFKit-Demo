@@ -4,6 +4,77 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.1.0 - 5/November/2014__
+
+PSPDFKit now requires Xcode 6.1 with SDK 8.1. (iOS 7.0 is still supported)
+
+If you use HockeyApp, Crashlytics or a similar crash reporting tool, we would love to hear from you.
+We're working hard to further reduce our already very low issue rate and apprechiate your feedback. (support+crashreports@pspdfkit.com)
+
+PSPDFKit will now assert if you change annotation properties on threads other than the main thread.
+This behavior was unsupported before and was a cause for issues that were very hard to track down.
+Read more about the annotation object model at https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/The-annotation-object-model.
+
+*  Natural Drawing! You'll love this new default. Your drawings will look much more realistic, and are still fully backwards compatible to 3rd-party apps.
+*  Various optimizations and improvements for iOS 8.1
+*  API: `PSPDFSpeechSynthesizer` has been renamed to `PSPDFSpeechController`.
+*  API: `PSPDFActivityBarButtonItem` now forwards the iOS 8-style completionHandler.
+*  API: `wantsSelectionBorder` is now an instance method to customize this per object.
+*  API: The `PSPDFPresentationStylePopover` has been removed in favor of the iOS 8 variant `UIModalPresentationPopover`.
+*  API: The interface around `PSPDFStream` and `PSPDFStampAnnotation` has been modernized.
+*  API: The `PSPDFSignatureStore` is now a protcol with a default implementation that can be changed via configuring `PSPDFConfiguration`.
+*  API: Various annotation classes have gained a convenience initializer.
+*  API: The gallery is now configurable via `PSPDFGalleryConfiguration` in `PSPDFConfiguration`.
+*  API: Various annotation enum values now have appropriate transformer objects for better JSON export.
+   (`PSPDFBorderStyleTransformerName`, `PSPDFBorderEffectTransformerName`, `PSPDFFreeTextAnnotationIntentTransformerName`)
+*  API: Many singletons have been moved to the global `PSPDFKit` object and various smaller class refinements.
+*  Writing documents now uses `NSFileCoordinator` for better compatibility with iCloud Drive and Extensions.
+*  If the size class on iOS 8 is `UIUserInterfaceSizeClassCompact`, the status bar will now be hidden.
+*  The inline search manager now automatically focusses the first search result.
+*  The inline search manager now shows the current search status with a slight delay to be more visually pleasing.
+*  Absolute paths, while discouraged, are now properly detected in the gallery on iOS 8.
+*  The gallery now automatically resolves URL endpoints that have no pre-set type. (video/image/etc)
+*  Works around an issue where `UIDocumentInteractionController` sometimes would print extremly long log statements.
+*  Makes sure the `PSPDFViewController` always correctly reloads, even when the document is changed while the controller is off-screen.
+*  Various stylus drivers have been updated to be compatible with their API changes.
+*  Search previews generated via `PSPDFLibrary` now also support text containing diactritics.
+*  Adds support for bended arrows created in Yosemite's Preview.app.
+*  Public C functions are now wrapped so they don't get name mangled if ObjC++ is used.
+*  The annotation user name is now requested as soon as a annotation style mode is entered, not when the annotation is committed.
+*  The interactive pop gesture is now disabled when the HUD is hidden to not accidentially invoke it during scrolling.
+*  Improves robustness when `PSPDFLibrary` is called from multiple threads.
+*  Improves reliability of sound annotations, especially on iOS 8 and 64 bit.
+*  Improves code paths around setting a default line width when a border is set.
+*  Improves compatibility with a certain set of annotations with appearance streams that uses custom transforms.
+*  Improves reported frame when callng the shouldShowMenuItems: delegate in annotation sub-menus. (e.g. Highlight->Color)
+*  Improves menu placement for annotations that can't be resized or moved.
+*  Improves gallery error handling while the manifest is loaded.
+*  Various improvements and better error detection/logging for the digital signing process.
+*  Reduces memory pressure for older devices such as the iPad 2, the iPhone 4S and older iPad Touch devices.
+*  The `creationDate` is now set for new user-created annotations and `lastModified` is updated on every change.
+*  The text editing for bookmark names is now committed before a cell reorder is started, to ensure the changed text gets saved to the correct item.
+*  When the device switches to single/double page mode due to rotation, we now will restore the last page instead of the left page from the double page mode.
+*  Works around a potential deadlock in the Apple PDF renderer when called during the application did load event. (rdar://problem/18778790)
+*  Ensures all popover dismissal code paths go through the workaround for rdar://problem/18500786 on iOS 8.
+*  Complex ink annotations are now processed much faster.
+*  The delete button no longer overlaps the signature display in the `PSPDFSignatureSelectorViewController`.
+*  Ensures the signature creation buttons in `PSPDFSignatureViewController` are pixel-aligned.
+*  Various improvements to digital signature handling. `PSPDFPKCS12Signer` now exposes `signFormElement` for non-interactive signing.
+*  Various functional and performance improvements when parsing forms with JavaScript.
+*  PSPDFKit now uses various iOS 8 QoS classes where appropriate to better deal with important/background related tasks.
+*  Updates OpenSSL to 1.0.1j and SQLite to 3.8.7.1 (optional)
+*  Fixes an issue with certain missing headers in the OpenSSL-free build.
+*  Fixes an issue where drawings created during one operation in multiple pages could be collected to a single page on commit.
+*  Fixes a small UI issue where on iOS 8 the current page of the color inspector could be wrong.
+*  Fixes a set of crashes that could happen on more complex views when they were layouted with a `CGRectNull`.
+*  Fixes an issue when the `activeFilter of the `PSPDFThumbnailViewController` is set manually.
+*  Fixes a potential deadlock when `PSPDFPerformBlockWithoutUndo` was used manually in a large-scale way.
+*  Fixes an issue related to the `pageRange` feature and HUD scrollable thumbnail updating.
+*  Fixes a potential stack overflow if extremely complex PDF forms were saved using `NSCoder`.
+*  Fixes an issue where tapping the annotation button quickly could result in a incorrect selection.
+*  Many of the more obscure bugs and crashes have been squashed.
+*  Various localization updates and improvements. PSPDFKit now uses the [stringsdict file format](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/StringsdictFileFormat/StringsdictFileFormat.html) to define language plural rules.
+
 __v4.0.3 - 3/October/2014__
 
 *  Add API on `PSPDFViewController` to check if a search is running `isSearchActive` and to cancel a running search `cancelSearchAnimated:`.
@@ -25,7 +96,7 @@ __v4.0.3 - 3/October/2014__
 *  Trying to show the print or open in sheet now no longer throws a popover exception if the `PSPDFViewController` is not visible.
 *  Works around a regression in iOS 8.1b1 related to UIAppearance with  (rdar://problem/18501844)
 *  Works around a regression in iOS 8 where dismissing a popover controller could result in accessing a deallocated object on iOS 8. (rdar://problem/18500786)
-*  Works around a regression in iOS 8 where dismissing a popover could dismiss the parent modal controller. (rdar://18512973)
+*  Works around a regression in iOS 8 where dismissing a popover could dismiss the parent modal controller. (rdar://problem/18512973)
 *  Works around an issue where UIKit throws an unexpected exception when accessing the image in the general pasteboard. (rdar://problem/18537933)
 *  Works around an issue where UIKit forwards `_UIPhysicalButton` objects when we expect `UITouch` objects. (rdar://problem/18537814)
 *  Fixes an issue with a non-standard-conforming PDF not defining "Subtype" in the font dictionary.

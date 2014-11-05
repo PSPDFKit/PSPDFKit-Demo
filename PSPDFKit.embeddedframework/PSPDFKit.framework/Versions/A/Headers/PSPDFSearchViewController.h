@@ -12,7 +12,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "PSPDFExtendedPopoverController.h"
 #import "PSPDFBaseTableViewController.h"
 #import "PSPDFTextSearch.h"
 #import "PSPDFAnnotation.h"
@@ -59,7 +58,7 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @end
 
 /// Allows to search within the current `document`.
-@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStyleable, PSPDFPopoverControllerDismissable>
+@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStyleable>
 
 /// Designated initializer.
 - (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;

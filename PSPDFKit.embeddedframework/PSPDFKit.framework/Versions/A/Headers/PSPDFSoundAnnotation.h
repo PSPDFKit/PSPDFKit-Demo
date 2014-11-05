@@ -56,6 +56,9 @@ extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 @property (nonatomic, copy, readonly) NSString *encoding;
 
 /// Loads bits, sample rate, channels, encoding from sound file.
-- (void)loadAttributesFromAudioFile;
+- (BOOL)loadAttributesFromAudioFile:(NSError *__autoreleasing*)error;
+
+/// Get the direct sound data.
+- (NSData *)soundData;
 
 @end

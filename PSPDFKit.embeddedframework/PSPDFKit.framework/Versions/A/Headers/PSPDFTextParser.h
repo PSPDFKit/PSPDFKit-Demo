@@ -26,25 +26,26 @@ extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
 - (instancetype)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page documentProvider:(PSPDFDocumentProvider *)documentProvider fontCache:(NSMutableDictionary *)fontCache hideGlyphsOutsidePageRect:(BOOL)hideGlyphsOutsidePageRect PDFBox:(CGPDFBox)PDFBox;
 
 /// Directly parse a specific stream.
-- (instancetype)initWithStream:(CGPDFStreamRef)stream;
+/// @return Either an `PSPDFTextParser` object or nil if `streamRef` is nil.
+- (instancetype)initWithStreamRef:(CGPDFStreamRef)streamRef;
 
 /// The complete page text, including extrapolated spaces and newline characters.
 @property (nonatomic, copy, readonly) NSString *text;
 
 /// Complete list of `PSPDFGlyph` objects. Corresponds to the text.
-@property (nonatomic, strong, readonly) NSArray *glyphs;
+@property (nonatomic, copy, readonly) NSArray *glyphs;
 
 /// List of detected words (`PSPDFWord`)
-@property (nonatomic, strong, readonly) NSArray *words;
+@property (nonatomic, copy, readonly) NSArray *words;
 
 /// List of detected lines (`PSPDFTextLine`)
-@property (nonatomic, strong, readonly) NSArray *lines;
+@property (nonatomic, copy, readonly) NSArray *lines;
 
 /// List of detected images (`PSPDFImageInfo`)
-@property (nonatomic, strong, readonly) NSArray *images;
+@property (nonatomic, copy, readonly) NSArray *images;
 
 /// List of detected text blocks (`PSPDFTextBlock`)
-@property (nonatomic, strong, readonly) NSArray *textBlocks;
+@property (nonatomic, copy, readonly) NSArray *textBlocks;
 
 /// Associated document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
@@ -61,9 +62,9 @@ extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
 - (BOOL)shouldParseCharacter:(uint16_t)character;
 
 // Exposes the current marked content stack.
-@property (nonatomic, strong, readonly) NSArray *markedContentStack;
+@property (nonatomic, copy, readonly) NSArray *markedContentStack;
 
 // Access the internal lock.
-@property (nonatomic, assign, readonly) dispatch_queue_t parsingQueue;
+@property (nonatomic, strong, readonly) dispatch_queue_t parsingQueue;
 
 @end

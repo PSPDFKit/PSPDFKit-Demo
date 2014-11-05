@@ -1,5 +1,5 @@
 //
-//  PSPDFSpeechSynthesizer.h
+//  PSPDFSpeechController.h
 //  PSPDFKit
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -15,18 +15,16 @@
 
 // Language auto-detection.
 extern NSString *const PSPDFSpeechSynthesizerAutoDetectLanguage;
+
 // Force a specific language.
 extern NSString *const PSPDFSpeechSynthesizerLanguageKey;
+
 // Provide text to sample a language.
 extern NSString *const PSPDFSpeechSynthesizerLanguageHintKey;
 
 /// Controls text-to-speech features.
-/// @note This class should only be used from the main thread.
-@interface PSPDFSpeechSynthesizer : NSObject
-
-/// Shared instance. Only one element can speak at a time.
-+ (instancetype)sharedSynthesizer;
-+ (BOOL)isSharedSynthesizerLoaded;
+/// @note This class can only be used from the main thread.
+@interface PSPDFSpeechController : NSObject
 
 /// Speak string.
 /// Setting `language` to nil will use the default language set here.

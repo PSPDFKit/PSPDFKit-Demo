@@ -45,8 +45,6 @@
 "Annotation" = "Not";
 "Annotations" = "Notlar";
 "No Annotations" = "Not Yok";
-"%tu Annotation" = "%tu Not";
-"%tu Annotations" = "%tu Not";
 "Bookmarks" = "Yer İmleri";
 "No Bookmarks" = "Yer İmi Yok";
 "Add Bookmark" = "Yer İmi Ekle";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Dökümanda Ara"; // to search for a string in the given document
-"No matches found" = "Eşleşme bulunamadı";
-"One match found" = "Bir eşleşme bulundu";
-"%tu matches found" = "%tu eşleşme bulundu";
 "Searching Page %tu of %tu" = "Sayfa %tu / %tu aranıyor";
 "Search Completed" = "Arama Tamamlandı";
 "Search Cancelled" = "Arama İptal Edildi";
 "%tu left" = "%tu kaldı"; // Indexing Documents... 5 left
 "Searching" = "Aranıyor";
-"%tu documents indexed." = "%tu belge dizinlendi.";
 "Done" = "Bitti";
 "Indexing Documents" = "Belgeler Dizinleniyor";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Uç";
 "Line Start" = "Satır Başlangıcı";
 "Line End" = "Satır Sonu";
-"%tu Points" = "%tu Sayıları";
 
 // link annotation editing
 "Create Link" = "Bağlantı Oluştur";

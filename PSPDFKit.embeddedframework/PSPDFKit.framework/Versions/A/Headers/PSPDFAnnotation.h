@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFModel.h"
+#import "PSPDFMacros.h"
 #import "PSPDFUndoProtocol.h"
 #import "PSPDFJSONAdapter.h"
 
@@ -99,7 +100,18 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
     PSPDFAnnotationBorderStyleUnderline,
     PSPDFAnnotationBorderStyleUnknown
 };
-extern NSString *const PSPDFBorderStyleTransformerName; // Global `NSValueTransformer` to convert between enum and string value.
+
+/// Border effect names. See PDF Reference 1.5, 1.6. (Table 167).
+typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
+    PSPDFAnnotationBorderEffectNoEffect = 0,
+    PSPDFAnnotationBorderEffectCloudy,
+};
+
+// `NSValueTransformer` to convert between `PSPDFAnnotationBorderStyle` enum and string value.
+extern NSString *const PSPDFBorderStyleTransformerName;
+
+// `NSValueTransformer` to convert between `PSPDFAnnotationBorderEffect` enum and string value.
+extern NSString *const PSPDFBorderEffectTransformerName;
 
 /// A set of flags specifying various characteristics of the annotation.
 /// PSPDFKit doesn't support all of those flag settings.
@@ -135,12 +147,6 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
     PSPDFAnnotationTriggerEventFormCalculate, /// Form is calculated. C (12)
 };
 
-/// Border effect names. See PDF Reference 1.5, 1.6. (Table 167).
-typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
-    PSPDFAnnotationBorderEffectNoEffect = 0,
-    PSPDFAnnotationBorderEffectCloudy,
-};
-
 /**
  `PSPDFAnnotation` is the base class for all PDF annotations and forms.
 
@@ -173,11 +179,11 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
 /// Returns YES if this annotation type has a fixed size, no matter the internal bounding box.
 + (BOOL)isFixedSize;
 
-/// Returns YES if this annotation requires an implicit popup annotation.
-+ (BOOL)requriesPopupAnnotation;
-
 /// Returns YES if the annotation wants a selection border. Defaults to YES.
-+ (BOOL)wantsSelectionBorder;
+- (BOOL)wantsSelectionBorder;
+
+/// Returns YES if this annotation requires an implicit popup annotation.
+- (BOOL)requriesPopupAnnotation;
 
 /// Returns YES if this annotation type is moveable.
 - (BOOL)isMovable;
@@ -290,10 +296,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
 /// PSPDFKit will set this for newly created annotations.
 @property (nonatomic, strong) NSDate *creationDate;
 
-/// Date where the annotation was last modified.
+/// Date when the annotation was last modified. Might be nil.
 /// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
-/// Will be updated when a property is changed.
-@property (atomic, strong) NSDate *lastModified;
+/// @note This property is updated anytime a different property is modified.
+@property (nonatomic, strong) NSDate *lastModified;
 
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) CGFloat lineWidth;
@@ -307,7 +313,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
 /// Border effect. See PDF Reference 1.5, 1.6 (Table 167).
 @property (nonatomic, assign) PSPDFAnnotationBorderEffect borderEffect;
 
-/// (Optional; valid only if the value of borderEffect is PSPDFAnnotationBorderEffectCloudy)
+/// (Optional; valid only if the value of borderEffect is `PSPDFAnnotationBorderEffectCloudy`)
 /// A number describing the intensity of the effect, in the range 0 to 2. Default value: 0.
 @property (nonatomic, assign) CGFloat borderEffectIntensity;
 
@@ -323,11 +329,13 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationBorderEffect) {
 @property (nonatomic, copy) NSArray *rects;
 
 /// Line, Polyline and Polygon annotations have points.
+/// Contains `NSValue` objects that box a `CGPoint`.
+/// @note These values are generated on the fly from an internal, optimized representation.
 @property (nonatomic, copy) NSArray *points;
 
 /// If `indexOnPage` is set, it's a native PDF annotation.
 /// If this is -1, it's not yet saved in the PDF or saved externally.
-@property (atomic, readonly) NSInteger indexOnPage;
+@property (nonatomic, readonly) NSInteger indexOnPage;
 
 /// Allows to save arbitrary data (e.g. a CoreData Object ID)
 /// Will be preserved within app sessions and copy, but NOT serialized to disk or within the PDF.
@@ -447,4 +455,8 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 
 @end
 
+PSPDFKIT_EXTERN_C_BEGIN
+
 extern void PSPDFAnnotationRegisterOverrideClasses(NSKeyedUnarchiver *unarchiver, PSPDFDocument *document);
+
+PSPDFKIT_EXTERN_C_END

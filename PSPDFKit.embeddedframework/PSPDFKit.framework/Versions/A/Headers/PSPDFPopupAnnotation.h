@@ -15,6 +15,6 @@
 @interface PSPDFPopupAnnotation : PSPDFAnnotation
 
 // Specifies whether the popup is initially open or closed.
-@property (nonatomic, assign) BOOL open;
+@property (nonatomic, assign, getter = isOpen) BOOL open;
 
 @end

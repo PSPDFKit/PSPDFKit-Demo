@@ -15,6 +15,7 @@
 
 @class PSPDFAnnotationToolbar;
 @class PSPDFAnnotationGroupItem;
+@class PSPDFColorButton;
 
 /**
  The annotation toolbar allows the creation of most annotation types supported by PSPDFKit.
@@ -23,6 +24,8 @@
  Further appearance customization options are documented in the superclass header (`PSPDFFlexibleToolbar.h`).
 
  `PSPDFAnnotationToolbar` needs to be used together with a `PSPDFFlexibleToolbarContainerView` just like its superclass `PSPDFFlexibleToolbar`.
+ 
+ @note Directly updating `buttons` will not work. Use `additionalButtons` if you want to add custom buttons.
  */
 @interface PSPDFAnnotationToolbar : PSPDFFlexibleToolbar <PSPDFAnnotationStateManagerDelegate>
 
@@ -47,7 +50,7 @@
 /// @see PSPDFAnnotationGroup, PSPDFAnnotationGroupItem
 @property (nonatomic, copy) NSArray *annotationGroups;
 
-/// Returns `annotationGroups` if set, or implicity created groups based on `editableAnnotationTypes`.
+/// Returns `annotationGroups` if set, or implicitly created groups based on `editableAnnotationTypes`.
 - (NSArray *)annotationGroupsOrGroupsFromEditableAnnotationTypes;
 
 /// Allows custom `UIButton` objects to be added after the buttons in `annotationGroups`.
@@ -65,9 +68,11 @@
 
 @interface PSPDFAnnotationToolbar (SubclassingHooks)
 
-- (UIButton *)doneButton;
-- (UIButton *)undoButton;
-- (UIButton *)redoButton;
+// Standard toolbar buttons (return nil if you don't want them)
+@property (nonatomic, strong, readonly) UIButton *doneButton;
+@property (nonatomic, strong, readonly) UIButton *undoButton;
+@property (nonatomic, strong, readonly) UIButton *redoButton;
+@property (nonatomic, strong, readonly) PSPDFColorButton *strokeColorButton;
 
 // The done action.
 - (void)done:(id)sender;

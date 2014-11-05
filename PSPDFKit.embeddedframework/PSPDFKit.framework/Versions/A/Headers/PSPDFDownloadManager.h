@@ -11,13 +11,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFReachabilityObserver.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFDownloadManagerObjectState) {
     PSPDFDownloadManagerObjectStateNotHandled,
     PSPDFDownloadManagerObjectStateWaiting,
     PSPDFDownloadManagerObjectStateLoading,
     PSPDFDownloadManagerObjectStateFailed
+};
+
+typedef NS_ENUM(NSUInteger, PSPDFReachability) {
+    PSPDFReachabilityUnknown,
+    PSPDFReachabilityUnreachable,
+    PSPDFReachabilityWiFi,
+    PSPDFReachabilityWWAN
 };
 
 @class PSPDFFileCache;

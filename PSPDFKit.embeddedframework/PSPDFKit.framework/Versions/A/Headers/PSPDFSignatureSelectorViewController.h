@@ -16,6 +16,7 @@
 #import "PSPDFOverridable.h"
 
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
+@protocol PSPDFSignatureStore;
 
 /// Delegate to be notified when the `PSPDFSignatureSelectorViewController` has a valid selection.
 @protocol PSPDFSignatureSelectorViewControllerDelegate <PSPDFOverridable>
@@ -33,10 +34,10 @@
 @interface PSPDFSignatureSelectorViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (instancetype)initWithSignatures:(NSArray *)signatures NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSignatureStore:(id<PSPDFSignatureStore>)signatureStore NS_DESIGNATED_INITIALIZER;
 
-/// Signatures that are being displayed.
-@property (nonatomic, copy, readonly) NSArray *signatures;
+/// Signature store with signatures that are being displayed.
+@property (nonatomic, strong, readonly) id<PSPDFSignatureStore> signatureStore;
 
 /// Signature Selector Delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFSignatureSelectorViewControllerDelegate> delegate;

@@ -37,8 +37,9 @@
 @property (nonatomic, strong) UIImage *image;
 
 /// Parses the AP stream, searches for an image and loads it.
-/// Will also update `imageTransform`.
-- (UIImage *)loadImageWithError:(NSError *__autoreleasing*)error;
+/// This can return nil if the `image` has been set manually.
+/// @note This will not update `image` or `imageTransform` - do that manually if required.
+- (UIImage *)loadImageWithTransform:(out CGAffineTransform *)transform error:(NSError *__autoreleasing*)error;
 
 /// Stamp image transform. Defaults to `CGAffineTransformIdentity`.
 @property (nonatomic, assign) CGAffineTransform imageTransform;

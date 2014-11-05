@@ -45,8 +45,6 @@
 "Annotation" = "Kommentar";
 "Annotations" = "Kommentarer";
 "No Annotations" = "Ingen kommentarer";
-"%tu Annotation" = "%tu-kommentar";
-"%tu Annotations" = "%tu kommentarer";
 "Bookmarks" = "Bogmærker";
 "No Bookmarks" = "Ingen bogmærker";
 "Add Bookmark" = "Tilføj bogmærke";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "Søg i dokument"; // to search for a string in the given document
-"No matches found" = "Ingen resultater";
-"One match found" = "En match fundet";
-"%tu matches found" = "%tu matches fundet";
 "Searching Page %tu of %tu" = "Søger i side %tu af %tu";
 "Search Completed" = "Søgning afsluttet";
 "Search Cancelled" = "Søgning annuleret";
 "%tu left" = "%tu tilbage"; // Indexing Documents... 5 left
 "Searching" = "Søger";
-"%tu documents indexed." = "%tu dokumenter indekserede.";
 "Done" = "Færdig";
 "Indexing Documents" = "Indekserer dokumenter";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "Knop";
 "Line Start" = "Linjestart";
 "Line End" = "Linjeslut";
-"%tu Points" = "%tu punkter";
 
 // link annotation editing
 "Create Link" = "Opret henvisning";

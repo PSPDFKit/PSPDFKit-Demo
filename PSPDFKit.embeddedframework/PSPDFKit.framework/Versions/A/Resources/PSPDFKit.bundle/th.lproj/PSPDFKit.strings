@@ -45,8 +45,6 @@
 "Annotation" = "การทำหมายเหตุ";
 "Annotations" = "หมายเหตุ";
 "No Annotations" = "ไม่มีการทำหมายเหตุ";
-"%tu Annotation" = "การทำหมายเหตุ %tu แห่ง";
-"%tu Annotations" = "หมายเหตุ %tu แห่ง";
 "Bookmarks" = "ที่คั่นหน้าเว็บ";
 "No Bookmarks" = "ไม่มีที่คั่นหน้าเว็บ";
 "Add Bookmark" = "เพิ่มที่คั่นหน้าเว็บ";
@@ -80,15 +78,11 @@
 
 // search
 "Search Document" = "ค้นหาเอกสาร"; // to search for a string in the given document
-"No matches found" = "ไม่มีข้อมูลที่ตรง";
-"One match found" = "พบข้อมูลเดียวที่ตรง";
-"%tu matches found" = "พบ %tu ข้อมูลที่ตรง";
 "Searching Page %tu of %tu" = "กำลังหาหน้าที่ %tu จาก %tu";
 "Search Completed" = "การค้นหาเสร็จสิ้น";
 "Search Cancelled" = "การค้นหาถูกยกเลิก";
 "%tu left" = "เหลือ %tu ฉบับ"; // Indexing Documents... 5 left
 "Searching" = "กำลังค้นหา";
-"%tu documents indexed." = "เอกสาร %tu ฉบับผ่านการจัดดัชนีแล้ว";
 "Done" = "เสร็จ";
 "Indexing Documents" = "จัดดัชนีเอกสาร";
 // text on a label; after the user has done a search on an empty document, this text is shown
@@ -306,7 +300,6 @@
 "Line.Butt" = "ก้อน";
 "Line Start" = "จุดเริ่มต้นของเส้น";
 "Line End" = "จุดจบของเส้น";
-"%tu Points" = "%tu จุด";
 
 // link annotation editing
 "Create Link" = "สร้างลิงก์";
@@ -342,7 +335,7 @@
 "Speak" = "ออกเสียง"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "เล่น";
 "Pause" = "ค้าง";
-"Resume" = "กลับไปพูดต่อ";
+"Resume" = "กลับไปเล่นต่อ";
 "Stop" = "หยุด";
 "Play/Stop" = "เล่น/หยุด";
 // title of a ViewController; View Controller contains a recording and playback button to record audio files

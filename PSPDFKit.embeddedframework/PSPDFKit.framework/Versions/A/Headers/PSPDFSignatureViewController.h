@@ -48,6 +48,9 @@ extern NSString *const PSPDFSignatureControllerTargetRectKey;
 /// Lines of the drawView.
 @property (nonatomic, strong, readonly) NSArray *lines;
 
+/// Natural drawing.
+@property (nonatomic, assign) BOOL naturalDrawingEnabled;
+
 /// Color options for the color picker (limit this to about 3 UIColor instances).
 /// Defaults to black, blue and red.
 @property (nonatomic, copy) NSArray *menuColors;

@@ -56,8 +56,10 @@
 
 // Password text field.
 @property (nonatomic, strong, readonly) UITextField *passwordField;
+
 // Status label below the password text field.
 @property (nonatomic, strong, readonly) UILabel *statusLabel;
+
 // Unlock button (set as passwordField.rightView)
 @property (nonatomic, strong, readonly) UIButton *unlockButton;
 

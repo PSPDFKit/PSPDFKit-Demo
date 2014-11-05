@@ -161,7 +161,7 @@ extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 
 /// An array of buttons that have been collapsed into `collapsedButton` due to lack of toolbar space.
 /// Collapsable buttons need to be `PSPDFFlexibleToolbarButton` with the `collapsible` flag set to yes.
-@property (nonatomic, strong, readonly) NSArray *collapsedButtons;
+@property (nonatomic, copy, readonly) NSArray *collapsedButtons;
 
 /// Added to the toolbar when toolbar buttons get collapsed due to lack of toolbar space.
 /// @see collapsedButtons

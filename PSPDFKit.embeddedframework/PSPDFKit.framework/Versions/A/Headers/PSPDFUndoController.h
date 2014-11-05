@@ -12,12 +12,14 @@
 
 #import <Foundation/Foundation.h>
 #import "PSPDFUndoProtocol.h"
+#import "PSPDFMacros.h"
 
 // Sent once we have new undo operations available.
 extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 /// This is a custom undo manager that can coalesce similar changes within the same group.
-/// This class is also completely thread safe.
+/// This class is thread safe.
+/// @note Only use a perform/lock block if you're not in any other lock controlled by PSPDFKit.
 @interface PSPDFUndoController : NSObject
 
 /// Designated initializer.
@@ -112,8 +114,12 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 
 @end
 
+PSPDFKIT_EXTERN_C_BEGIN
+
 // Executes undo block if the undo controller is available.
 extern void PSPDFPerformBlockAsGroup(PSPDFUndoController *undoController, dispatch_block_t block, NSString *name);
 
 // Executes undo block if the undo controller is available.
 extern void PSPDFPerformBlockWithoutUndo(PSPDFUndoController *undoController, dispatch_block_t block);
+
+PSPDFKIT_EXTERN_C_END

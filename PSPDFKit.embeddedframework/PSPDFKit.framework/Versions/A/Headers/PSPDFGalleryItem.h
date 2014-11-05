@@ -11,6 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @class PSPDFLinkAnnotation;
 
@@ -60,7 +61,7 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 @property (nonatomic, strong, readonly) id content;
 
 /// Indicates if the content of contentURL is considered valid.
-@property (nonatomic, assign, readonly, getter = hasValidContent) BOOL validContent;
+@property (nonatomic, assign, readonly, getter=hasValidContent) BOOL validContent;
 
 /// The error that occurred while loading the content. Only valid if `contentState`
 /// is `PSPDFGalleryItemContentStateError`.

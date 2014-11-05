@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class PSPDFAnnotation, PSPDFPageView;
+@class PSPDFAnnotation, PSPDFPageView, PSPDFConfiguration;
 
 /// Conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
 @protocol PSPDFAnnotationViewProtocol <NSObject>
@@ -54,6 +54,9 @@
 
 /// A weak reference to the page view responsible for this view.
 @property (nonatomic, weak) PSPDFPageView *pageView;
+
+/// A reference to the used configuration.
+@property (nonatomic, strong) PSPDFConfiguration *configuration;
 
 /// Indicates if the view is selected.
 @property (nonatomic, assign, getter=isSelected) BOOL selected;

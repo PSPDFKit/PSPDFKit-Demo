@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PSPDFMacros.h"
 
 /// Represents a word. Formed out of (usually) multiple glyphs.
 @interface PSPDFWord : NSObject <NSCopying, NSSecureCoding>
@@ -47,5 +48,9 @@
 
 @end
 
+PSPDFKIT_EXTERN_C_BEGIN
+
 // Converts a bunch of glyphs to a string.
 extern NSString *PSPDFStringFromGlyphs(NSArray *glyphs);
+
+PSPDFKIT_EXTERN_C_END

@@ -13,16 +13,9 @@
 #import "PSPDFMemoryCache.h"
 #import "PSPDFDiskCache.h"
 #import "PSPDFRenderQueue.h"
+#import "PSPDFMacros.h"
 
-@class PSPDFDocument, PSPDFRenderReceipt;
-
-// Can be used to use a custom subclass of the `PSPDFCache`. Defaults to nil, which will use `PSPDFCache.class`.
-// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
-extern Class PSPDFCacheClass;
-
-// Enable this to see a detailed log output. (slow)
-extern BOOL PSPDFCacheDebug;
-#define PSPDFCacheLog(...) do { if (PSPDFCacheDebug) PSPDFLog(__VA_ARGS__); }while(0)
+@class PSPDFDocument, PSPDFRenderReceipt, PSPDFKit;
 
 /// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
 @protocol PSPDFCacheDelegate <NSObject>
@@ -85,8 +78,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// Most settings are device dependent.
 @interface PSPDFCache : NSObject <PSPDFRenderDelegate>
 
-/// The cache object is a singleton.
-+ (instancetype)sharedCache;
+/// The designated initializer.
+- (instancetype)initWithSettings:(PSPDFKit *)pspdfkit NS_DESIGNATED_INITIALIZER;
 
 /// @name Access cache
 
@@ -112,7 +105,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Document pre-processing
 
-///  Asyncronously pre-renders and caches the document. The delegate method `didRenderImage:document:page:size:` gets called after each image is rendered (number of pages x number of sizes).
+///  Asynchronously pre-renders and caches the document. The delegate method `didRenderImage:document:page:size:` gets called after each image is rendered (number of pages x number of sizes).
 ///
 ///  @param document The document to render and cache.
 ///  @param sizes    An array of NSValue objects constructed with CGSize. Each page will be rendered for each size specified in this array.
@@ -120,7 +113,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 ///  @param page     If using PSPDFDiskCacheStrategyNearPages a few pages before and after the provided page will be cached only. The parameter is otherwise ignored.
 - (void)cacheDocument:(PSPDFDocument *)document pageSizes:(NSArray *)sizes withDiskCacheStrategy:(PSPDFDiskCacheStrategy)strategy aroundPage:(NSUInteger)page;
 
-///  Asyncronously pre-renders and caches the document. The delegate method `didRenderImage:document:page:size:` gets called after each image is rendered (number of pages x number of sizes).
+///  Asynchronously pre-renders and caches the document. The delegate method `didRenderImage:document:page:size:` gets called after each image is rendered (number of pages x number of sizes).
 ///
 ///  @param document            The document to render and cache.
 ///  @param sizes               An array of NSValue objects constructed with CGSize. Each page will be rendered for each size specified in this array.
@@ -218,5 +211,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// Encrypt mutable data. Requires the `PSPDFFeatureMaskStrongEncryption` feature flag.
 /// If set to nil, the default implementation will be used.
 @property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data);
+
+@end
+
+@interface PSPDFCache (Deprecated)
+
++ (instancetype)sharedCache PSPDF_DEPRECATED(4.1.0, "Use [PSPDFKit sharedInstance].cache instead.");
 
 @end

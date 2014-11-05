@@ -39,13 +39,19 @@
 /// The inline search view did disappear.
 - (void)inlineSearchManagerSearchDidDisappear:(PSPDFInlineSearchManager *)manager;
 
+@required
+
+/// Inline search UI will be added to returned view and brought to front every time `presentInlineSearch` is called.
+/// An assertation is raised if you return `nil`.
+- (UIView *)inlineSearchManagerContainerView:(PSPDFInlineSearchManager *)manager;
+
 @end
 
 /// Takes care about presentation of search UI and search processing of search results.
 @interface PSPDFInlineSearchManager : NSObject
 
-/// Search UI will be presented as as a subview of containerView and brought to front every time `presentInlineSearch` is called.
-- (instancetype)initWithPresentationContext:(id<PSPDFPresentationContext>)presentationContext containerView:(UIView *)containerView NS_DESIGNATED_INITIALIZER;
+/// Designated initializer. Both `presentationContext` and `delegate` are required, an assertation is raised if you don't provide them.
+- (instancetype)initWithPresentationContext:(id<PSPDFPresentationContext>)presentationContext delegate:(id<PSPDFInlineSearchManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 /// Presents search UI in provided container view with prefilled text.
 /// @note `text` can be nil.
@@ -90,9 +96,12 @@
 @property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
 
 /// Returns whether search UI is currently being presented.
-@property (nonatomic, readonly, getter=isBeingPresented) BOOL beingPresented;
+@property (nonatomic, assign, readonly, getter=isBeingPresented) BOOL beingPresented;
 
 /// Returns whether search UI is currently being dismissed.
-@property (nonatomic, readonly, getter=isBeingDismissed) BOOL beingDismissed;
+@property (nonatomic, assign, readonly, getter=isBeingDismissed) BOOL beingDismissed;
+
+/// Specifies the top padding of the search results label. Defaults to 10.f.
+@property (nonatomic, assign) CGFloat searchResultsLabelDistance;
 
 @end

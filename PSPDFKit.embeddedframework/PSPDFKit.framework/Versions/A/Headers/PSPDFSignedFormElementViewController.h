@@ -14,8 +14,7 @@
 #import "PSPDFSignatureStatus.h"
 #import "PSPDFBaseTableViewController.h"
 
-@class PSPDFDocument;
-@class PSPDFSignatureFormElement;
+@class PSPDFDocument, PSPDFSignatureFormElement;
 
 @protocol PSPDFSignedFormElementViewControllerDelegate;
 

@@ -16,7 +16,7 @@
 @interface PSPDFLineAnnotation : PSPDFAbstractLineAnnotation
 
 /// Designated initializer.
-- (instancetype)init;
+- (instancetype)initWithPoint1:(CGPoint)point1 point2:(CGPoint)point2;
 
 /// Starting point.
 @property (nonatomic, assign) CGPoint point1;

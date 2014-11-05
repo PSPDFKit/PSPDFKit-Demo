@@ -20,6 +20,9 @@ typedef NS_ENUM(NSInteger, PSPDFFreeTextAnnotationIntent) {
     PSPDFFreeTextAnnotationIntentFreeTextTypeWriter, /// Click- to-type or typewriter object.
 };
 
+// `NSValueTransformer` to convert between `PSPDFFreeTextAnnotationIntent` enum and string value.
+extern NSString *const PSPDFFreeTextAnnotationIntentTransformerName;
+
 /**
  PDF FreeText Annotation.
 

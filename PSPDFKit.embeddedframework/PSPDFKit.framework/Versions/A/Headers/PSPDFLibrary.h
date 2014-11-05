@@ -111,6 +111,7 @@ extern NSString *const PSPDFLibraryPreviewRangeKey;
 /// @name Queue Operations
 
 /// Queue an array of `PSPDFDocument` objects for indexing.
+/// @note Documents that are already queued or completely indexed will be ignored.
 - (void)enqueueDocuments:(NSArray *)documents;
 
 /// Invalidates the search index for `UID`.

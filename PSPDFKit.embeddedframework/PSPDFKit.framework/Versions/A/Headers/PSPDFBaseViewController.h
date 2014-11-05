@@ -12,14 +12,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-// Checks that the `requested` interface orientation is supported by controller and application.
-// Pass in the controller's supportedInterfaceOrientations as `supported`.
-// Returns the current interface orientation if the check fails.
-UIInterfaceOrientation PSPDFSafePreferredInterfaceOrientation(UIInterfaceOrientation requested, NSUInteger supported);
+#import "PSPDFMacros.h"
 
 @interface PSPDFBaseViewController : UIViewController
-
 @end
 
 @interface PSPDFBaseViewController (SubclassingHooks)
@@ -48,3 +43,12 @@ UIInterfaceOrientation PSPDFSafePreferredInterfaceOrientation(UIInterfaceOrienta
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation NS_REQUIRES_SUPER;
 
 @end
+
+PSPDFKIT_EXTERN_C_BEGIN
+
+// Checks that the `requested` interface orientation is supported by controller and application.
+// Pass in the controller's supportedInterfaceOrientations as `supported`.
+// Returns the current interface orientation if the check fails.
+UIInterfaceOrientation PSPDFSafePreferredInterfaceOrientation(UIInterfaceOrientation requested, NSUInteger supported);
+
+PSPDFKIT_EXTERN_C_END

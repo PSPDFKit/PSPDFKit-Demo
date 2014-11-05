@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PSPDFStreamProvider.h"
+#import "PSPDFMacros.h"
 
 @class PSPDFDocument;
 
@@ -23,26 +24,39 @@
 /// `options` is currently unused.
 + (PSPDFStream *)streamFromStreamProvider:(id<PSPDFStreamProvider>)streamProvider options:(NSDictionary *)options error:(NSError *__autoreleasing*)error;
 
-/// Designated initializer
-- (instancetype)initWithStream:(CGPDFStreamRef)stream;
+/// @note `streamRef` shall not be nil. Initializer will return nil in that case.
+- (instancetype)initWithStreamRef:(CGPDFStreamRef)streamRef NS_DESIGNATED_INITIALIZER;
 
-/// Referenced stream. Warning! Only valid as long as the parent `CGPDFDocument` is not closed.
-@property (nonatomic, assign, readonly) CGPDFStreamRef stream;
+/// Low level stream reference.
+/// @warning Only valid as long as the parent `CGPDFDocument` is not closed.
+@property (nonatomic, assign, readonly) CGPDFStreamRef streamRef;
 
 /// Stream dictionary.
-- (NSDictionary *)dictionary;
+@property (nonatomic, copy, readonly) NSDictionary *dictionary;
 
-/// If CGPDFDataFormat is `CGPDFDataFormatJPEGEncoded`, we can extract the image.
-- (UIImage *)image;
+/// Returns the converted image, if any.
+/// @note If CGPDFDataFormat is `CGPDFDataFormatJPEGEncoded`, we can extract the image.
+@property (nonatomic, copy, readonly) UIImage *image;
+
+/// Returns the stream length.
+@property (nonatomic, assign, readonly) NSUInteger length;
+
+/// The `matrix` if one is defined in the stream dictionary. Will return the identity matrix if `Matrix` is not set.
+@property (nonatomic, assign, readonly) CGAffineTransform matrix;
+
+/// Returns the annotation transform matrix based on the stream bounding box, matrix and `rect`.
+/// @note See PDF Reference 1.7, 12.5.5: Algorithm: Appearance streams.
+/// `rect` usually is the annotation `boundingBox` property.
+- (CGAffineTransform)transformMatrixWithRect:(CGRect)rect;
 
 /// Stream data. Format will be returned.
-- (NSData *)dataUsingFormat:(CGPDFDataFormat *)dataFormat;
-
-/// Stream size.
-- (size_t)dataLength;
+- (NSData *)dataUsingFormat:(out CGPDFDataFormat *)dataFormat;
 
 /// Text representation. Only attempt a conversion if you're sure this is text, will be garbage if content is an image.
 - (NSString *)stringValue;
+
+
+/// @name File Management
 
 /// File URL from the converted stream.
 /// @warning This might be slow for large streams.
@@ -54,10 +68,3 @@
 - (NSURL *)fileURLWithPath:(NSString *)path error:(NSError *__autoreleasing*)error;
 
 @end
-
-// Helper, useful when dealing with appearance streams.
-// Returns `CGRectZero` if stream BBox not found.
-extern CGRect PSPDFBoundingBoxFromStream(CGPDFStreamRef streamRef);
-
-// Extract the transform matrix from a stream object, if any set.
-extern CGAffineTransform PSPDFMatrixFromStream(CGPDFStreamRef streamRef);

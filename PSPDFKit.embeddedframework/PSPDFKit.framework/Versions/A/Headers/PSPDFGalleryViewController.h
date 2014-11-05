@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// Create a new gallery view controller by passing in the plugin registry and an options dictionary.
 /// The options dictionary must contain the key `PSPDFMultimediaLinkAnnotationKey` that maps to an
 /// `PSPDFLinkAnnotation` object.
-- (instancetype)initWithPluginRegistry:(PSPDFPluginRegistry *)pluginRegistry options:(NSDictionary *)options NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPluginRegistry:(id<PSPDFPluginRegistry>)pluginRegistry options:(NSDictionary *)options NS_DESIGNATED_INITIALIZER;
 
 /// Create a new gallery view controller by passing in a link annotation.
 - (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)linkAnnotation;

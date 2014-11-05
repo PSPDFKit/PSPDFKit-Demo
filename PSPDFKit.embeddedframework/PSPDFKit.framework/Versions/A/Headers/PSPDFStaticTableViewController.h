@@ -19,7 +19,7 @@
 @interface PSPDFStaticTableViewController : PSPDFBaseTableViewController
 
 // Table view sections (`PSPDFSectionModel`)
-@property (nonatomic, strong) NSArray *sections;
+@property (nonatomic, copy) NSArray *sections;
 
 // If enabled, will disable scrolling if the content fits.
 @property (nonatomic, assign) BOOL disableScrollingIfContentFits;
@@ -75,7 +75,7 @@
 @property (nonatomic, strong) UIView *footerView;
 
 // Reading this will include `editingCellModels`.
-@property (nonatomic, strong) NSArray *cells;
+@property (nonatomic, copy) NSArray *cells;
 
 @end
 
