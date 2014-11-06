@@ -57,7 +57,7 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Works around a potential deadlock in the Apple PDF renderer when called during the application did load event. (rdar://problem/18778790)
 *  Ensures all popover dismissal code paths go through the workaround for rdar://problem/18500786 on iOS 8.
 *  Complex ink annotations are now processed much faster.
-*  The delete button no longer overlaps the signature display in the `PSPDFSignatureSelectorViewController`.
+*  The move button no longer overlaps the signature display in the `PSPDFSignatureSelectorViewController`.
 *  Ensures the signature creation buttons in `PSPDFSignatureViewController` are pixel-aligned.
 *  Various improvements to digital signature handling. `PSPDFPKCS12Signer` now exposes `signFormElement` for non-interactive signing.
 *  Various functional and performance improvements when parsing forms with JavaScript.
@@ -66,8 +66,8 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Fixes an issue with certain missing headers in the OpenSSL-free build.
 *  Fixes an issue where drawings created during one operation in multiple pages could be collected to a single page on commit.
 *  Fixes a small UI issue where on iOS 8 the current page of the color inspector could be wrong.
-*  Fixes a set of crashes that could happen on more complex views when they were layouted with a `CGRectNull`.
-*  Fixes an issue when the `activeFilter` of the `PSPDFThumbnailViewController` is set manually.
+*  Fixes a set of crashes that could happen on more complex views when they were laid out with a `CGRectNull`.
+*  Fixes an issue when the `activeFilter of the `PSPDFThumbnailViewController` is set manually.
 *  Fixes a potential deadlock when `PSPDFPerformBlockWithoutUndo` was used manually in a large-scale way.
 *  Fixes an issue related to the `pageRange` feature and HUD scrollable thumbnail updating.
 *  Fixes a potential stack overflow if extremely complex PDF forms were saved using `NSCoder`.
