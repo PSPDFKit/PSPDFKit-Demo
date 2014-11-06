@@ -50,7 +50,7 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Improves menu placement for annotations that can't be resized or moved.
 *  Improves gallery error handling while the manifest is loaded.
 *  Various improvements and better error detection/logging for the digital signing process.
-*  Reduces memory pressure for older devices such as the iPad 2, the iPhone 4S and older iPad Touch devices.
+*  Reduces memory pressure for older devices such as the iPad 2, the iPhone 4S and older iPod Touch devices.
 *  The `creationDate` is now set for new user-created annotations and `lastModified` is updated on every change.
 *  The text editing for bookmark names is now committed before a cell reorder is started, to ensure the changed text gets saved to the correct item.
 *  When the device switches to single/double page mode due to rotation, we now will restore the last page instead of the left page from the double page mode.
