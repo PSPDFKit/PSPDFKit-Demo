@@ -9,7 +9,7 @@ __v4.1.0 - 5/November/2014__
 PSPDFKit now requires Xcode 6.1 with SDK 8.1. (iOS 7.0 is still supported)
 
 If you use HockeyApp, Crashlytics or a similar crash reporting tool, we would love to hear from you.
-We're working hard to further reduce our already very low issue rate and apprechiate your feedback. (support+crashreports@pspdfkit.com)
+We're working hard to further reduce our already very low issue rate and appreciate your feedback. (support+crashreports@pspdfkit.com)
 
 PSPDFKit will now assert if you change annotation properties on threads other than the main thread.
 This behavior was unsupported before and was a cause for issues that were very hard to track down.
@@ -30,7 +30,7 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  API: Many singletons have been moved to the global `PSPDFKit` object and various smaller class refinements.
 *  Writing documents now uses `NSFileCoordinator` for better compatibility with iCloud Drive and Extensions.
 *  If the size class on iOS 8 is `UIUserInterfaceSizeClassCompact`, the status bar will now be hidden.
-*  The inline search manager now automatically focusses the first search result.
+*  The inline search manager now automatically focuses the first search result.
 *  The inline search manager now shows the current search status with a slight delay to be more visually pleasing.
 *  Absolute paths, while discouraged, are now properly detected in the gallery on iOS 8.
 *  The gallery now automatically resolves URL endpoints that have no pre-set type. (video/image/etc)
@@ -67,11 +67,11 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Fixes an issue where drawings created during one operation in multiple pages could be collected to a single page on commit.
 *  Fixes a small UI issue where on iOS 8 the current page of the color inspector could be wrong.
 *  Fixes a set of crashes that could happen on more complex views when they were layouted with a `CGRectNull`.
-*  Fixes an issue when the `activeFilter of the `PSPDFThumbnailViewController` is set manually.
+*  Fixes an issue when the `activeFilter` of the `PSPDFThumbnailViewController` is set manually.
 *  Fixes a potential deadlock when `PSPDFPerformBlockWithoutUndo` was used manually in a large-scale way.
 *  Fixes an issue related to the `pageRange` feature and HUD scrollable thumbnail updating.
 *  Fixes a potential stack overflow if extremely complex PDF forms were saved using `NSCoder`.
-*  Fixes an issue where tapping the annotation button quickly could result in a incorrect selection.
+*  Fixes an issue where tapping the annotation button quickly could result in an incorrect selection.
 *  Many of the more obscure bugs and crashes have been squashed.
 *  Various localization updates and improvements. PSPDFKit now uses the [stringsdict file format](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/StringsdictFileFormat/StringsdictFileFormat.html) to define language plural rules.
 
