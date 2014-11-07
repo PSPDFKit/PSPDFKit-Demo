@@ -11,6 +11,7 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
+#import "PSTAlertController.h"
 
 /// This class will ask the user as soon as the first annotation has been added/modified
 /// where the annotation should be saved, and optionally copies the file to a new location.
@@ -108,14 +109,12 @@
 	if (self.hasUserBeenAskedAboutSaveLocation) return;
 	self.hasUserBeenAskedAboutSaveLocation = YES;
 
-	PSCAlertView *alert = [[PSCAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
-	// Nothing to do this is the default behavior.
-	[alert addButtonWithTitle:@"Save to this file" block:nil];
-	// We replace the document with a copy
-	[alert addButtonWithTitle:@"Save as Copy" block:^(NSInteger buttonIndex) {
-		[self replaceDocumentWithCopy];
-	}];
-	[alert show];
+    PSTAlertController *alertController = [PSTAlertController alertWithTitle:nil message:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
+    [alertController addAction:[PSTAlertAction actionWithTitle:@"Save to this file" style:PSTAlertActionStyleDestructive handler:nil]];
+    [alertController addAction:[PSTAlertAction actionWithTitle:@"Save as Copy" handler:^(PSTAlertAction *action) {
+        [self replaceDocumentWithCopy];
+    }]];
+    [alertController showWithSender:nil controller:self animated:YES completion:nil];
 }
 
 - (void)replaceDocumentWithCopy {

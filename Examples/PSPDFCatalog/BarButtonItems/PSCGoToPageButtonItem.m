@@ -9,6 +9,7 @@
 //
 
 #import "PSCGoToPageButtonItem.h"
+#import "PSTAlertController.h"
 
 @implementation PSCGoToPageButtonItem
 
@@ -34,13 +35,16 @@
     [self.class dismissPopoverAnimated:YES completion:NULL];
 
     PSPDFViewController *pdfController = self.pdfController;
-    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to page") message:nil];
-    __weak PSCAlertView *weakAlert = websitePrompt;
-    websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
-    [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-    [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") block:^(NSInteger buttonIndex) {
-        NSString *pageLabel = [weakAlert textFieldAtIndex:0].text ?: @"";
+    PSTAlertController *gotoPageController = [PSTAlertController alertWithTitle:PSPDFLocalize(@"Go to page") message:nil];
+    [gotoPageController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }];
+    [gotoPageController addCancelActionWithHandler:NULL];
+    [gotoPageController addAction:[PSTAlertAction actionWithTitle:PSPDFLocalize(@"Go to") handler:^(PSTAlertAction *action) {
+        NSString *pageLabel = action.alertController.textField.text;
+        if (pageLabel.length == 0) return;
+
         NSUInteger pageIndex = [pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
 
         // if input is just numeric, convert to page
@@ -58,8 +62,9 @@
             [pdfController setViewMode:PSPDFViewModeDocument animated:YES];
             [pdfController setPage:pageIndex animated:YES];
         }
-    }];
-    [websitePrompt show];
+    }]];
+    [gotoPageController showWithSender:self controller:nil animated:YES completion:NULL];
 }
+
 
 @end

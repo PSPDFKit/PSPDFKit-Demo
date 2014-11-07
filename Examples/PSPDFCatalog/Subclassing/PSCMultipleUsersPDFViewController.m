@@ -9,6 +9,7 @@
 //
 
 #import "PSCMultipleUsersPDFViewController.h"
+#import "PSTAlertController.h"
 
 @interface PSCMultipleUsersPDFViewController ()
 @property (nonatomic, copy) NSString *currentUsername;
@@ -22,17 +23,27 @@
     // Set a demo user.
     self.currentUsername = @"Testuser";
 
-    // Set custom toolbar button.
-    [self updateCustomToolbar];
-    self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
+    // Updates the path at the right time.
+    __weak typeof (self) weakSelf = self;
+    [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+        documentProvider.annotationManager.fileAnnotationProvider.annotationsPath = [documentProvider.document.dataDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"annotations_%@.pspdfkit", weakSelf.currentUsername]];
+    }];
 
     // This example will only work for external file save mode.
     document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
 
-    // Updates the path at the right time.
-    [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-    documentProvider.annotationManager.fileAnnotationProvider.annotationsPath = [documentProvider.document.dataDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"annotations_%@.pspdfkit", self.currentUsername]];
-    }];
+    // Set custom toolbar button.
+    [self updateCustomToolbar];
+    self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
+    self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+}
+
+- (void)setCurrentUsername:(NSString *)currentUsername {
+    if (currentUsername != _currentUsername) {
+        _currentUsername = [currentUsername copy];
+        // Forward to the document
+        self.document.defaultAnnotationUsername = currentUsername;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -45,19 +56,20 @@
 
 // This could be a lot sexier - e.g. showing all available users in a nice table with edit/delete all etc.
 - (void)switchUser {
+    // Dismiss any popovers. iOS 8 doesn't like presenting alerts next to them.
+    [self dismissPopoverAnimated:YES class:nil completion:nil];
+
     // Save existing documents.
     [self.document saveAnnotationsWithError:NULL];
 
-    PSCAlertView *userPrompt = [[PSCAlertView alloc] initWithTitle:@"Switch user" message:@"Enter username."];
-    userPrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[userPrompt textFieldAtIndex:0] setText:self.currentUsername];
-
-    [userPrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSCAlertView *weakUserPrompt = userPrompt;
-    [userPrompt addButtonWithTitle:@"Switch" block:^(NSInteger buttonIndex) {
-        NSString *username = [weakUserPrompt textFieldAtIndex:0].text ?: @"";
-
+    PSTAlertController *alertController = [PSTAlertController alertWithTitle:@"Switch user" message:@"Enter username."];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = self.currentUsername;
+    }];
+    [alertController addCancelActionWithHandler:nil];
+    [alertController addAction:[PSTAlertAction actionWithTitle:@"Switch" handler:^(PSTAlertAction *action) {
         // TODO: In a real application you want to make the username unique and also check for characters that are trouble on file systems.
+        NSString *username = action.alertController.textField.text ?: @"";
 
         // Set new username
         self.currentUsername = username;
@@ -71,8 +83,8 @@
         [self updateCustomToolbar];
         // And finally - redraw the PDF.
         [self reloadData];
-    }];
-    [userPrompt show];
+    }]];
+    [alertController showWithSender:nil controller:self animated:YES completion:nil];
 }
 
 @end

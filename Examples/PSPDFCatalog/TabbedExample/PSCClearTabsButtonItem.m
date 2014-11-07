@@ -9,6 +9,7 @@
 //
 
 #import "PSCClearTabsButtonItem.h"
+#import "PSTAlertController.h"
 
 @implementation PSCClearTabsButtonItem
 
@@ -25,16 +26,15 @@
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
-    PSCActionSheet *actionSheet = [[PSCActionSheet alloc] initWithTitle:nil];
 
-    [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Close all tabs") block:^(NSInteger buttonIndex) {
+    PSTAlertController *sheetController = [PSTAlertController actionSheetWithTitle:nil];
+    [sheetController addCancelActionWithHandler:nil];
+    [sheetController addAction:[PSTAlertAction actionWithTitle:@"Close all tabs" style:PSTAlertActionStyleDestructive handler:^(PSTAlertAction *action) {
         PSPDFTabbedViewController *tabbedController = self.tabbedController;
         [tabbedController removeDocuments:tabbedController.documents animated:animated];
-    }];
-    [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
-
-    [actionSheet showWithSender:sender fallbackView:pdfController.view animated:animated];
-    return actionSheet;
+    }]];
+    [sheetController showWithSender:sender controller:pdfController animated:animated completion:nil];
+    return sheetController;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

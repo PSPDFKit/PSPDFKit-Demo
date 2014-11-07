@@ -12,6 +12,7 @@
 #import "PSCFileHelper.h"
 #import <objc/runtime.h>
 #import "PSCExample.h"
+#import "PSTAlertController.h"
 #import <tgmath.h>
 
 static const char PSCSignatureCompletionBlock;
@@ -90,34 +91,34 @@ static const char PSCSignatureCompletionBlock;
         }
 
         // Now we could flatten the PDF so that the signature is "burned in".
-        PSCAlertView *flattenAlert = [[PSCAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
-        [flattenAlert addButtonWithTitle:@"Flatten" block:^(NSInteger buttonIndex) {
+        PSTAlertController *flattenAlert = [PSTAlertController alertWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
+        [flattenAlert addAction:[PSTAlertAction actionWithTitle:@"Flatten" style:PSTAlertActionStyleDestructive handler:^(PSTAlertAction *action) {
             NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
-			PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];
-			[status pushAnimated:YES];
+            PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];
+            [status pushAnimated:YES];
             // Perform in background to allow progress showing.
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 
                 [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-						status.progress = (numberOfProcessedPages+1)/(float)totalPages;
-					});
+                        status.progress = (numberOfProcessedPages+1)/(float)totalPages;
+                    });
                 } error:NULL];
 
                 // completion
                 dispatch_async(dispatch_get_main_queue(), ^{
-					[status popAnimated:YES];
+                    [status popAnimated:YES];
                     PSPDFDocument *flattenedDocument = [PSPDFDocument documentWithURL:tempURL];
                     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:flattenedDocument];
                     [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
                 });
             });
-        }];
-        [flattenAlert addButtonWithTitle:@"Allow Editing" block:^(NSInteger buttonIndex) {
+        }]];
+        [flattenAlert addAction:[PSTAlertAction actionWithTitle:@"Allow Editing" handler:^(PSTAlertAction *action) {
             PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
             [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
-        }];
-        [flattenAlert show];
+        }]];
+        [flattenAlert showWithSender:nil controller:nil animated:YES completion:nil];
     };
 
     objc_setAssociatedObject(signatureController, &PSCSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);

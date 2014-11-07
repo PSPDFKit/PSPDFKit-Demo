@@ -10,18 +10,9 @@
 
 #import "PSCFileHelper.h"
 #import "PSCExample.h"
+#import "PSTAlertController.h"
 
-@interface PSCFullTextSearchExample : PSCExample @end
-@interface PSCConvertMarkupStringToPDFExample : PSCExample @end
-@interface PSCConvertWebsiteOrFilesToPDFExample : PSCExample @end
-
-@interface PSCFullTextSearchExample () <PSPDFDocumentPickerControllerDelegate> {
-    UISearchDisplayController *_searchDisplayController;
-    BOOL _firstShown;
-    BOOL _clearCacheNeeded;
-}
-@end
-
+@interface PSCFullTextSearchExample : PSCExample <PSPDFDocumentPickerControllerDelegate> @end
 @implementation PSCFullTextSearchExample
 
 - (instancetype)init {
@@ -56,6 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCConvertMarkupStringToPDFExample
 
+@interface PSCConvertMarkupStringToPDFExample : PSCExample @end
 @implementation PSCConvertMarkupStringToPDFExample
 
 - (instancetype)init {
@@ -69,15 +61,13 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
-    websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
-
-    [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSCAlertView *weakAlert = websitePrompt;
-    [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
+    PSTAlertController *websitePrompt = [PSTAlertController alertWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
+    [websitePrompt addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>";
+    }];
+    [websitePrompt addAction:[PSTAlertAction actionWithTitle:@"Convert" handler:^(PSTAlertAction *action) {
         // Get data
-        NSString *html = [weakAlert textFieldAtIndex:0].text ?: @"";
+        NSString *html = action.alertController.textField.text ?: @"";
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
 
         // Create pdf (blocks).
@@ -88,8 +78,10 @@
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
         [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
-    }];
-    [websitePrompt show];
+    }]];
+    [websitePrompt addCancelActionWithHandler:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+
     return nil;
 }
 
@@ -98,13 +90,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCConvertWebsiteOrFilesToPDFExample
 
-@interface PSCConvertWebsiteOrFilesToPDFExample () {
-    UISearchDisplayController *_searchDisplayController;
-    BOOL _firstShown;
-    BOOL _clearCacheNeeded;
-}
-@end
-
+@interface PSCConvertWebsiteOrFilesToPDFExample : PSCExample @end
 @implementation PSCConvertWebsiteOrFilesToPDFExample
 
 - (instancetype)init {
@@ -118,15 +104,13 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
-    websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
-
-    [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSCAlertView *weakAlert = websitePrompt;
-    [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
+    PSTAlertController *websitePrompt = [PSTAlertController alertWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
+    [websitePrompt addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"http://apple.com/iphone";
+    }];
+    [websitePrompt addAction:[PSTAlertAction actionWithTitle:@"Convert" handler:^(PSTAlertAction *action) {
         // get URL
-        NSString *website = [weakAlert textFieldAtIndex:0].text ?: @"";
+        NSString *website = action.alertController.textField.text ?: @"";
         if (![website.lowercaseString hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
         NSURL *URL = [NSURL URLWithString:website];
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
@@ -154,8 +138,10 @@
                 [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
             }
         }];
-    }];
-    [websitePrompt show];
+    }]];
+    [websitePrompt addCancelActionWithHandler:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+
     return nil;
 }
 

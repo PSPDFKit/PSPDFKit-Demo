@@ -9,10 +9,13 @@
 //
 
 #import "PSCExportPDFPagesViewController.h"
+#import "PSTAlertController.h"
 
-@interface PSCExportThumbnailsViewController : PSPDFThumbnailViewController <MFMailComposeViewControllerDelegate> @end
+@interface PSCExportThumbnailsViewController : PSPDFThumbnailViewController <MFMailComposeViewControllerDelegate>
+@property (nonatomic, strong) UIButton *actionBar;
+@end
+
 @interface PSCExportPDFPagesViewController () <PSPDFViewControllerDelegate> @end
-
 @implementation PSCExportPDFPagesViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -48,9 +51,8 @@
 @end
 
 @interface PSCActionContainerView : UICollectionReusableView @end
-@implementation PSCExportThumbnailsViewController {
-    UIButton *_actionBar;
-}
+
+@implementation PSCExportThumbnailsViewController
 
 static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 
@@ -88,20 +90,20 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 #pragma mark - Private
 
 - (void)updateActionButtonEnabledState {
-    _actionBar.enabled = self.collectionView.indexPathsForSelectedItems.count > 0;
+    self.actionBar.enabled = self.collectionView.indexPathsForSelectedItems.count > 0;
 }
 
 // Shows the popover to flatten/not flatten.
 - (void)sendSelectedPagesViaEmail:(id)sender {
-    PSCActionSheet *actionSheet = [[PSCActionSheet alloc] initWithTitle:nil];
-    [actionSheet addButtonWithTitle:@"Pages with Annotations" block:^(NSInteger buttonIndex) {
+    PSTAlertController *sheetController = [PSTAlertController actionSheetWithTitle:nil];
+    [sheetController addAction:[PSTAlertAction actionWithTitle:@"Pages with Annotations" handler:^(PSTAlertAction *action) {
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:NO];
-    }];
-    [actionSheet addButtonWithTitle:@"Flattened Pages" block:^(NSInteger buttonIndex) {
+    }]];
+    [sheetController addAction:[PSTAlertAction actionWithTitle:@"Flattened Pages" style:PSTAlertActionStyleDestructive handler:^(PSTAlertAction *action) {
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:YES];
-    }];
-    [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil]; // iPhone support
-    [actionSheet showWithSender:sender fallbackView:self.view animated:YES];
+    }]];
+    [sheetController addCancelActionWithHandler:nil];
+    [sheetController showWithSender:sender controller:self animated:YES completion:nil];
 }
 
 - (void)createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:(BOOL)flattened {
@@ -139,7 +141,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
                     [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal)} animated:YES sender:nil completion:NULL];
                 } else {
                     // Handle error state
-                    [[[PSCAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
+                    [PSTAlertController presentDismissableAlertWithTitle:@"Failed to extract pages" message:error.localizedDescription controller:self];
                 }
             });
         });

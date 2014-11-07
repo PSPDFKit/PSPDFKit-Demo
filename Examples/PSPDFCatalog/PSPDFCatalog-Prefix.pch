@@ -23,10 +23,6 @@
 #import "PSCViewHelper.h"
 #import "UIColor+PSPDFCatalog.h"
 
-// TODO: remove
-#import "PSCAlertView.h"
-#import "PSCActionSheet.h"
-
 // This is used internally where PSPDFKit-lib.xcproj is used.
 #ifdef PSPDF_USE_SOURCE
     #import "PSPDFKit.h"
