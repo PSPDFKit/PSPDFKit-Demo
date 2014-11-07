@@ -48,12 +48,12 @@
     // Save existing documents.
     [self.document saveAnnotationsWithError:NULL];
 
-    PSPDFAlertView *userPrompt = [[PSPDFAlertView alloc] initWithTitle:@"Switch user" message:@"Enter username."];
+    PSCAlertView *userPrompt = [[PSCAlertView alloc] initWithTitle:@"Switch user" message:@"Enter username."];
     userPrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[userPrompt textFieldAtIndex:0] setText:self.currentUsername];
 
     [userPrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSPDFAlertView *weakUserPrompt = userPrompt;
+    __weak PSCAlertView *weakUserPrompt = userPrompt;
     [userPrompt addButtonWithTitle:@"Switch" block:^(NSInteger buttonIndex) {
         NSString *username = [weakUserPrompt textFieldAtIndex:0].text ?: @"";
 

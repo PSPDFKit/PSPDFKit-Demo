@@ -93,7 +93,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 
 // Shows the popover to flatten/not flatten.
 - (void)sendSelectedPagesViaEmail:(id)sender {
-    PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
+    PSCActionSheet *actionSheet = [[PSCActionSheet alloc] initWithTitle:nil];
     [actionSheet addButtonWithTitle:@"Pages with Annotations" block:^(NSInteger buttonIndex) {
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:NO];
     }];
@@ -139,7 +139,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
                     [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal)} animated:YES sender:nil completion:NULL];
                 } else {
                     // Handle error state
-                    [[[PSPDFAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
+                    [[[PSCAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Failed to extract pages: %@", error.localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
                 }
             });
         });

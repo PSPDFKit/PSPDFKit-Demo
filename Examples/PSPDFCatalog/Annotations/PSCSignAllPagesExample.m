@@ -90,7 +90,7 @@ static const char PSCSignatureCompletionBlock;
         }
 
         // Now we could flatten the PDF so that the signature is "burned in".
-        PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
+        PSCAlertView *flattenAlert = [[PSCAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
         [flattenAlert addButtonWithTitle:@"Flatten" block:^(NSInteger buttonIndex) {
             NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
 			PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:[PSPDFLocalize(@"Preparing") stringByAppendingString:@"…"]];

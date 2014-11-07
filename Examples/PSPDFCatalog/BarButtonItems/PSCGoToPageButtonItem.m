@@ -34,8 +34,8 @@
     [self.class dismissPopoverAnimated:YES completion:NULL];
 
     PSPDFViewController *pdfController = self.pdfController;
-    PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to page") message:nil];
-    __weak PSPDFAlertView *weakAlert = websitePrompt;
+    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to page") message:nil];
+    __weak PSCAlertView *weakAlert = websitePrompt;
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];

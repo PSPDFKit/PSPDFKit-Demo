@@ -69,12 +69,12 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
+    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
 
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSPDFAlertView *weakAlert = websitePrompt;
+    __weak PSCAlertView *weakAlert = websitePrompt;
     [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
         // Get data
         NSString *html = [weakAlert textFieldAtIndex:0].text ?: @"";
@@ -118,12 +118,12 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
+    PSCAlertView *websitePrompt = [[PSCAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
 
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    __weak PSPDFAlertView *weakAlert = websitePrompt;
+    __weak PSCAlertView *weakAlert = websitePrompt;
     [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
         // get URL
         NSString *website = [weakAlert textFieldAtIndex:0].text ?: @"";

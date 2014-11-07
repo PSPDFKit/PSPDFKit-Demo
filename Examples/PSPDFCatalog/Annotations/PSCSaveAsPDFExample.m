@@ -108,7 +108,7 @@
 	if (self.hasUserBeenAskedAboutSaveLocation) return;
 	self.hasUserBeenAskedAboutSaveLocation = YES;
 
-	PSPDFAlertView *alert = [[PSPDFAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
+	PSCAlertView *alert = [[PSCAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?", @"")];
 	// Nothing to do this is the default behavior.
 	[alert addButtonWithTitle:@"Save to this file" block:nil];
 	// We replace the document with a copy
