@@ -63,11 +63,11 @@
     [self.class dismissPopoverAnimated:NO completion:NULL];
 
     if (!self.isAutoplaying) {
-        self.autoplaying = YES;
+        _autoplaying = YES;
         self.autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:PSCSlideshowDuration target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     } else {
-        self.autoplaying = NO;
+        _autoplaying = NO;
         [self.autoplayTimer invalidate];
         [self updatePlayButton];
     }
