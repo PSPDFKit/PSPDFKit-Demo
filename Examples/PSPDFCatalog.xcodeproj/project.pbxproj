@@ -76,6 +76,7 @@
 		78A24AAF15CFDAE200328F4F /* PSCSectionDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24AAD15CFDAE200328F4F /* PSCSectionDescriptor.m */; };
 		78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A24AB015CFDB6800328F4F /* MapKit.framework */; };
 		78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A24AB215CFDB6D00328F4F /* CoreLocation.framework */; };
+		78A2FFEA1A103C320065A669 /* PSTAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A2FFE81A103C320065A669 /* PSTAlertController.m */; };
 		78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */; };
 		78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */; };
 		78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */; };
@@ -314,6 +315,8 @@
 		78A24AAE15CFDAE200328F4F /* PSCSectionDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSectionDescriptor.h; sourceTree = "<group>"; };
 		78A24AB015CFDB6800328F4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		78A24AB215CFDB6D00328F4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		78A2FFE81A103C320065A669 /* PSTAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTAlertController.m; sourceTree = "<group>"; };
+		78A2FFE91A103C320065A669 /* PSTAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTAlertController.h; sourceTree = "<group>"; };
 		78A50BCD16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomDefaultZoomScaleViewController.h; sourceTree = "<group>"; };
 		78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDefaultZoomScaleViewController.m; sourceTree = "<group>"; };
 		78A8EE5A15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCEmbeddedAnnotationTestViewController.h; sourceTree = "<group>"; };
@@ -1024,6 +1027,8 @@
 				78897E21179A8C8000BAAE73 /* PSCFileHelper.m */,
 				78D90A12178A0A0300E7D4D5 /* PSCViewHelper.h */,
 				78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */,
+				78A2FFE91A103C320065A669 /* PSTAlertController.h */,
+				78A2FFE81A103C320065A669 /* PSTAlertController.m */,
 				7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */,
 				7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */,
 				78E6EF0917EF03050017E8B3 /* UIColor+PSPDFCatalog.h */,
@@ -1215,6 +1220,7 @@
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */,
 				78FEC21318B285FC0012ACBD /* PSCBottomToolbarExample.m in Sources */,
+				78A2FFEA1A103C320065A669 /* PSTAlertController.m in Sources */,
 				786FEED918FFAA0700CAF16B /* PSCCustomNoteControllerExample.m in Sources */,
 				78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */,
 				78FEC20018B27F610012ACBD /* PSCDocumentDataProvidersExample.m in Sources */,
