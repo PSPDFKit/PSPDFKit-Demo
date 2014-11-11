@@ -27,6 +27,9 @@
 /// The `UIBezierPath` will be dynamically crated from the lines array.
 @property (nonatomic, copy, readonly) UIBezierPath *bezierPath;
 
+/// Returns YES if `lines` doesn't contain any points.
+- (BOOL)isEmpty;
+
 /// Will return YES if this ink annotation is in the natural drawing style.
 /// This is a proprietary extension - other viewer will not be able to detect this.
 @property (nonatomic, assign) BOOL naturalDrawingEnabled;

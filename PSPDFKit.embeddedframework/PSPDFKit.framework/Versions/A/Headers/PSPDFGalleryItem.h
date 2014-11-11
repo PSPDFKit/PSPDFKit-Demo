@@ -76,10 +76,14 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 /// @name Creating Items
 
 /// Factory method to create an array of items from JSON data. Returns `nil` in case of an error.
+/// @warning This method may return unresolved gallery items of type `PSPDFGalleryUnknownItem`. You
+/// should always prefer `PSPDFGalleryManifest`!
 + (NSArray *)itemsFromJSONData:(NSData *)data error:(NSError *__autoreleasing*)error;
 
 /// Factory method that creates a single gallery item directly from a link annotation.
 /// Returns `nil` in case of an error.
+/// @warning This method may return unresolved gallery item of type `PSPDFGalleryUnknownItem`. You
+/// should always prefer `PSPDFGalleryManifest`!
 + (PSPDFGalleryItem *)itemFromLinkAnnotation:(PSPDFLinkAnnotation *)annotation error:(NSError *__autoreleasing*)error;
 
 /// Creates an item from a given dictionary. The dictionary will usually be parsed JSON.

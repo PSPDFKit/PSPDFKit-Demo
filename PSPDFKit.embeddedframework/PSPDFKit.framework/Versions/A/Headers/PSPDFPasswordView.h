@@ -36,10 +36,8 @@
 
 
 /// Shows a interface to enter a password for locked/encrypted PDF's.
+/// Call `becomeFirstResponder` to show the keyboard.
 @interface PSPDFPasswordView : UIView <UITextFieldDelegate>
-
-/// Focuses the text view.
-- (BOOL)becomeFirstResponder;
 
 /// The current document.
 @property (nonatomic, strong) PSPDFDocument *document;

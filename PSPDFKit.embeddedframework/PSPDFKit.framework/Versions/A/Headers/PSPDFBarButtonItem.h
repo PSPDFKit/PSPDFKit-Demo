@@ -92,21 +92,3 @@
 - (void)action:(id)sender;
 
 @end
-
-@interface PSPDFBarButtonItem (Advanced)
-
-// Override if you want something different than `UIBarButtonItemStylePlain`.
-- (UIBarButtonItemStyle)itemStyle;
-
-// `UIActionSheet` support.
-@property (nonatomic, strong) UIActionSheet *actionSheet;
-@property (nonatomic, assign, getter=isDismissingSheet) BOOL dismissingSheet;
-
-// We're tinting the bar button that is currently active in the default tintColor.
-// This is different to what Apple does (graying out ALL buttons), but looks a lot better.
-// Set `activeTintColor` to UIColor.clearColor to prevent this, as setting to nil will auto-fetch the tintColor-state.
-@property (nonatomic, strong) UIColor *activeTintColor;
-// Helper that will tint the image if the bar button is active (relevant for buttons that show popovers)
-- (UIImage *)imageWithActiveState:(UIImage *)image;
-
-@end

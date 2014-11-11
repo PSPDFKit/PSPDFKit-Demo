@@ -54,7 +54,7 @@ extern const char PSPDFImagePickerTargetPoint;
 - (void)showColorPickerForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Show the signature controller.
-- (void)showSignatureControllerAtRect:(CGRect)rect withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
+- (void)showSignatureControllerAtRect:(CGRect)viewRect withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
 
 /// Font sizes for the free text annotation menu. Defaults to `@[@10, @12, @14, @18, @22, @26, @30, @36, @48, @64]`
 - (NSArray *)availableFontSizes;
@@ -71,7 +71,7 @@ extern const char PSPDFImagePickerTargetPoint;
 @interface PSPDFPageView (AnnotationMenuSubclassingHooks)
 
 // Show signature menu.
-- (void)showNewSignatureMenuAtRect:(CGRect)rect animated:(BOOL)animated;
+- (void)showNewSignatureMenuAtRect:(CGRect)viewRect animated:(BOOL)animated;
 
 // Show digital signature menu.
 - (BOOL)showDigitalSignatureMenuForSignatureField:(PSPDFSignatureFormElement *)signatureField animated:(BOOL)animated;
@@ -93,8 +93,8 @@ extern const char PSPDFImagePickerTargetPoint;
 - (BOOL)shouldMoveStyleMenuEntriesIntoSubmenu;
 
 // Will create and show the action sheet on long-press above a `PSPDFLinkAnnotation`.
-// Return nil if you don't show the `actionSheet`, or return the object you're showing. (`UIView` or a `UIViewController` subclass)
-- (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
+// Return YES if this was successful.
+- (BOOL)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
 
 // Show menu if annotation/text is selected.
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;

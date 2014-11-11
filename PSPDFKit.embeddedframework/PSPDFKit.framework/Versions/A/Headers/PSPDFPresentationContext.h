@@ -57,7 +57,7 @@
 // Page numbers
 - (NSArray *)calculatedVisiblePageNumbers;
 - (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
-- (BOOL)isDoublePageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (BOOL)isDoublePageModeForLandscape:(BOOL)isLandscape;
 - (BOOL)isDoublePageModeForPage:(NSUInteger)page;
 - (NSUInteger)portraitPageForLandscapePage:(NSUInteger)page;
 - (NSUInteger)landscapePageForPage:(NSUInteger)aPage;

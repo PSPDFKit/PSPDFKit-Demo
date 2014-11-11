@@ -218,8 +218,6 @@
 #import "PSPDFModel.h"
 #import "PSPDFValueTransformer.h"
 #import "PSPDFCacheInfo.h"
-#import "PSPDFAlertView.h"
-#import "PSPDFActionSheet.h"
 #import "PSPDFMenuItem.h"
 #import "PSPDFProcessor.h"
 #import "PSPDFStatusHUD.h"

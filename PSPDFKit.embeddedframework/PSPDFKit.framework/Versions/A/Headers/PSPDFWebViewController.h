@@ -15,7 +15,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFStyleable.h"
 
-@class PSPDFViewController, PSPDFAlertView;
+@class PSPDFViewController;
 
 /// Delegate for the `PSPDFWebViewController` to customize URL handling.
 @protocol PSPDFWebViewControllerDelegate <NSObject>
@@ -23,7 +23,7 @@
 @optional
 
 /// Callback to handle external URLs.
-- (BOOL)handleExternalURL:(NSURL *)URL buttonCompletionBlock:(void (^)(PSPDFAlertView *alert, NSUInteger buttonIndex))completionBlock;
+- (BOOL)handleExternalURL:(NSURL *)URL completionBlock:(void (^)(BOOL switchedApplication))completionBlock;
 
 @end
 
@@ -39,9 +39,15 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsFacebook         = 1 << 7,
     PSPDFWebViewControllerAvailableActionsTwitter          = 1 << 8,
     PSPDFWebViewControllerAvailableActionsMessage          = 1 << 9,
-    PSPDFWebViewControllerAvailableActionsOpenInChrome     = 1 << 10, /// Only offered if Google Chrome is actually installed.
+
+    /// Only offered if Google Chrome is actually installed.
+    PSPDFWebViewControllerAvailableActionsOpenInChrome     = 1 << 10,
     PSPDFWebViewControllerAvailableActionsAll              = 0xFFFFFF
 };
+
+extern NSString *const PSPDFWebViewControllerDidStartLoadingNotification;
+extern NSString *const PSPDFWebViewControllerDidFinishLoadingNotification;
+extern NSString *const PSPDFWebViewControllerDidFailToLoadNotification;
 
 /// Inline Web Browser.
 @interface PSPDFWebViewController : PSPDFBaseViewController <PSPDFStyleable, UIWebViewDelegate>
@@ -65,10 +71,6 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 
 /// Associated delegate, connects to the `PSPDFViewController`.
 @property (nonatomic, weak) IBOutlet id<PSPDFWebViewControllerDelegate> delegate;
-
-/// Defaults to YES. Will be checked in the default implementation of `setActivityIndicatorEnabled`.
-/// Set to NO to NOT change the global network activity indicator.
-@property (nonatomic, assign) BOOL updateGlobalActivityIndicator;
 
 /// If enabled, shows a progress indicator much like Safari on iOS 7. Defaults to YES.
 /// Set this before the view is loaded.
@@ -96,10 +98,6 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 
 /// Internal webview. Either `UIWebView` or `WKWebView`, depending if iOS 7 or iOS 8+.
 @property (nonatomic, strong, readonly) UIView *webView;
-
-/// Override if you have your own network activity manager.
-/// Defaults to `[UIApplication.sharedApplication setNetworkActivityIndicatorVisible:YES]`;
-- (void)setActivityIndicatorEnabled:(BOOL)enabled;
 
 /// Called on error events if useCustomErrorPage is set.
 /// Uses the `StandardError.html` inside `PSPDFKit.bundle`.

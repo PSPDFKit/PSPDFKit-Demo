@@ -26,10 +26,10 @@ extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;           
 extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;       // set to YES to disable handling by views.
 extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            // NSArray of selector names.
 
-/// Maks the inserted annotations as beeing user created (use a BOOL NSNumber value).
+/// Marks the inserted annotations as being user created (use a BOOL NSNumber value).
 /// @see addAnnotations:options:
 extern NSString * const PSPDFAnnotationOptionUserCreatedKey;
-/// Prevents the insertion or removal notifications from beeing sent (use a BOOL NSNumber value).
+/// Prevents the insertion or removal notifications from being sent (use a BOOL NSNumber value).
 extern NSString * const PSPDFAnnotationOptionSuppressNotificationsKey;
 
 @protocol PSPDFAnnotationViewProtocol;

@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, PSPDFFlexibleToolbarGroupButtonIndicatorPosition) {
 };
 
 extern CGFloat const PSPDFFlexibleToolbarHeight;
-extern CGFloat const PSPDFFlexibleToolbarHeightPhoneLandscape;
+extern CGFloat const PSPDFFlexibleToolbarHeightCompact; // PhoneLandscape, usually
 extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 
 #define PSPDFFlexibleToolbarGroupIndicatorPositionForToolbarPosition(position) ((position == PSPDFFlexibleToolbarPositionRight) ? PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomLeft : PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomRight)

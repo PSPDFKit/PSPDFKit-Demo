@@ -65,6 +65,6 @@ extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
 @property (nonatomic, copy, readonly) NSArray *markedContentStack;
 
 // Access the internal lock.
-@property (nonatomic, strong, readonly) dispatch_queue_t parsingQueue;
+@property (nonatomic, readonly) dispatch_queue_t parsingQueue;
 
 @end

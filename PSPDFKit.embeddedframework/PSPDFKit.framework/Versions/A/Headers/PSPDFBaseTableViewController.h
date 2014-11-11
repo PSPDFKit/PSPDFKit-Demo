@@ -16,9 +16,6 @@
 /// Generic table view controller with popover resizing code.
 @interface PSPDFBaseTableViewController : UITableViewController
 
-/// Will adjust the table view for the status bar. Defaults to NO.
-@property (nonatomic, assign) BOOL automaticallyAdjustsTableViewInsets;
-
 /// If enabled, popover size is changed as items are expanded/collapsed.
 /// Defaults to NO, but will most likely be set to YES in the subclass.
 @property (nonatomic, assign) BOOL automaticallyResizesPopover;

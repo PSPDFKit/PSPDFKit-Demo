@@ -4,6 +4,26 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.1.1 - 11/November/2014__
+
+*  API: Removes `PSPDFAlertView` and `PSPDFActionSheet`. If you used them, get a local copy here: https://github.com/steipete/PSAlertView
+   We're now using a new wrapper to unify these and UIAlertController, and also made it open source! https://github.com/steipete/PSTAlertController
+*  API: Various smaller updates and refinements, including a new network activity manager.
+*  Improves ink signature handling and saving, especially when natural drawing is enabled or pages are rotated.
+*  Improves bundle image loading code to better deal with situations where the bundle is in unusual places; improves compatibility with Extensions.
+*  The `loop` setting in the gallery is now also propagated if the gallery is already loaded.
+*  Annotations and Form Elements can now be found and read using UIAccessibility.
+*  Better detection for invalid 3rd-party code that overrides Apple methods with different behavior.
+*  Improves aspect ratio correct resizing when an additional marging for annotations is configured.
+*  Slightly updates the note icons to better match with the rest of the annotation icon set.
+*  Signatures in the keychain store now are strongly validated and empty signatures are thrown away on load.
+*  Works around an UIKit regression in iOS 8.1 where a new window incorrectly rotated. This affected the fullscreen view of the gallery. (rdar://problem/18906964)
+*  Works around an UIKit bug where an action sheet would not show up in iOS 8, instead showing constraint errors. (rdar://problem/18921595)
+*  Works around a problem where the Swift compiler can't parse headers with strongly retained dispatch objects. (radar pending)
+*  Fixes an issue where Open In... could take very long or completely get stuck when form elements were saved.
+*  Fixes an assertion (`UID` nil) when the last tab in the tabbed controller was removed.
+*  Fixes a potential crash when using accessibility to read the contents of the PDF.
+
 __v4.1.0 - 5/November/2014__
 
 PSPDFKit now requires Xcode 6.1 with SDK 8.1. (iOS 7.0 is still supported)

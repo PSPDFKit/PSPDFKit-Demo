@@ -26,8 +26,7 @@
 @interface PSPDFHUDView : PSPDFRelayTouchesView
 
 /// Designated initializer.
-- (instancetype)initWithFrame:(CGRect)frame
-                   dataSource:(id <PSPDFPresentationContext>)dataSource NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithFrame:(CGRect)frame dataSource:(id <PSPDFPresentationContext>)dataSource NS_DESIGNATED_INITIALIZER;
 
 /// The data source.
 @property (nonatomic, weak, readonly) id <PSPDFPresentationContext> dataSource;
@@ -50,10 +49,10 @@
 @interface PSPDFHUDView (Subviews)
 
 /// Document title label view.
-@property (nonatomic, strong) PSPDFDocumentLabelView *documentLabel;
+@property (nonatomic, strong, readonly) PSPDFDocumentLabelView *documentLabel;
 
 /// Document page label view.
-@property (nonatomic, strong) PSPDFPageLabelView *pageLabel;
+@property (nonatomic, strong, readonly) PSPDFPageLabelView *pageLabel;
 
 /// Scrobble bar. Created lazily. Available if `PSPDFThumbnailBarModeScrobbleBar` is set.
 @property (nonatomic, strong, readonly) PSPDFScrobbleBar *scrobbleBar;

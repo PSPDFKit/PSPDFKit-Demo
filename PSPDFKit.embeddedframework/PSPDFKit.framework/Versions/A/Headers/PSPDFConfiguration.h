@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// NO will perform a generic zoom into the tap area. Defaults to YES.
 @property (nonatomic, assign, getter=isSmartZoomEnabled, readonly) BOOL smartZoomEnabled;
 
-/// If set to YES, automatically focuses on selected form elements. Defaults to YES on iPhone.
+/// If set to YES, automatically focuses on selected form elements. Defaults to NO.
 @property (nonatomic, assign, getter=isFormElementZoomEnabled, readonly) BOOL formElementZoomEnabled;
 
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
@@ -376,7 +376,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 
 /// The save method will be invoked when the view controller is dismissed. This increases controller dismissal if enabled.
 /// @note Make sure that you don't re-create the `PSPDFDocument` object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
-/// Defaults to YES.
+/// Defaults to NO.
 @property (nonatomic, assign, readonly) BOOL allowBackgroundSaving;
 
 

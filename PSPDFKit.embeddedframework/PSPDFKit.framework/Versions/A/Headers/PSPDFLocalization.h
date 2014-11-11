@@ -23,6 +23,7 @@ extern NSString *PSPDFLocalizeFormatted(NSString *stringToken, ...) NS_FORMAT_FU
 /// Allows to set a custom dictionary that contains dictionaries with language locales.
 /// Will override localization found in the bundle, if a value is found.
 /// Falls back to "en" if localization key is not found in dictionary.
+/// Set on the main thread.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 /// Register a custom block that handles translation.

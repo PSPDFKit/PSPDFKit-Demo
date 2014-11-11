@@ -20,8 +20,11 @@ typedef NS_ENUM(NSInteger, PSPDFSigningAlgorithm) {
     PSPDFSigningAlgorithmRSASHA256 = 0
 };
 
+extern NSString *const PSPDFSignerErrorDomain;
+
 typedef NS_ENUM(NSUInteger, PSPDFSignerError) {
     PSPDFSignerErrorNone = noErr,
+    PSPDFSignerErrorNoFormElementSet = 0x1,
     PSPDFSignerErrorCannotNotCreatePKCS7 = 0x100,
     PSPDFSignerErrorCannotNotAddSignatureToPKCS7 = 0x101,
     PSPDFSignerErrorCannotNotInitPKCS7 = 0x102,
@@ -58,21 +61,19 @@ typedef NS_ENUM(NSUInteger, PSPDFSignerError) {
 /// The `controller` may not always be present, and can also be nil.
 /// If you are done, call the done handler with the fetched certificate and/or
 /// and error value.
-- (void)requestSigningCertificate:(UINavigationController *)controller done:(void (^)(PSPDFX509 *x509, NSError *error))done;
+- (void)requestSigningCertificate:(UINavigationController *)controller completionBlock:(void (^)(PSPDFX509 *x509, NSError *error))completionBlock;
 
 /// (Optional) Signs the passed form element |elem| and writes the signed document
 /// to |path|.  Returns YES for |success|, NO otherwise and error |err| is set.
 - (void)signFormElement:(PSPDFSignatureFormElement *)element
-		withCertificate:(PSPDFX509 *)x509
-				writeTo:(NSString *)path
-			 completion:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))done NS_REQUIRES_SUPER;
+        withCertificate:(PSPDFX509 *)x509
+                writeTo:(NSString *)path
+        completionBlock:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))completionBlock NS_REQUIRES_SUPER;
 
 /// (Optional) Allows customization of the signing process, e.g. in cases where
 /// the private key is not present on the device and signing happens with
 /// external hardware. `hash` contains the raw, non-padded hash bytes for the
 /// used algorithm `algo`. When you are done signing return the signed bytes.
-- (NSData *)signHash:(NSData *)hash
-           algorithm:(PSPDFSigningAlgorithm)algorithm
-               error:(NSError *__autoreleasing*)error;
+- (NSData *)signHash:(NSData *)hash algorithm:(PSPDFSigningAlgorithm)algorithm error:(NSError *__autoreleasing*)error;
 
 @end

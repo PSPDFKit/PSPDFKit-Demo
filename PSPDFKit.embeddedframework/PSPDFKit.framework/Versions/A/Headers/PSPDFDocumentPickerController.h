@@ -42,6 +42,7 @@
 
 /// Designated initializer.
 /// `library` is optional but required if you want to use `fullTextSearchEnabled`.
+/// @note Providing nil or an empty string for directory parameter searches the root documents directory.
 - (instancetype)initWithDirectory:(NSString *)directory includeSubdirectories:(BOOL)includeSubdirectories library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate;
 
 /// Initialize with a number of documents.

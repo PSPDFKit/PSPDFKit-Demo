@@ -13,14 +13,28 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFLogLevelMask) {
-    PSPDFLogLevelMaskNothing  = 0,
-    PSPDFLogLevelMaskError    = 1 << 0,
-    PSPDFLogLevelMaskWarning  = 1 << 1,
-    PSPDFLogLevelMaskInfo     = 1 << 2,
-    PSPDFLogLevelMaskVerbose  = 1 << 3,
-    PSPDFLogLevelMaskAll      = UINT_MAX
+    PSPDFLogLevelMaskNothing      = 0,
+
+    /// Logs critical issues. Should never be disabled.
+    PSPDFLogLevelMaskError        = 1 << 0,
+
+    /// Logs issues that are not critical but log-worthy.
+    PSPDFLogLevelMaskWarning      = 1 << 1,
+
+    /// Logs important operations.
+    PSPDFLogLevelMaskInfo         = 1 << 2,
+
+    /// Will log almost everything and slow down the application flow.
+    PSPDFLogLevelMaskVerbose      = 1 << 3,
+
+    /// Might log security related details like signature points.
+    /// Never enable this in release builds unless they are solely for testing.
+    PSPDFLogLevelMaskExtraVerbose = 1 << 4,
+
+    /// Enables all logging categories.
+    PSPDFLogLevelMaskAll          = UINT_MAX
 };
 
 /// Set the global PSPDFKit log level. Defaults to `PSPDFLogLevelMaskError|PSPDFLogLevelMaskWarning`.
-/// @warning Setting this to Verbose will severely slow down your application.
+/// @warning Setting this to `PSPDFLogLevelMaskVerbose` will severely slow down your application.
 extern PSPDFLogLevelMask PSPDFLogLevel;
