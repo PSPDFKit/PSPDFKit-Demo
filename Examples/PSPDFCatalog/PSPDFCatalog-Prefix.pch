@@ -21,7 +21,7 @@
 
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
-#import "UIColor+PSPDFCatalog.h"
+#import "UIColor+PSCDefaults.h"
 
 // This is used internally where PSPDFKit-lib.xcproj is used.
 #ifdef PSPDF_USE_SOURCE

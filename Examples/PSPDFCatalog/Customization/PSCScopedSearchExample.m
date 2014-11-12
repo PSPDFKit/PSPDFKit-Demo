@@ -10,7 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
-#import "NSArray+PSCHelper.h"
+#import "NSArray+PSCIndexSet.h"
 
 @interface PSCScopedSearchViewController : PSPDFSearchViewController @end
 @interface PSCScopedPDFViewController : PSPDFViewController @end

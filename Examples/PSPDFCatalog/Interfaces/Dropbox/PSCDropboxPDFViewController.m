@@ -9,7 +9,7 @@
 //
 
 #import "PSCDropboxPDFViewController.h"
-#import "UIImage+Tinting.h"
+#import "UIImage+PSCTinting.h"
 
 static const CGFloat PSCToolbarMargin = 20.f;
 
