@@ -23,7 +23,6 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
     configuration = [configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        builder.toolbarEnabled = NO;
         builder.renderAnimationEnabled = NO; // custom implementation here
         builder.thumbnailSize = PSCIsIPad() ? CGSizeMake(235.f, 305.f) : CGSizeMake(200.f, 250.f);
     }];
