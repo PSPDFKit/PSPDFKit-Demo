@@ -126,7 +126,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
     __block PSPDFDocument *signedDocument = nil;
     // sign the document
-    [signer signFormElement:@"test" usingPassword:elem writeTo:path completion:^(BOOL success, PSPDFDocument *document, NSError *err) {
+    [signer signFormElement:@"test" usingPassword:elem writeTo:path completionBlock:^(BOOL success, PSPDFDocument *document, NSError *err) {
         signedDocument = document;
     }];
     NSAssert(signedDocument, @"Error signing document");
