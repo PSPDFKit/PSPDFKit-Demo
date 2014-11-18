@@ -24,6 +24,7 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
     [super commonInitWithDocument:document configuration:[configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.createAnnotationMenuEnabled = NO;
+        builder.textSelectionMode = PSPDFTextSelectionModeSimple;
         builder.backgroundColor = UIColor.blackColor;
     }]];
     self.delegate = self;
@@ -31,11 +32,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
-
-// Enable simple selection mode once the page loaded.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
-    pageView.selectionView.simpleSelectionModeEnabled = YES;
-}
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView {
 
