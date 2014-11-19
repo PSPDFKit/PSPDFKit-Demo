@@ -14,8 +14,8 @@
 @interface PSCResizableView : PSPDFResizableView @end
 @implementation PSCResizableView
 
-- (instancetype)initWithTrackedView:(UIView *)trackedView {
-    if ((self = [super initWithTrackedView:trackedView])) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
 
         // Remove all knobs but the bottom right one.
         for (PSPDFResizableViewOuterKnob knobType = PSPDFResizableViewOuterKnobTopLeft; knobType < PSPDFResizableViewOuterKnobBottomRight; knobType++) {
