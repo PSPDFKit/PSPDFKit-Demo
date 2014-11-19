@@ -38,6 +38,7 @@
     // Create the filter barButton
     __weak PSPDFViewController *weakController = controller;
     __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender) {
+        __strong PSPDFViewController *strongController = weakController;
 
         // Before setting anything, save.
         [document saveAnnotationsWithError:NULL];
@@ -53,8 +54,8 @@
         document.pageRange = set;
 
         // After setting pageRange, we need to clear the cache and reload the controller.
-        [PSPDFKit.sharedInstance.cache removeCacheForDocument:document deleteDocument:NO error:NULL];
-        [weakController reloadData];
+        [strongController.pspdfkit.cache removeCacheForDocument:document deleteDocument:NO error:NULL];
+        [strongController reloadData];
     }];
 
     controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
