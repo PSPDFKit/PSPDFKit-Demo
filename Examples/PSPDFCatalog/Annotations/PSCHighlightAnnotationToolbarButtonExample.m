@@ -9,7 +9,7 @@
 //
 
 #import "PSCAssetLoader.h"
-#import "UIImage+Tinting.h"
+#import "UIImage+PSCTinting.h"
 #import <objc/message.h>
 #import "PSCExample.h"
 

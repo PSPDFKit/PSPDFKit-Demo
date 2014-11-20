@@ -12,9 +12,9 @@
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCImageOverlayPDFViewController.h"
-#import "PSCCustomToolbarController.h"
+#import "PSCToolbarController.h"
 #import "PSCExample.h"
-#import "PSCCustomSearchContainerChildPDFViewController.h"
+#import "PSCSearchContainerChildPDFViewController.h"
 
 @interface PSCChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCChildViewControllerContainmentExample
@@ -49,7 +49,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
-    PSPDFViewController *pdfController = [[PSCCustomSearchContainerChildPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSCSearchContainerChildPDFViewController alloc] initWithDocument:document];
     // Manually configure the top lable distance.
     pdfController.HUDView.documentLabelDistance = 80.f;
 
@@ -153,7 +153,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
-    return [[PSCCustomToolbarController alloc] initWithDocument:document];
+    return [[PSCToolbarController alloc] initWithDocument:document];
 }
 
 @end

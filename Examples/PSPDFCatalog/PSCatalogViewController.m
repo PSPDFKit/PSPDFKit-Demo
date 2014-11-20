@@ -17,17 +17,17 @@
 #import "PSCBookmarkParser.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
-#import "PSCCustomDrawingViewController.h"
+#import "PSCDrawingViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayBarButtonItem.h"
-#import "PSCCustomLinkAnnotationView.h"
-#import "PSCCustomAnnotationProvider.h"
+#import "PSCLinkAnnotationView.h"
+#import "PSCAnnotationProvider.h"
 #import "PSCTimingTestViewController.h"
-#import "PSCCustomSubviewPDFViewController.h"
+#import "PSCAnnotationOverlayPDFViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
-#import "PSCCustomThumbnailsViewController.h"
+#import "PSCThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
-#import "PSCCustomDefaultZoomScaleViewController.h"
+#import "PSCDefaultZoomScaleViewController.h"
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCMultipleUsersPDFViewController.h"
@@ -38,8 +38,8 @@
 #import "PSCExampleManager.h"
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
-#import "UIColor+PSPDFCatalog.h"
-#import "NSArray+PSCHelper.h"
+#import "UIColor+PSCDefaults.h"
+#import "NSArray+PSCIndexSet.h"
 #import <objc/runtime.h>
 
 // Crypto support
@@ -248,7 +248,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [customizationSection addContent:[PSContent contentWithTitle:@"Customize thumbnail page label" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSCCustomThumbnailsViewController alloc] initWithDocument:document];
+        PSPDFViewController *pdfController = [[PSCThumbnailsViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -391,7 +391,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // We don't use this in the example here since it would change the color globally for all examples.
         //[PSPDFLinkAnnotationView setGlobalBorderColor:[UIColor greenColor]];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-            [builder overrideClass:PSPDFLinkAnnotationView.class withClass:PSCCustomLinkAnnotationView.class];
+            [builder overrideClass:PSPDFLinkAnnotationView.class withClass:PSCLinkAnnotationView.class];
         }]];
         return controller;
     }]];
@@ -399,7 +399,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Custom AnnotationProvider" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            documentProvider.annotationManager.annotationProviders = @[[PSCCustomAnnotationProvider new], documentProvider.annotationManager.fileAnnotationProvider];
+            documentProvider.annotationManager.annotationProviders = @[[PSCAnnotationProvider new], documentProvider.annotationManager.fileAnnotationProvider];
         }];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -560,7 +560,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Helps in case you want to add custom subviews but still have drawings on top of everything
     [subclassingSection addContent:[PSContent contentWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCCustomSubviewPDFViewController alloc] initWithDocument:document];
+        PSPDFViewController *controller = [[PSCAnnotationOverlayPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
@@ -604,7 +604,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Set custom default zoom level" block:^UIViewController *{
         PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
-        PSPDFViewController *pdfController = [[PSCCustomDefaultZoomScaleViewController alloc] initWithDocument:document];
+        PSPDFViewController *pdfController = [[PSCDefaultZoomScaleViewController alloc] initWithDocument:document];
         [self presentViewController:pdfController animated:YES completion:NULL];
         return nil;
     }]];
@@ -1406,7 +1406,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [delegateSection addContent:[PSContent contentWithTitle:@"Custom drawing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.title = @"Custom drawing";
-        PSPDFViewController *pdfController = [[PSCCustomDrawingViewController alloc] initWithDocument:document];
+        PSPDFViewController *pdfController = [[PSCDrawingViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
     [sections addObject:delegateSection];

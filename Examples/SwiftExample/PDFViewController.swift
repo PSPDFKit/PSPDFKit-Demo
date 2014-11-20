@@ -16,8 +16,8 @@ class PDFViewController: PSPDFViewController, PSPDFViewControllerDelegate {
         self.delegate = self
     }
 
-    // PSPDFViewControllerDelegate
-
+    // MARK: PSPDFViewControllerDelegate
+    
     func pdfViewController(pdfController: PSPDFViewController!, didLoadPageView pageView: PSPDFPageView!) {
         println("Page loaded: %@", pageView)
     }
