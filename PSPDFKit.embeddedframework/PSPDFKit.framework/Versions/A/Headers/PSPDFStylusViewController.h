@@ -12,7 +12,7 @@
 
 #import "PSPDFStaticTableViewController.h"
 
-@class PSPDFStylusViewController;
+@class PSPDFStylusManager, PSPDFStylusViewController;
 
 @protocol PSPDFStylusViewControllerDelegate <NSObject>
 
@@ -28,7 +28,7 @@
 @interface PSPDFStylusViewController : PSPDFStaticTableViewController
 
 /// Designated initializer.
-- (instancetype)initWithDriverClasses:(NSArray *)driverClasses NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithStylusManager:(PSPDFStylusManager *)stylusManager NS_DESIGNATED_INITIALIZER;
 
 /// The currently selected driver class.
 @property (nonatomic, strong) Class selectedDriverClass;

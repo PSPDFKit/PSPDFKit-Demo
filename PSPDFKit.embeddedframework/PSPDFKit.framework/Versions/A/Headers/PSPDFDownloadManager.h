@@ -12,6 +12,15 @@
 
 #import <Foundation/Foundation.h>
 
+// Posted whenever a task starts loading.
+extern NSString *const PSPDFDownloadManagerDidStartLoadingTaskNotification;
+
+// Posted whenever a task finishes loading.
+extern NSString *const PSPDFDownloadManagerDidFinishLoadingTaskNotification;
+
+// Posted whenever a task failed to load.
+extern NSString *const PSPDFDownloadManagerDidFailToLoadTaskNotification;
+
 typedef NS_ENUM(NSUInteger, PSPDFDownloadManagerObjectState) {
     PSPDFDownloadManagerObjectStateNotHandled,
     PSPDFDownloadManagerObjectStateWaiting,

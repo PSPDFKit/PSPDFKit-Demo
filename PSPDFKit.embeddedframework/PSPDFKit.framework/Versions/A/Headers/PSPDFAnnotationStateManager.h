@@ -19,7 +19,8 @@
 typedef NS_OPTIONS(NSUInteger, PSPDFImageQuality) {
     PSPDFImageQualityLow     = 1 << 0,
     PSPDFImageQualityMedium  = 1 << 1,
-    PSPDFImageQualityHigh    = 1 << 2
+    PSPDFImageQualityHigh    = 1 << 2,
+    PSPDFImageQualityAll     = NSUIntegerMax,
 };
 
 @class PSPDFAnnotationStateManager, PSPDFFlexibleToolbarButton;
@@ -130,7 +131,7 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 
 /// Allows to customize the offered image qualities.
-/// Defaults to PSPDFImageQualityLow|PSPDFImageQualityMedium|PSPDFImageQualityHigh.
+/// Defaults to `PSPDFImageQualityAll`.
 @property (nonatomic, assign) PSPDFImageQuality allowedImageQualities;
 
 /// Undoes the last operation (drawing or other)

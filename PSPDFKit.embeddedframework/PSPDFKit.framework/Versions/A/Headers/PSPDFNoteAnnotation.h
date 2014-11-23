@@ -14,7 +14,8 @@
 
 /// PDF Note (Text) Annotation.
 /// @note Note annotations are rendered as fixed size; much like how Adobe Acrobat renders them.
-/// We recommend a size of 32x32px for the boundingBox.
+/// PSPDFKit will always render note annotations at a fixed size of 32x32pt.
+/// We recommend that you set the `boundingBox` to the same value.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
 /// Initialize with text contents.

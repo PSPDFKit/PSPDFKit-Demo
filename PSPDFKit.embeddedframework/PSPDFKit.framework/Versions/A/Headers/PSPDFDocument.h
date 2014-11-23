@@ -502,27 +502,30 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// Document title as shown in the controller.
 /// If this is not set, the framework tries to extract the title from the PDF metadata.
 /// If there's no metadata, the fileName is used. ".pdf" endings will be removed either way.
+/// @note Can be set to a custom value, in that case this overrides the PDF metadata.
+/// Custom titles don't get saved into the PDF.
+/// Setting the custom title to nil will again use the predefined PDF contents.
 @property (nonatomic, copy) NSString *title;
 
 /// Title might need to parse the file and is potentially slow.
 /// Use this to check if title is loaded and access title in a thread if not.
 @property (nonatomic, assign, readonly, getter=isTitleLoaded) BOOL titleLoaded;
 
-// metadata keys.
-extern NSString *const PSPDFMetadataKeyTitle;
-extern NSString *const PSPDFMetadataKeyAuthor;
-extern NSString *const PSPDFMetadataKeySubject;
-extern NSString *const PSPDFMetadataKeyKeywords;
-extern NSString *const PSPDFMetadataKeyCreator;
-extern NSString *const PSPDFMetadataKeyProducer;
-extern NSString *const PSPDFMetadataKeyCreationDate;
-extern NSString *const PSPDFMetadataKeyModDate;
-extern NSString *const PSPDFMetadataKeyTrapped;
-extern NSString *const PSPDFMetadataKeyPortfolio; // For PDF portfolios
+// Predefined PDF metadata keys.
+extern NSString *const PSPDFMetadataTitleKey;
+extern NSString *const PSPDFMetadataAuthorKey;
+extern NSString *const PSPDFMetadataSubjectKey;
+extern NSString *const PSPDFMetadataKeywordsKey;
+extern NSString *const PSPDFMetadataCreatorKey;
+extern NSString *const PSPDFMetadataProducerKey;
+extern NSString *const PSPDFMetadataCreationDateKey;
+extern NSString *const PSPDFMetadataModDateKey;
+extern NSString *const PSPDFMetadataTrappedKey;
+extern NSString *const PSPDFMetadataPortfolioKey; // For PDF portfolios
 
 /// Access the PDF metadata of the first PDF document.
 /// A PDF might not have any metadata at all.
-/// See `PSPDFMetadataKeyTitle` and the following defines for keys that might be set.
+/// See `PSPDFMetadataTitleKey` and the following defines for keys that might be set.
 /// It's possible that there are keys that don't have a PSPDFKit define, loop the dictionary to find them all.
 @property (nonatomic, copy, readonly) NSDictionary *metadata;
 
@@ -584,7 +587,8 @@ extern NSString *const PSPDFMetadataKeyPortfolio; // For PDF portfolios
 /// PSPDFKit will use the box value set in the `PDFBox` property, which defaults to `kCGPDFCropBox`.
 - (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError *__autoreleasing*)error;
 
-/// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES.
+/// Enable/Disable undo. Set this before `undoController` is first accessed!
+/// Defaults to YES for newer devices and NO for older ones.
 @property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;
 
 /// The undo manager attached to the document. Set to nil to disable undo/redo management.

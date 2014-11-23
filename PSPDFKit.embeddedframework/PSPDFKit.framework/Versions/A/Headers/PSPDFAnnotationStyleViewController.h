@@ -44,10 +44,11 @@
 @interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFFontPickerViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFStyleable>
 
 /// Designated initializer.
+/// Initialize the controller with one or multiple annotations and the delegate.
 - (instancetype)initWithAnnotations:(NSArray *)annotations delegate:(id<PSPDFAnnotationStyleViewControllerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
-/// Controller delegate.
-@property (nonatomic, weak) IBOutlet id<PSPDFAnnotationStyleViewControllerDelegate> delegate;
+/// Controller delegate. Informs about begin/end editing a property.
+@property (nonatomic, weak, readonly) IBOutlet id<PSPDFAnnotationStyleViewControllerDelegate> delegate;
 
 /// The current selected annotations.
 @property (nonatomic, copy) NSArray *annotations;

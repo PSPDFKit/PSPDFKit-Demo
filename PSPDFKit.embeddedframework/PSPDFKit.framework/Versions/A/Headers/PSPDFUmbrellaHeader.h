@@ -11,6 +11,8 @@
 //
 
     // common
+#import "PSPDFApplication.h"
+#import "PSPDFNetworkActivityIndicatorManager.h"
 #import "PSPDFLogging.h"
 #import "PSPDFLocalization.h"
 #import "PSPDFError.h"

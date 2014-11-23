@@ -22,6 +22,6 @@
 
 /// Signs the element using provided password to open the p12 container (to get the certificate and the private key).
 /// Use it only for non-interactive signing process.
-- (void)signFormElement:(NSString *)password usingPassword:(PSPDFSignatureFormElement *)element writeTo:(NSString *)path completion:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))completion;
+- (void)signFormElement:(PSPDFSignatureFormElement *)element usingPassword:(NSString *)password writeTo:(NSString *)path completion:(void (^)(BOOL success, PSPDFDocument *document, NSError *error))completionBlock;
 
 @end

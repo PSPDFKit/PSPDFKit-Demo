@@ -12,6 +12,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Posted whenever any network activity in PSPDFKit starts.
+extern NSString *const PSPDFNetworkActivityDidStartNotification;
+
+// Posted whenever any network activity in PSPDFKit finishes (that is, either completes or fails).
+extern NSString *const PSPDFNetworkActivityDidFinishNotification;
+
 // The network indicator manager will track the number of currently open network request.
 @protocol PSPDFNetworkActivityIndicatorManager <NSObject>
 

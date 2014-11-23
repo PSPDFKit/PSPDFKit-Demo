@@ -164,8 +164,8 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Converts JSON representation back into `PSPDFAnnotation` subclasses.
 /// Will return nil for invalid JSON or not recognized types.
-/// `document` is optional and if given the override dictionary will be honored (to return your custom `PSPDFAnnotation*` subclasses)
-+ (PSPDFAnnotation *)annotationFromJSONDictionary:(NSDictionary *)JSONDictionary document:(PSPDFDocument *)document error:(NSError *__autoreleasing*)error;
+/// `documentProvider` is optional and if given the override dictionary will be honored (to return your custom `PSPDFAnnotation*` subclasses)
++ (PSPDFAnnotation *)annotationFromJSONDictionary:(NSDictionary *)JSONDictionary documentProvider:(PSPDFDocumentProvider *)documentProvider error:(NSError *__autoreleasing*)error;
 
 /// Use this to create custom user annotations.
 - (instancetype)initWithType:(PSPDFAnnotationType)annotationType;
@@ -178,6 +178,9 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Returns YES if this annotation type has a fixed size, no matter the internal bounding box.
 + (BOOL)isFixedSize;
+
+/// The size of a fixed-size annotation. Only valid when isFixedSize is set to YES.
++ (CGSize)fixedSize;
 
 /// Returns YES if the annotation wants a selection border. Defaults to YES.
 - (BOOL)wantsSelectionBorder;
@@ -212,7 +215,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Page for current annotation. Page is relative to the `documentProvider`.
 /// @warning Only set the page at creation time and don't change it later on. This would break internal caching. If you want to move an annotations to a different page, copy an annotation, add it again and then delete the original.
-@property (atomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// Page relative to the document.
 /// @note Will be calculated each time from `page` and the current `documentProvider` and will change `page` if set.
@@ -222,7 +225,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
 /// Document is inferred from the `documentProvider` (Convenience method)
-@property (nonatomic, assign, readonly) PSPDFDocument *document;
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.
@@ -307,13 +310,14 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 /// Annotation border style.
 @property (nonatomic, assign) PSPDFAnnotationBorderStyle borderStyle;
 
-/// If borderStyle is set to `PSPDFAnnotationBorderStyleDashed`, we expect a `dashStyle` array here (int-values)
+/// (Optional; valid only if the value of `borderStyle` is `PSPDFAnnotationBorderStyleDashed`)
+/// Array of boxed integer-values defining the dash style.
 @property (nonatomic, copy) NSArray *dashArray;
 
-/// Border effect. See PDF Reference 1.5, 1.6 (Table 167).
+/// Border effect. Currently supports No Effect or Cloudy.
 @property (nonatomic, assign) PSPDFAnnotationBorderEffect borderEffect;
 
-/// (Optional; valid only if the value of borderEffect is `PSPDFAnnotationBorderEffectCloudy`)
+/// (Optional; valid only if the value of `borderEffect` is `PSPDFAnnotationBorderEffectCloudy`)
 /// A number describing the intensity of the effect, in the range 0 to 2. Default value: 0.
 @property (nonatomic, assign) CGFloat borderEffectIntensity;
 
@@ -321,7 +325,8 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 /// @note Other properties might be adjusted, depending what `shouldTransformOnBoundingBoxChange` returns.
 @property (nonatomic, assign) CGRect boundingBox;
 
-/// Rotation property (should be a multiple of 90, but there are exceptions, e.g. for stamp annotations)
+/// Rotation property (should be a multiple of 90,
+/// but there are exceptions, e.g. for stamp annotations)
 /// Defaults to 0. Allowed values are between 0 and 360.
 @property (nonatomic, assign) NSUInteger rotation;
 

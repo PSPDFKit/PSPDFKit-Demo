@@ -50,6 +50,18 @@ typedef NS_ENUM(NSUInteger, PSPDFLinkAction) {
     PSPDFLinkActionInlineBrowser /// Link actions open in an inline browser (`PSPDFWebViewController`).
 };
 
+/// Defines the text selection mode in `PSPDFTextSelectionView`.
+/// Requires `PSPDFFeatureMaskTextSelection` to be enabled and `textSelectionEnabled` set to YES.
+typedef NS_ENUM(NSUInteger, PSPDFTextSelectionMode) {
+    /// Regular text selection mode is similar to Mobile Safari, using two different loupes.
+    /// A word will be selected on touch up.
+    PSPDFTextSelectionModeRegular,
+
+    /// In simple selection mode, the selection behavior starts immediately on touch down.
+    /// This is similar to iBooks and useful for applications where highlighting is a main feature.
+    PSPDFTextSelectionModeSimple
+};
+
 /// Customize how a single page should be displayed.
 typedef NS_ENUM(NSUInteger, PSPDFPageRenderingMode) {
     PSPDFPageRenderingModeThumbnailThenFullPage, /// Load cached page async.
@@ -265,6 +277,12 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 /// @warning Will only work if `textSelectionEnabled` is also set to YES. This implies that the image is not in vector format. Only supports a subset of all possible image types in PDF.
 @property (nonatomic, assign, getter=isImageSelectionEnabled, readonly) BOOL imageSelectionEnabled;
 
+/// Defines how the text is selected. Defaults to `PSPDFTextSelectionModeRegular`.
+@property (nonatomic, assign, readonly) PSPDFTextSelectionMode textSelectionMode;
+
+/// Enable to always try to snap to words when selecting text. Defaults to NO.
+@property (nonatomic, assign, readonly) BOOL textSelectionShouldSnapToWord;
+
 
 /// @name HUD Settings
 
@@ -294,7 +312,6 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 
 /// Allow PSPDFKit to change the title of this viewController.
 /// Defaults to NO on iPhone (no space) and YES on iPad.
-/// @warning Requires `isToolbarEnabled = YES` to work.
 @property (nonatomic, assign, readonly) BOOL allowToolbarTitleChange;
 
 /// If YES, the navigation bar will be hidden when the HUD is hidden.
@@ -411,7 +428,9 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign, readonly) BOOL internalTapGesturesEnabled;
 
 /// Set this to true to allow this controller to access the parent `navigationBar`/`navigationController` to add custom buttons.
-/// Has no effect if toolbarEnabled is false or there's no `parentViewController`. Defaults to NO.
+/// Has no effect if there's no `parentViewController`. Defaults to NO.
+/// @note When using this feature, you should also implement both `childViewControllerForStatusBarHidden`
+/// and `childViewControllerForStatusBarStyle` to return the `PSPDFViewController` instance that is embedded.
 @property (nonatomic, assign, readonly) BOOL useParentNavigationBar;
 
 /// If enabled, will request that all thumbnails are pre-cached in `viewDidAppear:`. Defaults to YES.
@@ -449,6 +468,8 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign) CGFloat scrollOnTapPageEndMargin;
 @property (nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 @property (nonatomic, assign, getter=isImageSelectionEnabled) BOOL imageSelectionEnabled;
+@property (nonatomic, assign) PSPDFTextSelectionMode textSelectionMode;
+@property (nonatomic, assign) BOOL textSelectionShouldSnapToWord;
 @property (nonatomic, assign) BOOL internalTapGesturesEnabled;
 @property (nonatomic, assign) BOOL useParentNavigationBar;
 @property (nonatomic, assign) BOOL shouldRestoreNavigationBarStyle;
@@ -461,7 +482,6 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
 @property (nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
 @property (nonatomic, assign) BOOL shouldHideHUDOnPageChange;
 @property (nonatomic, assign) BOOL shouldShowHUDOnViewWillAppear;
-@property (nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
 @property (nonatomic, assign) BOOL allowToolbarTitleChange;
 @property (nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 @property (nonatomic, assign) PSPDFPageMode pageMode;

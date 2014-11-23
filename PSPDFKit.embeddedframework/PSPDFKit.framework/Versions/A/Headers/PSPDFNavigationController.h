@@ -18,11 +18,11 @@ typedef NS_ENUM(NSUInteger, PSPDFPersistentCloseButtonMode) {
     PSPDFPersistentCloseButtonModeRight /// Persistent close button on the right.
 };
 
-/// Simple subclass that forwards following iOS6 rotation methods to the top view controller:
+/// Simple subclass that forwards following iOS 6+ rotation methods to the top view controller:
 /// `shouldAutorotate`, `supportedInterfaceOrientations`, `preferredInterfaceOrientationForPresentation:`.
 @interface PSPDFNavigationController : UINavigationController <UINavigationControllerDelegate>
 
-// Forward the iOS6 rotation method to the visible view controller. Defaults to YES.
+// Forward the iOS 6+ rotation method to the visible view controller. Defaults to YES.
 @property (nonatomic, assign, getter=isRotationForwardingEnabled) BOOL rotationForwardingEnabled;
 
 // Allows showing a persistent close button. Defaults to `PSPDFPersistentCloseButtonModeNone`.

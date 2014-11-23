@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFHighlightAnnotation.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFConfiguration.h"
 #import <AVFoundation/AVFoundation.h>
 
 @class PSPDFTextSelectionView, PSPDFImageInfo;
@@ -39,9 +40,10 @@
 
 @optional
 
-// Allows feature queries.
-- (BOOL)isTextSelectionEnabledForView:(PSPDFTextSelectionView *)textSelectionView;
-- (BOOL)isImageSelectionEnabledForView:(PSPDFTextSelectionView *)textSelectionView;
+@property (nonatomic, assign, getter=isTextSelectionEnabled, readonly) BOOL textSelectionEnabled;
+@property (nonatomic, assign, getter=isImageSelectionEnabled, readonly) BOOL imageSelectionEnabled;
+@property (nonatomic, assign, readonly) PSPDFTextSelectionMode textSelectionMode;
+@property (nonatomic, assign, readonly) BOOL textSelectionShouldSnapToWord;
 
 @end
 
@@ -98,14 +100,11 @@
 /// The selection alpha value. Defaults to `UIColor.pspdf_selectionAlpha`.
 @property (nonatomic, assign) CGFloat selectionAlpha UI_APPEARANCE_SELECTOR;
 
-/// In simple selection mode, the initial selection switches to moving the drag handles directly, much like iBooks handles selection. Defaults to NO.
-@property (nonatomic, assign) BOOL simpleSelectionModeEnabled;
-
 /// Currently selected text, optimized for searching
 @property (nonatomic, copy, readonly) NSString *trimmedSelectedText;
 
 /// To make it easier to select text, we slightly increase the frame margins. Defaults to 4 pixels.
-@property (nonatomic, assign) CGFloat selectionHitTestExtension;
+@property (nonatomic, assign) CGFloat selectionHitTestExtension UI_APPEARANCE_SELECTOR;
 
 /// Rects for the current selection, in view coordinate space.
 @property (nonatomic, assign, readonly) CGRect firstLineRect;
@@ -133,9 +132,6 @@
 // Will return a new array with sorted glyphs.
 // Use when you manually call `selectedGlyphs`.
 - (NSArray *)sortedGlyphs:(NSArray *)glyphs;
-
-// Will present a Wikipedia browser anchored at the selected text.
-- (UIViewController *)presentWikipediaBrowserForSelectedText;
 
 @end
 

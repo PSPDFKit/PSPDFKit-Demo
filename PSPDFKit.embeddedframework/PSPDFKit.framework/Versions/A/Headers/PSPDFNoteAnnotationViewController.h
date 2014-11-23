@@ -66,8 +66,7 @@
 @property (nonatomic, assign) BOOL shouldBeginEditModeWhenPresented;
 
 /// Allow to customize the textView. (font etc)
-/// Created in `viewDidLoad`.
-/// @note The best way to customize the font is to subclass and override `updateTextView`.
+/// @note The best way to customize the font is to use UIAppearance.
 @property (nonatomic, strong, readonly) UITextView *textView;
 
 /// Attached delegate.

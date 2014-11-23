@@ -30,11 +30,12 @@
 /// Returns the name of the stylus, if possible. Will return "Stylus" if no name is returned by the driver.
 @property (nonatomic, copy, readonly) NSString *stylusName;
 
+/// Lists available driver classes.
+/// List is unique and sorted after priority
+@property (nonatomic, copy, readonly) NSOrderedSet *availableDriverClasses;
+
 /// Tries to restore last driver selection. Might load a driver and show the connection HUD.
 - (BOOL)enableLastDriver;
-
-/// Returns YES if the stylus manager could load drivers.
-- (BOOL)driversAreAvailable;
 
 /// Returns a new instance of the stylus connector/chooser controller.
 /// @note Will always return a controller, even if no drivers are available.

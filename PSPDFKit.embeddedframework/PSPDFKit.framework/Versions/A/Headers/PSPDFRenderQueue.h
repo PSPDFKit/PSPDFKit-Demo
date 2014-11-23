@@ -15,13 +15,13 @@
 @class PSPDFDocument, PSPDFRenderJob, PSPDFRenderQueue, PSPDFRenderReceipt;
 
 /// Notification that will be thrown when we enqueue a job.
-extern NSString *const PSPDFRenderQueueDidEnqueueJob;
+extern NSString *const PSPDFRenderQueueDidEnqueueJobNotification;
 
 /// Notification that will be thrown after a job finished. (in addition to the delegate)
-extern NSString *const PSPDFRenderQueueDidFinishJob;
+extern NSString *const PSPDFRenderQueueDidFinishJobNotification;
 
 /// Notification that will be thrown when we cancel a job.
-extern NSString *const PSPDFRenderQueueDidCancelJob;
+extern NSString *const PSPDFRenderQueueDidCancelJobNotification;
 
 /// Absolute limit for image rendering (memory constraint)
 extern CGSize const PSPDFRenderSizeLimit;
@@ -36,7 +36,7 @@ extern CGSize const PSPDFRenderSizeLimit;
 
 typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
     PSPDFRenderQueuePriorityVeryLow,  /// Used to re-render annotation changes.
-    PSPDFRenderQueuePriorityLow,      /// Low and ReallyLow are used from within `PSPDFCache`.
+    PSPDFRenderQueuePriorityLow,      /// Low and VeryLow are used from within `PSPDFCache`.
     PSPDFRenderQueuePriorityNormal,   /// Life page renderings.
     PSPDFRenderQueuePriorityHigh,     /// Zoomed renderings.
     PSPDFRenderQueuePriorityVeryHigh, /// Highest priority. Unused.

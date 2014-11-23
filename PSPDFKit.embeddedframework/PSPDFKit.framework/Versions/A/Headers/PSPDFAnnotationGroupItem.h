@@ -23,6 +23,7 @@ extern NSString * const PSPDFAnnotationStringFreeTextVariantCallout;
 // Can be used to set custom types in the `PSPDFStyleManager`.
 extern NSString *PSPDFAnnotationStateVariantIdentifier(NSString *state, NSString *variant);
 
+/// An annotation group items defines one annotation type, optionally with a variant.
 @interface PSPDFAnnotationGroupItem : NSObject
 
 /// Creates a group item with the specified annotation type.

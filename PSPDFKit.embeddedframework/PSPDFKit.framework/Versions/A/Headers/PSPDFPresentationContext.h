@@ -15,13 +15,16 @@
 #import "PSPDFConfiguration.h"
 #import "PSPDFControlDelegate.h"
 
-@class PSPDFConfiguration, PSPDFPageView, PSPDFDocument, PSPDFViewController, PSPDFAnnotationStateManager, PSPDFAnnotation;
+@class PSPDFKit, PSPDFConfiguration, PSPDFPageView, PSPDFDocument, PSPDFViewController, PSPDFAnnotationStateManager, PSPDFAnnotation;
 
 // The presentation context (usually defined by `PSPDFViewController`).
 @protocol PSPDFPresentationContext <PSPDFOverridable>
 
 // Accesses the configuration object.
 @property (nonatomic, copy, readonly) PSPDFConfiguration *configuration;
+
+// Access the PSPDFKit singleton store.
+@property (nonatomic, strong, readonly) PSPDFKit *pspdfkit;
 
 // The displaying view controller and popover/half modal controllers
 @property (nonatomic, strong, readonly) UIViewController *displayingViewController;

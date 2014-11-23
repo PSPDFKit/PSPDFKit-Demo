@@ -56,6 +56,9 @@ NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
 // Calculates the bounding box from lines.
 CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
 
+// Calculates the natural drawing bounding box from lines.
+CGRect PSPDFNaturalDrawingBoundingBoxFromLines(NSArray *lines);
+
 // Returns a new set of lines, with transform applied.
 NSArray *PSPDFCopyLinesByApplyingTransform(NSArray *lines, CGAffineTransform transform);
 

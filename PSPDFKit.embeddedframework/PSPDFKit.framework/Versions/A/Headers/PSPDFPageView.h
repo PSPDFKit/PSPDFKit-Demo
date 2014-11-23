@@ -257,7 +257,7 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 // See `PSPDFPageRenderer` for a list of options.
 - (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale animated:(BOOL)animated;
 
-// View for the selected annotation.
+// View for the selected annotation. Created and destroyed on the fly.
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;
 
 // Helper to properly place an annotation.

@@ -12,13 +12,17 @@
 
 // Workaround for Apple's bug. __IPHONE_OS_VERSION_MIN_REQUIRED is set to 20000
 // when the debugger tries to convert ObjC module headers to Swift.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED != 20000 && __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+#if __IPHONE_OS_VERSION_MIN_REQUIRED != 20000
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
 #error PSPDFKit supports iOS 7.0 upwards.
 #endif
 
 // Xcode 6.1 is required for PSPDFKit 4.
-#if !defined(__clang__) || __clang_major__ < 6  || !defined(__IPHONE_8_0)
+#if !defined(__IPHONE_8_0)
 #warning PSPDFKit 4 has been designed for Xcode 6 with SDK 8. Other combinations are not supported.
+#endif
+
 #endif
 
 #define __PSPDFKIT_IOS__

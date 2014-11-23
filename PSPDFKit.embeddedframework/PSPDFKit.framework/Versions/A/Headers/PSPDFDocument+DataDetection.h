@@ -98,6 +98,9 @@ extern NSString *const PSPDFObjectsAnnotationTypesKey;
 // Special case; used for PSPDFAnnotationTypeNote hit testing.
 extern NSString *const PSPDFObjectsAnnotationPageBoundsKey;
 
+// Special case; Used to correctly hit test zoom-invariant annotations.
+extern NSString *const PSPDFObjectsPageZoomLevelKey;
+
 // Include annotations that are part of a group.
 extern NSString *const PSPDFObjectsAnnotationIncludedGroupedKey;
 

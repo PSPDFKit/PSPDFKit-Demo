@@ -4,6 +4,29 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v4.1.2 - 23/November/2014__
+
+*  Improves performance for documents with a large number of annotations by moving more work to background threads.
+*  Introduces a new `textSelectionMode` and an optional `textSelectionShouldSnapToWords` to better customize the text selection behavior.
+*  Improves various edge cases on type image preview in the annotation view controller.
+*  Exposes the stylus manager in the `PSPDFKit` shared object.
+*  Hook up all significant places that access network for the new `PSPDFNetworkActivityIndicatorManager`.
+*  Improves drawing view transform handling for certain edge cases.
+*  Improves zooming performance when annotations are selected.
+*  Various improvements to the natural drawing path generation and bounding box algorithm.
+*  Improves the animation when the view controller is popped but the annotation toolbar is still visible.
+*  Improves tab bar placement in `PSPDFTabbedViewController` when the navigation bar has a custom image set via UIAppearance.
+*  Works around a runtime issue when using weakly refernced objects during dealloc. (rdar://problem/19029811)
+*  Works around an UIKit issue with presenting an `UIAlertController` while a popover is dismissed. (rdar://problem/19045528)
+*  Works around an UIKit regression where `automaticallyAdjustsScrollViewInsets` doesn’t always work on iOS 8. (rdar://problem/19053416)
+*  Works around an UIKit regression where dismissing a popover with a double-tap could also dismiss the modal parent on iOS 8. (rdar://problem/19067761)
+*  Fixes an edge case where the gallery could display wrong content during paging.
+*  Fixes an issue with changing choice form elements values on iPhone.
+*  Fixes an issue where indexing single-page documents could have reported an invalid status.
+*  Fixes an issue where changing the filter on the thumbnails with sticky header enabled would not reset the view port on iOS 8.
+*  Fixes an issue where a selected annotation could end up slightly blurry when zoomed in due to an incorrectly set contentScale.
+*  Fixes an issue where annotations loaded from XFDF could trigger an assertion.
+
 __v4.1.1 - 11/November/2014__
 
 *  API: Removes `PSPDFAlertView` and `PSPDFActionSheet`. If you used them, get a local copy here: https://github.com/steipete/PSAlertView
@@ -54,7 +77,6 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  The inline search manager now shows the current search status with a slight delay to be more visually pleasing.
 *  Absolute paths, while discouraged, are now properly detected in the gallery on iOS 8.
 *  The gallery now automatically resolves URL endpoints that have no pre-set type. (video/image/etc)
-*  Works around an issue where `UIDocumentInteractionController` sometimes would print extremely long log statements.
 *  Makes sure the `PSPDFViewController` always correctly reloads, even when the document is changed while the controller is off-screen.
 *  Various stylus drivers have been updated to be compatible with their API changes.
 *  Search previews generated via `PSPDFLibrary` now also support text containing diactritics.
@@ -74,7 +96,6 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  The `creationDate` is now set for new user-created annotations and `lastModified` is updated on every change.
 *  The text editing for bookmark names is now committed before a cell reorder is started, to ensure the changed text gets saved to the correct item.
 *  When the device switches to single/double page mode due to rotation, we now will restore the last page instead of the left page from the double page mode.
-*  Works around a potential deadlock in the Apple PDF renderer when called during the application did load event. (rdar://problem/18778790)
 *  Ensures all popover dismissal code paths go through the workaround for rdar://problem/18500786 on iOS 8.
 *  Complex ink annotations are now processed much faster.
 *  The move button no longer overlaps the signature display in the `PSPDFSignatureSelectorViewController`.
@@ -83,6 +104,8 @@ Read more about the annotation object model at https://github.com/PSPDFKit/PSPDF
 *  Various functional and performance improvements when parsing forms with JavaScript.
 *  PSPDFKit now uses various iOS 8 QoS classes where appropriate to better deal with important/background related tasks.
 *  Updates OpenSSL to 1.0.1j and SQLite to 3.8.7.1 (optional)
+*  Works around a potential deadlock in the Apple PDF renderer when called during the application did load event. (rdar://problem/18778790)
+*  Works around an issue where `UIDocumentInteractionController` sometimes would print extremely long log statements (rdar://problem/18568591)
 *  Fixes an issue with certain missing headers in the OpenSSL-free build.
 *  Fixes an issue where drawings created during one operation in multiple pages could be collected to a single page on commit.
 *  Fixes a small UI issue where on iOS 8 the current page of the color inspector could be wrong.

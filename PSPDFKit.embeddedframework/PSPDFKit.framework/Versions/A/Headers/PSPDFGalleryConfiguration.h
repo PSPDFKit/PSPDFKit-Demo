@@ -15,7 +15,7 @@
 @class PSPDFGalleryConfigurationBuilder;
 
 /// A `PSPDFGalleryConfiguration` defines the behavior of a `PSPDFGalleryViewController`.
-@interface PSPDFGalleryConfiguration : NSObject
+@interface PSPDFGalleryConfiguration : PSPDFModel
 
 /// Returns a copy of the default gallery configuration.
 + (instancetype)defaultConfiguration;

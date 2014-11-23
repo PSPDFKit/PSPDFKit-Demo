@@ -25,6 +25,8 @@ extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 
 /// A sound annotation (PDF 1.2) shall analogous to a text annotation except that instead of a text
 /// note, it contains sound recorded from the iOS device's microphone or imported from a file.
+/// To ensure maximum compatiblity set the `boundingBox` for sound annotations to the same size Adobe Acrobat uses (20x15pt).
+/// PSPDFKit will always render sound annotations at a fixed size of 74x44pt, centered in the provided `boundingBox`.
 @interface PSPDFSoundAnnotation : PSPDFAnnotation
 
 - (instancetype)initRecorder;

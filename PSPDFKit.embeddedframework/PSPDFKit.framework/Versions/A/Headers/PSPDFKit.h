@@ -83,4 +83,7 @@ extern NSString *const PSPDFWebKitLegacyModeKey;
 /// The global speech synthesizer object.
 @property (nonatomic, strong, readonly) PSPDFSpeechController *speechSynthesizer;
 
+/// The stylus manager. Lazily loaded.
+@property (nonatomic, strong, readonly) PSPDFStylusManager *stylusManager;
+
 @end

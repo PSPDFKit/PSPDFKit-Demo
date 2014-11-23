@@ -18,7 +18,8 @@ typedef NS_ENUM(NSUInteger, PSPDFSecurityEvent) {
     PSPDFSecurityEventPrint,          // Allows document or single page printing.
     PSPDFSecurityEventQuickLook,      // Allows QuickLook to view embedded files.
     PSPDFSecurityEventAudioRecording, // Allows audio recording.
-    PSPDFSecurityEventCamera          // Allows the camera.
+    PSPDFSecurityEventCamera,         // Allows the camera.
+    PSPDFSecurityEventCopyPaste       // Allows copy/paste for text and annotations.
 };
 
 /// The security auditor protcol allows to define a custom set of overrides for various security related tasks.
