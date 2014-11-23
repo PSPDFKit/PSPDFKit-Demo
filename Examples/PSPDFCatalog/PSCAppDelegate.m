@@ -73,7 +73,7 @@
 
     // Create catalog controller delayed because we also dynamically load the license key.
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
+    // PSPDFNavigationController is a simple subclass that forwards iOS 6+ rotation methods.
     self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
     self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 	// Forward the window to catalogController early, so it can set the default tintColor
