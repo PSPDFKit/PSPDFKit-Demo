@@ -64,7 +64,29 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     } else {
         NSLog(@"OpenSSL version of the PSPDFKit is required");
     }
-    return PSPDFFormExampleInvokeWithFilename(@"Form_example.pdf");
+
+    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Form_example.pdf"];
+    NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *newPath = [docsFolder stringByAppendingPathComponent:[documentURL lastPathComponent]];
+    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:newURL.path]) {
+        [[NSFileManager defaultManager] removeItemAtURL:newURL error:NULL];
+    }
+
+    NSError *error;
+    // Make sure the folder exists
+    [[NSFileManager defaultManager] createDirectoryAtURL:newURL.URLByDeletingLastPathComponent withIntermediateDirectories:YES attributes:nil error:&error];
+
+    // Copy the file
+    if (![[NSFileManager defaultManager] copyItemAtURL:documentURL toURL:newURL error:&error]) {
+        NSLog(@"Error while copying %@ to %@: %@", documentURL.path, newURL.path, error.localizedDescription);
+        return nil;
+    }
+
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
+
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
