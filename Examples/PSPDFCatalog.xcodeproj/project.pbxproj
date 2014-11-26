@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1CC163471863446E00D41974 /* PSCFormExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC163461863446E00D41974 /* PSCFormExamples.m */; };
+		7804E41A1A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */; };
 		780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */; };
 		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
 		781C105C198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */; };
@@ -196,6 +197,8 @@
 
 /* Begin PBXFileReference section */
 		1CC163461863446E00D41974 /* PSCFormExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCFormExamples.m; path = Forms/PSCFormExamples.m; sourceTree = "<group>"; };
+		7804E4181A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDisallowCopySecurityAuditor.h; sourceTree = "<group>"; };
+		7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDisallowCopySecurityAuditor.m; sourceTree = "<group>"; };
 		780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsExample.m; sourceTree = "<group>"; };
 		780FBC9318477AB600AE9C7C /* PSCMergeDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsViewController.h; sourceTree = "<group>"; };
 		780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsViewController.m; sourceTree = "<group>"; };
@@ -527,6 +530,15 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
+		7804E4171A268FBC00F62402 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				7804E4181A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.h */,
+				7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		780FBC9018477AB600AE9C7C /* Merging */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +590,7 @@
 				78C6842016F7E5330080427B /* Interfaces */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
 				780FBC9018477AB600AE9C7C /* Merging */,
+				7804E4171A268FBC00F62402 /* Plugins */,
 				8CDCCD5B17F96E9000AE525F /* Multimedia */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
@@ -1283,6 +1296,7 @@
 				78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */,
 				7882FCEB1A134BA700C0327B /* PSCAssetLoader.m in Sources */,
 				78604C9B16C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m in Sources */,
+				7804E41A1A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m in Sources */,
 				78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */,
 				7882FCB11A134B9700C0327B /* PSCiBooksHighlightingViewController.m in Sources */,
 				7882FD181A134BD300C0327B /* PSCExportPDFPagesViewController.m in Sources */,
