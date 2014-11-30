@@ -138,7 +138,7 @@
             return [[PSPDFAESCryptoInputStream alloc] initWithInputStream:[[NSInputStream alloc] initWithURL:fileXML] passphrase:passphrase];
         };
         XFDFProvider.createOutputStreamBlock = ^(PSPDFXFDFAnnotationProvider *annotationProvider) {
-            return [[PSPDFAESCryptoOutputStream alloc] initWithOutputStream:[NSOutputStream outputStreamWithURL:fileXML append:NO] passphrase:passphrase];;
+            return [[PSPDFAESCryptoOutputStream alloc] initWithOutputStream:[NSOutputStream outputStreamWithURL:fileXML append:NO] passphrase:passphrase];
         };
         documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
     }];
