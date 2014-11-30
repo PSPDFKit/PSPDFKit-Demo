@@ -20,7 +20,7 @@
              PSPDFPluginNameKey: @"Custom Security Auditor",
              PSPDFPluginProtocolVersionKey : @(PSPDFPluginProtocolVersion_1),
 
-             // Remove this key to actually enable the plugin.
+             // *** Remove this key to actually enable the plugin. ***
              // PSPDFKit will discover this class automatically.
              PSPDFPluginEnabledKey: @NO
              };
