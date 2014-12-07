@@ -16,6 +16,10 @@
 
 @implementation PSCRotationLockBarButtonItem
 
+- (NSString *)actionName {
+    return @"Lock/Unlock Rotation";
+}
+
 - (UIBarButtonItemStyle)style {
     return UIBarButtonItemStylePlain;
 }
@@ -30,7 +34,7 @@
         rect.size = image.size;
         [self.button setFrame:rect];
     }
-    [self.button setShowsTouchWhenHighlighted:YES];
+    self.button.showsTouchWhenHighlighted = YES;
     [self.button setImage:image forState:UIControlStateNormal];
     [self.button addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
     return self.button;
