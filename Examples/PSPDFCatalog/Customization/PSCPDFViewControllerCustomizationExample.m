@@ -50,8 +50,8 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *pdfController = [[PSCSearchContainerChildPDFViewController alloc] initWithDocument:document];
-    // Manually configure the top lable distance.
-    pdfController.HUDView.documentLabelDistance = 80.f;
+    // Manually configure the top label insets.
+    pdfController.HUDView.documentLabelInsets = UIEdgeInsetsMake(80.f, 0.f, 0.f, 0.f);
 
     // Create simple view controller container.
     UIViewController *viewController = [[UIViewController alloc] init];

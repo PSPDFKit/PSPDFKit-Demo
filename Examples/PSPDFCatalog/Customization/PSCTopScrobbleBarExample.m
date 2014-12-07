@@ -31,7 +31,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    [PSCCustomHUDView appearance].pageLabelDistance = 49.f;
+    [PSCCustomHUDView appearance].pageLabelInsets = UIEdgeInsetsMake(0.f, 0.f, 49.f, 0.f);
 
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
