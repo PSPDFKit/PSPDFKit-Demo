@@ -1,5 +1,5 @@
 //
-//  PSCDisallowCopySecurityAuditor.m
+//  PSCDisallowCopyApplicationPolicy.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -8,16 +8,16 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCDisallowCopySecurityAuditor.h"
+#import "PSCDisallowCopyApplicationPolicy.h"
 
-@implementation PSCDisallowCopySecurityAuditor
+@implementation PSCDisallowCopyApplicationPolicy
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFPlugin
 
 + (NSDictionary *)pluginInfo {
-    return @{PSPDFPluginIdentifierKey: @"com.pspdfcatalog.security.custom-auditor",
-             PSPDFPluginNameKey: @"Custom Security Auditor",
+    return @{PSPDFPluginIdentifierKey: @"com.pspdfcatalog.policy.disable-copy",
+             PSPDFPluginNameKey: @"Custom Application Policy",
              PSPDFPluginProtocolVersionKey : @(PSPDFPluginProtocolVersion_1),
 
              // *** Remove this key to actually enable the plugin. ***
@@ -38,8 +38,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFSecurityAuditor
 
-- (BOOL)hasPermissionForEvent:(PSPDFSecurityEvent)event isUserAction:(BOOL)isUserAction {
-    if (event == PSPDFSecurityEventCopyPaste) {
+- (BOOL)hasPermissionForEvent:(PSPDFPolicyEvent)event isUserAction:(BOOL)isUserAction {
+    if (event == PSPDFPolicyEventPasteboard) {
         return NO;
     }
     return YES;

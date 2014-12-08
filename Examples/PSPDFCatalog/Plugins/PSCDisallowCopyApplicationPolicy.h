@@ -1,5 +1,5 @@
 //
-//  PSCDisallowCopySecurityAuditor.h
+//  PSCDisallowCopyApplicationPolicy.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -10,5 +10,5 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PSCDisallowCopySecurityAuditor : NSObject <PSPDFSecurityAuditor>
+@interface PSCDisallowCopyApplicationPolicy : NSObject <PSPDFApplicationPolicy>
 @end

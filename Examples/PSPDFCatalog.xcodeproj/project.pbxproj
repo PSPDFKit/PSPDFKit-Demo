@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1CC163471863446E00D41974 /* PSCFormExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC163461863446E00D41974 /* PSCFormExamples.m */; };
-		7804E41A1A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */; };
 		780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */; };
 		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
 		781C105C198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C105B198C0ADB002831D2 /* PSCSelectFreeTextAnnotationsExample.m */; };
@@ -174,6 +173,7 @@
 		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
+		78DE30911A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE308F1A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m */; };
 		78E4E06517DD151B005ED42D /* PSCExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06217DD151B005ED42D /* PSCExample.m */; };
 		78E4E06617DD151C005ED42D /* PSCExampleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06417DD151B005ED42D /* PSCExampleManager.m */; };
 		78E5CCCC18C1340F005F1A63 /* PSCRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E5CCCB18C1340F005F1A63 /* PSCRoundProgressView.m */; };
@@ -197,8 +197,6 @@
 
 /* Begin PBXFileReference section */
 		1CC163461863446E00D41974 /* PSCFormExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCFormExamples.m; path = Forms/PSCFormExamples.m; sourceTree = "<group>"; };
-		7804E4181A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDisallowCopySecurityAuditor.h; sourceTree = "<group>"; };
-		7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDisallowCopySecurityAuditor.m; sourceTree = "<group>"; };
 		780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsExample.m; sourceTree = "<group>"; };
 		780FBC9318477AB600AE9C7C /* PSCMergeDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsViewController.h; sourceTree = "<group>"; };
 		780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsViewController.m; sourceTree = "<group>"; };
@@ -471,6 +469,8 @@
 		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
 		78DDC6B215CF2EFF0030C730 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
+		78DE308F1A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDisallowCopyApplicationPolicy.m; sourceTree = "<group>"; };
+		78DE30901A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDisallowCopyApplicationPolicy.h; sourceTree = "<group>"; };
 		78E4E06117DD151B005ED42D /* PSCExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExample.h; sourceTree = "<group>"; };
 		78E4E06217DD151B005ED42D /* PSCExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExample.m; sourceTree = "<group>"; };
 		78E4E06317DD151B005ED42D /* PSCExampleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExampleManager.h; sourceTree = "<group>"; };
@@ -533,8 +533,8 @@
 		7804E4171A268FBC00F62402 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				7804E4181A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.h */,
-				7804E4191A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m */,
+				78DE308F1A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m */,
+				78DE30901A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.h */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -1296,12 +1296,12 @@
 				78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */,
 				7882FCEB1A134BA700C0327B /* PSCAssetLoader.m in Sources */,
 				78604C9B16C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m in Sources */,
-				7804E41A1A268FBC00F62402 /* PSCDisallowCopySecurityAuditor.m in Sources */,
 				78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */,
 				7882FCB11A134B9700C0327B /* PSCiBooksHighlightingViewController.m in Sources */,
 				7882FD181A134BD300C0327B /* PSCExportPDFPagesViewController.m in Sources */,
 				7882FCED1A134BA700C0327B /* PSCViewHelper.m in Sources */,
 				78D4D4101848CD4900080A96 /* UIButton+AFNetworking.m in Sources */,
+				78DE30911A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m in Sources */,
 				7882FCB41A134B9700C0327B /* PSCMapWidgetExample.m in Sources */,
 				78B1481718B7993F0039DB99 /* PSCCustomProtocolLinkExample.m in Sources */,
 				78D4D40E1848CD4900080A96 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
