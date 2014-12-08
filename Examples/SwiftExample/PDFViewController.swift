@@ -2,15 +2,16 @@
 //  PDFViewController.swift
 //  SwiftExample
 //
-//  Created by Peter Steinberger on 21/06/14.
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
+//
+//  The PSPDFKit Sample applications are licensed with a modified BSD license.
+//  Please see License for details. This notice may not be removed from this file.
 //
 
 import UIKit
 import PSPDFKit
 
 class PDFViewController: PSPDFViewController, PSPDFViewControllerDelegate {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self

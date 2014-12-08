@@ -23,15 +23,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Custom apps will require either a demo or commercial license key from http://pspdfkit.com
         PSPDFKit.setLicenseKey("YOUR_LICENSE_KEY_GOES_HERE")
 
-        var fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit QuickStart Guide.pdf")
-        var document = PSPDFDocument(URL: fileURL)
-        var configuration = PSPDFConfiguration  { (builder) -> Void in
+        let fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit QuickStart Guide.pdf")
+        let document = PSPDFDocument(URL: fileURL)
+        let configuration = PSPDFConfiguration  { (builder) -> Void in
             builder.thumbnailBarMode = .Scrollable;
         }
-        var pdfController = PDFViewController(document: document, configuration: configuration)
+        let pdfController = PDFViewController(document: document, configuration: configuration)
 
         self.window!.rootViewController = UINavigationController(rootViewController: pdfController)
         self.window!.makeKeyAndVisible()
+
+        // Example how to use the library and start background indexing.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let libraryExample = LibraryExample()
+            libraryExample.indexDocuments()
+        })
+
         return true
     }
 }
