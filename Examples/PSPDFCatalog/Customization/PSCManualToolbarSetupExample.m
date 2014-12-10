@@ -140,7 +140,7 @@
 	[self.view addSubview:container];
     self.flexibleToolbarContainer = container;
 
-	[container showAnimated:YES completion:nil];
+	[container showAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@
 #pragma mark - Private
 
 - (void)doneButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

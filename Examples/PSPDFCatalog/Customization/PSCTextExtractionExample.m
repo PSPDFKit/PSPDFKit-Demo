@@ -80,7 +80,7 @@
         [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
     }]];
     [websitePrompt addCancelActionWithHandler:nil];
-    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:NULL];
 
     return nil;
 }
@@ -140,7 +140,7 @@
         }];
     }]];
     [websitePrompt addCancelActionWithHandler:nil];
-    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:NULL];
 
     return nil;
 }
