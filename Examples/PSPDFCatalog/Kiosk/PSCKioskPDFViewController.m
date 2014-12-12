@@ -37,8 +37,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (instancetype)initWithDocument:(PSPDFDocument *)document {
-    if ((self = [super initWithDocument:document])) {
+- (instancetype)initWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
+    if ((self = [super initWithDocument:document configuration:configuration])) {
         self.delegate = self;
 
         // Initially update vars.
