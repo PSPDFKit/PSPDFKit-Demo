@@ -17,7 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (instancetype)initWithPDFViewController:(PSPDFViewController *)pdfController {
+- (instancetype)initWithPDFViewController:(PSPDFMultiDocumentPDFViewController *)pdfController {
     if ((self = [super initWithPDFViewController:pdfController])) {
         self.delegate = self;
 

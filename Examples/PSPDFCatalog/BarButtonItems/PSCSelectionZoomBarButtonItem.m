@@ -33,10 +33,6 @@
     return PSPDFLocalize(@"Zoom to Area");
 }
 
-- (void)updateEyeButton {
-    [self.pdfController updateBarButtonItem:self animated:YES];
-}
-
 - (BOOL)cleanup {
     if (self.selectionView) {
         PSPDFViewController *pdfController = self.pdfController;
@@ -67,7 +63,8 @@
         self.selectionView = [[PSPDFSelectionView alloc] initWithFrame:pageView.bounds delegate:self];
         [pageView addSubview:self.selectionView];
     }
-    [self updateEyeButton];
+#warning TODO
+//    [self updateEyeButton];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +74,8 @@
     PSPDFViewController *pdfController = self.pdfController;
     [pdfController zoomToRect:rect page:pdfController.page animated:YES];
     [self cleanup];
-    [self updateEyeButton];
+#warning TODO
+//    [self updateEyeButton];
 }
 
 @end
