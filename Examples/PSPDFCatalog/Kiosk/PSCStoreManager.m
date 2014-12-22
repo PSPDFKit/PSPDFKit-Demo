@@ -28,7 +28,8 @@
 @implementation PSCStoreManager
 
 NSString *const PSCStoreDiskLoadFinishedNotification =  @"PSCStoreDiskLoadFinishedNotification";
-static char PSCKVOToken; // we need a static address for the KVO token
+// We need a static address for the KVO token
+static char PSCKVOToken;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
@@ -233,13 +234,11 @@ static char PSCKVOToken; // we need a static address for the KVO token
     if ([magazine coverImageForSize:CGSizeZero]) {
 
         // example how to create blended cover + overlay
-        /*
-         UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0f);
-         [magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
-         [[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
-         newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
-         UIGraphicsEndImageContext();
-         */
+        //UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0f);
+        //[magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
+        //[[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
+        //newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
+        //UIGraphicsEndImageContext();
         newsstandCoverImage = [magazine coverImageForSize:CGSizeMake(170.f, 220.f)];
     }
 

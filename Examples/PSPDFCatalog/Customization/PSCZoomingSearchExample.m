@@ -77,7 +77,7 @@
 
 - (void)zoomToSearchResult:(PSPDFSearchResult *)searchResult {
     CGRect viewRect = [[self pageViewForPage:searchResult.pageIndex] convertPDFRectToViewRect:searchResult.selection.frame];
-    //    viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
+    //viewRect = CGRectInset(viewRect, 20.f, 20.f); // leave some space
     [self zoomToRect:viewRect page:searchResult.pageIndex animated:YES];
 }
 

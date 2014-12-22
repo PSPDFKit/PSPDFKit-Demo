@@ -61,7 +61,7 @@
 - (PSPDFViewState *)lastViewState {
     PSPDFViewState *viewState = nil;
 
-    // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error.)
+    // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error).
     if (self.isValid) {
         NSData *viewStateData = [NSUserDefaults.standardUserDefaults objectForKey:self.UID];
         @try {

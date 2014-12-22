@@ -300,7 +300,8 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
     PSCLog(@"Page %tu tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
 
-    return NO; // touch not used.
+    // touch not used.
+    return NO;
 }
 
 static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
@@ -323,7 +324,9 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
         PSCLog(@"Page %tu long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSCGestureStateToString(gestureRecognizer.state));
     }
-    return NO; // Touch not used.
+
+    // touch not used.
+    return NO;
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
@@ -414,7 +417,7 @@ static id PSCControllerForClass(id theController, Class klass) {
 
 // Annotations
 
-/// Called before an annotation will be selected. (but after didTapOnAnnotation)
+/// Called before an annotation will be selected (but after didTapOnAnnotation).
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
     PSCLog(@"should select %@?", annotation);
     return YES;

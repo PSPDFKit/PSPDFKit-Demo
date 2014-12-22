@@ -49,7 +49,8 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint {
 
     [[[UIAlertView alloc] initWithTitle:@"Annotation tapped!" message:annotation.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    return YES; // mark as processed, else annotation might get selected.
+    // mark as processed, else annotation might get selected.
+    return YES;
 }
 
 @end

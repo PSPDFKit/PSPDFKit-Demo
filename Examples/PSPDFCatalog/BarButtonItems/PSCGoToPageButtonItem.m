@@ -52,7 +52,8 @@
             if (pageLabel.length > 0 && [pageLabel rangeOfCharacterFromSet:[NSCharacterSet.decimalDigitCharacterSet invertedSet]].length == 0) {
                 pageIndex = pageLabel.integerValue;
                 if (pageIndex == 0) pageIndex = NSNotFound; // 0 is invalid!
-                else pageIndex--; // convert from user-page (starts at 1) to system (starts at 0)
+                // convert from user-page (starts at 1) to system (starts at 0)
+                else pageIndex--;
             }
         }
 

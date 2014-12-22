@@ -32,7 +32,8 @@
         self.contentDescription = @"Uses a split view controller to show the outline/annotation/bookmark/search view controller in an always-visible sidebar for landscape mode.";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 1;
-        self.targetDevice = PSCExampleTargetDeviceMaskPad; // Split view is iPad only.
+        // Split view is iPad only.
+        self.targetDevice = PSCExampleTargetDeviceMaskPad;
     }
     return self;
 }

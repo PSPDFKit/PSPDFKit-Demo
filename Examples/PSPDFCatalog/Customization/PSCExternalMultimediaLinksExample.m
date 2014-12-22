@@ -11,10 +11,8 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-/**
- This example should illustrate how you can mix external annotations from a server with user annotations.
- Here we use the fact that it's quite uncommon for users to create link annotations, and we don't allow that anyway.
- */
+// This example should illustrate how you can mix external annotations from a server with user annotations.
+// Here we use the fact that it's quite uncommon for users to create link annotations, and we don't allow that anyway.
 @interface PSCExternalMultimediaLinksExample : PSCExample @end
 @implementation PSCExternalMultimediaLinksExample
 
@@ -29,8 +27,10 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
 
-    document.UID = @"multimedia_with_user_annotations"; // give it a unique ID so this example doesn't mix with others.
-    document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile; // we want to save this into external storage.
+    // give it a unique ID so this example doesn't mix with others.
+    document.UID = @"multimedia_with_user_annotations";
+    // we want to save this into external storage.
+    document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
 
     // Define an image gallery button (as link annotation)
     // Since link annotations are excluded by default in `saveableTypes` of the `PSPDFFileAnnotationProvider`,

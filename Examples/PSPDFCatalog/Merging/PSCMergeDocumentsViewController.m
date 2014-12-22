@@ -334,7 +334,9 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)commonInitWithDocument:(PSPDFDocument *)document configuration:(PSPDFConfiguration *)configuration {
     configuration = [configuration configurationUpdatedWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         builder.HUDViewMode = PSPDFHUDViewModeAlways;
-        builder.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
+
+        // prevent two-page mode.
+        builder.pageMode = PSPDFPageModeSingle;
 
         // We already set the title at controller generation time.
         builder.allowToolbarTitleChange = NO;
@@ -347,7 +349,9 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     }];
     [super commonInitWithDocument:document configuration:configuration];
 
-    self.leftBarButtonItems = nil; // hide close button
+    // hide close button
+    self.leftBarButtonItems = nil;
+    
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 
     // If the annotation toolbar is invoked, there's not enough space for the default configuration.

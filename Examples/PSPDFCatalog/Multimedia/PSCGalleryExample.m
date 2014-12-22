@@ -181,9 +181,12 @@
     PSPDFURLAction *videoAction = [[PSPDFURLAction alloc] initWithURLString:@"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480"];
 
     // Create action that opens a sheet.
-    NSDictionary *options = @{PSPDFActionOptionControls : @NO, // Disable browser controls.
-                              PSPDFActionOptionSize : [NSValue valueWithCGSize:CGSizeMake(620.f, 400.f)] // Will present as sheet on iPad, is ignored on iPhone.
-                              };
+    NSDictionary *options = @{
+        // Disable browser controls.
+        PSPDFActionOptionControls: @NO,
+        // Will present as sheet on iPad, is ignored on iPhone.
+        PSPDFActionOptionSize: [NSValue valueWithCGSize:CGSizeMake(620.f, 400.f)]
+    };
     PSPDFURLAction *sheetVideoAction = [[PSPDFURLAction alloc] initWithURL:videoAction.URL options:options];
 
     // First example - use a special link annotation.
