@@ -129,7 +129,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return (UIViewController *)[PSCTabbedExampleViewController new];
         } else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
             objc_setAssociatedObject(documentSelector, &PSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
@@ -137,7 +137,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" description:@"Displays all files in the Inbox directory via the PSPDFDocumentPickerController." block:^{
         // Add all documents in the Documents folder and subfolders (e.g. Inbox from Open In... feature)
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
