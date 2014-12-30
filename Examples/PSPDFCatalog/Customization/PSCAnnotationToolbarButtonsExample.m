@@ -36,7 +36,7 @@
 
 // Custom annotation toolbar subclass that adds a "Clear" button that removes all visible annotations OR the current drawing view state.
 @interface PSCCustomButtonAnnotationToolbar ()
-@property (nonatomic, strong) PSPDFFlexibleToolbarButton *clearAnnotationsButton;
+@property (nonatomic, strong) PSPDFToolbarButton *clearAnnotationsButton;
 @end
 
 @implementation PSCCustomButtonAnnotationToolbar
@@ -58,7 +58,7 @@
 
         // Add clear button
 		UIImage *clearImage = [PSPDFBundleImage(@"trash") imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        _clearAnnotationsButton = [PSPDFFlexibleToolbarButton new];
+        _clearAnnotationsButton = [PSPDFToolbarButton new];
 		[_clearAnnotationsButton setImage:clearImage];
 		[_clearAnnotationsButton addTarget:self action:@selector(clearButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
