@@ -29,7 +29,7 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
-    PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+    PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
     UINavigationController *documentsNavController = [[UINavigationController alloc] initWithRootViewController:documentsController];
     return [self presentViewController:documentsNavController sender:sender];
 }
