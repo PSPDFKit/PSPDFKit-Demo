@@ -103,7 +103,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:YES];
     }]];
     [sheetController addCancelActionWithHandler:nil];
-    [sheetController showWithSender:sender controller:self animated:YES completion:nil];
+    [sheetController showWithSender:sender controller:self animated:YES completion:NULL];
 }
 
 - (void)createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:(BOOL)flattened {

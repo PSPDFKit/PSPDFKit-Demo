@@ -118,7 +118,7 @@ static const char PSCSignatureCompletionBlock;
             PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
             [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
         }]];
-        [flattenAlert showWithSender:nil controller:nil animated:YES completion:nil];
+        [flattenAlert showWithSender:nil controller:nil animated:YES completion:NULL];
     };
 
     objc_setAssociatedObject(signatureController, &PSCSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);

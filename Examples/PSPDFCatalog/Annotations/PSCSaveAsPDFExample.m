@@ -114,7 +114,7 @@
     [alertController addAction:[PSTAlertAction actionWithTitle:@"Save as Copy" handler:^(PSTAlertAction *action) {
         [self replaceDocumentWithCopy];
     }]];
-    [alertController showWithSender:nil controller:self animated:YES completion:nil];
+    [alertController showWithSender:nil controller:self animated:YES completion:NULL];
 }
 
 - (void)replaceDocumentWithCopy {
