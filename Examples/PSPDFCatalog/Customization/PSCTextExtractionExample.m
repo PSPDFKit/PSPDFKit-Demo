@@ -26,7 +26,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+    PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
     documentSelector.fullTextSearchEnabled = YES;
     return documentSelector;
 }
@@ -80,7 +80,7 @@
         [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
     }]];
     [websitePrompt addCancelActionWithHandler:nil];
-    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:NULL];
 
     return nil;
 }
@@ -140,7 +140,7 @@
         }];
     }]];
     [websitePrompt addCancelActionWithHandler:nil];
-    [websitePrompt showWithSender:nil controller:nil animated:YES completion:nil];
+    [websitePrompt showWithSender:nil controller:nil animated:YES completion:NULL];
 
     return nil;
 }
