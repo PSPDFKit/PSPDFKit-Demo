@@ -164,7 +164,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
             // Just being lazy here, this could be size differently.
             headerView.userInteractionEnabled = YES;
             CGFloat segmentBarWidth = self.filterSegment.frame.size.width;
-            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((UICollectionViewFlowLayout *)self.layout).sectionInset.top, segmentBarWidth, 32.f));
+            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((UICollectionViewFlowLayout *)self.collectionViewLayout).sectionInset.top, segmentBarWidth, 32.f));
         }
         return headerView;
     }
