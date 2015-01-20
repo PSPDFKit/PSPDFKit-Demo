@@ -16,3 +16,5 @@
 - (instancetype)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style block:(void (^)(id sender))block;
 
 @end
+
+extern void (^PSCTargetActionBlock(id target, SEL action))(id);

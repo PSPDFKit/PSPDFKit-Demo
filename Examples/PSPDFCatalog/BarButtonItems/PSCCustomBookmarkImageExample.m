@@ -11,6 +11,8 @@
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
 
+/*
+ 
 @interface PSCCustomBookmarkImageExample : PSCExample @end
 @interface PSCCustomBookmarkBarButtonItem : PSPDFBookmarkBarButtonItem @end
 
@@ -60,3 +62,5 @@
 }
 
 @end
+
+*/

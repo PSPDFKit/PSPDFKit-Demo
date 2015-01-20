@@ -11,7 +11,7 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCCustomOutlineBarButtonItem : PSPDFOutlineBarButtonItem @end
+@interface PSCCustomDocumentInfoCoordinator : PSPDFDocumentInfoCoordinator @end
 @interface PSCCustomOutlineViewController : UIViewController @end
 
 @interface PSCCustomOutlineControllerExample : PSCExample @end
@@ -29,7 +29,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
-        [builder overrideClass:PSPDFOutlineBarButtonItem.class withClass:PSCCustomOutlineBarButtonItem.class];
+        [builder overrideClass:PSPDFDocumentInfoCoordinator.class withClass:PSCCustomDocumentInfoCoordinator.class];
     }]];
     return pdfController;
 }
@@ -39,7 +39,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCCustomOutlineBarButtonItem
 
-@implementation PSCCustomOutlineBarButtonItem
+@implementation PSCCustomDocumentInfoCoordinator
 
 - (NSString*)titleForOption:(PSPDFOutlineBarButtonItemOption)option {
     return (option == PSPDFOutlineBarButtonItemOptionOutline) ? @"Custom Outline" : [super titleForOption:option];

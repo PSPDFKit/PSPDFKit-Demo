@@ -131,7 +131,7 @@
     BOOL annotationsFound = NO;
     if (self.annotationStateManager.drawViews.count == 0) {
         PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
-        for (NSNumber *pageNumber in pdfController.calculatedVisiblePageNumbers) {
+        for (NSNumber *pageNumber in pdfController.visiblePagesCalculated) {
             NSArray *annotations = [pdfController.document annotationsForPage:pageNumber.unsignedIntegerValue type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
             if (annotations.count > 0) {
                 annotationsFound = YES;

@@ -72,10 +72,10 @@
         PSPDFWebViewController *browser = [[PSPDFWebViewController alloc] initWithURL:[NSURL URLWithString:URLString]];
         browser.delegate = pdfController;
         browser.preferredContentSize = CGSizeMake(600.f, 500.f);
-        [pdfController presentViewController:browser options:@{PSPDFPresentationRectKey : BOXED(rect),
-                                                               PSPDFPresentationInNavigationControllerKey : @YES,
-                                                               PSPDFPresentationCloseButtonKey : @YES}
-                                      animated:YES sender:nil completion:NULL];
+        [pdfController presentViewController:browser options:@{PSPDFPresentationRectKey: BOXED(rect),
+                                                               PSPDFPresentationInNavigationControllerKey: @YES,
+                                                               PSPDFPresentationCloseButtonKey: @YES}
+                                      animated:YES sender:nil error:NULL completion:NULL];
 
     } identifier:@"Google"];
     [newMenuItems addObject:googleItem];

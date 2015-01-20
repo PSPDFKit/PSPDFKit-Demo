@@ -65,7 +65,7 @@
         PSPDFDocumentPickerController *documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
         __weak PSPDFViewController *weakPDFController = pdfController;
         UIBarButtonItem *pickerButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Document" style:UIBarButtonItemStyleBordered block:^(id sender) {
-            [weakPDFController presentViewController:documentPicker options:@{PSPDFPresentationInNavigationControllerKey : @YES} animated:YES sender:sender completion:NULL];
+            [weakPDFController presentViewController:documentPicker options:@{PSPDFPresentationInNavigationControllerKey: @YES} animated:YES sender:sender error:NULL completion:NULL];
         }];
         self.pickerButtonItem = pickerButtonItem;
 
@@ -76,10 +76,14 @@
         UINavigationController *navPDFController = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
         // Set up the controller for annotations/outline/bookmarks/search.
-        PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:document delegate:pdfController];
-        PSPDFBookmarkViewController *bookmarkController = [[PSPDFBookmarkViewController alloc] initWithDocument:document delegate:pdfController];
-        PSPDFAnnotationTableViewController *annotationController = [[PSPDFAnnotationTableViewController alloc] initWithDocument:document delegate:pdfController];
-        PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:document delegate:pdfController];
+        PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:document];
+        outlineController.delegate = pdfController;
+        PSPDFBookmarkViewController *bookmarkController = [[PSPDFBookmarkViewController alloc] initWithDocument:document];
+        bookmarkController.delegate = pdfController;
+        PSPDFAnnotationTableViewController *annotationController = [[PSPDFAnnotationTableViewController alloc] initWithDocument:document];
+        annotationController.delegate = pdfController;
+        PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:document];
+        searchController.delegate = pdfController;
         searchController.pinSearchBarToHeader = YES;
 
         // Create the container controller.

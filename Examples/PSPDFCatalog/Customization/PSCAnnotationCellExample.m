@@ -10,6 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
+#import "UIBarButtonItem+PSCBlockSupport.h"
 
 @interface PSCAnnotationCell : PSPDFAnnotationCell
 @property (nonatomic, strong) UIButton *shareButton;
@@ -47,11 +48,11 @@
         [builder overrideClass:PSPDFAnnotationToolbar.class withClass:PSCAnnotationToolbar.class];
         [builder overrideClass:PSPDFAnnotationStateManager.class withClass:PSCCustomAnnotationStateManager.class];
     }]];
-    pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
+    pdfController.documentInfoCoordinator.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
 
     // Automate pressing the outline button.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [pdfController.outlineButtonItem action:pdfController.outlineButtonItem];
+        PSCTargetActionBlock(pdfController.outlineButtonItem.target, pdfController.outlineButtonItem.action)(nil);
     });
 
     return pdfController;

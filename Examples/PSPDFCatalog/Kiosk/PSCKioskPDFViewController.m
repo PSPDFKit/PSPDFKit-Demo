@@ -12,12 +12,11 @@
 #import "PSCMagazine.h"
 #import "PSCSettingsController.h"
 #import "PSCGridViewController.h"
-#import "PSCSettingsBarButtonItem.h"
 #import "PSCAvailability.h"
+#import "PSPDFActivityViewController.h"
 
 #ifdef PSPDFCatalog
-#import "PSCGoToPageButtonItem.h"
-#import "PSCMetadataBarButtonItem.h"
+#import "PSCMetadataViewController.h"
 #endif
 
 #if !__has_feature(objc_arc)
@@ -27,8 +26,8 @@
 @interface PSCKioskPDFViewController ()
 @property (nonatomic, strong) UIBarButtonItem *closeButtonItem;
 #ifdef PSPDFCatalog
-@property (nonatomic, strong) PSCSettingsBarButtonItem *settingsButtonItem;
-@property (nonatomic, strong) PSCMetadataBarButtonItem *metadataButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *settingsButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *metadataButtonItem;
 #endif
 @end
 
@@ -103,8 +102,10 @@
 	}
 
 #ifdef PSPDFCatalog
-	self.settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-	self.metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+    self.settingsButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] landscapeImagePhone:[UIImage imageNamed:@"settings-landscape"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed:)];
+    self.settingsButtonItem.accessibilityLabel = NSLocalizedString(@"Options", @"");
+
+    self.metadataButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Metadata", @"") style:UIBarButtonItemStylePlain target:self action:@selector(metadataButtonPressed:)];
 #endif
 
 	[super viewWillAppear:animated];
@@ -136,6 +137,25 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
+
+- (void)settingsButtonPressed:(id)sender {
+    PSCSettingsController *settingsController = [PSCSettingsController new];
+    PSPDFViewController *pdfController = self.pdfController;
+    settingsController.owningViewController = pdfController;
+
+    // We need to set this to YES to give view controllers presented by settingsController popover, like `PSPDFWebViewController`, access to the status bar.
+    settingsController.modalPresentationCapturesStatusBarAppearance = YES;
+
+    [self presentViewController:settingsController options:@{PSPDFPresentationModalStyleKey: @(UIModalPresentationPopover),
+                                                             PSPDFPresentationCloseButtonKey: @(!PSPDFSupportsPopover()),
+                                                             PSPDFPresentationInNavigationControllerKey: @(!PSPDFSupportsPopover())}
+                                       animated:YES sender:sender error:NULL completion:NULL];
+}
+
+- (void)metadataButtonPressed:(id)sender {
+    PSCMetadataViewController *metadataController = [[PSCMetadataViewController alloc] initWithDocument:self.pdfController.document];
+    [self presentViewController:metadataController options:@{PSPDFPresentationInNavigationControllerKey: @YES} animated:YES sender:sender error:NULL completion:NULL];
+}
 
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
@@ -175,9 +195,6 @@
         }
     }
 
-    if ([settings[PROPERTY(additionalActionsButtonItem)] boolValue]) {
-        [rightBarButtonItems addObject:self.additionalActionsButtonItem];
-    }
     if ([settings[PROPERTY(brightnessButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.brightnessButtonItem];
     }
@@ -226,12 +243,10 @@
 #endif
 
 #ifdef PSPDFCatalog
-    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
+    //[additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
 
-    if (![settings[PROPERTY(activityButtonItem)] boolValue]) {
-        self.additionalBarButtonItems = additionalRightBarButtonItems;
-    } else {
-        self.activityButtonItem.applicationActivities = activities;
+    if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
+        self.applicationActivities = activities;
     }
 #endif
 
