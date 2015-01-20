@@ -522,12 +522,12 @@ static CGFloat pscSettingsLastYOffset = 0;
     UITextView *configView = [UITextView new];
 
     NSMutableString *text = [NSMutableString string];
-    NSOrderedSet *visiblePageNumbers = pdfController.visiblePageNumbers;
-    for (NSNumber *pageNumber in visiblePageNumbers) {
+    NSOrderedSet *visiblePages = pdfController.visiblePages;
+    for (NSNumber *pageNumber in visiblePages) {
         NSUInteger page = [pageNumber unsignedIntegerValue];
-        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %tu:\n\n", page+1];
+        if (visiblePages.count > 1) [text appendFormat:@"Page %tu:\n\n", page+1];
         [text appendString:[pdfController.document textParserForPage:page].text];
-        if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
+        if (visiblePages.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }
     NSLog(@"text: %@", text);
     configView.text = text;
@@ -536,11 +536,12 @@ static CGFloat pscSettingsLastYOffset = 0;
     configViewController.view = configView;
 
     [pdfController presentViewController:configViewController
-                                 options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal),
-                                           PSPDFPresentationInNavigationControllerKey : @YES,
-                                           PSPDFPresentationCloseButtonKey : @YES}
+                                 options:@{PSPDFPresentationStyleKey: @(PSPDFPresentationStyleModal),
+                                           PSPDFPresentationInNavigationControllerKey: @YES,
+                                           PSPDFPresentationCloseButtonKey: @YES}
                                 animated:YES
                                   sender:nil
+                                   error:NULL
                               completion:NULL];
 }
 

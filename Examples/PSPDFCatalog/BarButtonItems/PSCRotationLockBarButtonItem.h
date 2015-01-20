@@ -8,5 +8,5 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@interface PSCRotationLockBarButtonItem : PSPDFBarButtonItem
-@end
+//@interface PSCRotationLockBarButtonItem : PSPDFBarButtonItem
+//@end

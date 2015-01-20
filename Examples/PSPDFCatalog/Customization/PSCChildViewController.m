@@ -65,8 +65,12 @@
     NSMutableArray *toolbarItems = [NSMutableArray array];
     [toolbarItems addObjectsFromArray:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)], flexibleSpace, self.pdfController.searchButtonItem]];
     
-    if ([self.pdfController.outlineButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.outlineButtonItem]];
-    if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.annotationButtonItem]];
+    if (self.pdfController.document.outlineParser.isOutlineAvailable) {
+        [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.outlineButtonItem]];
+    }
+    if (self.pdfController.document.canSaveAnnotations) {
+        [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.annotationButtonItem]];
+    }
     [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.bookmarkButtonItem]];
     
     toolbar.items = toolbarItems;

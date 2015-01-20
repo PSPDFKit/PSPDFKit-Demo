@@ -38,8 +38,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFSecurityAuditor
 
-- (BOOL)hasPermissionForEvent:(PSPDFPolicyEvent)event isUserAction:(BOOL)isUserAction {
-    if (event == PSPDFPolicyEventPasteboard) {
+- (BOOL)hasPermissionForEvent:(NSString *)event isUserAction:(BOOL)isUserAction {
+    if ([event isEqualToString:PSPDFPolicyEventPasteboard]) {
         return NO;
     }
     return YES;

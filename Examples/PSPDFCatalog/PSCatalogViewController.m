@@ -40,6 +40,7 @@
 #import "PSCViewHelper.h"
 #import "UIColor+PSCDefaults.h"
 #import "NSArray+PSCIndexSet.h"
+#import "PSPDFActivityViewController.h"
 #import <objc/runtime.h>
 
 // Crypto support
@@ -115,7 +116,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             builder.pageLabelEnabled = NO;
         }]];
 
-        controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn];
+        controller.applicationActivities = @[PSPDFActivityTypeOpenIn];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.activityButtonItem];
         return controller;
     }]];
@@ -159,11 +160,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }]];
 
         // Setup toolbar
-        controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
+        controller.documentInfoCoordinator.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         controller.HUDView.pageLabel.showThumbnailGridButton = YES;
-        controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+        controller.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
         controller.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithArray:@[@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterBookmarks)]];
@@ -188,7 +189,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
-        controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
+        controller.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -513,7 +514,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(hackerMagURL, YES);
         PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument documentWithURL:newURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-		controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
+		controller.annotationToolbarController.annotationToolbar.saveAfterToolbarHiding = YES;
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
@@ -545,6 +546,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
+    /*
     [subclassingSection addContent:[PSContent contentWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
@@ -556,6 +558,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
+     */
 
     // Helps in case you want to add custom subviews but still have drawings on top of everything
     [subclassingSection addContent:[PSContent contentWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
@@ -598,7 +601,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeObject:PSPDFAnnotationStringInk];
-		pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
+		pdfController.annotationToolbarController.annotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
     }]];
 
@@ -1645,8 +1648,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     } else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = pageIndex;
-        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+        pdfController.rightBarButtonItems = @[pdfController.activityButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         [controller.navigationController pushViewController:pdfController animated:YES];
     }
 }

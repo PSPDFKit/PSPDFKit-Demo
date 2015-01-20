@@ -8,6 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
+/*
 #import "PSCPlayBarButtonItem.h"
 
 @interface PSCPlayBarButtonItem ()
@@ -60,7 +61,7 @@
 }
 
 - (void)playPauseAction:(id)sender {
-    [self.class dismissPopoverAnimated:NO completion:NULL];
+    [self.pdfController dismissViewControllerAnimated:YES class:nil completion:NULL];
 
     if (!self.isAutoplaying) {
         _autoplaying = YES;
@@ -101,3 +102,4 @@
 }
 
 @end
+ */

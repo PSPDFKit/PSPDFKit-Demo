@@ -69,10 +69,15 @@
 #endif
 
     // Configure callback for Open In Chrome feature. Optional.
-    PSPDFKit.sharedInstance[PSPDFXCallbackURLString] = @"pspdfcatalog://";
+    PSPDFKit.sharedInstance[PSPDFXCallbackURLStringKey] = @"pspdfcatalog://";
 
     // Create catalog controller delayed because we also dynamically load the license key.
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+
+//    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+//    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pspdfkit_playground.pdf"]];
+//    PSPDFViewController *catalogController = [[PSPDFViewController alloc] initWithDocument:document];
+
     // PSPDFNavigationController is a simple subclass that forwards iOS 6+ rotation methods.
     self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
     self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -113,7 +118,6 @@
 - (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
     return pdfController;
 }
 
