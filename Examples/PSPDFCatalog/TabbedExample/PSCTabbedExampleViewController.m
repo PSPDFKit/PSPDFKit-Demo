@@ -66,7 +66,7 @@
 #pragma mark - Private
 
 - (void)addDocumensButtonPressed:(id)sender {
-    PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+    PSPDFDocumentPickerController *documentsController = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
     [self.pdfController presentViewController:documentsController options:@{PSPDFPresentationInNavigationControllerKey: @YES} animated:YES sender:sender error:NULL completion:NULL];
 }
 
