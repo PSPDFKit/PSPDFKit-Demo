@@ -1538,6 +1538,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
 	[[UITableView appearance] setSectionIndexColor:brandColor];
 	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
+    // The accessory view leaves on the keyboard window, so it doesn't auto inherit the window tint color
+    [[PSPDFFreeTextAccessoryView appearance] setTintColor:brandColor];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
