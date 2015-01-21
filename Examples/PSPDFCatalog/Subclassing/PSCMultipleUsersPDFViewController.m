@@ -34,7 +34,7 @@
 
     // Set custom toolbar button.
     [self updateCustomToolbar];
-    self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
+    self.documentInfoCoordinator.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 }
 
@@ -57,7 +57,7 @@
 // This could be a lot sexier - e.g. showing all available users in a nice table with edit/delete all etc.
 - (void)switchUser {
     // Dismiss any popovers. iOS 8 doesn't like presenting alerts next to them.
-    [self dismissPopoverAnimated:YES class:nil completion:nil];
+    [self dismissPopoverAnimated:YES class:nil completion:NULL];
 
     // Save existing documents.
     [self.document saveAnnotationsWithError:NULL];
@@ -84,7 +84,7 @@
         // And finally - redraw the PDF.
         [self reloadData];
     }]];
-    [alertController showWithSender:nil controller:self animated:YES completion:nil];
+    [alertController showWithSender:nil controller:self animated:YES completion:NULL];
 }
 
 @end

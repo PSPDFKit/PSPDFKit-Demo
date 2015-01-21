@@ -103,7 +103,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:YES];
     }]];
     [sheetController addCancelActionWithHandler:nil];
-    [sheetController showWithSender:sender controller:self animated:YES completion:nil];
+    [sheetController showWithSender:sender controller:self animated:YES completion:NULL];
 }
 
 - (void)createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:(BOOL)flattened {
@@ -138,7 +138,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 				[status popAnimated:YES];
                 if (data) {
                     [mailViewController addAttachmentData:data mimeType:@"application/pdf" fileName:@"SelectedPages.pdf"];
-                    [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey : @(PSPDFPresentationStyleModal)} animated:YES sender:nil completion:NULL];
+                    [((PSPDFViewController *)self.parentViewController) presentViewController:mailViewController options:@{PSPDFPresentationStyleKey: @(PSPDFPresentationStyleModal)} animated:YES sender:nil error:NULL completion:NULL];
                 } else {
                     // Handle error state
                     [PSTAlertController presentDismissableAlertWithTitle:@"Failed to extract pages" message:error.localizedDescription controller:self];
@@ -164,7 +164,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
             // Just being lazy here, this could be size differently.
             headerView.userInteractionEnabled = YES;
             CGFloat segmentBarWidth = self.filterSegment.frame.size.width;
-            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((UICollectionViewFlowLayout *)self.layout).sectionInset.top, segmentBarWidth, 32.f));
+            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((UICollectionViewFlowLayout *)self.collectionViewLayout).sectionInset.top, segmentBarWidth, 32.f));
         }
         return headerView;
     }

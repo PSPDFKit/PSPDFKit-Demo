@@ -43,7 +43,7 @@
         PSPDFDocumentSharingViewController *sharingController = (PSPDFDocumentSharingViewController *)[(UINavigationController *)controller topViewController];
 
         // Only modify if we're printing. This controller is used for mail or open in as well.
-        if (sharingController.delegate == pdfController.printButtonItem) {
+        if ([sharingController.delegate isKindOfClass:PSPDFPrintCoordinator.class]) {
             sharingController.selectedOptions = PSPDFDocumentSharingOptionAnnotationsSummary|PSPDFDocumentSharingOptionCurrentPageOnly;
         }
     }

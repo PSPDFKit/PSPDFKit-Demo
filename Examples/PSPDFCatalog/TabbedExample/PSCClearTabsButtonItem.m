@@ -33,7 +33,7 @@
         PSPDFTabbedViewController *tabbedController = self.tabbedController;
         [tabbedController removeDocuments:tabbedController.documents animated:animated];
     }]];
-    [sheetController showWithSender:sender controller:pdfController animated:animated completion:nil];
+    [sheetController showWithSender:sender controller:pdfController animated:animated completion:NULL];
     return sheetController;
 }
 

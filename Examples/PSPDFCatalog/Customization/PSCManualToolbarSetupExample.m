@@ -94,10 +94,11 @@
 	// PSPDFAnnotationBarButtonItem. Note that PSPDFAnnotationBarButtonItem handles quite a fiew more
 	// cases and should in general be prefered to this simple toolbar setup.
 
-    //if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObject:self.pdfController.annotationButtonItem];
-
 	// It's still a good idea to check if annotations are avaialble
-	if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(toggleToolbar:)]];
+    if (self.pdfController.document.canSaveAnnotations) {
+        [toolbarItems addObject:self.pdfController.annotationButtonItem];
+        [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(toggleToolbar:)]];
+    }
 
     toolbar.items = toolbarItems;
     [self.view addSubview:toolbar];
@@ -140,7 +141,7 @@
 	[self.view addSubview:container];
     self.flexibleToolbarContainer = container;
 
-	[container showAnimated:YES completion:nil];
+	[container showAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +181,7 @@
 #pragma mark - Private
 
 - (void)doneButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

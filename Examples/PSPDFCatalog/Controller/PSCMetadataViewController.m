@@ -1,48 +1,18 @@
 //
-//  PSCMetadataBarButtonItem.m
-//  PSPDFCatalog
+//  PSCMetadataViewController.m
+//  PSPDFKit
 //
-//  Copyright (c) 2012-2015 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2014-2015 PSPDFKit GmbH. All rights reserved.
 //
-//  The PSPDFKit Sample applications are licensed with a modified BSD license.
-//  Please see License for details. This notice may not be removed from this file.
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+//  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+//  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+//  This notice may not be removed from this file.
 //
 
-#import "PSCMetadataBarButtonItem.h"
+#import "PSCMetadataViewController.h"
 
-@interface PSCMetadataController : UITableViewController
-- (instancetype)initWithDocument:(PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
-@property (nonatomic, weak) PSPDFDocument *document;
-@end
-
-@implementation PSCMetadataBarButtonItem {
-    UIImage *_buttonImage;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFBarButtonItem
-
-- (BOOL)isAvailable {
-    return self.pdfController.document.metadata.count > 0;
-}
-
-- (NSString *)actionName {
-    return NSLocalizedString(@"Metadata", @"");
-}
-
-- (UIBarButtonSystemItem)systemItem {
-    return UIBarButtonSystemItemOrganize;
-}
-
-- (id)presentAnimated:(BOOL)animated sender:(id)sender {
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[PSCMetadataController alloc] initWithDocument:self.pdfController.document]];
-    navController.topViewController.title = [self actionName];
-    return [self presentViewController:navController sender:sender];
-}
-
-@end
-
-@implementation PSCMetadataController
+@implementation PSCMetadataViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -50,7 +20,7 @@
 - (instancetype)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super init])) {
         _document = document;
-        self.title = [document.fileURL lastPathComponent];
+        self.title = NSLocalizedString(@"Metadata", @"");
         self.preferredContentSize = CGSizeMake(350.f, document.metadata.count * 44.f);
     }
     return self;
@@ -91,7 +61,7 @@
     static NSString *cellID = @"PSCMetadataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-    	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

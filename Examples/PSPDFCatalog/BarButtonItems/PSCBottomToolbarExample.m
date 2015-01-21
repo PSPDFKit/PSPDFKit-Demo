@@ -37,7 +37,7 @@
         builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
     }]];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-    pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
+    //pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
     pdfController.leftBarButtonItems = nil;
     pdfController.rightBarButtonItems = nil; // Important! BarButtonItems can only be displayed at one location.
     pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];

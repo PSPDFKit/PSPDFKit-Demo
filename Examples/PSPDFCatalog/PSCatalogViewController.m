@@ -40,6 +40,7 @@
 #import "PSCViewHelper.h"
 #import "UIColor+PSCDefaults.h"
 #import "NSArray+PSCIndexSet.h"
+#import "PSPDFActivityViewController.h"
 #import <objc/runtime.h>
 
 // Crypto support
@@ -116,7 +117,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             builder.pageLabelEnabled = NO;
         }]];
 
-        controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn];
+        controller.applicationActivities = @[PSPDFActivityTypeOpenIn];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.activityButtonItem];
         return controller;
     }]];
@@ -130,7 +131,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return (UIViewController *)[PSCTabbedExampleViewController new];
         } else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
             objc_setAssociatedObject(documentSelector, &PSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
@@ -138,7 +139,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" description:@"Displays all files in the Inbox directory via the PSPDFDocumentPickerController." block:^{
         // Add all documents in the Documents folder and subfolders (e.g. Inbox from Open In... feature)
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFKit.sharedInstance.library delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
@@ -160,11 +161,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }]];
 
         // Setup toolbar
-        controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
+        controller.documentInfoCoordinator.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         controller.HUDView.pageLabel.showThumbnailGridButton = YES;
-        controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
+        controller.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
         controller.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithArray:@[@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterBookmarks)]];
@@ -189,7 +190,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
-        controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
+        controller.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -514,7 +515,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(hackerMagURL, YES);
         PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument documentWithURL:newURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-		controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
+		controller.annotationToolbarController.annotationToolbar.saveAfterToolbarHiding = YES;
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
@@ -546,6 +547,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
+    /*
     [subclassingSection addContent:[PSContent contentWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
@@ -557,6 +559,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
+     */
 
     // Helps in case you want to add custom subviews but still have drawings on top of everything
     [subclassingSection addContent:[PSContent contentWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
@@ -599,7 +602,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeObject:PSPDFAnnotationStringInk];
-		pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
+		pdfController.annotationToolbarController.annotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
     }]];
 
@@ -693,7 +696,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *doc2 = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"B.pdf"]];
         PSPDFDocument *doc3 = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"C.pdf"]];
         PSPDFDocument *doc4 = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"D.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
+        PSPDFMultiDocumentPDFViewController *pdfController = [[PSPDFMultiDocumentPDFViewController alloc] initWithDocument:nil];
         PSPDFMultiDocumentViewController *pdfMultiDocController = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController];
         pdfMultiDocController.documents = @[doc1, doc2, doc3, doc4];
         pdfMultiDocController.visibleDocument = doc1;
@@ -1539,6 +1542,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 	// We need to style the section index, otherwise we can end up with white text on a white-ish background.
 	[[UITableView appearance] setSectionIndexColor:brandColor];
 	[[UITableView appearance] setSectionIndexBackgroundColor:UIColor.clearColor];
+    // The accessory view leaves on the keyboard window, so it doesn't auto inherit the window tint color
+    [[PSPDFFreeTextAccessoryView appearance] setTintColor:brandColor];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -1646,8 +1651,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     } else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = pageIndex;
-        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+        pdfController.rightBarButtonItems = @[pdfController.activityButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         [controller.navigationController pushViewController:pdfController animated:YES];
     }
 }

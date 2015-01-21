@@ -74,33 +74,33 @@
     document.editableAnnotationTypes = nil; // disable free text editing here as we use them as labels.
 
     {
-        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline\nPSPDFActionOptionButton : @YES"];
+        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline\nPSPDFActionOptionButtonKey : @YES"];
         galleryText.boundingBox = CGRectMake(20.f, 700.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
 
-        // @{PSPDFActionOptionButton : @"pspdfkit://localhost/Bundle/eye.png"};
+        // @{PSPDFActionOptionButtonKey : @"pspdfkit://localhost/Bundle/eye.png"};
         // Setting the button option to yes will show the default button.
-        PSPDFURLAction *galleryAction = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"] options:@{PSPDFActionOptionButton : @YES}];
+        PSPDFURLAction *galleryAction = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"] options:@{PSPDFActionOptionButtonKey : @YES}];
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithAction:galleryAction];
         galleryAnnotation.boundingBox = CGRectMake(200.f, 560.f, 400.f, 300.f);
         [document addAnnotations:@[galleryText, galleryAnnotation]];
     }
 
     {
-        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/2W1d020O1N2g/webimage2@2x.png\""];
+        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline with a custom button image\nPSPDFActionOptionButtonKey : @\"http://cl.ly/image/2W1d020O1N2g/webimage2@2x.png\""];
         galleryText.boundingBox = CGRectMake(20.f, 400.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
 
         // Setting the button option to an URL will load this URL. The URL can be local or remote. Use pspdfkit://localhost for local URLs.
-        PSPDFAction *action = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"] options:@{PSPDFActionOptionButton : @"http://cl.ly/image/1h2N1r333N0V/webimage2@2x.png"}];
+        PSPDFAction *action = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://localhost/Bundle/sample.gallery"] options:@{PSPDFActionOptionButtonKey : @"http://cl.ly/image/1h2N1r333N0V/webimage2@2x.png"}];
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithAction:action];
         galleryAnnotation.boundingBox = CGRectMake(200.f, 350.f, 250.f, 200.f);
         [document addAnnotations:@[galleryText, galleryAnnotation]];
     }
 
     {
-        PSPDFFreeTextAnnotation *webText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Link that opens modally.\nPSPDFActionOptionButton : @YES,\nPSPDFActionOptionModal : @YES,\nPSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f)"];
+        PSPDFFreeTextAnnotation *webText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Link that opens modally.\nPSPDFActionOptionButtonKey : @YES,\nPSPDFActionOptionModalKey : @YES,\nPSPDFActionOptionSizeKey : BOXED(CGSizeMake(550.f, 550.f)"];
         webText.boundingBox = CGRectMake(20.f, 100.f, webText.boundingBox.size.width, webText.boundingBox.size.height);
 
-        PSPDFAction *action = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://www.apple.com/ipad/"] options:@{PSPDFActionOptionButton : @YES, PSPDFActionOptionModal : @YES, PSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f))}];
+        PSPDFAction *action = [[PSPDFURLAction alloc] initWithURL:[NSURL URLWithString:@"pspdfkit://www.apple.com/ipad/"] options:@{PSPDFActionOptionButtonKey : @YES, PSPDFActionOptionModalKey : @YES, PSPDFActionOptionSizeKey : BOXED(CGSizeMake(550.f, 550.f))}];
         PSPDFLinkAnnotation *webAnnotation = [[PSPDFLinkAnnotation alloc] initWithAction:action];
         webAnnotation.boundingBox = CGRectMake(200.f, 100.f, 200.f, 200.f);
         [document addAnnotations:@[webText, webAnnotation]];
@@ -181,12 +181,9 @@
     PSPDFURLAction *videoAction = [[PSPDFURLAction alloc] initWithURLString:@"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480"];
 
     // Create action that opens a sheet.
-    NSDictionary *options = @{
-        // Disable browser controls.
-        PSPDFActionOptionControls: @NO,
-        // Will present as sheet on iPad, is ignored on iPhone.
-        PSPDFActionOptionSize: [NSValue valueWithCGSize:CGSizeMake(620.f, 400.f)]
-    };
+    NSDictionary *options = @{PSPDFActionOptionControlsKey : @NO, // Disable browser controls.
+                              PSPDFActionOptionSizeKey : [NSValue valueWithCGSize:CGSizeMake(620.f, 400.f)] // Will present as sheet on iPad, is ignored on iPhone.
+                              };
     PSPDFURLAction *sheetVideoAction = [[PSPDFURLAction alloc] initWithURL:videoAction.URL options:options];
 
     // First example - use a special link annotation.

@@ -36,7 +36,7 @@ static const CGFloat PSCToolbarMargin = 20.f;
 
     self.title = document.title;
     self.thumbnailController.filterOptions = nil;
-    self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
+    self.documentInfoCoordinator.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
     self.leftBarButtonItems = nil;
     self.rightBarButtonItems = nil;
     self.delegate = self;
@@ -111,11 +111,11 @@ static const CGFloat PSCToolbarMargin = 20.f;
 }
 
 - (void)outlineButtonPressed:(UIButton *)sender {
-    PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentViewController:outlineController options:@{PSPDFPresentationPopoverArrowDirectionsKey : @(UIPopoverArrowDirectionUp),
-                                                            PSPDFPresentationInNavigationControllerKey : @(!PSCIsIPad()),
-                                                            PSPDFPresentationCloseButtonKey : @YES}
-                         animated:YES sender:sender completion:NULL];
+    PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document];
+    [self presentViewController:outlineController options:@{PSPDFPresentationPopoverArrowDirectionsKey: @(UIPopoverArrowDirectionUp),
+                                                            PSPDFPresentationInNavigationControllerKey: @(!PSCIsIPad()),
+                                                            PSPDFPresentationCloseButtonKey: @YES}
+                         animated:YES sender:sender error:NULL completion:NULL];
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {

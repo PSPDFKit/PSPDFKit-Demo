@@ -54,7 +54,7 @@
 // The PSPDFSearchViewController has its delegate set to the PSPDFViewController, so subclass and add this method.
 - (NSIndexSet *)searchViewController:(PSPDFSearchViewController *)searchController searchRangeForScope:(NSString *)scope {
     if ([scope isEqualToString:@"This page"]) {
-        return self.visiblePageNumbers.array.psc_indexSet;
+        return self.visiblePages.array.psc_indexSet;
     } else {
         return nil; // all pages
     }

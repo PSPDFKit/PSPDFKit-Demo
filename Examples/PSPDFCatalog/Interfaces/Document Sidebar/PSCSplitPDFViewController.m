@@ -25,8 +25,7 @@
     if ((self = [super init])) {
         self.delegate = self;
         self.leftBarButtonItems = nil;
-        self.additionalBarButtonItems = @[self.printButtonItem, self.emailButtonItem];
-        self.rightBarButtonItems = @[self.bookmarkButtonItem, self.searchButtonItem, self.viewModeButtonItem];
+        self.rightBarButtonItems = @[self.activityButtonItem, self.searchButtonItem, self.viewModeButtonItem];
 
     }
     return self;

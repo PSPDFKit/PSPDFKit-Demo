@@ -254,11 +254,12 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)selectLeftSource:(id)sender {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     PSPDFDocumentPickerController *documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:samplesURL.path includeSubdirectories:NO library:Nil delegate:self];
-    
+
     [self.leftController presentViewController:documentPicker
-                                       options:@{PSPDFPresentationInNavigationControllerKey : @YES}
+                                       options:@{PSPDFPresentationInNavigationControllerKey: @YES}
                                       animated:YES
                                         sender:sender
+                                         error:NULL
                                     completion:NULL];
 }
 
@@ -355,7 +356,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 
     // If the annotation toolbar is invoked, there's not enough space for the default configuration.
-    self.annotationButtonItem.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
+    self.annotationToolbarController.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
 
     // Hide bookmark filter
     self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];

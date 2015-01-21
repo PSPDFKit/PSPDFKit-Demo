@@ -10,9 +10,11 @@
 
 #define PSCSlideshowDuration 2.0f
 
+/*
 // Adds a play/pause button that can enable a slideshow mode for pdf documents.
-@interface PSCPlayBarButtonItem : PSPDFBarButtonItem
+@interface PSCPlayBarButtonItem : UIBarButtonItem
 
 @property (nonatomic, assign, getter=isAutoplaying) BOOL autoplaying;
 
 @end
+*/
