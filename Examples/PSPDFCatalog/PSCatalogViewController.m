@@ -64,7 +64,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
 
-@synthesize searchDisplayController = searchDisplayController_; // _searchDisplayController is used in UIViewController
+// _searchDisplayController is used in UIViewController
+@synthesize searchDisplayController = searchDisplayController_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -324,7 +325,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
             // When PSPDFAESCryptoDataProvider is used, the diskCacheStrategy of PSPDFDocument is *automatically* set to PSPDFDiskCacheStrategyNothing.
             // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
-            // document.diskCacheStrategy = PSPDFDiskCacheStrategyNothing;
+            //document.diskCacheStrategy = PSPDFDiskCacheStrategyNothing;
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
@@ -986,7 +987,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
             // convert view line points into PDF line points.
             PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
-            CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
+            CGRect viewRect = [UIScreen mainScreen].bounds; // This is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
             annotation.lineWidth = 5;
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.rect, pageInfo.rotation, viewRect);
 
@@ -995,7 +996,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             [document addAnnotations:@[annotation]];
         }
 
-        //Here we should figure out which pages have annotations
+        // Here we should figure out which pages have annotations
         NSDictionary *annotationsDictionary = [document allAnnotationsOfType:PSPDFAnnotationTypeInk];
         NSArray *annotatedPages = annotationsDictionary.allKeys;
         NSIndexSet *pageNumbers = annotatedPages.psc_indexSet;
@@ -1417,7 +1418,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     self.content = sections.array;
 
-    // debug helper
+// debug helper
 #ifdef kDebugTextBlocks
     [PSCSettingsController settings][@"showTextBlocks"] = @YES;
 #endif

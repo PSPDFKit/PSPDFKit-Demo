@@ -27,7 +27,8 @@
         self.contentDescription = @"Uses a document picker as the split view controller sidebar.";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 1;
-        self.targetDevice = PSCExampleTargetDeviceMaskPad; // Split view is iPad only.
+        // Split view is iPad only.
+        self.targetDevice = PSCExampleTargetDeviceMaskPad;
     }
     return self;
 }

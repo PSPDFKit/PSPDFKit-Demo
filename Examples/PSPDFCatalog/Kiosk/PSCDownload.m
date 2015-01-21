@@ -137,7 +137,8 @@
     }];
     [pdfRequest start];
 
-    self.request = pdfRequest; // save request
+    // save request
+    self.request = pdfRequest;
     [PSCStoreManager.sharedStoreManager addMagazinesToStore:@[self.magazine]];
 }
 

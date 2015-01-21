@@ -240,13 +240,13 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
         self.title = @"Example of a PDF Interactive Form with a Digital Signature";
         self.category = PSCExampleCategoryForms;
         self.priority = 10;
-        //        PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
+        //PSPDFDigitalSignatureManager.sharedManager.delegate = PSCFormExampleSignatureDelegate.sharedDelegate;
     }
     return self;
 }
 
 - (void)dealloc {
-    //    PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
+    //PSPDFDigitalSignatureManager.sharedManager.delegate = nil;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {

@@ -28,11 +28,9 @@
             // This allows setting document via keyPath directly in Interface Builder.
             pdfController.document = (PSPDFDocument *)[NSString stringWithFormat:@"Samples/%@", cell.textLabel.text];
 
-            /*
             // ideally, you would do it like this:
-            NSString *pdfPath = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:cell.textLabel.text];
-            pdfController.document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:pdfPath]];
-            */
+            //NSString *pdfPath = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:cell.textLabel.text];
+            //pdfController.document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:pdfPath]];
         }
     }
 }

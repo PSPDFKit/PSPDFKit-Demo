@@ -51,9 +51,12 @@
     // Create at least one annotation if the document is currently empty.
     if ([document annotationsForPage:0 type:PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink].count == 0) {
         PSPDFInkAnnotation *ink = [PSPDFInkAnnotation new];
-        NSArray *lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
-                           @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
-                           ];
+        NSArray *lines = @[
+            // first line
+            @[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))],
+            // second line
+            @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]
+        ];
         PSPDFPageInfo *pageInfo = [document pageInfoForPage:0];
         ink.lineWidth = 5;
         ink.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.rect, pageInfo.rotation, UIScreen.mainScreen.bounds);

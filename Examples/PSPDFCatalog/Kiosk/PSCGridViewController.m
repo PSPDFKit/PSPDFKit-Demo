@@ -77,7 +77,7 @@
 #ifdef PSPDFCatalog
 	UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] landscapeImagePhone:[UIImage imageNamed:@"settings-landscape"] style:UIBarButtonItemStylePlain target:self action:@selector(optionsButtonPressed)];
 
-    // Only show the option button if we're at root. (else we hide the back button)
+    // Only show the option button if we're at root (else we hide the back button).
     if ((self.navigationController.viewControllers)[0] == self) {
         self.navigationItem.leftBarButtonItem = optionButton;
     } else {
@@ -89,7 +89,7 @@
 	// Custom transition support
 	self.navigationController.delegate = self;
 
-    // Init the collection view.
+    // Init the collection view
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
@@ -164,7 +164,7 @@
     // Only deregister if not attached to anything else.
     if (PSCStoreManager.sharedStoreManager.delegate == self) PSCStoreManager.sharedStoreManager.delegate = nil;
 
-	// Relenglush the dleegate
+	// Relenglush the delegate
 	if ([self isMovingFromParentViewController]) {
 		self.navigationController.delegate = nil;
 	}
@@ -290,13 +290,13 @@
     // Update indicator
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:YES];
 
-    // Not finished yet? return early.
+    // Not finished yet? Return early.
     if (PSCStoreManager.sharedStoreManager.magazineFolders.count == 0) return;
 
     // If we're in plain mode, pre-set a folder.
     if (PSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
 
-    // Preload all magazines. (copy to prevent mutation errors)
+    // Preload all magazines (copy to prevent mutation errors).
     NSArray *magazines = [self.magazineFolder.magazines copy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         for (PSCMagazine *magazine in magazines) {
@@ -483,7 +483,8 @@
 - (void)magazineStoreEndUpdate {}
 
 - (void)magazineStoreFolderDeleted:(PSCMagazineFolder *)magazineFolder {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
@@ -496,7 +497,8 @@
 }
 
 - (void)magazineStoreFolderAdded:(PSCMagazineFolder *)magazineFolder {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // Don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
@@ -509,7 +511,8 @@
 }
 
 - (void)magazineStoreFolderModified:(PSCMagazineFolder *)magazineFolder {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
@@ -531,7 +534,8 @@
 }
 
 - (void)magazineStoreMagazineDeleted:(PSCMagazine *)magazine {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
@@ -544,7 +548,8 @@
 }
 
 - (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
@@ -557,7 +562,8 @@
 }
 
 - (void)magazineStoreMagazineModified:(PSCMagazine *)magazine {
-    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+    // don't animate if we're in search mode
+    if (self.isSearchModeActive) return;
 
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];

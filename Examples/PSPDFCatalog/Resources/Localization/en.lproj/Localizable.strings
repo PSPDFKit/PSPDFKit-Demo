@@ -1,15 +1,15 @@
-/* 
- Localizable.strings
- PSPDFCatalog
- 
- Copyright (c) 2012-2015 PSPDFKit GmbH. All rights reserved.
-
- The PSPDFKit Sample applications are licensed with a modified BSD license.
- Please see License for details. This notice may not be removed from this file.
-
- Note: To be able to translate `MFMailComposeViewController`, this file needs to be in the language you support.
- see http://stackoverflow.com/questions/1321281/mfmailcomposeviewcontroller-in-other-languages
- */
+//
+//  Localizable.strings
+//  PSPDFCatalog
+//
+//  Copyright (c) 2012-2015 PSPDFKit GmbH. All rights reserved.
+//
+//  The PSPDFKit Sample applications are licensed with a modified BSD license.
+//  Please see License for details. This notice may not be removed from this file.
+//
+//  Note: To be able to translate `MFMailComposeViewController`, this file needs to be in the language you support.
+//  see http://stackoverflow.com/questions/1321281/mfmailcomposeviewcontroller-in-other-languages
+//
 
 "Documents" = "Documents";
 "Done" = "Done";

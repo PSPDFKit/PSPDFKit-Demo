@@ -43,7 +43,8 @@
 - (void)performAction {
     if (self.handler) {
         self.handler(self);
-        self.handler = nil; // nil out after calling to break cycles.
+        // nil out after calling to break cycles.
+        self.handler = nil;
     }
 }
 

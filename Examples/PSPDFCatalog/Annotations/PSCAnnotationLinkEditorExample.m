@@ -50,7 +50,6 @@
                                         PSPDFAnnotationStringSound,
                                         PSPDFAnnotationStringCaret,
                                         PSPDFAnnotationStringWidget,
-                                        // PSPDFAnnotationStringLink,
 
                                         // Special tools
                                         PSPDFAnnotationStringEraser,

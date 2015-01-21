@@ -151,7 +151,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 [self updateProgressAnimated:YES];
             });
         } else if ([keyPath isEqualToString:PSCDownloadingKey]) {
-            // Check if magazine needs to be observed. (if download progress is active)
+            // Check if magazine needs to be observed (if download progress is active).
             if (self.magazine.isDownloading && ![_observedMagazineDownloads containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
@@ -241,7 +241,8 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
                 }];
 
                 if (self.immediatelyLoadCellImages) {
-                    [imageLoadOperation start]; // start directly.
+                    // start directly.
+                    [imageLoadOperation start];
                 } else {
                     [self.class.thumbnailQueue addOperation:imageLoadOperation];
                     _imageLoadOperation = imageLoadOperation;
