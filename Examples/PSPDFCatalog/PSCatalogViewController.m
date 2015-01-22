@@ -27,7 +27,6 @@
 #import "PSCHeadlessSearchPDFViewController.h"
 #import "PSCThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
-#import "PSCDefaultZoomScaleViewController.h"
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCMultipleUsersPDFViewController.h"
@@ -605,13 +604,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [editableTypes removeObject:PSPDFAnnotationStringInk];
 		pdfController.annotationToolbarController.annotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Set custom default zoom level" block:^UIViewController *{
-        PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
-        PSPDFViewController *pdfController = [[PSCDefaultZoomScaleViewController alloc] initWithDocument:document];
-        [self presentViewController:pdfController animated:YES completion:NULL];
-        return nil;
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Open and immediately request signing" block:^UIViewController *{
