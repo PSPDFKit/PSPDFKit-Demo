@@ -95,7 +95,6 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
     // image darkener.
     self.progressViewBackground.frame = self.imageView.bounds;
-    self.progressView.frame = self.imageView.bounds;
 
     self.selectedBackgroundView.frame = CGRectInset(self.imageView.frame, -4.f, -4.f);
 }
