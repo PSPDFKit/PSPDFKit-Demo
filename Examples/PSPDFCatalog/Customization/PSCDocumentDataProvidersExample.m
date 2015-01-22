@@ -258,7 +258,7 @@
     PSPDFDocument *document = [PSPDFDocument documentWithDataArray:dataArray];
 
     // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
-    NSDictionary *options = @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
+    NSDictionary *options = @{PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
     NSData *consolidatedData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] options:options progressBlock:NULL error:NULL];
     PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument documentWithData:consolidatedData];
 

@@ -297,7 +297,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [status pushAnimated:YES];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionaryKey : @YES, PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
             status.progress = numberOfProcessedPages/(float)totalPages;
         } error:NULL];
 
@@ -993,7 +993,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSDictionary *annotationsDictionary = [document allAnnotationsOfType:PSPDFAnnotationTypeInk];
         NSArray *annotatedPages = annotationsDictionary.allKeys;
         NSIndexSet *pageNumbers = annotatedPages.psc_indexSet;
-        NSDictionary *processorOptions = @{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)};
+        NSDictionary *processorOptions = @{PSPDFProcessorAnnotationAsDictionaryKey : @YES, PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll)};
 
         NSURL *outputFileURL = document.fileURL;
         [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[pageNumbers] outputFileURL:outputFileURL options:processorOptions progressBlock:NULL error:NULL];
@@ -1296,7 +1296,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation flattening" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -1312,7 +1312,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
         noteAnnotation.contents = @"This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening.";
         [document addAnnotations:@[noteAnnotation]];
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -1324,7 +1324,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:PSPDFHackerMagazineAsset]];
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionaryKey : @YES, PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -1336,7 +1336,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test PDF generation + annotation adding 2" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionaryKey : @YES, PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];

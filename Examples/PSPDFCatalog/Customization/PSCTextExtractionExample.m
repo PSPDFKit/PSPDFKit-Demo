@@ -70,7 +70,7 @@
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
 
         // Create pdf (blocks).
-        [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"} error:NULL];
+        [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPagesKey : @(1), PSPDFProcessorDocumentTitleKey : @"Generated PDF"} error:NULL];
 
         // Generate document and show it.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
@@ -120,7 +120,7 @@
         [status setHUDStyle:PSPDFStatusHUDStyleGradient];
         [status pushAnimated:YES];
 
-        NSDictionary *options = @{PSPDFProcessorPageBorderMargin : [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f)]};
+        NSDictionary *options = @{PSPDFProcessorPageBorderMarginKey : [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f)]};
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:options completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
                 [status popAnimated:YES];

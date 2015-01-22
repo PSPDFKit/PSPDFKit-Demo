@@ -125,7 +125,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 		[status pushAnimated:YES];
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSDictionary *options = flattened ? @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink)} : @{PSPDFProcessorAnnotationAsDictionary : @YES};
+            NSDictionary *options = flattened ? @{PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink)} : @{PSPDFProcessorAnnotationAsDictionaryKey : @YES};
             // TODO: use file-based version to support larger PDFs.
             NSError *error = nil;
             NSData *data = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:self.document pageRanges:@[selectedPages] options:options progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {

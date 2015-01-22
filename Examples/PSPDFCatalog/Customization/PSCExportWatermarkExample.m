@@ -79,7 +79,7 @@
 
     // Fetch dictionary and add drawing block.
     NSMutableDictionary *processorOptions = [NSMutableDictionary dictionaryWithDictionary:[super delegateProcessorOptions]];
-    processorOptions[PSPDFProcessorDrawRectBlock] = [drawBlock copy];
+    processorOptions[PSPDFProcessorDrawRectBlockKey] = [drawBlock copy];
     return processorOptions;
 }
 
