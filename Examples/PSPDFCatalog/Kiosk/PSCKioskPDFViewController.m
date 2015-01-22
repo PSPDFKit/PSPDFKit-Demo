@@ -140,8 +140,7 @@
 
 - (void)settingsButtonPressed:(id)sender {
     PSCSettingsController *settingsController = [PSCSettingsController new];
-    PSPDFViewController *pdfController = self.pdfController;
-    settingsController.owningViewController = pdfController;
+    settingsController.owningViewController = self;
 
     // We need to set this to YES to give view controllers presented by settingsController popover, like `PSPDFWebViewController`, access to the status bar.
     settingsController.modalPresentationCapturesStatusBarAppearance = YES;

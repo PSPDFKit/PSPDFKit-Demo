@@ -535,14 +535,23 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
 
-    [pdfController presentViewController:configViewController
-                                 options:@{PSPDFPresentationStyleKey: @(PSPDFPresentationStyleModal),
-                                           PSPDFPresentationInNavigationControllerKey: @YES,
-                                           PSPDFPresentationCloseButtonKey: @YES}
-                                animated:YES
-                                  sender:nil
-                                   error:NULL
-                              completion:NULL];
+    dispatch_block_t presentBlock = ^{
+        [pdfController presentViewController:configViewController
+                                     options:@{PSPDFPresentationStyleKey: @(PSPDFPresentationStyleModal),
+                                               PSPDFPresentationInNavigationControllerKey: @YES,
+                                               PSPDFPresentationCloseButtonKey: @YES}
+                                    animated:YES
+                                      sender:nil
+                                       error:NULL
+                                  completion:NULL];
+    };
+
+    // iOS 7 support
+    if (pdfController.popoverController) {
+        presentBlock();
+    } else {
+        [self dismissViewControllerAnimated:YES completion:presentBlock];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

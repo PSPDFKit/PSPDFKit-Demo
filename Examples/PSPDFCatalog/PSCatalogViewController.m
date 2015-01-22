@@ -77,6 +77,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             self.title = [PSPDFKit.sharedInstance.version stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
+
 		// We need to call this before the view loads initially
 		[self applyCatalogAppearanceUsingCustomTinting:YES];
     }
