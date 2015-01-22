@@ -297,7 +297,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [status pushAnimated:YES];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
-        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionaryKey : @YES, PSPDFProcessorAnnotationTypesKey : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
+        NSDictionary *options = @{(id)kCGPDFContextUserPassword: password,
+                                  (id)kCGPDFContextOwnerPassword: password,
+                                  (id)kCGPDFContextEncryptionKeyLength: @128,
+                                  PSPDFProcessorAnnotationAsDictionaryKey: @YES,
+                                  PSPDFProcessorAnnotationTypesKey: @(PSPDFAnnotationTypeLink)};
+        
+        [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:options progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
             status.progress = numberOfProcessedPages/(float)totalPages;
         } error:NULL];
 
