@@ -12,8 +12,6 @@
 #import "PSTAlertController.h"
 #import <objc/runtime.h>
 
-#define PROPERTY(property) NSStringFromSelector(@selector(property))
-
 @interface PSTAlertAction ()
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) PSTAlertActionStyle style;
