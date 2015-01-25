@@ -13,7 +13,6 @@
 #import "PSCSettingsController.h"
 #import "PSCGridViewController.h"
 #import "PSCAvailability.h"
-#import "PSPDFActivityViewController.h"
 
 #ifdef PSPDFCatalog
 #import "PSCMetadataViewController.h"

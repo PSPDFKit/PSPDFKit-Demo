@@ -9,7 +9,6 @@
 //
 
 #import "PSCTabbedExampleViewController.h"
-#import "PSPDFActivityViewController.h"
 #import "PSTAlertController.h"
 
 @interface PSCTabbedExampleViewController () <PSPDFDocumentPickerControllerDelegate>

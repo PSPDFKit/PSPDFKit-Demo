@@ -168,7 +168,6 @@
 		78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */; };
 		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
 		78D98EB81A6E9AF800A8BC88 /* PSCMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D98EB71A6E9AF800A8BC88 /* PSCMetadataViewController.m */; };
-		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
 		78DE30911A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE308F1A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m */; };
 		78E4E06517DD151B005ED42D /* PSCExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06217DD151B005ED42D /* PSCExample.m */; };
@@ -456,8 +455,6 @@
 		78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotationProvider.m; sourceTree = "<group>"; };
 		78D98EB61A6E9AF800A8BC88 /* PSCMetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMetadataViewController.h; sourceTree = "<group>"; };
 		78D98EB71A6E9AF800A8BC88 /* PSCMetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMetadataViewController.m; sourceTree = "<group>"; };
-		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
-		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
 		78DDC6B215CF2EFF0030C730 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		78DE308F1A35D906008953D4 /* PSCDisallowCopyApplicationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDisallowCopyApplicationPolicy.m; sourceTree = "<group>"; };
@@ -777,8 +774,6 @@
 		78A24A1115CFDAAF00328F4F /* TabbedExample */ = {
 			isa = PBXGroup;
 			children = (
-				78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */,
-				78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */,
 				78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */,
 				78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */,
 			);
@@ -1230,7 +1225,6 @@
 				785EAE4F18B6B10C0077F9D1 /* PSCMultimediaExample.m in Sources */,
 				7882FCF01A134BA700C0327B /* UIBarButtonItem+PSCBlockSupport.m in Sources */,
 				7882FCAD1A134B9700C0327B /* PSCExportWatermarkExample.m in Sources */,
-				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78FEC21318B285FC0012ACBD /* PSCBottomToolbarExample.m in Sources */,
 				78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */,
 				7882FCEA1A134BA700C0327B /* NSURL+PSCSampleLoading.m in Sources */,
