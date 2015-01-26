@@ -267,7 +267,7 @@ static char PSCKVOToken;
 
         [delegate magazineStoreBeginUpdate];
 
-        for (PSCMagazine *magazine in magazines) {
+        for (PSCMagazine *magazine in newMagazines) {
             PSCMagazineFolder *folder = [self addMagazineToFolder:magazine];
 
             // folder fresh or updated?
