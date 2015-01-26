@@ -167,7 +167,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
-        controller.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithArray:@[@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterBookmarks)]];
+        controller.thumbnailController.filterOptions = @[PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterBookmarks];
 
         return controller;
     }]];

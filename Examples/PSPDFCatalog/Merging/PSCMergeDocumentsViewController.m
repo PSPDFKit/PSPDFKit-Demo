@@ -359,7 +359,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.annotationToolbarController.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
 
     // Hide bookmark filter
-    self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];
+    self.thumbnailController.filterOptions = @[PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterAnnotations];
     [self updateDocumentSettings:document];
 }
 
