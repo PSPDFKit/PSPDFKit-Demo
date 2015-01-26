@@ -345,10 +345,6 @@ static char PSCKVOToken;
     NSString *sampleFolder = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Samples"];
     [folders addObjectsFromArray:[self searchFolder:sampleFolder]];
 
-    // Add downloaded files
-    NSString *dirPath = [PSCStoreManager.storagePath stringByAppendingPathComponent:@"downloads"];
-    [folders addObjectsFromArray:[self searchFolder:dirPath]];
-
     // Add files from Open In...
     NSString *documentsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     [folders addObjectsFromArray:[self searchFolder:documentsFolder]];
