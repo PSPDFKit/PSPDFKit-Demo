@@ -240,14 +240,6 @@
     self.rightBarButtonItems = rightBarButtonItems;
 #endif
 
-#ifdef PSPDFCatalog
-    //[additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
-
-    if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
-        self.applicationActivities = activities;
-    }
-#endif
-
     // updating the configuration reloads the scroll view
     [self updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         // PSPDFGeneralSettings
@@ -265,6 +257,11 @@
         builder.doublePageModeOnFirstPage = [settings[PROPERTY(isDoublePageModeOnFirstPage)] boolValue];
         builder.thumbnailBarMode = [settings[PROPERTY(thumbnailBarMode)] integerValue];
         builder.linkAction = [settings[PROPERTY(linkAction)] integerValue];
+#ifdef PSPDFCatalog
+        if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
+            builder.applicationActivities = activities;
+        }
+#endif
     }];
 
     // restore viewState

@@ -114,9 +114,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             builder.thumbnailBarMode = PSPDFThumbnailBarModeNone;
             builder.shouldShowHUDOnViewWillAppear = NO;
             builder.pageLabelEnabled = NO;
+            builder.applicationActivities = @[PSPDFActivityTypeOpenIn];
         }]];
 
-        controller.applicationActivities = @[PSPDFActivityTypeOpenIn];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.activityButtonItem];
         return controller;
     }]];
@@ -157,6 +157,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             // Don't use thumbnails if the PDF is not rendered.
             // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
             builder.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+
+            builder.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
         }]];
 
         // Setup toolbar
@@ -164,7 +166,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         controller.HUDView.pageLabel.showThumbnailGridButton = YES;
-        controller.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
         controller.thumbnailController.filterOptions = @[PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterBookmarks];
@@ -184,12 +185,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             builder.renderAnimationEnabled = NO;
             builder.shouldHideNavigationBarWithHUD = NO;
             builder.shouldHideStatusBarWithHUD = NO;
+            builder.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
         }]];
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
-        controller.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem, controller.emailButtonItem];
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];

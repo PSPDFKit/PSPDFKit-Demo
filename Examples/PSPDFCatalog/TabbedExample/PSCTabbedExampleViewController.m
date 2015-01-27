@@ -27,6 +27,7 @@
         // change status bar setting
         [pdfController updateConfigurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
             builder.shouldHideStatusBarWithHUD = YES;
+            builder.applicationActivities = @[PSPDFActivityTypeSearch, PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks];
         }];
 
         self.navigationItem.leftItemsSupplementBackButton = YES;
@@ -45,7 +46,6 @@
         } else {
             self.pdfController.leftBarButtonItems = @[_clearTabsButtonItem];
             self.pdfController.rightBarButtonItems = @[self.pdfController.annotationButtonItem, self.pdfController.outlineButtonItem, self.pdfController.activityButtonItem, self.pdfController.viewModeButtonItem];
-            self.pdfController.applicationActivities = @[PSPDFActivityTypeSearch, PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks];
             self.navigationItem.leftItemsSupplementBackButton = YES;
         }
 
