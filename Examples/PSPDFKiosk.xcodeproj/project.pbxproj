@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		78479D2217393F430006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D2117393F430006D87D /* PSCGridViewController.m */; };
+		78497FC11A79650A003D57C3 /* PSCMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78497FC01A79650A003D57C3 /* PSCMetadataViewController.m */; };
 		7859B35C1938F77F0046E213 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7859B34C1938F77F0046E213 /* Localizable.strings */; };
 		785DD9B0167B9BAE00559562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9AF167B9BAE00559562 /* UIKit.framework */; };
 		785DD9B2167B9BAE00559562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B1167B9BAE00559562 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -24,7 +25,6 @@
 		785DD9F5167B9BD000559562 /* PSCKioskPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E2167B9BD000559562 /* PSCKioskPDFViewController.m */; };
 		785DD9F6167B9BD000559562 /* PSCMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E4167B9BD000559562 /* PSCMagazine.m */; };
 		785DD9F7167B9BD000559562 /* PSCMagazineFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E6167B9BD000559562 /* PSCMagazineFolder.m */; };
-		785DD9F8167B9BD000559562 /* PSCSettingsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E8167B9BD000559562 /* PSCSettingsBarButtonItem.m */; };
 		785DD9F9167B9BD000559562 /* PSCSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9EA167B9BD000559562 /* PSCSettingsController.m */; };
 		785DD9FB167B9BD000559562 /* PSCStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9EE167B9BD000559562 /* PSCStoreManager.m */; };
 		785DDA34167B9C8C00559562 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA32167B9C8C00559562 /* AFDownloadRequestOperation.m */; };
@@ -69,6 +69,8 @@
 /* Begin PBXFileReference section */
 		78479D2017393F430006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
 		78479D2117393F430006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
+		78497FBF1A79650A003D57C3 /* PSCMetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMetadataViewController.h; sourceTree = "<group>"; };
+		78497FC01A79650A003D57C3 /* PSCMetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMetadataViewController.m; sourceTree = "<group>"; };
 		7859B34D1938F77F0046E213 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7859B34E1938F77F0046E213 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7859B34F1938F77F0046E213 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -109,8 +111,6 @@
 		785DD9E4167B9BD000559562 /* PSCMagazine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMagazine.m; sourceTree = "<group>"; };
 		785DD9E5167B9BD000559562 /* PSCMagazineFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMagazineFolder.h; sourceTree = "<group>"; };
 		785DD9E6167B9BD000559562 /* PSCMagazineFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMagazineFolder.m; sourceTree = "<group>"; };
-		785DD9E7167B9BD000559562 /* PSCSettingsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSettingsBarButtonItem.h; sourceTree = "<group>"; };
-		785DD9E8167B9BD000559562 /* PSCSettingsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSettingsBarButtonItem.m; sourceTree = "<group>"; };
 		785DD9E9167B9BD000559562 /* PSCSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSettingsController.h; sourceTree = "<group>"; };
 		785DD9EA167B9BD000559562 /* PSCSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSettingsController.m; sourceTree = "<group>"; };
 		785DD9ED167B9BD000559562 /* PSCStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoreManager.h; sourceTree = "<group>"; };
@@ -195,6 +195,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78497FBE1A79650A003D57C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				78497FBF1A79650A003D57C3 /* PSCMetadataViewController.h */,
+				78497FC01A79650A003D57C3 /* PSCMetadataViewController.m */,
+			);
+			name = Controller;
+			path = PSPDFCatalog/Controller;
+			sourceTree = SOURCE_ROOT;
+		};
 		7859B34B1938F77F0046E213 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +272,7 @@
 		785DD9D7167B9BD000559562 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				78497FBE1A79650A003D57C3 /* Controller */,
 				785DD9D9167B9BD000559562 /* PSCBasicViewController.h */,
 				785DD9DA167B9BD000559562 /* PSCBasicViewController.m */,
 				785DD9DB167B9BD000559562 /* PSCDownload.h */,
@@ -278,8 +289,6 @@
 				785DD9E6167B9BD000559562 /* PSCMagazineFolder.m */,
 				78E5CCCD18C1341F005F1A63 /* PSCRoundProgressView.h */,
 				78E5CCCE18C1341F005F1A63 /* PSCRoundProgressView.m */,
-				785DD9E7167B9BD000559562 /* PSCSettingsBarButtonItem.h */,
-				785DD9E8167B9BD000559562 /* PSCSettingsBarButtonItem.m */,
 				785DD9E9167B9BD000559562 /* PSCSettingsController.h */,
 				785DD9EA167B9BD000559562 /* PSCSettingsController.m */,
 				785DD9ED167B9BD000559562 /* PSCStoreManager.h */,
@@ -524,12 +533,12 @@
 				78D4D43E1848CD5A00080A96 /* AFURLConnectionOperation.m in Sources */,
 				78D4D4411848CD5A00080A96 /* AFURLSessionManager.m in Sources */,
 				785DD9F4167B9BD000559562 /* PSCImageGridViewCell.m in Sources */,
+				78497FC11A79650A003D57C3 /* PSCMetadataViewController.m in Sources */,
 				785DD9F5167B9BD000559562 /* PSCKioskPDFViewController.m in Sources */,
 				78E5CCCF18C1341F005F1A63 /* PSCRoundProgressView.m in Sources */,
 				78D4D4441848CD5A00080A96 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				785DD9F6167B9BD000559562 /* PSCMagazine.m in Sources */,
 				785DD9F7167B9BD000559562 /* PSCMagazineFolder.m in Sources */,
-				785DD9F8167B9BD000559562 /* PSCSettingsBarButtonItem.m in Sources */,
 				785DD9F9167B9BD000559562 /* PSCSettingsController.m in Sources */,
 				78D90A1B178A126600E7D4D5 /* PSCViewHelper.m in Sources */,
 				785DD9FB167B9BD000559562 /* PSCStoreManager.m in Sources */,

@@ -13,10 +13,7 @@
 #import "PSCSettingsController.h"
 #import "PSCGridViewController.h"
 #import "PSCAvailability.h"
-
-#ifdef PSPDFCatalog
 #import "PSCMetadataViewController.h"
-#endif
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"

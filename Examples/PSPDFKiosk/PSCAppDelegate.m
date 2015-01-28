@@ -66,8 +66,7 @@
 
 - (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.activityButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
     return pdfController;
 }
 
