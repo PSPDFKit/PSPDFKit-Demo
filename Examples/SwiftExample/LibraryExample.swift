@@ -14,7 +14,7 @@ import PSPDFKit
 class LibraryExample : NSObject {
 
     func indexDocuments () {
-        let library = PSPDFLibrary.defaultLibrary()
+        let library = PSPDFKit.sharedInstance().library
         let fileURL = NSBundle.mainBundle().bundleURL.URLByAppendingPathComponent("Samples/PSPDFKit QuickStart Guide.pdf")
         let document = PSPDFDocument(URL: fileURL)
         library.enqueueDocuments([document])
