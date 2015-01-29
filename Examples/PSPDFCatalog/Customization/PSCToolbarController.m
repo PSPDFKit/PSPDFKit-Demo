@@ -37,10 +37,10 @@
     [_customViewModeSegment sizeToFit];
     UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:_customViewModeSegment];
 
-    self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, self.annotationButtonItem];
+    self.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, self.annotationButtonItem];
 
     // UIBarButtons are defaulted to be plain in PSPDFKit. Iterate and update them to improve image rendering and positioning in bordered.
-    for (UIBarButtonItem *barButton in self.navigationItem.rightBarButtonItems) {
+    for (UIBarButtonItem *barButton in self.rightBarButtonItems) {
         barButton.style = UIBarButtonItemStyleBordered;
     }
 
