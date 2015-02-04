@@ -31,6 +31,8 @@
     PSPDFDocument *document = [PSCAssetLoader documentWithName:PSPDFHackerMagazineAsset];
     PSPDFViewController *pdfController = [[PSCScopedPDFViewController alloc] initWithDocument:document configuration:[PSPDFConfiguration configurationWithBuilder:^(PSPDFConfigurationBuilder *builder) {
         [builder overrideClass:PSPDFSearchViewController.class withClass:PSCScopedSearchViewController.class];
+        // The scope bar is currently only supported for PSPDFSearchModeModal
+        builder.searchMode = PSPDFSearchModeModal;
     }]];
     return pdfController;
 }
